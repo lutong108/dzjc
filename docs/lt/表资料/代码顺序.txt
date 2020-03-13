@@ -1,9 +1,9 @@
-1�����ƶ�ʱ����ִ�С�ִ��StartupRuleEngineServlet���startupRuleEngineServiceIfc.doStartup()
-2��StartupRuleEngineServiceImpl��doStartup()�
-	a������־��
-	b��ɾ�����Ҫ�ؽ����
-	c����ѯ������Ҫ������ݷ��̴߳�����runSingleAreaRuleEngine(list,i,batchId)��
-3��StartupRuleEngineServiceImpl��runSingleAreaRuleEngine()�
-	ruleInit()��a�������������档b��������ʱ����㲢�����������
-	ruleCaculate()��a������TA_JC_RULE_ELEMENT�еļ��Ҫ�ع��򣬼�������ִ��calculate��������ʱ�䡣b���������м�����͵�ʱ�����浽TA_JC_RULE_ELEM_RESULT�С�
-	ruleRun()��a����Ҫ�������ݺͼ�����ƴװ��һ������b���жϴ˶����Ƿ񷢹��ƣ�û���ͷ���
+1、发牌定时任务执行。执行StartupRuleEngineServlet里的startupRuleEngineServiceIfc.doStartup()
+2、StartupRuleEngineServiceImpl的doStartup()里：
+	a、记日志、
+	b、删除监察要素结果、
+	c、查询到所有要监察数据分线程处理（runSingleAreaRuleEngine(list,i,batchId)）
+3、StartupRuleEngineServiceImpl的runSingleAreaRuleEngine()里：
+	ruleInit()：a、启动规则引擎。b、办件监察时间计算并反到办件表。
+	ruleCaculate()：a、加载TA_JC_RULE_ELEMENT中的监察要素规则，即反射类执行calculate方法计算时间。b、计算所有监察类型的时长并存到TA_JC_RULE_ELEM_RESULT中。
+	ruleRun()：a、将要检查的数据和监察规则拼装成一个对象。b、判断此对象是否发过牌，没法就发。
