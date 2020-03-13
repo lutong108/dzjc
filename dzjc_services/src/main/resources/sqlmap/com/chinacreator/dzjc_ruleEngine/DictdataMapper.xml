@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chinacreator.dzjc_ruleEngine.DictdataMapper">	
+
+<!-- ElementID:column_sql,Generated=true -->
+<sql id="column_sql">
+		  TD_SM_DICTDATA.dictdata_id ,
+		  TD_SM_DICTDATA.dicttype_id ,
+		  TD_SM_DICTDATA.dictdata_name ,
+		  TD_SM_DICTDATA.dictdata_value ,
+		  TD_SM_DICTDATA.dictdata_order ,
+		  TD_SM_DICTDATA.dictdata_isdefault 
+</sql>
+
+<!-- ElementID:whereClause_sql,Generated=true -->
+<sql id="whereClause_sql">
+	    <if test="dictdataId != null">and TD_SM_DICTDATA.dictdata_id = #{dictdataId}</if>
+	    <if test="dicttypeId != null">and TD_SM_DICTDATA.dicttype_id = #{dicttypeId}</if>
+	    <if test="dictdataName != null">and TD_SM_DICTDATA.dictdata_name = #{dictdataName}</if>
+	    <if test="dictdataValue != null">and TD_SM_DICTDATA.dictdata_value = #{dictdataValue}</if>
+	    <if test="dictdataOrder != null">and TD_SM_DICTDATA.dictdata_order = #{dictdataOrder}</if>
+	    <if test="dictdataIsdefault != null">and TD_SM_DICTDATA.dictdata_isdefault = #{dictdataIsdefault}</if>
+</sql>
+
+
+<!-- ElementID:DictdataResult,Generated=true -->
+<resultMap id="DictdataResult" type="com.chinacreator.dzjc_ruleEngine.Dictdata">
+	<id property="dictdataId" column="dictdata_id"/>
+	<result property="dicttypeId" column="dicttype_id"/>
+	<result property="dictdataName" column="dictdata_name"/>
+	<result property="dictdataValue" column="dictdata_value"/>
+	<result property="dictdataOrder" column="dictdata_order"/>
+	<result property="dictdataIsdefault" column="dictdata_isdefault"/>
+</resultMap>
+
+
+
+<!-- ElementName:cache,Generated=true -->
+<cache type="C2_Default_Dao_Cache"/>
+
+<!-- ElementID:insert,Generated=true -->
+<insert id="insert" parameterType="com.chinacreator.dzjc_ruleEngine.Dictdata">
+	insert into TD_SM_DICTDATA(
+	         <if test="dictdataId != null">dictdata_id</if>
+	         <if test="dicttypeId != null">,dicttype_id</if>
+	         <if test="dictdataName != null">,dictdata_name</if>
+	         <if test="dictdataValue != null">,dictdata_value</if>
+	         <if test="dictdataOrder != null">,dictdata_order</if>
+	         <if test="dictdataIsdefault != null">,dictdata_isdefault</if>
+	 	 	 )
+	 values (
+	         <if test="dictdataId != null">#{dictdataId,jdbcType=VARCHAR}</if>
+	         <if test="dicttypeId != null">,#{dicttypeId,jdbcType=VARCHAR}</if>
+	         <if test="dictdataName != null">,#{dictdataName,jdbcType=VARCHAR}</if>
+	         <if test="dictdataValue != null">,#{dictdataValue,jdbcType=VARCHAR}</if>
+	         <if test="dictdataOrder != null">,#{dictdataOrder,jdbcType=NUMERIC}</if>
+	         <if test="dictdataIsdefault != null">,#{dictdataIsdefault,jdbcType=CHAR}</if>
+	 	 	 )
+</insert>
+
+<!-- ElementID:count,Generated=true -->
+<select id="count" parameterType="com.chinacreator.dzjc_ruleEngine.Dictdata" resultType="int">
+	select count(*) from TD_SM_DICTDATA 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<!-- ElementID:update,Generated=true -->
+<update id="update" parameterType="com.chinacreator.dzjc_ruleEngine.Dictdata">
+	update TD_SM_DICTDATA
+<set>
+	<if test="dicttypeId != null">dicttype_id=#{dicttypeId,jdbcType=VARCHAR},</if>
+	<if test="dictdataName != null">dictdata_name=#{dictdataName,jdbcType=VARCHAR},</if>
+	<if test="dictdataValue != null">dictdata_value=#{dictdataValue,jdbcType=VARCHAR},</if>
+	<if test="dictdataOrder != null">dictdata_order=#{dictdataOrder,jdbcType=NUMERIC},</if>
+	<if test="dictdataIsdefault != null">dictdata_isdefault=#{dictdataIsdefault,jdbcType=CHAR}</if>
+</set>
+<where>
+	<choose>
+        <when test="dictdataId != null">and dictdata_id = #{dictdataId}</when>
+        <otherwise>and dictdata_id = </otherwise>
+    </choose>
+</where>
+</update>
+
+<!-- ElementID:updateNull,Generated=true -->
+<update id="updateNull" parameterType="map">
+	update TD_SM_DICTDATA
+	<set>
+		<trim suffixOverrides=",">
+		    <if test="dicttypeId==null">dicttype_id = null,</if>
+		    <if test="dictdataName==null">dictdata_name = null,</if>
+		    <if test="dictdataValue==null">dictdata_value = null,</if>
+		    <if test="dictdataOrder==null">dictdata_order = null,</if>
+		    <if test="dictdataIsdefault==null">dictdata_isdefault = null,</if>
+		</trim>
+	</set>
+	<where>
+		<choose>
+			<when test="dictdataId != null">and dictdata_id = #{dictdataId}</when>
+			<otherwise>and dictdata_id = </otherwise>
+		</choose>
+	</where>
+</update>
+
+<!-- ElementID:delete,Generated=true -->
+<delete id="delete" parameterType="com.chinacreator.dzjc_ruleEngine.Dictdata">
+    delete from TD_SM_DICTDATA where 1=1 and dictdata_id = #{dictdataId}
+</delete>
+
+<!-- ElementID:select,Generated=true -->
+<select id="select" parameterType="com.chinacreator.dzjc_ruleEngine.Dictdata" resultMap="DictdataResult">
+	select 
+		<include refid="column_sql"/>
+	    from TD_SM_DICTDATA 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+
+<!-- ElementID:insertBatch,Generated=true -->
+<insert id="insertBatch" parameterType="list">
+	insert into TD_SM_DICTDATA (dictdata_id,dicttype_id,dictdata_name,dictdata_value,dictdata_order,dictdata_isdefault) 
+<foreach collection="list" item="entity" index="index" separator="union all">
+		select 
+		#{entity.dictdataId,jdbcType = VARCHAR},
+				#{entity.dicttypeId,jdbcType = VARCHAR},
+				#{entity.dictdataName,jdbcType = VARCHAR},
+				#{entity.dictdataValue,jdbcType = VARCHAR},
+				#{entity.dictdataOrder,jdbcType = NUMERIC},
+				#{entity.dictdataIsdefault,jdbcType = CHAR}
+		from dual
+</foreach>
+</insert>
+
+<!-- ElementID:deleteBatch,Generated=true -->
+<delete id="deleteBatch" parameterType="List">
+	delete from TD_SM_DICTDATA where dictdata_id in
+<trim prefix="(" suffix=")" suffixOverrides=",">
+<foreach collection="list" item="entity" separator=",">
+	<choose>
+		<when test="@com.chinacreator.c2.dao.util.EntityBeanUtil@isEntityObj(entity)">#{entity.dictdataId}</when>
+		<otherwise>#{entity}</otherwise>
+	</choose>
+</foreach>
+</trim>
+</delete>
+
+<!-- ElementID:updateBatch,Generated=true -->
+<update id="updateBatch" parameterType="list">
+	<foreach collection="list" item="entity" open="begin" close=";end;" separator=";">
+			update TD_SM_DICTDATA
+	<set>
+	<if test="entity.dicttypeId != null">dicttype_id= #{entity.dicttypeId,jdbcType=VARCHAR},</if>
+	<if test="entity.dictdataName != null">dictdata_name= #{entity.dictdataName,jdbcType=VARCHAR},</if>
+	<if test="entity.dictdataValue != null">dictdata_value= #{entity.dictdataValue,jdbcType=VARCHAR},</if>
+	<if test="entity.dictdataOrder != null">dictdata_order= #{entity.dictdataOrder,jdbcType=NUMERIC},</if>
+	<if test="entity.dictdataIsdefault != null">dictdata_isdefault= #{entity.dictdataIsdefault,jdbcType=CHAR}</if>
+	</set>
+		<where>
+			<choose>
+				<when test="entity.dictdataId != null">and dictdata_id = #{entity.dictdataId}</when>
+				<otherwise>and dictdata_id = </otherwise>
+			</choose>
+		</where>
+	</foreach>
+</update>
+
+<!-- ElementID:selectAll,Generated=true -->
+<select id="selectAll" resultMap="DictdataResult">
+	select 
+		<include refid="column_sql"/>
+	    from TD_SM_DICTDATA 
+</select>
+
+<!-- ElementID:selectMany,Generated=true -->
+<select id="selectMany" parameterType="list" resultMap="DictdataResult">
+select 
+	<include refid="column_sql"/> 
+	from TD_SM_DICTDATA 
+	where TD_SM_DICTDATA.dictdata_id in (
+<foreach collection="list" item="entity" separator="intersect">
+		select 
+		TD_SM_DICTDATA.dictdata_id
+	    from TD_SM_DICTDATA 
+		 <where>
+	        <if test="entity.dictdataId != null">and TD_SM_DICTDATA.dictdata_id = #{entity.dictdataId}</if>
+	        <if test="entity.dicttypeId != null">and TD_SM_DICTDATA.dicttype_id = #{entity.dicttypeId}</if>
+	        <if test="entity.dictdataName != null">and TD_SM_DICTDATA.dictdata_name = #{entity.dictdataName}</if>
+	        <if test="entity.dictdataValue != null">and TD_SM_DICTDATA.dictdata_value = #{entity.dictdataValue}</if>
+	        <if test="entity.dictdataOrder != null">and TD_SM_DICTDATA.dictdata_order = #{entity.dictdataOrder}</if>
+	        <if test="entity.dictdataIsdefault != null">and TD_SM_DICTDATA.dictdata_isdefault = #{entity.dictdataIsdefault}</if>
+		</where>
+</foreach>
+)
+</select>
+
+<!-- ElementID:selectUnion,Generated=true -->
+<select id="selectUnion" parameterType="list" resultMap="DictdataResult">
+select 
+	<include refid="column_sql"/> 
+	from TD_SM_DICTDATA 
+	 INNER JOIN
+<foreach collection="list" item="entity" separator="UNION" open="(" close=")">
+		SELECT 
+			 dictdata_id
+		FROM TD_SM_DICTDATA 
+			<where>
+	        <if test="entity.dictdataId != null">and TD_SM_DICTDATA.dictdata_id = #{entity.dictdataId}</if>
+	        <if test="entity.dicttypeId != null">and TD_SM_DICTDATA.dicttype_id = #{entity.dicttypeId}</if>
+	        <if test="entity.dictdataName != null">and TD_SM_DICTDATA.dictdata_name = #{entity.dictdataName}</if>
+	        <if test="entity.dictdataValue != null">and TD_SM_DICTDATA.dictdata_value = #{entity.dictdataValue}</if>
+	        <if test="entity.dictdataOrder != null">and TD_SM_DICTDATA.dictdata_order = #{entity.dictdataOrder}</if>
+	        <if test="entity.dictdataIsdefault != null">and TD_SM_DICTDATA.dictdata_isdefault = #{entity.dictdataIsdefault}</if>
+			</where>
+</foreach>
+	c2_temp_table ON TD_SM_DICTDATA.dictdata_id = c2_temp_table.dictdata_id
+</select>
+
+<!-- ElementID:selectByID,Generated=true -->
+<select id="selectByID" parameterType="java.lang.String" resultMap="DictdataResult">
+	select 
+		<include refid="column_sql"/>
+	    from TD_SM_DICTDATA 
+		 where TD_SM_DICTDATA.dictdata_id = #{dictdataId,jdbcType=VARCHAR}
+</select>
+
+<!-- ElementID:selectByPage,Generated=true -->
+<select id="selectByPage" parameterType="com.chinacreator.dzjc_ruleEngine.Dictdata" resultMap="DictdataResult">
+	select 
+		<include refid="column_sql"/>
+	    from TD_SM_DICTDATA 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<select id="findListByTypeId" parameterType="java.lang.String" resultMap="DictdataResult">
+	select t.DICTDATA_NAME, t.DICTDATA_VALUE
+	    from TD_SM_DICTDATA t where t.DICTTYPE_ID = #{dicttypeId,jdbcType=VARCHAR} order by t.DICTDATA_ORDER
+</select>
+
+<select id="getServicesTypeCode" parameterType="java.lang.String" resultType="java.lang.String">
+	select dictdata_value from td_sm_dictdata where dicttype_id = '911463286625403EBD6747C2D0179BA5' and dictdata_name =  #{dicttypeName,jdbcType=VARCHAR}
+</select>
+
+<cache type="C2_Default_Dao_Cache"/>
+<!-- ElementID:selectBatch,Generated=false -->
+<select id="selectBatch" parameterType="java.lang.String" resultMap="DictdataResult">
+	select * from TD_SM_DICTDATA t 
+	where 1=1
+	 and t.DICTDATA_ID not in (select f.business_id from td_jc_filter f where f.type = 'td_sm_dictdata')
+	 and t.DICTTYPE_ID=(select d.DICTTYPE_ID from TD_SM_DICTTYPE d where d.DICTTYPE_NAME=#{dictTypeName,jdbcType=VARCHAR}) 
+</select>
+
+<select id="selectMulti" parameterType="list" resultMap="DictdataResult">
+select 
+	<include refid="column_sql"/> 
+	from TD_SM_DICTDATA 
+	where TD_SM_DICTDATA.dictdata_id in (
+<foreach collection="list" item="entity" separator="UNION">
+		select 
+		TD_SM_DICTDATA.dictdata_id
+	    from TD_SM_DICTDATA 
+		 <where>
+	        <if test="entity.dictdataId != null">and TD_SM_DICTDATA.dictdata_id = #{entity.dictdataId}</if>
+		</where>
+</foreach>
+)
+</select>
+
+</mapper>

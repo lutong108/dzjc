@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"><mapper namespace="com.chinacreator.dzjc_union.UnionInstanceDetailMapper">	
+
+<!-- ElementID:column_sql,Generated=true -->
+<sql id="column_sql">
+		  VA_TA_UNION_INSTANCE_DETAIL.project_name ,
+		  VA_TA_UNION_INSTANCE_DETAIL.mainapprove_name ,
+		  VA_TA_UNION_INSTANCE_DETAIL.stage_alias ,
+		  VA_TA_UNION_INSTANCE_DETAIL.approve_name ,
+		  VA_TA_UNION_INSTANCE_DETAIL.instance_id ,
+		  VA_TA_UNION_INSTANCE_DETAIL.accept_time ,
+		  VA_TA_UNION_INSTANCE_DETAIL.end_time ,
+		  VA_TA_UNION_INSTANCE_DETAIL.project_state ,
+		  VA_TA_UNION_INSTANCE_DETAIL.approve_id ,
+		  VA_TA_UNION_INSTANCE_DETAIL.completed_time ,
+		  VA_TA_UNION_INSTANCE_DETAIL.org_id ,
+		  VA_TA_UNION_INSTANCE_DETAIL.org_name ,
+		  VA_TA_UNION_INSTANCE_DETAIL.approve_limit ,
+		  VA_TA_UNION_INSTANCE_DETAIL.commitment_limit ,
+		  VA_TA_UNION_INSTANCE_DETAIL.stage_id ,
+		  VA_TA_UNION_INSTANCE_DETAIL.main_instance_id ,
+		  VA_TA_UNION_INSTANCE_DETAIL.project_id ,
+		  VA_TA_UNION_INSTANCE_DETAIL.mainapprove_id ,
+		  VA_TA_UNION_INSTANCE_DETAIL.supervise_result_no ,
+		  VA_TA_UNION_INSTANCE_DETAIL.supervise_time ,
+		  VA_TA_UNION_INSTANCE_DETAIL.begin_date ,
+		  VA_TA_UNION_INSTANCE_DETAIL.end_date ,
+		  VA_TA_UNION_INSTANCE_DETAIL.submit_time 
+</sql>
+
+<!-- ElementID:whereClause_sql,Generated=true -->
+<sql id="whereClause_sql">
+	    <if test="projectName != null">and VA_TA_UNION_INSTANCE_DETAIL.project_name = #{projectName}</if>
+	    <if test="mainapproveName != null">and VA_TA_UNION_INSTANCE_DETAIL.mainapprove_name = #{mainapproveName}</if>
+	    <if test="stageAlias != null">and VA_TA_UNION_INSTANCE_DETAIL.stage_alias = #{stageAlias}</if>
+	    <if test="approveName != null">and VA_TA_UNION_INSTANCE_DETAIL.approve_name = #{approveName}</if>
+	    <if test="instanceId != null">and VA_TA_UNION_INSTANCE_DETAIL.instance_id = #{instanceId}</if>
+	    <if test="acceptTime != null"> <![CDATA[ and  accept_time>to_date(#{beginDate},'yyyy-mm-dd') and accept_time<=to_date(#{endDate},'yyyy-mm-dd') ]]></if>
+	    <if test="endTime != null"> <![CDATA[ and  end_time>to_date(#{beginDate},'yyyy-mm-dd') and end_time<=to_date(#{endDate},'yyyy-mm-dd') ]]>  </if>
+	    <if test="projectState != null">
+		     and VA_TA_UNION_INSTANCE_DETAIL.project_state in 
+		     <foreach collection="projectState.split(',')" item="projectState"  index="index" open="(" close=")" separator=",">
+	                 '${projectState}'
+	         </foreach>	   
+	    </if>
+	    <if test="approveId != null">and VA_TA_UNION_INSTANCE_DETAIL.approve_id = #{approveId}</if>
+	    <if test="completedTime != null">and VA_TA_UNION_INSTANCE_DETAIL.completed_time = #{completedTime}</if>
+	    <if test="orgId != null">and VA_TA_UNION_INSTANCE_DETAIL.org_id = #{orgId}</if>
+	    <if test="orgName != null">and VA_TA_UNION_INSTANCE_DETAIL.org_name = #{orgName}</if>
+	    <if test="approveLimit != null">and VA_TA_UNION_INSTANCE_DETAIL.approve_limit = #{approveLimit}</if>
+	    <if test="commitmentLimit != null">and VA_TA_UNION_INSTANCE_DETAIL.commitment_limit = #{commitmentLimit}</if>
+	    <if test="stageId != null">and VA_TA_UNION_INSTANCE_DETAIL.stage_id = #{stageId}</if>
+	    <if test="mainInstanceId != null">and VA_TA_UNION_INSTANCE_DETAIL.main_instance_id = #{mainInstanceId}</if>
+	    <if test="projectId != null">and VA_TA_UNION_INSTANCE_DETAIL.project_id = #{projectId}</if>
+	    <if test="mainapproveId != null">and VA_TA_UNION_INSTANCE_DETAIL.mainapprove_id = #{mainapproveId}</if>
+	    <if test="superviseResultNo != null">and VA_TA_UNION_INSTANCE_DETAIL.supervise_result_no = #{superviseResultNo}</if>
+	    <if test="superviseTime != null"><![CDATA[ and  supervise_time>to_date(#{beginDate},'yyyy-mm-dd') and supervise_time<=to_date(#{endDate},'yyyy-mm-dd') ]]></if>
+	    
+	    <if test="submitTime != null"><![CDATA[ and  submit_time>to_date(#{beginDate},'yyyy-mm-dd') and  submit_time<=to_date(#{endDate},'yyyy-mm-dd') ]]></if>
+</sql>
+
+
+<!-- ElementID:UnionInstanceDetailResult,Generated=true -->
+<resultMap id="UnionInstanceDetailResult" type="com.chinacreator.dzjc_union.UnionInstanceDetail">
+	<id property="instanceId" column="instance_id"/>
+	<result property="projectName" column="project_name"/>
+	<result property="mainapproveName" column="mainapprove_name"/>
+	<result property="stageAlias" column="stage_alias"/>
+	<result property="approveName" column="approve_name"/>
+	<result property="acceptTime" column="accept_time"/>
+	<result property="endTime" column="end_time"/>
+	<result property="projectState" column="project_state"/>
+	<result property="approveId" column="approve_id"/>
+	<result property="completedTime" column="completed_time"/>
+	<result property="orgId" column="org_id"/>
+	<result property="orgName" column="org_name"/>
+	<result property="approveLimit" column="approve_limit"/>
+	<result property="commitmentLimit" column="commitment_limit"/>
+	<result property="stageId" column="stage_id"/>
+	<result property="mainInstanceId" column="main_instance_id"/>
+	<result property="projectId" column="project_id"/>
+	<result property="mainapproveId" column="mainapprove_id"/>
+	<result property="superviseResultNo" column="supervise_result_no"/>
+	<result property="superviseTime" column="supervise_time"/>
+	<result property="beginDate" column="begin_date"/>
+	<result property="endDate" column="end_date"/>
+	<result property="submitTime" column="submit_time"/>
+</resultMap>
+
+
+<!-- ElementID:insert,Generated=true -->
+<insert id="insert" parameterType="com.chinacreator.dzjc_union.UnionInstanceDetail">
+	insert into VA_TA_UNION_INSTANCE_DETAIL(
+	         <if test="projectName != null">project_name</if>
+	         <if test="mainapproveName != null">,mainapprove_name</if>
+	         <if test="stageAlias != null">,stage_alias</if>
+	         <if test="approveName != null">,approve_name</if>
+	         <if test="instanceId != null">,instance_id</if>
+	         <if test="acceptTime != null">,accept_time</if>
+	         <if test="endTime != null">,end_time</if>
+	         <if test="projectState != null">,project_state</if>
+	         <if test="approveId != null">,approve_id</if>
+	         <if test="completedTime != null">,completed_time</if>
+	         <if test="orgId != null">,org_id</if>
+	         <if test="orgName != null">,org_name</if>
+	         <if test="approveLimit != null">,approve_limit</if>
+	         <if test="commitmentLimit != null">,commitment_limit</if>
+	         <if test="stageId != null">,stage_id</if>
+	         <if test="mainInstanceId != null">,main_instance_id</if>
+	         <if test="projectId != null">,project_id</if>
+	         <if test="mainapproveId != null">,mainapprove_id</if>
+	         <if test="superviseResultNo != null">,supervise_result_no</if>
+	         <if test="superviseTime != null">,supervise_time</if>
+	         <if test="beginDate != null">,begin_date</if>
+	         <if test="endDate != null">,end_date</if>
+	         <if test="submitTime != null">,submit_time</if>
+	 	 	 )
+	 values (
+	         <if test="projectName != null">#{projectName,jdbcType=VARCHAR}</if>
+	         <if test="mainapproveName != null">,#{mainapproveName,jdbcType=VARCHAR}</if>
+	         <if test="stageAlias != null">,#{stageAlias,jdbcType=VARCHAR}</if>
+	         <if test="approveName != null">,#{approveName,jdbcType=VARCHAR}</if>
+	         <if test="instanceId != null">,#{instanceId,jdbcType=VARCHAR}</if>
+	         <if test="acceptTime != null">,#{acceptTime,jdbcType=DATE}</if>
+	         <if test="endTime != null">,#{endTime,jdbcType=DATE}</if>
+	         <if test="projectState != null">,#{projectState,jdbcType=VARCHAR}</if>
+	         <if test="approveId != null">,#{approveId,jdbcType=VARCHAR}</if>
+	         <if test="completedTime != null">,#{completedTime,jdbcType=NUMERIC}</if>
+	         <if test="orgId != null">,#{orgId,jdbcType=VARCHAR}</if>
+	         <if test="orgName != null">,#{orgName,jdbcType=VARCHAR}</if>
+	         <if test="approveLimit != null">,#{approveLimit,jdbcType=NUMERIC}</if>
+	         <if test="commitmentLimit != null">,#{commitmentLimit,jdbcType=NUMERIC}</if>
+	         <if test="stageId != null">,#{stageId,jdbcType=VARCHAR}</if>
+	         <if test="mainInstanceId != null">,#{mainInstanceId,jdbcType=VARCHAR}</if>
+	         <if test="projectId != null">,#{projectId,jdbcType=VARCHAR}</if>
+	         <if test="mainapproveId != null">,#{mainapproveId,jdbcType=VARCHAR}</if>
+	         <if test="superviseResultNo != null">,#{superviseResultNo,jdbcType=VARCHAR}</if>
+	         <if test="superviseTime != null">,#{superviseTime,jdbcType=CHAR}</if>
+	         <if test="beginDate != null">,#{beginDate,jdbcType=CHAR}</if>
+	         <if test="endDate != null">,#{endDate,jdbcType=CHAR}</if>
+	         <if test="submitTime != null">,#{submitTime,jdbcType=DATE}</if>
+	 	 	 )
+</insert>
+
+<!-- ElementID:count,Generated=true -->
+<select id="count" parameterType="com.chinacreator.dzjc_union.UnionInstanceDetail" resultType="int">
+	select count(*) from VA_TA_UNION_INSTANCE_DETAIL 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<!-- ElementID:update,Generated=true -->
+<update id="update" parameterType="com.chinacreator.dzjc_union.UnionInstanceDetail">
+	update VA_TA_UNION_INSTANCE_DETAIL
+<set>
+	<if test="projectName != null">project_name=#{projectName,jdbcType=VARCHAR},</if>
+	<if test="mainapproveName != null">mainapprove_name=#{mainapproveName,jdbcType=VARCHAR},</if>
+	<if test="stageAlias != null">stage_alias=#{stageAlias,jdbcType=VARCHAR},</if>
+	<if test="approveName != null">approve_name=#{approveName,jdbcType=VARCHAR},</if>
+	<if test="acceptTime != null">accept_time=#{acceptTime,jdbcType=DATE},</if>
+	<if test="endTime != null">end_time=#{endTime,jdbcType=DATE},</if>
+	<if test="projectState != null">project_state=#{projectState,jdbcType=VARCHAR},</if>
+	<if test="approveId != null">approve_id=#{approveId,jdbcType=VARCHAR},</if>
+	<if test="completedTime != null">completed_time=#{completedTime,jdbcType=NUMERIC},</if>
+	<if test="orgId != null">org_id=#{orgId,jdbcType=VARCHAR},</if>
+	<if test="orgName != null">org_name=#{orgName,jdbcType=VARCHAR},</if>
+	<if test="approveLimit != null">approve_limit=#{approveLimit,jdbcType=NUMERIC},</if>
+	<if test="commitmentLimit != null">commitment_limit=#{commitmentLimit,jdbcType=NUMERIC},</if>
+	<if test="stageId != null">stage_id=#{stageId,jdbcType=VARCHAR},</if>
+	<if test="mainInstanceId != null">main_instance_id=#{mainInstanceId,jdbcType=VARCHAR},</if>
+	<if test="projectId != null">project_id=#{projectId,jdbcType=VARCHAR},</if>
+	<if test="mainapproveId != null">mainapprove_id=#{mainapproveId,jdbcType=VARCHAR},</if>
+	<if test="superviseResultNo != null">supervise_result_no=#{superviseResultNo,jdbcType=VARCHAR},</if>
+	<if test="superviseTime != null">supervise_time=#{superviseTime,jdbcType=CHAR},</if>
+	<if test="beginDate != null">begin_date=#{beginDate,jdbcType=CHAR},</if>
+	<if test="endDate != null">end_date=#{endDate,jdbcType=CHAR},</if>
+	<if test="submitTime != null">submit_time=#{submitTime,jdbcType=DATE}</if>
+</set>
+<where>
+	<choose>
+        <when test="instanceId != null">and instance_id = #{instanceId}</when>
+        <otherwise>and instance_id = </otherwise>
+    </choose>
+</where>
+</update>
+
+<!-- ElementID:updateNull,Generated=true -->
+<update id="updateNull" parameterType="map">
+	update VA_TA_UNION_INSTANCE_DETAIL
+	<set>
+		<trim suffixOverrides=",">
+		    <if test="projectName==null">project_name = null,</if>
+		    <if test="mainapproveName==null">mainapprove_name = null,</if>
+		    <if test="stageAlias==null">stage_alias = null,</if>
+		    <if test="approveName==null">approve_name = null,</if>
+		    <if test="acceptTime==null">accept_time = null,</if>
+		    <if test="endTime==null">end_time = null,</if>
+		    <if test="projectState==null">project_state = null,</if>
+		    <if test="approveId==null">approve_id = null,</if>
+		    <if test="completedTime==null">completed_time = null,</if>
+		    <if test="orgId==null">org_id = null,</if>
+		    <if test="orgName==null">org_name = null,</if>
+		    <if test="approveLimit==null">approve_limit = null,</if>
+		    <if test="commitmentLimit==null">commitment_limit = null,</if>
+		    <if test="stageId==null">stage_id = null,</if>
+		    <if test="mainInstanceId==null">main_instance_id = null,</if>
+		    <if test="projectId==null">project_id = null,</if>
+		    <if test="mainapproveId==null">mainapprove_id = null,</if>
+		    <if test="superviseResultNo==null">supervise_result_no = null,</if>
+		    <if test="superviseTime==null">supervise_time = null,</if>
+		    <if test="beginDate==null">begin_date = null,</if>
+		    <if test="endDate==null">end_date = null,</if>
+		    <if test="submitTime==null">submit_time = null,</if>
+		</trim>
+	</set>
+	<where>
+		<choose>
+			<when test="instanceId != null">and instance_id = #{instanceId}</when>
+			<otherwise>and instance_id = </otherwise>
+		</choose>
+	</where>
+</update>
+
+<!-- ElementID:delete,Generated=true -->
+<delete id="delete" parameterType="com.chinacreator.dzjc_union.UnionInstanceDetail">
+    delete from VA_TA_UNION_INSTANCE_DETAIL where 1=1 and instance_id = #{instanceId}
+</delete>
+
+<!-- ElementID:select,Generated=true -->
+<select id="select" parameterType="com.chinacreator.dzjc_union.UnionInstanceDetail" resultMap="UnionInstanceDetailResult">
+	select 
+		<include refid="column_sql"/>
+	    from VA_TA_UNION_INSTANCE_DETAIL 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+
+<!-- ElementID:insertBatch,Generated=true -->
+<insert id="insertBatch" parameterType="list">
+	insert into VA_TA_UNION_INSTANCE_DETAIL (project_name,mainapprove_name,stage_alias,approve_name,instance_id,accept_time,end_time,project_state,approve_id,completed_time,org_id,org_name,approve_limit,commitment_limit,stage_id,main_instance_id,project_id,mainapprove_id,supervise_result_no,supervise_time,begin_date,end_date,submit_time) 
+<foreach collection="list" item="entity" index="index" separator="union all">
+		select 
+		#{entity.projectName,jdbcType = VARCHAR},
+				#{entity.mainapproveName,jdbcType = VARCHAR},
+				#{entity.stageAlias,jdbcType = VARCHAR},
+				#{entity.approveName,jdbcType = VARCHAR},
+				#{entity.instanceId,jdbcType = VARCHAR},
+				#{entity.acceptTime,jdbcType = DATE},
+				#{entity.endTime,jdbcType = DATE},
+				#{entity.projectState,jdbcType = VARCHAR},
+				#{entity.approveId,jdbcType = VARCHAR},
+				#{entity.completedTime,jdbcType = NUMERIC},
+				#{entity.orgId,jdbcType = VARCHAR},
+				#{entity.orgName,jdbcType = VARCHAR},
+				#{entity.approveLimit,jdbcType = NUMERIC},
+				#{entity.commitmentLimit,jdbcType = NUMERIC},
+				#{entity.stageId,jdbcType = VARCHAR},
+				#{entity.mainInstanceId,jdbcType = VARCHAR},
+				#{entity.projectId,jdbcType = VARCHAR},
+				#{entity.mainapproveId,jdbcType = VARCHAR},
+				#{entity.superviseResultNo,jdbcType = VARCHAR},
+				#{entity.superviseTime,jdbcType = CHAR},
+				#{entity.beginDate,jdbcType = CHAR},
+				#{entity.endDate,jdbcType = CHAR},
+				#{entity.submitTime,jdbcType = DATE}
+		from dual
+</foreach>
+</insert>
+
+<!-- ElementID:deleteBatch,Generated=true -->
+<delete id="deleteBatch" parameterType="List">
+	delete from VA_TA_UNION_INSTANCE_DETAIL where instance_id in
+<trim prefix="(" suffix=")" suffixOverrides=",">
+<foreach collection="list" item="entity" separator=",">
+	<choose>
+		<when test="@com.chinacreator.c2.dao.util.EntityBeanUtil@isEntityObj(entity)">#{entity.instanceId}</when>
+		<otherwise>#{entity}</otherwise>
+	</choose>
+</foreach>
+</trim>
+</delete>
+
+<!-- ElementID:updateBatch,Generated=true -->
+<update id="updateBatch" parameterType="list">
+	<foreach collection="list" item="entity" open="begin" close=";end;" separator=";">
+			update VA_TA_UNION_INSTANCE_DETAIL
+	<set>
+	<if test="entity.projectName != null">project_name= #{entity.projectName,jdbcType=VARCHAR},</if>
+	<if test="entity.mainapproveName != null">mainapprove_name= #{entity.mainapproveName,jdbcType=VARCHAR},</if>
+	<if test="entity.stageAlias != null">stage_alias= #{entity.stageAlias,jdbcType=VARCHAR},</if>
+	<if test="entity.approveName != null">approve_name= #{entity.approveName,jdbcType=VARCHAR},</if>
+	<if test="entity.acceptTime != null">accept_time= #{entity.acceptTime,jdbcType=DATE},</if>
+	<if test="entity.endTime != null">end_time= #{entity.endTime,jdbcType=DATE},</if>
+	<if test="entity.projectState != null">project_state= #{entity.projectState,jdbcType=VARCHAR},</if>
+	<if test="entity.approveId != null">approve_id= #{entity.approveId,jdbcType=VARCHAR},</if>
+	<if test="entity.completedTime != null">completed_time= #{entity.completedTime,jdbcType=NUMERIC},</if>
+	<if test="entity.orgId != null">org_id= #{entity.orgId,jdbcType=VARCHAR},</if>
+	<if test="entity.orgName != null">org_name= #{entity.orgName,jdbcType=VARCHAR},</if>
+	<if test="entity.approveLimit != null">approve_limit= #{entity.approveLimit,jdbcType=NUMERIC},</if>
+	<if test="entity.commitmentLimit != null">commitment_limit= #{entity.commitmentLimit,jdbcType=NUMERIC},</if>
+	<if test="entity.stageId != null">stage_id= #{entity.stageId,jdbcType=VARCHAR},</if>
+	<if test="entity.mainInstanceId != null">main_instance_id= #{entity.mainInstanceId,jdbcType=VARCHAR},</if>
+	<if test="entity.projectId != null">project_id= #{entity.projectId,jdbcType=VARCHAR},</if>
+	<if test="entity.mainapproveId != null">mainapprove_id= #{entity.mainapproveId,jdbcType=VARCHAR},</if>
+	<if test="entity.superviseResultNo != null">supervise_result_no= #{entity.superviseResultNo,jdbcType=VARCHAR},</if>
+	<if test="entity.superviseTime != null">supervise_time= #{entity.superviseTime,jdbcType=CHAR},</if>
+	<if test="entity.beginDate != null">begin_date= #{entity.beginDate,jdbcType=CHAR},</if>
+	<if test="entity.endDate != null">end_date= #{entity.endDate,jdbcType=CHAR},</if>
+	<if test="entity.submitTime != null">submit_time= #{entity.submitTime,jdbcType=DATE}</if>
+	</set>
+		<where>
+			<choose>
+				<when test="entity.instanceId != null">and instance_id = #{entity.instanceId}</when>
+				<otherwise>and instance_id = </otherwise>
+			</choose>
+		</where>
+	</foreach>
+</update>
+
+<!-- ElementID:selectAll,Generated=true -->
+<select id="selectAll" resultMap="UnionInstanceDetailResult">
+	select 
+		<include refid="column_sql"/>
+	    from VA_TA_UNION_INSTANCE_DETAIL 
+</select>
+
+<!-- ElementID:selectMany,Generated=true -->
+<select id="selectMany" parameterType="list" resultMap="UnionInstanceDetailResult">
+select 
+	<include refid="column_sql"/> 
+	from VA_TA_UNION_INSTANCE_DETAIL 
+	where VA_TA_UNION_INSTANCE_DETAIL.instance_id in (
+<foreach collection="list" item="entity" separator="intersect">
+		select 
+		VA_TA_UNION_INSTANCE_DETAIL.instance_id
+	    from VA_TA_UNION_INSTANCE_DETAIL 
+		 <where>
+	        <if test="entity.projectName != null">and VA_TA_UNION_INSTANCE_DETAIL.project_name = #{entity.projectName}</if>
+	        <if test="entity.mainapproveName != null">and VA_TA_UNION_INSTANCE_DETAIL.mainapprove_name = #{entity.mainapproveName}</if>
+	        <if test="entity.stageAlias != null">and VA_TA_UNION_INSTANCE_DETAIL.stage_alias = #{entity.stageAlias}</if>
+	        <if test="entity.approveName != null">and VA_TA_UNION_INSTANCE_DETAIL.approve_name = #{entity.approveName}</if>
+	        <if test="entity.instanceId != null">and VA_TA_UNION_INSTANCE_DETAIL.instance_id = #{entity.instanceId}</if>
+	        <if test="entity.acceptTime != null">and VA_TA_UNION_INSTANCE_DETAIL.accept_time = #{entity.acceptTime}</if>
+	        <if test="entity.endTime != null">and VA_TA_UNION_INSTANCE_DETAIL.end_time = #{entity.endTime}</if>
+	        <if test="entity.projectState != null">and VA_TA_UNION_INSTANCE_DETAIL.project_state = #{entity.projectState}</if>
+	        <if test="entity.approveId != null">and VA_TA_UNION_INSTANCE_DETAIL.approve_id = #{entity.approveId}</if>
+	        <if test="entity.completedTime != null">and VA_TA_UNION_INSTANCE_DETAIL.completed_time = #{entity.completedTime}</if>
+	        <if test="entity.orgId != null">and VA_TA_UNION_INSTANCE_DETAIL.org_id = #{entity.orgId}</if>
+	        <if test="entity.orgName != null">and VA_TA_UNION_INSTANCE_DETAIL.org_name = #{entity.orgName}</if>
+	        <if test="entity.approveLimit != null">and VA_TA_UNION_INSTANCE_DETAIL.approve_limit = #{entity.approveLimit}</if>
+	        <if test="entity.commitmentLimit != null">and VA_TA_UNION_INSTANCE_DETAIL.commitment_limit = #{entity.commitmentLimit}</if>
+	        <if test="entity.stageId != null">and VA_TA_UNION_INSTANCE_DETAIL.stage_id = #{entity.stageId}</if>
+	        <if test="entity.mainInstanceId != null">and VA_TA_UNION_INSTANCE_DETAIL.main_instance_id = #{entity.mainInstanceId}</if>
+	        <if test="entity.projectId != null">and VA_TA_UNION_INSTANCE_DETAIL.project_id = #{entity.projectId}</if>
+	        <if test="entity.mainapproveId != null">and VA_TA_UNION_INSTANCE_DETAIL.mainapprove_id = #{entity.mainapproveId}</if>
+	        <if test="entity.superviseResultNo != null">and VA_TA_UNION_INSTANCE_DETAIL.supervise_result_no = #{entity.superviseResultNo}</if>
+	        <if test="entity.superviseTime != null">and VA_TA_UNION_INSTANCE_DETAIL.supervise_time = #{entity.superviseTime}</if>
+	        <if test="entity.beginDate != null">and VA_TA_UNION_INSTANCE_DETAIL.begin_date = #{entity.beginDate}</if>
+	        <if test="entity.endDate != null">and VA_TA_UNION_INSTANCE_DETAIL.end_date = #{entity.endDate}</if>
+	        <if test="entity.submitTime != null">and VA_TA_UNION_INSTANCE_DETAIL.submit_time = #{entity.submitTime}</if>
+		</where>
+</foreach>
+)
+</select>
+
+<!-- ElementID:selectUnion,Generated=true -->
+<select id="selectUnion" parameterType="list" resultMap="UnionInstanceDetailResult">
+select 
+	<include refid="column_sql"/> 
+	from VA_TA_UNION_INSTANCE_DETAIL 
+	 INNER JOIN
+<foreach collection="list" item="entity" separator="UNION" open="(" close=")">
+		SELECT 
+			 instance_id
+		FROM VA_TA_UNION_INSTANCE_DETAIL 
+			<where>
+	        <if test="entity.projectName != null">and VA_TA_UNION_INSTANCE_DETAIL.project_name = #{entity.projectName}</if>
+	        <if test="entity.mainapproveName != null">and VA_TA_UNION_INSTANCE_DETAIL.mainapprove_name = #{entity.mainapproveName}</if>
+	        <if test="entity.stageAlias != null">and VA_TA_UNION_INSTANCE_DETAIL.stage_alias = #{entity.stageAlias}</if>
+	        <if test="entity.approveName != null">and VA_TA_UNION_INSTANCE_DETAIL.approve_name = #{entity.approveName}</if>
+	        <if test="entity.instanceId != null">and VA_TA_UNION_INSTANCE_DETAIL.instance_id = #{entity.instanceId}</if>
+	        <if test="entity.acceptTime != null">and VA_TA_UNION_INSTANCE_DETAIL.accept_time = #{entity.acceptTime}</if>
+	        <if test="entity.endTime != null">and VA_TA_UNION_INSTANCE_DETAIL.end_time = #{entity.endTime}</if>
+	        <if test="entity.projectState != null">and VA_TA_UNION_INSTANCE_DETAIL.project_state = #{entity.projectState}</if>
+	        <if test="entity.approveId != null">and VA_TA_UNION_INSTANCE_DETAIL.approve_id = #{entity.approveId}</if>
+	        <if test="entity.completedTime != null">and VA_TA_UNION_INSTANCE_DETAIL.completed_time = #{entity.completedTime}</if>
+	        <if test="entity.orgId != null">and VA_TA_UNION_INSTANCE_DETAIL.org_id = #{entity.orgId}</if>
+	        <if test="entity.orgName != null">and VA_TA_UNION_INSTANCE_DETAIL.org_name = #{entity.orgName}</if>
+	        <if test="entity.approveLimit != null">and VA_TA_UNION_INSTANCE_DETAIL.approve_limit = #{entity.approveLimit}</if>
+	        <if test="entity.commitmentLimit != null">and VA_TA_UNION_INSTANCE_DETAIL.commitment_limit = #{entity.commitmentLimit}</if>
+	        <if test="entity.stageId != null">and VA_TA_UNION_INSTANCE_DETAIL.stage_id = #{entity.stageId}</if>
+	        <if test="entity.mainInstanceId != null">and VA_TA_UNION_INSTANCE_DETAIL.main_instance_id = #{entity.mainInstanceId}</if>
+	        <if test="entity.projectId != null">and VA_TA_UNION_INSTANCE_DETAIL.project_id = #{entity.projectId}</if>
+	        <if test="entity.mainapproveId != null">and VA_TA_UNION_INSTANCE_DETAIL.mainapprove_id = #{entity.mainapproveId}</if>
+	        <if test="entity.superviseResultNo != null">and VA_TA_UNION_INSTANCE_DETAIL.supervise_result_no = #{entity.superviseResultNo}</if>
+	        <if test="entity.superviseTime != null">and VA_TA_UNION_INSTANCE_DETAIL.supervise_time = #{entity.superviseTime}</if>
+	        <if test="entity.beginDate != null">and VA_TA_UNION_INSTANCE_DETAIL.begin_date = #{entity.beginDate}</if>
+	        <if test="entity.endDate != null">and VA_TA_UNION_INSTANCE_DETAIL.end_date = #{entity.endDate}</if>
+	        <if test="entity.submitTime != null">and VA_TA_UNION_INSTANCE_DETAIL.submit_time = #{entity.submitTime}</if>
+			</where>
+</foreach>
+	c2_temp_table ON VA_TA_UNION_INSTANCE_DETAIL.instance_id = c2_temp_table.instance_id
+</select>
+
+<!-- ElementID:selectByID,Generated=true -->
+<select id="selectByID" parameterType="java.lang.String" resultMap="UnionInstanceDetailResult">
+	select 
+		<include refid="column_sql"/>
+	    from VA_TA_UNION_INSTANCE_DETAIL 
+		 where VA_TA_UNION_INSTANCE_DETAIL.instance_id = #{instanceId,jdbcType=VARCHAR}
+</select>
+
+<!-- ElementID:selectByPage,Generated=true -->
+<select id="selectByPage" parameterType="com.chinacreator.dzjc_union.UnionInstanceDetail" resultMap="UnionInstanceDetailResult">
+	select 
+		<include refid="column_sql"/>
+	    from VA_TA_UNION_INSTANCE_DETAIL 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+</mapper>

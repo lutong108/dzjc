@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity:Entity xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cdata="http://www.chinacreator.com/platform/mvc/cdata" xmlns:docket="http://www.chinacreator.com/platform/mvc/docket" xmlns:entity="http://www.chinacreator.com/platform/mvc/entity" dbType="Oracle" sn="dzjc_tongji/v1/Ta_Jc_Sum_Xxylttj">
+  <docket:name>湘西一路通统计</docket:name>
+  <docket:desc>  </docket:desc>
+  <docket:createType>来自数据库</docket:createType>
+  <docket:primaryKey>
+    <docket:pkAttribute attribute="id" type="UUID"/>
+  </docket:primaryKey>
+  <docket:attributes>
+    <docket:attribute code="id" length="100" name="主键" nullable="false" type="string128" default="sys_guid() ">
+      <docket:valueRange xsi:type="cdata:AllValueRange"/>
+    </docket:attribute>
+    <docket:attribute code="type" length="100" name="类型（预留字段）" nullable="true" type="string128" default="">
+      <docket:valueRange xsi:type="cdata:AllValueRange"/>
+    </docket:attribute>
+    <docket:attribute code="accept_org_id" length="100" name="受理人机构ID" nullable="true" type="string128" default="">
+      <docket:valueRange xsi:type="cdata:AllValueRange"/>
+    </docket:attribute>
+    <docket:attribute code="org_id" length="100" name="办件机构ID" nullable="true" type="string128" default="">
+      <docket:valueRange xsi:type="cdata:AllValueRange"/>
+    </docket:attribute>
+    <docket:attribute code="begin_data" length="10" name="统计时间YYYY-MM-DD(受理时间)" nullable="true" type="string10" default="">
+      <docket:valueRange xsi:type="cdata:AllValueRange"/>
+    </docket:attribute>
+    <docket:attribute code="end_data" length="10" name="统计时间YYYY-MM-DD(办结时间,暂时无用预留字段)" nullable="true" type="string10" default="">
+      <docket:valueRange xsi:type="cdata:AllValueRange"/>
+    </docket:attribute>
+    <docket:attribute code="approve_id" length="100" name="事项ID" nullable="true" type="string128" default="">
+      <docket:valueRange xsi:type="cdata:AllValueRange"/>
+    </docket:attribute>
+    <docket:attribute code="sls_num" length="0" name="受理数" nullable="true" type="bigdouble" default="">
+      <docket:valueRange xsi:type="cdata:AllValueRange"/>
+    </docket:attribute>
+    <docket:attribute code="bjs_num" length="0" name="办结数" nullable="true" type="bigdouble" default="">
+      <docket:valueRange xsi:type="cdata:AllValueRange"/>
+    </docket:attribute>
+    <docket:attribute code="xzshl_num" length="0" name="乡镇审核数" nullable="true" type="bigdouble" default="">
+      <docket:valueRange xsi:type="cdata:AllValueRange"/>
+    </docket:attribute>
+    <docket:attribute code="xjshl_num" length="0" name="县级审核数" nullable="true" type="bigdouble" default="">
+      <docket:valueRange xsi:type="cdata:AllValueRange"/>
+    </docket:attribute>
+    <docket:attribute code="red_num" length="0" name="红牌数" nullable="true" type="bigdouble" default="">
+      <docket:valueRange xsi:type="cdata:AllValueRange"/>
+    </docket:attribute>
+    <docket:attribute code="yellow_num" length="0" name="黄牌数" nullable="true" type="bigdouble" default="">
+      <docket:valueRange xsi:type="cdata:AllValueRange"/>
+    </docket:attribute>
+    <docket:attribute code="shareName" length="64" name="公用名称" nullable="true" type="string64">
+      <docket:valueRange xsi:type="cdata:AllValueRange"/>
+    </docket:attribute>
+    <docket:attribute code="codeName" length="64" name="代号" nullable="true" type="string64">
+      <docket:valueRange xsi:type="cdata:AllValueRange"/>
+    </docket:attribute>
+    <docket:attribute code="approve_name" length="64" name="事项名称" nullable="true" type="string64">
+      <docket:valueRange xsi:type="cdata:AllValueRange"/>
+    </docket:attribute>
+    <docket:attribute code="approve_type" length="64" name="事项类型" nullable="true" type="string64">
+      <docket:valueRange xsi:type="cdata:AllValueRange"/>
+    </docket:attribute>
+    <docket:attribute code="p_accept_org_id" length="128" name="受理人父机构ID" nullable="true" type="string128">
+      <docket:valueRange xsi:type="cdata:AllValueRange"/>
+    </docket:attribute>
+    <docket:attribute code="remarks_name" length="256" name="备注名称" nullable="true" type="string256">
+      <docket:valueRange xsi:type="cdata:AllValueRange"/>
+    </docket:attribute>
+  </docket:attributes>
+  <docket:subDokcets/>
+  <docket:events/>
+  <docket:table ds="acceptdata" table="TA_JC_SUM_XXYLTTJ"/>
+  <docket:cache>false</docket:cache>
+  <docket:sequenceName>TA_JC_SUM_XXYLTTJ_SEQ</docket:sequenceName>
+  <docket:restResource>true</docket:restResource>
+  <entity:datas/>
+  <entity:views/>
+</entity:Entity>

@@ -1,0 +1,649 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"><mapper namespace="com.chinacreator.dzjc_ruleEngine.BussinessAllInfoMapper">	
+<!-- ElementID:column_sql,Generated=false -->
+<sql id="column_sql">
+	   VA_TA_JC_ALLBUSSINESS_INFO.BUSSINESS_TYPE,
+    (SELECT T.DICTDATA_VALUE FROM TD_SM_DICTDATA T WHERE T.DICTTYPE_ID=(SELECT D.DICTTYPE_ID FROM TD_SM_DICTTYPE D WHERE D.DICTTYPE_NAME='业务类型') AND T.DICTDATA_NAME=VA_TA_JC_ALLBUSSINESS_INFO.BUSSINESS_TYPE) AS BUSSINESS_TYPE_NAME,
+    VA_TA_JC_ALLBUSSINESS_INFO.SUPERVISE_RESULT_NO ,
+    VA_TA_JC_ALLBUSSINESS_INFO.SUPERVISE_TYPE_NO,
+    VA_TA_JC_ALLBUSSINESS_INFO.STATE,
+    (SELECT T.DICTDATA_VALUE FROM TD_SM_DICTDATA T WHERE T.DICTTYPE_ID=(SELECT D.DICTTYPE_ID FROM TD_SM_DICTTYPE D WHERE D.DICTTYPE_NAME='发牌状态') AND T.DICTDATA_NAME=VA_TA_JC_ALLBUSSINESS_INFO.STATE) AS STATE_NAME,
+    VA_TA_JC_ALLBUSSINESS_INFO.BUSSINESS_ID,
+    VA_TA_JC_ALLBUSSINESS_INFO.BUSSINESS_NAME,
+    VA_TA_JC_ALLBUSSINESS_INFO.BUSSINESS_TIME,
+    VA_TA_JC_ALLBUSSINESS_INFO.ORG_ID,
+    VA_TA_JC_ALLBUSSINESS_INFO.ORG_NAME,
+    TA_JC_DIC_SUPERVISE_TYPE.SUPERVISE_TYPE_NAME,
+    TA_JC_DIC_SUPERVISE_RESULT.SUPERVISE_RESULT_NAME,
+    VA_TA_JC_ALLBUSSINESS_INFO.ID,
+    VA_TA_JC_ALLBUSSINESS_INFO.reply_time
+</sql>
+
+
+<sql id="column_ById">
+		VA_TA_JC_ALLBUSSINESS_INFO.BUSSINESS_TYPE,
+		VA_TA_JC_ALLBUSSINESS_INFO.SUPERVISE_RESULT_NO ,
+		VA_TA_JC_ALLBUSSINESS_INFO.SUPERVISE_TYPE_NO,
+		VA_TA_JC_ALLBUSSINESS_INFO.STATE,
+		VA_TA_JC_ALLBUSSINESS_INFO.BUSSINESS_ID,
+		VA_TA_JC_ALLBUSSINESS_INFO.BUSSINESS_NAME,
+		VA_TA_JC_ALLBUSSINESS_INFO.BUSSINESS_TIME,
+		VA_TA_JC_ALLBUSSINESS_INFO.ORG_ID,
+		VA_TA_JC_ALLBUSSINESS_INFO.ORG_NAME,
+		TA_JC_DIC_SUPERVISE_TYPE.SUPERVISE_TYPE_NAME,
+		TA_JC_DIC_SUPERVISE_RESULT.SUPERVISE_RESULT_NAME
+</sql>
+
+
+<!-- ElementID:whereClause_sql,Generated=false -->
+<sql id="whereClause_sql">
+	    <if test="superviseResultNo != null">and va_ta_jc_allbussiness_info.supervise_result_no = #{superviseResultNo}</if>
+	    <if test="bussinessType != null">and va_ta_jc_allbussiness_info.bussiness_type = #{bussinessType}</if>
+	    <if test="superviseTypeNo != null">and va_ta_jc_allbussiness_info.supervise_type_no = #{superviseTypeNo}</if>
+	    <if test="state != null">and va_ta_jc_allbussiness_info.state = #{state}</if>
+	    <if test="bussinessName != null">and va_ta_jc_allbussiness_info.bussiness_name = #{bussinessName}</if>
+	    <!-- <if test="orgId != null">and va_ta_jc_allbussiness_info.org_id = #{orgId}</if> -->
+	    <if test="bussinessTime != null">and va_ta_jc_allbussiness_info.bussiness_time = #{bussinessTime}</if>
+	    <if test="beginDate != null">and va_ta_jc_allbussiness_info.bussiness_time &gt;= #{beginDate}</if>
+	    <if test="endDate != null">and va_ta_jc_allbussiness_info.bussiness_time &lt;= #{endDate}</if> 
+	    <if test="jcBeginDate != null">and va_ta_jc_allbussiness_info.supervise_time &gt;= #{jcBeginDate}</if>
+	    <if test="jcEndDate != null">and va_ta_jc_allbussiness_info.supervise_time &lt;= #{jcEndDate}</if> 
+</sql>
+
+<sql id="whereClause_sqlTemp">
+	    <if test="superviseResultNo != null">and TEMP2.supervise_result_no = #{superviseResultNo}</if>
+	    <if test="bussinessType != null">and TEMP2.bussiness_type = #{bussinessType}</if>
+	    <if test="superviseTypeNo != null">and TEMP2.supervise_type_no = #{superviseTypeNo}</if>
+	    <if test="state != null">and TEMP2.state = #{state}</if>
+	    <if test="bussinessName != null">and TEMP2.bussiness_name = #{bussinessName}</if>
+	    <if test="bussinessTime != null">and TEMP2.bussiness_time = #{bussinessTime}</if>
+	    <if test="beginDate != null">and TEMP2.bussiness_time &gt;= #{beginDate}</if>
+	    <if test="endDate != null">and TEMP2.bussiness_time &lt;= #{endDate}</if> 
+	    <if test="jcBeginDate != null">and TEMP2.supervise_time &gt;= #{jcBeginDate}</if>
+        <if test="jcEndDate != null">and TEMP2.supervise_time &lt;= #{jcEndDate}</if> 
+</sql>
+
+
+<!-- ElementID:BussinessAllInfoResult,Generated=true -->
+<resultMap id="BussinessAllInfoResult" type="com.chinacreator.dzjc_ruleEngine.BussinessAllInfo">
+	<id property="bussinessId" column="bussiness_id"/>
+	<result property="bussinessType" column="bussiness_type"/>
+	<result property="superviseResultNo" column="supervise_result_no"/>
+	<result property="superviseTypeNo" column="supervise_type_no"/>
+	<result property="state" column="state"/>
+	<result property="bussinessName" column="bussiness_name"/>
+	<result property="bussinessTime" column="bussiness_time"/>
+	<result property="superviseTypeName" column="supervise_type_name"/>
+	<result property="superviseResultName" column="supervise_result_name"/>
+	<result property="beginDate" column="beginDate"/>
+	<result property="endDate" column="endDate"/>
+	<result property="orgId" column="org_id"/>
+	<result property="orgName" column="org_name"/>
+	<result property="bussinessTypeName" column="bussiness_type_name"/>
+	<result property="stateName" column="state_name"/>
+	<result property="superviseTime" column="supervise_time"/>
+	<result property="jcBeginDate" column="jcBeginDate"/>
+	<result property="jcEndDate" column="jcEndDate"/>
+	<result property="bjState" column="bj_state"/>
+	<result property="temporgid" column="temporgid"/>
+	<result property="id" column="id"/>
+	<result property="replyTime" column="reply_time"/>
+	<result property="isValid" column="is_valid"/>
+	<result property="promiseLimit" column="promise_limit"/>
+	<result property="processLimit" column="process_limit"/>
+	<result property="commitment" column="commitment"/>
+	<result property="legal" column="legal"/>
+	<result property="timeUse" column="time_use"/>
+	<result property="applyName" column="apply_name"/>
+	<result property="instanceCode" column="instance_code"/>
+	<result property="endTime" column="end_time"/>
+	<result property="queryCode" column="query_code"/>
+	<result property="approveId" column="approve_id"/>
+	<result property="etlTime" column="etl_time"/>
+</resultMap>
+
+<!-- ElementID:selectByID,Generated=false -->
+<select id="selectByID" parameterType="java.lang.String" resultMap="BussinessAllInfoResult">
+	select 
+		<include refid="column_sql"/>
+	    from va_ta_jc_allbussiness_info 
+	    left join TA_JC_DIC_SUPERVISE_TYPE 
+		on va_ta_jc_allbussiness_info.supervise_type_no = TA_JC_DIC_SUPERVISE_TYPE.supervise_type_code
+		left join TA_JC_DIC_SUPERVISE_RESULT 
+		on va_ta_jc_allbussiness_info.supervise_result_no = TA_JC_DIC_SUPERVISE_RESULT.supervise_result_code
+		where va_ta_jc_allbussiness_info.id = #{bussinessId,jdbcType=VARCHAR}
+</select>
+
+
+<!-- ElementID:selectByPage,Generated=false -->
+<select id="selectByPage1" parameterType="com.chinacreator.dzjc_ruleEngine.BussinessAllInfo" resultMap="BussinessAllInfoResult">
+
+	WITH
+	TEMP AS(
+	     <if test="orgId != null">
+       SELECT * FROM V_ORG V
+       <where>
+          V.CODE LIKE CONCAT(#{orgId},'%') OR
+          V.ID = #{orgId,jdbcType=VARCHAR}
+       </where>
+       </if>
+       <if test="temporgid != null">
+        select * from V_ORG V1
+          START WITH V1.ID=#{temporgid} CONNECT BY V1.PID = PRIOR V1.ID
+        </if>
+	),TEMP2 AS
+	(SELECT VA_TA_JC_ALLBUSSINESS_INFO.BUSSINESS_TYPE,
+       (SELECT T.DICTDATA_VALUE
+          FROM TD_SM_DICTDATA T
+         WHERE T.DICTTYPE_ID =
+               (SELECT D.DICTTYPE_ID
+                  FROM TD_SM_DICTTYPE D
+                 WHERE D.DICTTYPE_NAME = '业务类型')
+           AND T.DICTDATA_NAME = VA_TA_JC_ALLBUSSINESS_INFO.BUSSINESS_TYPE) AS BUSSINESS_TYPE_NAME,
+       VA_TA_JC_ALLBUSSINESS_INFO.ID,
+       VA_TA_JC_ALLBUSSINESS_INFO.SUPERVISE_RESULT_NO,
+       VA_TA_JC_ALLBUSSINESS_INFO.SUPERVISE_TYPE_NO,
+       VA_TA_JC_ALLBUSSINESS_INFO.STATE,
+       (SELECT T.DICTDATA_VALUE
+          FROM TD_SM_DICTDATA T
+         WHERE T.DICTTYPE_ID =
+               (SELECT D.DICTTYPE_ID
+                  FROM TD_SM_DICTTYPE D
+                 WHERE D.DICTTYPE_NAME = '发牌状态')
+           AND T.DICTDATA_NAME = VA_TA_JC_ALLBUSSINESS_INFO.STATE) AS STATE_NAME,
+       VA_TA_JC_ALLBUSSINESS_INFO.BUSSINESS_ID,
+       VA_TA_JC_ALLBUSSINESS_INFO.BUSSINESS_NAME,
+       VA_TA_JC_ALLBUSSINESS_INFO.BUSSINESS_TIME,
+       VA_TA_JC_ALLBUSSINESS_INFO.ORG_ID,
+       VA_TA_JC_ALLBUSSINESS_INFO.ORG_NAME,
+       TA_JC_DIC_SUPERVISE_TYPE.SUPERVISE_TYPE_NAME,
+       TA_JC_DIC_SUPERVISE_RESULT.SUPERVISE_RESULT_NAME,
+       TA_JC_SUPERVISE_INFO.SUPERVISE_TIME,
+       TA_SP_INSTANCE.PROJECT_STATE AS BJ_STATE
+  FROM VA_TA_JC_ALLBUSSINESS_INFO
+  LEFT JOIN TA_JC_DIC_SUPERVISE_TYPE
+    ON VA_TA_JC_ALLBUSSINESS_INFO.SUPERVISE_TYPE_NO =
+       TA_JC_DIC_SUPERVISE_TYPE.SUPERVISE_TYPE_CODE
+  LEFT JOIN TA_JC_DIC_SUPERVISE_RESULT
+    ON VA_TA_JC_ALLBUSSINESS_INFO.SUPERVISE_RESULT_NO =
+       TA_JC_DIC_SUPERVISE_RESULT.SUPERVISE_RESULT_CODE
+  LEFT JOIN TA_JC_SUPERVISE_INFO 
+    ON VA_TA_JC_ALLBUSSINESS_INFO.BUSSINESS_ID = 
+       TA_JC_SUPERVISE_INFO.BUSINESS_ID
+  LEFT JOIN TA_SP_INSTANCE
+    ON VA_TA_JC_ALLBUSSINESS_INFO.BUSSINESS_ID = 
+       TA_SP_INSTANCE.INSTANCE_ID
+ INNER JOIN TEMP
+    ON VA_TA_JC_ALLBUSSINESS_INFO.ORG_ID = TEMP.ID)
+
+	SELECT BUSSINESS_TYPE,
+	    ID,
+      BUSSINESS_TYPE_NAME,
+      SUPERVISE_RESULT_NO,
+      SUPERVISE_TYPE_NO,
+      STATE,
+      STATE_NAME,
+      BUSSINESS_ID,
+      BUSSINESS_NAME,
+      ORG_ID,
+      ORG_NAME,
+      SUPERVISE_TYPE_NAME,
+      SUPERVISE_RESULT_NAME,
+      BJ_STATE,
+      BUSSINESS_TIME,
+      SUPERVISE_TIME
+    FROM  TEMP2 
+<where>
+	<include refid="whereClause_sqlTemp"/>
+</where>
+</select>
+
+
+
+
+
+<!-- ElementID:insert,Generated=false -->
+<insert id="insert" parameterType="com.chinacreator.dzjc_ruleEngine.BussinessAllInfo">
+	insert into VA_TA_JC_ALLBUSSINESS_INFO(
+	         <if test="bussinessType != null">bussiness_type</if>
+	         <if test="superviseResultNo != null">,supervise_result_no</if>
+	         <if test="superviseTypeNo != null">,supervise_type_no</if>
+	         <if test="state != null">,state</if>
+	         <if test="bussinessId != null">,bussiness_id</if>
+	         <if test="bussinessName != null">,bussiness_name</if>
+	         <if test="bussinessTime != null">,bussiness_time</if>
+	         <if test="superviseTypeName != null">,supervise_type_name</if>
+	         <if test="superviseResultName != null">,supervise_result_name</if>
+	         <if test="beginDate != null">,beginDate</if>
+	         <if test="endDate != null">,endDate</if>
+	         <if test="orgId != null">,org_id</if>
+	         <if test="orgName != null">,org_name</if>
+	         <if test="bussinessTypeName != null">,bussiness_type_name</if>
+	         <if test="stateName != null">,state_name</if>
+	         <if test="superviseTime != null">,supervise_time</if>
+	         <if test="jcBeginDate != null">,jcBeginDate</if>
+	         <if test="jcEndDate != null">,jcEndDate</if>
+	         <if test="bjState != null">,bj_state</if>
+	         <if test="temporgid != null">,temporgid</if>
+	         <if test="id != null">,id</if>
+	         <if test="replyTime != null">,reply_time</if>
+	         <if test="isValid != null">,is_valid</if>
+	         <if test="promiseLimit != null">,promise_limit</if>
+	         <if test="processLimit != null">,process_limit</if>
+	         <if test="commitment != null">,commitment</if>
+	         <if test="legal != null">,legal</if>
+	         <if test="timeUse != null">,time_use</if>
+	         <if test="applyName != null">,apply_name</if>
+	         <if test="instanceCode != null">,instance_code</if>
+	         <if test="endTime != null">,end_time</if>
+	 	 	 )
+	 values (
+	         <if test="bussinessType != null">#{bussinessType,jdbcType=VARCHAR}</if>
+	         <if test="superviseResultNo != null">,#{superviseResultNo,jdbcType=VARCHAR}</if>
+	         <if test="superviseTypeNo != null">,#{superviseTypeNo,jdbcType=VARCHAR}</if>
+	         <if test="state != null">,#{state,jdbcType=VARCHAR}</if>
+	         <if test="bussinessId != null">,#{bussinessId,jdbcType=VARCHAR}</if>
+	         <if test="bussinessName != null">,#{bussinessName,jdbcType=VARCHAR}</if>
+	         <if test="bussinessTime != null">,#{bussinessTime,jdbcType=DATE}</if>
+	         <if test="superviseTypeName != null">,#{superviseTypeName,jdbcType=VARCHAR}</if>
+	         <if test="superviseResultName != null">,#{superviseResultName,jdbcType=VARCHAR}</if>
+	         <if test="beginDate != null">,#{beginDate,jdbcType=DATE}</if>
+	         <if test="endDate != null">,#{endDate,jdbcType=DATE}</if>
+	         <if test="orgId != null">,#{orgId,jdbcType=VARCHAR}</if>
+	         <if test="orgName != null">,#{orgName,jdbcType=VARCHAR}</if>
+	         <if test="bussinessTypeName != null">,#{bussinessTypeName,jdbcType=VARCHAR}</if>
+	         <if test="stateName != null">,#{stateName,jdbcType=VARCHAR}</if>
+	         <if test="superviseTime != null">,#{superviseTime,jdbcType=DATE}</if>
+	         <if test="jcBeginDate != null">,#{jcBeginDate,jdbcType=DATE}</if>
+	         <if test="jcEndDate != null">,#{jcEndDate,jdbcType=DATE}</if>
+	         <if test="bjState != null">,#{bjState,jdbcType=VARCHAR}</if>
+	         <if test="temporgid != null">,#{temporgid,jdbcType=VARCHAR}</if>
+	         <if test="id != null">,#{id,jdbcType=VARCHAR}</if>
+	         <if test="replyTime != null">,#{replyTime,jdbcType=DATE}</if>
+	         <if test="isValid != null">,#{isValid,jdbcType=VARCHAR}</if>
+	         <if test="promiseLimit != null">,#{promiseLimit,jdbcType=VARCHAR}</if>
+	         <if test="processLimit != null">,#{processLimit,jdbcType=VARCHAR}</if>
+	         <if test="commitment != null">,#{commitment,jdbcType=VARCHAR}</if>
+	         <if test="legal != null">,#{legal,jdbcType=VARCHAR}</if>
+	         <if test="timeUse != null">,#{timeUse,jdbcType=NUMERIC}</if>
+	         <if test="applyName != null">,#{applyName,jdbcType=VARCHAR}</if>
+	         <if test="instanceCode != null">,#{instanceCode,jdbcType=VARCHAR}</if>
+	         <if test="endTime != null">,#{endTime,jdbcType=DATE}</if>
+	 	 	 )
+</insert>
+<!-- ElementID:count,Generated=false -->
+<select id="count" parameterType="com.chinacreator.dzjc_ruleEngine.BussinessAllInfo" resultType="int">
+	select count(*) from VA_TA_JC_ALLBUSSINESS_INFO 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+<!-- ElementID:update,Generated=false -->
+<update id="update" parameterType="com.chinacreator.dzjc_ruleEngine.BussinessAllInfo">
+	update VA_TA_JC_ALLBUSSINESS_INFO
+<set>
+	<if test="bussinessType != null">bussiness_type=#{bussinessType,jdbcType=VARCHAR},</if>
+	<if test="superviseResultNo != null">supervise_result_no=#{superviseResultNo,jdbcType=VARCHAR},</if>
+	<if test="superviseTypeNo != null">supervise_type_no=#{superviseTypeNo,jdbcType=VARCHAR},</if>
+	<if test="state != null">state=#{state,jdbcType=VARCHAR},</if>
+	<if test="bussinessName != null">bussiness_name=#{bussinessName,jdbcType=VARCHAR},</if>
+	<if test="bussinessTime != null">bussiness_time=#{bussinessTime,jdbcType=DATE},</if>
+	<if test="superviseTypeName != null">supervise_type_name=#{superviseTypeName,jdbcType=VARCHAR},</if>
+	<if test="superviseResultName != null">supervise_result_name=#{superviseResultName,jdbcType=VARCHAR},</if>
+	<if test="beginDate != null">beginDate=#{beginDate,jdbcType=DATE},</if>
+	<if test="endDate != null">endDate=#{endDate,jdbcType=DATE},</if>
+	<if test="orgId != null">org_id=#{orgId,jdbcType=VARCHAR},</if>
+	<if test="orgName != null">org_name=#{orgName,jdbcType=VARCHAR},</if>
+	<if test="bussinessTypeName != null">bussiness_type_name=#{bussinessTypeName,jdbcType=VARCHAR},</if>
+	<if test="stateName != null">state_name=#{stateName,jdbcType=VARCHAR},</if>
+	<if test="superviseTime != null">supervise_time=#{superviseTime,jdbcType=DATE},</if>
+	<if test="jcBeginDate != null">jcBeginDate=#{jcBeginDate,jdbcType=DATE},</if>
+	<if test="jcEndDate != null">jcEndDate=#{jcEndDate,jdbcType=DATE},</if>
+	<if test="bjState != null">bj_state=#{bjState,jdbcType=VARCHAR},</if>
+	<if test="temporgid != null">temporgid=#{temporgid,jdbcType=VARCHAR},</if>
+	<if test="id != null">id=#{id,jdbcType=VARCHAR},</if>
+	<if test="replyTime != null">reply_time=#{replyTime,jdbcType=DATE},</if>
+	<if test="isValid != null">is_valid=#{isValid,jdbcType=VARCHAR},</if>
+	<if test="promiseLimit != null">promise_limit=#{promiseLimit,jdbcType=VARCHAR},</if>
+	<if test="processLimit != null">process_limit=#{processLimit,jdbcType=VARCHAR},</if>
+	<if test="commitment != null">commitment=#{commitment,jdbcType=VARCHAR},</if>
+	<if test="legal != null">legal=#{legal,jdbcType=VARCHAR},</if>
+	<if test="timeUse != null">time_use=#{timeUse,jdbcType=NUMERIC},</if>
+	<if test="applyName != null">apply_name=#{applyName,jdbcType=VARCHAR},</if>
+	<if test="instanceCode != null">instance_code=#{instanceCode,jdbcType=VARCHAR},</if>
+	<if test="endTime != null">end_time=#{endTime,jdbcType=DATE}</if>
+</set>
+<where>
+	<choose>
+        <when test="bussinessId != null">and bussiness_id = #{bussinessId}</when>
+        <otherwise>and bussiness_id = </otherwise>
+    </choose>
+</where>
+</update>
+<!-- ElementID:updateNull,Generated=false -->
+<update id="updateNull" parameterType="map">
+	update VA_TA_JC_ALLBUSSINESS_INFO
+	<set>
+		<trim suffixOverrides=",">
+		    <if test="bussinessType==null">bussiness_type = null,</if>
+		    <if test="superviseResultNo==null">supervise_result_no = null,</if>
+		    <if test="superviseTypeNo==null">supervise_type_no = null,</if>
+		    <if test="state==null">state = null,</if>
+		    <if test="bussinessName==null">bussiness_name = null,</if>
+		    <if test="bussinessTime==null">bussiness_time = null,</if>
+		    <if test="superviseTypeName==null">supervise_type_name = null,</if>
+		    <if test="superviseResultName==null">supervise_result_name = null,</if>
+		    <if test="beginDate==null">beginDate = null,</if>
+		    <if test="endDate==null">endDate = null,</if>
+		    <if test="orgId==null">org_id = null,</if>
+		    <if test="orgName==null">org_name = null,</if>
+		    <if test="bussinessTypeName==null">bussiness_type_name = null,</if>
+		    <if test="stateName==null">state_name = null,</if>
+		    <if test="superviseTime==null">supervise_time = null,</if>
+		    <if test="jcBeginDate==null">jcBeginDate = null,</if>
+		    <if test="jcEndDate==null">jcEndDate = null,</if>
+		    <if test="bjState==null">bj_state = null,</if>
+		    <if test="temporgid==null">temporgid = null,</if>
+		    <if test="id==null">id = null,</if>
+		    <if test="replyTime==null">reply_time = null,</if>
+		    <if test="isValid==null">is_valid = null,</if>
+		    <if test="promiseLimit==null">promise_limit = null,</if>
+		    <if test="processLimit==null">process_limit = null,</if>
+		    <if test="commitment==null">commitment = null,</if>
+		    <if test="legal==null">legal = null,</if>
+		    <if test="timeUse==null">time_use = null,</if>
+		    <if test="applyName==null">apply_name = null,</if>
+		    <if test="instanceCode==null">instance_code = null,</if>
+		    <if test="endTime==null">end_time = null,</if>
+		</trim>
+	</set>
+	<where>
+		<choose>
+			<when test="bussinessId != null">and bussiness_id = #{bussinessId}</when>
+			<otherwise>and bussiness_id = </otherwise>
+		</choose>
+	</where>
+</update>
+<!-- ElementID:delete,Generated=false -->
+<delete id="delete" parameterType="com.chinacreator.dzjc_ruleEngine.BussinessAllInfo">
+    delete from VA_TA_JC_ALLBUSSINESS_INFO where 1=1 and bussiness_id = #{bussinessId}
+</delete>
+<!-- ElementID:select,Generated=false -->
+<select id="select" parameterType="com.chinacreator.dzjc_ruleEngine.BussinessAllInfo" resultMap="BussinessAllInfoResult">
+	select 
+		<include refid="column_sql"/>
+	    from VA_TA_JC_ALLBUSSINESS_INFO 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+	order by 
+			bussiness_time desc
+</select>
+<!-- ElementID:insertBatch,Generated=false -->
+<insert id="insertBatch" parameterType="list">
+	insert into VA_TA_JC_ALLBUSSINESS_INFO (bussiness_type,supervise_result_no,supervise_type_no,state,bussiness_id,bussiness_name,bussiness_time,supervise_type_name,supervise_result_name,beginDate,endDate,org_id,org_name,bussiness_type_name,state_name,supervise_time,jcBeginDate,jcEndDate,bj_state,temporgid,id,reply_time,is_valid,promise_limit,process_limit,commitment,legal,time_use,apply_name,instance_code,end_time) 
+<foreach collection="list" item="entity" index="index" separator="union all">
+		select 
+		#{entity.bussinessType,jdbcType = VARCHAR},
+				#{entity.superviseResultNo,jdbcType = VARCHAR},
+				#{entity.superviseTypeNo,jdbcType = VARCHAR},
+				#{entity.state,jdbcType = VARCHAR},
+				#{entity.bussinessId,jdbcType = VARCHAR},
+				#{entity.bussinessName,jdbcType = VARCHAR},
+				#{entity.bussinessTime,jdbcType = DATE},
+				#{entity.superviseTypeName,jdbcType = VARCHAR},
+				#{entity.superviseResultName,jdbcType = VARCHAR},
+				#{entity.beginDate,jdbcType = DATE},
+				#{entity.endDate,jdbcType = DATE},
+				#{entity.orgId,jdbcType = VARCHAR},
+				#{entity.orgName,jdbcType = VARCHAR},
+				#{entity.bussinessTypeName,jdbcType = VARCHAR},
+				#{entity.stateName,jdbcType = VARCHAR},
+				#{entity.superviseTime,jdbcType = DATE},
+				#{entity.jcBeginDate,jdbcType = DATE},
+				#{entity.jcEndDate,jdbcType = DATE},
+				#{entity.bjState,jdbcType = VARCHAR},
+				#{entity.temporgid,jdbcType = VARCHAR},
+				#{entity.id,jdbcType = VARCHAR},
+				#{entity.replyTime,jdbcType = DATE},
+				#{entity.isValid,jdbcType = VARCHAR},
+				#{entity.promiseLimit,jdbcType = VARCHAR},
+				#{entity.processLimit,jdbcType = VARCHAR},
+				#{entity.commitment,jdbcType = VARCHAR},
+				#{entity.legal,jdbcType = VARCHAR},
+				#{entity.timeUse,jdbcType = NUMERIC},
+				#{entity.applyName,jdbcType = VARCHAR},
+				#{entity.instanceCode,jdbcType = VARCHAR},
+				#{entity.endTime,jdbcType = DATE}
+		from dual
+</foreach>
+</insert>
+<!-- ElementID:deleteBatch,Generated=false -->
+<delete id="deleteBatch" parameterType="List">
+	delete from VA_TA_JC_ALLBUSSINESS_INFO where bussiness_id in
+<trim prefix="(" suffix=")" suffixOverrides=",">
+<foreach collection="list" item="entity" separator=",">
+	<choose>
+		<when test="@com.chinacreator.c2.dao.util.EntityBeanUtil@isEntityObj(entity)">#{entity.bussinessId}</when>
+		<otherwise>#{entity}</otherwise>
+	</choose>
+</foreach>
+</trim>
+</delete>
+<!-- ElementID:updateBatch,Generated=false -->
+<update id="updateBatch" parameterType="list">
+	<foreach collection="list" item="entity" open="begin" close=";end;" separator=";">
+			update VA_TA_JC_ALLBUSSINESS_INFO
+	<set>
+	<if test="entity.bussinessType != null">bussiness_type= #{entity.bussinessType,jdbcType=VARCHAR},</if>
+	<if test="entity.superviseResultNo != null">supervise_result_no= #{entity.superviseResultNo,jdbcType=VARCHAR},</if>
+	<if test="entity.superviseTypeNo != null">supervise_type_no= #{entity.superviseTypeNo,jdbcType=VARCHAR},</if>
+	<if test="entity.state != null">state= #{entity.state,jdbcType=VARCHAR},</if>
+	<if test="entity.bussinessName != null">bussiness_name= #{entity.bussinessName,jdbcType=VARCHAR},</if>
+	<if test="entity.bussinessTime != null">bussiness_time= #{entity.bussinessTime,jdbcType=DATE},</if>
+	<if test="entity.superviseTypeName != null">supervise_type_name= #{entity.superviseTypeName,jdbcType=VARCHAR},</if>
+	<if test="entity.superviseResultName != null">supervise_result_name= #{entity.superviseResultName,jdbcType=VARCHAR},</if>
+	<if test="entity.beginDate != null">beginDate= #{entity.beginDate,jdbcType=DATE},</if>
+	<if test="entity.endDate != null">endDate= #{entity.endDate,jdbcType=DATE},</if>
+	<if test="entity.orgId != null">org_id= #{entity.orgId,jdbcType=VARCHAR},</if>
+	<if test="entity.orgName != null">org_name= #{entity.orgName,jdbcType=VARCHAR},</if>
+	<if test="entity.bussinessTypeName != null">bussiness_type_name= #{entity.bussinessTypeName,jdbcType=VARCHAR},</if>
+	<if test="entity.stateName != null">state_name= #{entity.stateName,jdbcType=VARCHAR},</if>
+	<if test="entity.superviseTime != null">supervise_time= #{entity.superviseTime,jdbcType=DATE},</if>
+	<if test="entity.jcBeginDate != null">jcBeginDate= #{entity.jcBeginDate,jdbcType=DATE},</if>
+	<if test="entity.jcEndDate != null">jcEndDate= #{entity.jcEndDate,jdbcType=DATE},</if>
+	<if test="entity.bjState != null">bj_state= #{entity.bjState,jdbcType=VARCHAR},</if>
+	<if test="entity.temporgid != null">temporgid= #{entity.temporgid,jdbcType=VARCHAR},</if>
+	<if test="entity.id != null">id= #{entity.id,jdbcType=VARCHAR},</if>
+	<if test="entity.replyTime != null">reply_time= #{entity.replyTime,jdbcType=DATE},</if>
+	<if test="entity.isValid != null">is_valid= #{entity.isValid,jdbcType=VARCHAR},</if>
+	<if test="entity.promiseLimit != null">promise_limit= #{entity.promiseLimit,jdbcType=VARCHAR},</if>
+	<if test="entity.processLimit != null">process_limit= #{entity.processLimit,jdbcType=VARCHAR},</if>
+	<if test="entity.commitment != null">commitment= #{entity.commitment,jdbcType=VARCHAR},</if>
+	<if test="entity.legal != null">legal= #{entity.legal,jdbcType=VARCHAR},</if>
+	<if test="entity.timeUse != null">time_use= #{entity.timeUse,jdbcType=NUMERIC},</if>
+	<if test="entity.applyName != null">apply_name= #{entity.applyName,jdbcType=VARCHAR},</if>
+	<if test="entity.instanceCode != null">instance_code= #{entity.instanceCode,jdbcType=VARCHAR},</if>
+	<if test="entity.endTime != null">end_time= #{entity.endTime,jdbcType=DATE}</if>
+	</set>
+		<where>
+			<choose>
+				<when test="entity.bussinessId != null">and bussiness_id = #{entity.bussinessId}</when>
+				<otherwise>and bussiness_id = </otherwise>
+			</choose>
+		</where>
+	</foreach>
+</update>
+<!-- ElementID:selectAll,Generated=false -->
+<select id="selectAll" resultMap="BussinessAllInfoResult">
+	select 
+		<include refid="column_sql"/>
+	    from VA_TA_JC_ALLBUSSINESS_INFO 
+</select>
+<!-- ElementID:selectMany,Generated=false -->
+<select id="selectMany" parameterType="list" resultMap="BussinessAllInfoResult">
+select 
+	<include refid="column_sql"/> 
+	from VA_TA_JC_ALLBUSSINESS_INFO 
+	where VA_TA_JC_ALLBUSSINESS_INFO.bussiness_id in (
+<foreach collection="list" item="entity" separator="intersect">
+		select 
+		VA_TA_JC_ALLBUSSINESS_INFO.bussiness_id
+	    from VA_TA_JC_ALLBUSSINESS_INFO 
+		 <where>
+	        <if test="entity.bussinessType != null">and VA_TA_JC_ALLBUSSINESS_INFO.bussiness_type = #{entity.bussinessType}</if>
+	        <if test="entity.superviseResultNo != null">and VA_TA_JC_ALLBUSSINESS_INFO.supervise_result_no = #{entity.superviseResultNo}</if>
+	        <if test="entity.superviseTypeNo != null">and VA_TA_JC_ALLBUSSINESS_INFO.supervise_type_no = #{entity.superviseTypeNo}</if>
+	        <if test="entity.state != null">and VA_TA_JC_ALLBUSSINESS_INFO.state = #{entity.state}</if>
+	        <if test="entity.bussinessId != null">and VA_TA_JC_ALLBUSSINESS_INFO.bussiness_id = #{entity.bussinessId}</if>
+	        <if test="entity.bussinessName != null">and VA_TA_JC_ALLBUSSINESS_INFO.bussiness_name = #{entity.bussinessName}</if>
+	        <if test="entity.bussinessTime != null">and VA_TA_JC_ALLBUSSINESS_INFO.bussiness_time = #{entity.bussinessTime}</if>
+	        <if test="entity.superviseTypeName != null">and VA_TA_JC_ALLBUSSINESS_INFO.supervise_type_name = #{entity.superviseTypeName}</if>
+	        <if test="entity.superviseResultName != null">and VA_TA_JC_ALLBUSSINESS_INFO.supervise_result_name = #{entity.superviseResultName}</if>
+	        <if test="entity.beginDate != null">and VA_TA_JC_ALLBUSSINESS_INFO.beginDate = #{entity.beginDate}</if>
+	        <if test="entity.endDate != null">and VA_TA_JC_ALLBUSSINESS_INFO.endDate = #{entity.endDate}</if>
+	        <if test="entity.orgId != null">and VA_TA_JC_ALLBUSSINESS_INFO.org_id = #{entity.orgId}</if>
+	        <if test="entity.orgName != null">and VA_TA_JC_ALLBUSSINESS_INFO.org_name = #{entity.orgName}</if>
+	        <if test="entity.bussinessTypeName != null">and VA_TA_JC_ALLBUSSINESS_INFO.bussiness_type_name = #{entity.bussinessTypeName}</if>
+	        <if test="entity.stateName != null">and VA_TA_JC_ALLBUSSINESS_INFO.state_name = #{entity.stateName}</if>
+	        <if test="entity.superviseTime != null">and VA_TA_JC_ALLBUSSINESS_INFO.supervise_time = #{entity.superviseTime}</if>
+	        <if test="entity.jcBeginDate != null">and VA_TA_JC_ALLBUSSINESS_INFO.jcBeginDate = #{entity.jcBeginDate}</if>
+	        <if test="entity.jcEndDate != null">and VA_TA_JC_ALLBUSSINESS_INFO.jcEndDate = #{entity.jcEndDate}</if>
+	        <if test="entity.bjState != null">and VA_TA_JC_ALLBUSSINESS_INFO.bj_state = #{entity.bjState}</if>
+	        <if test="entity.temporgid != null">and VA_TA_JC_ALLBUSSINESS_INFO.temporgid = #{entity.temporgid}</if>
+	        <if test="entity.id != null">and VA_TA_JC_ALLBUSSINESS_INFO.id = #{entity.id}</if>
+	        <if test="entity.replyTime != null">and VA_TA_JC_ALLBUSSINESS_INFO.reply_time = #{entity.replyTime}</if>
+	        <if test="entity.isValid != null">and VA_TA_JC_ALLBUSSINESS_INFO.is_valid = #{entity.isValid}</if>
+	        <if test="entity.promiseLimit != null">and VA_TA_JC_ALLBUSSINESS_INFO.promise_limit = #{entity.promiseLimit}</if>
+	        <if test="entity.processLimit != null">and VA_TA_JC_ALLBUSSINESS_INFO.process_limit = #{entity.processLimit}</if>
+	        <if test="entity.commitment != null">and VA_TA_JC_ALLBUSSINESS_INFO.commitment = #{entity.commitment}</if>
+	        <if test="entity.legal != null">and VA_TA_JC_ALLBUSSINESS_INFO.legal = #{entity.legal}</if>
+	        <if test="entity.timeUse != null">and VA_TA_JC_ALLBUSSINESS_INFO.time_use = #{entity.timeUse}</if>
+	        <if test="entity.applyName != null">and VA_TA_JC_ALLBUSSINESS_INFO.apply_name = #{entity.applyName}</if>
+	        <if test="entity.instanceCode != null">and VA_TA_JC_ALLBUSSINESS_INFO.instance_code = #{entity.instanceCode}</if>
+	        <if test="entity.endTime != null">and VA_TA_JC_ALLBUSSINESS_INFO.end_time = #{entity.endTime}</if>
+		</where>
+</foreach>
+)
+</select>
+<!-- ElementID:selectUnion,Generated=false -->
+<select id="selectUnion" parameterType="list" resultMap="BussinessAllInfoResult">
+select 
+	<include refid="column_sql"/> 
+	from VA_TA_JC_ALLBUSSINESS_INFO 
+	 INNER JOIN
+<foreach collection="list" item="entity" separator="UNION" open="(" close=")">
+		SELECT 
+			 bussiness_id
+		FROM VA_TA_JC_ALLBUSSINESS_INFO 
+			<where>
+	        <if test="entity.bussinessType != null">and VA_TA_JC_ALLBUSSINESS_INFO.bussiness_type = #{entity.bussinessType}</if>
+	        <if test="entity.superviseResultNo != null">and VA_TA_JC_ALLBUSSINESS_INFO.supervise_result_no = #{entity.superviseResultNo}</if>
+	        <if test="entity.superviseTypeNo != null">and VA_TA_JC_ALLBUSSINESS_INFO.supervise_type_no = #{entity.superviseTypeNo}</if>
+	        <if test="entity.state != null">and VA_TA_JC_ALLBUSSINESS_INFO.state = #{entity.state}</if>
+	        <if test="entity.bussinessId != null">and VA_TA_JC_ALLBUSSINESS_INFO.bussiness_id = #{entity.bussinessId}</if>
+	        <if test="entity.bussinessName != null">and VA_TA_JC_ALLBUSSINESS_INFO.bussiness_name = #{entity.bussinessName}</if>
+	        <if test="entity.bussinessTime != null">and VA_TA_JC_ALLBUSSINESS_INFO.bussiness_time = #{entity.bussinessTime}</if>
+	        <if test="entity.superviseTypeName != null">and VA_TA_JC_ALLBUSSINESS_INFO.supervise_type_name = #{entity.superviseTypeName}</if>
+	        <if test="entity.superviseResultName != null">and VA_TA_JC_ALLBUSSINESS_INFO.supervise_result_name = #{entity.superviseResultName}</if>
+	        <if test="entity.beginDate != null">and VA_TA_JC_ALLBUSSINESS_INFO.beginDate = #{entity.beginDate}</if>
+	        <if test="entity.endDate != null">and VA_TA_JC_ALLBUSSINESS_INFO.endDate = #{entity.endDate}</if>
+	        <if test="entity.orgId != null">and VA_TA_JC_ALLBUSSINESS_INFO.org_id = #{entity.orgId}</if>
+	        <if test="entity.orgName != null">and VA_TA_JC_ALLBUSSINESS_INFO.org_name = #{entity.orgName}</if>
+	        <if test="entity.bussinessTypeName != null">and VA_TA_JC_ALLBUSSINESS_INFO.bussiness_type_name = #{entity.bussinessTypeName}</if>
+	        <if test="entity.stateName != null">and VA_TA_JC_ALLBUSSINESS_INFO.state_name = #{entity.stateName}</if>
+	        <if test="entity.superviseTime != null">and VA_TA_JC_ALLBUSSINESS_INFO.supervise_time = #{entity.superviseTime}</if>
+	        <if test="entity.jcBeginDate != null">and VA_TA_JC_ALLBUSSINESS_INFO.jcBeginDate = #{entity.jcBeginDate}</if>
+	        <if test="entity.jcEndDate != null">and VA_TA_JC_ALLBUSSINESS_INFO.jcEndDate = #{entity.jcEndDate}</if>
+	        <if test="entity.bjState != null">and VA_TA_JC_ALLBUSSINESS_INFO.bj_state = #{entity.bjState}</if>
+	        <if test="entity.temporgid != null">and VA_TA_JC_ALLBUSSINESS_INFO.temporgid = #{entity.temporgid}</if>
+	        <if test="entity.id != null">and VA_TA_JC_ALLBUSSINESS_INFO.id = #{entity.id}</if>
+	        <if test="entity.replyTime != null">and VA_TA_JC_ALLBUSSINESS_INFO.reply_time = #{entity.replyTime}</if>
+	        <if test="entity.isValid != null">and VA_TA_JC_ALLBUSSINESS_INFO.is_valid = #{entity.isValid}</if>
+	        <if test="entity.promiseLimit != null">and VA_TA_JC_ALLBUSSINESS_INFO.promise_limit = #{entity.promiseLimit}</if>
+	        <if test="entity.processLimit != null">and VA_TA_JC_ALLBUSSINESS_INFO.process_limit = #{entity.processLimit}</if>
+	        <if test="entity.commitment != null">and VA_TA_JC_ALLBUSSINESS_INFO.commitment = #{entity.commitment}</if>
+	        <if test="entity.legal != null">and VA_TA_JC_ALLBUSSINESS_INFO.legal = #{entity.legal}</if>
+	        <if test="entity.timeUse != null">and VA_TA_JC_ALLBUSSINESS_INFO.time_use = #{entity.timeUse}</if>
+	        <if test="entity.applyName != null">and VA_TA_JC_ALLBUSSINESS_INFO.apply_name = #{entity.applyName}</if>
+	        <if test="entity.instanceCode != null">and VA_TA_JC_ALLBUSSINESS_INFO.instance_code = #{entity.instanceCode}</if>
+	        <if test="entity.endTime != null">and VA_TA_JC_ALLBUSSINESS_INFO.end_time = #{entity.endTime}</if>
+			</where>
+</foreach>
+	c2_temp_table ON VA_TA_JC_ALLBUSSINESS_INFO.bussiness_id = c2_temp_table.bussiness_id
+</select>
+
+<sql id="newPageSql">
+    VA_TA_JC_ALLBUSSINESS_INFO.BUSSINESS_TYPE,
+    VA_TA_JC_ALLBUSSINESS_INFO.SUPERVISE_TYPE_NO,
+    VA_TA_JC_ALLBUSSINESS_INFO.QUERY_CODE,
+    VA_TA_JC_ALLBUSSINESS_INFO.SUPERVISE_RESULT_NO,
+    VA_TA_JC_ALLBUSSINESS_INFO.SUPERVISE_TIME,
+    VA_TA_JC_ALLBUSSINESS_INFO.STATE,
+    VA_TA_JC_ALLBUSSINESS_INFO.ORG_ID,
+    VA_TA_JC_ALLBUSSINESS_INFO.ORG_NAME,
+    VA_TA_JC_ALLBUSSINESS_INFO.BUSSINESS_ID,
+    VA_TA_JC_ALLBUSSINESS_INFO.BUSSINESS_NAME,
+    VA_TA_JC_ALLBUSSINESS_INFO.BUSSINESS_TIME,
+   	VA_TA_JC_ALLBUSSINESS_INFO.BJ_STATE as BJ_STATE,
+    VA_TA_JC_ALLBUSSINESS_INFO.id,
+    TA_JC_DIC_SUPERVISE_TYPE.SUPERVISE_TYPE_NAME,
+    TA_JC_DIC_SUPERVISE_RESULT.SUPERVISE_RESULT_NAME,
+    VA_TA_JC_ALLBUSSINESS_INFO.IS_VALID,
+    VA_TA_JC_ALLBUSSINESS_INFO.PROMISE_LIMIT,
+    VA_TA_JC_ALLBUSSINESS_INFO.PROCESS_LIMIT,
+    VA_TA_JC_ALLBUSSINESS_INFO.time_use,
+    VA_TA_JC_ALLBUSSINESS_INFO.reply_time,
+    VA_TA_JC_ALLBUSSINESS_INFO.apply_name,
+    VA_TA_JC_ALLBUSSINESS_INFO.instance_code,
+    VA_TA_JC_ALLBUSSINESS_INFO.end_time,
+    VA_TA_JC_ALLBUSSINESS_INFO.approve_id,
+    VA_TA_JC_ALLBUSSINESS_INFO.etl_time
+</sql>
+
+<select id="selectByPage" parameterType="com.chinacreator.dzjc_ruleEngine.BussinessAllInfo" resultMap="BussinessAllInfoResult">
+    with orgCondition as (
+    	<if test="orgId != null">
+           SELECT v.id,v.code FROM V_ORG V where V.CODE LIKE CONCAT(#{orgId},'%') OR V.ID = #{orgId,jdbcType=VARCHAR}
+        </if>
+        <if test="temporgid != null">
+           select v1.id,v1.code from V_ORG V1 START WITH V1.ID=#{temporgid} CONNECT BY V1.PID = PRIOR V1.ID
+        </if>
+    )
+    select <include refid="newPageSql"/>
+    from VA_TA_JC_ALLBUSSINESS_INFO
+    left join TA_JC_DIC_SUPERVISE_TYPE on VA_TA_JC_ALLBUSSINESS_INFO.SUPERVISE_TYPE_NO =
+       TA_JC_DIC_SUPERVISE_TYPE.SUPERVISE_TYPE_CODE
+  	LEFT JOIN TA_JC_DIC_SUPERVISE_RESULT
+    ON VA_TA_JC_ALLBUSSINESS_INFO.SUPERVISE_RESULT_NO =
+       TA_JC_DIC_SUPERVISE_RESULT.SUPERVISE_RESULT_CODE
+    inner join orgCondition a on VA_TA_JC_ALLBUSSINESS_INFO.org_id=a.id
+    where 1=1
+    <!-- where exists (
+             select id from (
+                <if test="orgId != null">
+                   SELECT v.id,v.code FROM V_ORG V where V.CODE LIKE CONCAT(#{orgId},'%') OR V.ID = #{orgId,jdbcType=VARCHAR}
+                </if>
+                <if test="temporgid != null">
+                   select v1.id,v1.code from V_ORG V1 START WITH V1.ID=#{temporgid} CONNECT BY V1.PID = PRIOR V1.ID
+                </if>
+             ) temp where VA_TA_JC_ALLBUSSINESS_INFO.org_id=temp.id
+          ) -->
+    <include refid="whereClause_sql"/>
+     <choose>
+     <when test="bjState=='已办结'">
+       AND BJ_STATE='已办结'
+     </when>
+     <when test="bjState=='在办'">
+       AND BJ_STATE='在办'
+     </when> 
+     <otherwise/>
+     </choose>
+    
+   
+     
+     
+     order by BUSSINESS_TIME DESC,SUPERVISE_TIME DESC,SUPERVISE_RESULT_NO DESC
+</select>
+
+</mapper>

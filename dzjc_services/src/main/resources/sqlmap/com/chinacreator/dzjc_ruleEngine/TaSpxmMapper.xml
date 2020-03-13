@@ -1,0 +1,410 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"><mapper namespace="com.chinacreator.dzjc_ruleEngine.TaSpxmMapper">	
+
+
+<sql id="sql_all_by_page">
+		  TA_SPXM.approve_id ,
+		  TA_SPXM.org_id ,
+		  TA_SPXM.org_name ,
+		  TA_SPXM.approve_name ,
+		  TA_SPXM.approve_code ,
+		  TA_SPXM.trans_type_code ,
+		  decode(TA_SPXM.is_available, 'Y', '有效', 'N', '无效') is_available,
+		  TA_SPXM.approve_type_code,
+		  o.code as org_code,
+		  TA_DIC_APPROVETYPE.type_name  
+</sql>
+
+<!-- ElementID:column_sql,Generated=false -->
+<sql id="column_sql">
+		  TA_SPXM.approve_id ,
+		  TA_SPXM.org_name ,
+		  TA_SPXM.approve_name ,
+		  TA_SPXM.approve_code ,
+		  TA_SPXM.trans_type_code ,
+		  TA_SPXM.approve_type_code ,
+		  TA_SPXM.time_limit ,
+		  TA_SPXM.is_certificate ,
+		  TA_SPXM.is_charge ,
+		  TA_SPXM.is_available ,
+		  TA_SPXM.remark ,
+		  TA_SPXM.last_updatetime ,
+		  TA_SPXM.data_source ,
+		  TA_SPXM.version ,
+		  TA_SPXM.create_date ,
+		  TA_SPXM.promises_limit ,
+		  TA_SPXM.org_id ,
+		   td_sm_organization.code as org_code ,
+		   TA_DIC_APPROVETYPE.type_name 
+</sql>
+
+<!-- ElementID:whereClause_sql,Generated=false -->
+<sql id="whereClause_sql">
+	    <if test="approveId != null">and TA_SPXM.approve_id = #{approveId}</if>
+	    <if test="orgName != null">and TA_SPXM.org_name = #{orgName}</if>
+	    <if test="approveName != null">and TA_SPXM.approve_name = #{approveName}</if>
+	    <if test="approveCode != null">and TA_SPXM.approve_code = #{approveCode}</if>
+	    <if test="transTypeCode != null">and TA_SPXM.trans_type_code = #{transTypeCode}</if>
+	    <if test="approveTypeCode != null">and TA_SPXM.approve_type_code = #{approveTypeCode}</if>
+	    <if test="timeLimit != null">and TA_SPXM.time_limit = #{timeLimit}</if>
+	    <if test="isCertificate != null">and TA_SPXM.is_certificate = #{isCertificate}</if>
+	    <if test="isCharge != null">and TA_SPXM.is_charge = #{isCharge}</if>
+	    <if test="isAvailable != null">and TA_SPXM.is_available = #{isAvailable}</if>
+	    <if test="remark != null">and TA_SPXM.remark = #{remark}</if>
+	    <if test="lastUpdatetime != null">and TA_SPXM.last_updatetime = #{lastUpdatetime}</if>
+	    <if test="dataSource != null">and TA_SPXM.data_source = #{dataSource}</if>
+	    <if test="version != null">and TA_SPXM.version = #{version}</if>
+	    <if test="createDate != null">and TA_SPXM.create_date = #{createDate}</if>
+	    <if test="promisesLimit != null">and TA_SPXM.promises_limit = #{promisesLimit}</if>
+	    <if test="orgId != null">and TA_SPXM.org_id in(SELECT TT.ID FROM V_ORG TT CONNECT BY PRIOR tt.id = TT.PID START WITH tt.id = #{orgId}) </if>
+</sql>
+
+
+<!-- ElementID:TaSpxmResult,Generated=true -->
+<resultMap id="TaSpxmResult" type="com.chinacreator.dzjc_ruleEngine.TaSpxm">
+	<id property="approveId" column="approve_id"/>
+	<result property="orgName" column="org_name"/>
+	<result property="approveName" column="approve_name"/>
+	<result property="approveCode" column="approve_code"/>
+	<result property="transTypeCode" column="trans_type_code"/>
+	<result property="approveTypeCode" column="approve_type_code"/>
+	<result property="timeLimit" column="time_limit"/>
+	<result property="isCertificate" column="is_certificate"/>
+	<result property="isCharge" column="is_charge"/>
+	<result property="isAvailable" column="is_available"/>
+	<result property="remark" column="remark"/>
+	<result property="lastUpdatetime" column="last_updatetime"/>
+	<result property="dataSource" column="data_source"/>
+	<result property="version" column="version"/>
+	<result property="createDate" column="create_date"/>
+	<result property="promisesLimit" column="promises_limit"/>
+	<result property="orgId" column="org_id"/>
+	<result property="orgCode" column="org_code"/>
+	<result property="typeName" column="type_name"/>
+</resultMap>
+
+
+
+<!-- ElementName:cache,Generated=true -->
+<cache type="C2_Default_Dao_Cache"/>
+
+<!-- ElementID:insert,Generated=false -->
+<insert id="insert" parameterType="com.chinacreator.dzjc_ruleEngine.TaSpxm">
+	insert into TA_SPXM(
+	         <if test="approveId != null">approve_id</if>
+	         <if test="orgName != null">,org_name</if>
+	         <if test="approveName != null">,approve_name</if>
+	         <if test="approveCode != null">,approve_code</if>
+	         <if test="transTypeCode != null">,trans_type_code</if>
+	         <if test="approveTypeCode != null">,approve_type_code</if>
+	         <if test="timeLimit != null">,time_limit</if>
+	         <if test="isCertificate != null">,is_certificate</if>
+	         <if test="isCharge != null">,is_charge</if>
+	         <if test="isAvailable != null">,is_available</if>
+	         <if test="remark != null">,remark</if>
+	         <if test="lastUpdatetime != null">,last_updatetime</if>
+	         <if test="dataSource != null">,data_source</if>
+	         <if test="version != null">,version</if>
+	         <if test="createDate != null">,create_date</if>
+	         <if test="promisesLimit != null">,promises_limit</if>
+	         <if test="orgId != null">,org_id</if>
+	 	 	 )
+	 values (
+	         <if test="approveId != null">#{approveId,jdbcType=VARCHAR}</if>
+	         <if test="orgName != null">,#{orgName,jdbcType=VARCHAR}</if>
+	         <if test="approveName != null">,#{approveName,jdbcType=VARCHAR}</if>
+	         <if test="approveCode != null">,#{approveCode,jdbcType=VARCHAR}</if>
+	         <if test="transTypeCode != null">,#{transTypeCode,jdbcType=CHAR}</if>
+	         <if test="approveTypeCode != null">,#{approveTypeCode,jdbcType=CHAR}</if>
+	         <if test="timeLimit != null">,#{timeLimit,jdbcType=NUMERIC}</if>
+	         <if test="isCertificate != null">,#{isCertificate,jdbcType=CHAR}</if>
+	         <if test="isCharge != null">,#{isCharge,jdbcType=CHAR}</if>
+	         <if test="isAvailable != null">,#{isAvailable,jdbcType=VARCHAR}</if>
+	         <if test="remark != null">,#{remark,jdbcType=VARCHAR}</if>
+	         <if test="lastUpdatetime != null">,#{lastUpdatetime,jdbcType=DATE}</if>
+	         <if test="dataSource != null">,#{dataSource,jdbcType=VARCHAR}</if>
+	         <if test="version != null">,#{version,jdbcType=NUMERIC}</if>
+	         <if test="createDate != null">,#{createDate,jdbcType=DATE}</if>
+	         <if test="promisesLimit != null">,#{promisesLimit,jdbcType=NUMERIC}</if>
+	         <if test="orgId != null">,#{orgId,jdbcType=VARCHAR}</if>
+	 	 	 )
+</insert>
+
+<!-- ElementID:count,Generated=true -->
+<select id="count" parameterType="com.chinacreator.dzjc_ruleEngine.TaSpxm" resultType="int">
+	select count(*) from TA_SPXM 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<!-- ElementID:update,Generated=false -->
+<update id="update" parameterType="com.chinacreator.dzjc_ruleEngine.TaSpxm">
+	update TA_SPXM
+<set>
+	<if test="orgName != null">org_name=#{orgName,jdbcType=VARCHAR},</if>
+	<if test="approveName != null">approve_name=#{approveName,jdbcType=VARCHAR},</if>
+	<if test="approveCode != null">approve_code=#{approveCode,jdbcType=VARCHAR},</if>
+	<if test="transTypeCode != null">trans_type_code=#{transTypeCode,jdbcType=CHAR},</if>
+	<if test="approveTypeCode != null">approve_type_code=#{approveTypeCode,jdbcType=CHAR},</if>
+	<if test="timeLimit != null">time_limit=#{timeLimit,jdbcType=NUMERIC},</if>
+	<if test="isCertificate != null">is_certificate=#{isCertificate,jdbcType=CHAR},</if>
+	<if test="isCharge != null">is_charge=#{isCharge,jdbcType=CHAR},</if>
+	<if test="isAvailable != null">is_available=#{isAvailable,jdbcType=VARCHAR},</if>
+	<if test="remark != null">remark=#{remark,jdbcType=VARCHAR},</if>
+	<if test="lastUpdatetime != null">last_updatetime=#{lastUpdatetime,jdbcType=DATE},</if>
+	<if test="dataSource != null">data_source=#{dataSource,jdbcType=VARCHAR},</if>
+	<if test="version != null">version=#{version,jdbcType=NUMERIC},</if>
+	<if test="createDate != null">create_date=#{createDate,jdbcType=DATE},</if>
+	<if test="promisesLimit != null">promises_limit=#{promisesLimit,jdbcType=NUMERIC},</if>
+	<if test="orgId != null">org_id=#{orgId,jdbcType=VARCHAR}</if>
+</set>
+<where>
+	<choose>
+        <when test="approveId != null">and approve_id = #{approveId}</when>
+        <otherwise>and approve_id = </otherwise>
+    </choose>
+</where>
+</update>
+
+<!-- ElementID:updateNull,Generated=false -->
+<update id="updateNull" parameterType="map">
+	update TA_SPXM
+	<set>
+		<trim suffixOverrides=",">
+		    <if test="orgName==null">org_name = null,</if>
+		    <if test="approveName==null">approve_name = null,</if>
+		    <if test="approveCode==null">approve_code = null,</if>
+		    <if test="transTypeCode==null">trans_type_code = null,</if>
+		    <if test="approveTypeCode==null">approve_type_code = null,</if>
+		    <if test="timeLimit==null">time_limit = null,</if>
+		    <if test="isCertificate==null">is_certificate = null,</if>
+		    <if test="isCharge==null">is_charge = null,</if>
+		    <if test="isAvailable==null">is_available = null,</if>
+		    <if test="remark==null">remark = null,</if>
+		    <if test="lastUpdatetime==null">last_updatetime = null,</if>
+		    <if test="dataSource==null">data_source = null,</if>
+		    <if test="version==null">version = null,</if>
+		    <if test="createDate==null">create_date = null,</if>
+		    <if test="promisesLimit==null">promises_limit = null,</if>
+		    <if test="orgId==null">org_id = null,</if>
+		</trim>
+	</set>
+	<where>
+		<choose>
+			<when test="approveId != null">and approve_id = #{approveId}</when>
+			<otherwise>and approve_id = </otherwise>
+		</choose>
+	</where>
+</update>
+
+<!-- ElementID:delete,Generated=true -->
+<delete id="delete" parameterType="com.chinacreator.dzjc_ruleEngine.TaSpxm">
+    delete from TA_SPXM where 1=1 and approve_id = #{approveId}
+</delete>
+
+<!-- ElementID:select,Generated=true -->
+<select id="select" parameterType="com.chinacreator.dzjc_ruleEngine.TaSpxm" resultMap="TaSpxmResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_SPXM 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+
+<!-- ElementID:insertBatch,Generated=false -->
+<insert id="insertBatch" parameterType="list">
+	insert into TA_SPXM (approve_id,org_name,approve_name,approve_code,trans_type_code,approve_type_code,time_limit,is_certificate,is_charge,is_available,remark,last_updatetime,data_source,version,create_date,promises_limit,org_id) 
+<foreach collection="list" item="entity" index="index" separator="union all">
+		select 
+		#{entity.approveId,jdbcType = VARCHAR},
+				#{entity.orgName,jdbcType = VARCHAR},
+				#{entity.approveName,jdbcType = VARCHAR},
+				#{entity.approveCode,jdbcType = VARCHAR},
+				#{entity.transTypeCode,jdbcType = CHAR},
+				#{entity.approveTypeCode,jdbcType = CHAR},
+				#{entity.timeLimit,jdbcType = NUMERIC},
+				#{entity.isCertificate,jdbcType = CHAR},
+				#{entity.isCharge,jdbcType = CHAR},
+				#{entity.isAvailable,jdbcType = VARCHAR},
+				#{entity.remark,jdbcType = VARCHAR},
+				#{entity.lastUpdatetime,jdbcType = DATE},
+				#{entity.dataSource,jdbcType = VARCHAR},
+				#{entity.version,jdbcType = NUMERIC},
+				#{entity.createDate,jdbcType = DATE},
+				#{entity.promisesLimit,jdbcType = NUMERIC},
+				#{entity.orgId,jdbcType = VARCHAR}
+		from dual
+</foreach>
+</insert>
+
+<!-- ElementID:deleteBatch,Generated=true -->
+<delete id="deleteBatch" parameterType="List">
+	delete from TA_SPXM where approve_id in
+<trim prefix="(" suffix=")" suffixOverrides=",">
+<foreach collection="list" item="entity" separator=",">
+	<choose>
+		<when test="@com.chinacreator.c2.dao.util.EntityBeanUtil@isEntityObj(entity)">#{entity.approveId}</when>
+		<otherwise>#{entity}</otherwise>
+	</choose>
+</foreach>
+</trim>
+</delete>
+
+<!-- ElementID:updateBatch,Generated=false -->
+<update id="updateBatch" parameterType="list">
+	<foreach collection="list" item="entity" open="begin" close=";end;" separator=";">
+			update TA_SPXM
+	<set>
+	<if test="entity.orgName != null">org_name= #{entity.orgName,jdbcType=VARCHAR},</if>
+	<if test="entity.approveName != null">approve_name= #{entity.approveName,jdbcType=VARCHAR},</if>
+	<if test="entity.approveCode != null">approve_code= #{entity.approveCode,jdbcType=VARCHAR},</if>
+	<if test="entity.transTypeCode != null">trans_type_code= #{entity.transTypeCode,jdbcType=CHAR},</if>
+	<if test="entity.approveTypeCode != null">approve_type_code= #{entity.approveTypeCode,jdbcType=CHAR},</if>
+	<if test="entity.timeLimit != null">time_limit= #{entity.timeLimit,jdbcType=NUMERIC},</if>
+	<if test="entity.isCertificate != null">is_certificate= #{entity.isCertificate,jdbcType=CHAR},</if>
+	<if test="entity.isCharge != null">is_charge= #{entity.isCharge,jdbcType=CHAR},</if>
+	<if test="entity.isAvailable != null">is_available= #{entity.isAvailable,jdbcType=VARCHAR},</if>
+	<if test="entity.remark != null">remark= #{entity.remark,jdbcType=VARCHAR},</if>
+	<if test="entity.lastUpdatetime != null">last_updatetime= #{entity.lastUpdatetime,jdbcType=DATE},</if>
+	<if test="entity.dataSource != null">data_source= #{entity.dataSource,jdbcType=VARCHAR},</if>
+	<if test="entity.version != null">version= #{entity.version,jdbcType=NUMERIC},</if>
+	<if test="entity.createDate != null">create_date= #{entity.createDate,jdbcType=DATE},</if>
+	<if test="entity.promisesLimit != null">promises_limit= #{entity.promisesLimit,jdbcType=NUMERIC},</if>
+	<if test="entity.orgId != null">org_id= #{entity.orgId,jdbcType=VARCHAR}</if>
+	</set>
+		<where>
+			<choose>
+				<when test="entity.approveId != null">and approve_id = #{entity.approveId}</when>
+				<otherwise>and approve_id = </otherwise>
+			</choose>
+		</where>
+	</foreach>
+</update>
+
+<!-- ElementID:selectAll,Generated=true -->
+<select id="selectAll" resultMap="TaSpxmResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_SPXM 
+</select>
+
+<!-- ElementID:selectMany,Generated=false -->
+<select id="selectMany" parameterType="list" resultMap="TaSpxmResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_SPXM 
+	where TA_SPXM.approve_id in (
+<foreach collection="list" item="entity" separator="intersect">
+		select 
+		TA_SPXM.approve_id
+	    from TA_SPXM 
+		 <where>
+	        <if test="entity.approveId != null">and TA_SPXM.approve_id = #{entity.approveId}</if>
+	        <if test="entity.orgName != null">and TA_SPXM.org_name = #{entity.orgName}</if>
+	        <if test="entity.approveName != null">and TA_SPXM.approve_name = #{entity.approveName}</if>
+	        <if test="entity.approveCode != null">and TA_SPXM.approve_code = #{entity.approveCode}</if>
+	        <if test="entity.transTypeCode != null">and TA_SPXM.trans_type_code = #{entity.transTypeCode}</if>
+	        <if test="entity.approveTypeCode != null">and TA_SPXM.approve_type_code = #{entity.approveTypeCode}</if>
+	        <if test="entity.timeLimit != null">and TA_SPXM.time_limit = #{entity.timeLimit}</if>
+	        <if test="entity.isCertificate != null">and TA_SPXM.is_certificate = #{entity.isCertificate}</if>
+	        <if test="entity.isCharge != null">and TA_SPXM.is_charge = #{entity.isCharge}</if>
+	        <if test="entity.isAvailable != null">and TA_SPXM.is_available = #{entity.isAvailable}</if>
+	        <if test="entity.remark != null">and TA_SPXM.remark = #{entity.remark}</if>
+	        <if test="entity.lastUpdatetime != null">and TA_SPXM.last_updatetime = #{entity.lastUpdatetime}</if>
+	        <if test="entity.dataSource != null">and TA_SPXM.data_source = #{entity.dataSource}</if>
+	        <if test="entity.version != null">and TA_SPXM.version = #{entity.version}</if>
+	        <if test="entity.createDate != null">and TA_SPXM.create_date = #{entity.createDate}</if>
+	        <if test="entity.promisesLimit != null">and TA_SPXM.promises_limit = #{entity.promisesLimit}</if>
+	        <if test="entity.orgId != null">and TA_SPXM.org_id = #{entity.orgId}</if>
+		</where>
+</foreach>
+)
+</select>
+
+<!-- ElementID:selectUnion,Generated=false -->
+<select id="selectUnion" parameterType="list" resultMap="TaSpxmResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_SPXM 
+	 INNER JOIN
+<foreach collection="list" item="entity" separator="UNION" open="(" close=")">
+		SELECT 
+			 approve_id
+		FROM TA_SPXM 
+			<where>
+	        <if test="entity.approveId != null">and TA_SPXM.approve_id = #{entity.approveId}</if>
+	        <if test="entity.orgName != null">and TA_SPXM.org_name = #{entity.orgName}</if>
+	        <if test="entity.approveName != null">and TA_SPXM.approve_name = #{entity.approveName}</if>
+	        <if test="entity.approveCode != null">and TA_SPXM.approve_code = #{entity.approveCode}</if>
+	        <if test="entity.transTypeCode != null">and TA_SPXM.trans_type_code = #{entity.transTypeCode}</if>
+	        <if test="entity.approveTypeCode != null">and TA_SPXM.approve_type_code = #{entity.approveTypeCode}</if>
+	        <if test="entity.timeLimit != null">and TA_SPXM.time_limit = #{entity.timeLimit}</if>
+	        <if test="entity.isCertificate != null">and TA_SPXM.is_certificate = #{entity.isCertificate}</if>
+	        <if test="entity.isCharge != null">and TA_SPXM.is_charge = #{entity.isCharge}</if>
+	        <if test="entity.isAvailable != null">and TA_SPXM.is_available = #{entity.isAvailable}</if>
+	        <if test="entity.remark != null">and TA_SPXM.remark = #{entity.remark}</if>
+	        <if test="entity.lastUpdatetime != null">and TA_SPXM.last_updatetime = #{entity.lastUpdatetime}</if>
+	        <if test="entity.dataSource != null">and TA_SPXM.data_source = #{entity.dataSource}</if>
+	        <if test="entity.version != null">and TA_SPXM.version = #{entity.version}</if>
+	        <if test="entity.createDate != null">and TA_SPXM.create_date = #{entity.createDate}</if>
+	        <if test="entity.promisesLimit != null">and TA_SPXM.promises_limit = #{entity.promisesLimit}</if>
+	        <if test="entity.orgId != null">and TA_SPXM.org_id = #{entity.orgId}</if>
+			</where>
+</foreach>
+	c2_temp_table ON TA_SPXM.approve_id = c2_temp_table.approve_id
+</select>
+
+<!-- ElementID:selectByID,Generated=false -->
+<select id="selectByID" parameterType="java.lang.String" resultMap="TaSpxmResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_SPXM 
+	    left join  td_sm_organization 
+		    on TA_SPXM.org_id =  td_sm_organization.org_id
+		  left join  TA_DIC_APPROVETYPE
+       		on TA_SPXM.APPROVE_TYPE_CODE= TA_DIC_APPROVETYPE.TYPE_CODE 
+		 where TA_SPXM.approve_id = #{approveId,jdbcType=VARCHAR}
+</select>
+
+<!-- ElementID:selectByPage,Generated=false -->
+<select id="selectByPage" parameterType="com.chinacreator.dzjc_ruleEngine.TaSpxm" resultMap="TaSpxmResult">
+	with orgCondition as (
+	    <if test="orgCode != null">
+	       SELECT v.id,v.code FROM V_ORG V where V.CODE LIKE CONCAT(#{orgCode},'%') OR V.ID = #{orgCode,jdbcType=VARCHAR}
+	    </if>
+	    <if test="orgId != null">
+	       select v1.id,v1.code from V_ORG V1 START WITH V1.ID=#{orgId} CONNECT BY V1.PID = PRIOR V1.ID
+	    </if>
+	)
+	select 
+		<include refid="sql_all_by_page"/>
+	     from TA_SPXM 
+		 left join  TA_DIC_APPROVETYPE on TA_SPXM.APPROVE_TYPE_CODE=TA_DIC_APPROVETYPE.TYPE_CODE  
+       	 inner join orgCondition o on o.id=TA_SPXM.org_id
+		 <where>
+			<include refid="whereClause_sql_page"/>
+		</where>
+		order by TA_SPXM.approve_code asc
+</select>
+<sql id="whereClause_sql_page">
+	    <if test="approveId != null">and TA_SPXM.approve_id = #{approveId}</if>
+	    <if test="orgName != null">and TA_SPXM.org_name = #{orgName}</if>
+	    <if test="approveName != null">and TA_SPXM.approve_name = #{approveName}</if>
+	    <if test="approveCode != null">and TA_SPXM.approve_code = #{approveCode}</if>
+	    <if test="transTypeCode != null">and TA_SPXM.trans_type_code = #{transTypeCode}</if>
+	    <if test="approveTypeCode != null">and TA_SPXM.approve_type_code = #{approveTypeCode}</if>
+	    <if test="timeLimit != null">and TA_SPXM.time_limit = #{timeLimit}</if>
+	    <if test="isCertificate != null">and TA_SPXM.is_certificate = #{isCertificate}</if>
+	    <if test="isCharge != null">and TA_SPXM.is_charge = #{isCharge}</if>
+	    <if test="isAvailable != null">and TA_SPXM.is_available = #{isAvailable}</if>
+	    <if test="remark != null">and TA_SPXM.remark = #{remark}</if>
+	    <if test="lastUpdatetime != null">and TA_SPXM.last_updatetime = #{lastUpdatetime}</if>
+	    <if test="dataSource != null">and TA_SPXM.data_source = #{dataSource}</if>
+	    <if test="version != null">and TA_SPXM.version = #{version}</if>
+	    <if test="createDate != null">and TA_SPXM.create_date = #{createDate}</if>
+	    <if test="promisesLimit != null">and TA_SPXM.promises_limit = #{promisesLimit}</if>
+</sql>
+</mapper>

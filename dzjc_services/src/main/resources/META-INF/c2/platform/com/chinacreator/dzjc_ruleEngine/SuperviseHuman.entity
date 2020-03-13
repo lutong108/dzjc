@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity:Entity xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cdata="http://www.chinacreator.com/platform/mvc/cdata" xmlns:docket="http://www.chinacreator.com/platform/mvc/docket" xmlns:entity="http://www.chinacreator.com/platform/mvc/entity" dbType="Oracle" sn="dzjc_ruleEngine/v1/SuperviseHuman">
+  <docket:name>人工发牌</docket:name>
+  <docket:createType>来自数据库</docket:createType>
+  <docket:primaryKey>
+    <docket:pkAttribute attribute="supervise_human_id" docketId="entity:com.chinacreator.dzjc_ruleEngine.SuperviseHuman" type="UUID"/>
+  </docket:primaryKey>
+  <docket:attributes>
+    <docket:attribute code="supervise_human_id" length="1000" name="人工发牌id" nullable="false" type="string1024" default="">
+      <docket:valueRange xsi:type="cdata:AllValueRange"/>
+    </docket:attribute>
+    <docket:attribute code="org_id" length="50" name="机构id" nullable="false" type="string128" default="">
+      <docket:valueRange xsi:type="cdata:AllValueRange"/>
+    </docket:attribute>
+    <docket:attribute code="approve_id" length="50" name="事项id" nullable="false" type="string128" default="">
+      <docket:valueRange xsi:type="cdata:AllValueRange"/>
+    </docket:attribute>
+    <docket:attribute code="human_rule_id" length="20" name="人工规则id" nullable="false" type="string128" default="">
+      <docket:valueRange xsi:type="cdata:AllValueRange"/>
+    </docket:attribute>
+    <docket:attribute code="supervise_result_no" length="20" name="发牌级别" nullable="false" type="string20" default="">
+      <docket:valueRange xsi:type="cdata:AllValueRange"/>
+    </docket:attribute>
+    <docket:attribute code="supervise_descript" length="500" name="描述" nullable="false" type="string512" default="">
+      <docket:valueRange xsi:type="cdata:AllValueRange"/>
+    </docket:attribute>
+    <docket:attribute code="supervise_gist" length="400" name="依据" nullable="false" type="string512" default="">
+      <docket:valueRange xsi:type="cdata:AllValueRange"/>
+    </docket:attribute>
+    <docket:attribute code="warning_content" length="700" name="信息内容" nullable="false" type="string1024" default="">
+      <docket:valueRange xsi:type="cdata:AllValueRange"/>
+    </docket:attribute>
+    <docket:attribute code="supervise_time" length="7" name="发牌时间" nullable="true" type="date" default="sysdate&#xA;">
+      <docket:valueRange xsi:type="cdata:AllValueRange"/>
+    </docket:attribute>
+    <docket:attribute code="orgName" length="128" name="机构名称" type="string128">
+      <docket:valueRange xsi:type="cdata:AllValueRange"/>
+    </docket:attribute>
+    <docket:attribute code="approveName" length="128" name="事项名称" type="string128">
+      <docket:valueRange xsi:type="cdata:AllValueRange"/>
+    </docket:attribute>
+    <docket:attribute code="ruleName" length="128" name="规则名称" type="string128">
+      <docket:valueRange xsi:type="cdata:AllValueRange"/>
+    </docket:attribute>
+    <docket:attribute code="temporgid" name="机构查询" nullable="true" type="string128">
+      <docket:valueRange xsi:type="cdata:AllValueRange"/>
+    </docket:attribute>
+    <docket:attribute code="state" length="128" name="发牌状态" nullable="true" type="string128" default="">
+      <docket:valueRange xsi:type="cdata:AllValueRange"/>
+    </docket:attribute>
+    <docket:attribute code="fpbeginDate" name="发牌开始日期" nullable="true" type="date">
+      <docket:valueRange xsi:type="cdata:AllValueRange"/>
+    </docket:attribute>
+    <docket:attribute code="fpendDate" name="发牌结束日期" nullable="true" type="date">
+      <docket:valueRange xsi:type="cdata:AllValueRange"/>
+    </docket:attribute>
+  </docket:attributes>
+  <docket:subDokcets/>
+  <docket:events/>
+  <docket:table ds="acceptdata" table="TA_JC_SUPERVISE_HUMAN"/>
+  <docket:cache>false</docket:cache>
+  <docket:sequenceName>TA_JC_SUPERVISE_HUMAN_SEQ</docket:sequenceName>
+  <docket:restResource>true</docket:restResource>
+  <entity:datas/>
+  <entity:views/>
+</entity:Entity>

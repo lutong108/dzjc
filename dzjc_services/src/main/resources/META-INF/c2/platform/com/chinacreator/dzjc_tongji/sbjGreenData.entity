@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity:Entity xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cdata="http://www.chinacreator.com/platform/mvc/cdata" xmlns:docket="http://www.chinacreator.com/platform/mvc/docket" xmlns:entity="http://www.chinacreator.com/platform/mvc/entity" dbType="Oracle" sn="dzjc_tongji/v1/getSbjGreenData">
+  <docket:name>省本级机构预警数据</docket:name>
+  <docket:createType>来自数据库</docket:createType>
+  <docket:primaryKey>
+    <docket:pkAttribute attribute="id" docketId="entity:com.chinacreator.dzjc_tongji.sbjGreenData" type="UUID"/>
+  </docket:primaryKey>
+  <docket:attributes>
+    <docket:attribute code="id" length="64" nullable="true" type="string64" default="">
+      <docket:valueRange xsi:type="cdata:AllValueRange"/>
+    </docket:attribute>
+    <docket:attribute code="name" length="256" nullable="true" type="string256" default="">
+      <docket:valueRange xsi:type="cdata:AllValueRange"/>
+    </docket:attribute>
+    <docket:attribute code="sbj_num_instance" length="20" nullable="true" type="string20" default="">
+      <docket:valueRange xsi:type="cdata:AllValueRange"/>
+    </docket:attribute>
+    <docket:attribute code="sbj_num_counsel" length="20" name="" nullable="true" type="string20" default="">
+      <docket:valueRange xsi:type="cdata:AllValueRange"/>
+    </docket:attribute>
+    <docket:attribute code="sbj_num_special" length="20" nullable="true" type="string20" default="">
+      <docket:valueRange xsi:type="cdata:AllValueRange"/>
+    </docket:attribute>
+  </docket:attributes>
+  <docket:subDokcets/>
+  <docket:events/>
+  <docket:table ds="acceptdata" table="V_SBJ_GREENDATA"/>
+  <docket:cache>false</docket:cache>
+  <docket:sequenceName>V_SBJ_GREENDATA_SEQ</docket:sequenceName>
+  <docket:restResource>true</docket:restResource>
+  <entity:datas/>
+  <entity:views/>
+</entity:Entity>

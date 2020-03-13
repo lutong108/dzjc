@@ -1,0 +1,530 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chinacreator.dzjc_ruleEngine.InstanceSuperviseStatisticsMapper">
+
+
+<resultMap id="jCSumSuperviseInfoAllMapper" type="com.chinacreator.dzjc_ruleEngine.JCSumSuperviseInfoAll" >
+		<result property="ORG_ID" column="ORG_ID" />
+		<result property="area_name" column="AREA_NAME" />
+		<result property="area_code" column="AREA_CODE" />
+		<result property="yjs" column="YJS" />
+		<result property="yellow" column="YELLOW" />
+		<result property="red" column="RED" />
+		<result property="cancel_yellow_num" column="CANCEL_YELLOW_NUM" />
+		<result property="cancel_red_num" column="CANCEL_RED_NUM" />
+		<result property="sls" column="SLS" />
+		<result property="bjs" column="BJS" />
+		<result property="zcbjs" column="ZCBJS" />
+		<result property="thbjs" column="THBJS" />
+		<result property="zfbjs" column="ZFBJS" />
+		<result property="scbjs" column="SCBJS" />
+		<result property="bjl" column="BJL" />
+		<result property="ljsls" column="LJSLS" />
+		<result property="ljbjs" column="LJBJS" />
+		<result property="bysls" column="BYSLS" />
+		<result property="complain_num" column="COMPLAIN_NUM" />
+		<result property="complain_reply_num" column="COMPLAIN_REPLY_NUM" />
+		<result property="consult_num" column="CONSULT_NUM" />
+		<result property="consult_replay_num" column="CONSULT_REPLAY_NUM" />
+		<result property="instance_yjs" column="instance_yjs" />
+		<result property="instance_yellow" column="instance_yellow" />
+		<result property="instance_red" column="instance_red" />
+		<result property="instance_cancel_yellow_num" column="instance_cancel_yellow_num" />
+		<result property="instance_cancel_red_num" column="instance_cancel_red_num" />
+		<result property="complain_yjs" column="complain_yjs" />
+		<result property="complain_yellow" column="complain_yellow" />
+		<result property="complain_red" column="complain_red" />
+		<result property="complain_cancel_yellow_num" column="complain_cancel_yellow_num" />
+		<result property="complain_cancel_red_num" column="complain_cancel_red_num" />
+		<result property="consult_yjs" column="consult_yjs" />
+		<result property="consult_yellow" column="consult_yellow" />
+		<result property="consult_red" column="consult_red" />
+		<result property="consult_cancel_yellow_num" column="consult_cancel_yellow_num" />
+		<result property="consult_cancel_red_num" column="consult_cancel_red_num" />
+		<result property="special_supervise_green_num" column="special_supervise_green_num" />
+		<result property="special_supervise_yellow_num" column="special_supervise_yellow_num" />
+		<result property="special_supervise_red_num" column="special_supervise_red_num" />
+		
+</resultMap>
+
+
+<select id="selectInstanceSuperviseStatisticsInfoByprovince" resultMap="jCSumSuperviseInfoAllMapper" parameterType="com.chinacreator.dzjc_ruleEngine.JCSumSuperviseInfoAll">
+<!-- 查询全省 -->
+select a.AREA_NAME area_name, a.area_code area_code,  
+             nvl(t.yjs, 0) yjs,  
+             nvl(t.yellow, 0) yellow,  
+             nvl(t.red, 0) red,  
+             nvl(t.cancel_yellow_num, 0) cancel_yellow_num,  
+             nvl(t.cancel_red_num, 0) cancel_red_num  
+        from v_ta_dic_area a  
+        left join (select o.CITY_CODE,  
+                          sum(ssi.instance_supervise_green_num) as yjs,  
+                          sum(ssi.instance_supervise_yello_num) as yellow,  
+                          sum(ssi.instance_supervise_red_num) as red,  
+                          sum(ssi.instance_cancel_yellow_num) as cancel_yellow_num,  
+                          sum(ssi.instance_cancel_red_num) as cancel_red_num  
+                     from ta_jc_sum_supervise_info ssi, v_td_sm_organization1 o  
+                    where ssi.org_id = o.ORG_ID  
+                      <if test="start_time != null">and  ssi.now_date &gt;= #{start_time}</if>
+		   		   	  <if test="end_time != null">and  ssi.now_date &lt;= #{end_time}</if> 
+                      and ssi.province_code = '430000000000'  
+                      and ssi.city_code != '000000000000'  
+                    group by o.CITY_CODE
+                    ) t on a.AREA_CODE = t.city_code  
+       where a.parent_code = '430000000000'  
+       <choose>
+	 		<when test="sortCol != null">
+	 			order by ${sortCol} desc
+	 		</when>
+	 		<otherwise>
+	 			order by  a.ORDER_NUM
+	 		</otherwise>
+	 	</choose>
+</select>
+
+
+<select id="selectInstanceSuperviseStatisticsInfoByCity" resultMap="jCSumSuperviseInfoAllMapper" parameterType="com.chinacreator.dzjc_ruleEngine.JCSumSuperviseInfoAll">
+<!-- 根据城市查询 -->
+select a.AREA_NAME area_name, 
+      a.area_code area_code, 
+      nvl(t.yjs, 0) yjs, 
+      nvl(t.yellow, 0) yellow, 
+      nvl(t.red, 0) red, 
+      nvl(t.cancel_yellow_num, 0) cancel_yellow_num, 
+      nvl(t.cancel_red_num, 0) cancel_red_num 
+   from v_ta_dic_area a 
+      left join (
+      select o.County_CODE, 
+                          sum(ssi.instance_supervise_green_num) as yjs,  
+                          sum(ssi.instance_supervise_yello_num) as yellow,  
+                          sum(ssi.instance_supervise_red_num) as red,  
+                          sum(ssi.instance_cancel_yellow_num) as cancel_yellow_num,  
+                          sum(ssi.instance_cancel_red_num) as cancel_red_num  
+   from ta_jc_sum_supervise_info ssi, v_td_sm_organization1 o 
+      where ssi.org_id = o.ORG_ID 
+      <if test="start_time != null">and  ssi.now_date &gt;= #{start_time}</if>
+	  <if test="end_time != null">and  ssi.now_date &lt;= #{end_time}</if> 
+      and ssi.city_code = #{ORG_ID,jdbcType=VARCHAR} 
+      and ssi.county_code != '000000000000' 
+      group by o.County_CODE
+      ) t on a.AREA_CODE = t.County_CODE 
+      where a.parent_code = #{ORG_ID,jdbcType=VARCHAR} 
+      <choose>
+	 		<when test="sortCol != null">
+	 			order by ${sortCol} desc
+	 		</when>
+	 		<otherwise>
+	 			order by a.ORDER_NUM
+	 		</otherwise>
+	 	</choose>
+</select>
+
+
+
+<select id="selectInstanceSuperviseStatisticsInfoAll" resultMap="jCSumSuperviseInfoAllMapper" parameterType="com.chinacreator.dzjc_ruleEngine.JCSumSuperviseInfoAll">
+<!-- 根据机构查询 -->
+WITH
+	TEMP AS(
+	     SELECT * FROM V_ORG V
+	    where 1=1
+	     	<if test="ORG_ID != null">
+	     		and V.CODE LIKE CONCAT(#{ORG_ID},'%') OR
+	     		V.ID = #{ORG_ID,jdbcType=VARCHAR}
+	     	</if>
+	),
+	TEMP2 AS(
+		select o.ORG_ID,
+		   o.ORG_NAME area_name,
+	       nvl(t.yjs, 0) yjs,
+	       nvl(t.yellow, 0) yellow,
+	       nvl(t.red, 0) red,
+	       nvl(t.cancel_yellow_num, 0) cancel_yellow_num,
+	       nvl(t.cancel_red_num, 0) cancel_red_num
+	  from V_TD_SM_ORGANIZATION1 o
+	  left join (select ssi.org_id,
+	                      sum(ssi.instance_supervise_green_num) as yjs,  
+                          sum(ssi.instance_supervise_yello_num) as yellow,  
+                          sum(ssi.instance_supervise_red_num) as red,  
+                          sum(ssi.instance_cancel_yellow_num) as cancel_yellow_num,  
+                          sum(ssi.instance_cancel_red_num) as cancel_red_num                  
+	               from ta_JC_sum_supervise_info ssi
+	              where 1=1
+	               <if test="start_time != null">and  ssi.now_date &gt;= #{start_time}</if>
+		   		   <if test="end_time != null">and  ssi.now_date &lt;= #{end_time}</if> 
+	              group by ssi.org_id) t
+	    on o.ORG_ID = t.org_id
+	     INNER JOIN TEMP 
+		ON o.org_id = TEMP.ID
+		order by o.ORDER_NUM
+	)
+ select * from TEMP2 
+</select>
+	
+<select id="selectInstanceSuperviseStatisticsInfoByArea" resultMap="jCSumSuperviseInfoAllMapper" parameterType="com.chinacreator.dzjc_ruleEngine.JCSumSuperviseInfoAll">
+<!-- 查询区县 -->
+  select 
+        v.ORG_NAME area_name,
+        v.ORG_ID,
+        nvl(aa.yjs, '0') yjs,
+        nvl(aa.yellow, '0') yellow,
+        nvl(aa.red, '0') red,
+        nvl(aa.cancel_yellow_num, '0') cancel_yellow_num,
+        nvl(aa.cancel_red_num, '0') cancel_red_num
+   from V_TD_SM_ORGANIZATION1 v
+   left join (select s.org_id,
+                     sum(s.yjs) yjs,
+                     sum(s.yellow) yellow,
+                     sum(s.red) red,
+                     sum(s.cancel_yellow_num) as cancel_yellow_num,
+                     sum(s.cancel_red_num) as cancel_red_num
+                from (select o.ORG_ID,
+                             o.ORG_CODE,
+                             o.ORG_NAME as ORG_SHOW_NAME,
+                             o.PROVINCE_CODE,
+                             o.CITY_CODE,
+                             o.County_CODE,
+                             o.STREET_CODE,
+                             o.ORG_LEVEL,
+                             a.yjs,
+                             a.yellow,
+                             a.red,
+                             a.cancel_yellow_num,
+                             a.cancel_red_num
+                        from V_TD_SM_ORGANIZATION1 o,
+                             (select t.org_id,
+                                     sum(yjs) yjs,
+                                     sum(yellow) yellow,
+                                     sum(red) red,
+                                     sum(cancel_yellow_num) as cancel_yellow_num,
+                                     sum(cancel_red_num) as cancel_red_num
+                                from (
+                                     
+                                     select ssi.org_id org_id,
+					                          sum(ssi.instance_supervise_green_num) as yjs,  
+					                          sum(ssi.instance_supervise_yello_num) as yellow,  
+					                          sum(ssi.instance_supervise_red_num) as red,  
+					                          sum(ssi.instance_cancel_yellow_num) as cancel_yellow_num,  
+					                          sum(ssi.instance_cancel_red_num) as cancel_red_num   
+                                        from ta_JC_sum_supervise_info ssi
+                                       where 1=1
+                                        <if test="start_time != null">and  ssi.now_date &gt;= #{start_time}</if>
+                                        <if test="end_time != null">and  ssi.now_date &lt;= #{end_time}</if>      
+                                       group by ssi.org_id
+                                       
+                                      union all
+                                      
+                                      select bj.org_id ,
+                                             0 as yjs,
+                                             0 as yellow,
+                                             0 as red,
+                                             0 as cancel_yellow_num,
+                                             0 as cancel_red_num
+                                        from TA_SP_INSTANCE bj
+                                       where bj.project_state = '7'
+                                       <if test="start_time != null">
+                                           and bj.accept_time between
+                                             to_date(#{start_time},'yyyy-mm-dd') and
+                                             to_date(#{end_time}, 'yyyy-mm-dd')
+                                       </if>
+                                       group by bj.org_id
+                                       
+                                      union all
+                                      
+                                      select org_id,
+                                             0 as yjs,
+                                             0 as yellow,
+                                             0 as red,
+                                             0 as cancel_yellow_num,
+                                             0 as cancel_red_num
+                                        from TA_JC_SUM_SUPERVISE_INFO
+                                       where ACCEPT_NOW_DATE is not null
+                                       group by ORG_ID
+                                       
+                                      union all
+                                      
+                                      select sl.org_id,
+                                             0 as yjs,
+                                             0 as yellow,
+                                             0 as red,
+                                             0 as cancel_yellow_num,
+                                             0 as cancel_red_num
+                                        from TA_SP_INSTANCE sl
+                                       where sl.project_state = '2'
+                                       <if test="start_time != null" >
+                                           and sl.Accept_Time between
+                                             to_date(#{start_time},'yyyy-mm-dd') and
+                                            to_date(#{end_time}, 'yyyy-mm-dd')
+                                       </if>
+                                       group by sl.org_id
+                                       ) t
+                               group by t.org_id) a
+                       where o.ORG_ID = a.org_id
+                        and o.COUNTY_CODE =#{ORG_ID,jdbcType=VARCHAR}
+                       ) s
+                where 1=1
+             
+               group by s.ORG_ID) aa
+     on v.ORG_ID = aa.ORG_ID
+     
+      where 1=1
+         
+         and v.County_CODE =#{ORG_ID,jdbcType=VARCHAR}
+         and v.STREET_CODE !='000000000000'
+          and (substr(v.ORG_CODE, 13) != '000000000000' or v.ORG_NAME='区本级')    
+  		<choose>
+	 		<when test="sortCol != null">
+	 			order by ${sortCol} desc
+	 		</when>
+	 		<otherwise>
+	 			order by v.ORDER_NUM  
+	 		</otherwise>
+	 	</choose>
+ 
+
+</select>
+
+<select id="selectInstanceSuperviseStatisticsInfoByArea1" resultMap="jCSumSuperviseInfoAllMapper" parameterType="com.chinacreator.dzjc_ruleEngine.JCSumSuperviseInfoAll">
+<!-- 市直，区县本级、街道 -->
+  select  o.ORG_NAME area_name,
+                    nvl(aa.yjs,'0') yjs,
+                    nvl(aa.yellow,'0') yellow,
+                    nvl(aa.red,'0') red,
+                    nvl(aa.cancel_yellow_num,'0') cancel_yellow_num,
+                    nvl(aa.cancel_red_num,'0') cancel_red_num
+                from v_td_sm_organization1 o
+                left join (select s.ORG_SHOW_NAME,
+                                  sum(s.yjs) yjs,
+                                  sum(s.yellow) yellow,
+                                  sum(s.red) red,
+                                  sum(s.cancel_yellow_num) as cancel_yellow_num,
+                                  sum(s.cancel_red_num) as cancel_red_num
+                             from ( 
+                              select o.ORG_ID,
+                             o.ORG_CODE,
+                             o.ORG_NAME as ORG_SHOW_NAME,
+                             o.PROVINCE_CODE,
+                             o.CITY_CODE,
+                             o.County_CODE,
+                             o.STREET_CODE,
+                             o.ORG_LEVEL,
+                             a.yjs,
+                             a.yellow,
+                             a.red,
+                             a.cancel_yellow_num,
+                             a.cancel_red_num
+                        from V_TD_SM_ORGANIZATION1 o,
+                             (select t.org_id,
+                                     sum(yjs) yjs,
+                                     sum(yellow) yellow,
+                                     sum(red) red,
+                                     sum(cancel_yellow_num) as cancel_yellow_num,
+                                     sum(cancel_red_num) as cancel_red_num
+                                from (
+                                     
+                                     select ssi.org_id org_id,
+					                          sum(ssi.instance_supervise_green_num) as yjs,  
+					                          sum(ssi.instance_supervise_yello_num) as yellow,  
+					                          sum(ssi.instance_supervise_red_num) as red,  
+					                          sum(ssi.instance_cancel_yellow_num) as cancel_yellow_num,  
+					                          sum(ssi.instance_cancel_red_num) as cancel_red_num    
+                                        from ta_JC_sum_supervise_info ssi
+                                       where 1=1
+                                        <if test="start_time != null">and  ssi.now_date &gt;= #{start_time}</if>
+                                        <if test="end_time != null">and  ssi.now_date &lt;= #{end_time}</if>      
+                                       group by ssi.org_id
+                                       
+                                      union all
+                                      
+                                      select bj.org_id ,
+                                             0 as yjs,
+                                             0 as yellow,
+                                             0 as red,
+                                             0 as cancel_yellow_num,
+                                             0 as cancel_red_num
+                                        from TA_SP_INSTANCE bj
+                                       where bj.project_state = '7'
+                                      <if test="start_time != null">
+                                           and bj.accept_time between
+                                             to_date(#{start_time},'yyyy-mm-dd') and
+                                             to_date(#{end_time}, 'yyyy-mm-dd')
+                                       </if>
+                                       group by bj.org_id
+                                       
+                                      union all
+                                      
+                                      select org_id,
+                                             0 as yjs,
+                                             0 as yellow,
+                                             0 as red,
+                                             0 as cancel_yellow_num,
+                                             0 as cancel_red_num
+                                        from TA_JC_SUM_SUPERVISE_INFO
+                                       where ACCEPT_NOW_DATE is not null
+                                       group by ORG_ID
+                                       
+                                      union all
+                                      
+                                      select sl.org_id,
+                                             0 as yjs,
+                                             0 as yellow,
+                                             0 as red,
+                                             0 as cancel_yellow_num,
+                                             0 as cancel_red_num
+                                        from TA_SP_INSTANCE sl
+                                       where sl.project_state = '2'
+                                       <if test="start_time != null" >
+                                           and sl.Accept_Time between
+                                             to_date(#{start_time},'yyyy-mm-dd') and
+                                            to_date(#{end_time}, 'yyyy-mm-dd')
+                                       </if>
+                                       group by sl.org_id
+                                       ) t
+                               group by t.org_id) a
+                      
+                       where o.ORG_ID = a.org_id ) s
+                       where s.County_CODE = #{ORG_ID,jdbcType=VARCHAR}
+                       group by s.ORG_SHOW_NAME) aa
+                       on o.ORG_NAME = aa.ORG_SHOW_NAME
+                      where o.County_CODE = #{ORG_ID,jdbcType=VARCHAR}
+                       and o.ORG_LEVEL = '5' 
+                        and substr(o.ORG_CODE,22)='000'     
+                       <choose>
+					 		<when test="sortCol != null">
+					 			order by ${sortCol} desc
+					 		</when>
+					 		<otherwise>
+					 			 order by o.ORDER_NUM
+					 		</otherwise>
+					 	</choose>
+ 
+
+</select>
+
+
+<select id="selectInstanceSuperviseStatisticsInfoByArea3" resultMap="jCSumSuperviseInfoAllMapper" parameterType="com.chinacreator.dzjc_ruleEngine.JCSumSuperviseInfoAll">
+<!-- 查询省本级 -->
+  select  o.ORG_NAME area_name,
+                    nvl(aa.yjs,'0') yjs,
+                    nvl(aa.yellow,'0') yellow,
+                    nvl(aa.red,'0') red,
+                    nvl(aa.cancel_yellow_num,'0') cancel_yellow_num,
+                    nvl(aa.cancel_red_num,'0') cancel_red_num
+                from v_td_sm_organization1 o
+                left join (select s.ORG_SHOW_NAME,
+                                  sum(s.yjs) yjs,
+                                  sum(s.yellow) yellow,
+                                  sum(s.red) red,
+                                  sum(s.cancel_yellow_num) as cancel_yellow_num,
+                                  sum(s.cancel_red_num) as cancel_red_num
+                             from ( 
+                              select o.ORG_ID,
+                             o.ORG_CODE,
+                             o.ORG_NAME as ORG_SHOW_NAME,
+                             o.PROVINCE_CODE,
+                             o.CITY_CODE,
+                             o.County_CODE,
+                             o.STREET_CODE,
+                             o.ORG_LEVEL,
+                             a.yjs,
+                             a.yellow,
+                             a.red,
+                             a.cancel_yellow_num,
+                             a.cancel_red_num
+                        from V_TD_SM_ORGANIZATION1 o,
+                             (select t.org_id,
+                                     sum(yjs) yjs,
+                                     sum(yellow) yellow,
+                                     sum(red) red,
+                                     sum(cancel_yellow_num) as cancel_yellow_num,
+                                     sum(cancel_red_num) as cancel_red_num
+                                from (
+                                     select ssi.org_id org_id,
+					                          sum(ssi.instance_supervise_green_num) as yjs,  
+					                          sum(ssi.instance_supervise_yello_num) as yellow,  
+					                          sum(ssi.instance_supervise_red_num) as red,  
+					                          sum(ssi.instance_cancel_yellow_num) as cancel_yellow_num,  
+					                          sum(ssi.instance_cancel_red_num) as cancel_red_num     
+                                        from ta_JC_sum_supervise_info ssi
+                                       where 1=1
+                                        <if test="start_time != null">and  ssi.now_date &gt;= #{start_time}</if>
+                                        <if test="end_time != null">and  ssi.now_date &lt;= #{end_time}</if>      
+                                       group by ssi.org_id
+                                       
+                                      union all
+                                      
+                                      select bj.org_id ,
+                                             0 as yjs,
+                                             0 as yellow,
+                                             0 as red,
+                                             0 as cancel_yellow_num,
+                                             0 as cancel_red_num
+                                        from TA_SP_INSTANCE bj
+                                       where bj.project_state = '7'
+                                      <if test="start_time != null">
+                                           and bj.accept_time between
+                                             to_date(#{start_time},'yyyy-mm-dd') and
+                                             to_date(#{end_time}, 'yyyy-mm-dd')
+                                       </if>
+                                       group by bj.org_id
+                                       
+                                      union all
+                                      
+                                      select org_id,
+                                             0 as yjs,
+                                             0 as yellow,
+                                             0 as red,
+                                             0 as cancel_yellow_num,
+                                             0 as cancel_red_num
+                                        from TA_JC_SUM_SUPERVISE_INFO
+                                       where ACCEPT_NOW_DATE is not null
+                                       group by ORG_ID
+                                       
+                                      union all
+                                      
+                                      select sl.org_id,
+                                             0 as yjs,
+                                             0 as yellow,
+                                             0 as red,
+                                             0 as cancel_yellow_num,
+                                             0 as cancel_red_num
+                                        from TA_SP_INSTANCE sl
+                                       where sl.project_state = '2'
+                                       <if test="start_time != null" >
+                                           and sl.Accept_Time between
+                                             to_date(#{start_time},'yyyy-mm-dd') and
+                                            to_date(#{end_time}, 'yyyy-mm-dd')
+                                       </if>
+                                       group by sl.org_id
+                                       ) t
+                               group by t.org_id) a
+                      	 where o.ORG_ID = a.org_id ) s                      
+                         where s.CITY_CODE = #{ORG_ID,jdbcType=VARCHAR}
+                         group by s.ORG_SHOW_NAME) aa 
+                         on o.ORG_NAME = aa.ORG_SHOW_NAME
+                         where o.CITY_CODE =#{ORG_ID,jdbcType=VARCHAR} 
+                         and o.ORG_LEVEL !='2'    
+                         and substr(o.ORG_CODE,22)='000'  
+                         <choose>
+					 		<when test="sortCol != null">
+					 			order by ${sortCol} desc
+					 		</when>
+					 		<otherwise>
+					 			 order by o.ORDER_NUM
+					 		</otherwise>
+					 	</choose>
+</select>
+
+<select id="INSERTTAJCCOUNTSUPERVISEINFO" statementType="CALLABLE" >  
+    <![CDATA[ 
+    {call PROC_INSERT_TA_JC_COUNT_SUPERVISE_INFO()} 
+      ]]>  
+</select> 
+
+
+<select id="INSERTTAJCSUMSUPERVISEINFO" statementType="CALLABLE" >  
+    <![CDATA[ 
+    {call PROC_INSERT_ta_JC_sum_supervise_info()} 
+      ]]>  
+</select> 
+
+</mapper>

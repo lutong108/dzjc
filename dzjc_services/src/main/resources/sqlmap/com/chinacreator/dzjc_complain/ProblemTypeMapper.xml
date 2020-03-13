@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"><mapper namespace="com.chinacreator.dzjc_complain.ProblemTypeMapper">	
+
+<!-- ElementID:column_sql,Generated=true -->
+<sql id="column_sql">
+		  TA_JC_DIC_PROBLEM_TYPE.problem_type_id ,
+		  TA_JC_DIC_PROBLEM_TYPE.problem_type_code ,
+		  TA_JC_DIC_PROBLEM_TYPE.problem_type_name ,
+		  TA_JC_DIC_PROBLEM_TYPE.state 
+</sql>
+
+<!-- ElementID:whereClause_sql,Generated=true -->
+<sql id="whereClause_sql">
+	    <if test="problemTypeId != null">and TA_JC_DIC_PROBLEM_TYPE.problem_type_id = #{problemTypeId}</if>
+	    <if test="problemTypeCode != null">and TA_JC_DIC_PROBLEM_TYPE.problem_type_code = #{problemTypeCode}</if>
+	    <if test="problemTypeName != null">and TA_JC_DIC_PROBLEM_TYPE.problem_type_name = #{problemTypeName}</if>
+	    <if test="state != null">and TA_JC_DIC_PROBLEM_TYPE.state = #{state}</if>
+</sql>
+
+
+<!-- ElementID:ProblemTypeResult,Generated=true -->
+<resultMap id="ProblemTypeResult" type="com.chinacreator.dzjc_complain.ProblemType">
+	<id property="problemTypeId" column="problem_type_id"/>
+	<result property="problemTypeCode" column="problem_type_code"/>
+	<result property="problemTypeName" column="problem_type_name"/>
+	<result property="state" column="state"/>
+</resultMap>
+
+
+
+
+
+
+<!-- ElementID:insert,Generated=true -->
+<insert id="insert" parameterType="com.chinacreator.dzjc_complain.ProblemType">
+	insert into TA_JC_DIC_PROBLEM_TYPE(
+	         <if test="problemTypeId != null">problem_type_id</if>
+	         <if test="problemTypeCode != null">,problem_type_code</if>
+	         <if test="problemTypeName != null">,problem_type_name</if>
+	         <if test="state != null">,state</if>
+	 	 	 )
+	 values (
+	         <if test="problemTypeId != null">#{problemTypeId,jdbcType=VARCHAR}</if>
+	         <if test="problemTypeCode != null">,#{problemTypeCode,jdbcType=CHAR}</if>
+	         <if test="problemTypeName != null">,#{problemTypeName,jdbcType=VARCHAR}</if>
+	         <if test="state != null">,#{state,jdbcType=CHAR}</if>
+	 	 	 )
+</insert>
+
+<!-- ElementID:count,Generated=true -->
+<select id="count" parameterType="com.chinacreator.dzjc_complain.ProblemType" resultType="int">
+	select count(*) from TA_JC_DIC_PROBLEM_TYPE 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<!-- ElementID:update,Generated=true -->
+<update id="update" parameterType="com.chinacreator.dzjc_complain.ProblemType">
+	update TA_JC_DIC_PROBLEM_TYPE
+<set>
+	<if test="problemTypeCode != null">problem_type_code=#{problemTypeCode,jdbcType=CHAR},</if>
+	<if test="problemTypeName != null">problem_type_name=#{problemTypeName,jdbcType=VARCHAR},</if>
+	<if test="state != null">state=#{state,jdbcType=CHAR}</if>
+</set>
+<where>
+	<choose>
+        <when test="problemTypeId != null">and problem_type_id = #{problemTypeId}</when>
+        <otherwise>and problem_type_id = </otherwise>
+    </choose>
+</where>
+</update>
+
+<!-- ElementID:updateNull,Generated=true -->
+<update id="updateNull" parameterType="map">
+	update TA_JC_DIC_PROBLEM_TYPE
+	<set>
+		<trim suffixOverrides=",">
+		    <if test="problemTypeCode==null">problem_type_code = null,</if>
+		    <if test="problemTypeName==null">problem_type_name = null,</if>
+		    <if test="state==null">state = null,</if>
+		</trim>
+	</set>
+	<where>
+		<choose>
+			<when test="problemTypeId != null">and problem_type_id = #{problemTypeId}</when>
+			<otherwise>and problem_type_id = </otherwise>
+		</choose>
+	</where>
+</update>
+
+<!-- ElementID:delete,Generated=true -->
+<delete id="delete" parameterType="com.chinacreator.dzjc_complain.ProblemType">
+    delete from TA_JC_DIC_PROBLEM_TYPE where 1=1 and problem_type_id = #{problemTypeId}
+</delete>
+
+<!-- ElementID:select,Generated=true -->
+<select id="select" parameterType="com.chinacreator.dzjc_complain.ProblemType" resultMap="ProblemTypeResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_DIC_PROBLEM_TYPE 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+
+<!-- ElementID:insertBatch,Generated=true -->
+<insert id="insertBatch" parameterType="list">
+	insert into TA_JC_DIC_PROBLEM_TYPE (problem_type_id,problem_type_code,problem_type_name,state) 
+<foreach collection="list" item="entity" index="index" separator="union all">
+		select 
+		#{entity.problemTypeId,jdbcType = VARCHAR},
+				#{entity.problemTypeCode,jdbcType = CHAR},
+				#{entity.problemTypeName,jdbcType = VARCHAR},
+				#{entity.state,jdbcType = CHAR}
+		from dual
+</foreach>
+</insert>
+
+<!-- ElementID:deleteBatch,Generated=true -->
+<delete id="deleteBatch" parameterType="List">
+	delete from TA_JC_DIC_PROBLEM_TYPE where problem_type_id in
+<trim prefix="(" suffix=")" suffixOverrides=",">
+<foreach collection="list" item="entity" separator=",">
+	<choose>
+		<when test="@com.chinacreator.c2.dao.util.EntityBeanUtil@isEntityObj(entity)">#{entity.problemTypeId}</when>
+		<otherwise>#{entity}</otherwise>
+	</choose>
+</foreach>
+</trim>
+</delete>
+
+<!-- ElementID:updateBatch,Generated=true -->
+<update id="updateBatch" parameterType="list">
+	<foreach collection="list" item="entity" open="begin" close=";end;" separator=";">
+			update TA_JC_DIC_PROBLEM_TYPE
+	<set>
+	<if test="entity.problemTypeCode != null">problem_type_code= #{entity.problemTypeCode,jdbcType=CHAR},</if>
+	<if test="entity.problemTypeName != null">problem_type_name= #{entity.problemTypeName,jdbcType=VARCHAR},</if>
+	<if test="entity.state != null">state= #{entity.state,jdbcType=CHAR}</if>
+	</set>
+		<where>
+			<choose>
+				<when test="entity.problemTypeId != null">and problem_type_id = #{entity.problemTypeId}</when>
+				<otherwise>and problem_type_id = </otherwise>
+			</choose>
+		</where>
+	</foreach>
+</update>
+
+<!-- ElementID:selectAll,Generated=true -->
+<select id="selectAll" resultMap="ProblemTypeResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_DIC_PROBLEM_TYPE 
+</select>
+
+<!-- ElementID:selectMany,Generated=true -->
+<select id="selectMany" parameterType="list" resultMap="ProblemTypeResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_JC_DIC_PROBLEM_TYPE 
+	where TA_JC_DIC_PROBLEM_TYPE.problem_type_id in (
+<foreach collection="list" item="entity" separator="intersect">
+		select 
+		TA_JC_DIC_PROBLEM_TYPE.problem_type_id
+	    from TA_JC_DIC_PROBLEM_TYPE 
+		 <where>
+	        <if test="entity.problemTypeId != null">and TA_JC_DIC_PROBLEM_TYPE.problem_type_id = #{entity.problemTypeId}</if>
+	        <if test="entity.problemTypeCode != null">and TA_JC_DIC_PROBLEM_TYPE.problem_type_code = #{entity.problemTypeCode}</if>
+	        <if test="entity.problemTypeName != null">and TA_JC_DIC_PROBLEM_TYPE.problem_type_name = #{entity.problemTypeName}</if>
+	        <if test="entity.state != null">and TA_JC_DIC_PROBLEM_TYPE.state = #{entity.state}</if>
+		</where>
+</foreach>
+)
+</select>
+
+<!-- ElementID:selectUnion,Generated=true -->
+<select id="selectUnion" parameterType="list" resultMap="ProblemTypeResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_JC_DIC_PROBLEM_TYPE 
+	 INNER JOIN
+<foreach collection="list" item="entity" separator="UNION" open="(" close=")">
+		SELECT 
+			 problem_type_id
+		FROM TA_JC_DIC_PROBLEM_TYPE 
+			<where>
+	        <if test="entity.problemTypeId != null">and TA_JC_DIC_PROBLEM_TYPE.problem_type_id = #{entity.problemTypeId}</if>
+	        <if test="entity.problemTypeCode != null">and TA_JC_DIC_PROBLEM_TYPE.problem_type_code = #{entity.problemTypeCode}</if>
+	        <if test="entity.problemTypeName != null">and TA_JC_DIC_PROBLEM_TYPE.problem_type_name = #{entity.problemTypeName}</if>
+	        <if test="entity.state != null">and TA_JC_DIC_PROBLEM_TYPE.state = #{entity.state}</if>
+			</where>
+</foreach>
+	c2_temp_table ON TA_JC_DIC_PROBLEM_TYPE.problem_type_id = c2_temp_table.problem_type_id
+</select>
+
+<!-- ElementID:selectByID,Generated=true -->
+<select id="selectByID" parameterType="java.lang.String" resultMap="ProblemTypeResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_DIC_PROBLEM_TYPE 
+		 where TA_JC_DIC_PROBLEM_TYPE.problem_type_id = #{problemTypeId,jdbcType=VARCHAR}
+</select>
+
+<!-- ElementID:selectByPage,Generated=true -->
+<select id="selectByPage" parameterType="com.chinacreator.dzjc_complain.ProblemType" resultMap="ProblemTypeResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_DIC_PROBLEM_TYPE 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+</mapper>

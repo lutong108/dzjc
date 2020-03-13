@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"><mapper namespace="com.chinacreator.dzjc_complain.TaJcComplainSuggestMapper">	
+
+<!-- ElementID:column_sql,Generated=true -->
+<sql id="column_sql">
+		  TA_COMPLAIN_SUGGEST.suggest_id ,
+		  TA_COMPLAIN_SUGGEST.suggest_title ,
+		  TA_COMPLAIN_SUGGEST.suggester_name ,
+		  TA_COMPLAIN_SUGGEST.suggester_mobile ,
+		  TA_COMPLAIN_SUGGEST.city_name ,
+		  TA_COMPLAIN_SUGGEST.area_name ,
+		  TA_COMPLAIN_SUGGEST.suggest_one ,
+		  TA_COMPLAIN_SUGGEST.suggest_two ,
+		  TA_COMPLAIN_SUGGEST.suggest_three ,
+		  TA_COMPLAIN_SUGGEST.suggest_four ,
+		  TA_COMPLAIN_SUGGEST.suggest_date 
+</sql>
+
+<!-- ElementID:whereClause_sql,Generated=true -->
+<sql id="whereClause_sql">
+	    <if test="suggestId != null">and TA_COMPLAIN_SUGGEST.suggest_id = #{suggestId}</if>
+	    <if test="suggestTitle != null">and TA_COMPLAIN_SUGGEST.suggest_title = #{suggestTitle}</if>
+	    <if test="suggesterName != null">and TA_COMPLAIN_SUGGEST.suggester_name = #{suggesterName}</if>
+	    <if test="suggesterMobile != null">and TA_COMPLAIN_SUGGEST.suggester_mobile = #{suggesterMobile}</if>
+	    <if test="cityName != null">and TA_COMPLAIN_SUGGEST.city_name = #{cityName}</if>
+	    <if test="areaName != null">and TA_COMPLAIN_SUGGEST.area_name = #{areaName}</if>
+	    <if test="suggestOne != null">and TA_COMPLAIN_SUGGEST.suggest_one = #{suggestOne}</if>
+	    <if test="suggestTwo != null">and TA_COMPLAIN_SUGGEST.suggest_two = #{suggestTwo}</if>
+	    <if test="suggestThree != null">and TA_COMPLAIN_SUGGEST.suggest_three = #{suggestThree}</if>
+	    <if test="suggestFour != null">and TA_COMPLAIN_SUGGEST.suggest_four = #{suggestFour}</if>
+	    <if test="suggestDate != null">and TA_COMPLAIN_SUGGEST.suggest_date = #{suggestDate}</if>
+	    <if test="suggestDateStr != null">and TA_COMPLAIN_SUGGEST.suggest_date_str = #{suggestDateStr}</if>
+</sql>
+
+
+<!-- ElementID:TaJcComplainSuggestResult,Generated=true -->
+<resultMap id="TaJcComplainSuggestResult" type="com.chinacreator.dzjc_complain.TaJcComplainSuggest">
+	<id property="suggestId" column="suggest_id"/>
+	<result property="suggestTitle" column="suggest_title"/>
+	<result property="suggesterName" column="suggester_name"/>
+	<result property="suggesterMobile" column="suggester_mobile"/>
+	<result property="cityName" column="city_name"/>
+	<result property="areaName" column="area_name"/>
+	<result property="suggestOne" column="suggest_one"/>
+	<result property="suggestTwo" column="suggest_two"/>
+	<result property="suggestThree" column="suggest_three"/>
+	<result property="suggestFour" column="suggest_four"/>
+	<result property="suggestDate" column="suggest_date"/>
+	<result property="suggestDateStr" column="suggest_date_str"/>
+</resultMap>
+
+
+<!-- ElementID:insert,Generated=true -->
+<insert id="insert" parameterType="com.chinacreator.dzjc_complain.TaJcComplainSuggest">
+	insert into TA_COMPLAIN_SUGGEST(
+	         <if test="suggestId != null">suggest_id</if>
+	         <if test="suggestTitle != null">,suggest_title</if>
+	         <if test="suggesterName != null">,suggester_name</if>
+	         <if test="suggesterMobile != null">,suggester_mobile</if>
+	         <if test="cityName != null">,city_name</if>
+	         <if test="areaName != null">,area_name</if>
+	         <if test="suggestOne != null">,suggest_one</if>
+	         <if test="suggestTwo != null">,suggest_two</if>
+	         <if test="suggestThree != null">,suggest_three</if>
+	         <if test="suggestFour != null">,suggest_four</if>
+	         <if test="suggestDate != null">,suggest_date</if>
+	         <if test="suggestDateStr != null">,suggest_date_str</if>
+	 	 	 )
+	 values (
+	         <if test="suggestId != null">#{suggestId,jdbcType=VARCHAR}</if>
+	         <if test="suggestTitle != null">,#{suggestTitle,jdbcType=VARCHAR}</if>
+	         <if test="suggesterName != null">,#{suggesterName,jdbcType=VARCHAR}</if>
+	         <if test="suggesterMobile != null">,#{suggesterMobile,jdbcType=VARCHAR}</if>
+	         <if test="cityName != null">,#{cityName,jdbcType=VARCHAR}</if>
+	         <if test="areaName != null">,#{areaName,jdbcType=VARCHAR}</if>
+	         <if test="suggestOne != null">,#{suggestOne,jdbcType=VARCHAR}</if>
+	         <if test="suggestTwo != null">,#{suggestTwo,jdbcType=VARCHAR}</if>
+	         <if test="suggestThree != null">,#{suggestThree,jdbcType=VARCHAR}</if>
+	         <if test="suggestFour != null">,#{suggestFour,jdbcType=VARCHAR}</if>
+	         <if test="suggestDate != null">,#{suggestDate,jdbcType=DATE}</if>
+	         <if test="suggestDateStr != null">,#{suggestDateStr,jdbcType=CHAR}</if>
+	 	 	 )
+</insert>
+
+<!-- ElementID:count,Generated=true -->
+<select id="count" parameterType="com.chinacreator.dzjc_complain.TaJcComplainSuggest" resultType="int">
+	select count(*) from TA_COMPLAIN_SUGGEST 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<!-- ElementID:update,Generated=true -->
+<update id="update" parameterType="com.chinacreator.dzjc_complain.TaJcComplainSuggest">
+	update TA_COMPLAIN_SUGGEST
+<set>
+	<if test="suggestTitle != null">suggest_title=#{suggestTitle,jdbcType=VARCHAR},</if>
+	<if test="suggesterName != null">suggester_name=#{suggesterName,jdbcType=VARCHAR},</if>
+	<if test="suggesterMobile != null">suggester_mobile=#{suggesterMobile,jdbcType=VARCHAR},</if>
+	<if test="cityName != null">city_name=#{cityName,jdbcType=VARCHAR},</if>
+	<if test="areaName != null">area_name=#{areaName,jdbcType=VARCHAR},</if>
+	<if test="suggestOne != null">suggest_one=#{suggestOne,jdbcType=VARCHAR},</if>
+	<if test="suggestTwo != null">suggest_two=#{suggestTwo,jdbcType=VARCHAR},</if>
+	<if test="suggestThree != null">suggest_three=#{suggestThree,jdbcType=VARCHAR},</if>
+	<if test="suggestFour != null">suggest_four=#{suggestFour,jdbcType=VARCHAR},</if>
+	<if test="suggestDate != null">suggest_date=#{suggestDate,jdbcType=DATE},</if>
+	<if test="suggestDateStr != null">suggest_date_str=#{suggestDateStr,jdbcType=CHAR}</if>
+</set>
+<where>
+	<choose>
+        <when test="suggestId != null">and suggest_id = #{suggestId}</when>
+        <otherwise>and suggest_id = </otherwise>
+    </choose>
+</where>
+</update>
+
+<!-- ElementID:updateNull,Generated=true -->
+<update id="updateNull" parameterType="map">
+	update TA_COMPLAIN_SUGGEST
+	<set>
+		<trim suffixOverrides=",">
+		    <if test="suggestTitle==null">suggest_title = null,</if>
+		    <if test="suggesterName==null">suggester_name = null,</if>
+		    <if test="suggesterMobile==null">suggester_mobile = null,</if>
+		    <if test="cityName==null">city_name = null,</if>
+		    <if test="areaName==null">area_name = null,</if>
+		    <if test="suggestOne==null">suggest_one = null,</if>
+		    <if test="suggestTwo==null">suggest_two = null,</if>
+		    <if test="suggestThree==null">suggest_three = null,</if>
+		    <if test="suggestFour==null">suggest_four = null,</if>
+		    <if test="suggestDate==null">suggest_date = null,</if>
+		    <if test="suggestDateStr==null">suggest_date_str = null,</if>
+		</trim>
+	</set>
+	<where>
+		<choose>
+			<when test="suggestId != null">and suggest_id = #{suggestId}</when>
+			<otherwise>and suggest_id = </otherwise>
+		</choose>
+	</where>
+</update>
+
+<!-- ElementID:delete,Generated=true -->
+<delete id="delete" parameterType="com.chinacreator.dzjc_complain.TaJcComplainSuggest">
+    delete from TA_COMPLAIN_SUGGEST where 1=1 and suggest_id = #{suggestId}
+</delete>
+
+<!-- ElementID:select,Generated=true -->
+<select id="select" parameterType="com.chinacreator.dzjc_complain.TaJcComplainSuggest" resultMap="TaJcComplainSuggestResult">
+	select 
+		a.suggest_id ,a.suggest_title ,a.suggester_name ,a.suggester_mobile ,
+		concat( a.city_name ,a.area_name) as city_name ,a.suggest_date ,
+		to_char(a.suggest_date,'yyyy-mm-dd') as suggest_date_str,
+		a.suggest_one ,a.suggest_two ,a.suggest_three ,a.suggest_four 
+	    from TA_COMPLAIN_SUGGEST a
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+	order by a.suggest_date desc
+</select>
+
+
+<!-- ElementID:insertBatch,Generated=true -->
+<insert id="insertBatch" parameterType="list">
+	insert into TA_COMPLAIN_SUGGEST (suggest_id,suggest_title,suggester_name,suggester_mobile,city_name,area_name,suggest_one,suggest_two,suggest_three,suggest_four,suggest_date,suggest_date_str) 
+<foreach collection="list" item="entity" index="index" separator="union all">
+		select 
+		#{entity.suggestId,jdbcType = VARCHAR},
+				#{entity.suggestTitle,jdbcType = VARCHAR},
+				#{entity.suggesterName,jdbcType = VARCHAR},
+				#{entity.suggesterMobile,jdbcType = VARCHAR},
+				#{entity.cityName,jdbcType = VARCHAR},
+				#{entity.areaName,jdbcType = VARCHAR},
+				#{entity.suggestOne,jdbcType = VARCHAR},
+				#{entity.suggestTwo,jdbcType = VARCHAR},
+				#{entity.suggestThree,jdbcType = VARCHAR},
+				#{entity.suggestFour,jdbcType = VARCHAR},
+				#{entity.suggestDate,jdbcType = DATE},
+				#{entity.suggestDateStr,jdbcType = CHAR}
+		from dual
+</foreach>
+</insert>
+
+<!-- ElementID:deleteBatch,Generated=true -->
+<delete id="deleteBatch" parameterType="List">
+	delete from TA_COMPLAIN_SUGGEST where suggest_id in
+<trim prefix="(" suffix=")" suffixOverrides=",">
+<foreach collection="list" item="entity" separator=",">
+	<choose>
+		<when test="@com.chinacreator.c2.dao.util.EntityBeanUtil@isEntityObj(entity)">#{entity.suggestId}</when>
+		<otherwise>#{entity}</otherwise>
+	</choose>
+</foreach>
+</trim>
+</delete>
+
+<!-- ElementID:updateBatch,Generated=true -->
+<update id="updateBatch" parameterType="list">
+	<foreach collection="list" item="entity" open="begin" close=";end;" separator=";">
+			update TA_COMPLAIN_SUGGEST
+	<set>
+	<if test="entity.suggestTitle != null">suggest_title= #{entity.suggestTitle,jdbcType=VARCHAR},</if>
+	<if test="entity.suggesterName != null">suggester_name= #{entity.suggesterName,jdbcType=VARCHAR},</if>
+	<if test="entity.suggesterMobile != null">suggester_mobile= #{entity.suggesterMobile,jdbcType=VARCHAR},</if>
+	<if test="entity.cityName != null">city_name= #{entity.cityName,jdbcType=VARCHAR},</if>
+	<if test="entity.areaName != null">area_name= #{entity.areaName,jdbcType=VARCHAR},</if>
+	<if test="entity.suggestOne != null">suggest_one= #{entity.suggestOne,jdbcType=VARCHAR},</if>
+	<if test="entity.suggestTwo != null">suggest_two= #{entity.suggestTwo,jdbcType=VARCHAR},</if>
+	<if test="entity.suggestThree != null">suggest_three= #{entity.suggestThree,jdbcType=VARCHAR},</if>
+	<if test="entity.suggestFour != null">suggest_four= #{entity.suggestFour,jdbcType=VARCHAR},</if>
+	<if test="entity.suggestDate != null">suggest_date= #{entity.suggestDate,jdbcType=DATE},</if>
+	<if test="entity.suggestDateStr != null">suggest_date_str= #{entity.suggestDateStr,jdbcType=CHAR}</if>
+	</set>
+		<where>
+			<choose>
+				<when test="entity.suggestId != null">and suggest_id = #{entity.suggestId}</when>
+				<otherwise>and suggest_id = </otherwise>
+			</choose>
+		</where>
+	</foreach>
+</update>
+
+<!-- ElementID:selectAll,Generated=true -->
+<select id="selectAll" resultMap="TaJcComplainSuggestResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_COMPLAIN_SUGGEST 
+</select>
+
+<!-- ElementID:selectMany,Generated=true -->
+<select id="selectMany" parameterType="list" resultMap="TaJcComplainSuggestResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_COMPLAIN_SUGGEST 
+	where TA_COMPLAIN_SUGGEST.suggest_id in (
+<foreach collection="list" item="entity" separator="intersect">
+		select 
+		TA_COMPLAIN_SUGGEST.suggest_id
+	    from TA_COMPLAIN_SUGGEST 
+		 <where>
+	        <if test="entity.suggestId != null">and TA_COMPLAIN_SUGGEST.suggest_id = #{entity.suggestId}</if>
+	        <if test="entity.suggestTitle != null">and TA_COMPLAIN_SUGGEST.suggest_title = #{entity.suggestTitle}</if>
+	        <if test="entity.suggesterName != null">and TA_COMPLAIN_SUGGEST.suggester_name = #{entity.suggesterName}</if>
+	        <if test="entity.suggesterMobile != null">and TA_COMPLAIN_SUGGEST.suggester_mobile = #{entity.suggesterMobile}</if>
+	        <if test="entity.cityName != null">and TA_COMPLAIN_SUGGEST.city_name = #{entity.cityName}</if>
+	        <if test="entity.areaName != null">and TA_COMPLAIN_SUGGEST.area_name = #{entity.areaName}</if>
+	        <if test="entity.suggestOne != null">and TA_COMPLAIN_SUGGEST.suggest_one = #{entity.suggestOne}</if>
+	        <if test="entity.suggestTwo != null">and TA_COMPLAIN_SUGGEST.suggest_two = #{entity.suggestTwo}</if>
+	        <if test="entity.suggestThree != null">and TA_COMPLAIN_SUGGEST.suggest_three = #{entity.suggestThree}</if>
+	        <if test="entity.suggestFour != null">and TA_COMPLAIN_SUGGEST.suggest_four = #{entity.suggestFour}</if>
+	        <if test="entity.suggestDate != null">and TA_COMPLAIN_SUGGEST.suggest_date = #{entity.suggestDate}</if>
+	        <if test="entity.suggestDateStr != null">and TA_COMPLAIN_SUGGEST.suggest_date_str = #{entity.suggestDateStr}</if>
+		</where>
+</foreach>
+)
+</select>
+
+<!-- ElementID:selectUnion,Generated=true -->
+<select id="selectUnion" parameterType="list" resultMap="TaJcComplainSuggestResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_COMPLAIN_SUGGEST 
+	 INNER JOIN
+<foreach collection="list" item="entity" separator="UNION" open="(" close=")">
+		SELECT 
+			 suggest_id
+		FROM TA_COMPLAIN_SUGGEST 
+			<where>
+	        <if test="entity.suggestId != null">and TA_COMPLAIN_SUGGEST.suggest_id = #{entity.suggestId}</if>
+	        <if test="entity.suggestTitle != null">and TA_COMPLAIN_SUGGEST.suggest_title = #{entity.suggestTitle}</if>
+	        <if test="entity.suggesterName != null">and TA_COMPLAIN_SUGGEST.suggester_name = #{entity.suggesterName}</if>
+	        <if test="entity.suggesterMobile != null">and TA_COMPLAIN_SUGGEST.suggester_mobile = #{entity.suggesterMobile}</if>
+	        <if test="entity.cityName != null">and TA_COMPLAIN_SUGGEST.city_name = #{entity.cityName}</if>
+	        <if test="entity.areaName != null">and TA_COMPLAIN_SUGGEST.area_name = #{entity.areaName}</if>
+	        <if test="entity.suggestOne != null">and TA_COMPLAIN_SUGGEST.suggest_one = #{entity.suggestOne}</if>
+	        <if test="entity.suggestTwo != null">and TA_COMPLAIN_SUGGEST.suggest_two = #{entity.suggestTwo}</if>
+	        <if test="entity.suggestThree != null">and TA_COMPLAIN_SUGGEST.suggest_three = #{entity.suggestThree}</if>
+	        <if test="entity.suggestFour != null">and TA_COMPLAIN_SUGGEST.suggest_four = #{entity.suggestFour}</if>
+	        <if test="entity.suggestDate != null">and TA_COMPLAIN_SUGGEST.suggest_date = #{entity.suggestDate}</if>
+	        <if test="entity.suggestDateStr != null">and TA_COMPLAIN_SUGGEST.suggest_date_str = #{entity.suggestDateStr}</if>
+			</where>
+</foreach>
+	c2_temp_table ON TA_COMPLAIN_SUGGEST.suggest_id = c2_temp_table.suggest_id
+</select>
+
+<!-- ElementID:selectByID,Generated=false -->
+<select id="selectByID" parameterType="java.lang.String" resultMap="TaJcComplainSuggestResult">
+	select 
+		a.suggest_id ,a.suggest_title ,a.suggester_name ,a.suggester_mobile ,
+		concat( a.city_name ,a.area_name) as city_name ,
+		to_char(a.suggest_date,'yyyy-mm-dd') as suggest_date_str,
+		a.suggest_one ,a.suggest_two ,a.suggest_three ,a.suggest_four 
+	    from TA_COMPLAIN_SUGGEST a
+		where a.suggest_id = #{suggestId,jdbcType=VARCHAR}
+</select>
+
+<!-- ElementID:selectByPage,Generated=false -->
+<select id="selectByPage" parameterType="com.chinacreator.dzjc_complain.TaJcComplainSuggest" resultMap="TaJcComplainSuggestResult">
+	select 
+		a.suggest_id ,a.suggest_title ,a.suggester_name ,a.suggester_mobile ,
+		concat( a.city_name ,a.area_name) as city_name ,a.suggest_date ,
+		to_char(a.suggest_date,'yyyy-mm-dd') as suggest_date_str
+	    from TA_COMPLAIN_SUGGEST a
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+	order by a.suggest_date desc
+</select>
+
+</mapper>

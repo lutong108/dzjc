@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form:Form xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dync="http://www.chinacreator.com/platform/mvc/ui/dync" xmlns:form="http://www.chinacreator.com/platform/mvc/form" name="OrgCacheConfig列表" sn="OrgCacheConfigList" type="form">
+  <form:control type="page/normal">
+    <form:attributes source="page/normal">
+      <dync:attribute default="" group="HTML" id="showHead" name="显示标题" value="">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="" group="HTML" id="title" name="标题" value="">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="" group="HTML" id="desc" name="描述" value="">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="false" group="HTML" id="fixedHeight" name="自动高度" value="false">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="false" group="HTML" id="compact" name="紧凑页面" value="false">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="false" group="HTML" id="dirtyCheck" name="脏检查" value="false">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="" group="注入配置" id="angularJsServices" name="注入服务" value="">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="" group="事件" id="beforeDataSourceLoad" name="数据源加载前" value="">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="" group="事件" id="afterDataSourceLoad" name="数据源加载后" value="">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="" group="事件" id="onload" name="页面加载完成" value="">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+    </form:attributes>
+  </form:control>
+  <form:child xsi:type="form:Group" binding="$model.list" id="list" name="grouplist">
+    <form:control type="container/table_jqgrid">
+      <form:attributes source="container/table_jqgrid">
+        <dync:attribute group="表格设置" id="tableKey" name="主键属性" value="org_id">
+          <dync:render/>
+          <dync:children/>
+        </dync:attribute>
+      </form:attributes>
+    </form:control>
+    <form:child xsi:type="form:Group" id="toolbar_table" name="toolbar_table">
+      <form:control type="container/toolbar_table">
+        <form:attributes source="container/toolbar_table"/>
+      </form:control>
+      <form:child xsi:type="form:Field" id="buttonAdd" name="新增">
+        <form:control type="widget/button_a_table">
+          <form:attributes source="widget/button_a_table">
+            <dync:attribute default="" group="事件设置" id="click" name="单击事件" value="buttonAdd_click(rowId,rowData,tableData)">
+              <dync:render colSpan="1" height="0" multi="false" name="event">
+                <dync:item name="params" value="rowId,rowData,tableData"/>
+              </dync:render>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute id="icon" value="fa-plus">
+              <dync:render/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute id="iconColor" value="purple">
+              <dync:render/>
+              <dync:children/>
+            </dync:attribute>
+          </form:attributes>
+        </form:control>
+      </form:child>
+      <form:child xsi:type="form:Field" id="buttonDel" name="删除">
+        <form:control type="widget/button_a_table">
+          <form:attributes source="widget/button_a_table">
+            <dync:attribute default="" group="事件设置" id="click" name="单击事件" value="buttonDelete_click(rowId,rowData,tableData)">
+              <dync:render colSpan="1" height="0" multi="false" name="event">
+                <dync:item name="params" value="rowId,rowData,tableData"/>
+              </dync:render>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute id="icon" value="fa-trash-o">
+              <dync:render/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute id="iconColor" value="red">
+              <dync:render/>
+              <dync:children/>
+            </dync:attribute>
+          </form:attributes>
+        </form:control>
+      </form:child>
+      <form:child xsi:type="form:Field" id="buttonRefresh" name="刷新">
+        <form:control type="widget/button_a_table">
+          <form:attributes source="widget/button_a_table">
+            <dync:attribute id="clickType" value="refrash">
+              <dync:render/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute id="icon" value="fa-refresh">
+              <dync:render/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute id="iconColor" value="green">
+              <dync:render/>
+              <dync:children/>
+            </dync:attribute>
+          </form:attributes>
+        </form:control>
+      </form:child>
+      <form:child xsi:type="form:Field" id="buttonSearch" name="查找">
+        <form:control type="widget/button_a_table">
+          <form:attributes source="widget/button_a_table">
+            <dync:attribute id="clickType" value="expend">
+              <dync:render/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute id="icon" value="fa-search">
+              <dync:render/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute id="iconColor" value="light-blue">
+              <dync:render/>
+              <dync:children/>
+            </dync:attribute>
+          </form:attributes>
+        </form:control>
+      </form:child>
+    </form:child>
+    <form:child xsi:type="form:Field" binding="orgId" id="orgId" name="机构id">
+      <form:control type="widget/col_jqgrid">
+        <form:attributes source="widget/col_jqgrid">
+          <dync:attribute id="key" value="true">
+            <dync:render/>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+    </form:child>
+    <form:child xsi:type="form:Field" binding="orgName" id="orgName" name="机构名">
+      <form:control type="widget/col_jqgrid">
+        <form:attributes source="widget/col_jqgrid">
+          <dync:attribute id="editable" value="true">
+            <dync:render/>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+    </form:child>
+  </form:child>
+  <form:datasources>
+    <form:datasource xsi:type="form:PagingDataSource" id="list" name="列表数据源" base="service" sn="dzjc_tongji/v1/OrgCacheConfig" elementType="entity:com.chinacreator.dzjc_tongji.OrgCacheConfig">
+      <form:entityObj pk="org_id" restResource="true"/>
+    </form:datasource>
+  </form:datasources>
+  <form:scripts>buttonAdd_click:function(rowId,rowData,tableData){&#xD;
+	Modal.open(&quot;f/dzjc_tongji/createOrgCacheConfig&quot;,{},function(data){&#xD;
+		$view.list.refresh();&#xD;
+	});&#xD;
+},&#xD;
+buttonEdit_click:function(rowId,rowData,tableData){&#xD;
+	if(rowId){&#xD;
+		Modal.open(&quot;f/dzjc_tongji/updateOrgCacheConfig&quot;,{id:rowId},function(data){&#xD;
+			$view.list.refresh();&#xD;
+		});&#xD;
+	}else{&#xD;
+		Messenger.error(&quot;请选中表格项!&quot;);&#xD;
+	}&#xD;
+},&#xD;
+buttonDelete_click:function(rowId,rowData,tableData){&#xD;
+	var ids = $view.list.getSelectRowIds() ;&#xD;
+	if(ids.length==0){&#xD;
+		Messenger.error(&quot;请选中表格项!&quot;);&#xD;
+	}else{&#xD;
+		Modal.openDelConfirm({message:&quot;确定是否删除！&quot;},&#xD;
+			function(data){&#xD;
+				if(ids.length==1){&#xD;
+					$http.delete(c2.base(&quot;service&quot;)+&quot;dzjc_tongji/v1/OrgCacheConfig/&quot;+ids[0]).success(function(){&#xD;
+						$view.list.refresh();&#xD;
+					});&#xD;
+				}else{&#xD;
+					 var queryStr=&quot;&quot;;&#xD;
+					 for (var i =0; i&lt; ids.length;i++){&#xD;
+						if(i==0){&#xD;
+						   queryStr+=&quot;id=&quot;+ids[i] ;&#xD;
+						}else{&#xD;
+						   queryStr+=&quot;&amp;id=&quot;+ids[i];&#xD;
+						}&#xD;
+					  }&#xD;
+					$http.delete(c2.base(&quot;service&quot;)+&quot;dzjc_tongji/v1/OrgCacheConfig?&quot;+queryStr).success(function(){&#xD;
+						$view.list.refresh();&#xD;
+					});&#xD;
+				 }&#xD;
+		});&#xD;
+	}&#xD;
+}</form:scripts>
+</form:Form>

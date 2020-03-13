@@ -1,0 +1,77 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.chinacreator.c2</groupId>
+		<artifactId>dzjc_platform_parent</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+	</parent>
+	<artifactId>dzjc_war</artifactId>
+	<packaging>war</packaging>
+	<dependencies>
+		<dependency>
+			<groupId>com.amazonaws</groupId>
+			<artifactId>aws-java-sdk-s3</artifactId>
+			<version>1.11.80</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.chinacreator.c2</groupId>
+			<artifactId>c2-ui-components</artifactId>
+			<version>5.0.3</version>
+		</dependency>
+		<dependency>
+			<groupId>com.chinacreator.c2</groupId>
+			<artifactId>c2-runtime</artifactId>
+			<version>5.0.4</version>
+		</dependency>
+		<dependency>
+			<groupId>com.chinacreator.c2</groupId>
+			<artifactId>c2-sso-client</artifactId>
+			<version>3.4.1.4</version>
+		</dependency>
+		<dependency>
+			<groupId>com.chinacreator.c2</groupId>
+			<artifactId>c2-apigateway-proxy</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.chinacreator.c2</groupId>
+			<artifactId>dzjc-applications</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.chinacreator.c2</groupId>
+			<artifactId>dzjc-services</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.chinacreator.c2</groupId>
+			<artifactId>c2-module-ueditor</artifactId>
+			<version>1.1.4</version>
+		</dependency>
+		<dependency>
+		    <groupId>commons-io</groupId>
+		    <artifactId>commons-io</artifactId>
+		    <version>2.4</version>
+		</dependency>
+
+	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.mortbay.jetty</groupId>
+				<artifactId>jetty-maven-plugin</artifactId>
+				<version>8.1.9.v20130131</version>
+			</plugin>
+		</plugins>
+	</build>
+	<!-- <build> <finalName>$cfg.projectName</finalName> </build> -->
+</project>

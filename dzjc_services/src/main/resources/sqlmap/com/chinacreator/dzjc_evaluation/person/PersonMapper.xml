@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.chinacreator.dzjc_evaluation.person.PersonMapper">
+	
+	<!-- 
+		测评项父级
+	 -->
+	<resultMap id="parentTitleMap" type="com.chinacreator.dzjc_evaluation.person.PersonParent">
+		<result property="parent_item_id" column="parent_item_id"/>
+		<result property="parent_item_name" column="parent_item_name"/>
+	</resultMap>
+	
+	<!-- 
+		测评项子级
+	 -->
+	<resultMap id="itemTitleMap" type="com.chinacreator.dzjc_evaluation.person.PersonItem">
+		<result property="item_id" column="item_id"/>
+		<result property="item_name" column="item_name"/>
+		<result property="parent_item_id" column="parent_item_id"/>
+		<result property="parent_item_name" column="parent_item_name"/>
+	</resultMap>
+	
+	<!-- 
+		测评用户
+	 -->
+	<resultMap id="userTitleMap" type="com.chinacreator.dzjc_evaluation.person.PersonUser">
+		<result property="rid" column="rid"/>
+		<result property="user_id" column="user_id"/>
+		<result property="user_name" column="user_name"/>
+		<result property="org_id" column="org_id"/>
+		<result property="org_name" column="org_name"/>
+		<result property="order_no" column="order_no"/>
+		<result property="sum_score" column="sum_score"/>
+		<result property="instance_id" column="instance_id"/>
+		
+	</resultMap>
+	
+	<!-- 
+		考评项分数
+	 -->
+	<resultMap id="scoreTitleMap" type="com.chinacreator.dzjc_evaluation.person.PersonScore">
+		<result property="user_id" column="user_id"/>
+		<result property="org_id" column="org_id"/>
+		<result property="parent_item_id" column="parent_item_id"/>
+		<result property="item_id" column="item_id"/>
+		<result property="final_item_value" column="final_item_value"/>
+	</resultMap>
+	
+	<!-- 
+		考核表
+	 -->
+	<resultMap id="evalTableMap" type="com.chinacreator.dzjc_evaluation.person.PersonTable">
+		<result property="table_id" column="table_id"/>
+		<result property="table_name" column="table_name"/>
+	</resultMap>
+	
+	
+	<!-- /////////////////////////////////////////////////////////////////////////////////////////////// -->
+	
+
+	<!-- 
+		获取父级表头
+	 -->
+	<select id="getParentTitle" parameterType="Map" resultMap="parentTitleMap">		
+		SELECT DISTINCT T2.PARENT_ITEM_ID,
+		       (SELECT T3.ITEM_NAME FROM TA_JC_EVAL_ITEM T3 WHERE T3.ITEM_ID = T2.PARENT_ITEM_ID)AS PARENT_ITEM_NAME
+		FROM TA_JC_EVAL_ITEM_VALUE T1
+		INNER JOIN TA_JC_EVAL_ITEM T2 ON T1.ITEM_ID = T2.ITEM_ID
+		WHERE T1.TABLE_ID = #{tableId,jdbcType=VARCHAR}
+		AND T1.EVAL_TIME BETWEEN TO_DATE(#{beginDate,jdbcType=VARCHAR},'YYYY-MM-DD HH24:MI:SS')
+		AND TO_DATE(#{endDate,jdbcType=VARCHAR},'YYYY-MM-DD HH24:MI:SS')
+		AND T2.PARENT_ITEM_ID IS NOT NULL
+		ORDER BY T2.PARENT_ITEM_ID
+	</select>
+	
+	<!-- 
+		获取子级表头(有父级)
+	 -->
+	<select id="getItemTitleAndParent" parameterType="Map" resultMap="itemTitleMap">
+		SELECT DISTINCT
+		       T2.ITEM_ID,
+		       T2.ITEM_NAME,
+		       T2.PARENT_ITEM_ID,
+		       (SELECT T3.ITEM_NAME FROM TA_JC_EVAL_ITEM T3 WHERE T3.ITEM_ID = T2.PARENT_ITEM_ID)AS PARENT_ITEM_NAME
+		FROM TA_JC_EVAL_ITEM_VALUE T1
+		INNER JOIN TA_JC_EVAL_ITEM T2 ON T1.ITEM_ID = T2.ITEM_ID
+		WHERE T1.TABLE_ID = #{tableId,jdbcType=VARCHAR}
+		AND T1.EVAL_TIME BETWEEN TO_DATE(#{beginDate,jdbcType=VARCHAR},'YYYY-MM-DD HH24:MI:SS')
+		AND TO_DATE(#{endDate,jdbcType=VARCHAR},'YYYY-MM-DD HH24:MI:SS')
+		AND T2.PARENT_ITEM_ID IS NOT NULL
+		ORDER BY T2.PARENT_ITEM_ID,T2.ITEM_ID
+	</select>
+	
+	
+	<!-- 
+		获取子级表头(无父级)
+	 -->
+	<select id="getItemTitleNoParent" parameterType="Map" resultMap="itemTitleMap">
+		SELECT DISTINCT
+		       T2.ITEM_ID,
+		       T2.ITEM_NAME,
+		       T2.PARENT_ITEM_ID,
+		       (SELECT T3.ITEM_NAME FROM TA_JC_EVAL_ITEM T3 WHERE T3.ITEM_ID = T2.PARENT_ITEM_ID)AS PARENT_ITEM_NAME
+		FROM TA_JC_EVAL_ITEM_VALUE T1
+		INNER JOIN TA_JC_EVAL_ITEM T2 ON T1.ITEM_ID = T2.ITEM_ID
+		WHERE T1.TABLE_ID = #{tableId,jdbcType=VARCHAR}
+		AND T1.EVAL_TIME BETWEEN TO_DATE(#{beginDate,jdbcType=VARCHAR},'YYYY-MM-DD HH24:MI:SS')
+		AND TO_DATE(#{endDate,jdbcType=VARCHAR},'YYYY-MM-DD HH24:MI:SS')
+		AND T2.PARENT_ITEM_ID IS NULL
+		ORDER BY T2.PARENT_ITEM_ID,T2.ITEM_ID
+	</select>
+	
+	<!-- 
+		获取测评用户
+	 -->
+	<select id="getEvalUser" parameterType="Map" resultMap="userTitleMap">
+		SELECT ROWNUM AS RID,
+		       USER_ID,
+		       USER_NAME,
+		       ORDER_NO,
+		       SUM_SCORE,
+		       instance_id,
+		       bonuspoints,
+		       ID objectId
+		FROM (
+		  SELECT USER_ID,
+		         USER_NAME,
+		         DENSE_RANK() OVER(ORDER BY SUM_SCORE DESC)AS ORDER_NO,
+		         SUM_SCORE,
+		         instance_id,
+		         bonuspoints,
+		         ID
+		  FROM (
+		    SELECT USER_ID,
+			       USER_NAME,
+			       SUM(FINAL_ITEM_VALUE)+nvl(bonuspoints,0) AS SUM_SCORE,
+			       instance_id,
+			       bonuspoints,
+			       ID
+			FROM (
+			  SELECT DISTINCT
+			         T1.EVAL_OBJECT_ID AS USER_ID,
+			         instance_id,
+			         T1.EVAL_OBJECT_NAME AS USER_NAME,
+			         T1.TABLE_ID,
+			         T1.ITEM_ID,
+			         T1.FINAL_ITEM_VALUE,
+			         t3.bonuspoints,
+			         t3.ID
+			  FROM TA_JC_EVAL_ITEM_VALUE T1
+			  INNER JOIN TA_JC_EVAL_ITEM T2 ON T1.ITEM_ID = T2.ITEM_ID
+			  INNER JOIN  TA_JC_EVAL_OBJECT t3 ON t1.EVAL_OBJECT_ID=t3.object_id AND t1.Instance_Id=t3.eval_instance_id
+			  WHERE T1.TABLE_ID = #{tableId,jdbcType=VARCHAR}
+			  AND T1.EVAL_TIME BETWEEN TO_DATE(#{beginDate,jdbcType=VARCHAR},'YYYY-MM-DD HH24:MI:SS')
+			  AND TO_DATE(#{endDate,jdbcType=VARCHAR},'YYYY-MM-DD HH24:MI:SS')
+			)
+			GROUP BY USER_ID ,USER_NAME ,instance_id,bonuspoints,ID
+		  )
+		)
+	</select>
+	
+	
+	<!-- 
+		获取测评分数（有父级标题的列分数）
+	 -->
+	<select id="getEvalScoreAndParent" parameterType="Map" resultMap="scoreTitleMap">
+			SELECT T1.EVAL_OBJECT_ID AS USER_ID,
+			       T2.PARENT_ITEM_ID,
+			       T2.ITEM_ID,
+			       T1.FINAL_ITEM_VALUE
+			FROM TA_JC_EVAL_ITEM_VALUE T1
+			INNER JOIN TA_JC_EVAL_ITEM T2 ON T1.ITEM_ID = T2.ITEM_ID
+			WHERE T1.TABLE_ID = #{tableId,jdbcType=VARCHAR}
+			AND T1.EVAL_TIME BETWEEN TO_DATE(#{beginDate,jdbcType=VARCHAR},'YYYY-MM-DD HH24:MI:SS')
+			AND TO_DATE(#{endDate,jdbcType=VARCHAR},'YYYY-MM-DD HH24:MI:SS')
+			AND T2.PARENT_ITEM_ID IS NOT NULL
+			ORDER BY T2.PARENT_ITEM_ID,T2.ITEM_ID
+	</select>
+	
+	
+	<!-- 
+		获取测评分数（无父级标题的列分数）
+	 -->
+	<select id="getEvalScoreNoParent" parameterType="Map" resultMap="scoreTitleMap">
+		<!-- SELECT DISTINCT * FROM( -->
+			SELECT T1.EVAL_OBJECT_ID AS USER_ID,
+			       T2.PARENT_ITEM_ID,
+			       T2.ITEM_ID,
+			       T1.FINAL_ITEM_VALUE,
+			       T1.INSTANCE_ID instanceId
+			FROM TA_JC_EVAL_ITEM_VALUE T1
+			INNER JOIN TA_JC_EVAL_ITEM T2 ON T1.ITEM_ID = T2.ITEM_ID
+			WHERE T1.TABLE_ID = #{tableId,jdbcType=VARCHAR}
+			AND T1.EVAL_TIME BETWEEN TO_DATE(#{beginDate,jdbcType=VARCHAR},'YYYY-MM-DD HH24:MI:SS')
+			AND TO_DATE(#{endDate,jdbcType=VARCHAR},'YYYY-MM-DD HH24:MI:SS')
+			AND T2.PARENT_ITEM_ID IS NULL
+			ORDER BY T1.EVAL_OBJECT_ID,T2.PARENT_ITEM_ID,T1.ITEM_ID
+		<!-- ) -->
+	</select>
+	
+	
+	<!-- 
+		根据区域获取考核表
+	 -->
+	<select id="getEvalTable" parameterType="java.lang.String" resultMap="evalTableMap">
+		SELECT T5.TABLE_ID,
+		       T5.TABLE_NAME 
+		FROM TA_JC_EVAL_TABLE T5 WHERE T5.AREA_CODE IN (
+		   SELECT SUBSTR(CODE,0,12) FROM V_ORG WHERE ID = #{org_id,jdbcType=VARCHAR}  
+		)
+		AND T5.IS_VALID = 'Y'
+		AND T5.EVAL_OBJECT_TYPE = '3'
+	</select>
+
+</mapper>

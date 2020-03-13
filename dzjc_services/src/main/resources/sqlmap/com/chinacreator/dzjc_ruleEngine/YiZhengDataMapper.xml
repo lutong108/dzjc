@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"><mapper namespace="com.chinacreator.dzjc_ruleEngine.YiZhengDataMapper">	
+
+<!-- ElementID:column_sql,Generated=true -->
+<sql id="column_sql">
+		  TA_JC_YIZHENG_DATA.data_id ,
+		  TA_JC_YIZHENG_DATA.mark_id ,
+		  TA_JC_YIZHENG_DATA.ok ,
+		  TA_JC_YIZHENG_DATA.code ,
+		  TA_JC_YIZHENG_DATA.msg ,
+		  TA_JC_YIZHENG_DATA.org_id ,
+		  TA_JC_YIZHENG_DATA.node_id ,
+		  TA_JC_YIZHENG_DATA.node_name ,
+		  TA_JC_YIZHENG_DATA.region_id ,
+		  TA_JC_YIZHENG_DATA.region_name ,
+		  TA_JC_YIZHENG_DATA.transactor_id ,
+		  TA_JC_YIZHENG_DATA.transactor_name ,
+		  TA_JC_YIZHENG_DATA.phone ,
+		  TA_JC_YIZHENG_DATA.create_date ,
+		  TA_JC_YIZHENG_DATA.opinion_id 
+</sql>
+
+<!-- ElementID:whereClause_sql,Generated=true -->
+<sql id="whereClause_sql">
+	    <if test="dataId != null">and TA_JC_YIZHENG_DATA.data_id = #{dataId}</if>
+	    <if test="markId != null">and TA_JC_YIZHENG_DATA.mark_id = #{markId}</if>
+	    <if test="ok != null">and TA_JC_YIZHENG_DATA.ok = #{ok}</if>
+	    <if test="code != null">and TA_JC_YIZHENG_DATA.code = #{code}</if>
+	    <if test="msg != null">and TA_JC_YIZHENG_DATA.msg = #{msg}</if>
+	    <if test="orgId != null">and TA_JC_YIZHENG_DATA.org_id = #{orgId}</if>
+	    <if test="nodeId != null">and TA_JC_YIZHENG_DATA.node_id = #{nodeId}</if>
+	    <if test="nodeName != null">and TA_JC_YIZHENG_DATA.node_name = #{nodeName}</if>
+	    <if test="regionId != null">and TA_JC_YIZHENG_DATA.region_id = #{regionId}</if>
+	    <if test="regionName != null">and TA_JC_YIZHENG_DATA.region_name = #{regionName}</if>
+	    <if test="transactorId != null">and TA_JC_YIZHENG_DATA.transactor_id = #{transactorId}</if>
+	    <if test="transactorName != null">and TA_JC_YIZHENG_DATA.transactor_name = #{transactorName}</if>
+	    <if test="phone != null">and TA_JC_YIZHENG_DATA.phone = #{phone}</if>
+	    <if test="createDate != null">and TA_JC_YIZHENG_DATA.create_date = #{createDate}</if>
+	    <if test="opinionId != null">and TA_JC_YIZHENG_DATA.opinion_id = #{opinionId}</if>
+</sql>
+
+
+<!-- ElementID:YiZhengDataResult,Generated=true -->
+<resultMap id="YiZhengDataResult" type="com.chinacreator.dzjc_ruleEngine.YiZhengData">
+	<id property="dataId" column="data_id"/>
+	<result property="markId" column="mark_id"/>
+	<result property="ok" column="ok"/>
+	<result property="code" column="code"/>
+	<result property="msg" column="msg"/>
+	<result property="orgId" column="org_id"/>
+	<result property="nodeId" column="node_id"/>
+	<result property="nodeName" column="node_name"/>
+	<result property="regionId" column="region_id"/>
+	<result property="regionName" column="region_name"/>
+	<result property="transactorId" column="transactor_id"/>
+	<result property="transactorName" column="transactor_name"/>
+	<result property="phone" column="phone"/>
+	<result property="createDate" column="create_date"/>
+	<result property="opinionId" column="opinion_id"/>
+</resultMap>
+
+
+<!-- ElementID:insert,Generated=true -->
+<insert id="insert" parameterType="com.chinacreator.dzjc_ruleEngine.YiZhengData">
+	insert into TA_JC_YIZHENG_DATA(
+	         <if test="dataId != null">data_id</if>
+	         <if test="markId != null">,mark_id</if>
+	         <if test="ok != null">,ok</if>
+	         <if test="code != null">,code</if>
+	         <if test="msg != null">,msg</if>
+	         <if test="orgId != null">,org_id</if>
+	         <if test="nodeId != null">,node_id</if>
+	         <if test="nodeName != null">,node_name</if>
+	         <if test="regionId != null">,region_id</if>
+	         <if test="regionName != null">,region_name</if>
+	         <if test="transactorId != null">,transactor_id</if>
+	         <if test="transactorName != null">,transactor_name</if>
+	         <if test="phone != null">,phone</if>
+	         <if test="createDate != null">,create_date</if>
+	         <if test="opinionId != null">,opinion_id</if>
+	 	 	 )
+	 values (
+	         <if test="dataId != null">#{dataId,jdbcType=VARCHAR}</if>
+	         <if test="markId != null">,#{markId,jdbcType=VARCHAR}</if>
+	         <if test="ok != null">,#{ok,jdbcType=VARCHAR}</if>
+	         <if test="code != null">,#{code,jdbcType=VARCHAR}</if>
+	         <if test="msg != null">,#{msg,jdbcType=VARCHAR}</if>
+	         <if test="orgId != null">,#{orgId,jdbcType=VARCHAR}</if>
+	         <if test="nodeId != null">,#{nodeId,jdbcType=VARCHAR}</if>
+	         <if test="nodeName != null">,#{nodeName,jdbcType=VARCHAR}</if>
+	         <if test="regionId != null">,#{regionId,jdbcType=VARCHAR}</if>
+	         <if test="regionName != null">,#{regionName,jdbcType=VARCHAR}</if>
+	         <if test="transactorId != null">,#{transactorId,jdbcType=VARCHAR}</if>
+	         <if test="transactorName != null">,#{transactorName,jdbcType=VARCHAR}</if>
+	         <if test="phone != null">,#{phone,jdbcType=VARCHAR}</if>
+	         <if test="createDate != null">,#{createDate,jdbcType=DATE}</if>
+	         <if test="opinionId != null">,#{opinionId,jdbcType=VARCHAR}</if>
+	 	 	 )
+</insert>
+
+<!-- ElementID:count,Generated=true -->
+<select id="count" parameterType="com.chinacreator.dzjc_ruleEngine.YiZhengData" resultType="int">
+	select count(*) from TA_JC_YIZHENG_DATA 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<!-- ElementID:update,Generated=true -->
+<update id="update" parameterType="com.chinacreator.dzjc_ruleEngine.YiZhengData">
+	update TA_JC_YIZHENG_DATA
+<set>
+	<if test="markId != null">mark_id=#{markId,jdbcType=VARCHAR},</if>
+	<if test="ok != null">ok=#{ok,jdbcType=VARCHAR},</if>
+	<if test="code != null">code=#{code,jdbcType=VARCHAR},</if>
+	<if test="msg != null">msg=#{msg,jdbcType=VARCHAR},</if>
+	<if test="orgId != null">org_id=#{orgId,jdbcType=VARCHAR},</if>
+	<if test="nodeId != null">node_id=#{nodeId,jdbcType=VARCHAR},</if>
+	<if test="nodeName != null">node_name=#{nodeName,jdbcType=VARCHAR},</if>
+	<if test="regionId != null">region_id=#{regionId,jdbcType=VARCHAR},</if>
+	<if test="regionName != null">region_name=#{regionName,jdbcType=VARCHAR},</if>
+	<if test="transactorId != null">transactor_id=#{transactorId,jdbcType=VARCHAR},</if>
+	<if test="transactorName != null">transactor_name=#{transactorName,jdbcType=VARCHAR},</if>
+	<if test="phone != null">phone=#{phone,jdbcType=VARCHAR},</if>
+	<if test="createDate != null">create_date=#{createDate,jdbcType=DATE},</if>
+	<if test="opinionId != null">opinion_id=#{opinionId,jdbcType=VARCHAR}</if>
+</set>
+<where>
+	<choose>
+        <when test="dataId != null">and data_id = #{dataId}</when>
+        <otherwise>and data_id = </otherwise>
+    </choose>
+</where>
+</update>
+
+<!-- ElementID:updateNull,Generated=true -->
+<update id="updateNull" parameterType="map">
+	update TA_JC_YIZHENG_DATA
+	<set>
+		<trim suffixOverrides=",">
+		    <if test="markId==null">mark_id = null,</if>
+		    <if test="ok==null">ok = null,</if>
+		    <if test="code==null">code = null,</if>
+		    <if test="msg==null">msg = null,</if>
+		    <if test="orgId==null">org_id = null,</if>
+		    <if test="nodeId==null">node_id = null,</if>
+		    <if test="nodeName==null">node_name = null,</if>
+		    <if test="regionId==null">region_id = null,</if>
+		    <if test="regionName==null">region_name = null,</if>
+		    <if test="transactorId==null">transactor_id = null,</if>
+		    <if test="transactorName==null">transactor_name = null,</if>
+		    <if test="phone==null">phone = null,</if>
+		    <if test="createDate==null">create_date = null,</if>
+		    <if test="opinionId==null">opinion_id = null,</if>
+		</trim>
+	</set>
+	<where>
+		<choose>
+			<when test="dataId != null">and data_id = #{dataId}</when>
+			<otherwise>and data_id = </otherwise>
+		</choose>
+	</where>
+</update>
+
+<!-- ElementID:delete,Generated=true -->
+<delete id="delete" parameterType="com.chinacreator.dzjc_ruleEngine.YiZhengData">
+    delete from TA_JC_YIZHENG_DATA where 1=1 and data_id = #{dataId}
+</delete>
+
+<!-- ElementID:select,Generated=true -->
+<select id="select" parameterType="com.chinacreator.dzjc_ruleEngine.YiZhengData" resultMap="YiZhengDataResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_YIZHENG_DATA 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+
+<!-- ElementID:insertBatch,Generated=true -->
+<insert id="insertBatch" parameterType="list">
+	insert into TA_JC_YIZHENG_DATA (data_id,mark_id,ok,code,msg,org_id,node_id,node_name,region_id,region_name,transactor_id,transactor_name,phone,create_date,opinion_id) 
+<foreach collection="list" item="entity" index="index" separator="union all">
+		select 
+		#{entity.dataId,jdbcType = VARCHAR},
+				#{entity.markId,jdbcType = VARCHAR},
+				#{entity.ok,jdbcType = VARCHAR},
+				#{entity.code,jdbcType = VARCHAR},
+				#{entity.msg,jdbcType = VARCHAR},
+				#{entity.orgId,jdbcType = VARCHAR},
+				#{entity.nodeId,jdbcType = VARCHAR},
+				#{entity.nodeName,jdbcType = VARCHAR},
+				#{entity.regionId,jdbcType = VARCHAR},
+				#{entity.regionName,jdbcType = VARCHAR},
+				#{entity.transactorId,jdbcType = VARCHAR},
+				#{entity.transactorName,jdbcType = VARCHAR},
+				#{entity.phone,jdbcType = VARCHAR},
+				#{entity.createDate,jdbcType = DATE},
+				#{entity.opinionId,jdbcType = VARCHAR}
+		from dual
+</foreach>
+</insert>
+
+<!-- ElementID:deleteBatch,Generated=true -->
+<delete id="deleteBatch" parameterType="List">
+	delete from TA_JC_YIZHENG_DATA where data_id in
+<trim prefix="(" suffix=")" suffixOverrides=",">
+<foreach collection="list" item="entity" separator=",">
+	<choose>
+		<when test="@com.chinacreator.c2.dao.util.EntityBeanUtil@isEntityObj(entity)">#{entity.dataId}</when>
+		<otherwise>#{entity}</otherwise>
+	</choose>
+</foreach>
+</trim>
+</delete>
+
+<!-- ElementID:updateBatch,Generated=true -->
+<update id="updateBatch" parameterType="list">
+	<foreach collection="list" item="entity" open="begin" close=";end;" separator=";">
+			update TA_JC_YIZHENG_DATA
+	<set>
+	<if test="entity.markId != null">mark_id= #{entity.markId,jdbcType=VARCHAR},</if>
+	<if test="entity.ok != null">ok= #{entity.ok,jdbcType=VARCHAR},</if>
+	<if test="entity.code != null">code= #{entity.code,jdbcType=VARCHAR},</if>
+	<if test="entity.msg != null">msg= #{entity.msg,jdbcType=VARCHAR},</if>
+	<if test="entity.orgId != null">org_id= #{entity.orgId,jdbcType=VARCHAR},</if>
+	<if test="entity.nodeId != null">node_id= #{entity.nodeId,jdbcType=VARCHAR},</if>
+	<if test="entity.nodeName != null">node_name= #{entity.nodeName,jdbcType=VARCHAR},</if>
+	<if test="entity.regionId != null">region_id= #{entity.regionId,jdbcType=VARCHAR},</if>
+	<if test="entity.regionName != null">region_name= #{entity.regionName,jdbcType=VARCHAR},</if>
+	<if test="entity.transactorId != null">transactor_id= #{entity.transactorId,jdbcType=VARCHAR},</if>
+	<if test="entity.transactorName != null">transactor_name= #{entity.transactorName,jdbcType=VARCHAR},</if>
+	<if test="entity.phone != null">phone= #{entity.phone,jdbcType=VARCHAR},</if>
+	<if test="entity.createDate != null">create_date= #{entity.createDate,jdbcType=DATE},</if>
+	<if test="entity.opinionId != null">opinion_id= #{entity.opinionId,jdbcType=VARCHAR}</if>
+	</set>
+		<where>
+			<choose>
+				<when test="entity.dataId != null">and data_id = #{entity.dataId}</when>
+				<otherwise>and data_id = </otherwise>
+			</choose>
+		</where>
+	</foreach>
+</update>
+
+<!-- ElementID:selectAll,Generated=true -->
+<select id="selectAll" resultMap="YiZhengDataResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_YIZHENG_DATA 
+</select>
+
+<!-- ElementID:selectMany,Generated=true -->
+<select id="selectMany" parameterType="list" resultMap="YiZhengDataResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_JC_YIZHENG_DATA 
+	where TA_JC_YIZHENG_DATA.data_id in (
+<foreach collection="list" item="entity" separator="intersect">
+		select 
+		TA_JC_YIZHENG_DATA.data_id
+	    from TA_JC_YIZHENG_DATA 
+		 <where>
+	        <if test="entity.dataId != null">and TA_JC_YIZHENG_DATA.data_id = #{entity.dataId}</if>
+	        <if test="entity.markId != null">and TA_JC_YIZHENG_DATA.mark_id = #{entity.markId}</if>
+	        <if test="entity.ok != null">and TA_JC_YIZHENG_DATA.ok = #{entity.ok}</if>
+	        <if test="entity.code != null">and TA_JC_YIZHENG_DATA.code = #{entity.code}</if>
+	        <if test="entity.msg != null">and TA_JC_YIZHENG_DATA.msg = #{entity.msg}</if>
+	        <if test="entity.orgId != null">and TA_JC_YIZHENG_DATA.org_id = #{entity.orgId}</if>
+	        <if test="entity.nodeId != null">and TA_JC_YIZHENG_DATA.node_id = #{entity.nodeId}</if>
+	        <if test="entity.nodeName != null">and TA_JC_YIZHENG_DATA.node_name = #{entity.nodeName}</if>
+	        <if test="entity.regionId != null">and TA_JC_YIZHENG_DATA.region_id = #{entity.regionId}</if>
+	        <if test="entity.regionName != null">and TA_JC_YIZHENG_DATA.region_name = #{entity.regionName}</if>
+	        <if test="entity.transactorId != null">and TA_JC_YIZHENG_DATA.transactor_id = #{entity.transactorId}</if>
+	        <if test="entity.transactorName != null">and TA_JC_YIZHENG_DATA.transactor_name = #{entity.transactorName}</if>
+	        <if test="entity.phone != null">and TA_JC_YIZHENG_DATA.phone = #{entity.phone}</if>
+	        <if test="entity.createDate != null">and TA_JC_YIZHENG_DATA.create_date = #{entity.createDate}</if>
+	        <if test="entity.opinionId != null">and TA_JC_YIZHENG_DATA.opinion_id = #{entity.opinionId}</if>
+		</where>
+</foreach>
+)
+</select>
+
+<!-- ElementID:selectUnion,Generated=true -->
+<select id="selectUnion" parameterType="list" resultMap="YiZhengDataResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_JC_YIZHENG_DATA 
+	 INNER JOIN
+<foreach collection="list" item="entity" separator="UNION" open="(" close=")">
+		SELECT 
+			 data_id
+		FROM TA_JC_YIZHENG_DATA 
+			<where>
+	        <if test="entity.dataId != null">and TA_JC_YIZHENG_DATA.data_id = #{entity.dataId}</if>
+	        <if test="entity.markId != null">and TA_JC_YIZHENG_DATA.mark_id = #{entity.markId}</if>
+	        <if test="entity.ok != null">and TA_JC_YIZHENG_DATA.ok = #{entity.ok}</if>
+	        <if test="entity.code != null">and TA_JC_YIZHENG_DATA.code = #{entity.code}</if>
+	        <if test="entity.msg != null">and TA_JC_YIZHENG_DATA.msg = #{entity.msg}</if>
+	        <if test="entity.orgId != null">and TA_JC_YIZHENG_DATA.org_id = #{entity.orgId}</if>
+	        <if test="entity.nodeId != null">and TA_JC_YIZHENG_DATA.node_id = #{entity.nodeId}</if>
+	        <if test="entity.nodeName != null">and TA_JC_YIZHENG_DATA.node_name = #{entity.nodeName}</if>
+	        <if test="entity.regionId != null">and TA_JC_YIZHENG_DATA.region_id = #{entity.regionId}</if>
+	        <if test="entity.regionName != null">and TA_JC_YIZHENG_DATA.region_name = #{entity.regionName}</if>
+	        <if test="entity.transactorId != null">and TA_JC_YIZHENG_DATA.transactor_id = #{entity.transactorId}</if>
+	        <if test="entity.transactorName != null">and TA_JC_YIZHENG_DATA.transactor_name = #{entity.transactorName}</if>
+	        <if test="entity.phone != null">and TA_JC_YIZHENG_DATA.phone = #{entity.phone}</if>
+	        <if test="entity.createDate != null">and TA_JC_YIZHENG_DATA.create_date = #{entity.createDate}</if>
+	        <if test="entity.opinionId != null">and TA_JC_YIZHENG_DATA.opinion_id = #{entity.opinionId}</if>
+			</where>
+</foreach>
+	c2_temp_table ON TA_JC_YIZHENG_DATA.data_id = c2_temp_table.data_id
+</select>
+
+<!-- ElementID:selectByID,Generated=true -->
+<select id="selectByID" parameterType="java.lang.String" resultMap="YiZhengDataResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_YIZHENG_DATA 
+		 where TA_JC_YIZHENG_DATA.data_id = #{dataId,jdbcType=VARCHAR}
+</select>
+
+<!-- ElementID:selectByPage,Generated=true -->
+<select id="selectByPage" parameterType="com.chinacreator.dzjc_ruleEngine.YiZhengData" resultMap="YiZhengDataResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_YIZHENG_DATA 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+</mapper>

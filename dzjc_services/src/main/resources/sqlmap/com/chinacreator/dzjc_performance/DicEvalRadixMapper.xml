@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"><mapper namespace="com.chinacreator.dzjc_performance.DicEvalRadixMapper">	
+
+<!-- ElementID:column_sql,Generated=true -->
+<sql id="column_sql">
+		  TA_JC_DIC_EVAL_RADIX.radix_id ,
+		  TA_JC_DIC_EVAL_RADIX.radix_name ,
+		  TA_JC_DIC_EVAL_RADIX.radix_sql ,
+		  TA_JC_DIC_EVAL_RADIX.is_valid ,
+		  TA_JC_DIC_EVAL_RADIX.business_type_code ,
+		  TA_JC_DIC_EVAL_RADIX.area_code ,
+		  TA_JC_DIC_EVAL_RADIX.remark ,
+		  TA_JC_DIC_EVAL_RADIX.cc_form_instanceid ,
+		  TA_JC_DIC_EVAL_RADIX.is_public ,
+		  TA_JC_DIC_EVAL_RADIX.version ,
+		  TA_JC_DIC_EVAL_RADIX.order_no 
+</sql>
+
+<!-- ElementID:whereClause_sql,Generated=true -->
+<sql id="whereClause_sql">
+	    <if test="radixId != null">and TA_JC_DIC_EVAL_RADIX.radix_id = #{radixId}</if>
+	    <if test="radixName != null">and TA_JC_DIC_EVAL_RADIX.radix_name = #{radixName}</if>
+	    <if test="radixSql != null">and TA_JC_DIC_EVAL_RADIX.radix_sql = #{radixSql}</if>
+	    <if test="isValid != null">and TA_JC_DIC_EVAL_RADIX.is_valid = #{isValid}</if>
+	    <if test="businessTypeCode != null">and TA_JC_DIC_EVAL_RADIX.business_type_code = #{businessTypeCode}</if>
+	    <if test="areaCode != null">and TA_JC_DIC_EVAL_RADIX.area_code = #{areaCode}</if>
+	    <if test="remark != null">and TA_JC_DIC_EVAL_RADIX.remark = #{remark}</if>
+	    <if test="ccFormInstanceid != null">and TA_JC_DIC_EVAL_RADIX.cc_form_instanceid = #{ccFormInstanceid}</if>
+	    <if test="isPublic != null">and TA_JC_DIC_EVAL_RADIX.is_public = #{isPublic}</if>
+	    <if test="version != null">and TA_JC_DIC_EVAL_RADIX.version = #{version}</if>
+	    <if test="orderNo != null">and TA_JC_DIC_EVAL_RADIX.order_no = #{orderNo}</if>
+</sql>
+
+
+<!-- ElementID:DicEvalRadixResult,Generated=true -->
+<resultMap id="DicEvalRadixResult" type="com.chinacreator.dzjc_performance.DicEvalRadix">
+	<id property="radixId" column="radix_id"/>
+	<result property="radixName" column="radix_name"/>
+	<result property="radixSql" column="radix_sql"/>
+	<result property="isValid" column="is_valid"/>
+	<result property="businessTypeCode" column="business_type_code"/>
+	<result property="areaCode" column="area_code"/>
+	<result property="remark" column="remark"/>
+	<result property="ccFormInstanceid" column="cc_form_instanceid"/>
+	<result property="isPublic" column="is_public"/>
+	<result property="version" column="version"/>
+	<result property="orderNo" column="order_no"/>
+</resultMap>
+
+
+<!-- ElementID:DicEvalRadixResultExp,Generated=false -->
+<resultMap id="DicEvalRadixResultExp" type="com.chinacreator.dzjc_performance.DicEvalRadixExp">
+	<id property="radixId" column="radix_id"/>
+	<result property="radixName" column="radix_name"/>
+	<result property="radixSql" column="radix_sql"/>
+	<result property="isValid" column="is_valid"/>
+	<result property="businessTypeCode" column="business_type_code"/>
+	<result property="businessTypeName" column="business_type_name"/>
+	<result property="areaCode" column="area_code"/>
+	<result property="areaName" column="area_name"/>
+	<result property="remark" column="remark"/>
+	<result property="ccFormInstanceid" column="cc_form_instanceid"/>
+	<result property="isPublic" column="is_public"/>
+	<result property="version" column="version"/>
+	<result property="orderNo" column="order_no"/>
+</resultMap>
+
+
+<!-- ElementID:insert,Generated=true -->
+<insert id="insert" parameterType="com.chinacreator.dzjc_performance.DicEvalRadix">
+	insert into TA_JC_DIC_EVAL_RADIX(
+	         <if test="radixId != null">radix_id</if>
+	         <if test="radixName != null">,radix_name</if>
+	         <if test="radixSql != null">,radix_sql</if>
+	         <if test="isValid != null">,is_valid</if>
+	         <if test="businessTypeCode != null">,business_type_code</if>
+	         <if test="areaCode != null">,area_code</if>
+	         <if test="remark != null">,remark</if>
+	         <if test="ccFormInstanceid != null">,cc_form_instanceid</if>
+	         <if test="isPublic != null">,is_public</if>
+	         <if test="version != null">,version</if>
+	         <if test="orderNo != null">,order_no</if>
+	 	 	 )
+	 values (
+	         <if test="radixId != null">#{radixId,jdbcType=VARCHAR}</if>
+	         <if test="radixName != null">,#{radixName,jdbcType=VARCHAR}</if>
+	         <if test="radixSql != null">,#{radixSql,jdbcType=VARCHAR}</if>
+	         <if test="isValid != null">,#{isValid,jdbcType=VARCHAR}</if>
+	         <if test="businessTypeCode != null">,#{businessTypeCode,jdbcType=CHAR}</if>
+	         <if test="areaCode != null">,#{areaCode,jdbcType=VARCHAR}</if>
+	         <if test="remark != null">,#{remark,jdbcType=VARCHAR}</if>
+	         <if test="ccFormInstanceid != null">,#{ccFormInstanceid,jdbcType=VARCHAR}</if>
+	         <if test="isPublic != null">,#{isPublic,jdbcType=VARCHAR}</if>
+	         <if test="version != null">,#{version,jdbcType=VARCHAR}</if>
+	         <if test="orderNo != null">,#{orderNo,jdbcType=NUMERIC}</if>
+	 	 	 )
+</insert>
+
+<!-- ElementID:count,Generated=true -->
+<select id="count" parameterType="com.chinacreator.dzjc_performance.DicEvalRadix" resultType="int">
+	select count(*) from TA_JC_DIC_EVAL_RADIX 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<!-- ElementID:update,Generated=true -->
+<update id="update" parameterType="com.chinacreator.dzjc_performance.DicEvalRadix">
+	update TA_JC_DIC_EVAL_RADIX
+<set>
+	<if test="radixName != null">radix_name=#{radixName,jdbcType=VARCHAR},</if>
+	<if test="radixSql != null">radix_sql=#{radixSql,jdbcType=VARCHAR},</if>
+	<if test="isValid != null">is_valid=#{isValid,jdbcType=VARCHAR},</if>
+	<if test="businessTypeCode != null">business_type_code=#{businessTypeCode,jdbcType=CHAR},</if>
+	<if test="areaCode != null">area_code=#{areaCode,jdbcType=VARCHAR},</if>
+	<if test="remark != null">remark=#{remark,jdbcType=VARCHAR},</if>
+	<if test="ccFormInstanceid != null">cc_form_instanceid=#{ccFormInstanceid,jdbcType=VARCHAR},</if>
+	<if test="isPublic != null">is_public=#{isPublic,jdbcType=VARCHAR},</if>
+	<if test="version != null">version=#{version,jdbcType=VARCHAR},</if>
+	<if test="orderNo != null">order_no=#{orderNo,jdbcType=NUMERIC}</if>
+</set>
+<where>
+	<choose>
+        <when test="radixId != null">and radix_id = #{radixId}</when>
+        <otherwise>and radix_id = </otherwise>
+    </choose>
+</where>
+</update>
+
+<!-- ElementID:updateNull,Generated=true -->
+<update id="updateNull" parameterType="map">
+	update TA_JC_DIC_EVAL_RADIX
+	<set>
+		<trim suffixOverrides=",">
+		    <if test="radixName==null">radix_name = null,</if>
+		    <if test="radixSql==null">radix_sql = null,</if>
+		    <if test="isValid==null">is_valid = null,</if>
+		    <if test="businessTypeCode==null">business_type_code = null,</if>
+		    <if test="areaCode==null">area_code = null,</if>
+		    <if test="remark==null">remark = null,</if>
+		    <if test="ccFormInstanceid==null">cc_form_instanceid = null,</if>
+		    <if test="isPublic==null">is_public = null,</if>
+		    <if test="version==null">version = null,</if>
+		    <if test="orderNo==null">order_no = null,</if>
+		</trim>
+	</set>
+	<where>
+		<choose>
+			<when test="radixId != null">and radix_id = #{radixId}</when>
+			<otherwise>and radix_id = </otherwise>
+		</choose>
+	</where>
+</update>
+
+<!-- ElementID:delete,Generated=true -->
+<delete id="delete" parameterType="com.chinacreator.dzjc_performance.DicEvalRadix">
+    delete from TA_JC_DIC_EVAL_RADIX where 1=1 and radix_id = #{radixId}
+</delete>
+
+<!-- ElementID:select,Generated=true -->
+<select id="select" parameterType="com.chinacreator.dzjc_performance.DicEvalRadix" resultMap="DicEvalRadixResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_DIC_EVAL_RADIX 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+
+<!-- ElementID:insertBatch,Generated=true -->
+<insert id="insertBatch" parameterType="list">
+	insert into TA_JC_DIC_EVAL_RADIX (radix_id,radix_name,radix_sql,is_valid,business_type_code,area_code,remark,cc_form_instanceid,is_public,version,order_no) 
+<foreach collection="list" item="entity" index="index" separator="union all">
+		select 
+		#{entity.radixId,jdbcType = VARCHAR},
+				#{entity.radixName,jdbcType = VARCHAR},
+				#{entity.radixSql,jdbcType = VARCHAR},
+				#{entity.isValid,jdbcType = VARCHAR},
+				#{entity.businessTypeCode,jdbcType = CHAR},
+				#{entity.areaCode,jdbcType = VARCHAR},
+				#{entity.remark,jdbcType = VARCHAR},
+				#{entity.ccFormInstanceid,jdbcType = VARCHAR},
+				#{entity.isPublic,jdbcType = VARCHAR},
+				#{entity.version,jdbcType = VARCHAR},
+				#{entity.orderNo,jdbcType = NUMERIC}
+		from dual
+</foreach>
+</insert>
+
+<!-- ElementID:deleteBatch,Generated=true -->
+<delete id="deleteBatch" parameterType="List">
+	delete from TA_JC_DIC_EVAL_RADIX where radix_id in
+<trim prefix="(" suffix=")" suffixOverrides=",">
+<foreach collection="list" item="entity" separator=",">
+	<choose>
+		<when test="@com.chinacreator.c2.dao.util.EntityBeanUtil@isEntityObj(entity)">#{entity.radixId}</when>
+		<otherwise>#{entity}</otherwise>
+	</choose>
+</foreach>
+</trim>
+</delete>
+
+<!-- ElementID:updateBatch,Generated=true -->
+<update id="updateBatch" parameterType="list">
+	<foreach collection="list" item="entity" open="begin" close=";end;" separator=";">
+			update TA_JC_DIC_EVAL_RADIX
+	<set>
+	<if test="entity.radixName != null">radix_name= #{entity.radixName,jdbcType=VARCHAR},</if>
+	<if test="entity.radixSql != null">radix_sql= #{entity.radixSql,jdbcType=VARCHAR},</if>
+	<if test="entity.isValid != null">is_valid= #{entity.isValid,jdbcType=VARCHAR},</if>
+	<if test="entity.businessTypeCode != null">business_type_code= #{entity.businessTypeCode,jdbcType=CHAR},</if>
+	<if test="entity.areaCode != null">area_code= #{entity.areaCode,jdbcType=VARCHAR},</if>
+	<if test="entity.remark != null">remark= #{entity.remark,jdbcType=VARCHAR},</if>
+	<if test="entity.ccFormInstanceid != null">cc_form_instanceid= #{entity.ccFormInstanceid,jdbcType=VARCHAR},</if>
+	<if test="entity.isPublic != null">is_public= #{entity.isPublic,jdbcType=VARCHAR},</if>
+	<if test="entity.version != null">version= #{entity.version,jdbcType=VARCHAR},</if>
+	<if test="entity.orderNo != null">order_no= #{entity.orderNo,jdbcType=NUMERIC}</if>
+	</set>
+		<where>
+			<choose>
+				<when test="entity.radixId != null">and radix_id = #{entity.radixId}</when>
+				<otherwise>and radix_id = </otherwise>
+			</choose>
+		</where>
+	</foreach>
+</update>
+
+<!-- ElementID:selectAll,Generated=true -->
+<select id="selectAll" resultMap="DicEvalRadixResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_DIC_EVAL_RADIX 
+</select>
+
+<!-- ElementID:selectMany,Generated=true -->
+<select id="selectMany" parameterType="list" resultMap="DicEvalRadixResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_JC_DIC_EVAL_RADIX 
+	where TA_JC_DIC_EVAL_RADIX.radix_id in (
+<foreach collection="list" item="entity" separator="intersect">
+		select 
+		TA_JC_DIC_EVAL_RADIX.radix_id
+	    from TA_JC_DIC_EVAL_RADIX 
+		 <where>
+	        <if test="entity.radixId != null">and TA_JC_DIC_EVAL_RADIX.radix_id = #{entity.radixId}</if>
+	        <if test="entity.radixName != null">and TA_JC_DIC_EVAL_RADIX.radix_name = #{entity.radixName}</if>
+	        <if test="entity.radixSql != null">and TA_JC_DIC_EVAL_RADIX.radix_sql = #{entity.radixSql}</if>
+	        <if test="entity.isValid != null">and TA_JC_DIC_EVAL_RADIX.is_valid = #{entity.isValid}</if>
+	        <if test="entity.businessTypeCode != null">and TA_JC_DIC_EVAL_RADIX.business_type_code = #{entity.businessTypeCode}</if>
+	        <if test="entity.areaCode != null">and TA_JC_DIC_EVAL_RADIX.area_code = #{entity.areaCode}</if>
+	        <if test="entity.remark != null">and TA_JC_DIC_EVAL_RADIX.remark = #{entity.remark}</if>
+	        <if test="entity.ccFormInstanceid != null">and TA_JC_DIC_EVAL_RADIX.cc_form_instanceid = #{entity.ccFormInstanceid}</if>
+	        <if test="entity.isPublic != null">and TA_JC_DIC_EVAL_RADIX.is_public = #{entity.isPublic}</if>
+	        <if test="entity.version != null">and TA_JC_DIC_EVAL_RADIX.version = #{entity.version}</if>
+	        <if test="entity.orderNo != null">and TA_JC_DIC_EVAL_RADIX.order_no = #{entity.orderNo}</if>
+		</where>
+</foreach>
+)
+</select>
+
+<!-- ElementID:selectUnion,Generated=true -->
+<select id="selectUnion" parameterType="list" resultMap="DicEvalRadixResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_JC_DIC_EVAL_RADIX 
+	 INNER JOIN
+<foreach collection="list" item="entity" separator="UNION" open="(" close=")">
+		SELECT 
+			 radix_id
+		FROM TA_JC_DIC_EVAL_RADIX 
+			<where>
+	        <if test="entity.radixId != null">and TA_JC_DIC_EVAL_RADIX.radix_id = #{entity.radixId}</if>
+	        <if test="entity.radixName != null">and TA_JC_DIC_EVAL_RADIX.radix_name = #{entity.radixName}</if>
+	        <if test="entity.radixSql != null">and TA_JC_DIC_EVAL_RADIX.radix_sql = #{entity.radixSql}</if>
+	        <if test="entity.isValid != null">and TA_JC_DIC_EVAL_RADIX.is_valid = #{entity.isValid}</if>
+	        <if test="entity.businessTypeCode != null">and TA_JC_DIC_EVAL_RADIX.business_type_code = #{entity.businessTypeCode}</if>
+	        <if test="entity.areaCode != null">and TA_JC_DIC_EVAL_RADIX.area_code = #{entity.areaCode}</if>
+	        <if test="entity.remark != null">and TA_JC_DIC_EVAL_RADIX.remark = #{entity.remark}</if>
+	        <if test="entity.ccFormInstanceid != null">and TA_JC_DIC_EVAL_RADIX.cc_form_instanceid = #{entity.ccFormInstanceid}</if>
+	        <if test="entity.isPublic != null">and TA_JC_DIC_EVAL_RADIX.is_public = #{entity.isPublic}</if>
+	        <if test="entity.version != null">and TA_JC_DIC_EVAL_RADIX.version = #{entity.version}</if>
+	        <if test="entity.orderNo != null">and TA_JC_DIC_EVAL_RADIX.order_no = #{entity.orderNo}</if>
+			</where>
+</foreach>
+	c2_temp_table ON TA_JC_DIC_EVAL_RADIX.radix_id = c2_temp_table.radix_id
+</select>
+
+<!-- ElementID:selectByID,Generated=false -->
+<select id="selectByID" parameterType="java.lang.String" resultMap="DicEvalRadixResultExp">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_DIC_EVAL_RADIX 
+		 where TA_JC_DIC_EVAL_RADIX.radix_id = #{radixId,jdbcType=VARCHAR}
+</select>
+
+<!-- ElementID:selectByPage,Generated=false -->
+<select id="selectByPage" parameterType="com.chinacreator.dzjc_performance.DicEvalRadixExp" resultMap="DicEvalRadixResultExp">
+			    select r.radix_id,
+			       r.radix_sql,
+			       r.radix_name,
+			       decode(is_valid, 'Y', '有效', '无效') is_valid,
+			       r.area_code,
+			       a.name as area_name,
+			       r.version,
+			       r.order_no,
+			       r.remark
+			   from ta_jc_dic_eval_radix r, v_org a
+			   <where>
+			   		 trim(concat(r.area_code,'000000000000')) = trim(a.code) 
+					<include refid="whereClause_sql"/>
+			   </where>
+			   order by r.order_no
+</select>
+
+<!--Generated=false -->
+<select id="selectByAreaCode" parameterType="java.lang.String" resultMap="DicEvalRadixResult">
+    select 
+        <include refid="column_sql"/>
+        from TA_JC_DIC_EVAL_RADIX 
+        <where>
+             area_code LIKE CONCAT(#{code},'%')
+        </where>
+</select>
+
+<!--Generated=false -->
+<select id="selectByName" parameterType="java.lang.String" resultMap="DicEvalRadixResult">
+    select 
+        <include refid="column_sql"/>
+        from TA_JC_DIC_EVAL_RADIX 
+         where TA_JC_DIC_EVAL_RADIX.radix_name = #{radixName,jdbcType=VARCHAR}
+</select>
+
+</mapper>

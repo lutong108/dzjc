@@ -1,0 +1,442 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"><mapper namespace="com.chinacreator.dzjc_performance.DicEvalPointMapper">	
+
+<!-- ElementID:column_sql,Generated=true -->
+<sql id="column_sql">
+		  TA_JC_DIC_EVALPOINT.point_id ,
+		  TA_JC_DIC_EVALPOINT.point_sn ,
+		  TA_JC_DIC_EVALPOINT.point_type_id ,
+		  TA_JC_DIC_EVALPOINT.point_name ,
+		  TA_JC_DIC_EVALPOINT.eval_type ,
+		  TA_JC_DIC_EVALPOINT.eval_mode ,
+		  TA_JC_DIC_EVALPOINT.eval_formula ,
+		  TA_JC_DIC_EVALPOINT.area_code ,
+		  TA_JC_DIC_EVALPOINT.is_used ,
+		  TA_JC_DIC_EVALPOINT.remark ,
+		  TA_JC_DIC_EVALPOINT.cc_form_instanceid ,
+		  TA_JC_DIC_EVALPOINT.is_public ,
+		  TA_JC_DIC_EVALPOINT.version ,
+		  TA_JC_DIC_EVALPOINT.min_value ,
+		  TA_JC_DIC_EVALPOINT.max_value ,
+		  TA_JC_DIC_EVALPOINT.maxval_depend ,
+		  TA_JC_DIC_EVALPOINT.minval_depend ,
+		  TA_JC_DIC_EVALPOINT.is_auto 
+</sql>
+
+<!-- ElementID:whereClause_sql,Generated=true -->
+<sql id="whereClause_sql">
+	    <if test="pointId != null">and TA_JC_DIC_EVALPOINT.point_id = #{pointId}</if>
+	    <if test="pointSn != null">and TA_JC_DIC_EVALPOINT.point_sn = #{pointSn}</if>
+	    <if test="pointTypeId != null">and TA_JC_DIC_EVALPOINT.point_type_id = #{pointTypeId}</if>
+	    <if test="pointName != null">and TA_JC_DIC_EVALPOINT.point_name = #{pointName}</if>
+	    <if test="evalType != null">and TA_JC_DIC_EVALPOINT.eval_type = #{evalType}</if>
+	    <if test="evalMode != null">and TA_JC_DIC_EVALPOINT.eval_mode = #{evalMode}</if>
+	    <if test="evalFormula != null">and TA_JC_DIC_EVALPOINT.eval_formula = #{evalFormula}</if>
+	    <if test="areaCode != null">and TA_JC_DIC_EVALPOINT.area_code = #{areaCode}</if>
+	    <if test="isUsed != null">and TA_JC_DIC_EVALPOINT.is_used = #{isUsed}</if>
+	    <if test="remark != null">and TA_JC_DIC_EVALPOINT.remark = #{remark}</if>
+	    <if test="ccFormInstanceid != null">and TA_JC_DIC_EVALPOINT.cc_form_instanceid = #{ccFormInstanceid}</if>
+	    <if test="isPublic != null">and TA_JC_DIC_EVALPOINT.is_public = #{isPublic}</if>
+	    <if test="version != null">and TA_JC_DIC_EVALPOINT.version = #{version}</if>
+	    <if test="minValue != null">and TA_JC_DIC_EVALPOINT.min_value = #{minValue}</if>
+	    <if test="maxValue != null">and TA_JC_DIC_EVALPOINT.max_value = #{maxValue}</if>
+	    <if test="maxvalDepend != null">and TA_JC_DIC_EVALPOINT.maxval_depend = #{maxvalDepend}</if>
+	    <if test="minvalDepend != null">and TA_JC_DIC_EVALPOINT.minval_depend = #{minvalDepend}</if>
+	    <if test="isAuto != null">and TA_JC_DIC_EVALPOINT.is_auto = #{isAuto}</if>
+</sql>
+
+
+<!-- ElementID:DicEvalPointResult,Generated=true -->
+<resultMap id="DicEvalPointResult" type="com.chinacreator.dzjc_performance.DicEvalPoint">
+	<id property="pointId" column="point_id"/>
+	<result property="pointSn" column="point_sn"/>
+	<result property="pointTypeId" column="point_type_id"/>
+	<result property="pointName" column="point_name"/>
+	<result property="evalType" column="eval_type"/>
+	<result property="evalMode" column="eval_mode"/>
+	<result property="evalFormula" column="eval_formula"/>
+	<result property="areaCode" column="area_code"/>
+	<result property="isUsed" column="is_used"/>
+	<result property="remark" column="remark"/>
+	<result property="ccFormInstanceid" column="cc_form_instanceid"/>
+	<result property="isPublic" column="is_public"/>
+	<result property="version" column="version"/>
+	<result property="minValue" column="min_value"/>
+	<result property="maxValue" column="max_value"/>
+	<result property="maxvalDepend" column="maxval_depend"/>
+	<result property="minvalDepend" column="minval_depend"/>
+	<result property="isAuto" column="is_auto"/>
+</resultMap>
+
+<!-- Generated=false -->
+<resultMap id="DicEvalPointResult2" type="com.chinacreator.dzjc_performance.DicEvalPointExp">
+    <id property="pointId" column="point_id"/>
+    <result property="pointSn" column="point_sn"/>
+    <result property="pointTypeId" column="point_type_id"/>
+    <result property="pointName" column="point_name"/>
+    <result property="evalType" column="eval_type"/>
+    <result property="evalMode" column="eval_mode"/>
+    <result property="evalFormula" column="eval_formula"/>
+    <result property="areaCode" column="area_code"/>
+    <result property="isUsed" column="is_used"/>
+    <result property="remark" column="remark"/>
+    <result property="ccFormInstanceid" column="cc_form_instanceid"/>
+    <result property="isPublic" column="is_public"/>
+    <result property="version" column="version"/>
+    <result property="minValue" column="min_value"/>
+    <result property="maxValue" column="max_value"/>
+    <result property="maxvalDepend" column="maxval_depend"/>
+    <result property="minvalDepend" column="minval_depend"/>
+    <result property="isAuto" column="is_auto"/>
+    <result property="pointTypeName" column="point_type_name"/>
+    <result property="areaName" column="area_name"/>
+    <result property="value" column="value"/>
+    <result property="proportion" column="proportion"/>
+</resultMap>
+
+<!-- ElementID:insert,Generated=true -->
+<insert id="insert" parameterType="com.chinacreator.dzjc_performance.DicEvalPoint">
+	insert into TA_JC_DIC_EVALPOINT(
+	         <if test="pointId != null">point_id</if>
+	         <if test="pointSn != null">,point_sn</if>
+	         <if test="pointTypeId != null">,point_type_id</if>
+	         <if test="pointName != null">,point_name</if>
+	         <if test="evalType != null">,eval_type</if>
+	         <if test="evalMode != null">,eval_mode</if>
+	         <if test="evalFormula != null">,eval_formula</if>
+	         <if test="areaCode != null">,area_code</if>
+	         <if test="isUsed != null">,is_used</if>
+	         <if test="remark != null">,remark</if>
+	         <if test="ccFormInstanceid != null">,cc_form_instanceid</if>
+	         <if test="isPublic != null">,is_public</if>
+	         <if test="version != null">,version</if>
+	         <if test="minValue != null">,min_value</if>
+	         <if test="maxValue != null">,max_value</if>
+	         <if test="maxvalDepend != null">,maxval_depend</if>
+	         <if test="minvalDepend != null">,minval_depend</if>
+	         <if test="isAuto != null">,is_auto</if>
+	 	 	 )
+	 values (
+	         <if test="pointId != null">#{pointId,jdbcType=VARCHAR}</if>
+	         <if test="pointSn != null">,#{pointSn,jdbcType=NUMERIC}</if>
+	         <if test="pointTypeId != null">,#{pointTypeId,jdbcType=VARCHAR}</if>
+	         <if test="pointName != null">,#{pointName,jdbcType=VARCHAR}</if>
+	         <if test="evalType != null">,#{evalType,jdbcType=VARCHAR}</if>
+	         <if test="evalMode != null">,#{evalMode,jdbcType=VARCHAR}</if>
+	         <if test="evalFormula != null">,#{evalFormula,jdbcType=VARCHAR}</if>
+	         <if test="areaCode != null">,#{areaCode,jdbcType=VARCHAR}</if>
+	         <if test="isUsed != null">,#{isUsed,jdbcType=CHAR}</if>
+	         <if test="remark != null">,#{remark,jdbcType=VARCHAR}</if>
+	         <if test="ccFormInstanceid != null">,#{ccFormInstanceid,jdbcType=VARCHAR}</if>
+	         <if test="isPublic != null">,#{isPublic,jdbcType=CHAR}</if>
+	         <if test="version != null">,#{version,jdbcType=VARCHAR}</if>
+	         <if test="minValue != null">,#{minValue,jdbcType=NUMERIC}</if>
+	         <if test="maxValue != null">,#{maxValue,jdbcType=NUMERIC}</if>
+	         <if test="maxvalDepend != null">,#{maxvalDepend,jdbcType=VARCHAR}</if>
+	         <if test="minvalDepend != null">,#{minvalDepend,jdbcType=VARCHAR}</if>
+	         <if test="isAuto != null">,#{isAuto,jdbcType=CHAR}</if>
+	 	 	 )
+</insert>
+
+<!-- ElementID:count,Generated=true -->
+<select id="count" parameterType="com.chinacreator.dzjc_performance.DicEvalPoint" resultType="int">
+	select count(*) from TA_JC_DIC_EVALPOINT 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<!-- ElementID:update,Generated=true -->
+<update id="update" parameterType="com.chinacreator.dzjc_performance.DicEvalPoint">
+	update TA_JC_DIC_EVALPOINT
+<set>
+	<if test="pointSn != null">point_sn=#{pointSn,jdbcType=NUMERIC},</if>
+	<if test="pointTypeId != null">point_type_id=#{pointTypeId,jdbcType=VARCHAR},</if>
+	<if test="pointName != null">point_name=#{pointName,jdbcType=VARCHAR},</if>
+	<if test="evalType != null">eval_type=#{evalType,jdbcType=VARCHAR},</if>
+	<if test="evalMode != null">eval_mode=#{evalMode,jdbcType=VARCHAR},</if>
+	<if test="evalFormula != null">eval_formula=#{evalFormula,jdbcType=VARCHAR},</if>
+	<if test="areaCode != null">area_code=#{areaCode,jdbcType=VARCHAR},</if>
+	<if test="isUsed != null">is_used=#{isUsed,jdbcType=CHAR},</if>
+	<if test="remark != null">remark=#{remark,jdbcType=VARCHAR},</if>
+	<if test="ccFormInstanceid != null">cc_form_instanceid=#{ccFormInstanceid,jdbcType=VARCHAR},</if>
+	<if test="isPublic != null">is_public=#{isPublic,jdbcType=CHAR},</if>
+	<if test="version != null">version=#{version,jdbcType=VARCHAR},</if>
+	<if test="minValue != null">min_value=#{minValue,jdbcType=NUMERIC},</if>
+	<if test="maxValue != null">max_value=#{maxValue,jdbcType=NUMERIC},</if>
+	<if test="maxvalDepend != null">maxval_depend=#{maxvalDepend,jdbcType=VARCHAR},</if>
+	<if test="minvalDepend != null">minval_depend=#{minvalDepend,jdbcType=VARCHAR},</if>
+	<if test="isAuto != null">is_auto=#{isAuto,jdbcType=CHAR}</if>
+</set>
+<where>
+	<choose>
+        <when test="pointId != null">and point_id = #{pointId}</when>
+        <otherwise>and point_id = </otherwise>
+    </choose>
+</where>
+</update>
+
+<!-- ElementID:updateNull,Generated=true -->
+<update id="updateNull" parameterType="map">
+	update TA_JC_DIC_EVALPOINT
+	<set>
+		<trim suffixOverrides=",">
+		    <if test="pointSn==null">point_sn = null,</if>
+		    <if test="pointTypeId==null">point_type_id = null,</if>
+		    <if test="pointName==null">point_name = null,</if>
+		    <if test="evalType==null">eval_type = null,</if>
+		    <if test="evalMode==null">eval_mode = null,</if>
+		    <if test="evalFormula==null">eval_formula = null,</if>
+		    <if test="areaCode==null">area_code = null,</if>
+		    <if test="isUsed==null">is_used = null,</if>
+		    <if test="remark==null">remark = null,</if>
+		    <if test="ccFormInstanceid==null">cc_form_instanceid = null,</if>
+		    <if test="isPublic==null">is_public = null,</if>
+		    <if test="version==null">version = null,</if>
+		    <if test="minValue==null">min_value = null,</if>
+		    <if test="maxValue==null">max_value = null,</if>
+		    <if test="maxvalDepend==null">maxval_depend = null,</if>
+		    <if test="minvalDepend==null">minval_depend = null,</if>
+		    <if test="isAuto==null">is_auto = null,</if>
+		</trim>
+	</set>
+	<where>
+		<choose>
+			<when test="pointId != null">and point_id = #{pointId}</when>
+			<otherwise>and point_id = </otherwise>
+		</choose>
+	</where>
+</update>
+
+<!-- ElementID:delete,Generated=true -->
+<delete id="delete" parameterType="com.chinacreator.dzjc_performance.DicEvalPoint">
+    delete from TA_JC_DIC_EVALPOINT where 1=1 and point_id = #{pointId}
+</delete>
+
+<!-- ElementID:select,Generated=true -->
+<select id="select" parameterType="com.chinacreator.dzjc_performance.DicEvalPoint" resultMap="DicEvalPointResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_DIC_EVALPOINT 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+
+<!-- ElementID:insertBatch,Generated=true -->
+<insert id="insertBatch" parameterType="list">
+	insert into TA_JC_DIC_EVALPOINT (point_id,point_sn,point_type_id,point_name,eval_type,eval_mode,eval_formula,area_code,is_used,remark,cc_form_instanceid,is_public,version,min_value,max_value,maxval_depend,minval_depend,is_auto) 
+<foreach collection="list" item="entity" index="index" separator="union all">
+		select 
+		#{entity.pointId,jdbcType = VARCHAR},
+				#{entity.pointSn,jdbcType = NUMERIC},
+				#{entity.pointTypeId,jdbcType = VARCHAR},
+				#{entity.pointName,jdbcType = VARCHAR},
+				#{entity.evalType,jdbcType = VARCHAR},
+				#{entity.evalMode,jdbcType = VARCHAR},
+				#{entity.evalFormula,jdbcType = VARCHAR},
+				#{entity.areaCode,jdbcType = VARCHAR},
+				#{entity.isUsed,jdbcType = CHAR},
+				#{entity.remark,jdbcType = VARCHAR},
+				#{entity.ccFormInstanceid,jdbcType = VARCHAR},
+				#{entity.isPublic,jdbcType = CHAR},
+				#{entity.version,jdbcType = VARCHAR},
+				#{entity.minValue,jdbcType = NUMERIC},
+				#{entity.maxValue,jdbcType = NUMERIC},
+				#{entity.maxvalDepend,jdbcType = VARCHAR},
+				#{entity.minvalDepend,jdbcType = VARCHAR},
+				#{entity.isAuto,jdbcType = CHAR}
+		from dual
+</foreach>
+</insert>
+
+<!-- ElementID:deleteBatch,Generated=true -->
+<delete id="deleteBatch" parameterType="List">
+	delete from TA_JC_DIC_EVALPOINT where point_id in
+<trim prefix="(" suffix=")" suffixOverrides=",">
+<foreach collection="list" item="entity" separator=",">
+	<choose>
+		<when test="@com.chinacreator.c2.dao.util.EntityBeanUtil@isEntityObj(entity)">#{entity.pointId}</when>
+		<otherwise>#{entity}</otherwise>
+	</choose>
+</foreach>
+</trim>
+</delete>
+
+<!-- ElementID:updateBatch,Generated=true -->
+<update id="updateBatch" parameterType="list">
+	<foreach collection="list" item="entity" open="begin" close=";end;" separator=";">
+			update TA_JC_DIC_EVALPOINT
+	<set>
+	<if test="entity.pointSn != null">point_sn= #{entity.pointSn,jdbcType=NUMERIC},</if>
+	<if test="entity.pointTypeId != null">point_type_id= #{entity.pointTypeId,jdbcType=VARCHAR},</if>
+	<if test="entity.pointName != null">point_name= #{entity.pointName,jdbcType=VARCHAR},</if>
+	<if test="entity.evalType != null">eval_type= #{entity.evalType,jdbcType=VARCHAR},</if>
+	<if test="entity.evalMode != null">eval_mode= #{entity.evalMode,jdbcType=VARCHAR},</if>
+	<if test="entity.evalFormula != null">eval_formula= #{entity.evalFormula,jdbcType=VARCHAR},</if>
+	<if test="entity.areaCode != null">area_code= #{entity.areaCode,jdbcType=VARCHAR},</if>
+	<if test="entity.isUsed != null">is_used= #{entity.isUsed,jdbcType=CHAR},</if>
+	<if test="entity.remark != null">remark= #{entity.remark,jdbcType=VARCHAR},</if>
+	<if test="entity.ccFormInstanceid != null">cc_form_instanceid= #{entity.ccFormInstanceid,jdbcType=VARCHAR},</if>
+	<if test="entity.isPublic != null">is_public= #{entity.isPublic,jdbcType=CHAR},</if>
+	<if test="entity.version != null">version= #{entity.version,jdbcType=VARCHAR},</if>
+	<if test="entity.minValue != null">min_value= #{entity.minValue,jdbcType=NUMERIC},</if>
+	<if test="entity.maxValue != null">max_value= #{entity.maxValue,jdbcType=NUMERIC},</if>
+	<if test="entity.maxvalDepend != null">maxval_depend= #{entity.maxvalDepend,jdbcType=VARCHAR},</if>
+	<if test="entity.minvalDepend != null">minval_depend= #{entity.minvalDepend,jdbcType=VARCHAR},</if>
+	<if test="entity.isAuto != null">is_auto= #{entity.isAuto,jdbcType=CHAR}</if>
+	</set>
+		<where>
+			<choose>
+				<when test="entity.pointId != null">and point_id = #{entity.pointId}</when>
+				<otherwise>and point_id = </otherwise>
+			</choose>
+		</where>
+	</foreach>
+</update>
+
+<!-- ElementID:selectAll,Generated=true -->
+<select id="selectAll" resultMap="DicEvalPointResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_DIC_EVALPOINT 
+</select>
+
+<!-- ElementID:selectMany,Generated=true -->
+<select id="selectMany" parameterType="list" resultMap="DicEvalPointResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_JC_DIC_EVALPOINT 
+	where TA_JC_DIC_EVALPOINT.point_id in (
+<foreach collection="list" item="entity" separator="intersect">
+		select 
+		TA_JC_DIC_EVALPOINT.point_id
+	    from TA_JC_DIC_EVALPOINT 
+		 <where>
+	        <if test="entity.pointId != null">and TA_JC_DIC_EVALPOINT.point_id = #{entity.pointId}</if>
+	        <if test="entity.pointSn != null">and TA_JC_DIC_EVALPOINT.point_sn = #{entity.pointSn}</if>
+	        <if test="entity.pointTypeId != null">and TA_JC_DIC_EVALPOINT.point_type_id = #{entity.pointTypeId}</if>
+	        <if test="entity.pointName != null">and TA_JC_DIC_EVALPOINT.point_name = #{entity.pointName}</if>
+	        <if test="entity.evalType != null">and TA_JC_DIC_EVALPOINT.eval_type = #{entity.evalType}</if>
+	        <if test="entity.evalMode != null">and TA_JC_DIC_EVALPOINT.eval_mode = #{entity.evalMode}</if>
+	        <if test="entity.evalFormula != null">and TA_JC_DIC_EVALPOINT.eval_formula = #{entity.evalFormula}</if>
+	        <if test="entity.areaCode != null">and TA_JC_DIC_EVALPOINT.area_code = #{entity.areaCode}</if>
+	        <if test="entity.isUsed != null">and TA_JC_DIC_EVALPOINT.is_used = #{entity.isUsed}</if>
+	        <if test="entity.remark != null">and TA_JC_DIC_EVALPOINT.remark = #{entity.remark}</if>
+	        <if test="entity.ccFormInstanceid != null">and TA_JC_DIC_EVALPOINT.cc_form_instanceid = #{entity.ccFormInstanceid}</if>
+	        <if test="entity.isPublic != null">and TA_JC_DIC_EVALPOINT.is_public = #{entity.isPublic}</if>
+	        <if test="entity.version != null">and TA_JC_DIC_EVALPOINT.version = #{entity.version}</if>
+	        <if test="entity.minValue != null">and TA_JC_DIC_EVALPOINT.min_value = #{entity.minValue}</if>
+	        <if test="entity.maxValue != null">and TA_JC_DIC_EVALPOINT.max_value = #{entity.maxValue}</if>
+	        <if test="entity.maxvalDepend != null">and TA_JC_DIC_EVALPOINT.maxval_depend = #{entity.maxvalDepend}</if>
+	        <if test="entity.minvalDepend != null">and TA_JC_DIC_EVALPOINT.minval_depend = #{entity.minvalDepend}</if>
+	        <if test="entity.isAuto != null">and TA_JC_DIC_EVALPOINT.is_auto = #{entity.isAuto}</if>
+		</where>
+</foreach>
+)
+</select>
+
+<!-- ElementID:selectUnion,Generated=true -->
+<select id="selectUnion" parameterType="list" resultMap="DicEvalPointResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_JC_DIC_EVALPOINT 
+	 INNER JOIN
+<foreach collection="list" item="entity" separator="UNION" open="(" close=")">
+		SELECT 
+			 point_id
+		FROM TA_JC_DIC_EVALPOINT 
+			<where>
+	        <if test="entity.pointId != null">and TA_JC_DIC_EVALPOINT.point_id = #{entity.pointId}</if>
+	        <if test="entity.pointSn != null">and TA_JC_DIC_EVALPOINT.point_sn = #{entity.pointSn}</if>
+	        <if test="entity.pointTypeId != null">and TA_JC_DIC_EVALPOINT.point_type_id = #{entity.pointTypeId}</if>
+	        <if test="entity.pointName != null">and TA_JC_DIC_EVALPOINT.point_name = #{entity.pointName}</if>
+	        <if test="entity.evalType != null">and TA_JC_DIC_EVALPOINT.eval_type = #{entity.evalType}</if>
+	        <if test="entity.evalMode != null">and TA_JC_DIC_EVALPOINT.eval_mode = #{entity.evalMode}</if>
+	        <if test="entity.evalFormula != null">and TA_JC_DIC_EVALPOINT.eval_formula = #{entity.evalFormula}</if>
+	        <if test="entity.areaCode != null">and TA_JC_DIC_EVALPOINT.area_code = #{entity.areaCode}</if>
+	        <if test="entity.isUsed != null">and TA_JC_DIC_EVALPOINT.is_used = #{entity.isUsed}</if>
+	        <if test="entity.remark != null">and TA_JC_DIC_EVALPOINT.remark = #{entity.remark}</if>
+	        <if test="entity.ccFormInstanceid != null">and TA_JC_DIC_EVALPOINT.cc_form_instanceid = #{entity.ccFormInstanceid}</if>
+	        <if test="entity.isPublic != null">and TA_JC_DIC_EVALPOINT.is_public = #{entity.isPublic}</if>
+	        <if test="entity.version != null">and TA_JC_DIC_EVALPOINT.version = #{entity.version}</if>
+	        <if test="entity.minValue != null">and TA_JC_DIC_EVALPOINT.min_value = #{entity.minValue}</if>
+	        <if test="entity.maxValue != null">and TA_JC_DIC_EVALPOINT.max_value = #{entity.maxValue}</if>
+	        <if test="entity.maxvalDepend != null">and TA_JC_DIC_EVALPOINT.maxval_depend = #{entity.maxvalDepend}</if>
+	        <if test="entity.minvalDepend != null">and TA_JC_DIC_EVALPOINT.minval_depend = #{entity.minvalDepend}</if>
+	        <if test="entity.isAuto != null">and TA_JC_DIC_EVALPOINT.is_auto = #{entity.isAuto}</if>
+			</where>
+</foreach>
+	c2_temp_table ON TA_JC_DIC_EVALPOINT.point_id = c2_temp_table.point_id
+</select>
+
+<!-- ElementID:selectByID,Generated=true -->
+<select id="selectByID" parameterType="java.lang.String" resultMap="DicEvalPointResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_DIC_EVALPOINT 
+		 where TA_JC_DIC_EVALPOINT.point_id = #{pointId,jdbcType=VARCHAR}
+</select>
+
+<select id="selectByIDcustom" parameterType="java.lang.String" resultMap="DicEvalPointResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_DIC_EVALPOINT 
+		 where TA_JC_DIC_EVALPOINT.point_name = #{pointName,jdbcType=VARCHAR}
+</select>
+
+<!-- ElementID:selectByPage,Generated=true -->
+<select id="selectByPage" parameterType="com.chinacreator.dzjc_performance.DicEvalPoint" resultMap="DicEvalPointResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_DIC_EVALPOINT 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<!-- Generated=false -->
+<select id="selectByPage2" parameterType="com.chinacreator.dzjc_performance.DicEvalPointExp" resultMap="DicEvalPointResult2">
+    select 
+       a.area_name,
+      TA_JC_DIC_EVALPOINT.point_id ,
+          TA_JC_DIC_EVALPOINT.point_sn ,
+          TA_JC_DIC_EVALPOINT.point_type_id ,
+          TA_JC_DIC_EVALPOINT.point_name ,
+          TA_JC_DIC_EVALPOINT.eval_type ,
+          TA_JC_DIC_EVALPOINT.eval_mode ,
+          TA_JC_DIC_EVALPOINT.eval_formula ,
+          TA_JC_DIC_EVALPOINT.area_code ,
+          decode(is_used, 'Y', '是', '否') is_used,
+          TA_JC_DIC_EVALPOINT.remark ,
+          TA_JC_DIC_EVALPOINT.version ,
+          TA_JC_DIC_EVALPOINT.min_value ,
+          TA_JC_DIC_EVALPOINT.max_value ,
+          TA_JC_DIC_EVALPOINT.maxval_depend ,
+          TA_JC_DIC_EVALPOINT.minval_depend ,
+          decode(is_auto , 'Y', '智能', '默认') is_auto 
+  from TA_JC_DIC_EVALPOINT ,
+       ta_jc_dic_area a
+ where  TA_JC_DIC_EVALPOINT.area_code = a.area_code
+   order by point_sn
+</select>
+
+<!-- Generated=false-->
+<select id="selectByAreaCode" parameterType="java.lang.String" resultMap="DicEvalPointResult">
+    select 
+        <include refid="column_sql"/>
+        from TA_JC_DIC_EVALPOINT 
+        <where>
+              area_code LIKE CONCAT(#{code},'%')
+        </where>
+</select>
+
+<!-- Generated=false-->
+<select id="selectByName" parameterType="java.lang.String" resultMap="DicEvalPointResult">
+    select 
+        <include refid="column_sql"/>
+        from TA_JC_DIC_EVALPOINT 
+             where TA_JC_DIC_EVALPOINT.point_name = #{pointName,jdbcType=VARCHAR}
+</select>
+</mapper>

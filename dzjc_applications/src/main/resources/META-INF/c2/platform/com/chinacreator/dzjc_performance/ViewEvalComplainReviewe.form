@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form:Form xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dync="http://www.chinacreator.com/platform/mvc/ui/dync" xmlns:form="http://www.chinacreator.com/platform/mvc/form" name="申诉审核详情查看" res="" sn="dzjc_performance/viewEvalComplainReviewe" type="form">
+  <form:control type="page/modal">
+    <form:attributes source="page/modal">
+      <dync:attribute default="" group="HTML" id="title" name="标题" value="申诉审核详情查看">
+        <dync:render colSpan="2" height="0" multi="false" name="text"/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="" group="HTML" id="width" name="页面宽度" value="800px">
+        <dync:render colSpan="2" height="0" multi="false" name="text"/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="" group="事件" id="onload" name="页面加载完成" value="page_onload()">
+        <dync:render colSpan="2" height="0" multi="false" name="event">
+          <dync:item name="param" value=""/>
+        </dync:render>
+        <dync:children/>
+      </dync:attribute>
+    </form:attributes>
+  </form:control>
+  <form:child xsi:type="form:Group" id="div" name="简单容器(DIV)">
+    <form:control type="container/div">
+      <form:attributes source="container/div"/>
+    </form:control>
+    <form:child xsi:type="form:Field" binding="$model.entity.tableName" id="tableName" name="考核表名称">
+      <form:control type="widget/text">
+        <form:attributes source="widget/text">
+          <dync:attribute default="75" group="基本设置" id="lableWidth" name="左外边距" value="100">
+            <dync:render colSpan="1" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="false" group="文本框设置" id="disabled" name="禁用" value="true">
+            <dync:render colSpan="1" height="0" multi="false" name="checkboxAndExpr"/>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+    </form:child>
+    <form:child xsi:type="form:Field" binding="$model.entity.pointName" id="pointName" name="指标名称">
+      <form:control type="widget/text">
+        <form:attributes source="widget/text">
+          <dync:attribute default="75" group="基本设置" id="lableWidth" name="左外边距" value="100">
+            <dync:render colSpan="1" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="false" group="文本框设置" id="disabled" name="禁用" value="true">
+            <dync:render colSpan="1" height="0" multi="false" name="checkboxAndExpr"/>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+    </form:child>
+    <form:child xsi:type="form:Field" binding="$model.entity.orgName" id="orgName" name="测评单位名称">
+      <form:control type="widget/text">
+        <form:attributes source="widget/text">
+          <dync:attribute default="75" group="基本设置" id="lableWidth" name="左外边距" value="100">
+            <dync:render colSpan="1" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="false" group="文本框设置" id="disabled" name="禁用" value="true">
+            <dync:render colSpan="1" height="0" multi="false" name="checkboxAndExpr"/>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+    </form:child>
+    <form:child xsi:type="form:Field" binding="$model.entity.evalObjectType" id="evalObjectType" name="考核对象类型">
+      <form:control type="widget/text">
+        <form:attributes source="widget/text">
+          <dync:attribute default="75" group="基本设置" id="lableWidth" name="左外边距" value="100">
+            <dync:render colSpan="1" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="false" group="文本框设置" id="disabled" name="禁用" value="true">
+            <dync:render colSpan="1" height="0" multi="false" name="checkboxAndExpr"/>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+    </form:child>
+    <form:child xsi:type="form:Field" binding="$model.entity.evalObjectName" id="evalObjectName" name="考核对象名称">
+      <form:control type="widget/text">
+        <form:attributes source="widget/text">
+          <dync:attribute default="75" group="基本设置" id="lableWidth" name="左外边距" value="100">
+            <dync:render colSpan="1" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="false" group="文本框设置" id="disabled" name="禁用" value="true">
+            <dync:render colSpan="1" height="0" multi="false" name="checkboxAndExpr"/>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+    </form:child>
+    <form:child xsi:type="form:Field" binding="$model.entity.pointScore" id="pointScore" name="指标评分">
+      <form:control type="widget/text">
+        <form:attributes source="widget/text">
+          <dync:attribute default="75" group="基本设置" id="lableWidth" name="左外边距" value="100">
+            <dync:render colSpan="1" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="false" group="文本框设置" id="disabled" name="禁用" value="true">
+            <dync:render colSpan="1" height="0" multi="false" name="checkboxAndExpr"/>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+    </form:child>
+    <form:child xsi:type="form:Field" binding="$model.entity.revieweStates" id="revieweStates" name="审核状态">
+      <form:control type="widget/text">
+        <form:attributes source="widget/text">
+          <dync:attribute default="75" group="基本设置" id="lableWidth" name="左外边距" value="100">
+            <dync:render colSpan="1" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="false" group="文本框设置" id="disabled" name="禁用" value="true">
+            <dync:render colSpan="1" height="0" multi="false" name="checkboxAndExpr"/>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+    </form:child>
+    <form:child xsi:type="form:Field" binding="$model.entity.deductReasons" id="deductReasons" name="扣分原因">
+      <form:control type="widget/textarea">
+        <form:attributes source="widget/textarea">
+          <dync:attribute default="75" group="HTML设置" id="lableWidth" name="lable宽度" value="100">
+            <dync:render colSpan="1" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="false" group="HTML设置" id="disabled" name="禁用" value="true">
+            <dync:render colSpan="1" height="0" multi="false" name="checkboxAndExpr"/>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+    </form:child>
+    <form:child xsi:type="form:Field" binding="$model.entity.compReasons" id="compReasons" name="申诉原因">
+      <form:control type="widget/textarea">
+        <form:attributes source="widget/textarea">
+          <dync:attribute default="75" group="HTML设置" id="lableWidth" name="lable宽度" value="100">
+            <dync:render colSpan="1" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="false" group="HTML设置" id="disabled" name="禁用" value="true">
+            <dync:render colSpan="1" height="0" multi="false" name="checkboxAndExpr"/>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+    </form:child>
+  </form:child>
+  <form:child xsi:type="form:Group" id="div1" name="简单容器(DIV)">
+    <form:control type="container/div">
+      <form:attributes source="container/div">
+        <dync:attribute default="" group="高级自定义" id="html" name="自定义HTML" value="div1_html">
+          <dync:render colSpan="2" height="0" multi="false" name="html"/>
+          <dync:children/>
+        </dync:attribute>
+      </form:attributes>
+    </form:control>
+  </form:child>
+  <form:child xsi:type="form:Group" id="div2" name="简单容器(DIV)">
+    <form:control type="container/div">
+      <form:attributes source="container/div"/>
+    </form:control>
+    <form:child xsi:type="form:Field" binding="$model.agreeEntity.isAgree" id="isAgree" name="是否同意">
+      <form:control type="widget/radio_group">
+        <form:attributes source="widget/radio_group">
+          <dync:attribute default="" group="单选按钮组设置" id="radioOptions" name="选项" value="[{&quot;id&quot;:1,&quot;name&quot;:&quot;通过&quot;},{&quot;id&quot;:2,&quot;name&quot;:&quot;驳回&quot;}]">
+            <dync:render colSpan="1" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="" group="单选按钮组设置" id="optionId" name="值属性名" value="id">
+            <dync:render colSpan="1" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="" group="单选按钮组设置" id="optionName" name="显示属性名" value="name">
+            <dync:render colSpan="1" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="false" group="基本设置" id="radioDisabled" name="禁用" value="true">
+            <dync:render colSpan="1" height="0" multi="false" name="checkbox"/>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+    </form:child>
+    <form:child xsi:type="form:Field" binding="$model.agreeEntity.content" id="content" name="审核意见内容">
+      <form:control type="widget/textarea">
+        <form:attributes source="widget/textarea">
+          <dync:attribute default="75" group="HTML设置" id="lableWidth" name="lable宽度" value="100">
+            <dync:render colSpan="1" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="false" group="HTML设置" id="disabled" name="禁用" value="true">
+            <dync:render colSpan="1" height="0" multi="false" name="checkboxAndExpr"/>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+    </form:child>
+  </form:child>
+  <form:child xsi:type="form:Group" id="div3" name="简单容器(DIV)">
+    <form:control type="container/div">
+      <form:attributes source="container/div">
+        <dync:attribute default="" group="高级自定义" id="style" name="自定义style" value="text-align:center;">
+          <dync:render colSpan="2" height="0" multi="false" name="text"/>
+          <dync:children/>
+        </dync:attribute>
+      </form:attributes>
+    </form:control>
+    <form:child xsi:type="form:Field" id="button1" name="关闭" customize="true">
+      <form:control type="widget/button">
+        <form:attributes source="widget/button">
+          <dync:attribute default="" group="事件设置" id="click" name="点击事件" value="button1_click($event)">
+            <dync:render colSpan="1" height="0" multi="false" name="event">
+              <dync:item name="params" value="$event"/>
+            </dync:render>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+      <form:validation/>
+    </form:child>
+  </form:child>
+  <form:datasources>
+    <form:datasource xsi:type="form:EntityDataSource" id="entity" name="单实体数据源" base="service" sn="dzjc_performance/v1/EvalComplainReviewe" entity="entity:com.chinacreator.dzjc_performance.EvalComplainReviewe">
+      <form:entityObj pk="id" restResource="true"/>
+    </form:datasource>
+    <form:datasource xsi:type="form:EntityDataSource" id="agreeEntity" name="单实体数据源" base="service" sn="dzjc_performance/v1/EvalRevieweAgree" data="" entity="entity:com.chinacreator.dzjc_performance.EvalRevieweAgree">
+      <form:entityObj pk="id" restResource="true"/>
+    </form:datasource>
+  </form:datasources>
+  <form:scripts>
+
+button1_click:function($event){
+	Modal.instance.close();
+},
+
+page_onload:function(){
+	//根据传过来的申诉申诉表的id,赋值给意见表中的revieweId查询意见信息
+	$params.revieweId = $params.id;
+	$http.get(c2.base('service')+&quot;dzjc_performance/v1/EvalRevieweAgree/getByRevieweId/&quot;+$params.revieweId).success(function(data){
+		$model.agreeEntity = data;
+	});
+}</form:scripts>
+  <form:htmls>
+&lt;script type=&quot;text/ng-template&quot; id=&quot;div1_html&quot;>
+	&lt;hr/>
+&lt;/script></form:htmls>
+</form:Form>

@@ -1,0 +1,538 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chinacreator.dzjc_ruleEngine.QuanShengYingYongQingKuangStatisticsMapper">
+
+
+<resultMap id="QuanShengYingYongQingKuangStatisticsMapper" type="com.chinacreator.dzjc_ruleEngine.QuanShengYingYongQingKuangStatistics" >
+		
+		<!-- 机构数 -->
+		<result property="orgNumber" column="org_num" />
+		
+		<!-- 发牌数据字段 -->
+		<result property="yellow_yx" column="yellow_yx" />
+		<result property="red_yx" column="red_yx" />
+		<result property="yellow_cx" column="yellow_cx" />
+		<result property="red_cx" column="red_cx" />
+		
+			
+		<result property="area_name" column="area_name" />
+		<result property="area_code" column="area_code" />		
+		<!-- 事项数 -->
+		<result property="xzxksxs" column="xzxksxs" />
+		<result property="xzjlsxs" column="xzjlsxs" />
+		<result property="xzcjsxs" column="xzcjsxs" />
+		<result property="xzjcsxs" column="xzjcsxs" />
+		<result property="xzgfsxs" column="xzgfsxs" />
+		<result property="xzqzsxs" column="xzqzsxs" />
+		<result property="xzqrsxs" column="xzqrsxs" />
+		<result property="xzcfsxs" column="xzcfsxs" />
+		<result property="xzzssxs" column="xzzssxs" />
+		<result property="qtxzqlsxs" column="qtxzqlsxs" />
+		<result property="ggfwsxs" column="ggfwsxs" />
+		<result property="sxscount" column="sxscount" />
+		<!-- 收件数 -->
+		<result property="xzxksjs" column="xzxksjs" />
+		<result property="xzjlsjs" column="xzjlsjs" />
+		<result property="xzcjsjs" column="xzcjsjs" />
+		<result property="xzjcsjs" column="xzjcsjs" />
+		<result property="xzgfsjs" column="xzgfsjs" />
+		<result property="xzqzsjs" column="xzqzsjs" />
+		<result property="xzqrsjs" column="xzqrsjs" />
+		<result property="xzcfsjs" column="xzcfsjs" />
+		<result property="xzzssjs" column="xzzssjs" />
+		<result property="qtxzqlsjs" column="qtxzqlsjs" />
+		<result property="ggfwsjs" column="ggfwsjs" />
+		<result property="sjscount" column="sjscount" />
+		<!-- 办结数 -->
+		<result property="xzxkbjs" column="xzxkbjs" />
+		<result property="xzjlbjs" column="xzjlbjs" />
+		<result property="xzcjbjs" column="xzcjbjs" />
+		<result property="xzjcbjs" column="xzjcbjs" />
+		<result property="xzgfbjs" column="xzgfbjs" />
+		<result property="xzqzbjs" column="xzqzbjs" />
+		<result property="xzqrbjs" column="xzqrbjs" />
+		<result property="xzcfbjs" column="xzcfbjs" />
+		<result property="xzzsbjs" column="xzzsbjs" />
+		<result property="qtxzqlbjs" column="qtxzqlbjs" />
+		<result property="ggfwbjs" column="ggfwbjs" />
+		<result property="bjscount" column="bjscount" />
+</resultMap>
+
+
+<!-- 获取发牌情况数据  -->
+<select id="getPaiData"  parameterType="com.chinacreator.dzjc_ruleEngine.QuanShengYingYongQingKuangStatistics" resultMap="QuanShengYingYongQingKuangStatisticsMapper">
+  select nvl(sum(s.supervise_red_num), 0) red_yx,
+         nvl(sum(s.supervise_yello_num), 0) yellow_yx,
+         nvl(sum(s.cancel_red_num), 0) red_cx,
+         nvl(sum(s.cancel_yellow_num), 0) yellow_cx
+  from ta_jc_sum_supervise_info s
+ where s.now_date between #{beginDate,jdbcType=VARCHAR} and #{endDate,jdbcType=VARCHAR}
+</select>
+
+<!-- 获取全省事项数、收件数、办结数 -->
+<select id="getDataOfProvince"  parameterType="com.chinacreator.dzjc_ruleEngine.QuanShengYingYongQingKuangStatistics" resultMap="QuanShengYingYongQingKuangStatisticsMapper">
+select da.AREA_NAME area_name,
+       da.AREA_CODE area_code,
+       nvl(aa.xzxksxs, '0') xzxksxs,
+       nvl(aa.xzjlsxs, '0') xzjlsxs,
+       nvl(aa.xzcjsxs, '0') xzcjsxs,
+       nvl(aa.xzjcsxs, '0') xzjcsxs,
+       nvl(aa.xzgfsxs, '0') xzgfsxs,
+       nvl(aa.xzqzsxs, '0') xzqzsxs,
+       nvl(aa.xzqrsxs, '0') xzqrsxs,
+       nvl(aa.xzcfsxs, '0') xzcfsxs,
+       nvl(aa.xzzssxs, '0') xzzssxs,
+       nvl(aa.qtxzqlsxs, '0') qtxzqlsxs,
+       nvl(aa.ggfwsxs, '0') ggfwsxs,
+       
+       nvl(aa.xzxksjs, '0') xzxksjs,
+       nvl(aa.xzjlsjs, '0') xzjlsjs,
+       nvl(aa.xzcjsjs, '0') xzcjsjs,
+       nvl(aa.xzjcsjs, '0') xzjcsjs,
+       nvl(aa.xzgfsjs, '0') xzgfsjs,
+       nvl(aa.xzqzsjs, '0') xzqzsjs,
+       nvl(aa.xzqrsjs, '0') xzqrsjs,
+       nvl(aa.xzcfsjs, '0') xzcfsjs,
+       nvl(aa.xzzssjs, '0') xzzssjs,
+       nvl(aa.qtxzqlsjs, '0') qtxzqlsjs,
+       nvl(aa.ggfwsjs, '0') ggfwsjs,
+       
+       nvl(aa.xzxkbjs, '0') xzxkbjs,
+       nvl(aa.xzjlbjs, '0') xzjlbjs,
+       nvl(aa.xzcjbjs, '0') xzcjbjs,
+       nvl(aa.xzjcbjs, '0') xzjcbjs,
+       nvl(aa.xzgfbjs, '0') xzgfbjs,
+       nvl(aa.xzqzbjs, '0') xzqzbjs,
+       nvl(aa.xzqrbjs, '0') xzqrbjs,
+       nvl(aa.xzcfbjs, '0') xzcfbjs,
+       nvl(aa.xzzsbjs, '0') xzzsbjs,
+       nvl(aa.qtxzqlbjs, '0') qtxzqlbjs,
+       nvl(aa.ggfwbjs, '0') ggfwbjs
+  from v_ta_dic_area da
+  left join (select s.CITY_CODE,
+                    sum(s.xzxksxs) xzxksxs,
+                    sum(s.xzjlsxs) xzjlsxs,
+                    sum(s.xzcjsxs) xzcjsxs,
+                    sum(s.xzjcsxs) xzjcsxs,
+                    sum(s.xzgfsxs) xzgfsxs,
+                    sum(s.xzqzsxs) xzqzsxs,
+                    sum(s.xzqrsxs) xzqrsxs,
+                    sum(s.xzcfsxs) xzcfsxs,
+                    sum(s.xzzssxs) xzzssxs,
+                    sum(s.qtxzqlsxs) qtxzqlsxs,
+                    sum(s.ggfwsxs) ggfwsxs,
+                    
+                    sum(s.xzxksjs) xzxksjs,
+                    sum(s.xzjlsjs) xzjlsjs,
+                    sum(s.xzcjsjs) xzcjsjs,
+                    sum(s.xzjcsjs) xzjcsjs,
+                    sum(s.xzgfsjs) xzgfsjs,
+                    sum(s.xzqzsjs) xzqzsjs,
+                    sum(s.xzqrsjs) xzqrsjs,
+                    sum(s.xzcfsjs) xzcfsjs,
+                    sum(s.xzzssjs) xzzssjs,
+                    sum(s.qtxzqlsjs) qtxzqlsjs,
+                    sum(s.ggfwsjs) ggfwsjs,
+                    
+                    sum(s.xzxk_finish_num) xzxkbjs,
+                    sum(s.xzjl_finish_num) xzjlbjs,
+                    sum(s.xzcj_finish_num) xzcjbjs,
+                    sum(s.xzjc_finish_num) xzjcbjs,
+                    sum(s.xzgf_finish_num) xzgfbjs,
+                    sum(s.xzqz_finish_num) xzqzbjs,
+                    sum(s.xzqr_finish_num) xzqrbjs,
+                    sum(s.xzcf_finish_num) xzcfbjs,
+                    sum(s.xzzs_finish_num) xzzsbjs,
+                    sum(s.qtxzql_finish_num) qtxzqlbjs,
+                    sum(s.ggfw_finish_num) ggfwbjs
+               from (select o.ORG_ID,
+                            o.ORG_CODE,
+                            o.ORG_NAME ORG_SHOW_NAME,
+                            o.PROVINCE_CODE,
+                            o.CITY_CODE,
+                            o.County_CODE,
+                            o.STREET_CODE,
+                            o.ORG_LEVEL,
+                            b.xzxksxs,
+                            b.xzjlsxs,
+                            b.xzcjsxs,
+                            b.xzjcsxs,
+                            b.xzgfsxs,
+                            b.xzqzsxs,
+                            b.xzqrsxs,
+                            b.xzcfsxs,
+                            b.xzzssxs,
+                            b.qtxzqlsxs,
+                            b.ggfwsxs,
+                            
+                            b.xzxksjs,
+                            b.xzjlsjs,
+                            b.xzcjsjs,
+                            b.xzjcsjs,
+                            b.xzgfsjs,
+                            b.xzqzsjs,
+                            b.xzqrsjs,
+                            b.xzcfsjs,
+                            b.xzzssjs,
+                            b.qtxzqlsjs,
+                            b.ggfwsjs,
+                            
+                            b.xzxk_finish_num,
+                            b.xzjl_finish_num,
+                            b.xzcj_finish_num,
+                            b.xzjc_finish_num,
+                            b.xzgf_finish_num,
+                            b.xzqz_finish_num,
+                            b.xzqr_finish_num,
+                            b.xzcf_finish_num,
+                            b.xzzs_finish_num,
+                            b.qtxzql_finish_num,
+                            b.ggfw_finish_num
+                       from V_TD_SM_ORGANIZATION1 o,
+                            (select org_id,
+                                    sum(decode(app_code, 01, approvecount, 0)) xzxksxs,
+                                    sum(decode(app_code, 08, approvecount, 0)) xzjlsxs,
+                                    sum(decode(app_code, 09, approvecount, 0)) xzcjsxs,
+                                    sum(decode(app_code, 06, approvecount, 0)) xzjcsxs,
+                                    sum(decode(app_code, 05, approvecount, 0)) xzgfsxs,
+                                    sum(decode(app_code, 03, approvecount, 0)) xzqzsxs,
+                                    sum(decode(app_code, 07, approvecount, 0)) xzqrsxs,
+                                    sum(decode(app_code, 02, approvecount, 0)) xzcfsxs,
+                                    sum(decode(app_code, 04, approvecount, 0)) xzzssxs,
+                                    sum(decode(app_code, 10, approvecount, 0)) qtxzqlsxs,
+                                    sum(decode(app_code, 11, approvecount, 0)) ggfwsxs,
+                                    
+                                    sum(xzxk_num) xzxksjs,
+                                    sum(xzjl_num) xzjlsjs,
+                                    sum(xzcj_num) xzcjsjs,
+                                    sum(xzjc_num) xzjcsjs,
+                                    sum(xzgf_num) xzgfsjs,
+                                    sum(xzqz_num) xzqzsjs,
+                                    sum(xzqr_num) xzqrsjs,
+                                    sum(xzcf_num) xzcfsjs,
+                                    sum(xzzs_num) xzzssjs,
+                                    sum(qtxzql_num) qtxzqlsjs,
+                                    sum(ggfw_num) ggfwsjs,
+                                    
+                                    sum(xzxk_finish_num) xzxk_finish_num,
+                                    sum(xzjl_finish_num) xzjl_finish_num,
+                                    sum(xzcj_finish_num) xzcj_finish_num,
+                                    sum(xzjc_finish_num) xzjc_finish_num,
+                                    sum(xzgf_finish_num) xzgf_finish_num,
+                                    sum(xzqz_finish_num) xzqz_finish_num,
+                                    sum(xzqr_finish_num) xzqr_finish_num,
+                                    sum(xzcf_finish_num) xzcf_finish_num,
+                                    sum(xzzs_finish_num) xzzs_finish_num,
+                                    sum(qtxzql_finish_num) qtxzql_finish_num,
+                                    sum(ggfw_finish_num) ggfw_finish_num
+                               from (select xm.org_id org_id,
+                                            xm.type_code app_code,
+                                            count(*) approvecount,
+                                            0 as xzxk_num,
+                                            0 as xzjl_num,
+                                            0 as xzcj_num,
+                                            0 as xzjc_num,
+                                            0 as xzgf_num,
+                                            0 as xzqz_num,
+                                            0 as xzqr_num,
+                                            0 as xzcf_num,
+                                            0 as xzzs_num,
+                                            0 as qtxzql_num,
+                                            0 as ggfw_num,
+                                            
+                                            0 as xzxk_finish_num,
+                                            0 as xzjl_finish_num,
+                                            0 as xzcj_finish_num,
+                                            0 as xzjc_finish_num,
+                                            0 as xzgf_finish_num,
+                                            0 as xzqz_finish_num,
+                                            0 as xzqr_finish_num,
+                                            0 as xzcf_finish_num,
+                                            0 as xzzs_finish_num,
+                                            0 as qtxzql_finish_num,
+                                            0 as ggfw_finish_num
+                                       from ta_spxm xm
+                                      where not exists
+                                      (select 1
+                                               from ta_spxm sp
+                                              where sp.parent_code =
+                                                    xm.rights_code)
+                                      group by xm.org_id, xm.type_code
+                                     
+                                     UNION ALL
+                                     
+                                     select i.org_id org_id,
+                                            null app_code,
+                                            0 approvecount,
+                                            sum(xzxke_num) xzxk_num,
+                                            sum(xzjl_num) xzjl_num,
+                                            sum(xzcj_num) xzcj_num,
+                                            sum(xzjc_num) xzjc_num,
+                                            sum(xzgf_num) xzgf_num,
+                                            sum(xzqz_num) xzqz_num,
+                                            sum(xzqr_num) xzqr_num,
+                                            sum(xzcf_num) xzcf_num,
+                                            sum(xzzs_num) xzzs_num,
+                                            sum(qtxzql_num) qtxzql_num,
+                                            sum(ggfw_num) ggfw_num,
+                                            
+                                            sum(xzxke_finish_num) xzxk_finish_num,
+                                            sum(xzjl_finish_num) xzjl_finish_num,
+                                            sum(xzcj_finish_num) xzcj_finish_num,
+                                            sum(xzjc_finish_num) xzjc_finish_num,
+                                            sum(xzgf_finish_num) xzgf_finish_num,
+                                            sum(xzqz_finish_num) xzqz_finish_num,
+                                            sum(xzqr_finish_num) xzqr_finish_num,
+                                            sum(xzcf_finish_num) xzcf_finish_num,
+                                            sum(xzzs_finish_num) xzzs_finish_num,
+                                            sum(qtxzql_finish_num) qtxzql_finish_num,
+                                            sum(ggfw_finish_num) ggfw_finish_num
+                                       from ta_jc_sum_supervise_info i
+                                      where i.now_date between #{beginDate,jdbcType=VARCHAR} and #{endDate,jdbcType=VARCHAR}
+                                      group by i.org_id) a
+                              group by a.org_id) b
+                      where o.ORG_ID = b.org_id) s
+              where s.PROVINCE_CODE = '430000000000'
+                and s.CITY_CODE != '000000000000'
+              group by s.CITY_CODE) aa
+    on da.AREA_CODE = aa.CITY_CODE
+ where da.PARENT_CODE = '430000000000'
+ order by da.ORDER_NUM, da.AREA_CODE
+</select>
+
+<select id="getDataOfShiZhou"  parameterType="com.chinacreator.dzjc_ruleEngine.QuanShengYingYongQingKuangStatistics" resultMap="QuanShengYingYongQingKuangStatisticsMapper">
+select da.AREA_NAME area_name,
+       da.AREA_CODE area_code,
+       nvl(aa.xzxksxs, '0') xzxksxs,
+       nvl(aa.xzjlsxs, '0') xzjlsxs,
+       nvl(aa.xzcjsxs, '0') xzcjsxs,
+       nvl(aa.xzjcsxs, '0') xzjcsxs,
+       nvl(aa.xzgfsxs, '0') xzgfsxs,
+       nvl(aa.xzqzsxs, '0') xzqzsxs,        
+       nvl(aa.xzqrsxs, '0') xzqrsxs,
+       nvl(aa.xzcfsxs, '0') xzcfsxs,
+       nvl(aa.xzzssxs, '0') xzzssxs,
+       nvl(aa.qtxzqlsxs, '0') qtxzqlsxs,
+       nvl(aa.ggfwsxs, '0') ggfwsxs,  
+
+       nvl(aa.xzxksjs, '0') xzxksjs,
+       nvl(aa.xzjlsjs, '0') xzjlsjs,
+       nvl(aa.xzcjsjs, '0') xzcjsjs,
+       nvl(aa.xzjcsjs, '0') xzjcsjs,
+       nvl(aa.xzgfsjs, '0') xzgfsjs,
+       nvl(aa.xzqzsjs, '0') xzqzsjs,
+       nvl(aa.xzqrsjs, '0') xzqrsjs,
+       nvl(aa.xzcfsjs, '0') xzcfsjs,
+       nvl(aa.xzzssjs, '0') xzzssjs,
+       nvl(aa.qtxzqlsjs, '0') qtxzqlsjs,
+       nvl(aa.ggfwsjs, '0') ggfwsjs,
+       
+       nvl(aa.xzxkbjs, '0') xzxkbjs,
+       nvl(aa.xzjlbjs, '0') xzjlbjs,
+       nvl(aa.xzcjbjs, '0') xzcjbjs,
+       nvl(aa.xzjcbjs, '0') xzjcbjs,
+       nvl(aa.xzgfbjs, '0') xzgfbjs,
+       nvl(aa.xzqzbjs, '0') xzqzbjs,
+       nvl(aa.xzqrbjs, '0') xzqrbjs,
+       nvl(aa.xzcfbjs, '0') xzcfbjs,
+       nvl(aa.xzzsbjs, '0') xzzsbjs,
+       nvl(aa.qtxzqlbjs, '0') qtxzqlbjs,
+       nvl(aa.ggfwbjs, '0') ggfwbjs
+  from v_ta_dic_area da
+  left join (select s.County_CODE,
+                    sum(s.xzxksxs) xzxksxs,
+                    sum(s.xzjlsxs) xzjlsxs,
+                    sum(s.xzcjsxs) xzcjsxs,
+                    sum(s.xzjcsxs) xzjcsxs,
+                    sum(s.xzgfsxs) xzgfsxs,
+                    sum(s.xzqzsxs) xzqzsxs,
+                    sum(s.xzqrsxs) xzqrsxs,
+                    sum(s.xzcfsxs) xzcfsxs,
+                    sum(s.xzzssxs) xzzssxs,
+                    sum(s.qtxzqlsxs) qtxzqlsxs,
+                    sum(s.ggfwsxs) ggfwsxs,
+                    
+                    sum(s.xzxksjs) xzxksjs,
+                    sum(s.xzjlsjs) xzjlsjs,
+                    sum(s.xzcjsjs) xzcjsjs,
+                    sum(s.xzjcsjs) xzjcsjs,
+                    sum(s.xzgfsjs) xzgfsjs,
+                    sum(s.xzqzsjs) xzqzsjs,
+                    sum(s.xzqrsjs) xzqrsjs,
+                    sum(s.xzcfsjs) xzcfsjs,
+                    sum(s.xzzssjs) xzzssjs,
+                    sum(s.qtxzqlsjs) qtxzqlsjs,
+                    sum(s.ggfwsjs) ggfwsjs,
+                    
+                    sum(s.xzxk_finish_num) xzxkbjs,
+                    sum(s.xzjl_finish_num) xzjlbjs,
+                    sum(s.xzcj_finish_num) xzcjbjs,
+                    sum(s.xzjc_finish_num) xzjcbjs,
+                    sum(s.xzgf_finish_num) xzgfbjs,
+                    sum(s.xzqz_finish_num) xzqzbjs,
+                    sum(s.xzqr_finish_num) xzqrbjs,
+                    sum(s.xzcf_finish_num) xzcfbjs,
+                    sum(s.xzzs_finish_num) xzzsbjs,
+                    sum(s.qtxzql_finish_num) qtxzqlbjs,
+                    sum(s.ggfw_finish_num) ggfwbjs
+               from (select o.ORG_ID,
+                            o.ORG_CODE,
+                            o.ORG_NAME ORG_SHOW_NAME,
+                            o.PROVINCE_CODE,
+                            o.CITY_CODE,
+                            o.County_CODE,
+                            o.STREET_CODE,
+                            o.ORG_LEVEL,
+                            b.xzxksxs,
+                            b.xzjlsxs,
+                            b.xzcjsxs,
+                            b.xzjcsxs,
+                            b.xzgfsxs,
+                            b.xzqzsxs,
+                            b.xzqrsxs,
+                            b.xzcfsxs,
+                            b.xzzssxs,
+                            b.qtxzqlsxs,
+                            b.ggfwsxs,
+                            
+                            b.xzxksjs,
+                            b.xzjlsjs,
+                            b.xzcjsjs,
+                            b.xzjcsjs,
+                            b.xzgfsjs,
+                            b.xzqzsjs,
+                            b.xzqrsjs,
+                            b.xzcfsjs,
+                            b.xzzssjs,
+                            b.qtxzqlsjs,
+                            b.ggfwsjs,
+                            
+                            b.xzxk_finish_num,
+                            b.xzjl_finish_num,
+                            b.xzcj_finish_num,
+                            b.xzjc_finish_num,
+                            b.xzgf_finish_num,
+                            b.xzqz_finish_num,
+                            b.xzqr_finish_num,
+                            b.xzcf_finish_num,
+                            b.xzzs_finish_num,
+                            b.qtxzql_finish_num,
+                            b.ggfw_finish_num
+                       from V_TD_SM_ORGANIZATION1 o,
+                            (select org_id,
+                                    sum(decode(app_code, 01, approvecount, 0)) xzxksxs,
+                                    sum(decode(app_code, 08, approvecount, 0)) xzjlsxs,
+                                    sum(decode(app_code, 09, approvecount, 0)) xzcjsxs,
+                                    sum(decode(app_code, 06, approvecount, 0)) xzjcsxs,
+                                    sum(decode(app_code, 05, approvecount, 0)) xzgfsxs,
+                                    sum(decode(app_code, 03, approvecount, 0)) xzqzsxs,
+                                    sum(decode(app_code, 07, approvecount, 0)) xzqrsxs,
+                                    sum(decode(app_code, 02, approvecount, 0)) xzcfsxs,
+                                    sum(decode(app_code, 04, approvecount, 0)) xzzssxs,
+                                    sum(decode(app_code, 10, approvecount, 0)) qtxzqlsxs,
+                                    sum(decode(app_code, 11, approvecount, 0)) ggfwsxs,
+                                    
+                                    sum(xzxk_num) xzxksjs,
+                                    sum(xzjl_num) xzjlsjs,
+                                    sum(xzcj_num) xzcjsjs,
+                                    sum(xzjc_num) xzjcsjs,
+                                    sum(xzgf_num) xzgfsjs,
+                                    sum(xzqz_num) xzqzsjs,
+                                    sum(xzqr_num) xzqrsjs,
+                                    sum(xzcf_num) xzcfsjs,
+                                    sum(xzzs_num) xzzssjs,
+                                    sum(qtxzql_num) qtxzqlsjs,
+                                    sum(ggfw_num) ggfwsjs,
+                                    
+                                    sum(xzxk_finish_num) xzxk_finish_num,
+                                    sum(xzjl_finish_num) xzjl_finish_num,
+                                    sum(xzcj_finish_num) xzcj_finish_num,
+                                    sum(xzjc_finish_num) xzjc_finish_num,
+                                    sum(xzgf_finish_num) xzgf_finish_num,
+                                    sum(xzqz_finish_num) xzqz_finish_num,
+                                    sum(xzqr_finish_num) xzqr_finish_num,
+                                    sum(xzcf_finish_num) xzcf_finish_num,
+                                    sum(xzzs_finish_num) xzzs_finish_num,
+                                    sum(qtxzql_finish_num) qtxzql_finish_num,
+                                    sum(ggfw_finish_num) ggfw_finish_num
+                               from (select xm.org_id org_id,
+                                            xm.type_code app_code,
+                                            count(*) approvecount,
+                                            0 as xzxk_num, 
+                                            0 as xzjl_num, 
+                                            0 as xzcj_num, 
+                                            0 as xzjc_num, 
+                                            0 as xzgf_num, 
+                                            0 as xzqz_num, 
+                                            0 as xzqr_num, 
+                                            0 as xzcf_num, 
+                                            0 as xzzs_num, 
+                                            0 as qtxzql_num,
+                                            0 as ggfw_num,
+                                            
+                                            0 as xzxk_finish_num, 
+                                            0 as xzjl_finish_num, 
+                                            0 as xzcj_finish_num, 
+                                            0 as xzjc_finish_num, 
+                                            0 as xzgf_finish_num, 
+                                            0 as xzqz_finish_num, 
+                                            0 as xzqr_finish_num, 
+                                            0 as xzcf_finish_num, 
+                                            0 as xzzs_finish_num, 
+                                            0 as qtxzql_finish_num,
+                                            0 as ggfw_finish_num
+                                       from ta_spxm xm
+                                      where not exists
+                                      (select 1
+                                               from ta_spxm sp
+                                              where sp.parent_code =
+                                                    xm.rights_code)
+                                      group by xm.org_id, xm.type_code
+                                     
+                                     UNION ALL
+                                     
+                                     select i.org_id org_id,
+                                            null app_code,
+                                            0 approvecount,
+                                            sum(xzxke_num) xzxk_num,  
+                                            sum(xzjl_num) xzjl_num,
+                                            sum(xzcj_num) xzcj_num,
+                                            sum(xzjc_num) xzjc_num,
+                                            sum(xzgf_num) xzgf_num,
+                                            sum(xzqz_num) xzqz_num,
+                                            sum(xzqr_num) xzqr_num,
+                                            sum(xzcf_num) xzcf_num,
+                                            sum(xzzs_num) xzzs_num,
+                                            sum(qtxzql_num) qtxzql_num,
+                                            sum(ggfw_num) ggfw_num,
+                                            
+                                            sum(xzxke_finish_num) xzxk_finish_num,  
+                                            sum(xzjl_finish_num) xzjl_finish_num,
+                                            sum(xzcj_finish_num) xzcj_finish_num,
+                                            sum(xzjc_finish_num) xzjc_finish_num,
+                                            sum(xzgf_finish_num) xzgf_finish_num,
+                                            sum(xzqz_finish_num) xzqz_finish_num,
+                                            sum(xzqr_finish_num) xzqr_finish_num,
+                                            sum(xzcf_finish_num) xzcf_finish_num,
+                                            sum(xzzs_finish_num) xzzs_finish_num,
+                                            sum(qtxzql_finish_num) qtxzql_finish_num,
+                                            sum(ggfw_finish_num) ggfw_finish_num
+                                       from ta_jc_sum_supervise_info i
+                                      where i.now_date between #{beginDate,jdbcType=VARCHAR} and #{endDate,jdbcType=VARCHAR}
+                                      group by i.org_id) a
+                              group by a.org_id) b
+                      where o.ORG_ID = b.org_id) s
+              where s.County_CODE != '000000000000'
+                and s.STREET_CODE = '000000000000'
+              group by s.County_CODE) aa
+ on da.AREA_CODE = aa.County_CODE
+where SUBSTR(da.AREA_CODE,5,2) = '01'
+and SUBSTR(da.AREA_CODE,7,6) = '000000'
+and da.AREA_CODE != '433101000000'
+or da.AREA_CODE = '433199000000'
+ order by da.ORDER_NUM, da.AREA_CODE 	
+</select>
+<select id="getOrgNumber"  parameterType="com.chinacreator.dzjc_ruleEngine.QuanShengYingYongQingKuangStatistics" resultMap="QuanShengYingYongQingKuangStatisticsMapper">
+	select count(org_code)org_num from V_TD_SM_ORGANIZATION1 t where t.ORG_LEVEL = '5'
+</select>
+</mapper>

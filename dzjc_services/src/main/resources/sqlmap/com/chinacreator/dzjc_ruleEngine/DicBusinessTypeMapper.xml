@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chinacreator.dzjc_ruleEngine.DicBusinessTypeMapper">	
+
+<!-- ElementID:column_sql,Generated=true -->
+<sql id="column_sql">
+		  TA_JC_DIC_BUSINESS_TYPE.business_type_id ,
+		  TA_JC_DIC_BUSINESS_TYPE.business_type_code ,
+		  TA_JC_DIC_BUSINESS_TYPE.business_type_name ,
+		  TA_JC_DIC_BUSINESS_TYPE.business_order 
+</sql>
+
+<!-- ElementID:whereClause_sql,Generated=true -->
+<sql id="whereClause_sql">
+	    <if test="businessTypeId != null">and TA_JC_DIC_BUSINESS_TYPE.business_type_id = #{businessTypeId}</if>
+	    <if test="businessTypeCode != null">and TA_JC_DIC_BUSINESS_TYPE.business_type_code = #{businessTypeCode}</if>
+	    <if test="businessTypeName != null">and TA_JC_DIC_BUSINESS_TYPE.business_type_name = #{businessTypeName}</if>
+	    <if test="businessOrder != null">and TA_JC_DIC_BUSINESS_TYPE.business_order = #{businessOrder}</if>
+</sql>
+
+
+<!-- ElementID:DicBusinessTypeResult,Generated=true -->
+<resultMap id="DicBusinessTypeResult" type="com.chinacreator.dzjc_ruleEngine.DicBusinessType">
+	<id property="businessTypeCode" column="business_type_code"/>
+	<result property="businessTypeId" column="business_type_id"/>
+	<result property="businessTypeName" column="business_type_name"/>
+	<result property="businessOrder" column="business_order"/>
+</resultMap>
+
+
+
+<!-- ElementName:cache,Generated=true -->
+<cache type="C2_Default_Dao_Cache"/>
+
+<!-- ElementID:insert,Generated=true -->
+<insert id="insert" parameterType="com.chinacreator.dzjc_ruleEngine.DicBusinessType">
+	insert into TA_JC_DIC_BUSINESS_TYPE(
+	         <if test="businessTypeId != null">business_type_id</if>
+	         <if test="businessTypeCode != null">,business_type_code</if>
+	         <if test="businessTypeName != null">,business_type_name</if>
+	         <if test="businessOrder != null">,business_order</if>
+	 	 	 )
+	 values (
+	         <if test="businessTypeId != null">#{businessTypeId,jdbcType=VARCHAR}</if>
+	         <if test="businessTypeCode != null">,#{businessTypeCode,jdbcType=CHAR}</if>
+	         <if test="businessTypeName != null">,#{businessTypeName,jdbcType=VARCHAR}</if>
+	         <if test="businessOrder != null">,#{businessOrder,jdbcType=VARCHAR}</if>
+	 	 	 )
+</insert>
+
+<!-- ElementID:count,Generated=true -->
+<select id="count" parameterType="com.chinacreator.dzjc_ruleEngine.DicBusinessType" resultType="int">
+	select count(*) from TA_JC_DIC_BUSINESS_TYPE 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<!-- ElementID:update,Generated=true -->
+<update id="update" parameterType="com.chinacreator.dzjc_ruleEngine.DicBusinessType">
+	update TA_JC_DIC_BUSINESS_TYPE
+<set>
+	<if test="businessTypeId != null">business_type_id=#{businessTypeId,jdbcType=VARCHAR},</if>
+	<if test="businessTypeName != null">business_type_name=#{businessTypeName,jdbcType=VARCHAR},</if>
+	<if test="businessOrder != null">business_order=#{businessOrder,jdbcType=VARCHAR}</if>
+</set>
+<where>
+	<choose>
+        <when test="businessTypeCode != null">and business_type_code = #{businessTypeCode}</when>
+        <otherwise>and business_type_code = </otherwise>
+    </choose>
+</where>
+</update>
+
+<!-- ElementID:updateNull,Generated=true -->
+<update id="updateNull" parameterType="map">
+	update TA_JC_DIC_BUSINESS_TYPE
+	<set>
+		<trim suffixOverrides=",">
+		    <if test="businessTypeId==null">business_type_id = null,</if>
+		    <if test="businessTypeName==null">business_type_name = null,</if>
+		    <if test="businessOrder==null">business_order = null,</if>
+		</trim>
+	</set>
+	<where>
+		<choose>
+			<when test="businessTypeCode != null">and business_type_code = #{businessTypeCode}</when>
+			<otherwise>and business_type_code = </otherwise>
+		</choose>
+	</where>
+</update>
+
+<!-- ElementID:delete,Generated=true -->
+<delete id="delete" parameterType="com.chinacreator.dzjc_ruleEngine.DicBusinessType">
+    delete from TA_JC_DIC_BUSINESS_TYPE where 1=1 and business_type_code = #{businessTypeCode}
+</delete>
+
+<!-- ElementID:select,Generated=true -->
+<select id="select" parameterType="com.chinacreator.dzjc_ruleEngine.DicBusinessType" resultMap="DicBusinessTypeResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_DIC_BUSINESS_TYPE 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+
+<!-- ElementID:insertBatch,Generated=true -->
+<insert id="insertBatch" parameterType="list">
+	insert into TA_JC_DIC_BUSINESS_TYPE (business_type_id,business_type_code,business_type_name,business_order) 
+<foreach collection="list" item="entity" index="index" separator="union all">
+		select 
+		#{entity.businessTypeId,jdbcType = VARCHAR},
+				#{entity.businessTypeCode,jdbcType = CHAR},
+				#{entity.businessTypeName,jdbcType = VARCHAR},
+				#{entity.businessOrder,jdbcType = VARCHAR}
+		from dual
+</foreach>
+</insert>
+
+<!-- ElementID:deleteBatch,Generated=true -->
+<delete id="deleteBatch" parameterType="List">
+	delete from TA_JC_DIC_BUSINESS_TYPE where business_type_code in
+<trim prefix="(" suffix=")" suffixOverrides=",">
+<foreach collection="list" item="entity" separator=",">
+	<choose>
+		<when test="@com.chinacreator.c2.dao.util.EntityBeanUtil@isEntityObj(entity)">#{entity.businessTypeCode}</when>
+		<otherwise>#{entity}</otherwise>
+	</choose>
+</foreach>
+</trim>
+</delete>
+
+<!-- ElementID:updateBatch,Generated=true -->
+<update id="updateBatch" parameterType="list">
+	<foreach collection="list" item="entity" open="begin" close=";end;" separator=";">
+			update TA_JC_DIC_BUSINESS_TYPE
+	<set>
+	<if test="entity.businessTypeId != null">business_type_id= #{entity.businessTypeId,jdbcType=VARCHAR},</if>
+	<if test="entity.businessTypeName != null">business_type_name= #{entity.businessTypeName,jdbcType=VARCHAR},</if>
+	<if test="entity.businessOrder != null">business_order= #{entity.businessOrder,jdbcType=VARCHAR}</if>
+	</set>
+		<where>
+			<choose>
+				<when test="entity.businessTypeCode != null">and business_type_code = #{entity.businessTypeCode}</when>
+				<otherwise>and business_type_code = </otherwise>
+			</choose>
+		</where>
+	</foreach>
+</update>
+
+<!-- ElementID:selectAll,Generated=true -->
+<select id="selectAll" resultMap="DicBusinessTypeResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_DIC_BUSINESS_TYPE 
+</select>
+
+<!-- ElementID:selectMany,Generated=true -->
+<select id="selectMany" parameterType="list" resultMap="DicBusinessTypeResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_JC_DIC_BUSINESS_TYPE 
+	where TA_JC_DIC_BUSINESS_TYPE.business_type_code in (
+<foreach collection="list" item="entity" separator="intersect">
+		select 
+		TA_JC_DIC_BUSINESS_TYPE.business_type_code
+	    from TA_JC_DIC_BUSINESS_TYPE 
+		 <where>
+	        <if test="entity.businessTypeId != null">and TA_JC_DIC_BUSINESS_TYPE.business_type_id = #{entity.businessTypeId}</if>
+	        <if test="entity.businessTypeCode != null">and TA_JC_DIC_BUSINESS_TYPE.business_type_code = #{entity.businessTypeCode}</if>
+	        <if test="entity.businessTypeName != null">and TA_JC_DIC_BUSINESS_TYPE.business_type_name = #{entity.businessTypeName}</if>
+	        <if test="entity.businessOrder != null">and TA_JC_DIC_BUSINESS_TYPE.business_order = #{entity.businessOrder}</if>
+		</where>
+</foreach>
+)
+</select>
+
+<!-- ElementID:selectUnion,Generated=true -->
+<select id="selectUnion" parameterType="list" resultMap="DicBusinessTypeResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_JC_DIC_BUSINESS_TYPE 
+	 INNER JOIN
+<foreach collection="list" item="entity" separator="UNION" open="(" close=")">
+		SELECT 
+			 business_type_code
+		FROM TA_JC_DIC_BUSINESS_TYPE 
+			<where>
+	        <if test="entity.businessTypeId != null">and TA_JC_DIC_BUSINESS_TYPE.business_type_id = #{entity.businessTypeId}</if>
+	        <if test="entity.businessTypeCode != null">and TA_JC_DIC_BUSINESS_TYPE.business_type_code = #{entity.businessTypeCode}</if>
+	        <if test="entity.businessTypeName != null">and TA_JC_DIC_BUSINESS_TYPE.business_type_name = #{entity.businessTypeName}</if>
+	        <if test="entity.businessOrder != null">and TA_JC_DIC_BUSINESS_TYPE.business_order = #{entity.businessOrder}</if>
+			</where>
+</foreach>
+	c2_temp_table ON TA_JC_DIC_BUSINESS_TYPE.business_type_code = c2_temp_table.business_type_code
+</select>
+
+<!-- ElementID:selectByID,Generated=true -->
+<select id="selectByID" parameterType="java.lang.String" resultMap="DicBusinessTypeResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_DIC_BUSINESS_TYPE 
+		 where TA_JC_DIC_BUSINESS_TYPE.business_type_code = #{businessTypeCode,jdbcType=CHAR}
+</select>
+
+<!-- ElementID:selectByPage,Generated=true -->
+<select id="selectByPage" parameterType="com.chinacreator.dzjc_ruleEngine.DicBusinessType" resultMap="DicBusinessTypeResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_DIC_BUSINESS_TYPE 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+</mapper>

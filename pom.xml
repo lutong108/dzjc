@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project 
+    xmlns="http://maven.apache.org/POM/4.0.0" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.chinacreator.c2</groupId>
+    <artifactId>dzjc_platform_parent</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <name>综合管理平台</name>
+    <packaging>pom</packaging>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <c2.ui.components.version>5.0.3.4</c2.ui.components.version>
+        <c2.runtime.version>5.0.4</c2.runtime.version>
+        <c2.sys.version>5.0.0-BETA4</c2.sys.version>
+        <c2.module.fs.version>1.1.9.7</c2.module.fs.version>
+        <javax.servlet.api.version>3.0.1</javax.servlet.api.version>
+        <c2.module.ueditor.version>1.1.4</c2.module.ueditor.version>
+        <c2.module.rest.docs.version>1.1.0</c2.module.rest.docs.version>
+    </properties>
+    <dependencies>
+    <dependency>
+			<groupId>com.chinacreator.c2</groupId>
+			<artifactId>c2-ui-components</artifactId>
+			<version>${c2.ui.components.version}</version>		
+		</dependency>
+			<dependency>
+			<groupId>com.chinacreator.c2</groupId>
+			<artifactId>c2-runtime</artifactId>
+			<version>${c2.runtime.version}</version>		
+		</dependency>
+		<dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>${javax.servlet.api.version}</version>
+        </dependency>
+		<dependency>
+			<groupId>com.chinacreator.c2</groupId>
+			<artifactId>c2-module-rest-docs</artifactId>
+			<version>${c2.module.rest.docs.version}</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>jsr311-api</artifactId>
+					<groupId>javax.ws.rs</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+    	<dependency>
+		   <groupId>com.jingesoft.pageoffice</groupId>
+		   <artifactId>jsf-api</artifactId>
+		   <version>1.0</version>
+		</dependency>
+		<dependency>
+		   <groupId>com.jingesoft.pageoffice</groupId>
+		   <artifactId>json-lib</artifactId>
+		   <version>2.2.3</version>
+		</dependency>
+		<dependency>
+		   <groupId>com.jingesoft.pageoffice</groupId>
+		   <artifactId>jstl</artifactId>
+		   <version>1.2</version>
+		</dependency>
+		<dependency>
+		   <groupId>com.jingesoft.pageoffice</groupId>
+		   <artifactId>jstl-impl</artifactId>
+		   <version>1.0</version>
+		</dependency>
+        <dependency>
+		   <groupId>com.jingesoft.pageoffice</groupId>
+		   <artifactId>ezmorph</artifactId>
+		   <version>1.0.3</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.chinacreator.c2</groupId>
+			<artifactId>c2-module-fs</artifactId>
+			<version>${c2.module.fs.version}</version>
+		</dependency>
+	    
+	   <!--  <dependency>
+  	 	<groupId>com.chinacreator.c2</groupId>
+  	 	<artifactId>c2-sys-oracle</artifactId>
+  	 	<version>${c2.sys.version}</version>
+  	 	</dependency> -->
+  	 	
+  	 	<dependency>
+			<groupId>com.belerweb</groupId>
+			<artifactId>pinyin4j</artifactId>
+			<version>2.5.0</version>
+		</dependency>
+		
+		
+		
+		<dependency>
+		  <groupId>org.openoffice</groupId>
+		  <artifactId>juh</artifactId>
+		  <version>3.1.0</version>
+		</dependency>
+		<dependency>
+		  <groupId>org.openoffice</groupId>
+		  <artifactId>jurt</artifactId>
+		  <version>3.1.0</version>
+		</dependency>
+		<dependency>
+		  <groupId>org.openoffice</groupId>
+		  <artifactId>ridl</artifactId>
+		  <version>3.1.0</version>
+		</dependency>
+		<dependency>
+		  <groupId>org.openoffice</groupId>
+		  <artifactId>unoil</artifactId>
+		  <version>3.1.0</version>
+		</dependency>
+		<dependency>
+		  <groupId>com.github.livesense</groupId>
+		  <artifactId>jodconverter-core</artifactId>
+		  <version>1.0.5</version>
+		</dependency>
+		
+		<dependency>
+    		<groupId>org.apache.poi</groupId>
+   		    <artifactId>poi-ooxml</artifactId>
+   		    <version>3.14</version>
+        </dependency>
+        
+		<dependency>
+			<groupId>com.amazonaws</groupId>
+			<artifactId>aws-java-sdk-s3</artifactId>
+			<version>1.11.80</version>
+		</dependency>
+        <dependency>
+		    <groupId>net.coobird</groupId>
+		    <artifactId>thumbnailator</artifactId>
+		    <version>0.4.8</version>
+		</dependency>
+		<!-- 数学计算的jar包 -->
+		<dependency>
+		    <groupId>org.apache.commons</groupId>
+		    <artifactId>commons-jexl3</artifactId>
+		    <version>3.1</version>
+		</dependency>
+		
+		
+    </dependencies>
+    <build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+    <distributionManagement>
+        <repository>
+            <id>releases</id>
+            <name>business</name>
+            <url>http://c2.chinacreator.com/nexus/content/repositories/releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>snapshots</id>
+            <name>business</name>
+            <url>http://c2.chinacreator.com/nexus/content/repositories/snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
+    <modules>
+		<module>dzjc_applications</module>
+		<module>dzjc_services</module>
+		<module>dzjc_war</module>
+    </modules>
+</project>

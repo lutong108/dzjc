@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form:Form xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dync="http://www.chinacreator.com/platform/mvc/ui/dync" xmlns:form="http://www.chinacreator.com/platform/mvc/form" name="个人测评统计报表" res="" sn="dzjc_evaluation/personEvalTable" type="form">
+  <form:control type="page/normal">
+    <form:attributes source="page/normal">
+      <dync:attribute default="" group="HTML" id="showHead" name="显示标题" value="">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="" group="HTML" id="title" name="标题" value="">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="" group="HTML" id="desc" name="描述" value="">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="false" group="HTML" id="fixedHeight" name="自动高度" value="false">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="false" group="HTML" id="compact" name="紧凑页面" value="false">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="false" group="HTML" id="dirtyCheck" name="脏检查" value="false">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="" group="注入配置" id="angularJsServices" name="注入服务" value="">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="" group="事件" id="beforeDataSourceLoad" name="数据源加载前" value="">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="" group="事件" id="afterDataSourceLoad" name="数据源加载后" value="page_afterDataSourceLoad()">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="" group="事件" id="onload" name="页面加载完成" value="">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+    </form:attributes>
+  </form:control>
+  <form:child xsi:type="form:Group" id="div4" name="简单容器(DIV)">
+    <form:control type="container/div">
+      <form:attributes source="container/div"/>
+    </form:control>
+    <form:child xsi:type="form:Group" id="div1" name="简单容器(DIV)">
+      <form:control type="container/div">
+        <form:attributes source="container/div">
+          <dync:attribute default="" group="高级自定义" id="style" name="自定义style" value="height:30px;">
+            <dync:render colSpan="2" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+    </form:child>
+    <form:child xsi:type="form:Field" binding="orgId" id="orgId" name="考核测评单位" customize="true">
+      <form:control type="widget/select_tree">
+        <form:attributes source="widget/select_tree">
+          <dync:attribute default="" group="树数据设置" id="treeBinding" name="树数据源" value="$model.orgTree">
+            <dync:render colSpan="1" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="auto" group="树显示设置" id="height" name="高度" value="350px">
+            <dync:render colSpan="1" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="" group="树事件设置" id="beforeClick" name="单击前" value="orgId_beforeClick(treeId,treeNode,clickFlag)">
+            <dync:render colSpan="1" height="0" multi="false" name="event">
+              <dync:item name="params" value="treeId,treeNode,clickFlag"/>
+            </dync:render>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="75" group="控件外观" id="lableWidth" name="lable宽度" value="85">
+            <dync:render colSpan="1" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+      <form:validation/>
+    </form:child>
+    <form:child xsi:type="form:Field" binding="evaltable" id="evaltable" name="考核表名" customize="true">
+      <form:control type="widget/select_tree">
+        <form:attributes source="widget/select_tree">
+          <dync:attribute default="" group="树数据设置" id="treeBinding" name="树数据源" value="$model.tableTree">
+            <dync:render colSpan="1" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="auto" group="树显示设置" id="height" name="高度" value="250px">
+            <dync:render colSpan="1" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="" group="树事件设置" id="beforeClick" name="单击前" value="evaltable_beforeClick(treeId,treeNode,clickFlag)">
+            <dync:render colSpan="1" height="0" multi="false" name="event">
+              <dync:item name="params" value="treeId,treeNode,clickFlag"/>
+            </dync:render>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+      <form:validation/>
+    </form:child>
+    <form:child xsi:type="form:Group" id="div3" name="简单容器(DIV)">
+      <form:control type="container/div">
+        <form:attributes source="container/div">
+          <dync:attribute default="false" group="HTML配置" id="nopadding" name="无内边距" value="true">
+            <dync:render colSpan="2" height="0" multi="false" name="checkbox"/>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+      <form:child xsi:type="form:Field" binding="beginDate" id="beginDate" name="开始日期" customize="true">
+        <form:control type="widget/date_picker">
+          <form:attributes source="widget/date_picker">
+            <dync:attribute default="6" group="基本设置" id="span" name="控件宽度" value="3">
+              <dync:render colSpan="1" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="75" group="基本设置" id="lableWidth" name="文字宽度" value="85">
+              <dync:render colSpan="1" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+          </form:attributes>
+        </form:control>
+        <form:validation/>
+      </form:child>
+      <form:child xsi:type="form:Field" binding="endDate" id="endDate" name="结束日期" customize="true">
+        <form:control type="widget/date_picker">
+          <form:attributes source="widget/date_picker">
+            <dync:attribute default="6" group="基本设置" id="span" name="控件宽度" value="3">
+              <dync:render colSpan="1" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+          </form:attributes>
+        </form:control>
+        <form:validation/>
+      </form:child>
+    </form:child>
+    <form:child xsi:type="form:Group" id="div" name="简单容器(DIV)">
+      <form:control type="container/div">
+        <form:attributes source="container/div">
+          <dync:attribute default="" group="高级自定义" id="style" name="自定义style" value="text-align: center;">
+            <dync:render colSpan="2" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+      <form:child xsi:type="form:Field" id="query_button" name="查询" customize="true">
+        <form:control type="widget/button">
+          <form:attributes source="widget/button">
+            <dync:attribute default="" group="事件设置" id="click" name="点击事件" value="query_button_click($event)">
+              <dync:render colSpan="1" height="0" multi="false" name="event">
+                <dync:item name="params" value="$event"/>
+              </dync:render>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="" group="HTML设置" id="icon" name="图标" value="fa-search">
+              <dync:render colSpan="1" height="0" multi="false" name="selectIcon"/>
+              <dync:children/>
+            </dync:attribute>
+          </form:attributes>
+        </form:control>
+        <form:validation/>
+      </form:child>
+      <form:child xsi:type="form:Field" id="clean_button" name="重置" customize="true">
+        <form:control type="widget/button">
+          <form:attributes source="widget/button">
+            <dync:attribute default="" group="事件设置" id="click" name="点击事件" value="clean_button_click($event)">
+              <dync:render colSpan="1" height="0" multi="false" name="event">
+                <dync:item name="params" value="$event"/>
+              </dync:render>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="" group="HTML设置" id="icon" name="图标" value="fa-rotate-right">
+              <dync:render colSpan="1" height="0" multi="false" name="selectIcon"/>
+              <dync:children/>
+            </dync:attribute>
+          </form:attributes>
+        </form:control>
+        <form:validation/>
+      </form:child>
+      <form:child xsi:type="form:Field" id="excelexport" name="导出" customize="true">
+        <form:control type="widget/button">
+          <form:attributes source="widget/button">
+            <dync:attribute default="" group="事件设置" id="click" name="点击事件" value="excelexport_click($event)">
+              <dync:render colSpan="1" height="0" multi="false" name="event">
+                <dync:item name="params" value="$event"/>
+              </dync:render>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="" group="HTML设置" id="iconColor" name="图标颜色" value="fa-arrow-down">
+              <dync:render colSpan="2" height="0" multi="false" name="selectIconColor"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="" group="HTML设置" id="icon" name="图标" value="fa-arrow-down">
+              <dync:render colSpan="1" height="0" multi="false" name="selectIcon"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="btn-primary" group="HTML设置" id="style" name="样式" value="btn-success">
+              <dync:render colSpan="1" height="0" multi="false" name="select">
+                <dync:item name="默认" value="btn-default"/>
+                <dync:item name="主要" value="btn-primary"/>
+                <dync:item name="成功" value="btn-success"/>
+                <dync:item name="信息" value="btn-info"/>
+                <dync:item name="警告" value="btn-warning"/>
+                <dync:item name="危险" value="btn-danger"/>
+                <dync:item name="链接" value="btn-link"/>
+                <dync:item name="通用" value="btn-white no-border"/>
+              </dync:render>
+              <dync:children/>
+            </dync:attribute>
+          </form:attributes>
+        </form:control>
+        <form:validation/>
+      </form:child>
+    </form:child>
+    <form:child xsi:type="form:Group" id="div2" name="简单容器(DIV)">
+      <form:control type="container/div">
+        <form:attributes source="container/div">
+          <dync:attribute default="" group="高级自定义" id="html" name="自定义HTML" value="div_html">
+            <dync:render colSpan="2" height="0" multi="false" name="html"/>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+    </form:child>
+  </form:child>
+  <form:datasources>
+    <form:datasource xsi:type="form:TreeDataSource" id="areaTree" name="树型数据源" base="service" type="url" url="areaOrg/v1/getAreaTree"/>
+    <form:datasource xsi:type="form:TreeDataSource" id="tableTree" name="树型数据源" base="service" type="url" url="person/v1/getEvalTable"/>
+    <form:datasource xsi:type="form:TreeDataSource" id="orgTree" name="树型数据源" base="service" type="url" url="areaOrg/v1/getOrgTree"/>
+  </form:datasources>
+  <form:scripts>//数据源加载后
+page_afterDataSourceLoad:function(){
+	$params.org_id = null;
+	$params.table_id = null;
+},
+
+//点击查询
+query_button_click:function($event){
+
+	if(endDate.value!= '' &amp;&amp; endDate.value!= null){
+		if(beginDate.value > endDate.value){
+			Messenger.error(&quot;开始时间不能大于结束时间！&quot;);
+			return;
+		}
+	}
+
+	//获取部门类型测评分数报表
+	$http.get(c2.base(&quot;service&quot;)+&quot;person/v1/getPersonEval&quot;
+									+&quot;?org_id=&quot;+$params.org_id
+									+&quot;&amp;tableId=&quot;+$params.table_id
+									+&quot;&amp;beginDate=&quot;+beginDate.value
+									+&quot;&amp;endDate=&quot;+endDate.value).success(function(data){
+		
+		if(data!=null &amp;&amp; data!=''){
+		debugger;
+			$params.parentList = data[&quot;parentList&quot;];
+			$params.itemListAndParent = data[&quot;itemListAndParent&quot;];
+			$params.itemListNoParent = data[&quot;itemListNoParent&quot;];
+			$params.userList = data[&quot;userList&quot;];
+		}else{
+			$params.parentList = null;
+			$params.itemListAndParent = null;
+			$params.itemListNoParent = null;
+			$params.userList = null;
+		}
+	});
+},
+
+//点击重置
+clean_button_click:function($event){
+	$view.mainForm.clean();
+	$params.org_id = null;
+	$params.table_id = null;
+	functions.query_button_click();
+},
+
+//选择行政区域，触发该方法，获取考核表
+orgId_beforeClick:function(treeId,treeNode,clickFlag){
+	$view.evaltable.clean();
+	$view.evaltable.getTree().refresh2({org_id:treeNode.id});
+	$params.org_id = treeNode.id;
+},
+
+//选择考核表，触发该方法，获取考核表ID
+evaltable_beforeClick:function(treeId,treeNode,clickFlag){
+	$params.table_id = treeNode.id;
+},
+
+//导出
+excelexport_click:function($event){
+	if($params.userList==null){
+		Messenger.error(&quot;表格数据为空，无法导出!&quot;);
+	}else{
+		Modal.openConfirm({message:&quot;是否导出数据？&quot;},function(data){
+
+			var url = &quot;/dzjc/PersonServlet&quot;
+				+&quot;?type=2&quot;
+				+&quot;&amp;org_id=&quot;+$params.org_id
+				+&quot;&amp;tableId=&quot;+$params.table_id
+				+&quot;&amp;beginDate=&quot;+beginDate.value
+				+&quot;&amp;endDate=&quot;+endDate.value;
+
+			window.location.href =url;
+		});
+	}
+},
+xiangqing:function(instanceid,objectName){
+Modal.open(&quot;f/dzjc_performance/EvalPointListList&quot;,{id:instanceid,pointName:objectName},function(data){
+		
+});
+
+}</form:scripts>
+  <form:htmls>&lt;style>&#xD;
+td {&#xD;
+	font-weight: bold;&#xD;
+	text-align: center;&#xD;
+	height: 30px;&#xD;
+}&#xD;
+&#xD;
+th {&#xD;
+	font-weight: normal;&#xD;
+	text-align: center;&#xD;
+	height: 25px;&#xD;
+}&#xD;
+&#xD;
+.butt {&#xD;
+	background-color: #428bca !important;&#xD;
+	color: white;&#xD;
+	cursor: pointer; outline：none;&#xD;
+	border-style: none;&#xD;
+	width: 135px;&#xD;
+	height: 20px;&#xD;
+}&#xD;
+&#xD;
+.butt:hover {&#xD;
+	text-decoration: underline;&#xD;
+}&#xD;
+&lt;/style>&#xD;
+&#xD;
+&lt;script type=&quot;text/ng-template&quot; id=&quot;div_html&quot;>&#xD;
+&#xD;
+	&lt;center>&lt;h3 ng-if=&quot;$params.userList!=null&quot;>个人绩效测评统计表&lt;/h3>&lt;/center>&lt;br/>&#xD;
+&#xD;
+	&lt;table border=&quot;1&quot; style=&quot;width:100%;&quot;>&#xD;
+		&#xD;
+		&lt;tr ng-if=&quot;$params.userList!=null&quot;>&#xD;
+			&lt;td rowspan=&quot;2&quot;>序号&lt;/td>&#xD;
+			&lt;td rowspan=&quot;2&quot;>姓名&lt;/td>&#xD;
+			&lt;td rowspan=&quot;2&quot;>单位&lt;/td>&#xD;
+			&lt;td rowspan=&quot;2&quot;>名次&lt;/td>&#xD;
+&#xD;
+			&lt;!-- 父级表头 -->&#xD;
+			&lt;td colspan={{parent.list.length}} ng-repeat=&quot;parent in $params.parentList&quot;>{{parent.parent_item_name}}&lt;/td>&#xD;
+&#xD;
+			&lt;!-- 没有父级表头的列，与父级表头同占一行 -->&#xD;
+			&lt;td rowspan=&quot;2&quot; ng-repeat=&quot;noParent in $params.itemListNoParent&quot;>{{noParent.item_name}}&lt;/td>&#xD;
+			&lt;td rowspan=&quot;2&quot;>加分&lt;/td>&#xD;
+			&lt;td rowspan=&quot;2&quot;>最终得分&lt;/td>&#xD;
+			&lt;td rowspan=&quot;2&quot;>操作&lt;/td>&#xD;
+			&#xD;
+		&lt;/tr>&#xD;
+&#xD;
+		&lt;tr>&#xD;
+			&lt;!-- 子级表头，有父表头的 -->&#xD;
+			&lt;td ng-repeat=&quot;item in $params.itemListAndParent&quot;>{{item.item_name}}&lt;/td>&#xD;
+		&lt;/tr>&#xD;
+&#xD;
+		&lt;!-- 测评机构 -->&#xD;
+		&lt;tr ng-repeat=&quot;user in $params.userList&quot;>&#xD;
+			&lt;th>{{user.rid}}&lt;/th>&#xD;
+			&lt;th>{{user.user_name}}&lt;/th>&#xD;
+			&lt;th>{{user.org_name}}&lt;/th>&#xD;
+			&lt;th>{{user.order_no}}&lt;/th>&#xD;
+&#xD;
+			&lt;th ng-repeat=&quot;scores in user.list&quot;>{{scores.final_item_value}}&lt;/th>&#xD;
+			&#xD;
+			&lt;th>{{user.bonuspoints}}&lt;/th>&#xD;
+&#xD;
+			&lt;th>{{user.sum_score}}&lt;/th>&#xD;
+			&lt;th> &lt;input class=&quot;butt&quot; title=&quot;查看详情&quot; ng-click=&quot;functions.xiangqing(user.objectId,user.user_name);&quot; type=&quot;button&quot;  value=&quot;查看详情&quot;/>&lt;/th>&#xD;
+			&#xD;
+		&lt;/tr>&#xD;
+&#xD;
+	&lt;/table>&#xD;
+&#xD;
+&lt;/script></form:htmls>
+</form:Form>

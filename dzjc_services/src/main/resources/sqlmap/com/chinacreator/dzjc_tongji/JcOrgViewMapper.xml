@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"><mapper namespace="com.chinacreator.dzjc_tongji.JcOrgViewMapper">	
+
+<!-- ElementID:column_sql,Generated=true -->
+<sql id="column_sql">
+		  V_JC_TONGJI_ORG.org_id ,
+		  V_JC_TONGJI_ORG.org_code ,
+		  V_JC_TONGJI_ORG.org_name ,
+		  V_JC_TONGJI_ORG.order_num ,
+		  V_JC_TONGJI_ORG.p_id ,
+		  V_JC_TONGJI_ORG.province_code ,
+		  V_JC_TONGJI_ORG.city_code ,
+		  V_JC_TONGJI_ORG.county_code ,
+		  V_JC_TONGJI_ORG.street_code ,
+		  V_JC_TONGJI_ORG.village_code 
+</sql>
+
+<!-- ElementID:whereClause_sql,Generated=true -->
+<sql id="whereClause_sql">
+	    <if test="orgId != null">and V_JC_TONGJI_ORG.org_id = #{orgId}</if>
+	    <if test="orgCode != null">and V_JC_TONGJI_ORG.org_code = #{orgCode}</if>
+	    <if test="orgName != null">and V_JC_TONGJI_ORG.org_name = #{orgName}</if>
+	    <if test="orderNum != null">and V_JC_TONGJI_ORG.order_num = #{orderNum}</if>
+	    <if test="pId != null">and V_JC_TONGJI_ORG.p_id = #{pId}</if>
+	    <if test="provinceCode != null">and V_JC_TONGJI_ORG.province_code = #{provinceCode}</if>
+	    <if test="cityCode != null">and V_JC_TONGJI_ORG.city_code = #{cityCode}</if>
+	    <if test="countyCode != null">and V_JC_TONGJI_ORG.county_code = #{countyCode}</if>
+	    <if test="streetCode != null">and V_JC_TONGJI_ORG.street_code = #{streetCode}</if>
+	    <if test="villageCode != null">and V_JC_TONGJI_ORG.village_code = #{villageCode}</if>
+</sql>
+
+
+<!-- ElementID:JcOrgViewResult,Generated=true -->
+<resultMap id="JcOrgViewResult" type="com.chinacreator.dzjc_tongji.JcOrgView">
+	<id property="orgId" column="org_id"/>
+	<result property="orgCode" column="org_code"/>
+	<result property="orgName" column="org_name"/>
+	<result property="orderNum" column="order_num"/>
+	<result property="pId" column="p_id"/>
+	<result property="provinceCode" column="province_code"/>
+	<result property="cityCode" column="city_code"/>
+	<result property="countyCode" column="county_code"/>
+	<result property="streetCode" column="street_code"/>
+	<result property="villageCode" column="village_code"/>
+</resultMap>
+
+
+
+
+<!-- ElementID:count,Generated=true -->
+<select id="count" parameterType="com.chinacreator.dzjc_tongji.JcOrgView" resultType="int">
+	select count(*) from V_JC_TONGJI_ORG 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<!-- ElementID:select,Generated=true -->
+<select id="select" parameterType="com.chinacreator.dzjc_tongji.JcOrgView" resultMap="JcOrgViewResult">
+	select 
+		<include refid="column_sql"/>
+	    from V_JC_TONGJI_ORG 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+
+<!-- ElementID:insertBatch,Generated=true -->
+<insert id="insertBatch" parameterType="list">
+	insert into V_JC_TONGJI_ORG (org_id,org_code,org_name,order_num,p_id,province_code,city_code,county_code,street_code,village_code) 
+<foreach collection="list" item="entity" index="index" separator="union all">
+		select 
+		#{entity.orgId,jdbcType = VARCHAR},
+				#{entity.orgCode,jdbcType = VARCHAR},
+				#{entity.orgName,jdbcType = VARCHAR},
+				#{entity.orderNum,jdbcType = NUMERIC},
+				#{entity.pId,jdbcType = VARCHAR},
+				#{entity.provinceCode,jdbcType = VARCHAR},
+				#{entity.cityCode,jdbcType = VARCHAR},
+				#{entity.countyCode,jdbcType = VARCHAR},
+				#{entity.streetCode,jdbcType = VARCHAR},
+				#{entity.villageCode,jdbcType = VARCHAR}
+		from dual
+</foreach>
+</insert>
+
+<!-- ElementID:deleteBatch,Generated=true -->
+<delete id="deleteBatch" parameterType="List">
+	delete from V_JC_TONGJI_ORG where org_id in
+<trim prefix="(" suffix=")" suffixOverrides=",">
+<foreach collection="list" item="entity" separator=",">
+	<choose>
+		<when test="@com.chinacreator.c2.dao.util.EntityBeanUtil@isEntityObj(entity)">#{entity.orgId}</when>
+		<otherwise>#{entity}</otherwise>
+	</choose>
+</foreach>
+</trim>
+</delete>
+
+
+
+<!-- ElementID:selectAll,Generated=true -->
+<select id="selectAll" resultMap="JcOrgViewResult">
+	select 
+		<include refid="column_sql"/>
+	    from V_JC_TONGJI_ORG 
+</select>
+
+<!-- ElementID:selectMany,Generated=true -->
+<select id="selectMany" parameterType="list" resultMap="JcOrgViewResult">
+select 
+	<include refid="column_sql"/> 
+	from V_JC_TONGJI_ORG 
+	where V_JC_TONGJI_ORG.org_id in (
+<foreach collection="list" item="entity" separator="intersect">
+		select 
+		V_JC_TONGJI_ORG.org_id
+	    from V_JC_TONGJI_ORG 
+		 <where>
+	        <if test="entity.orgId != null">and V_JC_TONGJI_ORG.org_id = #{entity.orgId}</if>
+	        <if test="entity.orgCode != null">and V_JC_TONGJI_ORG.org_code = #{entity.orgCode}</if>
+	        <if test="entity.orgName != null">and V_JC_TONGJI_ORG.org_name = #{entity.orgName}</if>
+	        <if test="entity.orderNum != null">and V_JC_TONGJI_ORG.order_num = #{entity.orderNum}</if>
+	        <if test="entity.pId != null">and V_JC_TONGJI_ORG.p_id = #{entity.pId}</if>
+	        <if test="entity.provinceCode != null">and V_JC_TONGJI_ORG.province_code = #{entity.provinceCode}</if>
+	        <if test="entity.cityCode != null">and V_JC_TONGJI_ORG.city_code = #{entity.cityCode}</if>
+	        <if test="entity.countyCode != null">and V_JC_TONGJI_ORG.county_code = #{entity.countyCode}</if>
+	        <if test="entity.streetCode != null">and V_JC_TONGJI_ORG.street_code = #{entity.streetCode}</if>
+	        <if test="entity.villageCode != null">and V_JC_TONGJI_ORG.village_code = #{entity.villageCode}</if>
+		</where>
+</foreach>
+)
+</select>
+
+<!-- ElementID:selectUnion,Generated=true -->
+<select id="selectUnion" parameterType="list" resultMap="JcOrgViewResult">
+select 
+	<include refid="column_sql"/> 
+	from V_JC_TONGJI_ORG 
+	 INNER JOIN
+<foreach collection="list" item="entity" separator="UNION" open="(" close=")">
+		SELECT 
+			 org_id
+		FROM V_JC_TONGJI_ORG 
+			<where>
+	        <if test="entity.orgId != null">and V_JC_TONGJI_ORG.org_id = #{entity.orgId}</if>
+	        <if test="entity.orgCode != null">and V_JC_TONGJI_ORG.org_code = #{entity.orgCode}</if>
+	        <if test="entity.orgName != null">and V_JC_TONGJI_ORG.org_name = #{entity.orgName}</if>
+	        <if test="entity.orderNum != null">and V_JC_TONGJI_ORG.order_num = #{entity.orderNum}</if>
+	        <if test="entity.pId != null">and V_JC_TONGJI_ORG.p_id = #{entity.pId}</if>
+	        <if test="entity.provinceCode != null">and V_JC_TONGJI_ORG.province_code = #{entity.provinceCode}</if>
+	        <if test="entity.cityCode != null">and V_JC_TONGJI_ORG.city_code = #{entity.cityCode}</if>
+	        <if test="entity.countyCode != null">and V_JC_TONGJI_ORG.county_code = #{entity.countyCode}</if>
+	        <if test="entity.streetCode != null">and V_JC_TONGJI_ORG.street_code = #{entity.streetCode}</if>
+	        <if test="entity.villageCode != null">and V_JC_TONGJI_ORG.village_code = #{entity.villageCode}</if>
+			</where>
+</foreach>
+	c2_temp_table ON V_JC_TONGJI_ORG.org_id = c2_temp_table.org_id
+</select>
+
+<!-- ElementID:selectByID,Generated=true -->
+<select id="selectByID" parameterType="java.lang.String" resultMap="JcOrgViewResult">
+	select 
+		<include refid="column_sql"/>
+	    from V_JC_TONGJI_ORG 
+		 where V_JC_TONGJI_ORG.org_id = #{orgId,jdbcType=VARCHAR}
+</select>
+<!-- ElementID:selectJcOrgViewByID,Generated=false -->
+<select id="selectJcOrgViewByID" parameterType="java.lang.String" resultMap="JcOrgViewResult">
+	select t1.id as org_id,
+       t1.code as org_code,
+       t1.name as org_name,
+       t1.sn as order_num,
+       t1.pid as p_id,
+       substr(t1.code,0,2) ||'0000000000' as province_code,
+       decode(substr(t1.code,3,2),'00','000000000000',substr(t1.code,0,4) ||'00000000') as city_code,
+       decode(substr(t1.code,5,2),'00','000000000000',substr(t1.code,0,6) ||'000000') as county_code,
+       decode(substr(t1.code,7,3),'000','000000000000',substr(t1.code,0,9) || '000') as street_code,
+       decode(substr(t1.code,10,3),'000','000000000000',substr(t1.code,0,12)) as village_code,
+       case when substr(t1.code,13,9) ='000000000'
+       then
+           case when substr(t1.code,7,6) ='000000'
+                 then
+                     case when substr(t1.code,5,2) ='00'
+                         then
+                                case when substr(t1.code,3,2) ='00'
+                                then '1' else '2' end
+                         else '3' end
+                else '4' end
+            else '5' end as org_level,
+        case when (substr(t1.code,3,2) != '99' or  substr(t1.code,5,20) != '00000000000000000000')  then
+           case when  substr(t1.code,5,2) = '01' and substr(t1.code,7,18) ='000000000000000000'
+           then '2' else '9' end
+      else '1' end as org_this_level
+       from v_org t1
+       where t1.id = #{orgId,jdbcType=VARCHAR}
+</select>
+<!-- ElementID:selectByOrgCode,Generated=false -->
+<select id="selectByOrgCode" parameterType="java.lang.String" resultMap="JcOrgViewResult">
+	select 
+		<include refid="column_sql"/>
+	    from V_JC_TONGJI_ORG 
+		 where V_JC_TONGJI_ORG.ORG_CODE = #{orgCode,jdbcType=VARCHAR}
+</select>
+
+<!-- ElementID:selectByPage,Generated=true -->
+<select id="selectByPage" parameterType="com.chinacreator.dzjc_tongji.JcOrgView" resultMap="JcOrgViewResult">
+	select 
+		<include refid="column_sql"/>
+	    from V_JC_TONGJI_ORG 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+</mapper>

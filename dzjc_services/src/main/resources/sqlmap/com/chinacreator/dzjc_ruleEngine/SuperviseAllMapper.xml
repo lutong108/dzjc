@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"><mapper namespace="com.chinacreator.dzjc_ruleEngine.SuperviseAllMapper">	
+
+<!-- ElementID:column_sql,Generated=true -->
+<sql id="column_sql">
+		  V_TA_JC_SUPERVISE_DELETE.id ,
+		  V_TA_JC_SUPERVISE_DELETE.supervise_result_no ,
+		  V_TA_JC_SUPERVISE_DELETE.supervise_time ,
+		  V_TA_JC_SUPERVISE_DELETE.bussiness_id ,
+		  V_TA_JC_SUPERVISE_DELETE.query_code ,
+		  V_TA_JC_SUPERVISE_DELETE.bussiness_code ,
+		  V_TA_JC_SUPERVISE_DELETE.org_id ,
+		  V_TA_JC_SUPERVISE_DELETE.org_name ,
+		  V_TA_JC_SUPERVISE_DELETE.bussiness_name ,
+		  V_TA_JC_SUPERVISE_DELETE.accept_time ,
+		  V_TA_JC_SUPERVISE_DELETE.supervise_type_no ,
+		  V_TA_JC_SUPERVISE_DELETE.supervise_type_name 
+</sql>
+
+<!-- ElementID:whereClause_sql,Generated=true -->
+<sql id="whereClause_sql">
+	    <if test="id != null">and V_TA_JC_SUPERVISE_DELETE.id = #{id}</if>
+	    <if test="superviseResultNo != null">and V_TA_JC_SUPERVISE_DELETE.supervise_result_no = #{superviseResultNo}</if>
+	    <if test="superviseTime != null">and V_TA_JC_SUPERVISE_DELETE.supervise_time = #{superviseTime}</if>
+	    <if test="bussinessId != null">and V_TA_JC_SUPERVISE_DELETE.bussiness_id = #{bussinessId}</if>
+	    <if test="queryCode != null">and V_TA_JC_SUPERVISE_DELETE.query_code = #{queryCode}</if>
+	    <if test="bussinessCode != null">and V_TA_JC_SUPERVISE_DELETE.bussiness_code = #{bussinessCode}</if>
+	    <if test="orgId != null">and V_TA_JC_SUPERVISE_DELETE.org_id = #{orgId}</if>
+	    <if test="orgName != null">and V_TA_JC_SUPERVISE_DELETE.org_name = #{orgName}</if>
+	    <if test="bussinessName != null">and V_TA_JC_SUPERVISE_DELETE.bussiness_name = #{bussinessName}</if>
+	    <if test="acceptTime != null">and V_TA_JC_SUPERVISE_DELETE.accept_time = #{acceptTime}</if>
+	    <if test="superviseTypeNo != null">and V_TA_JC_SUPERVISE_DELETE.supervise_type_no = #{superviseTypeNo}</if>
+	    <if test="superviseTypeName != null">and V_TA_JC_SUPERVISE_DELETE.supervise_type_name = #{superviseTypeName}</if>
+</sql>
+
+
+<!-- ElementID:SuperviseAllResult,Generated=true -->
+<resultMap id="SuperviseAllResult" type="com.chinacreator.dzjc_ruleEngine.SuperviseAll">
+	<id property="id" column="id"/>
+	<result property="superviseResultNo" column="supervise_result_no"/>
+	<result property="superviseTime" column="supervise_time"/>
+	<result property="bussinessId" column="bussiness_id"/>
+	<result property="queryCode" column="query_code"/>
+	<result property="bussinessCode" column="bussiness_code"/>
+	<result property="orgId" column="org_id"/>
+	<result property="orgName" column="org_name"/>
+	<result property="bussinessName" column="bussiness_name"/>
+	<result property="acceptTime" column="accept_time"/>
+	<result property="superviseTypeNo" column="supervise_type_no"/>
+	<result property="superviseTypeName" column="supervise_type_name"/>
+</resultMap>
+
+
+<!-- ElementID:insert,Generated=true -->
+<insert id="insert" parameterType="com.chinacreator.dzjc_ruleEngine.SuperviseAll">
+	insert into V_TA_JC_SUPERVISE_DELETE(
+	         <if test="id != null">id</if>
+	         <if test="superviseResultNo != null">,supervise_result_no</if>
+	         <if test="superviseTime != null">,supervise_time</if>
+	         <if test="bussinessId != null">,bussiness_id</if>
+	         <if test="queryCode != null">,query_code</if>
+	         <if test="bussinessCode != null">,bussiness_code</if>
+	         <if test="orgId != null">,org_id</if>
+	         <if test="orgName != null">,org_name</if>
+	         <if test="bussinessName != null">,bussiness_name</if>
+	         <if test="acceptTime != null">,accept_time</if>
+	         <if test="superviseTypeNo != null">,supervise_type_no</if>
+	         <if test="superviseTypeName != null">,supervise_type_name</if>
+	 	 	 )
+	 values (
+	         <if test="id != null">#{id,jdbcType=VARCHAR}</if>
+	         <if test="superviseResultNo != null">,#{superviseResultNo,jdbcType=VARCHAR}</if>
+	         <if test="superviseTime != null">,#{superviseTime,jdbcType=DATE}</if>
+	         <if test="bussinessId != null">,#{bussinessId,jdbcType=VARCHAR}</if>
+	         <if test="queryCode != null">,#{queryCode,jdbcType=VARCHAR}</if>
+	         <if test="bussinessCode != null">,#{bussinessCode,jdbcType=VARCHAR}</if>
+	         <if test="orgId != null">,#{orgId,jdbcType=VARCHAR}</if>
+	         <if test="orgName != null">,#{orgName,jdbcType=VARCHAR}</if>
+	         <if test="bussinessName != null">,#{bussinessName,jdbcType=VARCHAR}</if>
+	         <if test="acceptTime != null">,#{acceptTime,jdbcType=DATE}</if>
+	         <if test="superviseTypeNo != null">,#{superviseTypeNo,jdbcType=VARCHAR}</if>
+	         <if test="superviseTypeName != null">,#{superviseTypeName,jdbcType=VARCHAR}</if>
+	 	 	 )
+</insert>
+
+<!-- ElementID:count,Generated=true -->
+<select id="count" parameterType="com.chinacreator.dzjc_ruleEngine.SuperviseAll" resultType="int">
+	select count(*) from V_TA_JC_SUPERVISE_DELETE 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<!-- ElementID:update,Generated=true -->
+<update id="update" parameterType="com.chinacreator.dzjc_ruleEngine.SuperviseAll">
+	update V_TA_JC_SUPERVISE_DELETE
+<set>
+	<if test="superviseResultNo != null">supervise_result_no=#{superviseResultNo,jdbcType=VARCHAR},</if>
+	<if test="superviseTime != null">supervise_time=#{superviseTime,jdbcType=DATE},</if>
+	<if test="bussinessId != null">bussiness_id=#{bussinessId,jdbcType=VARCHAR},</if>
+	<if test="queryCode != null">query_code=#{queryCode,jdbcType=VARCHAR},</if>
+	<if test="bussinessCode != null">bussiness_code=#{bussinessCode,jdbcType=VARCHAR},</if>
+	<if test="orgId != null">org_id=#{orgId,jdbcType=VARCHAR},</if>
+	<if test="orgName != null">org_name=#{orgName,jdbcType=VARCHAR},</if>
+	<if test="bussinessName != null">bussiness_name=#{bussinessName,jdbcType=VARCHAR},</if>
+	<if test="acceptTime != null">accept_time=#{acceptTime,jdbcType=DATE},</if>
+	<if test="superviseTypeNo != null">supervise_type_no=#{superviseTypeNo,jdbcType=VARCHAR},</if>
+	<if test="superviseTypeName != null">supervise_type_name=#{superviseTypeName,jdbcType=VARCHAR}</if>
+</set>
+<where>
+	<choose>
+        <when test="id != null">and id = #{id}</when>
+        <otherwise>and id = </otherwise>
+    </choose>
+</where>
+</update>
+
+<!-- ElementID:updateNull,Generated=true -->
+<update id="updateNull" parameterType="map">
+	update V_TA_JC_SUPERVISE_DELETE
+	<set>
+		<trim suffixOverrides=",">
+		    <if test="superviseResultNo==null">supervise_result_no = null,</if>
+		    <if test="superviseTime==null">supervise_time = null,</if>
+		    <if test="bussinessId==null">bussiness_id = null,</if>
+		    <if test="queryCode==null">query_code = null,</if>
+		    <if test="bussinessCode==null">bussiness_code = null,</if>
+		    <if test="orgId==null">org_id = null,</if>
+		    <if test="orgName==null">org_name = null,</if>
+		    <if test="bussinessName==null">bussiness_name = null,</if>
+		    <if test="acceptTime==null">accept_time = null,</if>
+		    <if test="superviseTypeNo==null">supervise_type_no = null,</if>
+		    <if test="superviseTypeName==null">supervise_type_name = null,</if>
+		</trim>
+	</set>
+	<where>
+		<choose>
+			<when test="id != null">and id = #{id}</when>
+			<otherwise>and id = </otherwise>
+		</choose>
+	</where>
+</update>
+
+<!-- ElementID:delete,Generated=true -->
+<delete id="delete" parameterType="com.chinacreator.dzjc_ruleEngine.SuperviseAll">
+    delete from V_TA_JC_SUPERVISE_DELETE where 1=1 and id = #{id}
+</delete>
+
+<!-- ElementID:select,Generated=true -->
+<select id="select" parameterType="com.chinacreator.dzjc_ruleEngine.SuperviseAll" resultMap="SuperviseAllResult">
+	select 
+		<include refid="column_sql"/>
+	    from V_TA_JC_SUPERVISE_DELETE 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+
+<!-- ElementID:insertBatch,Generated=true -->
+<insert id="insertBatch" parameterType="list">
+	insert into V_TA_JC_SUPERVISE_DELETE (id,supervise_result_no,supervise_time,bussiness_id,query_code,bussiness_code,org_id,org_name,bussiness_name,accept_time,supervise_type_no,supervise_type_name) 
+<foreach collection="list" item="entity" index="index" separator="union all">
+		select 
+		#{entity.id,jdbcType = VARCHAR},
+				#{entity.superviseResultNo,jdbcType = VARCHAR},
+				#{entity.superviseTime,jdbcType = DATE},
+				#{entity.bussinessId,jdbcType = VARCHAR},
+				#{entity.queryCode,jdbcType = VARCHAR},
+				#{entity.bussinessCode,jdbcType = VARCHAR},
+				#{entity.orgId,jdbcType = VARCHAR},
+				#{entity.orgName,jdbcType = VARCHAR},
+				#{entity.bussinessName,jdbcType = VARCHAR},
+				#{entity.acceptTime,jdbcType = DATE},
+				#{entity.superviseTypeNo,jdbcType = VARCHAR},
+				#{entity.superviseTypeName,jdbcType = VARCHAR}
+		from dual
+</foreach>
+</insert>
+
+<!-- ElementID:deleteBatch,Generated=true -->
+<delete id="deleteBatch" parameterType="List">
+	delete from V_TA_JC_SUPERVISE_DELETE where id in
+<trim prefix="(" suffix=")" suffixOverrides=",">
+<foreach collection="list" item="entity" separator=",">
+	<choose>
+		<when test="@com.chinacreator.c2.dao.util.EntityBeanUtil@isEntityObj(entity)">#{entity.id}</when>
+		<otherwise>#{entity}</otherwise>
+	</choose>
+</foreach>
+</trim>
+</delete>
+
+<!-- ElementID:updateBatch,Generated=true -->
+<update id="updateBatch" parameterType="list">
+	<foreach collection="list" item="entity" open="begin" close=";end;" separator=";">
+			update V_TA_JC_SUPERVISE_DELETE
+	<set>
+	<if test="entity.superviseResultNo != null">supervise_result_no= #{entity.superviseResultNo,jdbcType=VARCHAR},</if>
+	<if test="entity.superviseTime != null">supervise_time= #{entity.superviseTime,jdbcType=DATE},</if>
+	<if test="entity.bussinessId != null">bussiness_id= #{entity.bussinessId,jdbcType=VARCHAR},</if>
+	<if test="entity.queryCode != null">query_code= #{entity.queryCode,jdbcType=VARCHAR},</if>
+	<if test="entity.bussinessCode != null">bussiness_code= #{entity.bussinessCode,jdbcType=VARCHAR},</if>
+	<if test="entity.orgId != null">org_id= #{entity.orgId,jdbcType=VARCHAR},</if>
+	<if test="entity.orgName != null">org_name= #{entity.orgName,jdbcType=VARCHAR},</if>
+	<if test="entity.bussinessName != null">bussiness_name= #{entity.bussinessName,jdbcType=VARCHAR},</if>
+	<if test="entity.acceptTime != null">accept_time= #{entity.acceptTime,jdbcType=DATE},</if>
+	<if test="entity.superviseTypeNo != null">supervise_type_no= #{entity.superviseTypeNo,jdbcType=VARCHAR},</if>
+	<if test="entity.superviseTypeName != null">supervise_type_name= #{entity.superviseTypeName,jdbcType=VARCHAR}</if>
+	</set>
+		<where>
+			<choose>
+				<when test="entity.id != null">and id = #{entity.id}</when>
+				<otherwise>and id = </otherwise>
+			</choose>
+		</where>
+	</foreach>
+</update>
+
+<!-- ElementID:selectAll,Generated=true -->
+<select id="selectAll" resultMap="SuperviseAllResult">
+	select 
+		<include refid="column_sql"/>
+	    from V_TA_JC_SUPERVISE_DELETE 
+</select>
+
+<!-- ElementID:selectMany,Generated=true -->
+<select id="selectMany" parameterType="list" resultMap="SuperviseAllResult">
+select 
+	<include refid="column_sql"/> 
+	from V_TA_JC_SUPERVISE_DELETE 
+	where V_TA_JC_SUPERVISE_DELETE.id in (
+<foreach collection="list" item="entity" separator="intersect">
+		select 
+		V_TA_JC_SUPERVISE_DELETE.id
+	    from V_TA_JC_SUPERVISE_DELETE 
+		 <where>
+	        <if test="entity.id != null">and V_TA_JC_SUPERVISE_DELETE.id = #{entity.id}</if>
+	        <if test="entity.superviseResultNo != null">and V_TA_JC_SUPERVISE_DELETE.supervise_result_no = #{entity.superviseResultNo}</if>
+	        <if test="entity.superviseTime != null">and V_TA_JC_SUPERVISE_DELETE.supervise_time = #{entity.superviseTime}</if>
+	        <if test="entity.bussinessId != null">and V_TA_JC_SUPERVISE_DELETE.bussiness_id = #{entity.bussinessId}</if>
+	        <if test="entity.queryCode != null">and V_TA_JC_SUPERVISE_DELETE.query_code = #{entity.queryCode}</if>
+	        <if test="entity.bussinessCode != null">and V_TA_JC_SUPERVISE_DELETE.bussiness_code = #{entity.bussinessCode}</if>
+	        <if test="entity.orgId != null">and V_TA_JC_SUPERVISE_DELETE.org_id = #{entity.orgId}</if>
+	        <if test="entity.orgName != null">and V_TA_JC_SUPERVISE_DELETE.org_name = #{entity.orgName}</if>
+	        <if test="entity.bussinessName != null">and V_TA_JC_SUPERVISE_DELETE.bussiness_name = #{entity.bussinessName}</if>
+	        <if test="entity.acceptTime != null">and V_TA_JC_SUPERVISE_DELETE.accept_time = #{entity.acceptTime}</if>
+	        <if test="entity.superviseTypeNo != null">and V_TA_JC_SUPERVISE_DELETE.supervise_type_no = #{entity.superviseTypeNo}</if>
+	        <if test="entity.superviseTypeName != null">and V_TA_JC_SUPERVISE_DELETE.supervise_type_name = #{entity.superviseTypeName}</if>
+		</where>
+</foreach>
+)
+</select>
+
+<!-- ElementID:selectUnion,Generated=true -->
+<select id="selectUnion" parameterType="list" resultMap="SuperviseAllResult">
+select 
+	<include refid="column_sql"/> 
+	from V_TA_JC_SUPERVISE_DELETE 
+	 INNER JOIN
+<foreach collection="list" item="entity" separator="UNION" open="(" close=")">
+		SELECT 
+			 id
+		FROM V_TA_JC_SUPERVISE_DELETE 
+			<where>
+	        <if test="entity.id != null">and V_TA_JC_SUPERVISE_DELETE.id = #{entity.id}</if>
+	        <if test="entity.superviseResultNo != null">and V_TA_JC_SUPERVISE_DELETE.supervise_result_no = #{entity.superviseResultNo}</if>
+	        <if test="entity.superviseTime != null">and V_TA_JC_SUPERVISE_DELETE.supervise_time = #{entity.superviseTime}</if>
+	        <if test="entity.bussinessId != null">and V_TA_JC_SUPERVISE_DELETE.bussiness_id = #{entity.bussinessId}</if>
+	        <if test="entity.queryCode != null">and V_TA_JC_SUPERVISE_DELETE.query_code = #{entity.queryCode}</if>
+	        <if test="entity.bussinessCode != null">and V_TA_JC_SUPERVISE_DELETE.bussiness_code = #{entity.bussinessCode}</if>
+	        <if test="entity.orgId != null">and V_TA_JC_SUPERVISE_DELETE.org_id = #{entity.orgId}</if>
+	        <if test="entity.orgName != null">and V_TA_JC_SUPERVISE_DELETE.org_name = #{entity.orgName}</if>
+	        <if test="entity.bussinessName != null">and V_TA_JC_SUPERVISE_DELETE.bussiness_name = #{entity.bussinessName}</if>
+	        <if test="entity.acceptTime != null">and V_TA_JC_SUPERVISE_DELETE.accept_time = #{entity.acceptTime}</if>
+	        <if test="entity.superviseTypeNo != null">and V_TA_JC_SUPERVISE_DELETE.supervise_type_no = #{entity.superviseTypeNo}</if>
+	        <if test="entity.superviseTypeName != null">and V_TA_JC_SUPERVISE_DELETE.supervise_type_name = #{entity.superviseTypeName}</if>
+			</where>
+</foreach>
+	c2_temp_table ON V_TA_JC_SUPERVISE_DELETE.id = c2_temp_table.id
+</select>
+
+<!-- ElementID:selectByID,Generated=true -->
+<select id="selectByID" parameterType="java.lang.String" resultMap="SuperviseAllResult">
+	select 
+		<include refid="column_sql"/>
+	    from V_TA_JC_SUPERVISE_DELETE 
+		 where V_TA_JC_SUPERVISE_DELETE.id = #{id,jdbcType=VARCHAR}
+</select>
+
+<!-- ElementID:selectByPage,Generated=true -->
+<select id="selectByPage" parameterType="com.chinacreator.dzjc_ruleEngine.SuperviseAll" resultMap="SuperviseAllResult">
+	select 
+		<include refid="column_sql"/>
+	    from V_TA_JC_SUPERVISE_DELETE 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+</mapper>

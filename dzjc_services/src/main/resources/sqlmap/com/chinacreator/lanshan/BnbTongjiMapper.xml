@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"><mapper namespace="com.chinacreator.lanshan.BnbTongjiMapper">	
+
+<!-- ElementID:column_sql,Generated=true -->
+<sql id="column_sql">
+		  V_BNB_TONGJI.v_bnb_tongji_id ,
+		  V_BNB_TONGJI.jdzs ,
+		  V_BNB_TONGJI.bjzs ,
+		  V_BNB_TONGJI.bjs_wgxt ,
+		  V_BNB_TONGJI.bjs_djxt ,
+		  V_BNB_TONGJI.bjs_ylsx ,
+		  V_BNB_TONGJI.bjs_elsx ,
+		  V_BNB_TONGJI.order_month 
+</sql>
+
+<!-- ElementID:whereClause_sql,Generated=true -->
+<sql id="whereClause_sql">
+	    <if test="vBnbTongjiId != null">and V_BNB_TONGJI.v_bnb_tongji_id = #{vBnbTongjiId}</if>
+	    <if test="jdzs != null">and V_BNB_TONGJI.jdzs = #{jdzs}</if>
+	    <if test="bjzs != null">and V_BNB_TONGJI.bjzs = #{bjzs}</if>
+	    <if test="bjsWgxt != null">and V_BNB_TONGJI.bjs_wgxt = #{bjsWgxt}</if>
+	    <if test="bjsDjxt != null">and V_BNB_TONGJI.bjs_djxt = #{bjsDjxt}</if>
+	    <if test="bjsYlsx != null">and V_BNB_TONGJI.bjs_ylsx = #{bjsYlsx}</if>
+	    <if test="bjsElsx != null">and V_BNB_TONGJI.bjs_elsx = #{bjsElsx}</if>
+	    <if test="orderMonth != null">and V_BNB_TONGJI.order_month = #{orderMonth}</if>
+</sql>
+
+
+<!-- ElementID:BnbTongjiResult,Generated=true -->
+<resultMap id="BnbTongjiResult" type="com.chinacreator.lanshan.BnbTongji">
+	<id property="vBnbTongjiId" column="v_bnb_tongji_id"/>
+	<result property="jdzs" column="jdzs"/>
+	<result property="bjzs" column="bjzs"/>
+	<result property="bjsWgxt" column="bjs_wgxt"/>
+	<result property="bjsDjxt" column="bjs_djxt"/>
+	<result property="bjsYlsx" column="bjs_ylsx"/>
+	<result property="bjsElsx" column="bjs_elsx"/>
+	<result property="orderMonth" column="order_month"/>
+</resultMap>
+
+
+<!-- ElementID:insert,Generated=true -->
+<insert id="insert" parameterType="com.chinacreator.lanshan.BnbTongji">
+	insert into V_BNB_TONGJI(
+	         <if test="vBnbTongjiId != null">v_bnb_tongji_id</if>
+	         <if test="jdzs != null">,jdzs</if>
+	         <if test="bjzs != null">,bjzs</if>
+	         <if test="bjsWgxt != null">,bjs_wgxt</if>
+	         <if test="bjsDjxt != null">,bjs_djxt</if>
+	         <if test="bjsYlsx != null">,bjs_ylsx</if>
+	         <if test="bjsElsx != null">,bjs_elsx</if>
+	         <if test="orderMonth != null">,order_month</if>
+	 	 	 )
+	 values (
+	         <if test="vBnbTongjiId != null">#{vBnbTongjiId,jdbcType=VARCHAR}</if>
+	         <if test="jdzs != null">,#{jdzs,jdbcType=NUMERIC}</if>
+	         <if test="bjzs != null">,#{bjzs,jdbcType=NUMERIC}</if>
+	         <if test="bjsWgxt != null">,#{bjsWgxt,jdbcType=NUMERIC}</if>
+	         <if test="bjsDjxt != null">,#{bjsDjxt,jdbcType=NUMERIC}</if>
+	         <if test="bjsYlsx != null">,#{bjsYlsx,jdbcType=NUMERIC}</if>
+	         <if test="bjsElsx != null">,#{bjsElsx,jdbcType=NUMERIC}</if>
+	         <if test="orderMonth != null">,#{orderMonth,jdbcType=VARCHAR}</if>
+	 	 	 )
+</insert>
+
+<!-- ElementID:count,Generated=true -->
+<select id="count" parameterType="com.chinacreator.lanshan.BnbTongji" resultType="int">
+	select count(*) from V_BNB_TONGJI 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<!-- ElementID:update,Generated=true -->
+<update id="update" parameterType="com.chinacreator.lanshan.BnbTongji">
+	update V_BNB_TONGJI
+<set>
+	<if test="jdzs != null">jdzs=#{jdzs,jdbcType=NUMERIC},</if>
+	<if test="bjzs != null">bjzs=#{bjzs,jdbcType=NUMERIC},</if>
+	<if test="bjsWgxt != null">bjs_wgxt=#{bjsWgxt,jdbcType=NUMERIC},</if>
+	<if test="bjsDjxt != null">bjs_djxt=#{bjsDjxt,jdbcType=NUMERIC},</if>
+	<if test="bjsYlsx != null">bjs_ylsx=#{bjsYlsx,jdbcType=NUMERIC},</if>
+	<if test="bjsElsx != null">bjs_elsx=#{bjsElsx,jdbcType=NUMERIC},</if>
+	<if test="orderMonth != null">order_month=#{orderMonth,jdbcType=VARCHAR}</if>
+</set>
+<where>
+	<choose>
+        <when test="vBnbTongjiId != null">and v_bnb_tongji_id = #{vBnbTongjiId}</when>
+        <otherwise>and v_bnb_tongji_id = </otherwise>
+    </choose>
+</where>
+</update>
+
+<!-- ElementID:updateNull,Generated=true -->
+<update id="updateNull" parameterType="map">
+	update V_BNB_TONGJI
+	<set>
+		<trim suffixOverrides=",">
+		    <if test="jdzs==null">jdzs = null,</if>
+		    <if test="bjzs==null">bjzs = null,</if>
+		    <if test="bjsWgxt==null">bjs_wgxt = null,</if>
+		    <if test="bjsDjxt==null">bjs_djxt = null,</if>
+		    <if test="bjsYlsx==null">bjs_ylsx = null,</if>
+		    <if test="bjsElsx==null">bjs_elsx = null,</if>
+		    <if test="orderMonth==null">order_month = null,</if>
+		</trim>
+	</set>
+	<where>
+		<choose>
+			<when test="vBnbTongjiId != null">and v_bnb_tongji_id = #{vBnbTongjiId}</when>
+			<otherwise>and v_bnb_tongji_id = </otherwise>
+		</choose>
+	</where>
+</update>
+
+<!-- ElementID:delete,Generated=true -->
+<delete id="delete" parameterType="com.chinacreator.lanshan.BnbTongji">
+    delete from V_BNB_TONGJI where 1=1 and v_bnb_tongji_id = #{vBnbTongjiId}
+</delete>
+
+<!-- ElementID:select,Generated=true -->
+<select id="select" parameterType="com.chinacreator.lanshan.BnbTongji" resultMap="BnbTongjiResult">
+	select 
+		<include refid="column_sql"/>
+	    from V_BNB_TONGJI 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+
+<!-- ElementID:insertBatch,Generated=true -->
+<insert id="insertBatch" parameterType="list">
+	insert into V_BNB_TONGJI (v_bnb_tongji_id,jdzs,bjzs,bjs_wgxt,bjs_djxt,bjs_ylsx,bjs_elsx,order_month) 
+<foreach collection="list" item="entity" index="index" separator="union all">
+		select 
+		#{entity.vBnbTongjiId,jdbcType = VARCHAR},
+				#{entity.jdzs,jdbcType = NUMERIC},
+				#{entity.bjzs,jdbcType = NUMERIC},
+				#{entity.bjsWgxt,jdbcType = NUMERIC},
+				#{entity.bjsDjxt,jdbcType = NUMERIC},
+				#{entity.bjsYlsx,jdbcType = NUMERIC},
+				#{entity.bjsElsx,jdbcType = NUMERIC},
+				#{entity.orderMonth,jdbcType = VARCHAR}
+		from dual
+</foreach>
+</insert>
+
+<!-- ElementID:deleteBatch,Generated=true -->
+<delete id="deleteBatch" parameterType="List">
+	delete from V_BNB_TONGJI where v_bnb_tongji_id in
+<trim prefix="(" suffix=")" suffixOverrides=",">
+<foreach collection="list" item="entity" separator=",">
+	<choose>
+		<when test="@com.chinacreator.c2.dao.util.EntityBeanUtil@isEntityObj(entity)">#{entity.vBnbTongjiId}</when>
+		<otherwise>#{entity}</otherwise>
+	</choose>
+</foreach>
+</trim>
+</delete>
+
+<!-- ElementID:updateBatch,Generated=true -->
+<update id="updateBatch" parameterType="list">
+	<foreach collection="list" item="entity" open="begin" close=";end;" separator=";">
+			update V_BNB_TONGJI
+	<set>
+	<if test="entity.jdzs != null">jdzs= #{entity.jdzs,jdbcType=NUMERIC},</if>
+	<if test="entity.bjzs != null">bjzs= #{entity.bjzs,jdbcType=NUMERIC},</if>
+	<if test="entity.bjsWgxt != null">bjs_wgxt= #{entity.bjsWgxt,jdbcType=NUMERIC},</if>
+	<if test="entity.bjsDjxt != null">bjs_djxt= #{entity.bjsDjxt,jdbcType=NUMERIC},</if>
+	<if test="entity.bjsYlsx != null">bjs_ylsx= #{entity.bjsYlsx,jdbcType=NUMERIC},</if>
+	<if test="entity.bjsElsx != null">bjs_elsx= #{entity.bjsElsx,jdbcType=NUMERIC},</if>
+	<if test="entity.orderMonth != null">order_month= #{entity.orderMonth,jdbcType=VARCHAR}</if>
+	</set>
+		<where>
+			<choose>
+				<when test="entity.vBnbTongjiId != null">and v_bnb_tongji_id = #{entity.vBnbTongjiId}</when>
+				<otherwise>and v_bnb_tongji_id = </otherwise>
+			</choose>
+		</where>
+	</foreach>
+</update>
+
+<!-- ElementID:selectAll,Generated=true -->
+<select id="selectAll" resultMap="BnbTongjiResult">
+	select 
+		<include refid="column_sql"/>
+	    from V_BNB_TONGJI 
+</select>
+
+<!-- ElementID:selectMany,Generated=true -->
+<select id="selectMany" parameterType="list" resultMap="BnbTongjiResult">
+select 
+	<include refid="column_sql"/> 
+	from V_BNB_TONGJI 
+	where V_BNB_TONGJI.v_bnb_tongji_id in (
+<foreach collection="list" item="entity" separator="intersect">
+		select 
+		V_BNB_TONGJI.v_bnb_tongji_id
+	    from V_BNB_TONGJI 
+		 <where>
+	        <if test="entity.vBnbTongjiId != null">and V_BNB_TONGJI.v_bnb_tongji_id = #{entity.vBnbTongjiId}</if>
+	        <if test="entity.jdzs != null">and V_BNB_TONGJI.jdzs = #{entity.jdzs}</if>
+	        <if test="entity.bjzs != null">and V_BNB_TONGJI.bjzs = #{entity.bjzs}</if>
+	        <if test="entity.bjsWgxt != null">and V_BNB_TONGJI.bjs_wgxt = #{entity.bjsWgxt}</if>
+	        <if test="entity.bjsDjxt != null">and V_BNB_TONGJI.bjs_djxt = #{entity.bjsDjxt}</if>
+	        <if test="entity.bjsYlsx != null">and V_BNB_TONGJI.bjs_ylsx = #{entity.bjsYlsx}</if>
+	        <if test="entity.bjsElsx != null">and V_BNB_TONGJI.bjs_elsx = #{entity.bjsElsx}</if>
+	        <if test="entity.orderMonth != null">and V_BNB_TONGJI.order_month = #{entity.orderMonth}</if>
+		</where>
+</foreach>
+)
+</select>
+
+<!-- ElementID:selectUnion,Generated=true -->
+<select id="selectUnion" parameterType="list" resultMap="BnbTongjiResult">
+select 
+	<include refid="column_sql"/> 
+	from V_BNB_TONGJI 
+	 INNER JOIN
+<foreach collection="list" item="entity" separator="UNION" open="(" close=")">
+		SELECT 
+			 v_bnb_tongji_id
+		FROM V_BNB_TONGJI 
+			<where>
+	        <if test="entity.vBnbTongjiId != null">and V_BNB_TONGJI.v_bnb_tongji_id = #{entity.vBnbTongjiId}</if>
+	        <if test="entity.jdzs != null">and V_BNB_TONGJI.jdzs = #{entity.jdzs}</if>
+	        <if test="entity.bjzs != null">and V_BNB_TONGJI.bjzs = #{entity.bjzs}</if>
+	        <if test="entity.bjsWgxt != null">and V_BNB_TONGJI.bjs_wgxt = #{entity.bjsWgxt}</if>
+	        <if test="entity.bjsDjxt != null">and V_BNB_TONGJI.bjs_djxt = #{entity.bjsDjxt}</if>
+	        <if test="entity.bjsYlsx != null">and V_BNB_TONGJI.bjs_ylsx = #{entity.bjsYlsx}</if>
+	        <if test="entity.bjsElsx != null">and V_BNB_TONGJI.bjs_elsx = #{entity.bjsElsx}</if>
+	        <if test="entity.orderMonth != null">and V_BNB_TONGJI.order_month = #{entity.orderMonth}</if>
+			</where>
+</foreach>
+	c2_temp_table ON V_BNB_TONGJI.v_bnb_tongji_id = c2_temp_table.v_bnb_tongji_id
+</select>
+
+<!-- ElementID:selectByID,Generated=true -->
+<select id="selectByID" parameterType="java.lang.String" resultMap="BnbTongjiResult">
+	select 
+		<include refid="column_sql"/>
+	    from V_BNB_TONGJI 
+		 where V_BNB_TONGJI.v_bnb_tongji_id = #{vBnbTongjiId,jdbcType=VARCHAR}
+</select>
+
+<select id="selectByPage" parameterType="com.chinacreator.lanshan.BnbTongji" resultMap="BnbTongjiResult">
+	select 
+		<include refid="column_sql"/>
+	    from V_BNB_TONGJI
+	    <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<!-- Excel数据查询 -->
+<select id="selectExcelList" parameterType="com.chinacreator.lanshan.BnbTongjiVo" resultMap="BnbTongjiResult">
+	select 
+		<include refid="column_sql"/>
+	    from V_BNB_TONGJI
+	    <where>
+			1=1
+			<if test="orderMonth != null">and V_BNB_TONGJI.order_month = #{orderMonth}</if>
+			<if test="fromMonth != null">and V_BNB_TONGJI.order_month &gt;= #{fromMonth}</if>
+			<if test="endMonth != null">and V_BNB_TONGJI.order_month &lt;= #{endMonth}</if>
+		</where>
+</select>
+
+</mapper>

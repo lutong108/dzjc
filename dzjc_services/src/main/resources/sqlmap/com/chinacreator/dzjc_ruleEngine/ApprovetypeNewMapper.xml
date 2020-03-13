@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"><mapper namespace="com.chinacreator.dzjc_ruleEngine.ApprovetypeNewMapper">	
+
+<!-- ElementID:column_sql,Generated=true -->
+<sql id="column_sql">
+		  v_jc_ta_dic_approvetype.type_code ,
+		  v_jc_ta_dic_approvetype.type_name ,
+		  v_jc_ta_dic_approvetype.seq ,
+		  v_jc_ta_dic_approvetype.order_num ,
+		  v_jc_ta_dic_approvetype.parent_type_code 
+</sql>
+
+<!-- ElementID:whereClause_sql,Generated=true -->
+<sql id="whereClause_sql">
+	    <if test="typeCode != null">and v_jc_ta_dic_approvetype.type_code = #{typeCode}</if>
+	    <if test="typeName != null">and v_jc_ta_dic_approvetype.type_name = #{typeName}</if>
+	    <if test="seq != null">and v_jc_ta_dic_approvetype.seq = #{seq}</if>
+	    <if test="orderNum != null">and v_jc_ta_dic_approvetype.order_num = #{orderNum}</if>
+	    <if test="parentTypeCode != null">and v_jc_ta_dic_approvetype.parent_type_code = #{parentTypeCode}</if>
+</sql>
+
+
+<!-- ElementID:ApprovetypeNewResult,Generated=true -->
+<resultMap id="ApprovetypeNewResult" type="com.chinacreator.dzjc_ruleEngine.ApprovetypeNew">
+	<id property="seq" column="seq"/>
+	<result property="typeCode" column="type_code"/>
+	<result property="typeName" column="type_name"/>
+	<result property="orderNum" column="order_num"/>
+	<result property="parentTypeCode" column="parent_type_code"/>
+</resultMap>
+
+
+
+
+
+
+<!-- ElementID:insert,Generated=true -->
+<insert id="insert" parameterType="com.chinacreator.dzjc_ruleEngine.ApprovetypeNew">
+	insert into v_jc_ta_dic_approvetype(
+	         <if test="typeCode != null">type_code</if>
+	         <if test="typeName != null">,type_name</if>
+	         <if test="seq != null">,seq</if>
+	         <if test="orderNum != null">,order_num</if>
+	         <if test="parentTypeCode != null">,parent_type_code</if>
+	 	 	 )
+	 values (
+	         <if test="typeCode != null">#{typeCode,jdbcType=VARCHAR}</if>
+	         <if test="typeName != null">,#{typeName,jdbcType=VARCHAR}</if>
+	         <if test="seq != null">,#{seq,jdbcType=NUMERIC}</if>
+	         <if test="orderNum != null">,#{orderNum,jdbcType=NUMERIC}</if>
+	         <if test="parentTypeCode != null">,#{parentTypeCode,jdbcType=VARCHAR}</if>
+	 	 	 )
+</insert>
+
+<!-- ElementID:count,Generated=true -->
+<select id="count" parameterType="com.chinacreator.dzjc_ruleEngine.ApprovetypeNew" resultType="int">
+	select count(*) from v_jc_ta_dic_approvetype 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<!-- ElementID:update,Generated=true -->
+<update id="update" parameterType="com.chinacreator.dzjc_ruleEngine.ApprovetypeNew">
+	update v_jc_ta_dic_approvetype
+<set>
+	<if test="typeCode != null">type_code=#{typeCode,jdbcType=VARCHAR},</if>
+	<if test="typeName != null">type_name=#{typeName,jdbcType=VARCHAR},</if>
+	<if test="orderNum != null">order_num=#{orderNum,jdbcType=NUMERIC},</if>
+	<if test="parentTypeCode != null">parent_type_code=#{parentTypeCode,jdbcType=VARCHAR}</if>
+</set>
+<where>
+	<choose>
+        <when test="seq != null">and seq = #{seq}</when>
+        <otherwise>and seq = </otherwise>
+    </choose>
+</where>
+</update>
+
+<!-- ElementID:updateNull,Generated=true -->
+<update id="updateNull" parameterType="map">
+	update v_jc_ta_dic_approvetype
+	<set>
+		<trim suffixOverrides=",">
+		    <if test="typeCode==null">type_code = null,</if>
+		    <if test="typeName==null">type_name = null,</if>
+		    <if test="orderNum==null">order_num = null,</if>
+		    <if test="parentTypeCode==null">parent_type_code = null,</if>
+		</trim>
+	</set>
+	<where>
+		<choose>
+			<when test="seq != null">and seq = #{seq}</when>
+			<otherwise>and seq = </otherwise>
+		</choose>
+	</where>
+</update>
+
+<!-- ElementID:delete,Generated=true -->
+<delete id="delete" parameterType="com.chinacreator.dzjc_ruleEngine.ApprovetypeNew">
+    delete from v_jc_ta_dic_approvetype where 1=1 and seq = #{seq}
+</delete>
+
+<!-- ElementID:select,Generated=true -->
+<select id="select" parameterType="com.chinacreator.dzjc_ruleEngine.ApprovetypeNew" resultMap="ApprovetypeNewResult">
+	select 
+		<include refid="column_sql"/>
+	    from v_jc_ta_dic_approvetype 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+
+<!-- ElementID:insertBatch,Generated=true -->
+<insert id="insertBatch" parameterType="list">
+	insert into v_jc_ta_dic_approvetype (type_code,type_name,seq,order_num,parent_type_code) 
+<foreach collection="list" item="entity" index="index" separator="union all">
+		select 
+		#{entity.typeCode,jdbcType = VARCHAR},
+				#{entity.typeName,jdbcType = VARCHAR},
+				#{entity.seq,jdbcType = NUMERIC},
+				#{entity.orderNum,jdbcType = NUMERIC},
+				#{entity.parentTypeCode,jdbcType = VARCHAR}
+		from dual
+</foreach>
+</insert>
+
+<!-- ElementID:deleteBatch,Generated=true -->
+<delete id="deleteBatch" parameterType="List">
+	delete from v_jc_ta_dic_approvetype where seq in
+<trim prefix="(" suffix=")" suffixOverrides=",">
+<foreach collection="list" item="entity" separator=",">
+	<choose>
+		<when test="@com.chinacreator.c2.dao.util.EntityBeanUtil@isEntityObj(entity)">#{entity.seq}</when>
+		<otherwise>#{entity}</otherwise>
+	</choose>
+</foreach>
+</trim>
+</delete>
+
+<!-- ElementID:updateBatch,Generated=true -->
+<update id="updateBatch" parameterType="list">
+	<foreach collection="list" item="entity" open="begin" close=";end;" separator=";">
+			update v_jc_ta_dic_approvetype
+	<set>
+	<if test="entity.typeCode != null">type_code= #{entity.typeCode,jdbcType=VARCHAR},</if>
+	<if test="entity.typeName != null">type_name= #{entity.typeName,jdbcType=VARCHAR},</if>
+	<if test="entity.orderNum != null">order_num= #{entity.orderNum,jdbcType=NUMERIC},</if>
+	<if test="entity.parentTypeCode != null">parent_type_code= #{entity.parentTypeCode,jdbcType=VARCHAR}</if>
+	</set>
+		<where>
+			<choose>
+				<when test="entity.seq != null">and seq = #{entity.seq}</when>
+				<otherwise>and seq = </otherwise>
+			</choose>
+		</where>
+	</foreach>
+</update>
+
+<!-- ElementID:selectAll,Generated=true -->
+<select id="selectAll" resultMap="ApprovetypeNewResult">
+	select 
+		<include refid="column_sql"/>
+	    from v_jc_ta_dic_approvetype 
+</select>
+
+<!-- ElementID:selectMany,Generated=true -->
+<select id="selectMany" parameterType="list" resultMap="ApprovetypeNewResult">
+select 
+	<include refid="column_sql"/> 
+	from v_jc_ta_dic_approvetype 
+	where v_jc_ta_dic_approvetype.seq in (
+<foreach collection="list" item="entity" separator="intersect">
+		select 
+		v_jc_ta_dic_approvetype.seq
+	    from v_jc_ta_dic_approvetype 
+		 <where>
+	        <if test="entity.typeCode != null">and v_jc_ta_dic_approvetype.type_code = #{entity.typeCode}</if>
+	        <if test="entity.typeName != null">and v_jc_ta_dic_approvetype.type_name = #{entity.typeName}</if>
+	        <if test="entity.seq != null">and v_jc_ta_dic_approvetype.seq = #{entity.seq}</if>
+	        <if test="entity.orderNum != null">and v_jc_ta_dic_approvetype.order_num = #{entity.orderNum}</if>
+	        <if test="entity.parentTypeCode != null">and v_jc_ta_dic_approvetype.parent_type_code = #{entity.parentTypeCode}</if>
+		</where>
+</foreach>
+)
+</select>
+
+<!-- ElementID:selectUnion,Generated=true -->
+<select id="selectUnion" parameterType="list" resultMap="ApprovetypeNewResult">
+select 
+	<include refid="column_sql"/> 
+	from v_jc_ta_dic_approvetype 
+	 INNER JOIN
+<foreach collection="list" item="entity" separator="UNION" open="(" close=")">
+		SELECT 
+			 seq
+		FROM v_jc_ta_dic_approvetype 
+			<where>
+	        <if test="entity.typeCode != null">and v_jc_ta_dic_approvetype.type_code = #{entity.typeCode}</if>
+	        <if test="entity.typeName != null">and v_jc_ta_dic_approvetype.type_name = #{entity.typeName}</if>
+	        <if test="entity.seq != null">and v_jc_ta_dic_approvetype.seq = #{entity.seq}</if>
+	        <if test="entity.orderNum != null">and v_jc_ta_dic_approvetype.order_num = #{entity.orderNum}</if>
+	        <if test="entity.parentTypeCode != null">and v_jc_ta_dic_approvetype.parent_type_code = #{entity.parentTypeCode}</if>
+			</where>
+</foreach>
+	c2_temp_table ON v_jc_ta_dic_approvetype.seq = c2_temp_table.seq
+</select>
+
+<!-- ElementID:selectByID,Generated=true -->
+<select id="selectByID" parameterType="java.lang.Double" resultMap="ApprovetypeNewResult">
+	select 
+		<include refid="column_sql"/>
+	    from v_jc_ta_dic_approvetype 
+		 where v_jc_ta_dic_approvetype.seq = #{seq,jdbcType=NUMERIC}
+</select>
+
+<!-- ElementID:selectByPage,Generated=true -->
+<select id="selectByPage" parameterType="com.chinacreator.dzjc_ruleEngine.ApprovetypeNew" resultMap="ApprovetypeNewResult">
+	select 
+		<include refid="column_sql"/>
+	    from v_jc_ta_dic_approvetype 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+</mapper>

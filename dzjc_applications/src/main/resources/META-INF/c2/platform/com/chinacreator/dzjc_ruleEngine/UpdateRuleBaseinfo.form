@@ -1,0 +1,1854 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form:Form xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dync="http://www.chinacreator.com/platform/mvc/ui/dync" xmlns:form="http://www.chinacreator.com/platform/mvc/form" name="修改规则信息" sn="dzjc_ruleEngine/updateRuleBaseinfo">
+  <form:control type="page/modal">
+    <form:attributes source="page/modal">
+      <dync:attribute id="title" value="修改规则信息">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="" group="事件" id="onload" name="页面加载完成" value="page_onload()">
+        <dync:render colSpan="2" height="0" multi="false" name="event">
+          <dync:item name="param" value=""/>
+        </dync:render>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="" group="HTML" id="width" name="页面宽度" value="1200px">
+        <dync:render colSpan="2" height="0" multi="false" name="text"/>
+        <dync:children/>
+      </dync:attribute>
+    </form:attributes>
+  </form:control>
+  <form:child xsi:type="form:Group" id="main" name="规则信息">
+    <form:control type="container/div">
+      <form:attributes source="container/div"/>
+    </form:control>
+    <form:child xsi:type="form:Group" id="div" name="简单容器(DIV)">
+      <form:control type="container/div">
+        <form:attributes source="container/div"/>
+      </form:control>
+      <form:child xsi:type="form:Group" id="widgetbox" name="规则信息管理">
+        <form:control type="container/widgetbox">
+          <form:attributes source="container/widgetbox"/>
+        </form:control>
+        <form:child xsi:type="form:Group" id="widgexbox_toolbar" name="widgexbox_toolbar">
+          <form:control type="container/toolbar_widget">
+            <form:attributes source="container/toolbar_widget"/>
+          </form:control>
+        </form:child>
+      </form:child>
+    </form:child>
+    <form:child xsi:type="form:Group" id="div1" name="简单容器(DIV)">
+      <form:control type="container/div">
+        <form:attributes source="container/div"/>
+      </form:control>
+      <form:child xsi:type="form:Field" binding="$model.entity.ruleName" id="ruleName" name="规则名称" customize="true">
+        <form:control type="widget/text">
+          <form:attributes source="widget/text">
+            <dync:attribute default="false" desc="是否验证必填，可以为表达式和变量。&#xA;                &#x9;只有当焦点离开文本框时才开始验证，验证失败会有验证失败的样式和提示。也有单独触发验证的方法：`check()`。" group="数据校验" hidden="false" id="required" name="必填项" required="true" value="true">
+              <dync:render colSpan="1" height="0" multi="false" name="checkboxAndExpr"/>
+              <dync:children/>
+            </dync:attribute>
+          </form:attributes>
+        </form:control>
+        <form:validation/>
+      </form:child>
+      <form:child xsi:type="form:Field" binding="$model.entity.isPublic" id="isPublic" name="是否默认" customize="true">
+        <form:control type="widget/select_simple">
+          <form:attributes source="widget/select_simple">
+            <dync:attribute default="" group="下拉框设置" id="selectOptions" name="选项" value="[{&quot;id&quot;:&quot;Y&quot;,&quot;name&quot;:&quot;默认&quot;},{&quot;id&quot;:&quot;N&quot;,&quot;name&quot;:&quot;自定义&quot;}]">
+              <dync:render colSpan="1" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="undefined" group="下拉框设置" id="nullValueSelect" name="空值选项值" value="emptyString">
+              <dync:render colSpan="1" height="0" multi="false" name="select">
+                <dync:item name="undefined" value="undefined"/>
+                <dync:item name="空字符串" value="emptyString"/>
+              </dync:render>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="false" group="基本设置" id="selectRequired" name="必填项" value="true">
+              <dync:render colSpan="1" height="0" multi="false" name="checkboxAndExpr"/>
+              <dync:children/>
+            </dync:attribute>
+          </form:attributes>
+        </form:control>
+        <form:validation/>
+      </form:child>
+      <form:child xsi:type="form:Field" binding="$model.entity.ruleType" id="ruleType" name="规则类型" customize="true">
+        <form:control type="widget/select_simple">
+          <form:attributes source="widget/select_simple">
+            <dync:attribute default="" group="下拉框设置" id="selectOptions" name="选项" value="[{&quot;id&quot;:&quot;1&quot;,&quot;name&quot;:&quot;简单类型&quot;},{&quot;id&quot;:&quot;2&quot;,&quot;name&quot;:&quot;复杂类型&quot;}]">
+              <dync:render colSpan="1" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="undefined" group="下拉框设置" id="nullValueSelect" name="空值选项值" value="emptyString">
+              <dync:render colSpan="1" height="0" multi="false" name="select">
+                <dync:item name="undefined" value="undefined"/>
+                <dync:item name="空字符串" value="emptyString"/>
+              </dync:render>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="false" group="基本设置" id="selectRequired" name="必填项" value="true">
+              <dync:render colSpan="1" height="0" multi="false" name="checkboxAndExpr"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="" group="事件设置" id="change" name="值变换事件" value="ruleType_change()">
+              <dync:render colSpan="2" height="0" multi="false" name="event">
+                <dync:item name="params" value=""/>
+              </dync:render>
+              <dync:children/>
+            </dync:attribute>
+          </form:attributes>
+        </form:control>
+        <form:validation/>
+      </form:child>
+      <form:child xsi:type="form:Field" binding="$model.entity.runPriority" id="runPriority" name="运行优先级" customize="true">
+        <form:control type="widget/text">
+          <form:attributes source="widget/text">
+            <dync:attribute default="false" desc="是否验证必填，可以为表达式和变量。&#xA;                &#x9;只有当焦点离开文本框时才开始验证，验证失败会有验证失败的样式和提示。也有单独触发验证的方法：`check()`。" group="数据校验" hidden="false" id="required" name="必填项" required="true" value="true">
+              <dync:render colSpan="1" height="0" multi="false" name="checkboxAndExpr"/>
+              <dync:children/>
+            </dync:attribute>
+          </form:attributes>
+        </form:control>
+        <form:validation/>
+      </form:child>
+      <form:child xsi:type="form:Field" binding="$model.entity.isValid" id="isValid" name="是否启用" customize="true">
+        <form:control type="widget/select_simple">
+          <form:attributes source="widget/select_simple">
+            <dync:attribute default="" group="下拉框设置" id="selectOptions" name="选项" value="[{&quot;id&quot;:&quot;1&quot;,&quot;name&quot;:&quot;是&quot;},{&quot;id&quot;:&quot;0&quot;,&quot;name&quot;:&quot;否&quot;}]">
+              <dync:render colSpan="1" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="undefined" group="下拉框设置" id="nullValueSelect" name="空值选项值" value="emptyString">
+              <dync:render colSpan="1" height="0" multi="false" name="select">
+                <dync:item name="undefined" value="undefined"/>
+                <dync:item name="空字符串" value="emptyString"/>
+              </dync:render>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="false" group="基本设置" id="selectRequired" name="必填项" value="true">
+              <dync:render colSpan="1" height="0" multi="false" name="checkboxAndExpr"/>
+              <dync:children/>
+            </dync:attribute>
+          </form:attributes>
+        </form:control>
+        <form:validation/>
+      </form:child>
+      <form:child xsi:type="form:Field" binding="$model.entity.isAutoRun" id="isAutoRun" name="是否自动运行" customize="true">
+        <form:control type="widget/select_simple">
+          <form:attributes source="widget/select_simple">
+            <dync:attribute default="" group="下拉框设置" id="selectOptions" name="选项" value="[{&quot;id&quot;:&quot;1&quot;,&quot;name&quot;:&quot;是&quot;},{&quot;id&quot;:&quot;0&quot;,&quot;name&quot;:&quot;否&quot;}]">
+              <dync:render colSpan="1" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="undefined" group="下拉框设置" id="nullValueSelect" name="空值选项值" value="emptyString">
+              <dync:render colSpan="1" height="0" multi="false" name="select">
+                <dync:item name="undefined" value="undefined"/>
+                <dync:item name="空字符串" value="emptyString"/>
+              </dync:render>
+              <dync:children/>
+            </dync:attribute>
+          </form:attributes>
+        </form:control>
+        <form:validation/>
+      </form:child>
+      <form:child xsi:type="form:Field" binding="$model.entity.ruleVersion" id="ruleVersion" name="规则版本号" customize="true">
+        <form:control type="widget/text">
+          <form:attributes source="widget/text">
+            <dync:attribute default="false" desc="是否验证必填，可以为表达式和变量。&#xA;                &#x9;只有当焦点离开文本框时才开始验证，验证失败会有验证失败的样式和提示。也有单独触发验证的方法：`check()`。" group="数据校验" hidden="false" id="required" name="必填项" required="true" value="true">
+              <dync:render colSpan="1" height="0" multi="false" name="checkboxAndExpr"/>
+              <dync:children/>
+            </dync:attribute>
+          </form:attributes>
+        </form:control>
+        <form:validation/>
+      </form:child>
+      <form:child xsi:type="form:Field" binding="$model.entity.jbjIsMonitor" id="jbjIsMonitor" name="即办件是否监管" customize="true">
+        <form:control type="widget/select_simple">
+          <form:attributes source="widget/select_simple">
+            <dync:attribute default="" group="下拉框设置" id="selectOptions" name="选项" value="[{&quot;id&quot;:&quot;Y&quot;,&quot;name&quot;:&quot;监管&quot;},{&quot;id&quot;:&quot;N&quot;,&quot;name&quot;:&quot;不监管&quot;}]">
+              <dync:render colSpan="1" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="undefined" group="下拉框设置" id="nullValueSelect" name="空值选项值" value="emptyString">
+              <dync:render colSpan="1" height="0" multi="false" name="select">
+                <dync:item name="undefined" value="undefined"/>
+                <dync:item name="空字符串" value="emptyString"/>
+              </dync:render>
+              <dync:children/>
+            </dync:attribute>
+          </form:attributes>
+        </form:control>
+        <form:validation/>
+      </form:child>
+      <form:child xsi:type="form:Field" binding="$model.entity.issendmsg" id="issendmsg" name="是否发送短信" customize="true">
+        <form:control type="widget/select_simple">
+          <form:attributes source="widget/select_simple">
+            <dync:attribute default="" group="下拉框设置" id="selectOptions" name="选项" value="[{&quot;id&quot;:&quot;Y&quot;,&quot;name&quot;:&quot;是&quot;},{&quot;id&quot;:&quot;N&quot;,&quot;name&quot;:&quot;否&quot;}]">
+              <dync:render colSpan="1" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="undefined" group="下拉框设置" id="nullValueSelect" name="空值选项值" value="emptyString">
+              <dync:render colSpan="1" height="0" multi="false" name="select">
+                <dync:item name="undefined" value="undefined"/>
+                <dync:item name="空字符串" value="emptyString"/>
+              </dync:render>
+              <dync:children/>
+            </dync:attribute>
+          </form:attributes>
+        </form:control>
+        <form:validation/>
+      </form:child>
+      <form:child xsi:type="form:Field" binding="$model.entity.hasRuned" id="hasRuned" name="是否已运行" customize="true">
+        <form:control type="widget/select_simple">
+          <form:attributes source="widget/select_simple">
+            <dync:attribute default="" group="下拉框设置" id="selectOptions" name="选项" value="[{&quot;id&quot;:&quot;Y&quot;,&quot;name&quot;:&quot;是&quot;},{&quot;id&quot;:&quot;N&quot;,&quot;name&quot;:&quot;否&quot;}]">
+              <dync:render colSpan="1" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+          </form:attributes>
+        </form:control>
+        <form:validation/>
+      </form:child>
+      <form:child xsi:type="form:Field" binding="$model.entity.ruleMemo" id="ruleMemo" name="规则描述" customize="true">
+        <form:control type="widget/textarea">
+          <form:attributes source="widget/textarea">
+            <dync:attribute default="false" group="数据校验" id="required" name="必填项" value="true">
+              <dync:render colSpan="1" height="0" multi="false" name="checkboxAndExpr"/>
+              <dync:children/>
+            </dync:attribute>
+          </form:attributes>
+        </form:control>
+        <form:validation/>
+      </form:child>
+      <form:child xsi:type="form:Field" binding="$model.entity.areaCode" id="areaCode" name="区域编号" customize="true">
+        <form:control type="widget/text">
+          <form:attributes source="widget/text">
+            <dync:attribute default="false" group="文本框设置" id="disabled" name="禁用" value="true">
+              <dync:render colSpan="1" height="0" multi="false" name="checkboxAndExpr"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="true" group="文本框设置" id="show" name="可见" value="false">
+              <dync:render colSpan="1" height="0" multi="false" name="checkboxAndExpr"/>
+              <dync:children/>
+            </dync:attribute>
+          </form:attributes>
+        </form:control>
+        <form:validation/>
+      </form:child>
+      <form:child xsi:type="form:Field" binding="$model.entity.areaName" id="areaName" name="行政区域" customize="true">
+        <form:control type="widget/text">
+          <form:attributes source="widget/text">
+            <dync:attribute default="true" group="文本框设置" id="show" name="可见" value="false">
+              <dync:render colSpan="1" height="0" multi="false" name="checkboxAndExpr"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="false" group="文本框设置" id="disabled" name="禁用" value="true">
+              <dync:render colSpan="1" height="0" multi="false" name="checkboxAndExpr"/>
+              <dync:children/>
+            </dync:attribute>
+          </form:attributes>
+        </form:control>
+        <form:validation/>
+      </form:child>
+    </form:child>
+  </form:child>
+  <form:child xsi:type="form:Group" id="divgz" name="规则内容">
+    <form:control type="container/div">
+      <form:attributes source="container/div"/>
+    </form:control>
+    <form:child xsi:type="form:Group" id="widgetbox1" name="规则内容">
+      <form:control type="container/widgetbox">
+        <form:attributes source="container/widgetbox"/>
+      </form:control>
+      <form:child xsi:type="form:Group" id="widgexbox_toolbar" name="widgexbox_toolbar">
+        <form:control type="container/toolbar_widget">
+          <form:attributes source="container/toolbar_widget"/>
+        </form:control>
+      </form:child>
+    </form:child>
+  </form:child>
+  <form:child xsi:type="form:Group" id="div2" name="简单容器(DIV)">
+    <form:control type="container/div">
+      <form:attributes source="container/div">
+        <dync:attribute default="" group="高级自定义" id="html" name="自定义HTML" value="div1_html">
+          <dync:render colSpan="2" height="0" multi="false" name="html"/>
+          <dync:children/>
+        </dync:attribute>
+      </form:attributes>
+    </form:control>
+  </form:child>
+  <form:child xsi:type="form:Group" id="toolbar" name="主按钮组">
+    <form:control type="container/toolbar_modal_footer">
+      <form:attributes source="container/toolbar_modal_footer"/>
+    </form:control>
+  </form:child>
+  <form:datasources>
+    <form:datasource xsi:type="form:EntityDataSource" id="entity" name="实体数据源" base="service" sn="dzjc_ruleEngine/v1/ruleBaseinfo" entity="entity:com.chinacreator.dzjc_ruleEngine.RuleBaseinfo">
+      <form:entityObj pk="rule_id" restResource="true"/>
+    </form:datasource>
+  </form:datasources>
+  <form:scripts>
+btn_update_click:function($event){
+	$model.entity.$save(function(){
+		Modal.instance.close();
+		Messenger.post({type:'success',message:'修改成功'});
+	});
+},
+btn_edit_click:function($event){
+	Modal.instance.close();
+},
+
+//增加表格行
+addRows:function(tableName){
+    var obj = document.getElementById(&quot;ruleTable&quot;+tableName);
+    var i = obj.rows.length;
+    var row = obj.insertRow();
+    var td1 = row.insertCell();
+    //复选框
+    td1.style.width=&quot;5%&quot;;
+    td1.style.borderLeft=&quot;0px&quot;;
+    td1.style.borderRight=&quot;0px&quot;;
+    td1.innerHTML = &quot;&lt;input type = checkbox name = 'check&quot;+tableName+&quot;'>&quot;;
+    //左括号
+    var td2 = row.insertCell();
+    td2.style.width = &quot;10%&quot;;
+    td2.style.borderLeft=&quot;0px&quot;;
+    td2.style.borderRight=&quot;0px&quot;;
+    td2.innerHTML = &quot;&lt;select name = 'leftParenth&quot;+tableName+&quot;'  onchange='$(\&quot;isChangeVersion\&quot;).value = \&quot;true\&quot;' style=\&quot;width:'98%'\&quot;>&lt;option value='0'>&lt;/option>&quot;+
+                    &quot;&lt;option value='1'>(&lt;/option>&lt;/select>&quot;;
+   //监管要素
+    var td3 = row.insertCell();
+    td3.style.width = &quot;30%&quot;;
+    td3.style.borderLeft=&quot;0px&quot;;
+    td3.style.borderRight=&quot;0px&quot;;
+    td3.innerHTML = &quot;&lt;select name = 'ruleElement&quot;+tableName+&quot;' id = rule&quot;+tableName+i*1+
+                 &quot; onchange='changeElement(this)'   style=\&quot;width:'98%'\&quot;>&quot;+
+                    &quot;&lt;option value=\'\'>&lt;/option>&lt;/select>&quot;;
+   
+	var areacode=$model.entity.areaCode;
+	//查询后台，获取监管要素。传入参数为  areacode
+	var url=&quot;&quot;;
+	if(areacode!=null &amp;&amp; areacode !=&quot;&quot;){
+		url=c2.base(&quot;service&quot;)+&quot;dzjc_ruleEngine/v1/ruleelement/ruleOption&quot;;
+	}else{
+		url=c2.base(&quot;service&quot;)+&quot;dzjc_ruleEngine/v1/ruleelement/ruleOptionAll&quot;;
+	}
+	$http.post(url,{areacode:areacode}).success(function(data){ 
+      for(j in data){
+    	  var elemId=data[j].elemId;
+    	  var elemName=data[j].elemName;
+    	  $(&quot;#rule&quot;+tableName+i*1).prepend('&lt;option value=&quot;' + elemId + '&quot;>' + elemName + '&lt;/option>')
+      }
+    });
+	
+	
+    //比较运算符
+    var td4 = row.insertCell();
+    td4.style.width = &quot;10%&quot;;
+    td4.style.borderLeft=&quot;0px&quot;;
+    td4.style.borderRight=&quot;0px&quot;;
+    td4.innerHTML = &quot;&lt;select name = 'compa&quot;+tableName+&quot;' id = compa&quot;+tableName+i*1+
+                     &quot; onchange='$(\&quot;isChangeVersion\&quot;).value = \&quot;true\&quot;' style=\&quot;width:'98%'\&quot;>&quot;+
+                    &quot;&lt;option value=\'\'>&lt;/option>&quot;+
+	   &quot;&lt;OPTION value=1>&lt;&lt;/OPTION>&lt;OPTION value=2>>&lt;/OPTION>&lt;OPTION value=3>&lt;=&lt;/OPTION>&quot;+
+        &quot;&lt;OPTION value=4>>=&lt;/OPTION>&lt;OPTION value=5>==&lt;/OPTION>&lt;OPTION value=6>!=&lt;/OPTION>&lt;/select>&quot;;
+
+    
+    //条件值
+    var td5 = row.insertCell();
+    td5.style.width=&quot;20%&quot;;
+    td5.style.borderLeft=&quot;0px&quot;;
+    td5.style.borderRight=&quot;0px&quot;;
+    td5.innerHTML = &quot;&lt;input type=text name='condition&quot;+tableName+&quot;' id=condition&quot;+tableName+i*1+
+    &quot; onblur='contionCheck(this)' style='width:100%' >&quot;;
+    //右括号
+    var td6 = row.insertCell();
+    td6.style.width = &quot;10%&quot;;
+    td6.style.borderLeft=&quot;0px&quot;;
+    td6.style.borderRight=&quot;0px&quot;;
+    td6.innerHTML = &quot;&lt;select name = 'rigthParenth&quot;+tableName+&quot;' onchange='$(\&quot;isChangeVersion\&quot;).value = \&quot;true\&quot;' style=\&quot;width:'98%'\&quot;>&lt;option value='0'>&lt;/option>&quot;+
+                    &quot;&lt;option value='1'>)&lt;/option>&lt;/select>&quot;;
+    //逻辑运算符
+    var td7 = row.insertCell();
+    td7.style.width = &quot;15%&quot;;
+    td7.style.borderLeft=&quot;0px&quot;;
+    td7.style.borderRight=&quot;0px&quot;;
+    td7.innerHTML = &quot;&lt;select name = 'logic&quot;+tableName+&quot;' id = 'logic&quot;+tableName+i*1+
+                    &quot;' onchange='$(\&quot;isChangeVersion\&quot;).value = \&quot;true\&quot;' style=\&quot;width:'98%'\&quot;>&quot;+
+                    &quot;&lt;option value=\'\'>&lt;/option>&lt;option value='1'>&amp;&lt;/option>&lt;option value='1'>||&lt;/option>&lt;/select>&quot;;
+    /*var sql7 = &quot;select logic_id,logic_computing from ta_dic_logic_computing&quot;;
+    var logicObj = document.getElementsByName(&quot;logic&quot;+tableName);*/
+    //sqlcombox(logicObj[i*1-1],sql7, &quot;dzjc&quot;);
+    document.getElementById(&quot;isChangeVersion&quot;).value= &quot;true&quot;;
+},
+
+
+//默认表达式
+updateRows:function(tableName){
+	var ruleId=$model.entity.ruleId;
+	var ruleVersion=$model.entity.ruleVersion;
+	var expSeq=&quot;&quot;;
+	var ruleType=$model.entity.ruleType;
+	if(ruleType==&quot;1&quot;){
+		expSeq=&quot;1&quot;;
+	}else{
+		expSeq=document.getElementById(&quot;combobox&quot;+tableName).value;
+	}
+	if(ruleId!=null &amp;&amp; ruleId!=&quot;&quot;){
+		$http.post(c2.base(&quot;service&quot;)+&quot;dzjc_ruleEngine/v1/publicType/ruleExpletInfoByRuleId&quot;,{ruleId:ruleId,expSeq:expSeq,ruleVersion:ruleVersion}).success(function(data){ 
+			 for(j in data){
+				var leftParen=data[j].leftParen;
+				var elemIdNew=data[j].elemId;
+				var compaId=data[j].compaId;
+				var cfgValue=data[j].cfgValue;
+				var rightParen=data[j].rightParen;
+				var logicId=data[j].logicId;
+				 
+				var obj = document.getElementById(&quot;ruleTable&quot;+tableName);
+			    var i = obj.rows.length;
+			    var row = obj.insertRow();
+			    var td1 = row.insertCell();
+			    //复选框
+			    td1.style.width=&quot;5%&quot;;
+			    td1.style.borderLeft=&quot;0px&quot;;
+			    td1.style.borderRight=&quot;0px&quot;;
+			    td1.innerHTML = &quot;&lt;input type = checkbox name = 'check&quot;+tableName+&quot;'>&quot;;
+			    //左括号
+			    var td2 = row.insertCell();
+			    td2.style.width = &quot;10%&quot;;
+			    td2.style.borderLeft=&quot;0px&quot;;
+			    td2.style.borderRight=&quot;0px&quot;;
+			    td2.innerHTML = &quot;&lt;select name = 'leftParenth&quot;+tableName+&quot;'id='leftParenth&quot;+tableName+i*1+&quot;'  onchange='$(\&quot;isChangeVersion\&quot;).value = \&quot;true\&quot;' style=\&quot;width:'98%'\&quot;>&lt;option value='0'>&lt;/option>&quot;+
+			                    &quot;&lt;option value='1'>(&lt;/option>&lt;/select>&quot;;
+			    for(k=0;k&lt;document.getElementById(&quot;leftParenth&quot;+tableName+i*1).options.length;k++){
+		    		var rulety=document.getElementById(&quot;leftParenth&quot;+tableName+i*1).options[k].value.trim();
+		    		if(leftParen==rulety){
+		    			document.getElementById(&quot;leftParenth&quot;+tableName+i*1).options[k].selected = true; 
+		    		}
+			    }                
+			   //监管要素
+			    var td3 = row.insertCell();
+			    td3.style.width = &quot;30%&quot;;
+			    td3.style.borderLeft=&quot;0px&quot;;
+			    td3.style.borderRight=&quot;0px&quot;;
+			    td3.innerHTML = &quot;&lt;select name = 'ruleElement&quot;+tableName+&quot;' id = 'rule&quot;+tableName+i*1+
+			                 &quot;' onchange='changeElement(this)'   style=\&quot;width:'98%'\&quot;>&quot;+
+			                    &quot;&lt;option value=\'\'>&lt;/option>&lt;/select>&quot;;
+			   
+				var areacode=$model.entity.areaCode;
+				//查询后台，获取监管要素。传入参数为  areacode
+				var url=&quot;&quot;;
+				if(areacode!=null &amp;&amp; areacode !=&quot;&quot;){
+					url=c2.base(&quot;service&quot;)+&quot;dzjc_ruleEngine/v1/ruleelement/ruleOption&quot;;
+				}else{
+					url=c2.base(&quot;service&quot;)+&quot;dzjc_ruleEngine/v1/ruleelement/ruleOptionAll&quot;;
+				}
+				$http.post(url,{areacode:areacode}).success(function(data){ 
+			      for(m in data){
+			    	  var elemId=data[m].elemId;
+			    	  var elemName=data[m].elemName;
+			    	  $(&quot;#rule&quot;+tableName+i*1).prepend('&lt;option value=&quot;' + elemId + '&quot;>' + elemName + '&lt;/option>');
+			      }
+			      
+			      for(k=0;k&lt;document.getElementById(&quot;rule&quot;+tableName+i*1).options.length;k++){
+		    		var rulety=document.getElementById(&quot;rule&quot;+tableName+i*1).options[k].value.trim();
+		    		if(elemIdNew==rulety){
+		    			document.getElementById(&quot;rule&quot;+tableName+i*1).options[k].selected = true; 
+		    		}
+			    }
+			      
+			    });
+				
+			    //比较运算符
+			    var td4 = row.insertCell();
+			    td4.style.width = &quot;10%&quot;;
+			    td4.style.borderLeft=&quot;0px&quot;;
+			    td4.style.borderRight=&quot;0px&quot;;
+			    td4.innerHTML = &quot;&lt;select name = 'compa&quot;+tableName+&quot;' id = compa&quot;+tableName+i*1+
+			                     &quot; onchange='$(\&quot;isChangeVersion\&quot;).value = \&quot;true\&quot;' style=\&quot;width:'98%'\&quot;>&quot;+
+			                    &quot;&lt;option value=\'\'>&lt;/option>&quot;+
+				   &quot;&lt;OPTION value=1>&lt;&lt;/OPTION>&lt;OPTION value=2>>&lt;/OPTION>&lt;OPTION value=3>&lt;=&lt;/OPTION>&quot;+
+			        &quot;&lt;OPTION value=4>>=&lt;/OPTION>&lt;OPTION value=5>==&lt;/OPTION>&lt;OPTION value=6>!=&lt;/OPTION>&lt;/select>&quot;;
+			
+			    for(k=0;k&lt;document.getElementById(&quot;compa&quot;+tableName+i*1).options.length;k++){
+		    		var rulety=document.getElementById(&quot;compa&quot;+tableName+i*1).options[k].value.trim();
+		    		if(compaId==rulety){
+		    			document.getElementById(&quot;compa&quot;+tableName+i*1).options[k].selected = true; 
+		    		}
+			    }
+			    
+			    //条件值
+			    var td5 = row.insertCell();
+			    td5.style.width=&quot;20%&quot;;
+			    td5.style.borderLeft=&quot;0px&quot;;
+			    td5.style.borderRight=&quot;0px&quot;;
+			    td5.innerHTML = &quot;&lt;input type=text name='condition&quot;+tableName+&quot;' id='condition&quot;+tableName+i*1+
+			    &quot;' onblur='contionCheck(this)' style='width:100%' >&quot;;
+			    document.getElementById(&quot;condition&quot;+tableName+i*1).value=cfgValue;
+			    //右括号
+			    var td6 = row.insertCell();
+			    td6.style.width = &quot;10%&quot;;
+			    td6.style.borderLeft=&quot;0px&quot;;
+			    td6.style.borderRight=&quot;0px&quot;;
+			    td6.innerHTML = &quot;&lt;select name = 'rigthParenth&quot;+tableName+&quot;'id='rigthParenth&quot;+tableName+i*1+&quot;' onchange='$(\&quot;isChangeVersion\&quot;).value = \&quot;true\&quot;' style=\&quot;width:'98%'\&quot;>&lt;option value='0'>&lt;/option>&quot;+
+			                    &quot;&lt;option value='1'>)&lt;/option>&lt;/select>&quot;;
+			     for(k=0;k&lt;document.getElementById(&quot;rigthParenth&quot;+tableName+i*1).options.length;k++){
+		    		var rulety=document.getElementById(&quot;rigthParenth&quot;+tableName+i*1).options[k].value.trim();
+		    		if(rightParen==rulety){
+		    			document.getElementById(&quot;rigthParenth&quot;+tableName+i*1).options[k].selected = true; 
+		    		}
+			    }              
+			    //逻辑运算符
+			    var td7 = row.insertCell();
+			    td7.style.width = &quot;15%&quot;;
+			    td7.style.borderLeft=&quot;0px&quot;;
+			    td7.style.borderRight=&quot;0px&quot;;
+			    td7.innerHTML = &quot;&lt;select name = 'logic&quot;+tableName+&quot;' id = 'logic&quot;+tableName+i*1+
+			                    &quot;' onchange='$(\&quot;isChangeVersion\&quot;).value = \&quot;true\&quot;' style=\&quot;width:'98%'\&quot;>&quot;+
+			                    &quot;&lt;option value=\'\'>&lt;/option>&lt;option value='1'>&amp;&lt;/option>&lt;option value='1'>||&lt;/option>&lt;/select>&quot;;
+			     for(k=0;k&lt;document.getElementById(&quot;logic&quot;+tableName+i*1).options.length;k++){
+		    		var rulety=document.getElementById(&quot;logic&quot;+tableName+i*1).options[k].value.trim();
+		    		if(logicId==rulety){
+		    			document.getElementById(&quot;logic&quot;+tableName+i*1).options[k].selected = true; 
+		    		}
+			    }                 
+			    
+			 }
+		});
+	}else{
+		functions.addRows(tableName);
+	}
+   
+},
+
+//删除表格行
+delRows:function(tableName){
+    var obj = document.getElementById(&quot;ruleTable&quot;+tableName);
+    var checkObj = document.getElementsByName(&quot;check&quot;+tableName);
+    for(var j = checkObj.length-1 ; j >= 0  ; j--){
+        if(checkObj[j].checked){
+            obj.deleteRow(j*1+1);
+        }
+    }
+   document.getElementById(&quot;isChangeVersion&quot;).value = &quot;true&quot;;
+},
+
+
+//初始化
+page_onload:function(){
+	//默认简单类型
+	functions.updateRows('');
+	//初始化简单类型的下拉框
+	functions.getSupervise_type('');
+	functions.getSupervise_result('');
+	functions.getMsgTemplate('');
+	functions.getMoren('');
+	//默认复杂类型
+	//红牌
+	functions.updateRows('_a');
+	functions.getSupervise_type('_a');
+	functions.getMsgTemplate('_a');
+	functions.getMoren('_a');
+	//黄牌
+	functions.updateRows('_b');
+	functions.getSupervise_type('_b');
+	functions.getMsgTemplate('_b');
+	functions.getMoren('_b');
+	//预警
+	functions.updateRows('_c');
+	functions.getSupervise_type('_c');
+	functions.getMsgTemplate('_c');
+	functions.getMoren('_c');
+	var ruleType=$model.entity.ruleType;
+	var ruleId=$model.entity.ruleId;
+	if(ruleId!=null &amp;&amp; ruleId!=&quot;&quot;){
+		if(ruleType==2){
+		document.getElementById('simpleRule').style.display=&quot;none&quot;;
+		document.getElementById('complexRule').style.display=&quot;inline&quot;;
+		}else{
+			document.getElementById('complexRule').style.display=&quot;none&quot;;
+			document.getElementById('simpleRule').style.display=&quot;inline&quot;;
+		}
+	}else{
+		document.getElementById('complexRule').style.display=&quot;none&quot;;
+		document.getElementById('simpleRule').style.display=&quot;none&quot;;
+	}
+	
+    
+	
+},
+//获取监管类型
+getSupervise_type:function(tableName){
+	$http.post(c2.base(&quot;service&quot;)+&quot;dzjc_ruleEngine/v1/publicType/superviseType&quot;).success(function(data){ 
+      for(j in data){
+    	  var superviseTypeCode=data[j].superviseTypeCode;
+    	  var superviseTypeName=data[j].superviseTypeName;
+    	  $(&quot;#supervise_type&quot;+tableName).prepend('&lt;option value=&quot;' + superviseTypeCode + '&quot;>' + superviseTypeName + '&lt;/option>')
+      }
+    });
+},
+//获取监管类别
+getSupervise_result:function(tableName){
+	$http.post(c2.base(&quot;service&quot;)+&quot;dzjc_ruleEngine/v1/publicType/superviseResult&quot;).success(function(data){ 
+      for(j in data){
+    	  var superviseResultCode=data[j].superviseResultCode.trim();
+    	  var superviseResultName=data[j].superviseResultName.trim();
+    	  $(&quot;#supervise_result&quot;+tableName).prepend('&lt;option value=&quot;' + superviseResultCode + '&quot;>' + superviseResultName + '&lt;/option>');
+      }
+    });
+},
+getMoren:function(tableName){
+	var ruleId=$model.entity.ruleId;
+	var ruleType=$model.entity.ruleType;
+	var expSeq=&quot;&quot;;
+	if(ruleType==&quot;1&quot;){
+		expSeq=&quot;1&quot;;
+	}else{
+		expSeq=document.getElementById(&quot;combobox&quot;+tableName).value;
+	}
+	
+	 $http.post(c2.base(&quot;service&quot;)+&quot;dzjc_ruleEngine/v1/publicType/selectRuleSuperviseDefinition&quot;,{ruleId:ruleId,expSeq:expSeq}).success(function(data){ 
+    	var superviseLevelCode=data.superviseLevelCode.trim();
+    	var superviseTypeCode=data.superviseTypeCode.trim();
+    	var msgTemplateId=data.msgTemplateId.trim();
+    	var sendcardType=data.sendcardType.trim();
+    	//默认监管级别
+    	for(i=0;i&lt;document.getElementById(&quot;supervise_result&quot;+tableName).options.length;i++){
+    		var rulety=document.getElementById(&quot;supervise_result&quot;+tableName).options[i].value.trim();
+    		if(superviseLevelCode==rulety){
+    			document.getElementById(&quot;supervise_result&quot;+tableName).options[i].selected = true; 
+    		}
+    	}
+    	//默认监管类型
+    	for(j=0;j&lt;document.getElementById(&quot;supervise_type&quot;+tableName).options.length;j++){
+    		var rulety=document.getElementById(&quot;supervise_type&quot;+tableName).options[j].value.trim();
+    		if(superviseTypeCode==rulety){
+    			document.getElementById(&quot;supervise_type&quot;+tableName).options[j].selected = true; 
+    		}
+    	}
+    	//默认消息模板
+    	for(k=0;k&lt;document.getElementById(&quot;msg_template&quot;+tableName).options.length;k++){
+    		var rulety=document.getElementById(&quot;msg_template&quot;+tableName).options[k].value.trim();
+    		if(msgTemplateId==rulety){
+    			document.getElementById(&quot;msg_template&quot;+tableName).options[k].selected = true; 
+    		}
+    	}
+    	
+    	var rObj = document.getElementsByName(&quot;RGsend_type&quot;+tableName);
+    	for(var m = 0;m &lt; rObj.length;m++){
+             if(rObj[m].value == sendcardType){
+                 rObj[m].checked =  'checked';
+             }
+        }
+   });
+},
+
+//获取消息模板
+getMsgTemplate:function(tableName){
+	var areacode=$model.entity.areaCode;
+	var url=&quot;&quot;;
+	//查询后台，获取监管要素。传入参数为  areacode
+	if(areacode!=null &amp;&amp; areacode!=&quot;&quot;){
+		url=c2.base(&quot;service&quot;)+&quot;dzjc_ruleEngine/v1/publicType/msgTemplate&quot;;
+	}else{
+		url=c2.base(&quot;service&quot;)+&quot;dzjc_ruleEngine/v1/publicType/msgTemplateAll&quot;
+	}
+	$http.post(url,{areacode:areacode}).success(function(data){ 
+      for(j in data){
+    	  var templateId=data[j].templateId;
+    	  var templateName=data[j].templateName;
+    	  $(&quot;#msg_template&quot;+tableName).prepend('&lt;option value=&quot;' + templateId + '&quot;>' + templateName + '&lt;/option>')
+      }
+    });
+},
+//组合表达式
+combination:function(tableName){
+	document.getElementById(&quot;expression&quot;+tableName).value=&quot;&quot;;
+	document.getElementById(&quot;exp&quot;+tableName).value=&quot;&quot;;
+   
+    var checkObj = document.getElementsByName(&quot;check&quot;+tableName);
+    var td2 = document.getElementsByName(&quot;leftParenth&quot;+tableName);
+    var td3 = document.getElementsByName(&quot;ruleElement&quot;+tableName);
+    var td4 = document.getElementsByName(&quot;compa&quot;+tableName);
+    var td5 = document.getElementsByName(&quot;condition&quot;+tableName);
+    var td6 = document.getElementsByName(&quot;rigthParenth&quot;+tableName);
+    var td7 = document.getElementsByName(&quot;logic&quot;+tableName);
+    for(var i = 0 ; i &lt; checkObj.length ; i++){
+	    var elementType =&quot;&quot;;
+	    var logic = td7[i].options[td7[i].selectedIndex].text==&quot;&amp;&amp;&quot;?&quot;^&quot;:td7[i].options[td7[i].selectedIndex].text;
+	    if(td2[i].selectedIndex==&quot;-1&quot;||td3[i].selectedIndex==&quot;-1&quot;||td4[i].selectedIndex==&quot;-1&quot;||td6[i].selectedIndex==&quot;-1&quot;||td7[i].selectedIndex==&quot;-1&quot;){
+	        	//防止因没有数据而使下面语句报错
+	            $(&quot;#expression&quot;+tableName).value = &quot;&quot;;
+	            $(&quot;#exp&quot;+tableName).value = &quot;&quot;;
+	            return;
+	    }
+	    var expressionValue=document.getElementById(&quot;expression&quot;+tableName).value;
+	    var leftParenthText=td2[i].options[td2[i].selectedIndex].text;
+	    var ruleElementText=td3[i].options[td3[i].selectedIndex].text;
+	    var compaText=td4[i].options[td4[i].selectedIndex].text;
+	    var conditionText=td5[i].value;
+	    var rigthParenthText=td6[i].options[td6[i].selectedIndex].text;
+	    var logicText=td7[i].options[td7[i].selectedIndex].text;
+	    
+	    var expressionValueNew =expressionValue+leftParenthText+ruleElementText+compaText+conditionText+rigthParenthText+logicText;
+	    document.getElementById(&quot;expression&quot;+tableName).value=expressionValueNew;
+	    
+	    var expValue=document.getElementById(&quot;exp&quot;+tableName).value;
+	    $http.post(c2.base(&quot;service&quot;)+&quot;dzjc_ruleEngine/v1/publicType/ruleElement&quot;,{elemId:td3[i].value}).success(function(data){ 
+		    var elementType=data[0].resultType.trim();
+		    var elem = elementType==&quot;1&quot;?&quot;1&quot;:&quot;true&quot;;
+	        elem = elementType==&quot;&quot;?&quot;&quot;:elem;
+	        var expValueNew = expValue + leftParenthText +elem+ compaText + conditionText + rigthParenthText  + logic ;
+	        $(&quot;#exp&quot;+tableName).value=expValueNew;
+	        document.getElementById(&quot;exp&quot;+tableName).value=expValueNew;
+	    });
+    }
+},
+
+
+//创建XMLHttpRequest对象       
+createXMLHttpRequest:function(){
+	var XMLHttpReq;
+    if(window.XMLHttpRequest) { //Mozilla 浏览器
+        XMLHttpReq = new XMLHttpRequest();
+    }else if (window.ActiveXObject) { // IE浏览器
+        try {
+            XMLHttpReq = new ActiveXObject(&quot;Msxml2.XMLHTTP&quot;);
+        } catch (e) {
+            try {
+                XMLHttpReq = new ActiveXObject(&quot;Microsoft.XMLHTTP&quot;);
+            } catch (e) {}
+        }
+    }
+},
+
+
+
+
+
+//校验,发送请求函数
+/*
+*table为save时表示保存时校验所有表达式
+*divName为表达式串,保存时得到所有表达式用
+*/
+sendRequest:function(tableName,divName){
+   /* functions.createXMLHttpRequest();
+    if(tableName==&quot;save&quot;&amp;&amp;tableName!=&quot;&quot;){
+        var exp = functions.getExpression(divName);
+        //var url = &quot;&lt;%=request.getContextPath()%>/kcapp/dzjc/jsp/configmanage/ruleconfig/ruleExpcheck2.jsp?exp=&quot;+exp;
+    }else{
+        functions.combination(tableName);
+        var exp=document.getElementById(&quot;exp&quot;+tableName).value;
+        //var url = &quot;&lt;%=request.getContextPath()%>/kcapp/dzjc/jsp/configmanage/ruleconfig/ruleExpcheck.jsp?exp=&quot;+exp;
+    }*/
+    //XMLHttpReq.open(&quot;GET&quot;, url, true);
+    //XMLHttpReq.onreadystatechange = functions.processResponse();//指定响应函数
+   // XMLHttpReq.send(null);  // 发送请求
+},
+// 处理返回信息函数
+processResponse:function(){
+    if (XMLHttpReq.readyState == 4) { // 判断对象状态
+        if (XMLHttpReq.status == 200) { // 信息已经成功返回，开始处理信息
+            functions.DisplayHot();
+        } else { //页面不正常
+            window.alert(&quot;您所请求的页面有异常。&quot;);
+       }
+   }
+},
+
+//ajax结果
+DisplayHot:function(){
+    var result = trim(XMLHttpReq.responseText);
+    var resultSplit = result.split(&quot;~&quot;);
+    if(resultSplit[0]==&quot;error&quot;){
+    	Messenger.post({type:'error',message:'表达式错误。'});
+    }else if(resultSplit[0]==&quot;true&quot;||resultSplit[0]==&quot;false&quot;){
+        if(resultSplit.length > 1){
+        	functions.saveData();
+        }else if(resultSplit.length &lt;= 1){
+        	Messenger.post({type:'error',message:'表达式正确。'});
+        }
+    }
+},
+
+
+//控制收缩
+controlDiv:function(divName){
+	if(document.getElementById('div'+divName).style.display=&quot;none&quot;){
+		document.getElementById('div'+divName).style.display=&quot;inline&quot;;
+		document.getElementById('control_div'+divName).innerHTML = &quot;收缩&quot;;
+	}else{
+		document.getElementById('div'+divName).style.display=&quot;none&quot;;
+		document.getElementById('control_div'+divName).innerHTML = &quot;展开&quot;;
+	}
+},
+
+
+//删除表达式
+delDiv:function(tableName,flag){
+    var complex = document.getElementById(&quot;complexTable&quot;);
+    var i = 0 ;
+    if(tableName==&quot;_a&quot;){
+        i = 0 ;
+    }else if(tableName==&quot;_b&quot;){
+        if(document.getElementById(&quot;div_a&quot;)!=null){
+            i =  i + 2;
+        }
+    }else if(tableName==&quot;_c&quot;){
+        if(document.getElementById(&quot;div_a&quot;)!=null){
+            i =  i + 2;
+        }
+        if(document.getElementById(&quot;div_b&quot;)!=null){
+            i =  i + 2;
+        }
+    }
+    if(flag==&quot;init&quot;){
+         complex.deleteRow(i+1);
+         complex.deleteRow(i);
+         return;
+    }
+    if($(&quot;#count_del&quot;).value >= 1){
+        alert(&quot;只能删除一个表达式。&quot;);
+        return;
+    }
+    if(confirm(&quot;删除后不能恢复，您确定要删除吗。&quot;)){
+         complex.deleteRow(i+1);
+         complex.deleteRow(i);
+         $(&quot;#count_del&quot;).value = $(&quot;#count_del&quot;).value*1 + 1 ;
+         document.getElementById(&quot;isChangeVersion&quot;).value = &quot;true&quot;;
+
+    }
+},
+
+//关闭
+cancel:function(){
+    window.returnValue = true;
+    Modal.instance.close();
+},
+
+ruleType_change:function(){
+	var ruleType=$model.entity.ruleType;
+	if(ruleType==2){
+		document.getElementById('simpleRule').style.display=&quot;none&quot;;
+		document.getElementById('complexRule').style.display=&quot;inline&quot;;
+	}else{
+		document.getElementById('complexRule').style.display=&quot;none&quot;;
+		document.getElementById('simpleRule').style.display=&quot;inline&quot;;
+	}
+},
+
+
+//数据验证函数+ajax效验
+validateData:function(tableName){
+
+   if(functions.app_1_checkSpecial($model.entity.ruleName)==false){
+        return false;
+   }
+  
+   if(functions.app_1_checkSpecial($model.entity.ruleVersion)==false){
+        return false;
+   }
+   if(functions.app_1_checkSpecial($model.entity.ruleMemo)==false){
+        return false;
+   }
+   if(!$model.entity.ruleName){
+		Messenger.post({type:'error',message:'规则名称不能为空！'});
+		$(&quot;#ruleName&quot;).focus();
+		return false;
+	}
+	if(!$model.entity.isPublic){
+		Messenger.post({type:'error',message:'是否默认不能为空！'});
+		$(&quot;#isPublic&quot;).focus();
+		return false;
+	}
+	if(!$model.entity.ruleType){
+		Messenger.post({type:'error',message:'规则类型不能为空！'});
+		$(&quot;#ruleType&quot;).focus();
+		return false;
+	}
+	if(!$model.entity.runPriority){
+		Messenger.post({type:'error',message:'规则优先级不能为空！'});
+		$(&quot;#runPriority&quot;).focus();
+		return false;
+	}
+	var reg = /^-?\+?[0-9]*$/;
+    if(!reg.test($model.entity.runPriority)){
+        Messenger.post({type:'error',message:'运行优先级只能输入数字。'});
+        $(&quot;#runPriority&quot;).focus();
+        return false;
+    }
+	
+	if(!$model.entity.isValid){
+		Messenger.post({type:'error',message:'是否启用不能为空！'});
+		$(&quot;#isValid&quot;).focus();
+		return false;
+	}
+	if(!$model.entity.ruleMemo){
+		Messenger.post({type:'error',message:'规则描述不能为空！'});
+		$(&quot;#ruleMemo&quot;).focus();
+		return false;
+	}
+
+    
+    var table = tableName.split(&quot;,&quot;);
+    var i = 0;
+    do{
+    	 var expression=&quot;&quot;;
+    	 var superviseType=&quot;&quot;;
+    	 var sendType=&quot;&quot;;
+    	 var superviseResult=&quot;&quot;;
+    	 var msgTemplate=&quot;&quot;;
+    	 
+    	if(table!=null &amp;&amp; table!=&quot;&quot;){
+    		 expression = document.getElementById(&quot;expression&quot;+table[i]).value; //监管类型
+		     superviseType = document.getElementById(&quot;supervise_type&quot;+table[i]).value; //监管类型
+		     sendType = functions.getRadioGroupValue(&quot;RGsend_type&quot;+table[i]); //发牌方式
+		     superviseResult =document.getElementById(&quot;supervise_result&quot;+table[i]).value; //监管级别
+		     msgTemplate =document.getElementById(&quot;msg_template&quot;+table[i]).value; //消息模版
+    	}else{
+    		 expression = document.getElementById(&quot;expression&quot;).value; //监管类型
+		     superviseType = document.getElementById(&quot;supervise_type&quot;).value; //监管类型
+		     sendType = functions.getRadioGroupValue(&quot;RGsend_type&quot;); //发牌方式
+		     superviseResult =document.getElementById(&quot;supervise_result&quot;).value; //监管级别
+		     msgTemplate =document.getElementById(&quot;msg_template&quot;).value; //消息模版
+    	}
+	   // alert(&quot;expression=&quot;+expression+&quot;/superviseType=&quot;+superviseType+&quot;/sendType=&quot;+sendType+&quot;/superviseResult=&quot;+superviseResult+&quot;/msgTemplate=&quot;+msgTemplate);
+	    i++;
+	    if(expression==null || expression==&quot;&quot;){
+	    	Messenger.post({type:'error',message:'表达式内容不能为空，请重新输入。'});
+	         return false;
+	    }
+	    if(superviseType==null || superviseType==&quot;&quot;||superviseType==&quot;-1&quot;){
+	    	Messenger.post({type:'error',message:'监管类型不能为空，请重新选择。'});
+	         return false;
+	    }
+	    if(sendType==null || sendType==&quot;&quot;){
+	    	Messenger.post({type:'error',message:'发牌方式不能为空，请重新选择。'});
+	         return false;
+	    }
+	    if(superviseResult==null || superviseResult==&quot;&quot;||superviseResult==&quot;-1&quot;){
+	         Messenger.post({type:'error',message:'监管级别不能为空，请重新选择。'});
+	         return false;
+	    }
+	    if(msgTemplate==null || msgTemplate==&quot;&quot;||msgTemplate==&quot;-1&quot;){
+	    	Messenger.post({type:'error',message:'消息模版不能为空，请重新选择。'});
+	         return false;
+	    }
+    }while(i&lt;table.length)
+    return true;    
+},
+
+/**
+ * 得到要校验的DIV
+ */
+getValidateDiv:function(){
+	var validateDiv = &quot;&quot;;
+    if(document.getElementById(&quot;div_a&quot;)!=null){
+    	functions.combination(&quot;_a&quot;);
+        if(document.getElementById(&quot;div_b&quot;)==null&amp;&amp;document.getElementById(&quot;div_c&quot;)==null){
+            validateDiv = validateDiv + &quot;_a&quot;;
+        }else {
+            validateDiv = validateDiv + &quot;_a,&quot;;
+        }
+    }
+    if(document.getElementById(&quot;div_b&quot;)!=null){
+        functions.combination(&quot;_b&quot;);
+        if(document.getElementById(&quot;div_c&quot;)==null){
+            validateDiv = validateDiv + &quot;_b&quot;;
+        }else{
+            validateDiv = validateDiv + &quot;_b,&quot;;
+        }
+    }
+    if(document.getElementById(&quot;div_c&quot;)!=null){
+        functions.combination(&quot;_c&quot;);
+        validateDiv = validateDiv + &quot;_c&quot;;
+    }
+    
+	return validateDiv;
+},
+
+//提交
+saveTest:function(){
+	if($model.entity.ruleName==undefined || $model.entity.ruleName==&quot;&quot;){
+	Messenger.error(&quot;规则名称不能为空!&quot;);
+	return;
+	}
+    var validateDiv = functions.getValidateDiv();
+    var ruleType=$model.entity.ruleType;
+    if(ruleType==&quot;1&quot;){
+        functions.combination(&quot;&quot;);
+        if(!functions.validateData(&quot;&quot;)){
+			return;
+        }
+        functions.saveData();
+        //functions.sendRequest(&quot;save&quot;,&quot;&quot;);
+    }else if(ruleType==&quot;2&quot;){
+        if(!functions.validateData(validateDiv)){
+			return;
+        }
+        functions.saveData();
+        //functions.sendRequest(&quot;save&quot;,validateDiv);
+    }else{
+    	Messenger.error(&quot;规则类型不能为空!&quot;);
+    }
+    
+    
+},
+/*
+	* 验证特殊字符单引号（'）,如果含有单引号则警告并返回false,否则返回true
+	* value为要验证的值
+	* 返回类型为boolean
+*/
+app_1_checkSpecial:function(value,flag){
+	value = value.trim();
+	var str = value;
+	var SPECIAL_STR = &quot;'&quot;;
+	if(flag) {
+		for(i=0;i&lt;str.length;i++){
+			if (SPECIAL_STR.indexOf(str.charAt(i))!= -1){
+				Messenger.post({type:'error',message:&quot;对不起，您输入的内容不能含有字符单引号(')。\n如果您确定需要输入字符单引号(')，请您用$代替。请您重新输入！&quot;});
+				return false;
+			}
+		}
+	}
+	else {
+		for(i=0;i&lt;str.length;i++){
+			if (SPECIAL_STR.indexOf(str.charAt(i))!= -1){
+				Messenger.post({type:'error',message:&quot;对不起，您输入的内容不能含有字符单引号(&quot;+str.charAt(i)+&quot;)。请您重新输入！&quot;});
+				return false;
+			}
+		}
+	}
+	return true;
+},
+
+//取得单选按钮组的实际值
+getRadioGroupValue:function(objName){
+    var radioGroupValue = &quot;&quot;;
+    var ridList = document.getElementsByName(objName);
+    for(var i=0; i&lt;ridList.length; i++){
+        if(ridList[i].checked){
+            radioGroupValue = ridList[i].value;
+            break;
+        }
+    }
+    return radioGroupValue; 
+},
+
+
+/*
+*得到表达式值，只用于保存
+*divName:表达式串,用逗隔开
+*return:表达式
+*/
+getExpression:function(divName){
+    var exp_save =&quot;&quot;;
+    var tableName = divName.split(&quot;,&quot;);
+    for(var j = 0 ; j &lt; tableName.length ; j++){
+        var str = &quot;&quot;;
+        var ruleTabObj = document.getElementById(&quot;ruleTable&quot;+tableName[j]);
+        var td2 = document.getElementsByName(&quot;leftParenth&quot;+tableName[j]);
+        var td3 = document.getElementsByName(&quot;ruleElement&quot;+tableName[j]);
+        var td4 = document.getElementsByName(&quot;compa&quot;+tableName[j]);
+        var td5 = document.getElementsByName(&quot;condition&quot;+tableName[j]);
+        var td6 = document.getElementsByName(&quot;rigthParenth&quot;+tableName[j]);
+        var td7 = document.getElementsByName(&quot;logic&quot;+tableName[j]);
+        for(var i = 0 ; i &lt; ruleTabObj.rows.length - 1 ; i++){//表达式片段
+        	$http.post(c2.base(&quot;service&quot;)+&quot;dzjc_ruleEngine/v1/publicType/ruleElement&quot;,{elemId:td3[i].value}).success(function(data){ 
+        		var elementType=data[0].resultType.trim();
+        		var elem = elementType==&quot;1&quot;?&quot;1&quot;:&quot;true&quot;;//监管要素数据类型为1时用1代替，2时用true代替
+	            elem = elementType==&quot;&quot;?&quot;&quot;:elem;
+	            var logic=td7[i].options[td7[i].selectedIndex].text==&quot;&amp;&amp;&quot;?&quot;^&quot;:td7[i].options[td7[i].selectedIndex].text 
+	                //logic:不能传&amp;&amp;符号，先用^替换，再转回来
+	            str = str + td2[i].options[td2[i].selectedIndex].text 
+	            + elem + td4[i].options[td4[i].selectedIndex].text 
+	            + td5[i].value + td6[i].options[td6[i].selectedIndex].text   
+	            + logic ;
+        	});
+            
+        }
+        if($model.entity.ruleType == &quot;1&quot;){
+            tableName[j] = &quot;_a&quot;;//_a用于标识
+        }
+        exp_save = exp_save + str + tableName[j] +&quot;~&quot;;
+    }
+        
+    return exp_save;
+},
+//保存数据
+saveData:function(){ 
+	var validateDiv = &quot;&quot;;
+    if(document.getElementById(&quot;div_a&quot;)!=null){
+        if(document.getElementById(&quot;div_b&quot;)==null&amp;&amp;document.getElementById(&quot;div_c&quot;)==null){
+            validateDiv = validateDiv + &quot;_a&quot;;
+        }else {
+            validateDiv = validateDiv + &quot;_a,&quot;;
+        }
+    }
+    if(document.getElementById(&quot;div_b&quot;)!=null){
+        if(document.getElementById(&quot;div_c&quot;)==null){
+            validateDiv = validateDiv + &quot;_b&quot;;
+        }else{
+            validateDiv = validateDiv + &quot;_b,&quot;;
+        }
+    }
+    if(document.getElementById(&quot;div_c&quot;)!=null){
+        validateDiv = validateDiv + &quot;_c&quot;;
+    }
+    
+    var ruleName = $model.entity.ruleName; //规则名称
+    var ruleNameA=$model.entity.ruleName;
+    $('ruleNameA').value=ruleNameA;
+    var isValid = $model.entity.isValid; //是否启用
+    var isAutoRun = $model.entity.isAutoRun; //是否自动运行
+    var ruleType = $model.entity.ruleType;//规则类型
+    var rulePriority = $model.entity.runPriority;//运行优先级
+    var versionNumber = $model.entity.ruleVersion;//规则版本号
+    var jbjIsMonitor = $model.entity.jbjIsMonitor; //即办件是否监管
+    var isSendMsg = $model.entity.issendmsg; //是否发送短信
+    var ruleDescribe = $model.entity.ruleMemo;//规则描述
+    var ruleId = &quot;&quot;;
+    
+    var changeVersion =  document.getElementById(&quot;isChangeVersion&quot;).value;
+    var area_code=$model.entity.areaCode;
+    var is_public = $model.entity.isPublic;
+    
+    var rule_id=$model.entity.ruleId;
+    
+    if(changeVersion==&quot;true&quot; &amp;&amp;  rule_id!=null &amp;&amp; rule_id!=&quot;&quot;){//版本改变，且是修改时
+        versionNumber = versionNumber*1 + 1 ;
+        $model.entity.ruleVersion = versionNumber;
+    }
+    
+  
+    
+    
+    
+    if(changeVersion==&quot;true&quot; &amp;&amp; rule_id!=null &amp;&amp; rule_id!=&quot;&quot;){
+    	//保存进规则历史表 TA_RULE_HISTORYINFO
+    	var cond={ruleId:rule_id,ruleName:ruleName,ruleMemo:ruleDescribe,ruleVersion:versionNumber,isValid:isValid,isAutoRun:isAutoRun,ruleType:ruleType,jbjIsMonitor:jbjIsMonitor,runPriority:rulePriority};
+    	$http.post(c2.base(&quot;service&quot;)+&quot;dzjc_ruleEngine/v1/publicType/insertRuleHistoy&quot;,cond).success(function(data){ 
+    	}).error(function(data) {
+    		Messenger.error(&quot;保存失败!&quot;);
+    		return;
+    	});
+    }
+    if(rule_id!=null &amp;&amp; rule_id!=&quot;&quot;){
+    	//update TA_JC_RULE_BASEINFO规则信息表  
+    	$model.entity.$save(function(){
+    	});
+    }else{
+    	//新增到规则信息表 insert into TA_JC_RULE_BASEINFO
+    	$model.entity.$save(function(data){
+    	});
+    }
+   
+    //待定，简单和复杂可放在一起
+    if(ruleType==&quot;1&quot;){
+        var expression = document.getElementById(&quot;expression&quot;).value; //监管类型
+	    var superviseType = document.getElementById(&quot;supervise_type&quot;).value; //监管类型
+	    var sendType = functions.getRadioGroupValue(&quot;RGsend_type&quot;); //发牌方式
+	    var superviseResult =document.getElementById(&quot;supervise_result&quot;).value; //监管级别
+	    var msgTemplate =document.getElementById(&quot;msg_template&quot;).value; //消息模版
+        var td2 = document.getElementsByName(&quot;leftParenth&quot;);
+        var td3 = document.getElementsByName(&quot;ruleElement&quot;);
+        var td4 = document.getElementsByName(&quot;compa&quot;);
+        var td5 = document.getElementsByName(&quot;condition&quot;);
+        var td6 = document.getElementsByName(&quot;rigthParenth&quot;);
+        var td7 = document.getElementsByName(&quot;logic&quot;);
+        
+        var expid=&quot;&quot;;
+        
+        if(changeVersion==&quot;false&quot;){
+	    	//没有改变版本时，先删除表达式，再插入表达式.否则保存表达式历史
+	    	$http.post(c2.base(&quot;service&quot;)+&quot;dzjc_ruleEngine/v1/publicType/delete&quot;,{ruleId:rule_id}).success(function(data){ 
+	    		//1.insert  TA_JC_RULE_EXPINFO  规则与表达式对应表
+		        var cond={ruleId:rule_id,areaCode:area_code,expSeq:1,ruleVersion:versionNumber};
+		        $http.post(c2.base(&quot;service&quot;)+&quot;dzjc_ruleEngine/v1/publicType/insertRuleExpInfo&quot;,cond).success(function(data){ 
+		        	expid=data.expId;
+		        	for(var i = 0 ; i &lt; td2.length ; i++){
+			            if(td2[i].value==&quot;0&quot;&amp;&amp;td3[i].value==&quot;&quot;&amp;&amp;td4[i].value==&quot;&quot;&amp;&amp;td5[i].value==&quot;&quot;&amp;&amp;td6[i].value==&quot;0&quot;&amp;&amp;td7[i].value==&quot;&quot;){
+			                //不保存空表达式片段
+			            }else{
+			            	//2.insert  ta_jc_rule_expletinfo 表达式表
+			            	var cond1={expId:expid,areaCode:area_code,leftParen:td2[i].value,elemId:td3[i].value,compaId:td4[i].value,cfgValue:td5[i].value,rightParen:td6[i].value,logicId:td7[i].value};
+					        $http.post(c2.base(&quot;service&quot;)+&quot;dzjc_ruleEngine/v1/publicType/insertRuleletExpInfo&quot;,cond1).success(function(data){ 
+					    	}).error(function(data) {
+						       Messenger.error(&quot;保存失败!&quot;);
+						       return;
+						    });
+			            }
+			         }
+			        //3.insert TA_JC_RULE_SUPERVISE_DEFINITION 检查信息表
+			        var cond2=cond1={expId:expid,areaCode:area_code,superviseLevelCode:superviseResult,sendcardType:sendType,msgTemplateId:msgTemplate,superviseTypeCode:superviseType};
+						$http.post(c2.base(&quot;service&quot;)+&quot;dzjc_ruleEngine/v1/publicType/insertRuleSuperviseDefinition&quot;,cond2).success(function(data){ 
+							Modal.instance.close();
+							Messenger.post({type:'success',message:'保存成功'});
+						 }).error(function(data) {
+							 Messenger.post({type:'error',message:'保存失败'});
+							 return;
+						});
+			        
+		        }).error(function(data) {
+					Messenger.post({type:'error',message:'保存失败'});
+					return;
+				});
+	    	});
+        }else{
+        	//1.insert  TA_JC_RULE_EXPINFO  规则与表达式对应表
+	        var cond={ruleId:rule_id,areaCode:area_code,expSeq:1,ruleVersion:versionNumber};
+	        $http.post(c2.base(&quot;service&quot;)+&quot;dzjc_ruleEngine/v1/publicType/insertRuleExpInfo&quot;,cond).success(function(data){ 
+	        	expid=data.expId;
+	        	for(var i = 0 ; i &lt; td2.length ; i++){
+		            if(td2[i].value==&quot;0&quot;&amp;&amp;td3[i].value==&quot;&quot;&amp;&amp;td4[i].value==&quot;&quot;&amp;&amp;td5[i].value==&quot;&quot;&amp;&amp;td6[i].value==&quot;0&quot;&amp;&amp;td7[i].value==&quot;&quot;){
+		                //不保存空表达式片段
+		            }else{
+		            	//2.insert  ta_jc_rule_expletinfo 表达式表
+		            	var cond1={expId:expid,areaCode:area_code,leftParen:td2[i].value,elemId:td3[i].value,compaId:td4[i].value,cfgValue:td5[i].value,rightParen:td6[i].value,logicId:td7[i].value};
+				        $http.post(c2.base(&quot;service&quot;)+&quot;dzjc_ruleEngine/v1/publicType/insertRuleletExpInfo&quot;,cond1).success(function(data){ 
+				    	}).error(function(data) {
+					       Messenger.error(&quot;保存失败!&quot;);
+					       return;
+					    });
+		            }
+		         }
+		        //3.insert TA_JC_RULE_SUPERVISE_DEFINITION 检查信息表
+		        var cond2=cond1={expId:expid,areaCode:area_code,superviseLevelCode:superviseResult,sendcardType:sendType,msgTemplateId:msgTemplate,superviseTypeCode:superviseType};
+					$http.post(c2.base(&quot;service&quot;)+&quot;dzjc_ruleEngine/v1/publicType/insertRuleSuperviseDefinition&quot;,cond2).success(function(data){ 
+						Modal.instance.close();
+						Messenger.post({type:'success',message:'保存成功'});
+					 }).error(function(data) {
+						 Messenger.post({type:'error',message:'保存失败'});
+						 return;
+					});
+		        
+	        }).error(function(data) {
+				Messenger.post({type:'error',message:'保存失败'});
+				return;
+			});
+        }
+        
+        
+        
+    }else if(ruleType==&quot;2&quot;){
+    	var obj = validateDiv.split(&quot;,&quot;);
+        for(var j = 0 ; j &lt; obj.length ; j++){
+        	var divName = obj[j];
+            var expSeq = document.getElementById(&quot;combobox&quot;+divName).value;
+            var superviseType =document.getElementById(&quot;supervise_type&quot;+divName).value;//监管类型
+            var sendType = functions.getRadioGroupValue(&quot;RGsend_type&quot;+divName); //发牌方式
+            var superviseResult = document.getElementById(&quot;supervise_result&quot;+divName).value; //监管级别
+            var msgTemplate = document.getElementById(&quot;msg_template&quot;+divName).value;//消息模版
+            
+
+            var td2 = document.getElementsByName(&quot;leftParenth&quot;+divName);
+            var td3 = document.getElementsByName(&quot;ruleElement&quot;+divName);
+            var td4 = document.getElementsByName(&quot;compa&quot;+divName);
+            var td5 = document.getElementsByName(&quot;condition&quot;+divName);
+            var td6 = document.getElementsByName(&quot;rigthParenth&quot;+divName);
+            var td7 = document.getElementsByName(&quot;logic&quot;+divName);
+            
+            var expid=&quot;&quot;;
+            //1.insert  TA_JC_RULE_EXPINFO  规则与表达式对应表
+            var cond={ruleId:rule_id,areaCode:area_code,expSeq:expSeq,ruleVersion:versionNumber};
+        	$http.post(c2.base(&quot;service&quot;)+&quot;dzjc_ruleEngine/v1/publicType/insertRuleExpInfo&quot;,cond).success(function(data){ 
+	        	expid=data.expId;
+	        	for(var i = 0 ; i &lt; td2.length ; i++){
+		            if(td2[i].value==&quot;0&quot;&amp;&amp;td3[i].value==&quot;&quot;&amp;&amp;td4[i].value==&quot;&quot;&amp;&amp;td5[i].value==&quot;&quot;&amp;&amp;td6[i].value==&quot;0&quot;&amp;&amp;td7[i].value==&quot;&quot;){
+		                //不保存空表达式片段
+		            }else{
+		            	//2.insert  ta_jc_rule_expletinfo 表达式表
+		            	var cond1={expId:expid,areaCode:area_code,leftParen:td2[i].value,elemId:td3[i].value,compaId:td4[i].value,cfgValue:td5[i].value,rightParen:td6[i].value,logicId:td7[i].value};
+				        $http.post(c2.base(&quot;service&quot;)+&quot;dzjc_ruleEngine/v1/publicType/insertRuleletExpInfo&quot;,cond1).success(function(data){ 
+				    	}).error(function(data) {
+					       Messenger.error(&quot;保存失败!&quot;);
+					       return;
+					    });
+		            }
+		         }
+		        //3.insert TA_JC_RULE_SUPERVISE_DEFINITION 检查信息表
+		        var cond2=cond1={expId:expid,areaCode:area_code,superviseLevelCode:superviseResult,sendcardType:sendType,msgTemplateId:msgTemplate,superviseTypeCode:superviseType};
+					$http.post(c2.base(&quot;service&quot;)+&quot;dzjc_ruleEngine/v1/publicType/insertRuleSuperviseDefinition&quot;,cond2).success(function(data){ 
+						Modal.instance.close();
+						Messenger.post({type:'success',message:'保存成功'});
+					 }).error(function(data) {
+						 Messenger.post({type:'error',message:'保存失败'});
+						 return;
+					});
+	        
+	        }).error(function(data) {
+				Messenger.post({type:'error',message:'保存失败'});
+				return;
+			});
+            
+            
+        }
+    }
+    
+}
+</form:scripts>
+  <form:htmls>&lt;style>
+	.qFunButton1 {/*查询功能按钮位置*/
+		text-align:right;
+		background-color: #ffffff;
+	}
+	.cButton {/*按钮（可单击状态）*/
+		padding-left: 6px;
+		height: 25px;
+		width: 88px;
+		border: none;
+		font-family: &quot;宋体&quot;;
+		font-size: 13px;
+		color: #0000;
+		text-decoration: none;
+		line-height: 25px;
+		margin-bottom: 6px;
+		margin-top: 6px;
+		background-repeat: no-repeat;
+		background-position: center;
+		margin-right: 3px;
+	}
+	
+	/* 包含内容的table样式 */
+	.contentTable{/*表格*/
+		border-collapse:collapse;
+		background:#ffffff;
+		padding:0px;
+		color: #000000;
+		margin: 0px;
+		border: 1px solid #C1C1C1; /*表格外框边框线颜色*/
+		font-size: 13px;/*字体13号*/
+		width:100%;
+	}
+	.contentTable textarea {
+	    line-height: 22px;
+		border: 1px solid #BFBFBF;
+		width: 99%;
+		border-collapse: collapse;
+	}
+	.contentTable td{
+		border:1px solid #E4E4E4; /*表格内框边框线颜色*/
+		padding: 5px;
+	}
+	.contentTable .c2{
+		color:#000000;
+		text-align: right;
+		margin: 0px;
+		padding: 0px;
+		background-color: #F2F2F2;
+		width: 150px;
+	}
+	
+	
+&lt;/style>
+
+
+
+&lt;script type=&quot;text/ng-template&quot; id=&quot;div1_html&quot;>
+&lt;div id=&quot;simpleRule&quot; style=&quot;DISPLAY: inline;width:100%&quot;>
+	&lt;table style=&quot;width:100%&quot;>
+		&lt;TBODY>
+			&lt;TR>
+				&lt;TD style=&quot;BACKGROUND-COLOR: #ffffcc&quot; align=left>如果以下条件表达式为真，则监管&lt;/TD>
+			&lt;/TR>
+			&lt;TR class=qFunButton1>
+				&lt;TD>
+					&lt;BUTTON  id=&quot;addbutton2&quot; ng-click=&quot;functions.addRows('');&quot; >增加片段&lt;/BUTTON>
+					&lt;BUTTON  id=&quot;delbutton4&quot; ng-click=&quot;functions.delRows('')&quot; >删除片段&lt;/BUTTON>
+				&lt;/TD>
+			&lt;/TR>
+			&lt;TR>
+				&lt;TD>
+					&lt;TABLE class=&quot;contentTable&quot; id=&quot;ruleTable&quot;>
+						&lt;TBODY>
+							&lt;TR>
+								&lt;TD style=&quot;BORDER-RIGHT: 0px; BORDER-LEFT: 0px&quot;   width=&quot;5%&quot;>选择&lt;/TD>
+								&lt;TD style=&quot;BORDER-RIGHT: 0px; BORDER-LEFT: 0px&quot;  width=&quot;10%&quot;>左括号&lt;/TD>
+								&lt;TD style=&quot;BORDER-RIGHT: 0px; BORDER-LEFT: 0px&quot;   width=&quot;30%&quot;>监管要素&lt;/TD>
+								&lt;TD style=&quot;BORDER-RIGHT: 0px; BORDER-LEFT: 0px&quot;  width=&quot;10%&quot;>比较运算符&lt;/TD>
+								&lt;TD style=&quot;BORDER-RIGHT: 0px; BORDER-LEFT: 0px&quot;   width=&quot;20%&quot;>条件值&lt;/TD>
+								&lt;TD style=&quot;BORDER-RIGHT: 0px; BORDER-LEFT: 0px&quot;  width=&quot;10%&quot;>右括号&lt;/TD>
+								&lt;TD style=&quot;BORDER-RIGHT: 0px; BORDER-LEFT: 0px&quot;   width=&quot;15%&quot;>逻辑运算符&lt;/TD>
+							&lt;/TR>
+							
+						&lt;/TBODY>
+					&lt;/TABLE>
+				&lt;/TD>
+			&lt;/TR>
+
+			&lt;TR>
+					&lt;TD>
+						&lt;TABLE class=contentTable>
+							&lt;TBODY>
+								&lt;TR>
+									&lt;TD class=tableLable width=&quot;10%&quot;>条件表达式&lt;FONT color=red>*&lt;/FONT>&amp;nbsp;&lt;/TD>
+									&lt;TD colSpan=3>&lt;INPUT id=&quot;expression&quot; name=&quot;expression&quot; style=&quot;WIDTH: 90%&quot;
+										readOnly type=&quot;text&quot;>
+										&lt;BUTTON id=&quot;button5&quot;  ng-click=&quot;functions.combination('')&quot; >组合&lt;/BUTTON>
+										&lt;BUTTON  id=&quot;button6&quot; style=&quot;DISPLAY: none&quot; type=&quot;button&quot; ng-click=&quot;functions.sendRequest('')&quot;>校验&lt;/BUTTON>
+										&lt;INPUT id=&quot;exp&quot; style=&quot;DISPLAY: none; LEFT: 0px; WIDTH: 7px; POSITION: static; TOP: 0px; HEIGHT: 20px&quot; readOnly size=1 type=&quot;text&quot;>
+										&lt;INPUT id=&quot;exp_isright&quot; style=&quot;DISPLAY: none; LEFT: 0px; WIDTH: 8px; POSITION: static; TOP: 0px; HEIGHT: 20px&quot; readOnly size=1 type=&quot;text&quot;>
+									
+									&lt;/TD>
+							
+								&lt;/TR>
+								&lt;TR>
+									&lt;TD class=tableLable width=&quot;10%&quot;>监管类型&lt;FONT color=red>*&lt;/FONT>&amp;nbsp;&lt;/TD>
+									&lt;TD width=&quot;40%&quot;>&lt;SELECT id=&quot;supervise_type&quot;
+										style=&quot;LEFT: 0px; WIDTH: 100%; POSITION: static; TOP: 0px; HEIGHT: 25px&quot;
+										onchange=&quot;document.getElementById('isChangeVersion').value = 'true';&quot;>
+										&lt;OPTION value=-1 selected>-请选择-&lt;/OPTION>
+									&lt;/SELECT>&lt;/TD>
+									&lt;TD class=tableLable width=&quot;10%&quot;>发牌方式&lt;FONT color=red>*&lt;/FONT>&amp;nbsp;&lt;/TD>
+									&lt;TD width=&quot;40%&quot;>
+									&lt;FIELDSET id=&quot;send_type&quot; style=&quot;BORDER-RIGHT: 0px; BORDER-TOP: 0px; LEFT: 0px; BORDER-LEFT: 0px; WIDTH: 100%; COLOR: #000000; BORDER-BOTTOM: 0px; POSITION: static; TOP: 0px; HEIGHT: 21px&quot;>
+										&lt;INPUT type=radio value=1 name=&quot;RGsend_type&quot;>
+											&lt;SPAN onclick=RGsend_type[0].checked=true;send_type.value=RGsend_type[0].value;RGsend_type[0].focus();>自动发牌&lt;/SPAN>&amp;nbsp;
+										&lt;INPUT type=radio CHECKED value=2 name=&quot;RGsend_type&quot;>
+											&lt;SPAN onclick=RGsend_type[1].checked=true;send_type.value=RGsend_type[1].value;RGsend_type[1].focus();>人工确认&lt;/SPAN>&amp;nbsp;
+									&lt;/FIELDSET>
+									&lt;/TD>
+								&lt;/TR>
+								&lt;TR>
+									&lt;TD class=tableLable width=&quot;10%&quot;>监管级别&lt;FONT color=red>*&lt;/FONT>&amp;nbsp;&lt;/TD>
+									&lt;TD width=&quot;40%&quot;>
+									&lt;SELECT id=&quot;supervise_result&quot;
+										style=&quot;LEFT: 0px; WIDTH: 100%; POSITION: static; TOP: 0px; HEIGHT: 25px&quot;
+										onchange=&quot;document.getElementById('isChangeVersion').value= 'true';&quot;>
+										&lt;OPTION value=-1 selected>-请选择-&lt;/OPTION>
+									&lt;/SELECT>
+									&lt;/TD>
+									&lt;TD class=tableLable width=&quot;10%&quot;>消息模版&lt;FONT color=red>*&lt;/FONT>&amp;nbsp;&lt;/TD>
+									&lt;TD width=&quot;40%&quot;>
+									&lt;SELECT id=&quot;msg_template&quot;
+										style=&quot;LEFT: 0px; WIDTH: 100%; POSITION: static; TOP: 0px; HEIGHT: 25px&quot;
+										onchange=&quot;document.getElementById('isChangeVersion').value= 'true';&quot;>
+										&lt;OPTION value=-1 selected>-请选择-&lt;/OPTION>
+									&lt;/SELECT>
+									&lt;/TD>
+								&lt;/TR>
+							&lt;/TBODY>
+						&lt;/TABLE>
+						&lt;/TD>
+					&lt;/TR>
+
+		&lt;/TBODY>
+	&lt;/table>
+&lt;/div>
+
+
+
+&lt;DIV id=&quot;complexRule&quot; style=&quot;DISPLAY: none;width:100%&quot;>
+	&lt;TABLE  id=&quot;complexTable&quot; style=&quot;width:100%&quot;>
+		&lt;TBODY>
+			&lt;TR>
+				&lt;TD>
+					&lt;TABLE class=contentTable >
+						&lt;TBODY>
+								&lt;TR>
+									&lt;TD
+										style=&quot;BORDER-RIGHT: 0px; BORDER-TOP: 0px; BORDER-LEFT: 0px; WIDTH: 85%; BORDER-BOTTOM: 0px; BACKGROUND-COLOR: #ffffcc&quot;
+										align=left>如果以下表达式为真，则红牌监管&lt;/TD>
+									&lt;TD class=&quot;qFunButton1&quot;
+										style=&quot;BORDER-RIGHT: 0px; BORDER-TOP: 0px; BORDER-LEFT: 0px; WIDTH: 15%; BORDER-BOTTOM: 0px; BACKGROUND-COLOR: #ffffcc&quot;>
+									
+									&lt;BUTTON  id=&quot;del_div_a&quot; style=&quot;POSITION: static&quot;
+										ng-click=&quot;functions.delDiv('_a')&quot;>删除&lt;/BUTTON>
+									&lt;/TD>
+								&lt;/TR>
+						&lt;/TBODY>
+					&lt;/TABLE>
+				&lt;/TD>
+			&lt;/TR>
+
+			
+			&lt;TR>
+				&lt;TD>
+					&lt;DIV id=&quot;div_a&quot; style=&quot;DISPLAY: inline&quot;>
+						&lt;TABLE class=contentTable>
+							&lt;TBODY>
+								&lt;TR class=&quot;qFunButton1&quot;>
+									&lt;TD>
+									&lt;BUTTON  id=&quot;button2_a&quot; ng-click=&quot;functions.addRows('_a')&quot; >增加片段&lt;/BUTTON>
+									&lt;BUTTON  id=&quot;button4a&quot; ng-click=&quot;functions.delRows('_a')&quot; >删除片段&lt;/BUTTON>
+									&lt;/TD>
+								&lt;/TR>
+								&lt;TR>
+									&lt;TD>
+									&lt;TABLE class=contentTable id=&quot;ruleTable_a&quot;>
+										&lt;TBODY>
+											&lt;TR>
+												&lt;TD style=&quot;BORDER-RIGHT: 0px; BORDER-LEFT: 0px&quot; width=&quot;5%&quot;>选择&lt;/TD>
+												&lt;TD style=&quot;BORDER-RIGHT: 0px; BORDER-LEFT: 0px&quot; width=&quot;10%&quot;>左括号&lt;/TD>
+												&lt;TD style=&quot;BORDER-RIGHT: 0px; BORDER-LEFT: 0px&quot; width=&quot;30%&quot;>监管要素&lt;/TD>
+												&lt;TD style=&quot;BORDER-RIGHT: 0px; BORDER-LEFT: 0px&quot; width=&quot;10%&quot;>比较运算符&lt;/TD>
+												&lt;TD style=&quot;BORDER-RIGHT: 0px; BORDER-LEFT: 0px&quot; width=&quot;20%&quot;>条件值&lt;/TD>
+												&lt;TD style=&quot;BORDER-RIGHT: 0px; BORDER-LEFT: 0px&quot; width=&quot;10%&quot;>右括号&lt;/TD>
+												&lt;TD style=&quot;BORDER-RIGHT: 0px; BORDER-LEFT: 0px&quot; width=&quot;15%&quot;>逻辑运算符&lt;/TD>
+											&lt;/TR>
+										&lt;/TBODY>
+									&lt;/TABLE>
+									&lt;/TD>
+								&lt;/TR>
+								&lt;TR>
+									&lt;TD>
+									&lt;TABLE class=&quot;contentTable&quot;>
+										&lt;TBODY>
+											&lt;TR>
+												&lt;TD class=tableLable width=&quot;20%&quot;>条件表达式&lt;FONT color=red>*&lt;/FONT>&amp;nbsp;&lt;/TD>
+												&lt;TD width=&quot;30%&quot;>&lt;INPUT id=&quot;expression_a&quot;
+													style=&quot;WIDTH: 100%&quot; readOnly
+													onchange=&quot;document.getElementById('isChangeVersion').value = 'true';&quot;
+													type=&quot;text&quot;>&lt;/TD>
+												&lt;TD>序号&lt;SELECT id=&quot;combobox_a&quot;
+													style=&quot;LEFT: 0px; WIDTH: 80%; POSITION: static; TOP: 0px; HEIGHT: 25px&quot;
+													onchange=&quot;document.getElementById('isChangeVersion').value  = 'true';&quot;>
+													&lt;OPTION value=1 selected>1&lt;/OPTION>
+													&lt;OPTION value=2>2&lt;/OPTION>
+													&lt;OPTION value=3>3&lt;/OPTION>
+												&lt;/SELECT>&lt;SELECT id=&quot;combobox&quot;
+													style=&quot;DISPLAY: none; LEFT: 0px; WIDTH: 5px; POSITION: static; TOP: 0px; HEIGHT: 25px&quot;
+													disabled
+													onchange=&quot;document.getElementById('isChangeVersion').value  = 'true';&quot;>&lt;/SELECT>&lt;/TD>
+												&lt;TD class=qFunButton1>
+												&lt;BUTTON  id=button5_a
+														ng-click=&quot;functions.combination('_a')&quot; >组合&lt;/BUTTON>
+												&lt;BUTTON  id=button6_a style=&quot;DISPLAY: none&quot;
+													   	ng-click=&quot;functions.sendRequest('_a')&quot; >校验&lt;/BUTTON>
+												&lt;INPUT id=&quot;exp_a&quot;
+													style=&quot;DISPLAY: none; LEFT: 0px; WIDTH: 7px; POSITION: static; TOP: 0px; HEIGHT: 20px&quot;
+													readOnly size=1 type=&quot;text&quot;>&lt;INPUT id=exp_isright_a
+													style=&quot;DISPLAY: none; LEFT: 0px; WIDTH: 8px; POSITION: static; TOP: 0px; HEIGHT: 20px&quot;
+													readOnly size=1 type=&quot;text&quot;>&lt;/TD>
+											&lt;/TR>
+											&lt;TR>
+												&lt;TD class=tableLable width=&quot;20%&quot;>监管类型&lt;FONT color=red>*&lt;/FONT>&amp;nbsp;&lt;/TD>
+												&lt;TD width=&quot;30%&quot;>
+													&lt;SELECT id=&quot;supervise_type_a&quot;
+													style=&quot;LEFT: 0px; WIDTH: 100%; POSITION: static; TOP: 0px; HEIGHT: 25px&quot;
+													onchange=&quot;document.getElementById('isChangeVersion').value  = 'true';&quot;>
+													&lt;OPTION value=-1 selected>-请选择-&lt;/OPTION>
+													&lt;/SELECT>
+												&lt;/TD>
+												&lt;TD class=tableLable width=&quot;20%&quot;>发牌方式&lt;FONT color=red>*&lt;/FONT>&amp;nbsp;&lt;/TD>
+												&lt;TD width=&quot;30%&quot;>
+												&lt;FIELDSET id=send_type_a
+													style=&quot;LEFT: 0px; WIDTH: 100%; COLOR: #000000; POSITION: static; TOP: 0px; HEIGHT: 22px&quot;>&lt;INPUT
+													type=radio value=1 name=&quot;RGsend_type_a&quot;>&lt;SPAN
+													onclick=RGsend_type_a[0].checked=true;send_type_a.value=RGsend_type_a[0].value;RGsend_type_a[0].focus();>自动发牌&lt;/SPAN>&amp;nbsp;&lt;INPUT
+													type=radio CHECKED value=2 name=&quot;RGsend_type_a&quot;>&lt;SPAN
+													onclick=RGsend_type_a[1].checked=true;send_type_a.value=RGsend_type_a[1].value;RGsend_type_a[1].focus();>人工确认&lt;/SPAN>&amp;nbsp;&lt;/FIELDSET>
+												&lt;/TD>
+											&lt;/TR>
+											&lt;TR>
+												&lt;TD class=tableLable width=&quot;20%&quot;>监管级别&lt;FONT color=red>*&lt;/FONT>&amp;nbsp;&lt;/TD>
+												&lt;TD width=&quot;30%&quot;>&lt;SELECT id=&quot;supervise_result_a&quot;
+													style=&quot;LEFT: 0px; WIDTH: 100%; POSITION: static; TOP: 0px; HEIGHT: 25px&quot;
+													disabled>
+													&lt;OPTION value=3 selected>红牌&lt;/OPTION>
+												&lt;/SELECT>&lt;/TD>
+												&lt;TD class=tableLable width=&quot;20%&quot;>消息模版&lt;FONT color=red>*&lt;/FONT>&amp;nbsp;&lt;/TD>
+												&lt;TD>&lt;SELECT id=&quot;msg_template_a&quot;
+													style=&quot;LEFT: 0px; WIDTH: 100%; POSITION: static; TOP: 0px; HEIGHT: 25px&quot;
+													onchange=&quot;document.getElementById('isChangeVersion').value  = 'true';&quot;>
+													&lt;OPTION value=-1 selected>-请选择-&lt;/OPTION>
+												&lt;/SELECT>&lt;/TD>
+											&lt;/TR>
+										&lt;/TBODY>
+									&lt;/TABLE>
+									&lt;/TD>
+								&lt;/TR>
+							&lt;/TBODY>
+						&lt;/TABLE>
+					&lt;/DIV>
+				&lt;/TD>
+			&lt;/TR>
+
+			&lt;TR>
+				&lt;TD>
+						&lt;TABLE class=&quot;contentTable&quot;>
+							&lt;TBODY>
+								&lt;TR>
+									&lt;TD
+										style=&quot;BORDER-RIGHT: 0px; BORDER-TOP: 0px; BORDER-LEFT: 0px; WIDTH: 85%; BORDER-BOTTOM: 0px; BACKGROUND-COLOR: #ffffcc&quot;
+										align=left>如果以下表达式为真，则黄牌监管&lt;/TD>
+									&lt;TD class=qFunButton1
+										style=&quot;BORDER-RIGHT: 0px; BORDER-TOP: 0px; BORDER-LEFT: 0px; WIDTH: 15%; BORDER-BOTTOM: 0px; BACKGROUND-COLOR: #ffffcc&quot;>
+									
+									&lt;BUTTON  id=&quot;del_div_b&quot; style=&quot;POSITION: static&quot;
+										ng-click=&quot;functions.delDiv('_b')&quot; >删除&lt;/BUTTON>
+									&lt;/TD>
+								&lt;/TR>
+							&lt;/TBODY>
+						&lt;/TABLE>
+				&lt;/TD>
+			&lt;/TR>
+			
+
+			&lt;TR>
+				&lt;TD>
+					&lt;DIV id=&quot;div_b&quot; style=&quot;DISPLAY: inline&quot;>
+						&lt;TABLE class=&quot;contentTable&quot;>
+							&lt;TBODY>
+								&lt;TR class=&quot;qFunButton1&quot;>
+									&lt;TD>
+									&lt;BUTTON  id=&quot;button2_b&quot;
+										ng-click=&quot;functions.addRows('_b')&quot; >增加片段&lt;/BUTTON>
+									&lt;BUTTON  id=&quot;button4_b&quot;
+										ng-click=&quot;functions.delRows('_b')&quot; >删除片段&lt;/BUTTON>
+									&lt;/TD>
+								&lt;/TR>
+								&lt;TR>
+									&lt;TD>
+									&lt;TABLE class=contentTable id=&quot;ruleTable_b&quot;>
+										&lt;TBODY>
+											&lt;TR>
+												&lt;TD style=&quot;BORDER-RIGHT: 0px; BORDER-LEFT: 0px&quot; width=&quot;5%&quot;>选择&lt;/TD>
+												&lt;TD style=&quot;BORDER-RIGHT: 0px; BORDER-LEFT: 0px&quot; width=&quot;10%&quot;>左括号&lt;/TD>
+												&lt;TD style=&quot;BORDER-RIGHT: 0px; BORDER-LEFT: 0px&quot; width=&quot;30%&quot;>监管要素&lt;/TD>
+												&lt;TD style=&quot;BORDER-RIGHT: 0px; BORDER-LEFT: 0px&quot; width=&quot;10%&quot;>比较运算符&lt;/TD>
+												&lt;TD style=&quot;BORDER-RIGHT: 0px; BORDER-LEFT: 0px&quot; width=&quot;20%&quot;>条件值&lt;/TD>
+												&lt;TD style=&quot;BORDER-RIGHT: 0px; BORDER-LEFT: 0px&quot; width=&quot;10%&quot;>右括号&lt;/TD>
+												&lt;TD style=&quot;BORDER-RIGHT: 0px; BORDER-LEFT: 0px&quot; width=&quot;15%&quot;>逻辑运算符&lt;/TD>
+											&lt;/TR>
+										&lt;/TBODY>
+									&lt;/TABLE>
+									&lt;/TD>
+								&lt;/TR>
+								&lt;TR>
+									&lt;TD>
+									&lt;TABLE class=contentTable>
+										&lt;TBODY>
+											&lt;TR>
+												&lt;TD class=tableLable width=&quot;20%&quot;>条件表达式&lt;FONT color=red>*&lt;/FONT>&amp;nbsp;&lt;/TD>
+												&lt;TD width=&quot;30%&quot;>&lt;INPUT class=cTextReadOnly
+													id=&quot;expression_b&quot; style=&quot;WIDTH: 100%&quot; readOnly
+													onchange=&quot;document.getElementById('isChangeVersion').value  = 'true';&quot;
+													type=&quot;text&quot;>&lt;/TD>
+												&lt;TD style=&quot;BORDER-RIGHT: 0px; BORDER-LEFT: 0px&quot; align=right>序号&lt;SELECT
+													id=&quot;combobox_b&quot;
+													style=&quot;LEFT: 0px; WIDTH: 80%; POSITION: static; TOP: 0px; HEIGHT: 25px&quot;
+													onchange=&quot;document.getElementById('isChangeVersion').value  = 'true';&quot;>
+													&lt;OPTION value=1>1&lt;/OPTION>
+													&lt;OPTION value=2 selected>2&lt;/OPTION>
+													&lt;OPTION value=3>3&lt;/OPTION>
+												&lt;/SELECT>&lt;/TD>
+												&lt;TD class=qFunButton1>
+												&lt;BUTTON  id=&quot;button5_b&quot; ng-click=&quot;functions.combination('_b')&quot;>组合&lt;/BUTTON>
+												&lt;BUTTON  id=&quot;button6_b&quot; style=&quot;DISPLAY: none&quot; ng-click=&quot;functions.sendRequest('_b')&quot;>校验&lt;/BUTTON>
+												&lt;INPUT id=&quot;exp_b&quot;
+													style=&quot;DISPLAY: none; LEFT: 0px; WIDTH: 7px; POSITION: static; TOP: 0px; HEIGHT: 20px&quot;
+													readOnly size=1 type=&quot;text&quot;>
+												&lt;INPUT id=&quot;exp_isright_b&quot;
+													style=&quot;DISPLAY: none; LEFT: 0px; WIDTH: 8px; POSITION: static; TOP: 0px; HEIGHT: 20px&quot;
+													readOnly size=1 type=&quot;text&quot;>&lt;/TD>
+											&lt;/TR>
+											&lt;TR>
+												&lt;TD class=tableLable width=&quot;20%&quot;>监管类型&lt;FONT color=red>*&lt;/FONT>&amp;nbsp;&lt;/TD>
+												&lt;TD width=&quot;30%&quot;>&lt;SELECT id=&quot;supervise_type_b&quot;
+													style=&quot;LEFT: 0px; WIDTH: 100%; POSITION: static; TOP: 0px; HEIGHT: 25px&quot;
+													onchange=&quot;document.getElementById('isChangeVersion').value  = 'true';&quot;>
+													&lt;OPTION value=-1 selected>-请选择-&lt;/OPTION>
+												&lt;/SELECT>&lt;/TD>
+												&lt;TD class=tableLable width=&quot;20%&quot;>发牌方式&lt;FONT color=red>*&lt;/FONT>&amp;nbsp;&lt;/TD>
+												&lt;TD width=&quot;30%&quot;>
+												&lt;FIELDSET id=&quot;send_type_b&quot;
+													style=&quot;BORDER-RIGHT: 0px; BORDER-TOP: 0px; LEFT: 0px; BORDER-LEFT: 0px; WIDTH: 100%; COLOR: #000000; BORDER-BOTTOM: 0px; POSITION: static; TOP: 0px; HEIGHT: 21px&quot;>&lt;INPUT
+													type=radio value=1 name=&quot;RGsend_type_b&quot;>&lt;SPAN
+													onclick=RGsend_type_b[0].checked=true;send_type_b.value=RGsend_type_b[0].value;RGsend_type_b[0].focus();>自动发牌&lt;/SPAN>&amp;nbsp;&lt;INPUT
+													type=radio CHECKED value=2 name=&quot;RGsend_type_b&quot;>&lt;SPAN
+													onclick=RGsend_type_b[1].checked=true;send_type_b.value=RGsend_type_b[1].value;RGsend_type_b[1].focus();>人工确认&lt;/SPAN>&amp;nbsp;&lt;/FIELDSET>
+												&lt;/TD>
+											&lt;/TR>
+											&lt;TR>
+												&lt;TD class=tableLable width=&quot;20%&quot;>监管级别&lt;FONT color=red>*&lt;/FONT>&amp;nbsp;&lt;/TD>
+												&lt;TD width=&quot;30%&quot;>&lt;SELECT id=&quot;supervise_result_b&quot;
+													style=&quot;LEFT: 0px; WIDTH: 100%; POSITION: static; TOP: 0px; HEIGHT: 25px&quot;
+													disabled>
+													&lt;OPTION value=2 selected>黄牌&lt;/OPTION>
+												&lt;/SELECT>&lt;/TD>
+												&lt;TD class=tableLable width=&quot;20%&quot;>消息模版&lt;FONT color=red>*&lt;/FONT>&amp;nbsp;&lt;/TD>
+												&lt;TD>&lt;SELECT id=&quot;msg_template_b&quot;
+													style=&quot;LEFT: 0px; WIDTH: 100%; POSITION: static; TOP: 0px; HEIGHT: 25px&quot;
+													onchange=&quot;document.getElementById('isChangeVersion').value  = 'true';&quot;>
+													&lt;OPTION value=-1 selected>-请选择-&lt;/OPTION>
+												&lt;/SELECT>&lt;/TD>
+											&lt;/TR>
+										&lt;/TBODY>
+									&lt;/TABLE>
+									&lt;/TD>
+								&lt;/TR>
+							&lt;/TBODY>
+						&lt;/TABLE>
+					&lt;/DIV>
+				&lt;/TD>
+			&lt;/TR>
+
+
+			&lt;TR>
+				&lt;TD>
+					&lt;TABLE class=&quot;contentTable&quot;>
+							&lt;TBODY>
+								&lt;TR>
+									&lt;TD
+										style=&quot;BORDER-RIGHT: 0px; BORDER-TOP: 0px; BORDER-LEFT: 0px; WIDTH: 85%; BORDER-BOTTOM: 0px; BACKGROUND-COLOR: #ffffcc&quot;
+										align=left>如果以下表达式为真，则预警监管&lt;/TD>
+									&lt;TD class=&quot;qFunButton1&quot;
+										style=&quot;BORDER-RIGHT: 0px; BORDER-TOP: 0px; BORDER-LEFT: 0px; WIDTH: 85%; BORDER-BOTTOM: 0px; BACKGROUND-COLOR: #ffffcc&quot;>
+								
+									&lt;BUTTON  id=&quot;del_div_c&quot; ng-click=&quot;functions.delDiv('_c')&quot; >删除&lt;/BUTTON>
+									&lt;/TD>
+								&lt;/TR>
+							&lt;/TBODY>
+					&lt;/TABLE>
+				&lt;/TD>
+			&lt;/TR>
+
+			
+			&lt;TR>
+				&lt;TD>
+					&lt;DIV id=&quot;div_c&quot; style=&quot;DISPLAY: inline&quot;>
+						&lt;TABLE class=&quot;contentTable&quot;>
+							&lt;TBODY>
+								&lt;TR class=qFunButton1>
+									&lt;TD>
+									&lt;BUTTON  id=&quot;button2_c&quot;
+										ng-click=&quot;functions.addRows('_c')&quot;>增加片段&lt;/BUTTON>
+									&lt;BUTTON  id=&quot;button4_c&quot;
+										ng-click=&quot;functions.delRows('_c')&quot;>删除片段&lt;/BUTTON>
+									&lt;/TD>
+								&lt;/TR>
+								&lt;TR>
+									&lt;TD>
+									&lt;TABLE class=contentTable id=&quot;ruleTable_c&quot;>
+										&lt;TBODY>
+											&lt;TR>
+												&lt;TD style=&quot;BORDER-RIGHT: 0px; BORDER-LEFT: 0px&quot; width=&quot;5%&quot;>选择&lt;/TD>
+												&lt;TD style=&quot;BORDER-RIGHT: 0px; BORDER-LEFT: 0px&quot; width=&quot;10%&quot;>左括号&lt;/TD>
+												&lt;TD style=&quot;BORDER-RIGHT: 0px; BORDER-LEFT: 0px&quot; width=&quot;30%&quot;>监管要素&lt;/TD>
+												&lt;TD style=&quot;BORDER-RIGHT: 0px; BORDER-LEFT: 0px&quot; width=&quot;10%&quot;>比较运算符&lt;/TD>
+												&lt;TD style=&quot;BORDER-RIGHT: 0px; BORDER-LEFT: 0px&quot; width=&quot;20%&quot;>条件值&lt;/TD>
+												&lt;TD style=&quot;BORDER-RIGHT: 0px; BORDER-LEFT: 0px&quot; width=&quot;10%&quot;>右括号&lt;/TD>
+												&lt;TD style=&quot;BORDER-RIGHT: 0px; BORDER-LEFT: 0px&quot; width=&quot;15%&quot;>逻辑运算符&lt;/TD>
+											&lt;/TR>
+										&lt;/TBODY>
+									&lt;/TABLE>
+									&lt;/TD>
+								&lt;/TR>
+								&lt;TR>
+									&lt;TD>
+									&lt;TABLE class=contentTable>
+										&lt;TBODY>
+											&lt;TR>
+												&lt;TD class=tableLable width=&quot;20%&quot;>条件表达式&lt;FONT color=red>*&lt;/FONT>&amp;nbsp;&lt;/TD>
+												&lt;TD width=&quot;30%&quot;>&lt;INPUT class=cTextReadOnly
+													id=&quot;expression_c&quot; style=&quot;WIDTH: 100%&quot; readOnly
+													onchange=&quot;document.getElementById('isChangeVersion').value  = 'true';&quot;
+													type=&quot;text&quot;>&lt;/TD>
+												&lt;TD style=&quot;BORDER-RIGHT: 0px; BORDER-LEFT: 0px&quot; align=right>序号&lt;SELECT
+													id=&quot;combobox_c&quot;
+													style=&quot;LEFT: 0px; WIDTH: 80%; POSITION: static; TOP: 0px; HEIGHT: 25px&quot;
+													onchange=&quot;document.getElementById('isChangeVersion').value  = 'true';&quot;>
+													&lt;OPTION value=1>1&lt;/OPTION>
+													&lt;OPTION value=2>2&lt;/OPTION>
+													&lt;OPTION value=3 selected>3&lt;/OPTION>
+												&lt;/SELECT>&lt;/TD>
+												&lt;TD class=qFunButton1>
+												&lt;BUTTON  id=&quot;button5_c&quot;
+													ng-click=&quot;functions.combination('_c')&quot; >组合&lt;/BUTTON>
+												&lt;BUTTON  id=&quot;button6_c&quot; style=&quot;DISPLAY: none&quot;
+													 ng-click=&quot;functions.sendRequest('_c')&quot; >校验&lt;/BUTTON>
+												&lt;INPUT id=&quot;exp_c&quot;
+													style=&quot;DISPLAY: none; LEFT: 0px; WIDTH: 7px; POSITION: static; TOP: 0px; HEIGHT: 20px&quot;
+													readOnly size=1 type=&quot;text&quot;>&lt;INPUT id=&quot;exp_isright_c&quot;
+													style=&quot;DISPLAY: none; LEFT: 0px; WIDTH: 8px; POSITION: static; TOP: 0px; HEIGHT: 20px&quot;
+													readOnly size=1 type=&quot;text&quot;>&lt;/TD>
+											&lt;/TR>
+											&lt;TR>
+												&lt;TD class=tableLable width=&quot;20%&quot;>监管类型&lt;FONT color=red>*&lt;/FONT>&amp;nbsp;&lt;/TD>
+												&lt;TD width=&quot;30%&quot;>&lt;SELECT id=&quot;supervise_type_c&quot;
+													style=&quot;LEFT: 0px; WIDTH: 100%; POSITION: static; TOP: 0px; HEIGHT: 25px&quot;
+													onchange=&quot;document.getElementById('isChangeVersion').value  = 'true';&quot;>
+													&lt;OPTION value=-1 selected>-请选择-&lt;/OPTION>
+												&lt;/SELECT>&lt;/TD>
+												&lt;TD class=tableLable width=&quot;20%&quot;>发牌方式&lt;FONT color=red>*&lt;/FONT>&amp;nbsp;&lt;/TD>
+												&lt;TD width=&quot;30%&quot;>
+												&lt;FIELDSET id=&quot;send_type_c&quot;
+													style=&quot;LEFT: 0px; WIDTH: 100%; COLOR: #000000; POSITION: static; TOP: 0px; HEIGHT: 18px&quot;>&lt;INPUT
+													type=radio value=1 name=&quot;RGsend_type_c&quot;>&lt;SPAN
+													onclick=RGsend_type_c[0].checked=true;send_type_c.value=RGsend_type_c[0].value;RGsend_type_c[0].focus();>自动发牌&lt;/SPAN>&amp;nbsp;&lt;INPUT
+													type=radio CHECKED value=2 name=&quot;RGsend_type_c&quot;>&lt;SPAN
+													onclick=RGsend_type_c[1].checked=true;send_type_c.value=RGsend_type_c[1].value;RGsend_type_c[1].focus();>人工确认&lt;/SPAN>&amp;nbsp;&lt;/FIELDSET>
+												&lt;/TD>
+											&lt;/TR>
+											&lt;TR>
+												&lt;TD class=tableLable width=&quot;20%&quot;>监管级别&lt;FONT color=red>*&lt;/FONT>&amp;nbsp;&lt;/TD>
+												&lt;TD width=&quot;30%&quot;>&lt;SELECT id=&quot;supervise_result_c&quot;
+													style=&quot;LEFT: 0px; WIDTH: 100%; POSITION: static; TOP: 0px; HEIGHT: 25px&quot;
+													disabled>
+													&lt;OPTION value=1 selected>预警&lt;/OPTION>
+												&lt;/SELECT>&lt;/TD>
+												&lt;TD class=tableLable width=&quot;20%&quot;>消息模版&lt;FONT color=red>*&lt;/FONT>&amp;nbsp;&lt;/TD>
+												&lt;TD>&lt;SELECT id=&quot;msg_template_c&quot;
+													style=&quot;LEFT: 0px; WIDTH: 100%; POSITION: static; TOP: 0px; HEIGHT: 25px&quot;
+													onchange=&quot;document.getElementById('isChangeVersion').value  = 'true';&quot;>
+													&lt;OPTION value=-1 selected>-请选择-&lt;/OPTION>
+												&lt;/SELECT>&lt;/TD>
+											&lt;/TR>
+										&lt;/TBODY>
+									&lt;/TABLE>
+									&lt;/TD>
+								&lt;/TR>
+							&lt;/TBODY>
+						&lt;/TABLE>
+					&lt;/DIV>
+				&lt;/TD>
+			&lt;/TR>
+		&lt;/TBODY>
+	&lt;/TABLE>
+&lt;/DIV>
+
+
+&lt;TABLE class=contentTable>
+&lt;TR class=qFunButton>
+
+			&lt;TD>
+			&lt;BUTTON  id=&quot;simulateTest&quot; style=&quot;DISPLAY: none&quot;
+				ng-click=&quot;functions.simulateTest()&quot;>模拟测试&lt;/BUTTON>
+			&amp;nbsp;
+			&lt;BUTTON  id=&quot;save&quot; ng-click=&quot;functions.saveTest()&quot;>保存&lt;/BUTTON>
+			&amp;nbsp;
+			&lt;BUTTON  id=&quot;closed&quot; ng-click=&quot;functions.cancel()&quot; >关闭窗口&lt;/BUTTON>
+			&lt;/TD>
+		&lt;/TR>
+
+&lt;TR>
+
+			&lt;TD>
+			&lt;TABLE class=contentTable>
+				&lt;TBODY>
+					&lt;TR>
+						&lt;TD>&lt;TEXTAREA id=&quot;textarea2&quot;
+							style=&quot;LEFT: 0px; WIDTH: 100%; POSITION: static; TOP: 0px; HEIGHT: 110px&quot;
+							disabled readOnly>备注：1、改变规则类型、表达式内容会增加版本号2、序号为表达式执行顺序3、*为必填项4、复杂类型可有多个表达式&lt;/TEXTAREA>&lt;/TD>
+					&lt;/TR>
+				&lt;/TBODY>
+			&lt;/TABLE>
+			&lt;/TD>
+&lt;/TR>
+&lt;/TABLE>
+&lt;INPUT id=&quot;isChangeVersion&quot; style=&quot;DISPLAY: none; LEFT: 0px; WIDTH: 110px; POSITION: static; TOP: 0px; HEIGHT: 20px&quot; readOnly value=false type=&quot;text&quot;>
+
+&lt;INPUT id=&quot;exp_save&quot; style=&quot;DISPLAY: none; LEFT: 0px; WIDTH: 110px; POSITION: static; TOP: 0px; HEIGHT: 20px&quot;  readOnly type=&quot;text&quot;>
+
+&lt;INPUT id=&quot;count_del&quot; style=&quot;DISPLAY: none; LEFT: 0px; WIDTH: 110px; POSITION: static; TOP: 0px; HEIGHT: 20px&quot;  readOnly value=0 type=&quot;text&quot;>
+
+&lt;INPUT id=&quot;count_add&quot; style=&quot;DISPLAY: none; LEFT: 0px; WIDTH: 110px; POSITION: static; TOP: 0px; HEIGHT: 20px&quot; readOnly value=0 type=&quot;text&quot;>
+
+&lt;input type=&quot;hidden&quot; name=ruleNameA id=&quot;ruleNameA&quot;/>
+
+
+&lt;/script></form:htmls>
+</form:Form>

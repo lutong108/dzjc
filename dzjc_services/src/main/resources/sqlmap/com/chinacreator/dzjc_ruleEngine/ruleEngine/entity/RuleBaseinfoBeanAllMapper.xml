@@ -1,0 +1,1045 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"><mapper namespace="com.chinacreator.dzjc_ruleEngine.ruleEngine.entity.RuleBaseinfoBeanAllMapper">
+
+<!-- ElementID:column_sql,Generated=false -->
+<sql id="column_sql">
+		  V_RULEBASEINFOBEANALL.area_code ,
+		  V_RULEBASEINFOBEANALL.exp_id ,
+		  V_RULEBASEINFOBEANALL.rule_id ,
+		  V_RULEBASEINFOBEANALL.rule_version ,
+		  V_RULEBASEINFOBEANALL.issendmsg ,
+		  V_RULEBASEINFOBEANALL.business_id ,
+		  V_RULEBASEINFOBEANALL.rlt_value ,
+		  V_RULEBASEINFOBEANALL.rule_name ,
+		  V_RULEBASEINFOBEANALL.rule_memo ,
+		  V_RULEBASEINFOBEANALL.is_valid ,
+		  V_RULEBASEINFOBEANALL.is_auto_run ,
+		  V_RULEBASEINFOBEANALL.run_priority ,
+		  V_RULEBASEINFOBEANALL.has_runed ,
+		  V_RULEBASEINFOBEANALL.rule_type ,
+		  V_RULEBASEINFOBEANALL.is_public ,
+		  V_RULEBASEINFOBEANALL.exp_seq ,
+		  V_RULEBASEINFOBEANALL.explet_id ,
+		  V_RULEBASEINFOBEANALL.left_paren ,
+		  V_RULEBASEINFOBEANALL.elem_id ,
+		  V_RULEBASEINFOBEANALL.compa_id ,
+		  V_RULEBASEINFOBEANALL.cfg_value ,
+		  V_RULEBASEINFOBEANALL.right_paren ,
+		  V_RULEBASEINFOBEANALL.compa ,
+		  V_RULEBASEINFOBEANALL.logic ,
+		  V_RULEBASEINFOBEANALL.logic_id ,
+		  V_RULEBASEINFOBEANALL.supervise_def_id ,
+		  V_RULEBASEINFOBEANALL.supervise_level_code ,
+		  V_RULEBASEINFOBEANALL.supervise_type_code ,
+		  V_RULEBASEINFOBEANALL.sendcard_type ,
+		  V_RULEBASEINFOBEANALL.msg_template_id ,
+		  V_RULEBASEINFOBEANALL.start_time,
+		  V_RULEBASEINFOBEANALL.end_time,
+		  V_RULEBASEINFOBEANALL.state,
+		  V_RULEBASEINFOBEANALL.promise_limit,
+		  V_RULEBASEINFOBEANALL.process_limit,
+		  V_RULEBASEINFOBEANALL.approve_id,
+		  V_RULEBASEINFOBEANALL.tbcx_times,
+		  V_RULEBASEINFOBEANALL.batch_id
+</sql>
+<!-- ElementID:whereClause_sql,Generated=true -->
+<sql id="whereClause_sql">
+	    <if test="areaCode != null">and V_RULEBASEINFOBEANALL.area_code = #{areaCode}</if>
+	    <if test="expId != null">and V_RULEBASEINFOBEANALL.exp_id = #{expId}</if>
+	    <if test="ruleId != null">and V_RULEBASEINFOBEANALL.rule_id = #{ruleId}</if>
+	    <if test="ruleVersion != null">and V_RULEBASEINFOBEANALL.rule_version = #{ruleVersion}</if>
+	    <if test="issendmsg != null">and V_RULEBASEINFOBEANALL.issendmsg = #{issendmsg}</if>
+	    <if test="businessId != null">and V_RULEBASEINFOBEANALL.business_id = #{businessId}</if>
+	    <if test="rltValue != null">and V_RULEBASEINFOBEANALL.rlt_value = #{rltValue}</if>
+	    <if test="ruleName != null">and V_RULEBASEINFOBEANALL.rule_name = #{ruleName}</if>
+	    <if test="ruleMemo != null">and V_RULEBASEINFOBEANALL.rule_memo = #{ruleMemo}</if>
+	    <if test="isValid != null">and V_RULEBASEINFOBEANALL.is_valid = #{isValid}</if>
+	    <if test="isAutoRun != null">and V_RULEBASEINFOBEANALL.is_auto_run = #{isAutoRun}</if>
+	    <if test="runPriority != null">and V_RULEBASEINFOBEANALL.run_priority = #{runPriority}</if>
+	    <if test="hasRuned != null">and V_RULEBASEINFOBEANALL.has_runed = #{hasRuned}</if>
+	    <if test="ruleType != null">and V_RULEBASEINFOBEANALL.rule_type = #{ruleType}</if>
+	    <if test="isPublic != null">and V_RULEBASEINFOBEANALL.is_public = #{isPublic}</if>
+	    <if test="expSeq != null">and V_RULEBASEINFOBEANALL.exp_seq = #{expSeq}</if>
+	    <if test="expletId != null">and V_RULEBASEINFOBEANALL.explet_id = #{expletId}</if>
+	    <if test="leftParen != null">and V_RULEBASEINFOBEANALL.left_paren = #{leftParen}</if>
+	    <if test="elemId != null">and V_RULEBASEINFOBEANALL.elem_id = #{elemId}</if>
+	    <if test="compaId != null">and V_RULEBASEINFOBEANALL.compa_id = #{compaId}</if>
+	    <if test="cfgValue != null">and V_RULEBASEINFOBEANALL.cfg_value = #{cfgValue}</if>
+	    <if test="rightParen != null">and V_RULEBASEINFOBEANALL.right_paren = #{rightParen}</if>
+	    <if test="compa != null">and V_RULEBASEINFOBEANALL.compa = #{compa}</if>
+	    <if test="logic != null">and V_RULEBASEINFOBEANALL.logic = #{logic}</if>
+	    <if test="logicId != null">and V_RULEBASEINFOBEANALL.logic_id = #{logicId}</if>
+	    <if test="superviseDefId != null">and V_RULEBASEINFOBEANALL.supervise_def_id = #{superviseDefId}</if>
+	    <if test="superviseLevelCode != null">and V_RULEBASEINFOBEANALL.supervise_level_code = #{superviseLevelCode}</if>
+	    <if test="superviseTypeCode != null">and V_RULEBASEINFOBEANALL.supervise_type_code = #{superviseTypeCode}</if>
+	    <if test="sendcardType != null">and V_RULEBASEINFOBEANALL.sendcard_type = #{sendcardType}</if>
+	    <if test="msgTemplateId != null">and V_RULEBASEINFOBEANALL.msg_template_id = #{msgTemplateId}</if>
+	    <if test="businessType != null">and V_RULEBASEINFOBEANALL.business_type = #{businessType}</if>
+	    <if test="orgId != null">and V_RULEBASEINFOBEANALL.org_id = #{orgId}</if>
+	    <if test="startTime != null">and V_RULEBASEINFOBEANALL.start_time = #{startTime}</if>
+	    <if test="endTime != null">and V_RULEBASEINFOBEANALL.end_time = #{endTime}</if>
+	    <if test="state != null">and V_RULEBASEINFOBEANALL.state = #{state}</if>
+	    <if test="promiseLimit != null">and V_RULEBASEINFOBEANALL.promise_limit = #{promiseLimit}</if>
+	    <if test="processLimit != null">and V_RULEBASEINFOBEANALL.process_limit = #{processLimit}</if>
+	    <if test="expireDate != null">and V_RULEBASEINFOBEANALL.expire_date = #{expireDate}</if>
+	    <if test="approveId != null">and V_RULEBASEINFOBEANALL.approve_id = #{approveId}</if>
+	    <if test="tbcxTimes != null">and V_RULEBASEINFOBEANALL.tbcx_times = #{tbcxTimes}</if>
+	    <if test="batchId != null">and V_RULEBASEINFOBEANALL.batch_id = #{batchId}</if>
+	    <if test="superviseInfoId != null">and V_RULEBASEINFOBEANALL.supervise_info_id = #{superviseInfoId}</if>
+	    <if test="businessCode != null">and V_RULEBASEINFOBEANALL.business_code = #{businessCode}</if>
+	    <if test="businessName != null">and V_RULEBASEINFOBEANALL.business_name = #{businessName}</if>
+	    <if test="msgTemplate != null">and V_RULEBASEINFOBEANALL.msg_template = #{msgTemplate}</if>
+	    <if test="streetOrgId != null">and V_RULEBASEINFOBEANALL.street_org_id = #{streetOrgId}</if>
+	    <if test="orgName != null">and V_RULEBASEINFOBEANALL.org_name = #{orgName}</if>
+	    <if test="applyName != null">and V_RULEBASEINFOBEANALL.apply_name = #{applyName}</if>
+	    <if test="tacheName != null">and V_RULEBASEINFOBEANALL.tache_name = #{tacheName}</if>
+	    <if test="instanceId != null">and V_RULEBASEINFOBEANALL.instance_id = #{instanceId}</if>
+	    <if test="markId != null">and V_RULEBASEINFOBEANALL.mark_id = #{markId}</if>
+</sql>
+<!-- ElementID:RuleBaseinfoBeanAllResult,Generated=true -->
+<resultMap id="RuleBaseinfoBeanAllResult" type="com.chinacreator.dzjc_ruleEngine.ruleEngine.entity.RuleBaseinfoBeanAll">
+	<id property="ruleId" column="rule_id"/>
+	<result property="areaCode" column="area_code"/>
+	<result property="expId" column="exp_id"/>
+	<result property="ruleVersion" column="rule_version"/>
+	<result property="issendmsg" column="issendmsg"/>
+	<result property="businessId" column="business_id"/>
+	<result property="rltValue" column="rlt_value"/>
+	<result property="ruleName" column="rule_name"/>
+	<result property="ruleMemo" column="rule_memo"/>
+	<result property="isValid" column="is_valid"/>
+	<result property="isAutoRun" column="is_auto_run"/>
+	<result property="runPriority" column="run_priority"/>
+	<result property="hasRuned" column="has_runed"/>
+	<result property="ruleType" column="rule_type"/>
+	<result property="isPublic" column="is_public"/>
+	<result property="expSeq" column="exp_seq"/>
+	<result property="expletId" column="explet_id"/>
+	<result property="leftParen" column="left_paren"/>
+	<result property="elemId" column="elem_id"/>
+	<result property="compaId" column="compa_id"/>
+	<result property="cfgValue" column="cfg_value"/>
+	<result property="rightParen" column="right_paren"/>
+	<result property="compa" column="compa"/>
+	<result property="logic" column="logic"/>
+	<result property="logicId" column="logic_id"/>
+	<result property="superviseDefId" column="supervise_def_id"/>
+	<result property="superviseLevelCode" column="supervise_level_code"/>
+	<result property="superviseTypeCode" column="supervise_type_code"/>
+	<result property="sendcardType" column="sendcard_type"/>
+	<result property="msgTemplateId" column="msg_template_id"/>
+	<result property="businessType" column="business_type"/>
+	<result property="orgId" column="org_id"/>
+	<result property="startTime" column="start_time"/>
+	<result property="endTime" column="end_time"/>
+	<result property="state" column="state"/>
+	<result property="promiseLimit" column="promise_limit"/>
+	<result property="processLimit" column="process_limit"/>
+	<result property="expireDate" column="expire_date"/>
+	<result property="approveId" column="approve_id"/>
+	<result property="tbcxTimes" column="tbcx_times"/>
+	<result property="batchId" column="batch_id"/>
+	<result property="superviseInfoId" column="supervise_info_id"/>
+	<result property="businessCode" column="business_code"/>
+	<result property="businessName" column="business_name"/>
+	<result property="msgTemplate" column="msg_template"/>
+	<result property="streetOrgId" column="street_org_id"/>
+	<result property="orgName" column="org_name"/>
+	<result property="applyName" column="apply_name"/>
+	<result property="tacheName" column="tache_name"/>
+	<result property="instanceId" column="instance_id"/>
+	<result property="markId" column="mark_id"/>
+</resultMap>
+
+<!-- ElementID:insert,Generated=true -->
+<insert id="insert" parameterType="com.chinacreator.dzjc_ruleEngine.ruleEngine.entity.RuleBaseinfoBeanAll">
+	insert into V_RULEBASEINFOBEANALL(
+	         <if test="areaCode != null">area_code</if>
+	         <if test="expId != null">,exp_id</if>
+	         <if test="ruleId != null">,rule_id</if>
+	         <if test="ruleVersion != null">,rule_version</if>
+	         <if test="issendmsg != null">,issendmsg</if>
+	         <if test="businessId != null">,business_id</if>
+	         <if test="rltValue != null">,rlt_value</if>
+	         <if test="ruleName != null">,rule_name</if>
+	         <if test="ruleMemo != null">,rule_memo</if>
+	         <if test="isValid != null">,is_valid</if>
+	         <if test="isAutoRun != null">,is_auto_run</if>
+	         <if test="runPriority != null">,run_priority</if>
+	         <if test="hasRuned != null">,has_runed</if>
+	         <if test="ruleType != null">,rule_type</if>
+	         <if test="isPublic != null">,is_public</if>
+	         <if test="expSeq != null">,exp_seq</if>
+	         <if test="expletId != null">,explet_id</if>
+	         <if test="leftParen != null">,left_paren</if>
+	         <if test="elemId != null">,elem_id</if>
+	         <if test="compaId != null">,compa_id</if>
+	         <if test="cfgValue != null">,cfg_value</if>
+	         <if test="rightParen != null">,right_paren</if>
+	         <if test="compa != null">,compa</if>
+	         <if test="logic != null">,logic</if>
+	         <if test="logicId != null">,logic_id</if>
+	         <if test="superviseDefId != null">,supervise_def_id</if>
+	         <if test="superviseLevelCode != null">,supervise_level_code</if>
+	         <if test="superviseTypeCode != null">,supervise_type_code</if>
+	         <if test="sendcardType != null">,sendcard_type</if>
+	         <if test="msgTemplateId != null">,msg_template_id</if>
+	         <if test="businessType != null">,business_type</if>
+	         <if test="orgId != null">,org_id</if>
+	         <if test="startTime != null">,start_time</if>
+	         <if test="endTime != null">,end_time</if>
+	         <if test="state != null">,state</if>
+	         <if test="promiseLimit != null">,promise_limit</if>
+	         <if test="processLimit != null">,process_limit</if>
+	         <if test="expireDate != null">,expire_date</if>
+	         <if test="approveId != null">,approve_id</if>
+	         <if test="tbcxTimes != null">,tbcx_times</if>
+	         <if test="batchId != null">,batch_id</if>
+	         <if test="superviseInfoId != null">,supervise_info_id</if>
+	         <if test="businessCode != null">,business_code</if>
+	         <if test="businessName != null">,business_name</if>
+	         <if test="msgTemplate != null">,msg_template</if>
+	         <if test="streetOrgId != null">,street_org_id</if>
+	         <if test="orgName != null">,org_name</if>
+	         <if test="applyName != null">,apply_name</if>
+	         <if test="tacheName != null">,tache_name</if>
+	         <if test="instanceId != null">,instance_id</if>
+	         <if test="markId != null">,mark_id</if>
+	 	 	 )
+	 values (
+	         <if test="areaCode != null">#{areaCode,jdbcType=VARCHAR}</if>
+	         <if test="expId != null">,#{expId,jdbcType=VARCHAR}</if>
+	         <if test="ruleId != null">,#{ruleId,jdbcType=VARCHAR}</if>
+	         <if test="ruleVersion != null">,#{ruleVersion,jdbcType=VARCHAR}</if>
+	         <if test="issendmsg != null">,#{issendmsg,jdbcType=VARCHAR}</if>
+	         <if test="businessId != null">,#{businessId,jdbcType=VARCHAR}</if>
+	         <if test="rltValue != null">,#{rltValue,jdbcType=VARCHAR}</if>
+	         <if test="ruleName != null">,#{ruleName,jdbcType=VARCHAR}</if>
+	         <if test="ruleMemo != null">,#{ruleMemo,jdbcType=VARCHAR}</if>
+	         <if test="isValid != null">,#{isValid,jdbcType=VARCHAR}</if>
+	         <if test="isAutoRun != null">,#{isAutoRun,jdbcType=VARCHAR}</if>
+	         <if test="runPriority != null">,#{runPriority,jdbcType=VARCHAR}</if>
+	         <if test="hasRuned != null">,#{hasRuned,jdbcType=VARCHAR}</if>
+	         <if test="ruleType != null">,#{ruleType,jdbcType=VARCHAR}</if>
+	         <if test="isPublic != null">,#{isPublic,jdbcType=VARCHAR}</if>
+	         <if test="expSeq != null">,#{expSeq,jdbcType=VARCHAR}</if>
+	         <if test="expletId != null">,#{expletId,jdbcType=VARCHAR}</if>
+	         <if test="leftParen != null">,#{leftParen,jdbcType=VARCHAR}</if>
+	         <if test="elemId != null">,#{elemId,jdbcType=VARCHAR}</if>
+	         <if test="compaId != null">,#{compaId,jdbcType=VARCHAR}</if>
+	         <if test="cfgValue != null">,#{cfgValue,jdbcType=VARCHAR}</if>
+	         <if test="rightParen != null">,#{rightParen,jdbcType=VARCHAR}</if>
+	         <if test="compa != null">,#{compa,jdbcType=CHAR}</if>
+	         <if test="logic != null">,#{logic,jdbcType=CHAR}</if>
+	         <if test="logicId != null">,#{logicId,jdbcType=VARCHAR}</if>
+	         <if test="superviseDefId != null">,#{superviseDefId,jdbcType=VARCHAR}</if>
+	         <if test="superviseLevelCode != null">,#{superviseLevelCode,jdbcType=VARCHAR}</if>
+	         <if test="superviseTypeCode != null">,#{superviseTypeCode,jdbcType=VARCHAR}</if>
+	         <if test="sendcardType != null">,#{sendcardType,jdbcType=VARCHAR}</if>
+	         <if test="msgTemplateId != null">,#{msgTemplateId,jdbcType=VARCHAR}</if>
+	         <if test="businessType != null">,#{businessType,jdbcType=VARCHAR}</if>
+	         <if test="orgId != null">,#{orgId,jdbcType=VARCHAR}</if>
+	         <if test="startTime != null">,#{startTime,jdbcType=DATE}</if>
+	         <if test="endTime != null">,#{endTime,jdbcType=DATE}</if>
+	         <if test="state != null">,#{state,jdbcType=VARCHAR}</if>
+	         <if test="promiseLimit != null">,#{promiseLimit,jdbcType=NUMERIC}</if>
+	         <if test="processLimit != null">,#{processLimit,jdbcType=NUMERIC}</if>
+	         <if test="expireDate != null">,#{expireDate,jdbcType=DATE}</if>
+	         <if test="approveId != null">,#{approveId,jdbcType=VARCHAR}</if>
+	         <if test="tbcxTimes != null">,#{tbcxTimes,jdbcType=VARCHAR}</if>
+	         <if test="batchId != null">,#{batchId,jdbcType=VARCHAR}</if>
+	         <if test="superviseInfoId != null">,#{superviseInfoId,jdbcType=VARCHAR}</if>
+	         <if test="businessCode != null">,#{businessCode,jdbcType=VARCHAR}</if>
+	         <if test="businessName != null">,#{businessName,jdbcType=VARCHAR}</if>
+	         <if test="msgTemplate != null">,#{msgTemplate,jdbcType=VARCHAR}</if>
+	         <if test="streetOrgId != null">,#{streetOrgId,jdbcType=VARCHAR}</if>
+	         <if test="orgName != null">,#{orgName,jdbcType=VARCHAR}</if>
+	         <if test="applyName != null">,#{applyName,jdbcType=VARCHAR}</if>
+	         <if test="tacheName != null">,#{tacheName,jdbcType=VARCHAR}</if>
+	         <if test="instanceId != null">,#{instanceId,jdbcType=VARCHAR}</if>
+	         <if test="markId != null">,#{markId,jdbcType=VARCHAR}</if>
+	 	 	 )
+</insert>
+<!-- ElementID:count,Generated=true -->
+<select id="count" parameterType="com.chinacreator.dzjc_ruleEngine.ruleEngine.entity.RuleBaseinfoBeanAll" resultType="int">
+	select count(*) from V_RULEBASEINFOBEANALL 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+<!-- ElementID:update,Generated=true -->
+<update id="update" parameterType="com.chinacreator.dzjc_ruleEngine.ruleEngine.entity.RuleBaseinfoBeanAll">
+	update V_RULEBASEINFOBEANALL
+<set>
+	<if test="areaCode != null">area_code=#{areaCode,jdbcType=VARCHAR},</if>
+	<if test="expId != null">exp_id=#{expId,jdbcType=VARCHAR},</if>
+	<if test="ruleVersion != null">rule_version=#{ruleVersion,jdbcType=VARCHAR},</if>
+	<if test="issendmsg != null">issendmsg=#{issendmsg,jdbcType=VARCHAR},</if>
+	<if test="businessId != null">business_id=#{businessId,jdbcType=VARCHAR},</if>
+	<if test="rltValue != null">rlt_value=#{rltValue,jdbcType=VARCHAR},</if>
+	<if test="ruleName != null">rule_name=#{ruleName,jdbcType=VARCHAR},</if>
+	<if test="ruleMemo != null">rule_memo=#{ruleMemo,jdbcType=VARCHAR},</if>
+	<if test="isValid != null">is_valid=#{isValid,jdbcType=VARCHAR},</if>
+	<if test="isAutoRun != null">is_auto_run=#{isAutoRun,jdbcType=VARCHAR},</if>
+	<if test="runPriority != null">run_priority=#{runPriority,jdbcType=VARCHAR},</if>
+	<if test="hasRuned != null">has_runed=#{hasRuned,jdbcType=VARCHAR},</if>
+	<if test="ruleType != null">rule_type=#{ruleType,jdbcType=VARCHAR},</if>
+	<if test="isPublic != null">is_public=#{isPublic,jdbcType=VARCHAR},</if>
+	<if test="expSeq != null">exp_seq=#{expSeq,jdbcType=VARCHAR},</if>
+	<if test="expletId != null">explet_id=#{expletId,jdbcType=VARCHAR},</if>
+	<if test="leftParen != null">left_paren=#{leftParen,jdbcType=VARCHAR},</if>
+	<if test="elemId != null">elem_id=#{elemId,jdbcType=VARCHAR},</if>
+	<if test="compaId != null">compa_id=#{compaId,jdbcType=VARCHAR},</if>
+	<if test="cfgValue != null">cfg_value=#{cfgValue,jdbcType=VARCHAR},</if>
+	<if test="rightParen != null">right_paren=#{rightParen,jdbcType=VARCHAR},</if>
+	<if test="compa != null">compa=#{compa,jdbcType=CHAR},</if>
+	<if test="logic != null">logic=#{logic,jdbcType=CHAR},</if>
+	<if test="logicId != null">logic_id=#{logicId,jdbcType=VARCHAR},</if>
+	<if test="superviseDefId != null">supervise_def_id=#{superviseDefId,jdbcType=VARCHAR},</if>
+	<if test="superviseLevelCode != null">supervise_level_code=#{superviseLevelCode,jdbcType=VARCHAR},</if>
+	<if test="superviseTypeCode != null">supervise_type_code=#{superviseTypeCode,jdbcType=VARCHAR},</if>
+	<if test="sendcardType != null">sendcard_type=#{sendcardType,jdbcType=VARCHAR},</if>
+	<if test="msgTemplateId != null">msg_template_id=#{msgTemplateId,jdbcType=VARCHAR},</if>
+	<if test="businessType != null">business_type=#{businessType,jdbcType=VARCHAR},</if>
+	<if test="orgId != null">org_id=#{orgId,jdbcType=VARCHAR},</if>
+	<if test="startTime != null">start_time=#{startTime,jdbcType=DATE},</if>
+	<if test="endTime != null">end_time=#{endTime,jdbcType=DATE},</if>
+	<if test="state != null">state=#{state,jdbcType=VARCHAR},</if>
+	<if test="promiseLimit != null">promise_limit=#{promiseLimit,jdbcType=NUMERIC},</if>
+	<if test="processLimit != null">process_limit=#{processLimit,jdbcType=NUMERIC},</if>
+	<if test="expireDate != null">expire_date=#{expireDate,jdbcType=DATE},</if>
+	<if test="approveId != null">approve_id=#{approveId,jdbcType=VARCHAR},</if>
+	<if test="tbcxTimes != null">tbcx_times=#{tbcxTimes,jdbcType=VARCHAR},</if>
+	<if test="batchId != null">batch_id=#{batchId,jdbcType=VARCHAR},</if>
+	<if test="superviseInfoId != null">supervise_info_id=#{superviseInfoId,jdbcType=VARCHAR},</if>
+	<if test="businessCode != null">business_code=#{businessCode,jdbcType=VARCHAR},</if>
+	<if test="businessName != null">business_name=#{businessName,jdbcType=VARCHAR},</if>
+	<if test="msgTemplate != null">msg_template=#{msgTemplate,jdbcType=VARCHAR},</if>
+	<if test="streetOrgId != null">street_org_id=#{streetOrgId,jdbcType=VARCHAR},</if>
+	<if test="orgName != null">org_name=#{orgName,jdbcType=VARCHAR},</if>
+	<if test="applyName != null">apply_name=#{applyName,jdbcType=VARCHAR},</if>
+	<if test="tacheName != null">tache_name=#{tacheName,jdbcType=VARCHAR},</if>
+	<if test="instanceId != null">instance_id=#{instanceId,jdbcType=VARCHAR},</if>
+	<if test="markId != null">mark_id=#{markId,jdbcType=VARCHAR}</if>
+</set>
+<where>
+	<choose>
+        <when test="ruleId != null">and rule_id = #{ruleId}</when>
+        <otherwise>and rule_id = </otherwise>
+    </choose>
+</where>
+</update>
+<!-- ElementID:updateNull,Generated=true -->
+<update id="updateNull" parameterType="map">
+	update V_RULEBASEINFOBEANALL
+	<set>
+		<trim suffixOverrides=",">
+		    <if test="areaCode==null">area_code = null,</if>
+		    <if test="expId==null">exp_id = null,</if>
+		    <if test="ruleVersion==null">rule_version = null,</if>
+		    <if test="issendmsg==null">issendmsg = null,</if>
+		    <if test="businessId==null">business_id = null,</if>
+		    <if test="rltValue==null">rlt_value = null,</if>
+		    <if test="ruleName==null">rule_name = null,</if>
+		    <if test="ruleMemo==null">rule_memo = null,</if>
+		    <if test="isValid==null">is_valid = null,</if>
+		    <if test="isAutoRun==null">is_auto_run = null,</if>
+		    <if test="runPriority==null">run_priority = null,</if>
+		    <if test="hasRuned==null">has_runed = null,</if>
+		    <if test="ruleType==null">rule_type = null,</if>
+		    <if test="isPublic==null">is_public = null,</if>
+		    <if test="expSeq==null">exp_seq = null,</if>
+		    <if test="expletId==null">explet_id = null,</if>
+		    <if test="leftParen==null">left_paren = null,</if>
+		    <if test="elemId==null">elem_id = null,</if>
+		    <if test="compaId==null">compa_id = null,</if>
+		    <if test="cfgValue==null">cfg_value = null,</if>
+		    <if test="rightParen==null">right_paren = null,</if>
+		    <if test="compa==null">compa = null,</if>
+		    <if test="logic==null">logic = null,</if>
+		    <if test="logicId==null">logic_id = null,</if>
+		    <if test="superviseDefId==null">supervise_def_id = null,</if>
+		    <if test="superviseLevelCode==null">supervise_level_code = null,</if>
+		    <if test="superviseTypeCode==null">supervise_type_code = null,</if>
+		    <if test="sendcardType==null">sendcard_type = null,</if>
+		    <if test="msgTemplateId==null">msg_template_id = null,</if>
+		    <if test="businessType==null">business_type = null,</if>
+		    <if test="orgId==null">org_id = null,</if>
+		    <if test="startTime==null">start_time = null,</if>
+		    <if test="endTime==null">end_time = null,</if>
+		    <if test="state==null">state = null,</if>
+		    <if test="promiseLimit==null">promise_limit = null,</if>
+		    <if test="processLimit==null">process_limit = null,</if>
+		    <if test="expireDate==null">expire_date = null,</if>
+		    <if test="approveId==null">approve_id = null,</if>
+		    <if test="tbcxTimes==null">tbcx_times = null,</if>
+		    <if test="batchId==null">batch_id = null,</if>
+		    <if test="superviseInfoId==null">supervise_info_id = null,</if>
+		    <if test="businessCode==null">business_code = null,</if>
+		    <if test="businessName==null">business_name = null,</if>
+		    <if test="msgTemplate==null">msg_template = null,</if>
+		    <if test="streetOrgId==null">street_org_id = null,</if>
+		    <if test="orgName==null">org_name = null,</if>
+		    <if test="applyName==null">apply_name = null,</if>
+		    <if test="tacheName==null">tache_name = null,</if>
+		    <if test="instanceId==null">instance_id = null,</if>
+		    <if test="markId==null">mark_id = null,</if>
+		</trim>
+	</set>
+	<where>
+		<choose>
+			<when test="ruleId != null">and rule_id = #{ruleId}</when>
+			<otherwise>and rule_id = </otherwise>
+		</choose>
+	</where>
+</update>
+<!-- ElementID:delete,Generated=true -->
+<delete id="delete" parameterType="com.chinacreator.dzjc_ruleEngine.ruleEngine.entity.RuleBaseinfoBeanAll">
+    delete from V_RULEBASEINFOBEANALL where 1=1 and rule_id = #{ruleId}
+</delete>
+<!-- ElementID:select,Generated=true -->
+<select id="select" parameterType="com.chinacreator.dzjc_ruleEngine.ruleEngine.entity.RuleBaseinfoBeanAll" resultMap="RuleBaseinfoBeanAllResult">
+	select 
+		<include refid="column_sql"/>
+	    from V_RULEBASEINFOBEANALL 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+<!-- ElementID:insertBatch,Generated=true -->
+<insert id="insertBatch" parameterType="list">
+	insert into V_RULEBASEINFOBEANALL (area_code,exp_id,rule_id,rule_version,issendmsg,business_id,rlt_value,rule_name,rule_memo,is_valid,is_auto_run,run_priority,has_runed,rule_type,is_public,exp_seq,explet_id,left_paren,elem_id,compa_id,cfg_value,right_paren,compa,logic,logic_id,supervise_def_id,supervise_level_code,supervise_type_code,sendcard_type,msg_template_id,business_type,org_id,start_time,end_time,state,promise_limit,process_limit,expire_date,approve_id,tbcx_times,batch_id,supervise_info_id,business_code,business_name,msg_template,street_org_id,org_name,apply_name,tache_name,instance_id,mark_id) 
+<foreach collection="list" item="entity" index="index" separator="union all">
+		select 
+		#{entity.areaCode,jdbcType = VARCHAR},
+				#{entity.expId,jdbcType = VARCHAR},
+				#{entity.ruleId,jdbcType = VARCHAR},
+				#{entity.ruleVersion,jdbcType = VARCHAR},
+				#{entity.issendmsg,jdbcType = VARCHAR},
+				#{entity.businessId,jdbcType = VARCHAR},
+				#{entity.rltValue,jdbcType = VARCHAR},
+				#{entity.ruleName,jdbcType = VARCHAR},
+				#{entity.ruleMemo,jdbcType = VARCHAR},
+				#{entity.isValid,jdbcType = VARCHAR},
+				#{entity.isAutoRun,jdbcType = VARCHAR},
+				#{entity.runPriority,jdbcType = VARCHAR},
+				#{entity.hasRuned,jdbcType = VARCHAR},
+				#{entity.ruleType,jdbcType = VARCHAR},
+				#{entity.isPublic,jdbcType = VARCHAR},
+				#{entity.expSeq,jdbcType = VARCHAR},
+				#{entity.expletId,jdbcType = VARCHAR},
+				#{entity.leftParen,jdbcType = VARCHAR},
+				#{entity.elemId,jdbcType = VARCHAR},
+				#{entity.compaId,jdbcType = VARCHAR},
+				#{entity.cfgValue,jdbcType = VARCHAR},
+				#{entity.rightParen,jdbcType = VARCHAR},
+				#{entity.compa,jdbcType = CHAR},
+				#{entity.logic,jdbcType = CHAR},
+				#{entity.logicId,jdbcType = VARCHAR},
+				#{entity.superviseDefId,jdbcType = VARCHAR},
+				#{entity.superviseLevelCode,jdbcType = VARCHAR},
+				#{entity.superviseTypeCode,jdbcType = VARCHAR},
+				#{entity.sendcardType,jdbcType = VARCHAR},
+				#{entity.msgTemplateId,jdbcType = VARCHAR},
+				#{entity.businessType,jdbcType = VARCHAR},
+				#{entity.orgId,jdbcType = VARCHAR},
+				#{entity.startTime,jdbcType = DATE},
+				#{entity.endTime,jdbcType = DATE},
+				#{entity.state,jdbcType = VARCHAR},
+				#{entity.promiseLimit,jdbcType = NUMERIC},
+				#{entity.processLimit,jdbcType = NUMERIC},
+				#{entity.expireDate,jdbcType = DATE},
+				#{entity.approveId,jdbcType = VARCHAR},
+				#{entity.tbcxTimes,jdbcType = VARCHAR},
+				#{entity.batchId,jdbcType = VARCHAR},
+				#{entity.superviseInfoId,jdbcType = VARCHAR},
+				#{entity.businessCode,jdbcType = VARCHAR},
+				#{entity.businessName,jdbcType = VARCHAR},
+				#{entity.msgTemplate,jdbcType = VARCHAR},
+				#{entity.streetOrgId,jdbcType = VARCHAR},
+				#{entity.orgName,jdbcType = VARCHAR},
+				#{entity.applyName,jdbcType = VARCHAR},
+				#{entity.tacheName,jdbcType = VARCHAR},
+				#{entity.instanceId,jdbcType = VARCHAR},
+				#{entity.markId,jdbcType = VARCHAR}
+		from dual
+</foreach>
+</insert>
+<!-- ElementID:deleteBatch,Generated=true -->
+<delete id="deleteBatch" parameterType="List">
+	delete from V_RULEBASEINFOBEANALL where rule_id in
+<trim prefix="(" suffix=")" suffixOverrides=",">
+<foreach collection="list" item="entity" separator=",">
+	<choose>
+		<when test="@com.chinacreator.c2.dao.util.EntityBeanUtil@isEntityObj(entity)">#{entity.ruleId}</when>
+		<otherwise>#{entity}</otherwise>
+	</choose>
+</foreach>
+</trim>
+</delete>
+<!-- ElementID:updateBatch,Generated=true -->
+<update id="updateBatch" parameterType="list">
+	<foreach collection="list" item="entity" open="begin" close=";end;" separator=";">
+			update V_RULEBASEINFOBEANALL
+	<set>
+	<if test="entity.areaCode != null">area_code= #{entity.areaCode,jdbcType=VARCHAR},</if>
+	<if test="entity.expId != null">exp_id= #{entity.expId,jdbcType=VARCHAR},</if>
+	<if test="entity.ruleVersion != null">rule_version= #{entity.ruleVersion,jdbcType=VARCHAR},</if>
+	<if test="entity.issendmsg != null">issendmsg= #{entity.issendmsg,jdbcType=VARCHAR},</if>
+	<if test="entity.businessId != null">business_id= #{entity.businessId,jdbcType=VARCHAR},</if>
+	<if test="entity.rltValue != null">rlt_value= #{entity.rltValue,jdbcType=VARCHAR},</if>
+	<if test="entity.ruleName != null">rule_name= #{entity.ruleName,jdbcType=VARCHAR},</if>
+	<if test="entity.ruleMemo != null">rule_memo= #{entity.ruleMemo,jdbcType=VARCHAR},</if>
+	<if test="entity.isValid != null">is_valid= #{entity.isValid,jdbcType=VARCHAR},</if>
+	<if test="entity.isAutoRun != null">is_auto_run= #{entity.isAutoRun,jdbcType=VARCHAR},</if>
+	<if test="entity.runPriority != null">run_priority= #{entity.runPriority,jdbcType=VARCHAR},</if>
+	<if test="entity.hasRuned != null">has_runed= #{entity.hasRuned,jdbcType=VARCHAR},</if>
+	<if test="entity.ruleType != null">rule_type= #{entity.ruleType,jdbcType=VARCHAR},</if>
+	<if test="entity.isPublic != null">is_public= #{entity.isPublic,jdbcType=VARCHAR},</if>
+	<if test="entity.expSeq != null">exp_seq= #{entity.expSeq,jdbcType=VARCHAR},</if>
+	<if test="entity.expletId != null">explet_id= #{entity.expletId,jdbcType=VARCHAR},</if>
+	<if test="entity.leftParen != null">left_paren= #{entity.leftParen,jdbcType=VARCHAR},</if>
+	<if test="entity.elemId != null">elem_id= #{entity.elemId,jdbcType=VARCHAR},</if>
+	<if test="entity.compaId != null">compa_id= #{entity.compaId,jdbcType=VARCHAR},</if>
+	<if test="entity.cfgValue != null">cfg_value= #{entity.cfgValue,jdbcType=VARCHAR},</if>
+	<if test="entity.rightParen != null">right_paren= #{entity.rightParen,jdbcType=VARCHAR},</if>
+	<if test="entity.compa != null">compa= #{entity.compa,jdbcType=CHAR},</if>
+	<if test="entity.logic != null">logic= #{entity.logic,jdbcType=CHAR},</if>
+	<if test="entity.logicId != null">logic_id= #{entity.logicId,jdbcType=VARCHAR},</if>
+	<if test="entity.superviseDefId != null">supervise_def_id= #{entity.superviseDefId,jdbcType=VARCHAR},</if>
+	<if test="entity.superviseLevelCode != null">supervise_level_code= #{entity.superviseLevelCode,jdbcType=VARCHAR},</if>
+	<if test="entity.superviseTypeCode != null">supervise_type_code= #{entity.superviseTypeCode,jdbcType=VARCHAR},</if>
+	<if test="entity.sendcardType != null">sendcard_type= #{entity.sendcardType,jdbcType=VARCHAR},</if>
+	<if test="entity.msgTemplateId != null">msg_template_id= #{entity.msgTemplateId,jdbcType=VARCHAR},</if>
+	<if test="entity.businessType != null">business_type= #{entity.businessType,jdbcType=VARCHAR},</if>
+	<if test="entity.orgId != null">org_id= #{entity.orgId,jdbcType=VARCHAR},</if>
+	<if test="entity.startTime != null">start_time= #{entity.startTime,jdbcType=DATE},</if>
+	<if test="entity.endTime != null">end_time= #{entity.endTime,jdbcType=DATE},</if>
+	<if test="entity.state != null">state= #{entity.state,jdbcType=VARCHAR},</if>
+	<if test="entity.promiseLimit != null">promise_limit= #{entity.promiseLimit,jdbcType=NUMERIC},</if>
+	<if test="entity.processLimit != null">process_limit= #{entity.processLimit,jdbcType=NUMERIC},</if>
+	<if test="entity.expireDate != null">expire_date= #{entity.expireDate,jdbcType=DATE},</if>
+	<if test="entity.approveId != null">approve_id= #{entity.approveId,jdbcType=VARCHAR},</if>
+	<if test="entity.tbcxTimes != null">tbcx_times= #{entity.tbcxTimes,jdbcType=VARCHAR},</if>
+	<if test="entity.batchId != null">batch_id= #{entity.batchId,jdbcType=VARCHAR},</if>
+	<if test="entity.superviseInfoId != null">supervise_info_id= #{entity.superviseInfoId,jdbcType=VARCHAR},</if>
+	<if test="entity.businessCode != null">business_code= #{entity.businessCode,jdbcType=VARCHAR},</if>
+	<if test="entity.businessName != null">business_name= #{entity.businessName,jdbcType=VARCHAR},</if>
+	<if test="entity.msgTemplate != null">msg_template= #{entity.msgTemplate,jdbcType=VARCHAR},</if>
+	<if test="entity.streetOrgId != null">street_org_id= #{entity.streetOrgId,jdbcType=VARCHAR},</if>
+	<if test="entity.orgName != null">org_name= #{entity.orgName,jdbcType=VARCHAR},</if>
+	<if test="entity.applyName != null">apply_name= #{entity.applyName,jdbcType=VARCHAR},</if>
+	<if test="entity.tacheName != null">tache_name= #{entity.tacheName,jdbcType=VARCHAR},</if>
+	<if test="entity.instanceId != null">instance_id= #{entity.instanceId,jdbcType=VARCHAR},</if>
+	<if test="entity.markId != null">mark_id= #{entity.markId,jdbcType=VARCHAR}</if>
+	</set>
+		<where>
+			<choose>
+				<when test="entity.ruleId != null">and rule_id = #{entity.ruleId}</when>
+				<otherwise>and rule_id = </otherwise>
+			</choose>
+		</where>
+	</foreach>
+</update>
+<!-- ElementID:selectAll,Generated=true -->
+<select id="selectAll" resultMap="RuleBaseinfoBeanAllResult">
+	select 
+		<include refid="column_sql"/>
+	    from V_RULEBASEINFOBEANALL 
+</select>
+<!-- ElementID:selectMany,Generated=true -->
+<select id="selectMany" parameterType="list" resultMap="RuleBaseinfoBeanAllResult">
+select 
+	<include refid="column_sql"/> 
+	from V_RULEBASEINFOBEANALL 
+	where V_RULEBASEINFOBEANALL.rule_id in (
+<foreach collection="list" item="entity" separator="intersect">
+		select 
+		V_RULEBASEINFOBEANALL.rule_id
+	    from V_RULEBASEINFOBEANALL 
+		 <where>
+	        <if test="entity.areaCode != null">and V_RULEBASEINFOBEANALL.area_code = #{entity.areaCode}</if>
+	        <if test="entity.expId != null">and V_RULEBASEINFOBEANALL.exp_id = #{entity.expId}</if>
+	        <if test="entity.ruleId != null">and V_RULEBASEINFOBEANALL.rule_id = #{entity.ruleId}</if>
+	        <if test="entity.ruleVersion != null">and V_RULEBASEINFOBEANALL.rule_version = #{entity.ruleVersion}</if>
+	        <if test="entity.issendmsg != null">and V_RULEBASEINFOBEANALL.issendmsg = #{entity.issendmsg}</if>
+	        <if test="entity.businessId != null">and V_RULEBASEINFOBEANALL.business_id = #{entity.businessId}</if>
+	        <if test="entity.rltValue != null">and V_RULEBASEINFOBEANALL.rlt_value = #{entity.rltValue}</if>
+	        <if test="entity.ruleName != null">and V_RULEBASEINFOBEANALL.rule_name = #{entity.ruleName}</if>
+	        <if test="entity.ruleMemo != null">and V_RULEBASEINFOBEANALL.rule_memo = #{entity.ruleMemo}</if>
+	        <if test="entity.isValid != null">and V_RULEBASEINFOBEANALL.is_valid = #{entity.isValid}</if>
+	        <if test="entity.isAutoRun != null">and V_RULEBASEINFOBEANALL.is_auto_run = #{entity.isAutoRun}</if>
+	        <if test="entity.runPriority != null">and V_RULEBASEINFOBEANALL.run_priority = #{entity.runPriority}</if>
+	        <if test="entity.hasRuned != null">and V_RULEBASEINFOBEANALL.has_runed = #{entity.hasRuned}</if>
+	        <if test="entity.ruleType != null">and V_RULEBASEINFOBEANALL.rule_type = #{entity.ruleType}</if>
+	        <if test="entity.isPublic != null">and V_RULEBASEINFOBEANALL.is_public = #{entity.isPublic}</if>
+	        <if test="entity.expSeq != null">and V_RULEBASEINFOBEANALL.exp_seq = #{entity.expSeq}</if>
+	        <if test="entity.expletId != null">and V_RULEBASEINFOBEANALL.explet_id = #{entity.expletId}</if>
+	        <if test="entity.leftParen != null">and V_RULEBASEINFOBEANALL.left_paren = #{entity.leftParen}</if>
+	        <if test="entity.elemId != null">and V_RULEBASEINFOBEANALL.elem_id = #{entity.elemId}</if>
+	        <if test="entity.compaId != null">and V_RULEBASEINFOBEANALL.compa_id = #{entity.compaId}</if>
+	        <if test="entity.cfgValue != null">and V_RULEBASEINFOBEANALL.cfg_value = #{entity.cfgValue}</if>
+	        <if test="entity.rightParen != null">and V_RULEBASEINFOBEANALL.right_paren = #{entity.rightParen}</if>
+	        <if test="entity.compa != null">and V_RULEBASEINFOBEANALL.compa = #{entity.compa}</if>
+	        <if test="entity.logic != null">and V_RULEBASEINFOBEANALL.logic = #{entity.logic}</if>
+	        <if test="entity.logicId != null">and V_RULEBASEINFOBEANALL.logic_id = #{entity.logicId}</if>
+	        <if test="entity.superviseDefId != null">and V_RULEBASEINFOBEANALL.supervise_def_id = #{entity.superviseDefId}</if>
+	        <if test="entity.superviseLevelCode != null">and V_RULEBASEINFOBEANALL.supervise_level_code = #{entity.superviseLevelCode}</if>
+	        <if test="entity.superviseTypeCode != null">and V_RULEBASEINFOBEANALL.supervise_type_code = #{entity.superviseTypeCode}</if>
+	        <if test="entity.sendcardType != null">and V_RULEBASEINFOBEANALL.sendcard_type = #{entity.sendcardType}</if>
+	        <if test="entity.msgTemplateId != null">and V_RULEBASEINFOBEANALL.msg_template_id = #{entity.msgTemplateId}</if>
+	        <if test="entity.businessType != null">and V_RULEBASEINFOBEANALL.business_type = #{entity.businessType}</if>
+	        <if test="entity.orgId != null">and V_RULEBASEINFOBEANALL.org_id = #{entity.orgId}</if>
+	        <if test="entity.startTime != null">and V_RULEBASEINFOBEANALL.start_time = #{entity.startTime}</if>
+	        <if test="entity.endTime != null">and V_RULEBASEINFOBEANALL.end_time = #{entity.endTime}</if>
+	        <if test="entity.state != null">and V_RULEBASEINFOBEANALL.state = #{entity.state}</if>
+	        <if test="entity.promiseLimit != null">and V_RULEBASEINFOBEANALL.promise_limit = #{entity.promiseLimit}</if>
+	        <if test="entity.processLimit != null">and V_RULEBASEINFOBEANALL.process_limit = #{entity.processLimit}</if>
+	        <if test="entity.expireDate != null">and V_RULEBASEINFOBEANALL.expire_date = #{entity.expireDate}</if>
+	        <if test="entity.approveId != null">and V_RULEBASEINFOBEANALL.approve_id = #{entity.approveId}</if>
+	        <if test="entity.tbcxTimes != null">and V_RULEBASEINFOBEANALL.tbcx_times = #{entity.tbcxTimes}</if>
+	        <if test="entity.batchId != null">and V_RULEBASEINFOBEANALL.batch_id = #{entity.batchId}</if>
+	        <if test="entity.superviseInfoId != null">and V_RULEBASEINFOBEANALL.supervise_info_id = #{entity.superviseInfoId}</if>
+	        <if test="entity.businessCode != null">and V_RULEBASEINFOBEANALL.business_code = #{entity.businessCode}</if>
+	        <if test="entity.businessName != null">and V_RULEBASEINFOBEANALL.business_name = #{entity.businessName}</if>
+	        <if test="entity.msgTemplate != null">and V_RULEBASEINFOBEANALL.msg_template = #{entity.msgTemplate}</if>
+	        <if test="entity.streetOrgId != null">and V_RULEBASEINFOBEANALL.street_org_id = #{entity.streetOrgId}</if>
+	        <if test="entity.orgName != null">and V_RULEBASEINFOBEANALL.org_name = #{entity.orgName}</if>
+	        <if test="entity.applyName != null">and V_RULEBASEINFOBEANALL.apply_name = #{entity.applyName}</if>
+	        <if test="entity.tacheName != null">and V_RULEBASEINFOBEANALL.tache_name = #{entity.tacheName}</if>
+	        <if test="entity.instanceId != null">and V_RULEBASEINFOBEANALL.instance_id = #{entity.instanceId}</if>
+	        <if test="entity.markId != null">and V_RULEBASEINFOBEANALL.mark_id = #{entity.markId}</if>
+		</where>
+</foreach>
+)
+</select>
+<!-- ElementID:selectUnion,Generated=true -->
+<select id="selectUnion" parameterType="list" resultMap="RuleBaseinfoBeanAllResult">
+select 
+	<include refid="column_sql"/> 
+	from V_RULEBASEINFOBEANALL 
+	 INNER JOIN
+<foreach collection="list" item="entity" separator="UNION" open="(" close=")">
+		SELECT 
+			 rule_id
+		FROM V_RULEBASEINFOBEANALL 
+			<where>
+	        <if test="entity.areaCode != null">and V_RULEBASEINFOBEANALL.area_code = #{entity.areaCode}</if>
+	        <if test="entity.expId != null">and V_RULEBASEINFOBEANALL.exp_id = #{entity.expId}</if>
+	        <if test="entity.ruleId != null">and V_RULEBASEINFOBEANALL.rule_id = #{entity.ruleId}</if>
+	        <if test="entity.ruleVersion != null">and V_RULEBASEINFOBEANALL.rule_version = #{entity.ruleVersion}</if>
+	        <if test="entity.issendmsg != null">and V_RULEBASEINFOBEANALL.issendmsg = #{entity.issendmsg}</if>
+	        <if test="entity.businessId != null">and V_RULEBASEINFOBEANALL.business_id = #{entity.businessId}</if>
+	        <if test="entity.rltValue != null">and V_RULEBASEINFOBEANALL.rlt_value = #{entity.rltValue}</if>
+	        <if test="entity.ruleName != null">and V_RULEBASEINFOBEANALL.rule_name = #{entity.ruleName}</if>
+	        <if test="entity.ruleMemo != null">and V_RULEBASEINFOBEANALL.rule_memo = #{entity.ruleMemo}</if>
+	        <if test="entity.isValid != null">and V_RULEBASEINFOBEANALL.is_valid = #{entity.isValid}</if>
+	        <if test="entity.isAutoRun != null">and V_RULEBASEINFOBEANALL.is_auto_run = #{entity.isAutoRun}</if>
+	        <if test="entity.runPriority != null">and V_RULEBASEINFOBEANALL.run_priority = #{entity.runPriority}</if>
+	        <if test="entity.hasRuned != null">and V_RULEBASEINFOBEANALL.has_runed = #{entity.hasRuned}</if>
+	        <if test="entity.ruleType != null">and V_RULEBASEINFOBEANALL.rule_type = #{entity.ruleType}</if>
+	        <if test="entity.isPublic != null">and V_RULEBASEINFOBEANALL.is_public = #{entity.isPublic}</if>
+	        <if test="entity.expSeq != null">and V_RULEBASEINFOBEANALL.exp_seq = #{entity.expSeq}</if>
+	        <if test="entity.expletId != null">and V_RULEBASEINFOBEANALL.explet_id = #{entity.expletId}</if>
+	        <if test="entity.leftParen != null">and V_RULEBASEINFOBEANALL.left_paren = #{entity.leftParen}</if>
+	        <if test="entity.elemId != null">and V_RULEBASEINFOBEANALL.elem_id = #{entity.elemId}</if>
+	        <if test="entity.compaId != null">and V_RULEBASEINFOBEANALL.compa_id = #{entity.compaId}</if>
+	        <if test="entity.cfgValue != null">and V_RULEBASEINFOBEANALL.cfg_value = #{entity.cfgValue}</if>
+	        <if test="entity.rightParen != null">and V_RULEBASEINFOBEANALL.right_paren = #{entity.rightParen}</if>
+	        <if test="entity.compa != null">and V_RULEBASEINFOBEANALL.compa = #{entity.compa}</if>
+	        <if test="entity.logic != null">and V_RULEBASEINFOBEANALL.logic = #{entity.logic}</if>
+	        <if test="entity.logicId != null">and V_RULEBASEINFOBEANALL.logic_id = #{entity.logicId}</if>
+	        <if test="entity.superviseDefId != null">and V_RULEBASEINFOBEANALL.supervise_def_id = #{entity.superviseDefId}</if>
+	        <if test="entity.superviseLevelCode != null">and V_RULEBASEINFOBEANALL.supervise_level_code = #{entity.superviseLevelCode}</if>
+	        <if test="entity.superviseTypeCode != null">and V_RULEBASEINFOBEANALL.supervise_type_code = #{entity.superviseTypeCode}</if>
+	        <if test="entity.sendcardType != null">and V_RULEBASEINFOBEANALL.sendcard_type = #{entity.sendcardType}</if>
+	        <if test="entity.msgTemplateId != null">and V_RULEBASEINFOBEANALL.msg_template_id = #{entity.msgTemplateId}</if>
+	        <if test="entity.businessType != null">and V_RULEBASEINFOBEANALL.business_type = #{entity.businessType}</if>
+	        <if test="entity.orgId != null">and V_RULEBASEINFOBEANALL.org_id = #{entity.orgId}</if>
+	        <if test="entity.startTime != null">and V_RULEBASEINFOBEANALL.start_time = #{entity.startTime}</if>
+	        <if test="entity.endTime != null">and V_RULEBASEINFOBEANALL.end_time = #{entity.endTime}</if>
+	        <if test="entity.state != null">and V_RULEBASEINFOBEANALL.state = #{entity.state}</if>
+	        <if test="entity.promiseLimit != null">and V_RULEBASEINFOBEANALL.promise_limit = #{entity.promiseLimit}</if>
+	        <if test="entity.processLimit != null">and V_RULEBASEINFOBEANALL.process_limit = #{entity.processLimit}</if>
+	        <if test="entity.expireDate != null">and V_RULEBASEINFOBEANALL.expire_date = #{entity.expireDate}</if>
+	        <if test="entity.approveId != null">and V_RULEBASEINFOBEANALL.approve_id = #{entity.approveId}</if>
+	        <if test="entity.tbcxTimes != null">and V_RULEBASEINFOBEANALL.tbcx_times = #{entity.tbcxTimes}</if>
+	        <if test="entity.batchId != null">and V_RULEBASEINFOBEANALL.batch_id = #{entity.batchId}</if>
+	        <if test="entity.superviseInfoId != null">and V_RULEBASEINFOBEANALL.supervise_info_id = #{entity.superviseInfoId}</if>
+	        <if test="entity.businessCode != null">and V_RULEBASEINFOBEANALL.business_code = #{entity.businessCode}</if>
+	        <if test="entity.businessName != null">and V_RULEBASEINFOBEANALL.business_name = #{entity.businessName}</if>
+	        <if test="entity.msgTemplate != null">and V_RULEBASEINFOBEANALL.msg_template = #{entity.msgTemplate}</if>
+	        <if test="entity.streetOrgId != null">and V_RULEBASEINFOBEANALL.street_org_id = #{entity.streetOrgId}</if>
+	        <if test="entity.orgName != null">and V_RULEBASEINFOBEANALL.org_name = #{entity.orgName}</if>
+	        <if test="entity.applyName != null">and V_RULEBASEINFOBEANALL.apply_name = #{entity.applyName}</if>
+	        <if test="entity.tacheName != null">and V_RULEBASEINFOBEANALL.tache_name = #{entity.tacheName}</if>
+	        <if test="entity.instanceId != null">and V_RULEBASEINFOBEANALL.instance_id = #{entity.instanceId}</if>
+	        <if test="entity.markId != null">and V_RULEBASEINFOBEANALL.mark_id = #{entity.markId}</if>
+			</where>
+</foreach>
+	c2_temp_table ON V_RULEBASEINFOBEANALL.rule_id = c2_temp_table.rule_id
+</select>
+<!-- ElementID:selectByID,Generated=true -->
+<select id="selectByID" parameterType="java.lang.String" resultMap="RuleBaseinfoBeanAllResult">
+	select 
+		<include refid="column_sql"/>
+	    from V_RULEBASEINFOBEANALL 
+		 where V_RULEBASEINFOBEANALL.rule_id = #{ruleId,jdbcType=VARCHAR}
+</select>
+<!-- ElementID:selectByPage,Generated=true -->
+<select id="selectByPage" parameterType="com.chinacreator.dzjc_ruleEngine.ruleEngine.entity.RuleBaseinfoBeanAll" resultMap="RuleBaseinfoBeanAllResult">
+	select 
+		<include refid="column_sql"/>
+	    from V_RULEBASEINFOBEANALL 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+
+<sql id="column_consult">
+		  v_rulebaseinfoconsult.area_code ,
+		  v_rulebaseinfoconsult.exp_id ,
+		  v_rulebaseinfoconsult.rule_id ,
+		  v_rulebaseinfoconsult.rule_version ,
+		  v_rulebaseinfoconsult.issendmsg ,
+		  v_rulebaseinfoconsult.business_id ,
+		  v_rulebaseinfoconsult.rlt_value ,
+		  v_rulebaseinfoconsult.rule_name ,
+		  v_rulebaseinfoconsult.rule_memo ,
+		  v_rulebaseinfoconsult.is_valid ,
+		  v_rulebaseinfoconsult.is_auto_run ,
+		  v_rulebaseinfoconsult.run_priority ,
+		  v_rulebaseinfoconsult.has_runed ,
+		  v_rulebaseinfoconsult.rule_type ,
+		  v_rulebaseinfoconsult.is_public ,
+		  v_rulebaseinfoconsult.exp_seq ,
+		  v_rulebaseinfoconsult.explet_id ,
+		  v_rulebaseinfoconsult.left_paren ,
+		  v_rulebaseinfoconsult.elem_id ,
+		  v_rulebaseinfoconsult.compa_id ,
+		  v_rulebaseinfoconsult.cfg_value ,
+		  v_rulebaseinfoconsult.right_paren ,
+		  v_rulebaseinfoconsult.compa ,
+		  v_rulebaseinfoconsult.logic ,
+		  v_rulebaseinfoconsult.logic_id ,
+		  v_rulebaseinfoconsult.supervise_def_id ,
+		  v_rulebaseinfoconsult.supervise_level_code ,
+		  v_rulebaseinfoconsult.supervise_type_code ,
+		  v_rulebaseinfoconsult.sendcard_type ,
+		  v_rulebaseinfoconsult.msg_template_id ,
+		  v_rulebaseinfoconsult.start_time,
+		  v_rulebaseinfoconsult.end_time,
+		  v_rulebaseinfoconsult.state,
+		  v_rulebaseinfoconsult.promise_limit,
+		  v_rulebaseinfoconsult.process_limit,
+		  v_rulebaseinfoconsult.expire_date,
+		  v_rulebaseinfoconsult.batch_id,
+		  v_rulebaseinfoconsult.approve_id
+</sql>
+
+
+<select id="selectAllconsult" resultMap="RuleBaseinfoBeanAllResult">
+	select 
+		<include refid="column_consult"/>
+	    from v_rulebaseinfoconsult 
+</select>
+
+
+<sql id="column_complain">
+		  V_RULEBASEINFO_COMPLAIN.area_code ,
+		  V_RULEBASEINFO_COMPLAIN.exp_id ,
+		  V_RULEBASEINFO_COMPLAIN.rule_id ,
+		  V_RULEBASEINFO_COMPLAIN.rule_version ,
+		  V_RULEBASEINFO_COMPLAIN.issendmsg ,
+		  V_RULEBASEINFO_COMPLAIN.business_id ,
+		  V_RULEBASEINFO_COMPLAIN.rlt_value ,
+		  V_RULEBASEINFO_COMPLAIN.rule_name ,
+		  V_RULEBASEINFO_COMPLAIN.rule_memo ,
+		  V_RULEBASEINFO_COMPLAIN.is_valid ,
+		  V_RULEBASEINFO_COMPLAIN.is_auto_run ,
+		  V_RULEBASEINFO_COMPLAIN.run_priority ,
+		  V_RULEBASEINFO_COMPLAIN.has_runed ,
+		  V_RULEBASEINFO_COMPLAIN.rule_type ,
+		  V_RULEBASEINFO_COMPLAIN.is_public ,
+		  V_RULEBASEINFO_COMPLAIN.exp_seq ,
+		  V_RULEBASEINFO_COMPLAIN.explet_id ,
+		  V_RULEBASEINFO_COMPLAIN.left_paren ,
+		  V_RULEBASEINFO_COMPLAIN.elem_id ,
+		  V_RULEBASEINFO_COMPLAIN.compa_id ,
+		  V_RULEBASEINFO_COMPLAIN.cfg_value ,
+		  V_RULEBASEINFO_COMPLAIN.right_paren ,
+		  V_RULEBASEINFO_COMPLAIN.compa ,
+		  V_RULEBASEINFO_COMPLAIN.logic ,
+		  V_RULEBASEINFO_COMPLAIN.logic_id ,
+		  V_RULEBASEINFO_COMPLAIN.supervise_def_id ,
+		  V_RULEBASEINFO_COMPLAIN.supervise_level_code ,
+		  V_RULEBASEINFO_COMPLAIN.supervise_type_code ,
+		  V_RULEBASEINFO_COMPLAIN.sendcard_type ,
+		  V_RULEBASEINFO_COMPLAIN.msg_template_id,
+		  V_RULEBASEINFO_COMPLAIN.start_time,
+		  V_RULEBASEINFO_COMPLAIN.end_time,
+		  V_RULEBASEINFO_COMPLAIN.state,
+		  V_RULEBASEINFO_COMPLAIN.promise_limit,
+		  V_RULEBASEINFO_COMPLAIN.process_limit,
+		  V_RULEBASEINFO_COMPLAIN.expire_date,
+		  V_RULEBASEINFO_COMPLAIN.batch_id
+</sql>
+
+<sql id="column_suspend">
+		  v_rulebaseinfosuspend.area_code ,
+		  v_rulebaseinfosuspend.exp_id ,
+		  v_rulebaseinfosuspend.rule_id ,
+		  v_rulebaseinfosuspend.rule_version ,
+		  v_rulebaseinfosuspend.issendmsg ,
+		  v_rulebaseinfosuspend.business_id ,
+		  v_rulebaseinfosuspend.rlt_value ,
+		  v_rulebaseinfosuspend.rule_name ,
+		  v_rulebaseinfosuspend.rule_memo ,
+		  v_rulebaseinfosuspend.is_valid ,
+		  v_rulebaseinfosuspend.is_auto_run ,
+		  v_rulebaseinfosuspend.run_priority ,
+		  v_rulebaseinfosuspend.has_runed ,
+		  v_rulebaseinfosuspend.rule_type ,
+		  v_rulebaseinfosuspend.is_public ,
+		  v_rulebaseinfosuspend.exp_seq ,
+		  v_rulebaseinfosuspend.explet_id ,
+		  v_rulebaseinfosuspend.left_paren ,
+		  v_rulebaseinfosuspend.elem_id ,
+		  v_rulebaseinfosuspend.compa_id ,
+		  v_rulebaseinfosuspend.cfg_value ,
+		  v_rulebaseinfosuspend.right_paren ,
+		  v_rulebaseinfosuspend.compa ,
+		  v_rulebaseinfosuspend.logic ,
+		  v_rulebaseinfosuspend.logic_id ,
+		  v_rulebaseinfosuspend.supervise_def_id ,
+		  v_rulebaseinfosuspend.supervise_level_code ,
+		  v_rulebaseinfosuspend.supervise_type_code ,
+		  v_rulebaseinfosuspend.sendcard_type ,
+		  v_rulebaseinfosuspend.msg_template_id,
+		  v_rulebaseinfosuspend.start_time,
+		  v_rulebaseinfosuspend.end_time,
+		  v_rulebaseinfosuspend.state,
+		  v_rulebaseinfosuspend.promise_limit,
+		  v_rulebaseinfosuspend.process_limit,
+		  v_rulebaseinfosuspend.batch_id,
+		  v_rulebaseinfosuspend.approve_id
+</sql>
+
+<select id="selectAllcomplain" resultMap="RuleBaseinfoBeanAllResult">
+	select 
+		<include refid="column_complain"/>
+	    from V_RULEBASEINFO_COMPLAIN 
+</select>
+
+<select id="selectAllcomplainById" parameterType="java.util.List" resultMap="RuleBaseinfoBeanAllResult">
+	select 
+		<include refid="column_complain"/>
+		,'2' as business_type,org_id,supervise_info_id,business_code,business_name,msg_template 
+	    from V_RULEBASEINFO_COMPLAIN 
+	    where V_RULEBASEINFO_COMPLAIN.business_id in 
+	    <foreach collection="list" item="businessId" index="index" open="(" separator="," close=")">
+			#{businessId,jdbcType=VARCHAR}
+		</foreach>
+</select>
+
+
+<select id="selectAllconsultById" parameterType="java.util.List" resultMap="RuleBaseinfoBeanAllResult">
+	select 
+		<include refid="column_consult"/>
+		,'3' as business_type,org_id,supervise_info_id,business_code,business_name,msg_template 
+	    from v_rulebaseinfoconsult 
+	    where v_rulebaseinfoconsult.business_id in 
+	    <foreach collection="list" item="businessId" index="index" open="(" separator="," close=")">
+			#{businessId,jdbcType=VARCHAR}
+		</foreach>
+</select>
+
+<select id="selectAllconsultByIdNew" parameterType="java.util.List" resultMap="RuleBaseinfoBeanAllResult">
+	select 
+		<include refid="column_consult"/>
+		,'3' as business_type,org_id,supervise_info_id,business_code,business_name,msg_template 
+	    from v_rulebaseinfoconsult_new  v_rulebaseinfoconsult 
+	    where v_rulebaseinfoconsult.business_id in 
+	    <foreach collection="list" item="businessId" index="index" open="(" separator="," close=")">
+			#{businessId,jdbcType=VARCHAR}
+		</foreach>
+</select>
+
+<select id="selectByBussinessID" parameterType="java.util.List" resultMap="RuleBaseinfoBeanAllResult">
+	select 
+		<include refid="column_sql"/>
+		,'1' as business_type,org_id,supervise_info_id,business_code,business_name,msg_template 
+		,  street_org_id,org_name,apply_name 
+	    from V_RULEBASEINFOBEANALL 
+		where V_RULEBASEINFOBEANALL.business_id in  
+		<foreach collection="list" item="businessId" index="index" open="(" separator="," close=")">
+			#{businessId,jdbcType=VARCHAR}
+		</foreach>
+</select>
+
+<select id="selectBySuspendID" parameterType="java.util.List" resultMap="RuleBaseinfoBeanAllResult">
+	select 
+		<include refid="column_suspend"/>
+		,'4' as business_type,org_id,supervise_info_id,business_code,business_name,msg_template
+		,street_org_id,org_name,apply_name  
+	    from v_rulebaseinfosuspend 
+		where v_rulebaseinfosuspend.business_id in  
+		<foreach collection="list" item="businessId" index="index" open="(" separator="," close=")">
+			#{businessId,jdbcType=VARCHAR}
+		</foreach>
+</select>
+
+<sql id="column_internet">
+		  v_rulebaseinfointernet.area_code ,
+		  v_rulebaseinfointernet.exp_id ,
+		  v_rulebaseinfointernet.rule_id ,
+		  v_rulebaseinfointernet.rule_version ,
+		  v_rulebaseinfointernet.issendmsg ,
+		  v_rulebaseinfointernet.business_id ,
+		  v_rulebaseinfointernet.rlt_value ,
+		  v_rulebaseinfointernet.rule_name ,
+		  v_rulebaseinfointernet.rule_memo ,
+		  v_rulebaseinfointernet.is_valid ,
+		  v_rulebaseinfointernet.is_auto_run ,
+		  v_rulebaseinfointernet.run_priority ,
+		  v_rulebaseinfointernet.has_runed ,
+		  v_rulebaseinfointernet.rule_type ,
+		  v_rulebaseinfointernet.is_public ,
+		  v_rulebaseinfointernet.exp_seq ,
+		  v_rulebaseinfointernet.explet_id ,
+		  v_rulebaseinfointernet.left_paren ,
+		  v_rulebaseinfointernet.elem_id ,
+		  v_rulebaseinfointernet.compa_id ,
+		  v_rulebaseinfointernet.cfg_value ,
+		  v_rulebaseinfointernet.right_paren ,
+		  v_rulebaseinfointernet.compa ,
+		  v_rulebaseinfointernet.logic ,
+		  v_rulebaseinfointernet.logic_id ,
+		  v_rulebaseinfointernet.supervise_def_id ,
+		  v_rulebaseinfointernet.supervise_level_code ,
+		  v_rulebaseinfointernet.supervise_type_code ,
+		  v_rulebaseinfointernet.sendcard_type ,
+		  v_rulebaseinfointernet.msg_template_id,
+		  v_rulebaseinfointernet.start_time,
+		  v_rulebaseinfointernet.end_time,
+		  v_rulebaseinfointernet.state,
+		  v_rulebaseinfointernet.promise_limit,
+		  v_rulebaseinfointernet.process_limit,
+		  v_rulebaseinfointernet.batch_id,
+		  v_rulebaseinfointernet.approve_id
+		  
+</sql>
+
+<select id="selectByInternetID" parameterType="java.util.List" resultMap="RuleBaseinfoBeanAllResult">
+	select 
+		<include refid="column_internet"/>
+		,'5' as business_type,org_id,supervise_info_id,business_code,business_name,msg_template  
+	    from v_rulebaseinfointernet 
+		where v_rulebaseinfointernet.business_id in  
+		<foreach collection="list" item="businessId" index="index" open="(" separator="," close=")">
+			#{businessId,jdbcType=VARCHAR}
+		</foreach>
+</select>
+<sql id="column_dzzz">
+		  v_rulebaseinfodzzz.area_code ,
+		  v_rulebaseinfodzzz.exp_id ,
+		  v_rulebaseinfodzzz.rule_id ,
+		  v_rulebaseinfodzzz.rule_version ,
+		  v_rulebaseinfodzzz.issendmsg ,
+		  v_rulebaseinfodzzz.business_id ,
+		  v_rulebaseinfodzzz.rlt_value ,
+		  v_rulebaseinfodzzz.rule_name ,
+		  v_rulebaseinfodzzz.rule_memo ,
+		  v_rulebaseinfodzzz.is_valid ,
+		  v_rulebaseinfodzzz.is_auto_run ,
+		  v_rulebaseinfodzzz.run_priority ,
+		  v_rulebaseinfodzzz.has_runed ,
+		  v_rulebaseinfodzzz.rule_type ,
+		  v_rulebaseinfodzzz.is_public ,
+		  v_rulebaseinfodzzz.exp_seq ,
+		  v_rulebaseinfodzzz.explet_id ,
+		  v_rulebaseinfodzzz.left_paren ,
+		  v_rulebaseinfodzzz.elem_id ,
+		  v_rulebaseinfodzzz.compa_id ,
+		  v_rulebaseinfodzzz.cfg_value ,
+		  v_rulebaseinfodzzz.right_paren ,
+		  v_rulebaseinfodzzz.compa ,
+		  v_rulebaseinfodzzz.logic ,
+		  v_rulebaseinfodzzz.logic_id ,
+		  v_rulebaseinfodzzz.supervise_def_id ,
+		  v_rulebaseinfodzzz.supervise_level_code ,
+		  v_rulebaseinfodzzz.supervise_type_code ,
+		  v_rulebaseinfodzzz.sendcard_type ,
+		  v_rulebaseinfodzzz.msg_template_id,
+		  v_rulebaseinfodzzz.start_time,
+		  v_rulebaseinfodzzz.end_time,
+		  v_rulebaseinfodzzz.state,
+		  v_rulebaseinfodzzz.promise_limit,
+		  v_rulebaseinfodzzz.process_limit,
+		  v_rulebaseinfodzzz.batch_id,
+		  v_rulebaseinfodzzz.approve_id
+</sql>
+<select id="selectByDzzzID" parameterType="java.util.List" resultMap="RuleBaseinfoBeanAllResult">
+	select 
+		<include refid="column_dzzz"/>
+		,'6' as business_type,org_id,supervise_info_id,business_code,business_name,msg_template   
+	    from v_rulebaseinfodzzz 
+		where v_rulebaseinfodzzz.business_id in  
+		<foreach collection="list" item="businessId" index="index" open="(" separator="," close=")">
+			#{businessId,jdbcType=VARCHAR}
+		</foreach>
+</select>
+
+<sql id="column_huanjie">
+		  a.area_code ,
+		  a.exp_id ,
+		  a.rule_id ,
+		  a.rule_version ,
+		  a.issendmsg ,
+		  a.business_id ,
+		  a.rlt_value ,
+		  a.rule_name ,
+		  a.rule_memo ,
+		  a.is_valid ,
+		  a.is_auto_run ,
+		  a.run_priority ,
+		  a.has_runed ,
+		  a.rule_type ,
+		  a.is_public ,
+		  a.exp_seq ,
+		  a.explet_id ,
+		  a.left_paren ,
+		  a.elem_id ,
+		  a.compa_id ,
+		  a.cfg_value ,
+		  a.right_paren ,
+		  a.compa ,
+		  a.logic ,
+		  a.logic_id ,
+		  a.supervise_def_id ,
+		  a.supervise_level_code ,
+		  a.supervise_type_code ,
+		  a.sendcard_type ,
+		  a.msg_template_id,
+		  a.start_time,
+		  a.end_time,
+		  a.state,
+		  a.promise_limit,
+		  a.process_limit,
+		  a.batch_id
+</sql>
+
+<select id="selectByHuanJieID" parameterType="java.util.List" resultMap="RuleBaseinfoBeanAllResult">
+	select 
+		<include refid="column_huanjie"/>
+		,a.tbcx_times,'7' as business_type,a.supervise_info_id,a.org_id,a.business_code,a.business_name,a.msg_template
+		,a.org_name,a.apply_name,a.tache_name, a.instance_id,a.mark_id    
+	    from v_rulebaseinfohuanjie a
+		where a.business_id in  
+		<foreach collection="list" item="businessId" index="index" open="(" separator="," close=")">
+			#{businessId,jdbcType=VARCHAR}
+		</foreach>
+</select>
+
+</mapper>

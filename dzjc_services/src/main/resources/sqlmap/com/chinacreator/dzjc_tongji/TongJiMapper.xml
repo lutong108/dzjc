@@ -1,0 +1,3149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chinacreator.dzjc_tongji.TongJiMapper">
+
+	<!-- =========================================================办件统计 Begin================================================== -->
+	<sql id="banjiantongji_column_sql">
+		t1.ORG_ID as org_id,
+		t1.ORG_CODE as area_org_code,
+		t1.ORG_NAME as area_org_name,
+		nvl(sum(t2.acceptNum), 0) as accept_num,<!-- 受理数 -->
+		nvl(sum(t2.finishNum), 0) as finish_num,<!-- 办结数 -->
+		nvl(sum(t2.beforeFinishNum), 0) as before_finish_num,<!-- 提前办结数 -->
+		
+		nvl(sum(t2.instanceSuperviseGreenNum), 0) as instance_supervise_green_num,<!-- 办件预警数 -->
+		nvl(sum(t2.instanceSuperviseYelloNum), 0) as instance_supervise_yello_num,<!-- 办件黄牌数 -->
+		nvl(sum(t2.instanceSuperviseRedNum), 0) as instance_supervise_red_num,<!--  办件红牌数 -->
+		
+		nvl(sum(t2.specialSuperviseGreenNum), 0) as special_supervise_green_num,<!-- 特别程序预警数 -->
+		nvl(sum(t2.specialSuperviseYellowNum), 0) as special_supervise_yellow_num,<!-- 特别程序黄牌数 -->
+		nvl(sum(t2.specialSuperviseRedNum), 0) as special_supervise_red_num,<!--  特别程序红牌数 -->
+		
+		nvl(sum(t2.complainSuperviseYelloNum), 0) as complain_supervise_yello_num,<!-- 投诉黄牌数 -->
+		nvl(sum(t2.complainSuperviseRedNum), 0) as complain_supervise_red_num,<!--  投诉红牌数 -->
+		
+		nvl(sum(t2.consultSuperviseGreenNum), 0) as consult_supervise_green_num,<!-- 咨询预警数 -->
+		nvl(sum(t2.consultSuperviseYelloNum), 0) as consult_supervise_yello_num,<!-- 咨询黄牌数 -->
+		nvl(sum(t2.consultSuperviseRedNum), 0) as consult_supervise_red_num,<!--  咨询红牌数 -->
+		
+		nvl(sum(t2.comNum), 0) as com_num,<!-- 投诉数 -->
+		nvl(sum(t2.complainReplyNum), 0) as complain_reply_num,<!-- 投诉回复数 -->
+		nvl(sum(t2.consultNum), 0) as consult_num,<!-- 咨询数 -->
+		nvl(sum(t2.consultReplayNum), 0) as consult_replay_num,<!-- 咨询回复数 -->
+		nvl(sum(t2.legalTimeSum), 0) as legal_time_sum,
+		nvl(sum(t2.promiseTimeSum), 0) as promise_time_sum,
+		nvl(sum(t2.timeUseSumLegal), 0) as time_use_sum_legal,
+		nvl(sum(t2.timeUseSumPromise), 0) as time_use_sum_promise,
+		nvl(sum(t2.acceptNumNew), 0) as accept_num_new
+	</sql>
+
+
+	<!-- ElementID:selectByBanJianTongJi,Generated=false 办件统计查询地区集合 orgLevel(1,2) -->
+	<select id="selectByBanJianTongJi" parameterType="java.util.Map"
+		resultMap="TongJiResult">
+		select * from(
+		select
+		<include refid="banjiantongji_column_sql" />
+		from V_JC_TONGJI_ORG t1
+		left join (select
+		<choose>
+			<when test="orgLevel == 1">
+				si.CITY_CODE as area_code,
+			</when>
+			<when test="orgLevel == 2">
+				si.COUNTY_CODE as area_code,
+			</when>
+		</choose>
+		sum(si.ACCEPT_NUM) as acceptNum,
+		sum(si.FINISH_NUM) as finishNum,
+		sum(si.BEFORE_FINISH_NUM) as beforeFinishNum,
+		
+		sum(si.instance_Supervise_Green_Num) as instanceSuperviseGreenNum,
+		sum(si.INSTANCE_SUPERVISE_YELLO_NUM) as instanceSuperviseYelloNum,
+		sum(si.INSTANCE_SUPERVISE_RED_NUM) as instanceSuperviseRedNum,
+		
+		sum(si.special_Supervise_Green_Num) as specialSuperviseGreenNum,
+		sum(si.special_Supervise_Yellow_Num) as specialSuperviseYellowNum,
+		sum(si.special_Supervise_Red_Num) as specialSuperviseRedNum,
+		
+		sum(si.COMPLAIN_SUPERVISE_YELLO_NUM) as complainSuperviseYelloNum,
+		sum(si.COMPLAIN_SUPERVISE_RED_NUM) as complainSuperviseRedNum,
+		
+		sum(si.consult_Supervise_Green_Num) as consultSuperviseGreenNum,
+		sum(si.CONSULT_SUPERVISE_YELLO_NUM) as consultSuperviseYelloNum,
+		sum(si.CONSULT_SUPERVISE_RED_NUM) as consultSuperviseRedNum,
+		
+		sum(si.COMPLAIN_NUM) as comNum,
+		sum(si.complain_reply_num) as complainReplyNum,
+		sum(si.consult_num) as consultNum,
+		sum(si.consult_replay_num) as consultReplayNum,
+		sum(si.legal_time) as legalTimeSum,
+		sum(si.promise_time) as promiseTimeSum,
+		sum(si.time_use_legal) as timeUseSumLegal,
+		sum(si.time_use_promise) as timeUseSumPromise,
+		sum(si.accept_num_new) as acceptNumNew
+		from ${table} si
+		where 1 = 1
+		<choose>
+			<when test="isInvestmentSupervision != null">
+				and si.is_investment_supervision =
+				#{isInvestmentSupervision,jdbcType=VARCHAR}
+			</when>
+			<otherwise>
+				and si.is_investment_supervision &lt;&gt; '1'
+			</otherwise>
+		</choose>
+		<if test="beginDate != null and beginDate != ''">
+			and si.NOW_DATE &gt;= #{beginDate,jdbcType=VARCHAR}
+		</if>
+		<if test="endDate != null and endDate != ''">
+			and si.NOW_DATE &lt;= #{endDate,jdbcType=VARCHAR}
+		</if>
+		<choose>
+			<when test="orgLevel == 1">
+				group by CITY_CODE) t2
+				on t1.CITY_CODE = t2.area_code
+			</when>
+			<when test="orgLevel == 2">
+				group by COUNTY_CODE) t2
+				on t1.COUNTY_CODE = t2.area_code
+			</when>
+		</choose>
+		where 1 = 1
+		and t1.p_id = #{pId,jdbcType=VARCHAR}
+		group by t1.ORG_ID,t1.ORG_NAME, t1.ORG_CODE, t1.ORDER_NUM
+		order by t1.ORDER_NUM
+		)
+	</select>
+
+	<!-- ElementID:selectByBanJianTongJiCounty,Generated=false 办件统计查询区域下所有机构集合 
+		orgLevel(3) -->
+	<select id="selectByBanJianTongJiCounty" parameterType="java.util.Map"
+		resultMap="TongJiResult">
+		select * from(
+		select
+		<include refid="banjiantongji_column_sql" />
+		from V_JC_TONGJI_ORG t1
+		left join (select
+		si.AREA_ORG_CODE as area_code,
+		sum(si.ACCEPT_NUM) as acceptNum,
+		sum(si.FINISH_NUM) as finishNum,
+		sum(si.BEFORE_FINISH_NUM) as beforeFinishNum,
+		
+		sum(si.instance_Supervise_Green_Num) as instanceSuperviseGreenNum,
+		sum(si.INSTANCE_SUPERVISE_YELLO_NUM) as instanceSuperviseYelloNum,
+		sum(si.INSTANCE_SUPERVISE_RED_NUM) as instanceSuperviseRedNum,
+		
+		sum(si.special_Supervise_Green_Num) as specialSuperviseGreenNum,
+		sum(si.special_Supervise_Yellow_Num) as specialSuperviseYellowNum,
+		sum(si.special_Supervise_Red_Num) as specialSuperviseRedNum,
+		
+		sum(si.COMPLAIN_SUPERVISE_YELLO_NUM) as complainSuperviseYelloNum,
+		sum(si.COMPLAIN_SUPERVISE_RED_NUM) as complainSuperviseRedNum,
+		
+		sum(si.consult_Supervise_Green_Num) as consultSuperviseGreenNum,
+		sum(si.CONSULT_SUPERVISE_YELLO_NUM) as consultSuperviseYelloNum,
+		sum(si.CONSULT_SUPERVISE_RED_NUM) as consultSuperviseRedNum,
+		
+		sum(si.COMPLAIN_NUM) as comNum,
+		sum(si.complain_reply_num) as complainReplyNum,
+		sum(si.consult_num) as consultNum,
+		sum(si.consult_replay_num) as consultReplayNum,
+		sum(si.legal_time) as legalTimeSum,
+		sum(si.promise_time) as promiseTimeSum,
+		sum(si.time_use_legal) as timeUseSumLegal,
+		sum(si.time_use_promise) as timeUseSumPromise,
+		sum(si.accept_num_new) as acceptNumNew
+		from ${table} si
+		where 1 = 1
+		<choose>
+			<when test="isInvestmentSupervision != null">
+				and si.is_investment_supervision =
+				#{isInvestmentSupervision,jdbcType=VARCHAR}
+			</when>
+			<otherwise>
+				and si.is_investment_supervision &lt;&gt; '1'
+			</otherwise>
+		</choose>
+		<if test="beginDate != null and beginDate != ''">
+			and si.NOW_DATE &gt;= #{beginDate,jdbcType=VARCHAR}
+		</if>
+		<if test="endDate != null and endDate != ''">
+			and si.NOW_DATE &lt;= #{endDate,jdbcType=VARCHAR}
+		</if>
+		group by AREA_ORG_CODE) t2 on t1.ORG_CODE = t2.area_code
+		where 1 = 1
+		and t1.County_CODE = #{countyCode,jdbcType=VARCHAR}
+		and substr(ORG_CODE, 13) != '000000000000'
+		group by t1.ORG_ID,t1.ORG_NAME, t1.ORG_CODE, t1.ORDER_NUM
+		order by t1.ORDER_NUM
+		)
+	</select>
+
+	<sql id="selectByBanJianTongJiOrg_column_sql">
+		t1.ORG_ID as org_id,
+		t1.ORG_CODE as area_org_code,
+		t1.ORG_NAME as area_org_name,
+		nvl(sum(t2.acceptNum), 0) as accept_num,<!-- 受理数 -->
+		nvl(sum(t2.finishNum), 0) as finish_num,<!-- 办结数 -->
+		nvl(sum(t2.beforeFinishNum), 0) as before_finish_num,<!-- 提前办结数 -->
+		nvl(sum(t2.instanceSuperviseGreenNum), 0) as
+		instance_supervise_green_num, <!-- 办件预警数 -->
+		nvl(sum(t2.instanceSuperviseYelloNum), 0) as
+		instance_supervise_yello_num,<!-- 办件黄牌数 -->
+		nvl(sum(t2.instanceSuperviseRedNum), 0) as instance_supervise_red_num,<!-- 
+			办件红牌数 -->
+		nvl(sum(t2.instanceCancelYellowNum), 0) as instance_cancel_yellow_num, <!-- 
+			办件撤销黄牌 -->
+		nvl(sum(t2.instanceCancelRedNum), 0) as instance_cancel_red_num, <!-- 办件撤销红牌 -->
+		nvl(sum(t2.complainSuperviseYelloNum), 0) as
+		complain_supervise_yello_num,<!-- 投诉黄牌数 -->
+		nvl(sum(t2.complainSuperviseRedNum), 0) as complain_supervise_red_num,<!-- 
+			投诉红牌数 -->
+		nvl(sum(t2.consultSuperviseYelloNum), 0) as
+		consult_supervise_yello_num,<!-- 咨询黄牌数 -->
+		nvl(sum(t2.consultSuperviseRedNum), 0) as consult_supervise_red_num,<!-- 
+			咨询红牌数 -->
+		nvl(sum(t2.comNum), 0) as com_num,<!-- 投诉数 -->
+		nvl(sum(t2.complainReplyNum), 0) as complain_reply_num,<!-- 投诉回复数 -->
+		nvl(sum(t2.consultNum), 0) as consult_num,<!-- 咨询数 -->
+		nvl(sum(t2.consultReplayNum), 0) as consult_replay_num,<!-- 咨询回复数 -->
+		nvl(sum(t2.legalTimeSum), 0) as legal_time_sum,
+		nvl(sum(t2.promiseTimeSum), 0) as promise_time_sum,
+		nvl(sum(t2.timeUseSumLegal), 0) as time_use_sum_legal,
+		nvl(sum(t2.timeUseSumPromise), 0) as time_use_sum_promise,
+		nvl(sum(t2.acceptNumNew), 0) as accept_num_new
+	</sql>
+
+	<!-- ElementID:selectByBanJianOrg,Generated=false 办件统计查询单个机构 orgLevel(5) -->
+	<select id="selectByBanJianTongJiOrg" parameterType="java.util.Map"
+		resultMap="TongJiResult">
+		select * from(
+		select
+		<include refid="selectByBanJianTongJiOrg_column_sql" />
+		from V_JC_TONGJI_ORG t1
+		left join (select
+		si.org_id,
+		sum(si.ACCEPT_NUM) as acceptNum,
+		sum(si.FINISH_NUM) as finishNum,
+		sum(si.BEFORE_FINISH_NUM) as beforeFinishNum,
+		sum(si.INSTANCE_SUPERVISE_GREEN_NUM) as instanceSuperviseGreenNum,
+		sum(si.INSTANCE_SUPERVISE_YELLO_NUM) as instanceSuperviseYelloNum,
+		sum(si.INSTANCE_SUPERVISE_RED_NUM) as instanceSuperviseRedNum,
+		sum(si.INSTANCE_CANCEL_YELLOW_NUM) as instanceCancelYellowNum,
+		sum(si.INSTANCE_CANCEL_RED_NUM) as instanceCancelRedNum,
+		sum(si.COMPLAIN_SUPERVISE_YELLO_NUM) as complainSuperviseYelloNum,
+		sum(si.COMPLAIN_SUPERVISE_RED_NUM) as complainSuperviseRedNum,
+		sum(si.CONSULT_SUPERVISE_YELLO_NUM) as consultSuperviseYelloNum,
+		sum(si.CONSULT_SUPERVISE_RED_NUM) as consultSuperviseRedNum,
+		sum(si.COMPLAIN_NUM) as comNum,
+		sum(si.complain_reply_num) as complainReplyNum,
+		sum(si.consult_num) as consultNum,
+		sum(si.consult_replay_num) as consultReplayNum,
+		sum(si.legal_time) as legalTimeSum,
+		sum(si.promise_time) as promiseTimeSum,
+		sum(si.time_use_legal) as timeUseSumLegal,
+		sum(si.time_use_promise) as timeUseSumPromise,
+		sum(si.accept_num_new) as acceptNumNew
+		from ${table} si
+		where 1 = 1
+		<choose>
+			<when test="isInvestmentSupervision != null">
+				and si.is_investment_supervision =
+				#{isInvestmentSupervision,jdbcType=VARCHAR}
+			</when>
+			<otherwise>
+				and si.is_investment_supervision &lt;&gt; '1'
+			</otherwise>
+		</choose>
+		<if test="beginDate != null and beginDate != ''">
+			and si.NOW_DATE &gt;= #{beginDate,jdbcType=VARCHAR}
+		</if>
+		<if test="endDate != null and endDate != ''">
+			and si.NOW_DATE &lt;= #{endDate,jdbcType=VARCHAR}
+		</if>
+		group by org_id) t2 on t1.org_id = t2.org_id
+		where 1 = 1
+		<choose>
+			<when test="orgId != null and orgId == 'isDuoGuiAll'">
+				and substr(t1.ORG_CODE,0,12) = '430101000000'
+				and substr(t1.ORG_CODE,12,12) != '000000000000'
+			</when>
+			<otherwise>
+				and t1.org_id = #{orgId,jdbcType=VARCHAR}
+			</otherwise>
+		</choose>
+
+		group by t1.ORG_ID,t1.ORG_NAME, t1.ORG_CODE, t1.ORDER_NUM
+		order by t1.ORDER_NUM
+		)
+	</select>
+
+	<!-- ElementID:selectByBanJianOrg,Generated=false 办件统计查询本级市值下机构集合 orgLevel(5) -->
+	<select id="selectByBanJianTongJiBenJi" parameterType="java.util.Map"
+		resultMap="TongJiResult">
+		select * from(
+		select
+		<include refid="banjiantongji_column_sql" />
+		from V_JC_TONGJI_ORG t1
+		left join (select
+		si.org_id,
+		sum(si.ACCEPT_NUM) as acceptNum,
+		sum(si.FINISH_NUM) as finishNum,
+		sum(si.BEFORE_FINISH_NUM) as beforeFinishNum,
+		
+		sum(si.instance_Supervise_Green_Num) as instanceSuperviseGreenNum,
+		sum(si.INSTANCE_SUPERVISE_YELLO_NUM) as instanceSuperviseYelloNum,
+		sum(si.INSTANCE_SUPERVISE_RED_NUM) as instanceSuperviseRedNum,
+		
+		sum(si.special_Supervise_Green_Num) as specialSuperviseGreenNum,
+		sum(si.special_Supervise_Yellow_Num) as specialSuperviseYellowNum,
+		sum(si.special_Supervise_Red_Num) as specialSuperviseRedNum,
+		
+		sum(si.COMPLAIN_SUPERVISE_YELLO_NUM) as complainSuperviseYelloNum,
+		sum(si.COMPLAIN_SUPERVISE_RED_NUM) as complainSuperviseRedNum,
+		
+		sum(si.consult_Supervise_Green_Num) as consultSuperviseGreenNum,
+		sum(si.CONSULT_SUPERVISE_YELLO_NUM) as consultSuperviseYelloNum,
+		sum(si.CONSULT_SUPERVISE_RED_NUM) as consultSuperviseRedNum,
+		
+		sum(si.COMPLAIN_NUM) as comNum,
+		sum(si.complain_reply_num) as complainReplyNum,
+		sum(si.consult_num) as consultNum,
+		sum(si.consult_replay_num) as consultReplayNum,
+		sum(si.legal_time) as legalTimeSum,
+		sum(si.promise_time) as promiseTimeSum,
+		sum(si.time_use_legal) as timeUseSumLegal,
+		sum(si.time_use_promise) as timeUseSumPromise,
+		sum(si.accept_num_new) as acceptNumNew
+		from ${table} si
+		where 1 = 1
+		<choose>
+			<when test="isInvestmentSupervision != null">
+				and si.is_investment_supervision =
+				#{isInvestmentSupervision,jdbcType=VARCHAR}
+			</when>
+			<otherwise>
+				and si.is_investment_supervision &lt;&gt; '1'
+			</otherwise>
+		</choose>
+		<if test="beginDate != null and beginDate != ''">
+			and si.NOW_DATE &gt;= #{beginDate,jdbcType=VARCHAR}
+		</if>
+		<if test="endDate != null and endDate != ''">
+			and si.NOW_DATE &lt;= #{endDate,jdbcType=VARCHAR}
+		</if>
+		group by org_id) t2 on t1.org_id = t2.org_id
+		where 1 = 1
+		and t1.p_id = #{pId,jdbcType=VARCHAR}
+		group by t1.ORG_ID,t1.ORG_NAME, t1.ORG_CODE, t1.ORDER_NUM
+		order by t1.ORDER_NUM
+		)
+	</select>
+	<!-- =========================================================办件统计 End========================================================= -->
+
+	<!-- =========================================================三级监察统计 Begin========================================================= -->
+	<!-- ElementID:selectBySanJiJianChaLeiJi,Generated=false 三级监察累计数据查询 -->
+	<select id="selectBySanJiJianChaLeiJi" parameterType="java.util.Map"
+		resultMap="TongJiResult">
+		select
+		t1.ORG_ID as org_id,
+		t1.ORG_CODE as areaOrgCode,
+		t1.ORG_NAME as areaOrgName,
+		nvl(t2.acceptNum, 0) as acceptNum,<!-- 受理数 -->
+		nvl(t2.finishNum,0) as finishNum,<!-- 办结数 -->
+		nvl(t2.beforeFinishNum, 0) as beforeFinishNum,<!-- 提前办结数 -->
+		nvl(t2.instanceSuperviseYelloNum, 0) as instanceSuperviseYelloNum,<!-- 
+			办件黄牌数 -->
+		nvl(t2.instanceSuperviseRedNum, 0) as instanceSuperviseRedNum,<!-- 办件红牌数 -->
+		nvl(t2.complainSuperviseYelloNum, 0) as complainSuperviseYelloNum,<!-- 
+			投诉黄牌数 -->
+		nvl(t2.complainSuperviseRedNum, 0) as complainSuperviseRedNum,<!-- 投诉红牌数 -->
+		nvl(t2.consultSuperviseYelloNum, 0) as consultSuperviseYelloNum,<!-- 咨询黄牌数 -->
+		nvl(t2.consultSuperviseRedNum, 0) as consultSuperviseRedNum,<!-- 咨询红牌数 -->
+		nvl(t2.superviseYelloNum, 0) as superviseYelloNum,<!-- 办件，投诉，咨询黄牌数 -->
+		nvl(t2.superviseRedNum, 0) as superviseRedNum,<!-- 办件，投诉，咨询红牌数 -->
+		nvl(t2.comNum, 0) as comNum,<!-- 投诉数 -->
+		nvl(t2.complainReplyNum, 0) as complainReplyNum,<!-- 投诉回复数 -->
+		nvl(t2.consultNum, 0) as consultNum,<!-- 咨询数 -->
+		nvl(t2.consultReplayNum, 0) as consultReplayNum,<!-- 咨询回复数 -->
+		nvl(t2.legalTimeSum, 0) as legal_time_sum,
+		nvl(t2.promiseTimeSum, 0) as promise_time_sum,
+		nvl(t2.timeUseSumLegal, 0) as time_use_sum_legal,
+		nvl(t2.timeUseSumPromise, 0) as time_use_sum_promise
+		from V_JC_TONGJI_ORG t1
+		left join (select
+		<choose>
+			<when test="orgLevel == 1">
+				si.province_code as area_code,
+			</when>
+			<when test="orgLevel == 2">
+				si.city_code as area_code,
+			</when>
+			<when test="orgLevel == 3">
+				si.county_code as area_code,
+			</when>
+			<when test="orgLevel == 5">
+				si.org_id as area_code,
+			</when>
+			<when test="orgLevel == 4">
+				si.county_code as area_code,
+			</when>
+		</choose>
+		sum(si.ACCEPT_NUM) as acceptNum,
+		sum(si.FINISH_NUM) as finishNum,
+		sum(si.BEFORE_FINISH_NUM) as beforeFinishNum,
+		sum(si.INSTANCE_SUPERVISE_YELLO_NUM) as instanceSuperviseYelloNum,
+		sum(si.INSTANCE_SUPERVISE_RED_NUM) as instanceSuperviseRedNum,
+		sum(si.COMPLAIN_SUPERVISE_YELLO_NUM) as complainSuperviseYelloNum,
+		sum(si.COMPLAIN_SUPERVISE_RED_NUM) as complainSuperviseRedNum,
+		sum(si.CONSULT_SUPERVISE_YELLO_NUM) as consultSuperviseYelloNum,
+		sum(si.CONSULT_SUPERVISE_RED_NUM) as consultSuperviseRedNum,
+		sum(si.supervise_yello_num) as superviseYelloNum,
+		sum(si.supervise_red_num) as superviseRedNum,
+		sum(si.COMPLAIN_NUM) as comNum,
+		sum(si.complain_reply_num) as complainReplyNum,
+		sum(si.consult_num) as consultNum,
+		sum(si.consult_replay_num) as consultReplayNum,
+		sum(si.legal_time) as legalTimeSum,
+		sum(si.promise_time) as promiseTimeSum,
+		sum(si.time_use_legal) as timeUseSumLegal,
+		sum(si.time_use_promise) as timeUseSumPromise
+		from ${table} si
+		where 1 = 1
+		<choose>
+			<when test="isInvestmentSupervision != null">
+				and si.is_investment_supervision =
+				#{isInvestmentSupervision,jdbcType=VARCHAR}
+			</when>
+			<otherwise>
+				and si.is_investment_supervision &lt;&gt; '1'
+			</otherwise>
+		</choose>
+		<if test="isShiZhouHeJi != null and isShiZhouHeJi == 'true'">
+			and si.city_code &lt;&gt; '439900000000'
+		</if>
+		<if test="beginDate != null and beginDate != ''">
+			and si.NOW_DATE &gt;= #{beginDate,jdbcType=VARCHAR}
+		</if>
+		<if test="endDate != null and endDate != ''">
+			and si.NOW_DATE &lt;= #{endDate,jdbcType=VARCHAR}
+		</if>
+		<choose>
+			<when test="orgLevel == 1">
+				group by si.province_code) t2 on t1.province_code = t2.area_code
+			</when>
+			<when test="orgLevel == 2">
+				group by si.city_code) t2 on t1.city_code = t2.area_code
+			</when>
+			<when test="orgLevel == 3">
+				group by si.county_code) t2 on t1.county_code = t2.area_code
+			</when>
+			<when test="orgLevel == 5">
+				group by si.org_id) t2 on t1.org_id = t2.area_code
+			</when>
+			<when test="orgLevel == 4">
+				group by si.county_code) t2 on t1.county_code = t2.area_code
+			</when>
+		</choose>
+
+		where 1 = 1
+		and t1.org_id = #{orgId,jdbcType=VARCHAR}
+	</select>
+
+	<!-- =========================================================三级监察统计 End========================================================= -->
+
+	<!-- =========================================================办件发牌统计 Begin========================================================= -->
+	<sql id="banjianfapaitongji_column_sql">
+		t1.ORG_ID as org_id,
+		t1.ORG_CODE as area_org_code,
+		t1.ORG_NAME as area_org_name,
+		nvl(sum(t2.instanceSuperviseGreenNum), 0) as instance_supervise_green_num,<!-- 办件预警牌数 -->
+		nvl(sum(t2.instanceSuperviseYelloNum), 0) as
+		instance_supervise_yello_num,<!-- 办件黄牌数 -->
+		nvl(sum(t2.instanceSuperviseRedNum), 0) as instance_supervise_red_num,<!-- 
+			办件红牌数 -->
+		nvl(sum(t2.instanceCancelYellowNum), 0) as instance_cancel_yellow_num,<!-- 
+			撤销黄牌数 -->
+		nvl(sum(t2.instanceCancelRedNum), 0) as instance_cancel_red_num<!-- 撤销红牌数 -->
+	</sql>
+
+	<!-- 办件统计查询地区集合 orgLevel(1,2) -->
+	<select id="selectByBanJianFaPaiTongJi" parameterType="java.util.Map"
+		resultMap="TongJiResult">
+		select
+		<include refid="banjianfapaitongji_column_sql" />
+		from V_JC_TONGJI_ORG t1
+		left join (select
+		<choose>
+			<when test="orgLevel == 1">
+				si.CITY_CODE as area_code,
+			</when>
+			<when test="orgLevel == 2">
+				si.COUNTY_CODE as area_code,
+			</when>
+		</choose>
+		sum(si.instance_supervise_green_num) as instanceSuperviseGreenNum,
+		sum(si.instance_supervise_yello_num) as instanceSuperviseYelloNum,
+		sum(si.instance_supervise_red_num) as instanceSuperviseRedNum,
+		sum(si.instance_cancel_yellow_num) as instanceCancelYellowNum,
+		sum(si.instance_cancel_red_num) as instanceCancelRedNum
+		from ${table} si
+		where 1 = 1
+		<choose>
+			<when test="isInvestmentSupervision != null">
+				and si.is_investment_supervision =
+				#{isInvestmentSupervision,jdbcType=VARCHAR}
+			</when>
+			<otherwise>
+				and si.is_investment_supervision &lt;&gt; '1'
+			</otherwise>
+		</choose>
+		<if test="beginDate != null and beginDate != ''">
+			and si.NOW_DATE &gt;= #{beginDate,jdbcType=VARCHAR}
+		</if>
+		<if test="endDate != null and endDate != ''">
+			and si.NOW_DATE &lt;= #{endDate,jdbcType=VARCHAR}
+		</if>
+		<choose>
+			<when test="orgLevel == 1">
+				group by CITY_CODE) t2
+				on t1.CITY_CODE = t2.area_code
+			</when>
+			<when test="orgLevel == 2">
+				group by COUNTY_CODE) t2
+				on t1.COUNTY_CODE = t2.area_code
+			</when>
+		</choose>
+		where 1 = 1
+		and t1.p_id = #{pId,jdbcType=VARCHAR}
+		group by t1.ORG_ID,t1.ORG_NAME, t1.ORG_CODE, t1.ORDER_NUM
+		order by t1.ORDER_NUM
+	</select>
+	<!-- 办件发牌统计查询区域下所有机构集合 orgLevel(3) -->
+	<select id="selectByBanJianFaPaiTongJiCounty" parameterType="java.util.Map"
+		resultMap="TongJiResult">
+		select
+		<include refid="banjianfapaitongji_column_sql" />
+		from V_JC_TONGJI_ORG t1
+		left join (select
+		si.AREA_ORG_CODE as area_code,
+		sum(si.instance_supervise_green_num) as instanceSuperviseGreenNum,
+		sum(si.instance_supervise_yello_num) as instanceSuperviseYelloNum,
+		sum(si.instance_supervise_red_num) as instanceSuperviseRedNum,
+		sum(si.instance_cancel_yellow_num) as instanceCancelYellowNum,
+		sum(si.instance_cancel_red_num) as instanceCancelRedNum
+		from ${table} si
+		where 1 = 1
+		<choose>
+			<when test="isInvestmentSupervision != null">
+				and si.is_investment_supervision =
+				#{isInvestmentSupervision,jdbcType=VARCHAR}
+			</when>
+			<otherwise>
+				and si.is_investment_supervision &lt;&gt; '1'
+			</otherwise>
+		</choose>
+		<if test="beginDate != null and beginDate != ''">
+			and si.NOW_DATE &gt;= #{beginDate,jdbcType=VARCHAR}
+		</if>
+		<if test="endDate != null and endDate != ''">
+			and si.NOW_DATE &lt;= #{endDate,jdbcType=VARCHAR}
+		</if>
+		group by AREA_ORG_CODE) t2 on t1.ORG_CODE = t2.area_code
+		where 1 = 1
+		and t1.County_CODE = #{countyCode,jdbcType=VARCHAR}
+		and substr(ORG_CODE, 13) != '000000000000'
+		group by t1.ORG_ID,t1.ORG_NAME, t1.ORG_CODE, t1.ORDER_NUM
+		order by t1.ORDER_NUM
+	</select>
+	<!-- 办件发牌统计查询单个机构 orgLevel(5) -->
+	<select id="selectByBanJianFaPaiTongJiOrg" parameterType="java.util.Map"
+		resultMap="TongJiResult">
+		select
+		<include refid="banjianfapaitongji_column_sql" />
+		from V_JC_TONGJI_ORG t1
+		left join (select
+		si.org_id,
+		sum(si.instance_supervise_green_num) as instanceSuperviseGreenNum,
+		sum(si.instance_supervise_yello_num) as instanceSuperviseYelloNum,
+		sum(si.instance_supervise_red_num) as instanceSuperviseRedNum,
+		sum(si.instance_cancel_yellow_num) as instanceCancelYellowNum,
+		sum(si.instance_cancel_red_num) as instanceCancelRedNum
+		from ${table} si
+		where 1 = 1
+		<choose>
+			<when test="isInvestmentSupervision != null">
+				and si.is_investment_supervision =
+				#{isInvestmentSupervision,jdbcType=VARCHAR}
+			</when>
+			<otherwise>
+				and si.is_investment_supervision &lt;&gt; '1'
+			</otherwise>
+		</choose>
+		<if test="beginDate != null and beginDate != ''">
+			and si.NOW_DATE &gt;= #{beginDate,jdbcType=VARCHAR}
+		</if>
+		<if test="endDate != null and endDate != ''">
+			and si.NOW_DATE &lt;= #{endDate,jdbcType=VARCHAR}
+		</if>
+		group by org_id) t2 on t1.org_id = t2.org_id
+		where 1 = 1
+		<choose>
+			<when test="orgId != null and orgId == 'isDuoGuiAll'">
+				and substr(t1.ORG_CODE,0,12) = '430101000000'
+				and substr(t1.ORG_CODE,12,12) != '000000000000'
+			</when>
+			<otherwise>
+				and t1.org_id = #{orgId,jdbcType=VARCHAR}
+			</otherwise>
+		</choose>
+		group by t1.ORG_ID,t1.ORG_NAME, t1.ORG_CODE, t1.ORDER_NUM
+		order by t1.ORDER_NUM
+	</select>
+	<!-- 办件发牌统计查询本级市直下机构集合 orgLevel(5) -->
+	<select id="selectByBanJianFaPaiTongJiBenJi" parameterType="java.util.Map"
+		resultMap="TongJiResult">
+		select
+		<include refid="banjianfapaitongji_column_sql" />
+		from V_JC_TONGJI_ORG t1
+		left join (select
+		si.org_id,
+		sum(si.instance_supervise_green_num) as instanceSuperviseGreenNum,
+		sum(si.instance_supervise_yello_num) as instanceSuperviseYelloNum,
+		sum(si.instance_supervise_red_num) as instanceSuperviseRedNum,
+		sum(si.instance_cancel_yellow_num) as instanceCancelYellowNum,
+		sum(si.instance_cancel_red_num) as instanceCancelRedNum
+		from ${table} si
+		where 1 = 1
+		<choose>
+			<when test="isInvestmentSupervision != null">
+				and si.is_investment_supervision =
+				#{isInvestmentSupervision,jdbcType=VARCHAR}
+			</when>
+			<otherwise>
+				and si.is_investment_supervision &lt;&gt; '1'
+			</otherwise>
+		</choose>
+		<if test="beginDate != null and beginDate != ''">
+			and si.NOW_DATE &gt;= #{beginDate,jdbcType=VARCHAR}
+		</if>
+		<if test="endDate != null and endDate != ''">
+			and si.NOW_DATE &lt;= #{endDate,jdbcType=VARCHAR}
+		</if>
+		group by org_id) t2 on t1.org_id = t2.org_id
+		where 1 = 1
+		and t1.p_id = #{pId,jdbcType=VARCHAR}
+		group by t1.ORG_ID,t1.ORG_NAME, t1.ORG_CODE, t1.ORDER_NUM
+		order by t1.ORDER_NUM
+	</select>
+	<!-- =========================================================办件发牌统计 End========================================================= -->
+
+	<!-- =========================================================全省发牌统计 Begin========================================================= -->
+	<sql id="quanshengfapaitongji_column_sql">
+		t1.ORG_ID as org_id,
+		t1.ORG_CODE as area_org_code,
+		t1.ORG_NAME as area_org_name,
+		nvl(sum(t2.superviseGreenNum), 0) as supervise_green_num,<!-- 全省预警牌数 -->
+		nvl(sum(t2.superviseYelloNum), 0) as supervise_yello_num,<!-- 全省黄牌数 -->
+		nvl(sum(t2.superviseRedNum), 0) as supervise_red_num,<!-- 全省红牌数 -->
+		nvl(sum(t2.cancelYellowNum), 0) as cancel_yellow_num,<!-- 撤销黄牌数 -->
+		nvl(sum(t2.cancelRedNum), 0) as cancel_red_num<!-- 撤销红牌数 -->
+	</sql>
+
+	<!-- 全省统计查询地区集合 orgLevel(1,2) -->
+	<select id="selectByQuanShengFaPaiTongJi" parameterType="java.util.Map"
+		resultMap="TongJiResult">
+		select
+		<include refid="quanshengfapaitongji_column_sql" />
+		from V_JC_TONGJI_ORG t1
+		left join (select
+		<choose>
+			<when test="orgLevel == 1">
+				si.CITY_CODE as area_code,
+			</when>
+			<when test="orgLevel == 2">
+				si.COUNTY_CODE as area_code,
+			</when>
+		</choose>
+		sum(si.supervise_green_num) as superviseGreenNum,
+		sum(si.supervise_yello_num) as superviseYelloNum,
+		sum(si.supervise_red_num) as superviseRedNum,
+		sum(si.cancel_yellow_num) as cancelYellowNum,
+		sum(si.cancel_red_num) as cancelRedNum
+		from ${table} si
+		where 1 = 1
+		<choose>
+			<when test="isInvestmentSupervision != null">
+				and si.is_investment_supervision =
+				#{isInvestmentSupervision,jdbcType=VARCHAR}
+			</when>
+			<otherwise>
+				and si.is_investment_supervision &lt;&gt; '1'
+			</otherwise>
+		</choose>
+		<if test="beginDate != null and beginDate != ''">
+			and si.NOW_DATE &gt;= #{beginDate,jdbcType=VARCHAR}
+		</if>
+		<if test="endDate != null and endDate != ''">
+			and si.NOW_DATE &lt;= #{endDate,jdbcType=VARCHAR}
+		</if>
+		<choose>
+			<when test="orgLevel == 1">
+				group by CITY_CODE) t2
+				on t1.CITY_CODE = t2.area_code
+			</when>
+			<when test="orgLevel == 2">
+				group by COUNTY_CODE) t2
+				on t1.COUNTY_CODE = t2.area_code
+			</when>
+		</choose>
+		where 1 = 1
+		and t1.p_id = #{pId,jdbcType=VARCHAR}
+		group by t1.ORG_ID,t1.ORG_NAME, t1.ORG_CODE, t1.ORDER_NUM
+		order by t1.ORDER_NUM
+	</select>
+
+	<!-- 全省发牌统计查询区域下所有机构集合 orgLevel(3) -->
+	<select id="selectByQuanShengFaPaiTongJiCounty" parameterType="java.util.Map"
+		resultMap="TongJiResult">
+		select
+		<include refid="quanshengfapaitongji_column_sql" />
+		from V_JC_TONGJI_ORG t1
+		left join (select
+		si.AREA_ORG_CODE as area_code,
+		sum(si.supervise_green_num) as superviseGreenNum,
+		sum(si.supervise_yello_num) as superviseYelloNum,
+		sum(si.supervise_red_num) as superviseRedNum,
+		sum(si.cancel_yellow_num) as cancelYellowNum,
+		sum(si.cancel_red_num) as cancelRedNum
+		from ${table} si
+		where 1 = 1
+		<choose>
+			<when test="isInvestmentSupervision != null">
+				and si.is_investment_supervision =
+				#{isInvestmentSupervision,jdbcType=VARCHAR}
+			</when>
+			<otherwise>
+				and si.is_investment_supervision &lt;&gt; '1'
+			</otherwise>
+		</choose>
+		<if test="beginDate != null and beginDate != ''">
+			and si.NOW_DATE &gt;= #{beginDate,jdbcType=VARCHAR}
+		</if>
+		<if test="endDate != null and endDate != ''">
+			and si.NOW_DATE &lt;= #{endDate,jdbcType=VARCHAR}
+		</if>
+		group by AREA_ORG_CODE) t2 on t1.ORG_CODE = t2.area_code
+		where 1 = 1
+		and t1.County_CODE = #{countyCode,jdbcType=VARCHAR}
+		and substr(ORG_CODE, 13) != '000000000000'
+		group by t1.ORG_ID,t1.ORG_NAME, t1.ORG_CODE, t1.ORDER_NUM
+		order by t1.ORDER_NUM
+	</select>
+
+	<!-- 全省发牌统计查询单个机构 orgLevel(5) -->
+	<select id="selectByQuanShengFaPaiTongJiOrg" parameterType="java.util.Map"
+		resultMap="TongJiResult">
+		select
+		<include refid="quanshengfapaitongji_column_sql" />
+		from V_JC_TONGJI_ORG t1
+		left join (select
+		si.org_id,
+		sum(si.supervise_green_num) as superviseGreenNum,
+		sum(si.supervise_yello_num) as superviseYelloNum,
+		sum(si.supervise_red_num) as superviseRedNum,
+		sum(si.cancel_yellow_num) as cancelYellowNum,
+		sum(si.cancel_red_num) as cancelRedNum
+		from ${table} si
+		where 1 = 1
+		<choose>
+			<when test="isInvestmentSupervision != null">
+				and si.is_investment_supervision =
+				#{isInvestmentSupervision,jdbcType=VARCHAR}
+			</when>
+			<otherwise>
+				and si.is_investment_supervision &lt;&gt; '1'
+			</otherwise>
+		</choose>
+		<if test="beginDate != null and beginDate != ''">
+			and si.NOW_DATE &gt;= #{beginDate,jdbcType=VARCHAR}
+		</if>
+		<if test="endDate != null and endDate != ''">
+			and si.NOW_DATE &lt;= #{endDate,jdbcType=VARCHAR}
+		</if>
+		group by org_id) t2 on t1.org_id = t2.org_id
+		where 1 = 1
+		and t1.org_id = #{orgId,jdbcType=VARCHAR}
+		group by t1.ORG_ID,t1.ORG_NAME, t1.ORG_CODE, t1.ORDER_NUM
+		order by t1.ORDER_NUM
+	</select>
+
+	<!-- 全省发牌统计查询本级市直下机构集合 orgLevel(5) -->
+	<select id="selectByQuanShengFaPaiTongJiBenJi" parameterType="java.util.Map"
+		resultMap="TongJiResult">
+		select
+		<include refid="quanshengfapaitongji_column_sql" />
+		from V_JC_TONGJI_ORG t1
+		left join (select
+		si.org_id,
+		sum(si.supervise_green_num) as superviseGreenNum,
+		sum(si.supervise_yello_num) as superviseYelloNum,
+		sum(si.supervise_red_num) as superviseRedNum,
+		sum(si.cancel_yellow_num) as cancelYellowNum,
+		sum(si.cancel_red_num) as cancelRedNum
+		from ${table} si
+		where 1 = 1
+		<choose>
+			<when test="isInvestmentSupervision != null">
+				and si.is_investment_supervision =
+				#{isInvestmentSupervision,jdbcType=VARCHAR}
+			</when>
+			<otherwise>
+				and si.is_investment_supervision &lt;&gt; '1'
+			</otherwise>
+		</choose>
+		<if test="beginDate != null and beginDate != ''">
+			and si.NOW_DATE &gt;= #{beginDate,jdbcType=VARCHAR}
+		</if>
+		<if test="endDate != null and endDate != ''">
+			and si.NOW_DATE &lt;= #{endDate,jdbcType=VARCHAR}
+		</if>
+		group by org_id) t2 on t1.org_id = t2.org_id
+		where 1 = 1
+		and t1.p_id = #{pId,jdbcType=VARCHAR}
+		group by t1.ORG_ID,t1.ORG_NAME, t1.ORG_CODE, t1.ORDER_NUM
+		order by t1.ORDER_NUM
+	</select>
+	<!-- =========================================================全省发牌统计 End========================================================= -->
+
+	<!-- =========================================================分类事项办件统计 Begin========================================================= -->
+	<sql id="fenleishixiangbanjiantongji_result_sql">
+		(select o.ORG_ID,
+		o.ORG_CODE,
+		o.ORG_NAME ORG_SHOW_NAME,
+		o.PROVINCE_CODE,
+		o.CITY_CODE,
+		o.County_CODE,
+		o.STREET_CODE,
+		o.ORG_LEVEL,
+		b.xzxksxs,
+		b.xzjlsxs,
+		b.xzcjsxs,
+		b.xzjcsxs,
+		b.xzgfsxs,
+		b.xzqzsxs,
+		b.xzqrsxs,
+		b.xzcfsxs,
+		b.xzzssxs,
+		b.qtxzqlsxs,
+		b.ggfwsxs,
+
+		b.xzxksjs,
+		b.xzjlsjs,
+		b.xzcjsjs,
+		b.xzjcsjs,
+		b.xzgfsjs,
+		b.xzqzsjs,
+		b.xzqrsjs,
+		b.xzcfsjs,
+		b.xzzssjs,
+		b.qtxzqlsjs,
+		b.ggfwsjs,
+
+		b.xzxk_finish_num,
+		b.xzjl_finish_num,
+		b.xzcj_finish_num,
+		b.xzjc_finish_num,
+		b.xzgf_finish_num,
+		b.xzqz_finish_num,
+		b.xzqr_finish_num,
+		b.xzcf_finish_num,
+		b.xzzs_finish_num,
+		b.qtxzql_finish_num,
+		b.ggfw_finish_num
+		from V_TD_SM_ORGANIZATION1 o,
+		(select org_id,
+		sum(decode(app_code, 01, approvecount, 0)) xzxksxs,
+		sum(decode(app_code, 08, approvecount, 0)) xzjlsxs,
+		sum(decode(app_code, 09, approvecount, 0)) xzcjsxs,
+		sum(decode(app_code, 06, approvecount, 0)) xzjcsxs,
+		sum(decode(app_code, 05, approvecount, 0)) xzgfsxs,
+		sum(decode(app_code, 03, approvecount, 0)) xzqzsxs,
+		sum(decode(app_code, 07, approvecount, 0)) xzqrsxs,
+		sum(decode(app_code, 02, approvecount, 0)) xzcfsxs,
+		sum(decode(app_code, 04, approvecount, 0)) xzzssxs,
+		sum(decode(app_code, 10, approvecount, 0)) qtxzqlsxs,
+		sum(decode(app_code, 11, approvecount, 0)) ggfwsxs,
+
+		sum(xzxk_num) xzxksjs,
+		sum(xzjl_num) xzjlsjs,
+		sum(xzcj_num) xzcjsjs,
+		sum(xzjc_num) xzjcsjs,
+		sum(xzgf_num) xzgfsjs,
+		sum(xzqz_num) xzqzsjs,
+		sum(xzqr_num) xzqrsjs,
+		sum(xzcf_num) xzcfsjs,
+		sum(xzzs_num) xzzssjs,
+		sum(qtxzql_num) qtxzqlsjs,
+		sum(ggfw_num) ggfwsjs,
+
+		sum(xzxk_finish_num) xzxk_finish_num,
+		sum(xzjl_finish_num) xzjl_finish_num,
+		sum(xzcj_finish_num) xzcj_finish_num,
+		sum(xzjc_finish_num) xzjc_finish_num,
+		sum(xzgf_finish_num) xzgf_finish_num,
+		sum(xzqz_finish_num) xzqz_finish_num,
+		sum(xzqr_finish_num) xzqr_finish_num,
+		sum(xzcf_finish_num) xzcf_finish_num,
+		sum(xzzs_finish_num) xzzs_finish_num,
+		sum(qtxzql_finish_num) qtxzql_finish_num,
+		sum(ggfw_finish_num) ggfw_finish_num
+		from (select xm.org_id org_id,
+		xm.type_code app_code,
+		count(*) approvecount,
+		0 as xzxk_num,
+		0 as xzjl_num,
+		0 as xzcj_num,
+		0 as xzjc_num,
+		0 as xzgf_num,
+		0 as xzqz_num,
+		0 as xzqr_num,
+		0 as xzcf_num,
+		0 as xzzs_num,
+		0 as qtxzql_num,
+		0 as ggfw_num,
+
+		0 as xzxk_finish_num,
+		0 as xzjl_finish_num,
+		0 as xzcj_finish_num,
+		0 as xzjc_finish_num,
+		0 as xzgf_finish_num,
+		0 as xzqz_finish_num,
+		0 as xzqr_finish_num,
+		0 as xzcf_finish_num,
+		0 as xzzs_finish_num,
+		0 as qtxzql_finish_num,
+		0 as ggfw_finish_num
+		from ta_spxm xm
+		where not exists
+		(select 1
+		from ta_spxm sp
+		where sp.parent_code =
+		xm.rights_code)
+		group by xm.org_id, xm.type_code
+
+		UNION ALL
+
+		select i.org_id org_id,
+		null app_code,
+		0 approvecount,
+		sum(xzxke_num) xzxk_num,
+		sum(xzjl_num) xzjl_num,
+		sum(xzcj_num) xzcj_num,
+		sum(xzjc_num) xzjc_num,
+		sum(xzgf_num) xzgf_num,
+		sum(xzqz_num) xzqz_num,
+		sum(xzqr_num) xzqr_num,
+		sum(xzcf_num) xzcf_num,
+		sum(xzzs_num) xzzs_num,
+		sum(qtxzql_num) qtxzql_num,
+		sum(ggfw_num) ggfw_num,
+
+		sum(xzxke_finish_num) xzxk_finish_num,
+		sum(xzjl_finish_num) xzjl_finish_num,
+		sum(xzcj_finish_num) xzcj_finish_num,
+		sum(xzjc_finish_num) xzjc_finish_num,
+		sum(xzgf_finish_num) xzgf_finish_num,
+		sum(xzqz_finish_num) xzqz_finish_num,
+		sum(xzqr_finish_num) xzqr_finish_num,
+		sum(xzcf_finish_num) xzcf_finish_num,
+		sum(xzzs_finish_num) xzzs_finish_num,
+		sum(qtxzql_finish_num) qtxzql_finish_num,
+		sum(ggfw_finish_num) ggfw_finish_num
+		from ${table} i
+		where 1 = 1
+		<choose>
+			<when test="isInvestmentSupervision != null">
+				and i.is_investment_supervision =
+				#{isInvestmentSupervision,jdbcType=VARCHAR}
+			</when>
+			<otherwise>
+				and i.is_investment_supervision &lt;&gt; '1'
+			</otherwise>
+		</choose>
+		<if test="beginDate != null and beginDate != ''">
+			and i.NOW_DATE &gt;= #{beginDate,jdbcType=VARCHAR}
+		</if>
+		<if test="endDate != null and endDate != ''">
+			and i.NOW_DATE &lt;= #{endDate,jdbcType=VARCHAR}
+		</if>
+		group by i.org_id) a
+		group by a.org_id) b
+		where o.ORG_ID = b.org_id) s
+	</sql>
+
+	<sql id="fenleishixiangbanjiantongji_column1_sql">
+		da.org_id org_id,
+		da.org_name area_org_name,
+		da.org_code area_org_code,
+		nvl(aa.xzxksxs, '0') xzxksxs,
+		nvl(aa.xzjlsxs, '0') xzjlsxs,
+		nvl(aa.xzcjsxs, '0') xzcjsxs,
+		<!-- nvl(aa.xzjcsxs, '0') xzjcsxs, -->
+		'0' xzjcsxs,
+		nvl(aa.xzgfsxs, '0') xzgfsxs,
+		<!-- nvl(aa.xzqzsxs, '0') xzqzsxs, -->
+		'0' xzqzsxs,
+		nvl(aa.xzqrsxs, '0') xzqrsxs,
+		<!-- nvl(aa.xzcfsxs, '0') xzcfsxs, -->
+		'0' xzcfsxs,
+		<!-- nvl(aa.xzzssxs, '0') xzzssxs, -->
+		'0' xzzssxs,
+		nvl(aa.qtxzqlsxs, '0') qtxzqlsxs,
+		nvl(aa.ggfwsxs, '0') ggfwsxs,
+
+		nvl(aa.xzxksjs, '0') xzxksjs,
+		nvl(aa.xzjlsjs, '0') xzjlsjs,
+		nvl(aa.xzcjsjs, '0') xzcjsjs,
+		<!-- nvl(aa.xzjcsjs, '0') xzjcsjs, -->
+		'0' xzjcsjs,
+		nvl(aa.xzgfsjs, '0') xzgfsjs,
+		<!-- nvl(aa.xzqzsjs, '0') xzqzsjs, -->
+		'0' xzqzsjs,
+		nvl(aa.xzqrsjs, '0') xzqrsjs,
+		<!-- nvl(aa.xzcfsjs, '0') xzcfsjs, -->
+		'0' xzcfsjs,
+		<!-- nvl(aa.xzzssjs, '0') xzzssjs, -->
+		'0' xzzssjs,
+		nvl(aa.qtxzqlsjs, '0') qtxzqlsjs,
+		nvl(aa.ggfwsjs, '0') ggfwsjs,
+
+		nvl(aa.xzxkbjs, '0') xzxkbjs,
+		nvl(aa.xzjlbjs, '0') xzjlbjs,
+		nvl(aa.xzcjbjs, '0') xzcjbjs,
+		<!-- nvl(aa.xzjcbjs, '0') xzjcbjs, -->
+		'0' xzjcbjs,
+		nvl(aa.xzgfbjs, '0') xzgfbjs,
+		<!-- nvl(aa.xzqzbjs, '0') xzqzbjs, -->
+		'0' xzqzbjs,
+		nvl(aa.xzqrbjs, '0') xzqrbjs,
+		<!-- nvl(aa.xzcfbjs, '0') xzcfbjs, -->
+		'0' xzcfbjs,
+		<!-- nvl(aa.xzzsbjs, '0') xzzsbjs, -->
+		'0' xzzsbjs,
+		nvl(aa.qtxzqlbjs, '0') qtxzqlbjs,
+		nvl(aa.ggfwbjs, '0') ggfwbjs
+	</sql>
+
+	<sql id="fenleishixiangbanjiantongji_column2_sql">
+		sum(s.xzxksxs) xzxksxs,
+		sum(s.xzjlsxs) xzjlsxs,
+		sum(s.xzcjsxs) xzcjsxs,
+		sum(s.xzjcsxs) xzjcsxs,
+		sum(s.xzgfsxs) xzgfsxs,
+		sum(s.xzqzsxs) xzqzsxs,
+		sum(s.xzqrsxs) xzqrsxs,
+		sum(s.xzcfsxs) xzcfsxs,
+		sum(s.xzzssxs) xzzssxs,
+		sum(s.qtxzqlsxs) qtxzqlsxs,
+		sum(s.ggfwsxs)
+		ggfwsxs,
+
+		sum(s.xzxksjs) xzxksjs,
+		sum(s.xzjlsjs) xzjlsjs,
+		sum(s.xzcjsjs) xzcjsjs,
+		sum(s.xzjcsjs)
+		xzjcsjs,
+		sum(s.xzgfsjs) xzgfsjs,
+		sum(s.xzqzsjs) xzqzsjs,
+		sum(s.xzqrsjs)
+		xzqrsjs,
+		sum(s.xzcfsjs) xzcfsjs,
+		sum(s.xzzssjs) xzzssjs,
+		sum(s.qtxzqlsjs) qtxzqlsjs,
+		sum(s.ggfwsjs) ggfwsjs,
+
+		sum(s.xzxk_finish_num) xzxkbjs,
+		sum(s.xzjl_finish_num) xzjlbjs,
+		sum(s.xzcj_finish_num) xzcjbjs,
+		sum(s.xzjc_finish_num) xzjcbjs,
+		sum(s.xzgf_finish_num) xzgfbjs,
+		sum(s.xzqz_finish_num) xzqzbjs,
+		sum(s.xzqr_finish_num) xzqrbjs,
+		sum(s.xzcf_finish_num) xzcfbjs,
+		sum(s.xzzs_finish_num) xzzsbjs,
+		sum(s.qtxzql_finish_num) qtxzqlbjs,
+		sum(s.ggfw_finish_num) ggfwbjs
+	</sql>
+
+	<!-- 分类事项办件统计查询 -->
+	<select id="getSXBJStatisticsInfo" parameterType="java.util.Map"
+		resultMap="TongJiResult">
+		select
+		<include refid="fenleishixiangbanjiantongji_column1_sql" />
+		from V_JC_TONGJI_ORG da
+		left join (select
+		<choose>
+			<when test="orgLevel == 1 and orgThisLevel == 9">
+				s.CITY_CODE,
+			</when>
+			<when test="orgLevel == 2 and orgThisLevel == 9">
+				s.COUNTY_CODE,
+			</when>
+			<when test="orgLevel == 3 and orgThisLevel == 9">
+				s.ORG_ID,
+			</when>
+			<when test="orgLevel == 4 and orgThisLevel == 9">
+				s.ORG_ID,
+			</when>
+			<when test="orgLevel == 5 and orgThisLevel == 9">
+				s.ORG_ID,
+			</when>
+			<when test="orgThisLevel == 1 and orgLevel == 2">
+				s.ORG_ID,
+			</when>
+			<when test="orgThisLevel == 2 and orgLevel == 3">
+				s.ORG_ID,
+			</when>
+		</choose>
+		<include refid="fenleishixiangbanjiantongji_column2_sql" />
+		from
+		<include refid="fenleishixiangbanjiantongji_result_sql" />
+		<choose>
+			<when test="orgLevel == 1 and orgThisLevel == 9">
+				group by s.CITY_CODE
+			</when>
+			<when test="orgLevel == 2 and orgThisLevel == 9">
+				group by s.COUNTY_CODE
+			</when>
+			<when test="orgLevel == 3 and orgThisLevel == 9">
+				group by s.ORG_ID
+			</when>
+			<when test="orgLevel == 4 and orgThisLevel == 9">
+				group by s.ORG_ID
+			</when>
+			<when test="orgLevel == 5 and orgThisLevel == 9">
+				group by s.ORG_ID
+			</when>
+			<when test="orgThisLevel == 1 and orgLevel == 2">
+				group by s.ORG_ID
+			</when>
+			<when test="orgThisLevel == 2 and orgLevel == 3">
+				group by s.ORG_ID
+			</when>
+		</choose>
+		) aa
+		<choose>
+			<when test="orgLevel == 1 and orgThisLevel == 9">
+				on da.CITY_CODE = aa.CITY_CODE
+				where 1=1
+				and da.p_id = #{id,jdbcType=VARCHAR}
+				order by da.ORDER_NUM
+			</when>
+			<when test="orgLevel == 2 and orgThisLevel == 9">
+				on da.COUNTY_CODE = aa.COUNTY_CODE
+				where 1=1
+				and da.p_id = #{id,jdbcType=VARCHAR}
+				order by da.ORDER_NUM
+			</when>
+			<when test="orgLevel == 3 and orgThisLevel == 9">
+				on da.ORG_ID = aa.ORG_ID
+				where 1=1
+				and da.COUNTY_CODE = #{countyCode,jdbcType=VARCHAR}
+				and da.ORG_LEVEL =
+				'5'
+				order by da.ORDER_NUM
+			</when>
+			<when test="orgLevel == 4 and orgThisLevel == 9">
+				on da.ORG_ID = aa.ORG_ID
+				where 1=1
+				and da.COUNTY_CODE = #{countyCode,jdbcType=VARCHAR}
+				and da.ORG_LEVEL =
+				'5'
+				order by da.ORDER_NUM
+			</when>
+			<when test="orgLevel == 5 and orgThisLevel == 9">
+				on da.ORG_ID = aa.ORG_ID
+				where 1=1
+				and da.ORG_ID = #{id,jdbcType=VARCHAR}
+				order by da.ORDER_NUM
+			</when>
+			<when test="orgThisLevel == 1 and orgLevel == 2">
+				on da.ORG_ID = aa.ORG_ID
+				where 1=1
+				and da.p_id = #{id,jdbcType=VARCHAR}
+				order by da.ORDER_NUM
+			</when>
+			<when test="orgThisLevel == 2 and orgLevel == 3">
+				on da.ORG_ID = aa.ORG_ID
+				where 1=1
+				and da.p_id = #{id,jdbcType=VARCHAR}
+				order by da.ORDER_NUM
+			</when>
+		</choose>
+	</select>
+
+	<!-- =========================================================分类事项办件统计 End========================================================= -->
+
+	<!-- =========================================================多规合一 Start========================================================= -->
+	<!-- 查询存在"多规合一"数据的机构 -->
+	<select id="getDuoGuiOrg" resultMap="TongJiResult">
+		select distinct(org_id)from v_jc_dghy_spxm
+	</select>
+
+
+	<!-- =========================================================多规合一 End========================================================= -->
+
+
+	<!-- =========================================================环节发牌统计 Begin========================================================= -->
+	<sql id="huanjiefapaitongji_column_sql">
+		t1.ORG_ID as org_id,
+		t1.ORG_CODE as area_org_code,
+		t1.ORG_NAME as area_org_name,
+		nvl(sum(t2.superviseSegmentGreenNum), 0) as supervise_segment_green_num,<!-- 环节预警牌数 -->
+		nvl(sum(t2.superviseSegmentYelloNum), 0) as
+		supervise_segment_yello_num,<!-- 环节黄牌数 -->
+		nvl(sum(t2.superviseSegmentRedNum), 0) as supervise_segment_red_num,<!-- 
+			环节红牌数 -->
+		nvl(sum(t2.cancelSegmentYellowNum), 0) as cancel_segment_yellow_num,<!-- 
+			环节撤销黄牌数 -->
+		nvl(sum(t2.cancelSegmentRedNum), 0) as cancel_segment_red_num<!-- 环节撤销红牌数 -->
+	</sql>
+
+	<!-- 环节统计查询地区集合 orgLevel(1,2) -->
+	<select id="selectByHuanJieFaPaiTongJi" parameterType="java.util.Map"
+		resultMap="TongJiResult">
+		select
+		<include refid="huanjiefapaitongji_column_sql" />
+		from V_JC_TONGJI_ORG t1
+		left join (select
+		<choose>
+			<when test="orgLevel == 1">
+				si.CITY_CODE as area_code,
+			</when>
+			<when test="orgLevel == 2">
+				si.COUNTY_CODE as area_code,
+			</when>
+		</choose>
+		sum(si.supervise_segment_green_num) as superviseSegmentGreenNum,
+		sum(si.supervise_segment_yello_num) as superviseSegmentYelloNum,
+		sum(si.supervise_segment_red_num) as superviseSegmentRedNum,
+		sum(si.cancel_segment_yellow_num) as cancelSegmentYellowNum,
+		sum(si.cancel_segment_red_num) as cancelSegmentRedNum
+		from ${table} si
+		where 1 = 1
+		<choose>
+			<when test="isInvestmentSupervision != null">
+				and si.is_investment_supervision =
+				#{isInvestmentSupervision,jdbcType=VARCHAR}
+			</when>
+			<otherwise>
+				and si.is_investment_supervision &lt;&gt; '1'
+			</otherwise>
+		</choose>
+		<if test="beginDate != null and beginDate != ''">
+			and si.NOW_DATE &gt;= #{beginDate,jdbcType=VARCHAR}
+		</if>
+		<if test="endDate != null and endDate != ''">
+			and si.NOW_DATE &lt;= #{endDate,jdbcType=VARCHAR}
+		</if>
+		<choose>
+			<when test="orgLevel == 1">
+				group by CITY_CODE) t2
+				on t1.CITY_CODE = t2.area_code
+			</when>
+			<when test="orgLevel == 2">
+				group by COUNTY_CODE) t2
+				on t1.COUNTY_CODE = t2.area_code
+			</when>
+		</choose>
+		where 1 = 1
+		and t1.p_id = #{pId,jdbcType=VARCHAR}
+		group by t1.ORG_ID,t1.ORG_NAME, t1.ORG_CODE, t1.ORDER_NUM
+		order by t1.ORDER_NUM
+	</select>
+
+	<!-- 环节发牌统计查询区域下所有机构集合 orgLevel(3) -->
+	<select id="selectByHuanJieFaPaiTongJiCounty" parameterType="java.util.Map"
+		resultMap="TongJiResult">
+		select
+		<include refid="huanjiefapaitongji_column_sql" />
+		from V_JC_TONGJI_ORG t1
+		left join (select
+		si.street_code as area_code,
+		sum(si.supervise_segment_green_num) as superviseSegmentGreenNum,
+		sum(si.supervise_segment_yello_num) as superviseSegmentYelloNum,
+		sum(si.supervise_segment_red_num) as superviseSegmentRedNum,
+		sum(si.cancel_segment_yellow_num) as cancelSegmentYellowNum,
+		sum(si.cancel_segment_red_num) as cancelSegmentRedNum
+		from ${table} si
+		where 1 = 1
+		<choose>
+			<when test="isInvestmentSupervision != null">
+				and si.is_investment_supervision =
+				#{isInvestmentSupervision,jdbcType=VARCHAR}
+			</when>
+			<otherwise>
+				and si.is_investment_supervision &lt;&gt; '1'
+			</otherwise>
+		</choose>
+		<if test="beginDate != null and beginDate != ''">
+			and si.NOW_DATE &gt;= #{beginDate,jdbcType=VARCHAR}
+		</if>
+		<if test="endDate != null and endDate != ''">
+			and si.NOW_DATE &lt;= #{endDate,jdbcType=VARCHAR}
+		</if>
+		group by street_code) t2 on t1.street_code = t2.area_code
+		where 1 = 1
+		and t1.p_id = #{pId,jdbcType=VARCHAR}
+		group by t1.ORG_ID,t1.ORG_NAME, t1.ORG_CODE, t1.ORDER_NUM
+		order by t1.ORDER_NUM
+	</select>
+	<!-- 环节发牌统计查询区本级下所有机构集合 orgLevel(4) -->
+	<select id="selectByHuanJieFaPaiTongJiQuBenJi" parameterType="java.util.Map"
+		resultMap="TongJiResult">
+		select
+		<include refid="huanjiefapaitongji_column_sql" />
+		from V_JC_TONGJI_ORG t1
+		left join (select
+		si.area_org_code as area_code,
+		sum(si.supervise_segment_green_num) as superviseSegmentGreenNum,
+		sum(si.supervise_segment_yello_num) as superviseSegmentYelloNum,
+		sum(si.supervise_segment_red_num) as superviseSegmentRedNum,
+		sum(si.cancel_segment_yellow_num) as cancelSegmentYellowNum,
+		sum(si.cancel_segment_red_num) as cancelSegmentRedNum
+		from ${table} si
+		where 1 = 1
+		<choose>
+			<when test="isInvestmentSupervision != null">
+				and si.is_investment_supervision =
+				#{isInvestmentSupervision,jdbcType=VARCHAR}
+			</when>
+			<otherwise>
+				and si.is_investment_supervision &lt;&gt; '1'
+			</otherwise>
+		</choose>
+		<if test="beginDate != null and beginDate != ''">
+			and si.NOW_DATE &gt;= #{beginDate,jdbcType=VARCHAR}
+		</if>
+		<if test="endDate != null and endDate != ''">
+			and si.NOW_DATE &lt;= #{endDate,jdbcType=VARCHAR}
+		</if>
+		group by area_org_code) t2 on t1.ORG_CODE = t2.area_code
+		where 1 = 1
+		and t1.p_id = #{pId,jdbcType=VARCHAR}
+		group by t1.ORG_ID,t1.ORG_NAME, t1.ORG_CODE, t1.ORDER_NUM
+		order by t1.ORDER_NUM
+	</select>
+	<!-- 环节发牌统计查询街道下所有机构集合 orgLevel(4) -->
+	<select id="selectByHuanJieFaPaiTongJiVillage" parameterType="java.util.Map"
+		resultMap="TongJiResult">
+		select
+		<include refid="huanjiefapaitongji_column_sql" />
+		from V_JC_TONGJI_ORG t1
+		left join (select
+		si.village_code as area_code,
+		sum(si.supervise_segment_green_num) as superviseSegmentGreenNum,
+		sum(si.supervise_segment_yello_num) as superviseSegmentYelloNum,
+		sum(si.supervise_segment_red_num) as superviseSegmentRedNum,
+		sum(si.cancel_segment_yellow_num) as cancelSegmentYellowNum,
+		sum(si.cancel_segment_red_num) as cancelSegmentRedNum
+		from ${table} si
+		where 1 = 1
+		<choose>
+			<when test="isInvestmentSupervision != null">
+				and si.is_investment_supervision =
+				#{isInvestmentSupervision,jdbcType=VARCHAR}
+			</when>
+			<otherwise>
+				and si.is_investment_supervision &lt;&gt; '1'
+			</otherwise>
+		</choose>
+		<if test="beginDate != null and beginDate != ''">
+			and si.NOW_DATE &gt;= #{beginDate,jdbcType=VARCHAR}
+		</if>
+		<if test="endDate != null and endDate != ''">
+			and si.NOW_DATE &lt;= #{endDate,jdbcType=VARCHAR}
+		</if>
+		group by village_code) t2 on t1.village_code = t2.area_code
+		where 1 = 1
+		and t1.p_id = #{pId,jdbcType=VARCHAR}
+		group by t1.ORG_ID,t1.ORG_NAME, t1.ORG_CODE, t1.ORDER_NUM
+		order by t1.ORDER_NUM
+	</select>
+
+	<!-- 环节发牌统计查询单个机构 orgLevel(5) -->
+	<select id="selectByHuanJieFaPaiTongJiOrg" parameterType="java.util.Map"
+		resultMap="TongJiResult">
+		select
+		<include refid="huanjiefapaitongji_column_sql" />
+		from V_JC_TONGJI_ORG t1
+		left join (select
+		si.org_id,
+		sum(si.supervise_segment_green_num) as superviseSegmentGreenNum,
+		sum(si.supervise_segment_yello_num) as superviseSegmentYelloNum,
+		sum(si.supervise_segment_red_num) as superviseSegmentRedNum,
+		sum(si.cancel_segment_yellow_num) as cancelSegmentYellowNum,
+		sum(si.cancel_segment_red_num) as cancelSegmentRedNum
+		from ${table} si
+		where 1 = 1
+		<choose>
+			<when test="isInvestmentSupervision != null">
+				and si.is_investment_supervision =
+				#{isInvestmentSupervision,jdbcType=VARCHAR}
+			</when>
+			<otherwise>
+				and si.is_investment_supervision &lt;&gt; '1'
+			</otherwise>
+		</choose>
+		<if test="beginDate != null and beginDate != ''">
+			and si.NOW_DATE &gt;= #{beginDate,jdbcType=VARCHAR}
+		</if>
+		<if test="endDate != null and endDate != ''">
+			and si.NOW_DATE &lt;= #{endDate,jdbcType=VARCHAR}
+		</if>
+		group by org_id) t2 on t1.org_id = t2.org_id
+		where 1 = 1
+		and t1.org_id = #{orgId,jdbcType=VARCHAR}
+		group by t1.ORG_ID,t1.ORG_NAME, t1.ORG_CODE, t1.ORDER_NUM
+		order by t1.ORDER_NUM
+	</select>
+
+	<!-- 环节发牌统计查询本级市直下机构集合 orgLevel(5) -->
+	<select id="selectByHuanJieFaPaiTongJiBenJi" parameterType="java.util.Map"
+		resultMap="TongJiResult">
+		select
+		<include refid="huanjiefapaitongji_column_sql" />
+		from V_JC_TONGJI_ORG t1
+		left join (select
+		si.org_id,
+		sum(si.supervise_segment_green_num) as superviseSegmentGreenNum,
+		sum(si.supervise_segment_yello_num) as superviseSegmentYelloNum,
+		sum(si.supervise_segment_red_num) as superviseSegmentRedNum,
+		sum(si.cancel_segment_yellow_num) as cancelSegmentYellowNum,
+		sum(si.cancel_segment_red_num) as cancelSegmentRedNum
+		from ${table} si
+		where 1 = 1
+		<choose>
+			<when test="isInvestmentSupervision != null">
+				and si.is_investment_supervision =
+				#{isInvestmentSupervision,jdbcType=VARCHAR}
+			</when>
+			<otherwise>
+				and si.is_investment_supervision &lt;&gt; '1'
+			</otherwise>
+		</choose>
+		<if test="beginDate != null and beginDate != ''">
+			and si.NOW_DATE &gt;= #{beginDate,jdbcType=VARCHAR}
+		</if>
+		<if test="endDate != null and endDate != ''">
+			and si.NOW_DATE &lt;= #{endDate,jdbcType=VARCHAR}
+		</if>
+		group by org_id) t2 on t1.org_id = t2.org_id
+		where 1 = 1
+		and t1.p_id = #{pId,jdbcType=VARCHAR}
+		group by t1.ORG_ID,t1.ORG_NAME, t1.ORG_CODE, t1.ORDER_NUM
+		order by t1.ORDER_NUM
+	</select>
+	<!-- =========================================================环节发牌统计 End========================================================= -->
+
+	<!-- ElementID:column_sql,Generated=true -->
+	<sql id="column_sql">
+		TA_JC_SUM_SUPERVISE_INFO.org_id ,
+		TA_JC_SUM_SUPERVISE_INFO.area_org_name ,
+		TA_JC_SUM_SUPERVISE_INFO.area_org_code ,
+		TA_JC_SUM_SUPERVISE_INFO.province_code ,
+		TA_JC_SUM_SUPERVISE_INFO.city_code ,
+		TA_JC_SUM_SUPERVISE_INFO.county_code ,
+		TA_JC_SUM_SUPERVISE_INFO.street_code ,
+		TA_JC_SUM_SUPERVISE_INFO.village_code ,
+		TA_JC_SUM_SUPERVISE_INFO.org_level ,
+		TA_JC_SUM_SUPERVISE_INFO.org_this_level ,
+		TA_JC_SUM_SUPERVISE_INFO.now_date ,
+		TA_JC_SUM_SUPERVISE_INFO.accept_now_date ,
+		TA_JC_SUM_SUPERVISE_INFO.accept_num ,
+		TA_JC_SUM_SUPERVISE_INFO.djz_accept_num ,
+		TA_JC_SUM_SUPERVISE_INFO.finish_num ,
+		TA_JC_SUM_SUPERVISE_INFO.djz_finish_num ,
+		TA_JC_SUM_SUPERVISE_INFO.normal_finish_num ,
+		TA_JC_SUM_SUPERVISE_INFO.before_finish_num ,
+		TA_JC_SUM_SUPERVISE_INFO.after_finish_num ,
+		TA_JC_SUM_SUPERVISE_INFO.unthreadfinish_num ,
+		TA_JC_SUM_SUPERVISE_INFO.throw_finish_num ,
+		TA_JC_SUM_SUPERVISE_INFO.day_finish_num ,
+		TA_JC_SUM_SUPERVISE_INFO.sum_wasting_time ,
+		TA_JC_SUM_SUPERVISE_INFO.charge_money ,
+		TA_JC_SUM_SUPERVISE_INFO.rightoff_num ,
+		TA_JC_SUM_SUPERVISE_INFO.respond_num ,
+		TA_JC_SUM_SUPERVISE_INFO.union_num ,
+		TA_JC_SUM_SUPERVISE_INFO.up_num ,
+		TA_JC_SUM_SUPERVISE_INFO.xzxk_num ,
+		TA_JC_SUM_SUPERVISE_INFO.fxzxk_num ,
+		TA_JC_SUM_SUPERVISE_INFO.bmfw_num ,
+		TA_JC_SUM_SUPERVISE_INFO.xzxk_finish_num ,
+		TA_JC_SUM_SUPERVISE_INFO.fxzxk_finish_num ,
+		TA_JC_SUM_SUPERVISE_INFO.bmfw_finish_num ,
+		TA_JC_SUM_SUPERVISE_INFO.complain_num ,
+		TA_JC_SUM_SUPERVISE_INFO.com_num ,
+		TA_JC_SUM_SUPERVISE_INFO.complain_reply_num ,
+		TA_JC_SUM_SUPERVISE_INFO.consult_num ,
+		TA_JC_SUM_SUPERVISE_INFO.consult_replay_num ,
+		TA_JC_SUM_SUPERVISE_INFO.money_num ,
+		TA_JC_SUM_SUPERVISE_INFO.normal_num ,
+		TA_JC_SUM_SUPERVISE_INFO.red_num ,
+		TA_JC_SUM_SUPERVISE_INFO.yello_num ,
+		TA_JC_SUM_SUPERVISE_INFO.green_num ,
+		TA_JC_SUM_SUPERVISE_INFO.status ,
+		TA_JC_SUM_SUPERVISE_INFO.now_normal_num ,
+		TA_JC_SUM_SUPERVISE_INFO.now_red_num ,
+		TA_JC_SUM_SUPERVISE_INFO.now_yello_num ,
+		TA_JC_SUM_SUPERVISE_INFO.now_green_num ,
+		TA_JC_SUM_SUPERVISE_INFO.finish_normal_num ,
+		TA_JC_SUM_SUPERVISE_INFO.finish_red_num ,
+		TA_JC_SUM_SUPERVISE_INFO.finish_yello_num ,
+		TA_JC_SUM_SUPERVISE_INFO.finish_green_num ,
+		TA_JC_SUM_SUPERVISE_INFO.supervise_green_num ,
+		TA_JC_SUM_SUPERVISE_INFO.supervise_yello_num ,
+		TA_JC_SUM_SUPERVISE_INFO.supervise_red_num ,
+		TA_JC_SUM_SUPERVISE_INFO.cancel_yellow_num ,
+		TA_JC_SUM_SUPERVISE_INFO.cancel_red_num ,
+		TA_JC_SUM_SUPERVISE_INFO.record_id ,
+		TA_JC_SUM_SUPERVISE_INFO.instance_supervise_green_num ,
+		TA_JC_SUM_SUPERVISE_INFO.instance_supervise_yello_num ,
+		TA_JC_SUM_SUPERVISE_INFO.instance_supervise_red_num ,
+		TA_JC_SUM_SUPERVISE_INFO.instance_cancel_yellow_num ,
+		TA_JC_SUM_SUPERVISE_INFO.instance_cancel_red_num ,
+		TA_JC_SUM_SUPERVISE_INFO.complain_supervise_green_num ,
+		TA_JC_SUM_SUPERVISE_INFO.complain_supervise_yello_num ,
+		TA_JC_SUM_SUPERVISE_INFO.complain_supervise_red_num ,
+		TA_JC_SUM_SUPERVISE_INFO.complain_cancel_yellow_num ,
+		TA_JC_SUM_SUPERVISE_INFO.complain_cancel_red_num ,
+		TA_JC_SUM_SUPERVISE_INFO.consult_supervise_green_num ,
+		TA_JC_SUM_SUPERVISE_INFO.consult_supervise_yello_num ,
+		TA_JC_SUM_SUPERVISE_INFO.consult_supervise_red_num ,
+		TA_JC_SUM_SUPERVISE_INFO.consult_cancel_yellow_num ,
+		TA_JC_SUM_SUPERVISE_INFO.consult_cancel_red_num ,
+		TA_JC_SUM_SUPERVISE_INFO.xzxke_num ,
+		TA_JC_SUM_SUPERVISE_INFO.xzjl_num ,
+		TA_JC_SUM_SUPERVISE_INFO.xzcj_num ,
+		TA_JC_SUM_SUPERVISE_INFO.xzjc_num ,
+		TA_JC_SUM_SUPERVISE_INFO.xzgf_num ,
+		TA_JC_SUM_SUPERVISE_INFO.xzqz_num ,
+		TA_JC_SUM_SUPERVISE_INFO.xzqr_num ,
+		TA_JC_SUM_SUPERVISE_INFO.xzcf_num ,
+		TA_JC_SUM_SUPERVISE_INFO.xzzs_num ,
+		TA_JC_SUM_SUPERVISE_INFO.qtxzql_num ,
+		TA_JC_SUM_SUPERVISE_INFO.ggfw_num ,
+		TA_JC_SUM_SUPERVISE_INFO.xzxke_finish_num ,
+		TA_JC_SUM_SUPERVISE_INFO.xzjl_finish_num ,
+		TA_JC_SUM_SUPERVISE_INFO.xzcj_finish_num ,
+		TA_JC_SUM_SUPERVISE_INFO.xzjc_finish_num ,
+		TA_JC_SUM_SUPERVISE_INFO.xzgf_finish_num ,
+		TA_JC_SUM_SUPERVISE_INFO.xzqz_finish_num ,
+		TA_JC_SUM_SUPERVISE_INFO.xzqr_finish_num ,
+		TA_JC_SUM_SUPERVISE_INFO.xzcf_finish_num ,
+		TA_JC_SUM_SUPERVISE_INFO.xzzs_finish_num ,
+		TA_JC_SUM_SUPERVISE_INFO.qtxzql_finish_num ,
+		TA_JC_SUM_SUPERVISE_INFO.ggfw_finish_num ,
+		TA_JC_SUM_SUPERVISE_INFO.special_supervise_green_num ,
+		TA_JC_SUM_SUPERVISE_INFO.special_supervise_yellow_num ,
+		TA_JC_SUM_SUPERVISE_INFO.special_supervise_red_num
+	</sql>
+
+	<!-- ElementID:whereClause_sql,Generated=true -->
+	<sql id="whereClause_sql">
+		<if test="orgId != null">and TA_JC_SUM_SUPERVISE_INFO.org_id = #{orgId}</if>
+		<if test="areaOrgName != null">and TA_JC_SUM_SUPERVISE_INFO.area_org_name =
+			#{areaOrgName}</if>
+		<if test="areaOrgCode != null">and TA_JC_SUM_SUPERVISE_INFO.area_org_code =
+			#{areaOrgCode}</if>
+		<if test="provinceCode != null">and TA_JC_SUM_SUPERVISE_INFO.province_code =
+			#{provinceCode}</if>
+		<if test="cityCode != null">and TA_JC_SUM_SUPERVISE_INFO.city_code = #{cityCode}</if>
+		<if test="countyCode != null">and TA_JC_SUM_SUPERVISE_INFO.county_code = #{countyCode}
+		</if>
+		<if test="streetCode != null">and TA_JC_SUM_SUPERVISE_INFO.street_code = #{streetCode}
+		</if>
+		<if test="villageCode != null">and TA_JC_SUM_SUPERVISE_INFO.village_code = #{villageCode}
+		</if>
+		<if test="orgLevel != null">and TA_JC_SUM_SUPERVISE_INFO.org_level = #{orgLevel}</if>
+		<if test="orgThisLevel != null">and TA_JC_SUM_SUPERVISE_INFO.org_this_level =
+			#{orgThisLevel}</if>
+		<if test="nowDate != null">and TA_JC_SUM_SUPERVISE_INFO.now_date = #{nowDate}</if>
+		<if test="acceptNowDate != null">and TA_JC_SUM_SUPERVISE_INFO.accept_now_date =
+			#{acceptNowDate}</if>
+		<if test="acceptNum != null">and TA_JC_SUM_SUPERVISE_INFO.accept_num = #{acceptNum}
+		</if>
+		<if test="djzAcceptNum != null">and TA_JC_SUM_SUPERVISE_INFO.djz_accept_num =
+			#{djzAcceptNum}</if>
+		<if test="finishNum != null">and TA_JC_SUM_SUPERVISE_INFO.finish_num = #{finishNum}
+		</if>
+		<if test="djzFinishNum != null">and TA_JC_SUM_SUPERVISE_INFO.djz_finish_num =
+			#{djzFinishNum}</if>
+		<if test="normalFinishNum != null">and TA_JC_SUM_SUPERVISE_INFO.normal_finish_num =
+			#{normalFinishNum}</if>
+		<if test="beforeFinishNum != null">and TA_JC_SUM_SUPERVISE_INFO.before_finish_num =
+			#{beforeFinishNum}</if>
+		<if test="afterFinishNum != null">and TA_JC_SUM_SUPERVISE_INFO.after_finish_num =
+			#{afterFinishNum}</if>
+		<if test="unthreadfinishNum != null">and TA_JC_SUM_SUPERVISE_INFO.unthreadfinish_num =
+			#{unthreadfinishNum}</if>
+		<if test="throwFinishNum != null">and TA_JC_SUM_SUPERVISE_INFO.throw_finish_num =
+			#{throwFinishNum}</if>
+		<if test="dayFinishNum != null">and TA_JC_SUM_SUPERVISE_INFO.day_finish_num =
+			#{dayFinishNum}</if>
+		<if test="sumWastingTime != null">and TA_JC_SUM_SUPERVISE_INFO.sum_wasting_time =
+			#{sumWastingTime}</if>
+		<if test="chargeMoney != null">and TA_JC_SUM_SUPERVISE_INFO.charge_money = #{chargeMoney}
+		</if>
+		<if test="rightoffNum != null">and TA_JC_SUM_SUPERVISE_INFO.rightoff_num = #{rightoffNum}
+		</if>
+		<if test="respondNum != null">and TA_JC_SUM_SUPERVISE_INFO.respond_num = #{respondNum}
+		</if>
+		<if test="unionNum != null">and TA_JC_SUM_SUPERVISE_INFO.union_num = #{unionNum}</if>
+		<if test="upNum != null">and TA_JC_SUM_SUPERVISE_INFO.up_num = #{upNum}</if>
+		<if test="xzxkNum != null">and TA_JC_SUM_SUPERVISE_INFO.xzxk_num = #{xzxkNum}</if>
+		<if test="fxzxkNum != null">and TA_JC_SUM_SUPERVISE_INFO.fxzxk_num = #{fxzxkNum}</if>
+		<if test="bmfwNum != null">and TA_JC_SUM_SUPERVISE_INFO.bmfw_num = #{bmfwNum}</if>
+		<if test="xzxkFinishNum != null">and TA_JC_SUM_SUPERVISE_INFO.xzxk_finish_num =
+			#{xzxkFinishNum}</if>
+		<if test="fxzxkFinishNum != null">and TA_JC_SUM_SUPERVISE_INFO.fxzxk_finish_num =
+			#{fxzxkFinishNum}</if>
+		<if test="bmfwFinishNum != null">and TA_JC_SUM_SUPERVISE_INFO.bmfw_finish_num =
+			#{bmfwFinishNum}</if>
+		<if test="complainNum != null">and TA_JC_SUM_SUPERVISE_INFO.complain_num = #{complainNum}
+		</if>
+		<if test="comNum != null">and TA_JC_SUM_SUPERVISE_INFO.com_num = #{comNum}</if>
+		<if test="complainReplyNum != null">and TA_JC_SUM_SUPERVISE_INFO.complain_reply_num =
+			#{complainReplyNum}</if>
+		<if test="consultNum != null">and TA_JC_SUM_SUPERVISE_INFO.consult_num = #{consultNum}
+		</if>
+		<if test="consultReplayNum != null">and TA_JC_SUM_SUPERVISE_INFO.consult_replay_num =
+			#{consultReplayNum}</if>
+		<if test="moneyNum != null">and TA_JC_SUM_SUPERVISE_INFO.money_num = #{moneyNum}</if>
+		<if test="normalNum != null">and TA_JC_SUM_SUPERVISE_INFO.normal_num = #{normalNum}
+		</if>
+		<if test="redNum != null">and TA_JC_SUM_SUPERVISE_INFO.red_num = #{redNum}</if>
+		<if test="yelloNum != null">and TA_JC_SUM_SUPERVISE_INFO.yello_num = #{yelloNum}</if>
+		<if test="greenNum != null">and TA_JC_SUM_SUPERVISE_INFO.green_num = #{greenNum}</if>
+		<if test="status != null">and TA_JC_SUM_SUPERVISE_INFO.status = #{status}</if>
+		<if test="nowNormalNum != null">and TA_JC_SUM_SUPERVISE_INFO.now_normal_num =
+			#{nowNormalNum}</if>
+		<if test="nowRedNum != null">and TA_JC_SUM_SUPERVISE_INFO.now_red_num = #{nowRedNum}
+		</if>
+		<if test="nowYelloNum != null">and TA_JC_SUM_SUPERVISE_INFO.now_yello_num =
+			#{nowYelloNum}</if>
+		<if test="nowGreenNum != null">and TA_JC_SUM_SUPERVISE_INFO.now_green_num =
+			#{nowGreenNum}</if>
+		<if test="finishNormalNum != null">and TA_JC_SUM_SUPERVISE_INFO.finish_normal_num =
+			#{finishNormalNum}</if>
+		<if test="finishRedNum != null">and TA_JC_SUM_SUPERVISE_INFO.finish_red_num =
+			#{finishRedNum}</if>
+		<if test="finishYelloNum != null">and TA_JC_SUM_SUPERVISE_INFO.finish_yello_num =
+			#{finishYelloNum}</if>
+		<if test="finishGreenNum != null">and TA_JC_SUM_SUPERVISE_INFO.finish_green_num =
+			#{finishGreenNum}</if>
+		<if test="superviseGreenNum != null">and TA_JC_SUM_SUPERVISE_INFO.supervise_green_num =
+			#{superviseGreenNum}</if>
+		<if test="superviseYelloNum != null">and TA_JC_SUM_SUPERVISE_INFO.supervise_yello_num =
+			#{superviseYelloNum}</if>
+		<if test="superviseRedNum != null">and TA_JC_SUM_SUPERVISE_INFO.supervise_red_num =
+			#{superviseRedNum}</if>
+		<if test="cancelYellowNum != null">and TA_JC_SUM_SUPERVISE_INFO.cancel_yellow_num =
+			#{cancelYellowNum}</if>
+		<if test="cancelRedNum != null">and TA_JC_SUM_SUPERVISE_INFO.cancel_red_num =
+			#{cancelRedNum}</if>
+		<if test="recordId != null">and TA_JC_SUM_SUPERVISE_INFO.record_id = #{recordId}</if>
+		<if test="instanceSuperviseGreenNum != null">and TA_JC_SUM_SUPERVISE_INFO.instance_supervise_green_num
+			= #{instanceSuperviseGreenNum}</if>
+		<if test="instanceSuperviseYelloNum != null">and TA_JC_SUM_SUPERVISE_INFO.instance_supervise_yello_num
+			= #{instanceSuperviseYelloNum}</if>
+		<if test="instanceSuperviseRedNum != null">and TA_JC_SUM_SUPERVISE_INFO.instance_supervise_red_num =
+			#{instanceSuperviseRedNum}</if>
+		<if test="instanceCancelYellowNum != null">and TA_JC_SUM_SUPERVISE_INFO.instance_cancel_yellow_num =
+			#{instanceCancelYellowNum}</if>
+		<if test="instanceCancelRedNum != null">and TA_JC_SUM_SUPERVISE_INFO.instance_cancel_red_num =
+			#{instanceCancelRedNum}</if>
+		<if test="complainSuperviseGreenNum != null">and TA_JC_SUM_SUPERVISE_INFO.complain_supervise_green_num
+			= #{complainSuperviseGreenNum}</if>
+		<if test="complainSuperviseYelloNum != null">and TA_JC_SUM_SUPERVISE_INFO.complain_supervise_yello_num
+			= #{complainSuperviseYelloNum}</if>
+		<if test="complainSuperviseRedNum != null">and TA_JC_SUM_SUPERVISE_INFO.complain_supervise_red_num =
+			#{complainSuperviseRedNum}</if>
+		<if test="complainCancelYellowNum != null">and TA_JC_SUM_SUPERVISE_INFO.complain_cancel_yellow_num =
+			#{complainCancelYellowNum}</if>
+		<if test="complainCancelRedNum != null">and TA_JC_SUM_SUPERVISE_INFO.complain_cancel_red_num =
+			#{complainCancelRedNum}</if>
+		<if test="consultSuperviseGreenNum != null">and TA_JC_SUM_SUPERVISE_INFO.consult_supervise_green_num =
+			#{consultSuperviseGreenNum}</if>
+		<if test="consultSuperviseYelloNum != null">and TA_JC_SUM_SUPERVISE_INFO.consult_supervise_yello_num =
+			#{consultSuperviseYelloNum}</if>
+		<if test="consultSuperviseRedNum != null">and TA_JC_SUM_SUPERVISE_INFO.consult_supervise_red_num =
+			#{consultSuperviseRedNum}</if>
+		<if test="consultCancelYellowNum != null">and TA_JC_SUM_SUPERVISE_INFO.consult_cancel_yellow_num =
+			#{consultCancelYellowNum}</if>
+		<if test="consultCancelRedNum != null">and TA_JC_SUM_SUPERVISE_INFO.consult_cancel_red_num =
+			#{consultCancelRedNum}</if>
+		<if test="xzxkeNum != null">and TA_JC_SUM_SUPERVISE_INFO.xzxke_num = #{xzxkeNum}</if>
+		<if test="xzjlNum != null">and TA_JC_SUM_SUPERVISE_INFO.xzjl_num = #{xzjlNum}</if>
+		<if test="xzcjNum != null">and TA_JC_SUM_SUPERVISE_INFO.xzcj_num = #{xzcjNum}</if>
+		<if test="xzjcNum != null">and TA_JC_SUM_SUPERVISE_INFO.xzjc_num = #{xzjcNum}</if>
+		<if test="xzgfNum != null">and TA_JC_SUM_SUPERVISE_INFO.xzgf_num = #{xzgfNum}</if>
+		<if test="xzqzNum != null">and TA_JC_SUM_SUPERVISE_INFO.xzqz_num = #{xzqzNum}</if>
+		<if test="xzqrNum != null">and TA_JC_SUM_SUPERVISE_INFO.xzqr_num = #{xzqrNum}</if>
+		<if test="xzcfNum != null">and TA_JC_SUM_SUPERVISE_INFO.xzcf_num = #{xzcfNum}</if>
+		<if test="xzzsNum != null">and TA_JC_SUM_SUPERVISE_INFO.xzzs_num = #{xzzsNum}</if>
+		<if test="qtxzqlNum != null">and TA_JC_SUM_SUPERVISE_INFO.qtxzql_num = #{qtxzqlNum}
+		</if>
+		<if test="ggfwNum != null">and TA_JC_SUM_SUPERVISE_INFO.ggfw_num = #{ggfwNum}</if>
+		<if test="xzxkeFinishNum != null">and TA_JC_SUM_SUPERVISE_INFO.xzxke_finish_num =
+			#{xzxkeFinishNum}</if>
+		<if test="xzjlFinishNum != null">and TA_JC_SUM_SUPERVISE_INFO.xzjl_finish_num =
+			#{xzjlFinishNum}</if>
+		<if test="xzcjFinishNum != null">and TA_JC_SUM_SUPERVISE_INFO.xzcj_finish_num =
+			#{xzcjFinishNum}</if>
+		<if test="xzjcFinishNum != null">and TA_JC_SUM_SUPERVISE_INFO.xzjc_finish_num =
+			#{xzjcFinishNum}</if>
+		<if test="xzgfFinishNum != null">and TA_JC_SUM_SUPERVISE_INFO.xzgf_finish_num =
+			#{xzgfFinishNum}</if>
+		<if test="xzqzFinishNum != null">and TA_JC_SUM_SUPERVISE_INFO.xzqz_finish_num =
+			#{xzqzFinishNum}</if>
+		<if test="xzqrFinishNum != null">and TA_JC_SUM_SUPERVISE_INFO.xzqr_finish_num =
+			#{xzqrFinishNum}</if>
+		<if test="xzcfFinishNum != null">and TA_JC_SUM_SUPERVISE_INFO.xzcf_finish_num =
+			#{xzcfFinishNum}</if>
+		<if test="xzzsFinishNum != null">and TA_JC_SUM_SUPERVISE_INFO.xzzs_finish_num =
+			#{xzzsFinishNum}</if>
+		<if test="qtxzqlFinishNum != null">and TA_JC_SUM_SUPERVISE_INFO.qtxzql_finish_num =
+			#{qtxzqlFinishNum}</if>
+		<if test="ggfwFinishNum != null">and TA_JC_SUM_SUPERVISE_INFO.ggfw_finish_num =
+			#{ggfwFinishNum}</if>
+		<if test="specialSuperviseGreenNum != null">and TA_JC_SUM_SUPERVISE_INFO.special_supervise_green_num =
+			#{specialSuperviseGreenNum}</if>
+		<if test="specialSuperviseYellowNum != null">and TA_JC_SUM_SUPERVISE_INFO.special_supervise_yellow_num
+			= #{specialSuperviseYellowNum}</if>
+		<if test="specialSuperviseRedNum != null">and TA_JC_SUM_SUPERVISE_INFO.special_supervise_red_num =
+			#{specialSuperviseRedNum}</if>
+	</sql>
+
+
+	<!-- ElementID:TongJiResult,Generated=true -->
+	<resultMap id="TongJiResult" type="com.chinacreator.dzjc_tongji.TongJi">
+		<id property="recordId" column="record_id" />
+		<result property="orgId" column="org_id" />
+		<result property="areaOrgName" column="area_org_name" />
+		<result property="areaOrgCode" column="area_org_code" />
+		<result property="provinceCode" column="province_code" />
+		<result property="cityCode" column="city_code" />
+		<result property="countyCode" column="county_code" />
+		<result property="streetCode" column="street_code" />
+		<result property="villageCode" column="village_code" />
+		<result property="orgLevel" column="org_level" />
+		<result property="orgThisLevel" column="org_this_level" />
+		<result property="nowDate" column="now_date" />
+		<result property="acceptNowDate" column="accept_now_date" />
+		<result property="acceptNum" column="accept_num" />
+		<result property="djzAcceptNum" column="djz_accept_num" />
+		<result property="finishNum" column="finish_num" />
+		<result property="djzFinishNum" column="djz_finish_num" />
+		<result property="normalFinishNum" column="normal_finish_num" />
+		<result property="beforeFinishNum" column="before_finish_num" />
+		<result property="afterFinishNum" column="after_finish_num" />
+		<result property="unthreadfinishNum" column="unthreadfinish_num" />
+		<result property="throwFinishNum" column="throw_finish_num" />
+		<result property="dayFinishNum" column="day_finish_num" />
+		<result property="sumWastingTime" column="sum_wasting_time" />
+		<result property="chargeMoney" column="charge_money" />
+		<result property="rightoffNum" column="rightoff_num" />
+		<result property="respondNum" column="respond_num" />
+		<result property="unionNum" column="union_num" />
+		<result property="upNum" column="up_num" />
+		<result property="xzxkNum" column="xzxk_num" />
+		<result property="fxzxkNum" column="fxzxk_num" />
+		<result property="bmfwNum" column="bmfw_num" />
+		<result property="xzxkFinishNum" column="xzxk_finish_num" />
+		<result property="fxzxkFinishNum" column="fxzxk_finish_num" />
+		<result property="bmfwFinishNum" column="bmfw_finish_num" />
+		<result property="complainNum" column="complain_num" />
+		<result property="comNum" column="com_num" />
+		<result property="complainReplyNum" column="complain_reply_num" />
+		<result property="consultNum" column="consult_num" />
+		<result property="consultReplayNum" column="consult_replay_num" />
+		<result property="moneyNum" column="money_num" />
+		<result property="normalNum" column="normal_num" />
+		<result property="redNum" column="red_num" />
+		<result property="yelloNum" column="yello_num" />
+		<result property="greenNum" column="green_num" />
+		<result property="status" column="status" />
+		<result property="nowNormalNum" column="now_normal_num" />
+		<result property="nowRedNum" column="now_red_num" />
+		<result property="nowYelloNum" column="now_yello_num" />
+		<result property="nowGreenNum" column="now_green_num" />
+		<result property="finishNormalNum" column="finish_normal_num" />
+		<result property="finishRedNum" column="finish_red_num" />
+		<result property="finishYelloNum" column="finish_yello_num" />
+		<result property="finishGreenNum" column="finish_green_num" />
+		<result property="superviseGreenNum" column="supervise_green_num" />
+		<result property="superviseYelloNum" column="supervise_yello_num" />
+		<result property="superviseRedNum" column="supervise_red_num" />
+		<result property="cancelYellowNum" column="cancel_yellow_num" />
+		<result property="cancelRedNum" column="cancel_red_num" />
+		<result property="instanceSuperviseGreenNum" column="instance_supervise_green_num" />
+		<result property="instanceSuperviseYelloNum" column="instance_supervise_yello_num" />
+		<result property="instanceSuperviseRedNum" column="instance_supervise_red_num" />
+		<result property="instanceCancelYellowNum" column="instance_cancel_yellow_num" />
+		<result property="instanceCancelRedNum" column="instance_cancel_red_num" />
+		<result property="complainSuperviseGreenNum" column="complain_supervise_green_num" />
+		<result property="complainSuperviseYelloNum" column="complain_supervise_yello_num" />
+		<result property="complainSuperviseRedNum" column="complain_supervise_red_num" />
+		<result property="complainCancelYellowNum" column="complain_cancel_yellow_num" />
+		<result property="complainCancelRedNum" column="complain_cancel_red_num" />
+		<result property="consultSuperviseGreenNum" column="consult_supervise_green_num" />
+		<result property="consultSuperviseYelloNum" column="consult_supervise_yello_num" />
+		<result property="consultSuperviseRedNum" column="consult_supervise_red_num" />
+		<result property="consultCancelYellowNum" column="consult_cancel_yellow_num" />
+		<result property="consultCancelRedNum" column="consult_cancel_red_num" />
+		<result property="xzxkeNum" column="xzxke_num" />
+		<result property="xzjlNum" column="xzjl_num" />
+		<result property="xzcjNum" column="xzcj_num" />
+		<result property="xzjcNum" column="xzjc_num" />
+		<result property="xzgfNum" column="xzgf_num" />
+		<result property="xzqzNum" column="xzqz_num" />
+		<result property="xzqrNum" column="xzqr_num" />
+		<result property="xzcfNum" column="xzcf_num" />
+		<result property="xzzsNum" column="xzzs_num" />
+		<result property="qtxzqlNum" column="qtxzql_num" />
+		<result property="ggfwNum" column="ggfw_num" />
+		<result property="xzxkeFinishNum" column="xzxke_finish_num" />
+		<result property="xzjlFinishNum" column="xzjl_finish_num" />
+		<result property="xzcjFinishNum" column="xzcj_finish_num" />
+		<result property="xzjcFinishNum" column="xzjc_finish_num" />
+		<result property="xzgfFinishNum" column="xzgf_finish_num" />
+		<result property="xzqzFinishNum" column="xzqz_finish_num" />
+		<result property="xzqrFinishNum" column="xzqr_finish_num" />
+		<result property="xzcfFinishNum" column="xzcf_finish_num" />
+		<result property="xzzsFinishNum" column="xzzs_finish_num" />
+		<result property="qtxzqlFinishNum" column="qtxzql_finish_num" />
+		<result property="ggfwFinishNum" column="ggfw_finish_num" />
+		<result property="specialSuperviseGreenNum" column="special_supervise_green_num" />
+		<result property="specialSuperviseYellowNum" column="special_supervise_yellow_num" />
+		<result property="specialSuperviseRedNum" column="special_supervise_red_num" />
+	</resultMap>
+
+
+	<!-- ElementID:insert,Generated=true -->
+	<insert id="insert" parameterType="com.chinacreator.dzjc_tongji.TongJi">
+		insert into TA_JC_SUM_SUPERVISE_INFO(
+		<if test="orgId != null">org_id</if>
+		<if test="areaOrgName != null">,area_org_name</if>
+		<if test="areaOrgCode != null">,area_org_code</if>
+		<if test="provinceCode != null">,province_code</if>
+		<if test="cityCode != null">,city_code</if>
+		<if test="countyCode != null">,county_code</if>
+		<if test="streetCode != null">,street_code</if>
+		<if test="villageCode != null">,village_code</if>
+		<if test="orgLevel != null">,org_level</if>
+		<if test="orgThisLevel != null">,org_this_level</if>
+		<if test="nowDate != null">,now_date</if>
+		<if test="acceptNowDate != null">,accept_now_date</if>
+		<if test="acceptNum != null">,accept_num</if>
+		<if test="djzAcceptNum != null">,djz_accept_num</if>
+		<if test="finishNum != null">,finish_num</if>
+		<if test="djzFinishNum != null">,djz_finish_num</if>
+		<if test="normalFinishNum != null">,normal_finish_num</if>
+		<if test="beforeFinishNum != null">,before_finish_num</if>
+		<if test="afterFinishNum != null">,after_finish_num</if>
+		<if test="unthreadfinishNum != null">,unthreadfinish_num</if>
+		<if test="throwFinishNum != null">,throw_finish_num</if>
+		<if test="dayFinishNum != null">,day_finish_num</if>
+		<if test="sumWastingTime != null">,sum_wasting_time</if>
+		<if test="chargeMoney != null">,charge_money</if>
+		<if test="rightoffNum != null">,rightoff_num</if>
+		<if test="respondNum != null">,respond_num</if>
+		<if test="unionNum != null">,union_num</if>
+		<if test="upNum != null">,up_num</if>
+		<if test="xzxkNum != null">,xzxk_num</if>
+		<if test="fxzxkNum != null">,fxzxk_num</if>
+		<if test="bmfwNum != null">,bmfw_num</if>
+		<if test="xzxkFinishNum != null">,xzxk_finish_num</if>
+		<if test="fxzxkFinishNum != null">,fxzxk_finish_num</if>
+		<if test="bmfwFinishNum != null">,bmfw_finish_num</if>
+		<if test="complainNum != null">,complain_num</if>
+		<if test="comNum != null">,com_num</if>
+		<if test="complainReplyNum != null">,complain_reply_num</if>
+		<if test="consultNum != null">,consult_num</if>
+		<if test="consultReplayNum != null">,consult_replay_num</if>
+		<if test="moneyNum != null">,money_num</if>
+		<if test="normalNum != null">,normal_num</if>
+		<if test="redNum != null">,red_num</if>
+		<if test="yelloNum != null">,yello_num</if>
+		<if test="greenNum != null">,green_num</if>
+		<if test="status != null">,status</if>
+		<if test="nowNormalNum != null">,now_normal_num</if>
+		<if test="nowRedNum != null">,now_red_num</if>
+		<if test="nowYelloNum != null">,now_yello_num</if>
+		<if test="nowGreenNum != null">,now_green_num</if>
+		<if test="finishNormalNum != null">,finish_normal_num</if>
+		<if test="finishRedNum != null">,finish_red_num</if>
+		<if test="finishYelloNum != null">,finish_yello_num</if>
+		<if test="finishGreenNum != null">,finish_green_num</if>
+		<if test="superviseGreenNum != null">,supervise_green_num</if>
+		<if test="superviseYelloNum != null">,supervise_yello_num</if>
+		<if test="superviseRedNum != null">,supervise_red_num</if>
+		<if test="cancelYellowNum != null">,cancel_yellow_num</if>
+		<if test="cancelRedNum != null">,cancel_red_num</if>
+		<if test="recordId != null">,record_id</if>
+		<if test="instanceSuperviseGreenNum != null">,instance_supervise_green_num</if>
+		<if test="instanceSuperviseYelloNum != null">,instance_supervise_yello_num</if>
+		<if test="instanceSuperviseRedNum != null">,instance_supervise_red_num</if>
+		<if test="instanceCancelYellowNum != null">,instance_cancel_yellow_num</if>
+		<if test="instanceCancelRedNum != null">,instance_cancel_red_num</if>
+		<if test="complainSuperviseGreenNum != null">,complain_supervise_green_num</if>
+		<if test="complainSuperviseYelloNum != null">,complain_supervise_yello_num</if>
+		<if test="complainSuperviseRedNum != null">,complain_supervise_red_num</if>
+		<if test="complainCancelYellowNum != null">,complain_cancel_yellow_num</if>
+		<if test="complainCancelRedNum != null">,complain_cancel_red_num</if>
+		<if test="consultSuperviseGreenNum != null">,consult_supervise_green_num</if>
+		<if test="consultSuperviseYelloNum != null">,consult_supervise_yello_num</if>
+		<if test="consultSuperviseRedNum != null">,consult_supervise_red_num</if>
+		<if test="consultCancelYellowNum != null">,consult_cancel_yellow_num</if>
+		<if test="consultCancelRedNum != null">,consult_cancel_red_num</if>
+		<if test="xzxkeNum != null">,xzxke_num</if>
+		<if test="xzjlNum != null">,xzjl_num</if>
+		<if test="xzcjNum != null">,xzcj_num</if>
+		<if test="xzjcNum != null">,xzjc_num</if>
+		<if test="xzgfNum != null">,xzgf_num</if>
+		<if test="xzqzNum != null">,xzqz_num</if>
+		<if test="xzqrNum != null">,xzqr_num</if>
+		<if test="xzcfNum != null">,xzcf_num</if>
+		<if test="xzzsNum != null">,xzzs_num</if>
+		<if test="qtxzqlNum != null">,qtxzql_num</if>
+		<if test="ggfwNum != null">,ggfw_num</if>
+		<if test="xzxkeFinishNum != null">,xzxke_finish_num</if>
+		<if test="xzjlFinishNum != null">,xzjl_finish_num</if>
+		<if test="xzcjFinishNum != null">,xzcj_finish_num</if>
+		<if test="xzjcFinishNum != null">,xzjc_finish_num</if>
+		<if test="xzgfFinishNum != null">,xzgf_finish_num</if>
+		<if test="xzqzFinishNum != null">,xzqz_finish_num</if>
+		<if test="xzqrFinishNum != null">,xzqr_finish_num</if>
+		<if test="xzcfFinishNum != null">,xzcf_finish_num</if>
+		<if test="xzzsFinishNum != null">,xzzs_finish_num</if>
+		<if test="qtxzqlFinishNum != null">,qtxzql_finish_num</if>
+		<if test="ggfwFinishNum != null">,ggfw_finish_num</if>
+		<if test="specialSuperviseGreenNum != null">,special_supervise_green_num</if>
+		<if test="specialSuperviseYellowNum != null">,special_supervise_yellow_num</if>
+		<if test="specialSuperviseRedNum != null">,special_supervise_red_num</if>
+		)
+		values (
+		<if test="orgId != null">#{orgId,jdbcType=VARCHAR}</if>
+		<if test="areaOrgName != null">,#{areaOrgName,jdbcType=VARCHAR}</if>
+		<if test="areaOrgCode != null">,#{areaOrgCode,jdbcType=VARCHAR}</if>
+		<if test="provinceCode != null">,#{provinceCode,jdbcType=VARCHAR}</if>
+		<if test="cityCode != null">,#{cityCode,jdbcType=VARCHAR}</if>
+		<if test="countyCode != null">,#{countyCode,jdbcType=VARCHAR}</if>
+		<if test="streetCode != null">,#{streetCode,jdbcType=VARCHAR}</if>
+		<if test="villageCode != null">,#{villageCode,jdbcType=VARCHAR}</if>
+		<if test="orgLevel != null">,#{orgLevel,jdbcType=VARCHAR}</if>
+		<if test="orgThisLevel != null">,#{orgThisLevel,jdbcType=VARCHAR}</if>
+		<if test="nowDate != null">,#{nowDate,jdbcType=VARCHAR}</if>
+		<if test="acceptNowDate != null">,#{acceptNowDate,jdbcType=VARCHAR}</if>
+		<if test="acceptNum != null">,#{acceptNum,jdbcType=NUMERIC}</if>
+		<if test="djzAcceptNum != null">,#{djzAcceptNum,jdbcType=NUMERIC}</if>
+		<if test="finishNum != null">,#{finishNum,jdbcType=NUMERIC}</if>
+		<if test="djzFinishNum != null">,#{djzFinishNum,jdbcType=NUMERIC}</if>
+		<if test="normalFinishNum != null">,#{normalFinishNum,jdbcType=NUMERIC}</if>
+		<if test="beforeFinishNum != null">,#{beforeFinishNum,jdbcType=NUMERIC}</if>
+		<if test="afterFinishNum != null">,#{afterFinishNum,jdbcType=NUMERIC}</if>
+		<if test="unthreadfinishNum != null">,#{unthreadfinishNum,jdbcType=NUMERIC}</if>
+		<if test="throwFinishNum != null">,#{throwFinishNum,jdbcType=NUMERIC}</if>
+		<if test="dayFinishNum != null">,#{dayFinishNum,jdbcType=NUMERIC}</if>
+		<if test="sumWastingTime != null">,#{sumWastingTime,jdbcType=NUMERIC}</if>
+		<if test="chargeMoney != null">,#{chargeMoney,jdbcType=NUMERIC}</if>
+		<if test="rightoffNum != null">,#{rightoffNum,jdbcType=NUMERIC}</if>
+		<if test="respondNum != null">,#{respondNum,jdbcType=NUMERIC}</if>
+		<if test="unionNum != null">,#{unionNum,jdbcType=NUMERIC}</if>
+		<if test="upNum != null">,#{upNum,jdbcType=NUMERIC}</if>
+		<if test="xzxkNum != null">,#{xzxkNum,jdbcType=NUMERIC}</if>
+		<if test="fxzxkNum != null">,#{fxzxkNum,jdbcType=NUMERIC}</if>
+		<if test="bmfwNum != null">,#{bmfwNum,jdbcType=NUMERIC}</if>
+		<if test="xzxkFinishNum != null">,#{xzxkFinishNum,jdbcType=NUMERIC}</if>
+		<if test="fxzxkFinishNum != null">,#{fxzxkFinishNum,jdbcType=NUMERIC}</if>
+		<if test="bmfwFinishNum != null">,#{bmfwFinishNum,jdbcType=NUMERIC}</if>
+		<if test="complainNum != null">,#{complainNum,jdbcType=NUMERIC}</if>
+		<if test="comNum != null">,#{comNum,jdbcType=NUMERIC}</if>
+		<if test="complainReplyNum != null">,#{complainReplyNum,jdbcType=NUMERIC}</if>
+		<if test="consultNum != null">,#{consultNum,jdbcType=NUMERIC}</if>
+		<if test="consultReplayNum != null">,#{consultReplayNum,jdbcType=NUMERIC}</if>
+		<if test="moneyNum != null">,#{moneyNum,jdbcType=NUMERIC}</if>
+		<if test="normalNum != null">,#{normalNum,jdbcType=NUMERIC}</if>
+		<if test="redNum != null">,#{redNum,jdbcType=NUMERIC}</if>
+		<if test="yelloNum != null">,#{yelloNum,jdbcType=NUMERIC}</if>
+		<if test="greenNum != null">,#{greenNum,jdbcType=NUMERIC}</if>
+		<if test="status != null">,#{status,jdbcType=VARCHAR}</if>
+		<if test="nowNormalNum != null">,#{nowNormalNum,jdbcType=NUMERIC}</if>
+		<if test="nowRedNum != null">,#{nowRedNum,jdbcType=NUMERIC}</if>
+		<if test="nowYelloNum != null">,#{nowYelloNum,jdbcType=NUMERIC}</if>
+		<if test="nowGreenNum != null">,#{nowGreenNum,jdbcType=NUMERIC}</if>
+		<if test="finishNormalNum != null">,#{finishNormalNum,jdbcType=NUMERIC}</if>
+		<if test="finishRedNum != null">,#{finishRedNum,jdbcType=NUMERIC}</if>
+		<if test="finishYelloNum != null">,#{finishYelloNum,jdbcType=NUMERIC}</if>
+		<if test="finishGreenNum != null">,#{finishGreenNum,jdbcType=NUMERIC}</if>
+		<if test="superviseGreenNum != null">,#{superviseGreenNum,jdbcType=NUMERIC}</if>
+		<if test="superviseYelloNum != null">,#{superviseYelloNum,jdbcType=NUMERIC}</if>
+		<if test="superviseRedNum != null">,#{superviseRedNum,jdbcType=NUMERIC}</if>
+		<if test="cancelYellowNum != null">,#{cancelYellowNum,jdbcType=NUMERIC}</if>
+		<if test="cancelRedNum != null">,#{cancelRedNum,jdbcType=NUMERIC}</if>
+		<if test="recordId != null">,#{recordId,jdbcType=VARCHAR}</if>
+		<if test="instanceSuperviseGreenNum != null">,#{instanceSuperviseGreenNum,jdbcType=NUMERIC}</if>
+		<if test="instanceSuperviseYelloNum != null">,#{instanceSuperviseYelloNum,jdbcType=NUMERIC}</if>
+		<if test="instanceSuperviseRedNum != null">,#{instanceSuperviseRedNum,jdbcType=NUMERIC}</if>
+		<if test="instanceCancelYellowNum != null">,#{instanceCancelYellowNum,jdbcType=NUMERIC}</if>
+		<if test="instanceCancelRedNum != null">,#{instanceCancelRedNum,jdbcType=NUMERIC}</if>
+		<if test="complainSuperviseGreenNum != null">,#{complainSuperviseGreenNum,jdbcType=NUMERIC}</if>
+		<if test="complainSuperviseYelloNum != null">,#{complainSuperviseYelloNum,jdbcType=NUMERIC}</if>
+		<if test="complainSuperviseRedNum != null">,#{complainSuperviseRedNum,jdbcType=NUMERIC}</if>
+		<if test="complainCancelYellowNum != null">,#{complainCancelYellowNum,jdbcType=NUMERIC}</if>
+		<if test="complainCancelRedNum != null">,#{complainCancelRedNum,jdbcType=NUMERIC}</if>
+		<if test="consultSuperviseGreenNum != null">,#{consultSuperviseGreenNum,jdbcType=NUMERIC}</if>
+		<if test="consultSuperviseYelloNum != null">,#{consultSuperviseYelloNum,jdbcType=NUMERIC}</if>
+		<if test="consultSuperviseRedNum != null">,#{consultSuperviseRedNum,jdbcType=NUMERIC}</if>
+		<if test="consultCancelYellowNum != null">,#{consultCancelYellowNum,jdbcType=NUMERIC}</if>
+		<if test="consultCancelRedNum != null">,#{consultCancelRedNum,jdbcType=NUMERIC}</if>
+		<if test="xzxkeNum != null">,#{xzxkeNum,jdbcType=NUMERIC}</if>
+		<if test="xzjlNum != null">,#{xzjlNum,jdbcType=NUMERIC}</if>
+		<if test="xzcjNum != null">,#{xzcjNum,jdbcType=NUMERIC}</if>
+		<if test="xzjcNum != null">,#{xzjcNum,jdbcType=NUMERIC}</if>
+		<if test="xzgfNum != null">,#{xzgfNum,jdbcType=NUMERIC}</if>
+		<if test="xzqzNum != null">,#{xzqzNum,jdbcType=NUMERIC}</if>
+		<if test="xzqrNum != null">,#{xzqrNum,jdbcType=NUMERIC}</if>
+		<if test="xzcfNum != null">,#{xzcfNum,jdbcType=NUMERIC}</if>
+		<if test="xzzsNum != null">,#{xzzsNum,jdbcType=NUMERIC}</if>
+		<if test="qtxzqlNum != null">,#{qtxzqlNum,jdbcType=NUMERIC}</if>
+		<if test="ggfwNum != null">,#{ggfwNum,jdbcType=NUMERIC}</if>
+		<if test="xzxkeFinishNum != null">,#{xzxkeFinishNum,jdbcType=NUMERIC}</if>
+		<if test="xzjlFinishNum != null">,#{xzjlFinishNum,jdbcType=NUMERIC}</if>
+		<if test="xzcjFinishNum != null">,#{xzcjFinishNum,jdbcType=NUMERIC}</if>
+		<if test="xzjcFinishNum != null">,#{xzjcFinishNum,jdbcType=NUMERIC}</if>
+		<if test="xzgfFinishNum != null">,#{xzgfFinishNum,jdbcType=NUMERIC}</if>
+		<if test="xzqzFinishNum != null">,#{xzqzFinishNum,jdbcType=NUMERIC}</if>
+		<if test="xzqrFinishNum != null">,#{xzqrFinishNum,jdbcType=NUMERIC}</if>
+		<if test="xzcfFinishNum != null">,#{xzcfFinishNum,jdbcType=NUMERIC}</if>
+		<if test="xzzsFinishNum != null">,#{xzzsFinishNum,jdbcType=NUMERIC}</if>
+		<if test="qtxzqlFinishNum != null">,#{qtxzqlFinishNum,jdbcType=NUMERIC}</if>
+		<if test="ggfwFinishNum != null">,#{ggfwFinishNum,jdbcType=NUMERIC}</if>
+		<if test="specialSuperviseGreenNum != null">,#{specialSuperviseGreenNum,jdbcType=NUMERIC}</if>
+		<if test="specialSuperviseYellowNum != null">,#{specialSuperviseYellowNum,jdbcType=NUMERIC}</if>
+		<if test="specialSuperviseRedNum != null">,#{specialSuperviseRedNum,jdbcType=NUMERIC}</if>
+		)
+	</insert>
+
+	<!-- ElementID:count,Generated=true -->
+	<select id="count" parameterType="com.chinacreator.dzjc_tongji.TongJi"
+		resultType="int">
+		select count(*) from TA_JC_SUM_SUPERVISE_INFO
+		<where>
+			<include refid="whereClause_sql" />
+		</where>
+	</select>
+
+	<!-- ElementID:update,Generated=true -->
+	<update id="update" parameterType="com.chinacreator.dzjc_tongji.TongJi">
+		update TA_JC_SUM_SUPERVISE_INFO
+		<set>
+			<if test="orgId != null">org_id=#{orgId,jdbcType=VARCHAR},</if>
+			<if test="areaOrgName != null">area_org_name=#{areaOrgName,jdbcType=VARCHAR},</if>
+			<if test="areaOrgCode != null">area_org_code=#{areaOrgCode,jdbcType=VARCHAR},</if>
+			<if test="provinceCode != null">province_code=#{provinceCode,jdbcType=VARCHAR},</if>
+			<if test="cityCode != null">city_code=#{cityCode,jdbcType=VARCHAR},</if>
+			<if test="countyCode != null">county_code=#{countyCode,jdbcType=VARCHAR},</if>
+			<if test="streetCode != null">street_code=#{streetCode,jdbcType=VARCHAR},</if>
+			<if test="villageCode != null">village_code=#{villageCode,jdbcType=VARCHAR},</if>
+			<if test="orgLevel != null">org_level=#{orgLevel,jdbcType=VARCHAR},</if>
+			<if test="orgThisLevel != null">org_this_level=#{orgThisLevel,jdbcType=VARCHAR},</if>
+			<if test="nowDate != null">now_date=#{nowDate,jdbcType=VARCHAR},</if>
+			<if test="acceptNowDate != null">accept_now_date=#{acceptNowDate,jdbcType=VARCHAR},</if>
+			<if test="acceptNum != null">accept_num=#{acceptNum,jdbcType=NUMERIC},</if>
+			<if test="djzAcceptNum != null">djz_accept_num=#{djzAcceptNum,jdbcType=NUMERIC},</if>
+			<if test="finishNum != null">finish_num=#{finishNum,jdbcType=NUMERIC},</if>
+			<if test="djzFinishNum != null">djz_finish_num=#{djzFinishNum,jdbcType=NUMERIC},</if>
+			<if test="normalFinishNum != null">normal_finish_num=#{normalFinishNum,jdbcType=NUMERIC},
+			</if>
+			<if test="beforeFinishNum != null">before_finish_num=#{beforeFinishNum,jdbcType=NUMERIC},
+			</if>
+			<if test="afterFinishNum != null">after_finish_num=#{afterFinishNum,jdbcType=NUMERIC},</if>
+			<if test="unthreadfinishNum != null">unthreadfinish_num=#{unthreadfinishNum,jdbcType=NUMERIC},
+			</if>
+			<if test="throwFinishNum != null">throw_finish_num=#{throwFinishNum,jdbcType=NUMERIC},</if>
+			<if test="dayFinishNum != null">day_finish_num=#{dayFinishNum,jdbcType=NUMERIC},</if>
+			<if test="sumWastingTime != null">sum_wasting_time=#{sumWastingTime,jdbcType=NUMERIC},</if>
+			<if test="chargeMoney != null">charge_money=#{chargeMoney,jdbcType=NUMERIC},</if>
+			<if test="rightoffNum != null">rightoff_num=#{rightoffNum,jdbcType=NUMERIC},</if>
+			<if test="respondNum != null">respond_num=#{respondNum,jdbcType=NUMERIC},</if>
+			<if test="unionNum != null">union_num=#{unionNum,jdbcType=NUMERIC},</if>
+			<if test="upNum != null">up_num=#{upNum,jdbcType=NUMERIC},</if>
+			<if test="xzxkNum != null">xzxk_num=#{xzxkNum,jdbcType=NUMERIC},</if>
+			<if test="fxzxkNum != null">fxzxk_num=#{fxzxkNum,jdbcType=NUMERIC},</if>
+			<if test="bmfwNum != null">bmfw_num=#{bmfwNum,jdbcType=NUMERIC},</if>
+			<if test="xzxkFinishNum != null">xzxk_finish_num=#{xzxkFinishNum,jdbcType=NUMERIC},</if>
+			<if test="fxzxkFinishNum != null">fxzxk_finish_num=#{fxzxkFinishNum,jdbcType=NUMERIC},</if>
+			<if test="bmfwFinishNum != null">bmfw_finish_num=#{bmfwFinishNum,jdbcType=NUMERIC},</if>
+			<if test="complainNum != null">complain_num=#{complainNum,jdbcType=NUMERIC},</if>
+			<if test="comNum != null">com_num=#{comNum,jdbcType=NUMERIC},</if>
+			<if test="complainReplyNum != null">complain_reply_num=#{complainReplyNum,jdbcType=NUMERIC},
+			</if>
+			<if test="consultNum != null">consult_num=#{consultNum,jdbcType=NUMERIC},</if>
+			<if test="consultReplayNum != null">consult_replay_num=#{consultReplayNum,jdbcType=NUMERIC},
+			</if>
+			<if test="moneyNum != null">money_num=#{moneyNum,jdbcType=NUMERIC},</if>
+			<if test="normalNum != null">normal_num=#{normalNum,jdbcType=NUMERIC},</if>
+			<if test="redNum != null">red_num=#{redNum,jdbcType=NUMERIC},</if>
+			<if test="yelloNum != null">yello_num=#{yelloNum,jdbcType=NUMERIC},</if>
+			<if test="greenNum != null">green_num=#{greenNum,jdbcType=NUMERIC},</if>
+			<if test="status != null">status=#{status,jdbcType=VARCHAR},</if>
+			<if test="nowNormalNum != null">now_normal_num=#{nowNormalNum,jdbcType=NUMERIC},</if>
+			<if test="nowRedNum != null">now_red_num=#{nowRedNum,jdbcType=NUMERIC},</if>
+			<if test="nowYelloNum != null">now_yello_num=#{nowYelloNum,jdbcType=NUMERIC},</if>
+			<if test="nowGreenNum != null">now_green_num=#{nowGreenNum,jdbcType=NUMERIC},</if>
+			<if test="finishNormalNum != null">finish_normal_num=#{finishNormalNum,jdbcType=NUMERIC},
+			</if>
+			<if test="finishRedNum != null">finish_red_num=#{finishRedNum,jdbcType=NUMERIC},</if>
+			<if test="finishYelloNum != null">finish_yello_num=#{finishYelloNum,jdbcType=NUMERIC},</if>
+			<if test="finishGreenNum != null">finish_green_num=#{finishGreenNum,jdbcType=NUMERIC},</if>
+			<if test="superviseGreenNum != null">supervise_green_num=#{superviseGreenNum,jdbcType=NUMERIC},
+			</if>
+			<if test="superviseYelloNum != null">supervise_yello_num=#{superviseYelloNum,jdbcType=NUMERIC},
+			</if>
+			<if test="superviseRedNum != null">supervise_red_num=#{superviseRedNum,jdbcType=NUMERIC},
+			</if>
+			<if test="cancelYellowNum != null">cancel_yellow_num=#{cancelYellowNum,jdbcType=NUMERIC},
+			</if>
+			<if test="cancelRedNum != null">cancel_red_num=#{cancelRedNum,jdbcType=NUMERIC},</if>
+			<if test="instanceSuperviseGreenNum != null">instance_supervise_green_num=#{instanceSuperviseGreenNum,jdbcType=NUMERIC},
+			</if>
+			<if test="instanceSuperviseYelloNum != null">instance_supervise_yello_num=#{instanceSuperviseYelloNum,jdbcType=NUMERIC},
+			</if>
+			<if test="instanceSuperviseRedNum != null">instance_supervise_red_num=#{instanceSuperviseRedNum,jdbcType=NUMERIC},
+			</if>
+			<if test="instanceCancelYellowNum != null">instance_cancel_yellow_num=#{instanceCancelYellowNum,jdbcType=NUMERIC},
+			</if>
+			<if test="instanceCancelRedNum != null">instance_cancel_red_num=#{instanceCancelRedNum,jdbcType=NUMERIC},
+			</if>
+			<if test="complainSuperviseGreenNum != null">complain_supervise_green_num=#{complainSuperviseGreenNum,jdbcType=NUMERIC},
+			</if>
+			<if test="complainSuperviseYelloNum != null">complain_supervise_yello_num=#{complainSuperviseYelloNum,jdbcType=NUMERIC},
+			</if>
+			<if test="complainSuperviseRedNum != null">complain_supervise_red_num=#{complainSuperviseRedNum,jdbcType=NUMERIC},
+			</if>
+			<if test="complainCancelYellowNum != null">complain_cancel_yellow_num=#{complainCancelYellowNum,jdbcType=NUMERIC},
+			</if>
+			<if test="complainCancelRedNum != null">complain_cancel_red_num=#{complainCancelRedNum,jdbcType=NUMERIC},
+			</if>
+			<if test="consultSuperviseGreenNum != null">consult_supervise_green_num=#{consultSuperviseGreenNum,jdbcType=NUMERIC},
+			</if>
+			<if test="consultSuperviseYelloNum != null">consult_supervise_yello_num=#{consultSuperviseYelloNum,jdbcType=NUMERIC},
+			</if>
+			<if test="consultSuperviseRedNum != null">consult_supervise_red_num=#{consultSuperviseRedNum,jdbcType=NUMERIC},
+			</if>
+			<if test="consultCancelYellowNum != null">consult_cancel_yellow_num=#{consultCancelYellowNum,jdbcType=NUMERIC},
+			</if>
+			<if test="consultCancelRedNum != null">consult_cancel_red_num=#{consultCancelRedNum,jdbcType=NUMERIC},
+			</if>
+			<if test="xzxkeNum != null">xzxke_num=#{xzxkeNum,jdbcType=NUMERIC},</if>
+			<if test="xzjlNum != null">xzjl_num=#{xzjlNum,jdbcType=NUMERIC},</if>
+			<if test="xzcjNum != null">xzcj_num=#{xzcjNum,jdbcType=NUMERIC},</if>
+			<if test="xzjcNum != null">xzjc_num=#{xzjcNum,jdbcType=NUMERIC},</if>
+			<if test="xzgfNum != null">xzgf_num=#{xzgfNum,jdbcType=NUMERIC},</if>
+			<if test="xzqzNum != null">xzqz_num=#{xzqzNum,jdbcType=NUMERIC},</if>
+			<if test="xzqrNum != null">xzqr_num=#{xzqrNum,jdbcType=NUMERIC},</if>
+			<if test="xzcfNum != null">xzcf_num=#{xzcfNum,jdbcType=NUMERIC},</if>
+			<if test="xzzsNum != null">xzzs_num=#{xzzsNum,jdbcType=NUMERIC},</if>
+			<if test="qtxzqlNum != null">qtxzql_num=#{qtxzqlNum,jdbcType=NUMERIC},</if>
+			<if test="ggfwNum != null">ggfw_num=#{ggfwNum,jdbcType=NUMERIC},</if>
+			<if test="xzxkeFinishNum != null">xzxke_finish_num=#{xzxkeFinishNum,jdbcType=NUMERIC},</if>
+			<if test="xzjlFinishNum != null">xzjl_finish_num=#{xzjlFinishNum,jdbcType=NUMERIC},</if>
+			<if test="xzcjFinishNum != null">xzcj_finish_num=#{xzcjFinishNum,jdbcType=NUMERIC},</if>
+			<if test="xzjcFinishNum != null">xzjc_finish_num=#{xzjcFinishNum,jdbcType=NUMERIC},</if>
+			<if test="xzgfFinishNum != null">xzgf_finish_num=#{xzgfFinishNum,jdbcType=NUMERIC},</if>
+			<if test="xzqzFinishNum != null">xzqz_finish_num=#{xzqzFinishNum,jdbcType=NUMERIC},</if>
+			<if test="xzqrFinishNum != null">xzqr_finish_num=#{xzqrFinishNum,jdbcType=NUMERIC},</if>
+			<if test="xzcfFinishNum != null">xzcf_finish_num=#{xzcfFinishNum,jdbcType=NUMERIC},</if>
+			<if test="xzzsFinishNum != null">xzzs_finish_num=#{xzzsFinishNum,jdbcType=NUMERIC},</if>
+			<if test="qtxzqlFinishNum != null">qtxzql_finish_num=#{qtxzqlFinishNum,jdbcType=NUMERIC},
+			</if>
+			<if test="ggfwFinishNum != null">ggfw_finish_num=#{ggfwFinishNum,jdbcType=NUMERIC},</if>
+			<if test="specialSuperviseGreenNum != null">special_supervise_green_num=#{specialSuperviseGreenNum,jdbcType=NUMERIC},
+			</if>
+			<if test="specialSuperviseYellowNum != null">special_supervise_yellow_num=#{specialSuperviseYellowNum,jdbcType=NUMERIC},
+			</if>
+			<if test="specialSuperviseRedNum != null">special_supervise_red_num=#{specialSuperviseRedNum,jdbcType=NUMERIC}
+			</if>
+		</set>
+		<where>
+			<choose>
+				<when test="recordId != null">and record_id = #{recordId}</when>
+				<otherwise>and record_id = </otherwise>
+			</choose>
+		</where>
+	</update>
+
+	<!-- ElementID:updateNull,Generated=true -->
+	<update id="updateNull" parameterType="map">
+		update TA_JC_SUM_SUPERVISE_INFO
+		<set>
+			<trim suffixOverrides=",">
+				<if test="orgId==null">org_id = null,</if>
+				<if test="areaOrgName==null">area_org_name = null,</if>
+				<if test="areaOrgCode==null">area_org_code = null,</if>
+				<if test="provinceCode==null">province_code = null,</if>
+				<if test="cityCode==null">city_code = null,</if>
+				<if test="countyCode==null">county_code = null,</if>
+				<if test="streetCode==null">street_code = null,</if>
+				<if test="villageCode==null">village_code = null,</if>
+				<if test="orgLevel==null">org_level = null,</if>
+				<if test="orgThisLevel==null">org_this_level = null,</if>
+				<if test="nowDate==null">now_date = null,</if>
+				<if test="acceptNowDate==null">accept_now_date = null,</if>
+				<if test="acceptNum==null">accept_num = null,</if>
+				<if test="djzAcceptNum==null">djz_accept_num = null,</if>
+				<if test="finishNum==null">finish_num = null,</if>
+				<if test="djzFinishNum==null">djz_finish_num = null,</if>
+				<if test="normalFinishNum==null">normal_finish_num = null,</if>
+				<if test="beforeFinishNum==null">before_finish_num = null,</if>
+				<if test="afterFinishNum==null">after_finish_num = null,</if>
+				<if test="unthreadfinishNum==null">unthreadfinish_num = null,</if>
+				<if test="throwFinishNum==null">throw_finish_num = null,</if>
+				<if test="dayFinishNum==null">day_finish_num = null,</if>
+				<if test="sumWastingTime==null">sum_wasting_time = null,</if>
+				<if test="chargeMoney==null">charge_money = null,</if>
+				<if test="rightoffNum==null">rightoff_num = null,</if>
+				<if test="respondNum==null">respond_num = null,</if>
+				<if test="unionNum==null">union_num = null,</if>
+				<if test="upNum==null">up_num = null,</if>
+				<if test="xzxkNum==null">xzxk_num = null,</if>
+				<if test="fxzxkNum==null">fxzxk_num = null,</if>
+				<if test="bmfwNum==null">bmfw_num = null,</if>
+				<if test="xzxkFinishNum==null">xzxk_finish_num = null,</if>
+				<if test="fxzxkFinishNum==null">fxzxk_finish_num = null,</if>
+				<if test="bmfwFinishNum==null">bmfw_finish_num = null,</if>
+				<if test="complainNum==null">complain_num = null,</if>
+				<if test="comNum==null">com_num = null,</if>
+				<if test="complainReplyNum==null">complain_reply_num = null,</if>
+				<if test="consultNum==null">consult_num = null,</if>
+				<if test="consultReplayNum==null">consult_replay_num = null,</if>
+				<if test="moneyNum==null">money_num = null,</if>
+				<if test="normalNum==null">normal_num = null,</if>
+				<if test="redNum==null">red_num = null,</if>
+				<if test="yelloNum==null">yello_num = null,</if>
+				<if test="greenNum==null">green_num = null,</if>
+				<if test="status==null">status = null,</if>
+				<if test="nowNormalNum==null">now_normal_num = null,</if>
+				<if test="nowRedNum==null">now_red_num = null,</if>
+				<if test="nowYelloNum==null">now_yello_num = null,</if>
+				<if test="nowGreenNum==null">now_green_num = null,</if>
+				<if test="finishNormalNum==null">finish_normal_num = null,</if>
+				<if test="finishRedNum==null">finish_red_num = null,</if>
+				<if test="finishYelloNum==null">finish_yello_num = null,</if>
+				<if test="finishGreenNum==null">finish_green_num = null,</if>
+				<if test="superviseGreenNum==null">supervise_green_num = null,</if>
+				<if test="superviseYelloNum==null">supervise_yello_num = null,</if>
+				<if test="superviseRedNum==null">supervise_red_num = null,</if>
+				<if test="cancelYellowNum==null">cancel_yellow_num = null,</if>
+				<if test="cancelRedNum==null">cancel_red_num = null,</if>
+				<if test="instanceSuperviseGreenNum==null">instance_supervise_green_num = null,</if>
+				<if test="instanceSuperviseYelloNum==null">instance_supervise_yello_num = null,</if>
+				<if test="instanceSuperviseRedNum==null">instance_supervise_red_num = null,</if>
+				<if test="instanceCancelYellowNum==null">instance_cancel_yellow_num = null,</if>
+				<if test="instanceCancelRedNum==null">instance_cancel_red_num = null,</if>
+				<if test="complainSuperviseGreenNum==null">complain_supervise_green_num = null,</if>
+				<if test="complainSuperviseYelloNum==null">complain_supervise_yello_num = null,</if>
+				<if test="complainSuperviseRedNum==null">complain_supervise_red_num = null,</if>
+				<if test="complainCancelYellowNum==null">complain_cancel_yellow_num = null,</if>
+				<if test="complainCancelRedNum==null">complain_cancel_red_num = null,</if>
+				<if test="consultSuperviseGreenNum==null">consult_supervise_green_num = null,</if>
+				<if test="consultSuperviseYelloNum==null">consult_supervise_yello_num = null,</if>
+				<if test="consultSuperviseRedNum==null">consult_supervise_red_num = null,</if>
+				<if test="consultCancelYellowNum==null">consult_cancel_yellow_num = null,</if>
+				<if test="consultCancelRedNum==null">consult_cancel_red_num = null,</if>
+				<if test="xzxkeNum==null">xzxke_num = null,</if>
+				<if test="xzjlNum==null">xzjl_num = null,</if>
+				<if test="xzcjNum==null">xzcj_num = null,</if>
+				<if test="xzjcNum==null">xzjc_num = null,</if>
+				<if test="xzgfNum==null">xzgf_num = null,</if>
+				<if test="xzqzNum==null">xzqz_num = null,</if>
+				<if test="xzqrNum==null">xzqr_num = null,</if>
+				<if test="xzcfNum==null">xzcf_num = null,</if>
+				<if test="xzzsNum==null">xzzs_num = null,</if>
+				<if test="qtxzqlNum==null">qtxzql_num = null,</if>
+				<if test="ggfwNum==null">ggfw_num = null,</if>
+				<if test="xzxkeFinishNum==null">xzxke_finish_num = null,</if>
+				<if test="xzjlFinishNum==null">xzjl_finish_num = null,</if>
+				<if test="xzcjFinishNum==null">xzcj_finish_num = null,</if>
+				<if test="xzjcFinishNum==null">xzjc_finish_num = null,</if>
+				<if test="xzgfFinishNum==null">xzgf_finish_num = null,</if>
+				<if test="xzqzFinishNum==null">xzqz_finish_num = null,</if>
+				<if test="xzqrFinishNum==null">xzqr_finish_num = null,</if>
+				<if test="xzcfFinishNum==null">xzcf_finish_num = null,</if>
+				<if test="xzzsFinishNum==null">xzzs_finish_num = null,</if>
+				<if test="qtxzqlFinishNum==null">qtxzql_finish_num = null,</if>
+				<if test="ggfwFinishNum==null">ggfw_finish_num = null,</if>
+				<if test="specialSuperviseGreenNum==null">special_supervise_green_num = null,</if>
+				<if test="specialSuperviseYellowNum==null">special_supervise_yellow_num = null,</if>
+				<if test="specialSuperviseRedNum==null">special_supervise_red_num = null,</if>
+			</trim>
+		</set>
+		<where>
+			<choose>
+				<when test="recordId != null">and record_id = #{recordId}</when>
+				<otherwise>and record_id = </otherwise>
+			</choose>
+		</where>
+	</update>
+
+	<!-- ElementID:delete,Generated=true -->
+	<delete id="delete" parameterType="com.chinacreator.dzjc_tongji.TongJi">
+		delete from TA_JC_SUM_SUPERVISE_INFO where 1=1 and record_id = #{recordId}
+	</delete>
+
+	<!-- ElementID:select,Generated=true -->
+	<select id="select" parameterType="com.chinacreator.dzjc_tongji.TongJi"
+		resultMap="TongJiResult">
+		select
+		<include refid="column_sql" />
+		from TA_JC_SUM_SUPERVISE_INFO
+		<where>
+			<include refid="whereClause_sql" />
+		</where>
+	</select>
+
+	<!-- ElementID:insertBatch,Generated=true -->
+	<insert id="insertBatch" parameterType="list">
+		insert into TA_JC_SUM_SUPERVISE_INFO
+		(org_id,area_org_name,area_org_code,province_code,city_code,county_code,street_code,village_code,org_level,org_this_level,now_date,accept_now_date,accept_num,djz_accept_num,finish_num,djz_finish_num,normal_finish_num,before_finish_num,after_finish_num,unthreadfinish_num,throw_finish_num,day_finish_num,sum_wasting_time,charge_money,rightoff_num,respond_num,union_num,up_num,xzxk_num,fxzxk_num,bmfw_num,xzxk_finish_num,fxzxk_finish_num,bmfw_finish_num,complain_num,com_num,complain_reply_num,consult_num,consult_replay_num,money_num,normal_num,red_num,yello_num,green_num,status,now_normal_num,now_red_num,now_yello_num,now_green_num,finish_normal_num,finish_red_num,finish_yello_num,finish_green_num,supervise_green_num,supervise_yello_num,supervise_red_num,cancel_yellow_num,cancel_red_num,record_id,instance_supervise_green_num,instance_supervise_yello_num,instance_supervise_red_num,instance_cancel_yellow_num,instance_cancel_red_num,complain_supervise_green_num,complain_supervise_yello_num,complain_supervise_red_num,complain_cancel_yellow_num,complain_cancel_red_num,consult_supervise_green_num,consult_supervise_yello_num,consult_supervise_red_num,consult_cancel_yellow_num,consult_cancel_red_num,xzxke_num,xzjl_num,xzcj_num,xzjc_num,xzgf_num,xzqz_num,xzqr_num,xzcf_num,xzzs_num,qtxzql_num,ggfw_num,xzxke_finish_num,xzjl_finish_num,xzcj_finish_num,xzjc_finish_num,xzgf_finish_num,xzqz_finish_num,xzqr_finish_num,xzcf_finish_num,xzzs_finish_num,qtxzql_finish_num,ggfw_finish_num,special_supervise_green_num,special_supervise_yellow_num,special_supervise_red_num)
+		<foreach collection="list" item="entity" index="index"
+			separator="union all">
+			select
+			#{entity.orgId,jdbcType = VARCHAR},
+			#{entity.areaOrgName,jdbcType = VARCHAR},
+			#{entity.areaOrgCode,jdbcType = VARCHAR},
+			#{entity.provinceCode,jdbcType = VARCHAR},
+			#{entity.cityCode,jdbcType = VARCHAR},
+			#{entity.countyCode,jdbcType = VARCHAR},
+			#{entity.streetCode,jdbcType = VARCHAR},
+			#{entity.villageCode,jdbcType = VARCHAR},
+			#{entity.orgLevel,jdbcType = VARCHAR},
+			#{entity.orgThisLevel,jdbcType = VARCHAR},
+			#{entity.nowDate,jdbcType = VARCHAR},
+			#{entity.acceptNowDate,jdbcType = VARCHAR},
+			#{entity.acceptNum,jdbcType = NUMERIC},
+			#{entity.djzAcceptNum,jdbcType = NUMERIC},
+			#{entity.finishNum,jdbcType = NUMERIC},
+			#{entity.djzFinishNum,jdbcType = NUMERIC},
+			#{entity.normalFinishNum,jdbcType = NUMERIC},
+			#{entity.beforeFinishNum,jdbcType = NUMERIC},
+			#{entity.afterFinishNum,jdbcType = NUMERIC},
+			#{entity.unthreadfinishNum,jdbcType = NUMERIC},
+			#{entity.throwFinishNum,jdbcType = NUMERIC},
+			#{entity.dayFinishNum,jdbcType = NUMERIC},
+			#{entity.sumWastingTime,jdbcType = NUMERIC},
+			#{entity.chargeMoney,jdbcType = NUMERIC},
+			#{entity.rightoffNum,jdbcType = NUMERIC},
+			#{entity.respondNum,jdbcType = NUMERIC},
+			#{entity.unionNum,jdbcType = NUMERIC},
+			#{entity.upNum,jdbcType = NUMERIC},
+			#{entity.xzxkNum,jdbcType = NUMERIC},
+			#{entity.fxzxkNum,jdbcType = NUMERIC},
+			#{entity.bmfwNum,jdbcType = NUMERIC},
+			#{entity.xzxkFinishNum,jdbcType = NUMERIC},
+			#{entity.fxzxkFinishNum,jdbcType = NUMERIC},
+			#{entity.bmfwFinishNum,jdbcType = NUMERIC},
+			#{entity.complainNum,jdbcType = NUMERIC},
+			#{entity.comNum,jdbcType = NUMERIC},
+			#{entity.complainReplyNum,jdbcType = NUMERIC},
+			#{entity.consultNum,jdbcType = NUMERIC},
+			#{entity.consultReplayNum,jdbcType = NUMERIC},
+			#{entity.moneyNum,jdbcType = NUMERIC},
+			#{entity.normalNum,jdbcType = NUMERIC},
+			#{entity.redNum,jdbcType = NUMERIC},
+			#{entity.yelloNum,jdbcType = NUMERIC},
+			#{entity.greenNum,jdbcType = NUMERIC},
+			#{entity.status,jdbcType = VARCHAR},
+			#{entity.nowNormalNum,jdbcType = NUMERIC},
+			#{entity.nowRedNum,jdbcType = NUMERIC},
+			#{entity.nowYelloNum,jdbcType = NUMERIC},
+			#{entity.nowGreenNum,jdbcType = NUMERIC},
+			#{entity.finishNormalNum,jdbcType = NUMERIC},
+			#{entity.finishRedNum,jdbcType = NUMERIC},
+			#{entity.finishYelloNum,jdbcType = NUMERIC},
+			#{entity.finishGreenNum,jdbcType = NUMERIC},
+			#{entity.superviseGreenNum,jdbcType = NUMERIC},
+			#{entity.superviseYelloNum,jdbcType = NUMERIC},
+			#{entity.superviseRedNum,jdbcType = NUMERIC},
+			#{entity.cancelYellowNum,jdbcType = NUMERIC},
+			#{entity.cancelRedNum,jdbcType = NUMERIC},
+			#{entity.recordId,jdbcType = VARCHAR},
+			#{entity.instanceSuperviseGreenNum,jdbcType = NUMERIC},
+			#{entity.instanceSuperviseYelloNum,jdbcType = NUMERIC},
+			#{entity.instanceSuperviseRedNum,jdbcType = NUMERIC},
+			#{entity.instanceCancelYellowNum,jdbcType = NUMERIC},
+			#{entity.instanceCancelRedNum,jdbcType = NUMERIC},
+			#{entity.complainSuperviseGreenNum,jdbcType = NUMERIC},
+			#{entity.complainSuperviseYelloNum,jdbcType = NUMERIC},
+			#{entity.complainSuperviseRedNum,jdbcType = NUMERIC},
+			#{entity.complainCancelYellowNum,jdbcType = NUMERIC},
+			#{entity.complainCancelRedNum,jdbcType = NUMERIC},
+			#{entity.consultSuperviseGreenNum,jdbcType = NUMERIC},
+			#{entity.consultSuperviseYelloNum,jdbcType = NUMERIC},
+			#{entity.consultSuperviseRedNum,jdbcType = NUMERIC},
+			#{entity.consultCancelYellowNum,jdbcType = NUMERIC},
+			#{entity.consultCancelRedNum,jdbcType = NUMERIC},
+			#{entity.xzxkeNum,jdbcType = NUMERIC},
+			#{entity.xzjlNum,jdbcType = NUMERIC},
+			#{entity.xzcjNum,jdbcType = NUMERIC},
+			#{entity.xzjcNum,jdbcType = NUMERIC},
+			#{entity.xzgfNum,jdbcType = NUMERIC},
+			#{entity.xzqzNum,jdbcType = NUMERIC},
+			#{entity.xzqrNum,jdbcType = NUMERIC},
+			#{entity.xzcfNum,jdbcType = NUMERIC},
+			#{entity.xzzsNum,jdbcType = NUMERIC},
+			#{entity.qtxzqlNum,jdbcType = NUMERIC},
+			#{entity.ggfwNum,jdbcType = NUMERIC},
+			#{entity.xzxkeFinishNum,jdbcType = NUMERIC},
+			#{entity.xzjlFinishNum,jdbcType = NUMERIC},
+			#{entity.xzcjFinishNum,jdbcType = NUMERIC},
+			#{entity.xzjcFinishNum,jdbcType = NUMERIC},
+			#{entity.xzgfFinishNum,jdbcType = NUMERIC},
+			#{entity.xzqzFinishNum,jdbcType = NUMERIC},
+			#{entity.xzqrFinishNum,jdbcType = NUMERIC},
+			#{entity.xzcfFinishNum,jdbcType = NUMERIC},
+			#{entity.xzzsFinishNum,jdbcType = NUMERIC},
+			#{entity.qtxzqlFinishNum,jdbcType = NUMERIC},
+			#{entity.ggfwFinishNum,jdbcType = NUMERIC},
+			#{entity.specialSuperviseGreenNum,jdbcType = NUMERIC},
+			#{entity.specialSuperviseYellowNum,jdbcType = NUMERIC},
+			#{entity.specialSuperviseRedNum,jdbcType = NUMERIC}
+			from dual
+		</foreach>
+	</insert>
+
+	<!-- ElementID:deleteBatch,Generated=true -->
+	<delete id="deleteBatch" parameterType="List">
+		delete from TA_JC_SUM_SUPERVISE_INFO where record_id in
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<foreach collection="list" item="entity" separator=",">
+				<choose>
+					<when
+						test="@com.chinacreator.c2.dao.util.EntityBeanUtil@isEntityObj(entity)">#{entity.recordId}</when>
+					<otherwise>#{entity}</otherwise>
+				</choose>
+			</foreach>
+		</trim>
+	</delete>
+
+	<!-- ElementID:updateBatch,Generated=true -->
+	<update id="updateBatch" parameterType="list">
+		<foreach collection="list" item="entity" open="begin" close=";end;"
+			separator=";">
+			update TA_JC_SUM_SUPERVISE_INFO
+			<set>
+				<if test="entity.orgId != null">org_id= #{entity.orgId,jdbcType=VARCHAR},</if>
+				<if test="entity.areaOrgName != null">area_org_name= #{entity.areaOrgName,jdbcType=VARCHAR},
+				</if>
+				<if test="entity.areaOrgCode != null">area_org_code= #{entity.areaOrgCode,jdbcType=VARCHAR},
+				</if>
+				<if test="entity.provinceCode != null">province_code= #{entity.provinceCode,jdbcType=VARCHAR},
+				</if>
+				<if test="entity.cityCode != null">city_code= #{entity.cityCode,jdbcType=VARCHAR},</if>
+				<if test="entity.countyCode != null">county_code= #{entity.countyCode,jdbcType=VARCHAR},</if>
+				<if test="entity.streetCode != null">street_code= #{entity.streetCode,jdbcType=VARCHAR},</if>
+				<if test="entity.villageCode != null">village_code= #{entity.villageCode,jdbcType=VARCHAR},
+				</if>
+				<if test="entity.orgLevel != null">org_level= #{entity.orgLevel,jdbcType=VARCHAR},</if>
+				<if test="entity.orgThisLevel != null">org_this_level= #{entity.orgThisLevel,jdbcType=VARCHAR},
+				</if>
+				<if test="entity.nowDate != null">now_date= #{entity.nowDate,jdbcType=VARCHAR},</if>
+				<if test="entity.acceptNowDate != null">accept_now_date=
+					#{entity.acceptNowDate,jdbcType=VARCHAR},</if>
+				<if test="entity.acceptNum != null">accept_num= #{entity.acceptNum,jdbcType=NUMERIC},</if>
+				<if test="entity.djzAcceptNum != null">djz_accept_num= #{entity.djzAcceptNum,jdbcType=NUMERIC},
+				</if>
+				<if test="entity.finishNum != null">finish_num= #{entity.finishNum,jdbcType=NUMERIC},</if>
+				<if test="entity.djzFinishNum != null">djz_finish_num= #{entity.djzFinishNum,jdbcType=NUMERIC},
+				</if>
+				<if test="entity.normalFinishNum != null">normal_finish_num=
+					#{entity.normalFinishNum,jdbcType=NUMERIC},</if>
+				<if test="entity.beforeFinishNum != null">before_finish_num=
+					#{entity.beforeFinishNum,jdbcType=NUMERIC},</if>
+				<if test="entity.afterFinishNum != null">after_finish_num=
+					#{entity.afterFinishNum,jdbcType=NUMERIC},</if>
+				<if test="entity.unthreadfinishNum != null">unthreadfinish_num=
+					#{entity.unthreadfinishNum,jdbcType=NUMERIC},</if>
+				<if test="entity.throwFinishNum != null">throw_finish_num=
+					#{entity.throwFinishNum,jdbcType=NUMERIC},</if>
+				<if test="entity.dayFinishNum != null">day_finish_num= #{entity.dayFinishNum,jdbcType=NUMERIC},
+				</if>
+				<if test="entity.sumWastingTime != null">sum_wasting_time=
+					#{entity.sumWastingTime,jdbcType=NUMERIC},</if>
+				<if test="entity.chargeMoney != null">charge_money= #{entity.chargeMoney,jdbcType=NUMERIC},
+				</if>
+				<if test="entity.rightoffNum != null">rightoff_num= #{entity.rightoffNum,jdbcType=NUMERIC},
+				</if>
+				<if test="entity.respondNum != null">respond_num= #{entity.respondNum,jdbcType=NUMERIC},</if>
+				<if test="entity.unionNum != null">union_num= #{entity.unionNum,jdbcType=NUMERIC},</if>
+				<if test="entity.upNum != null">up_num= #{entity.upNum,jdbcType=NUMERIC},</if>
+				<if test="entity.xzxkNum != null">xzxk_num= #{entity.xzxkNum,jdbcType=NUMERIC},</if>
+				<if test="entity.fxzxkNum != null">fxzxk_num= #{entity.fxzxkNum,jdbcType=NUMERIC},</if>
+				<if test="entity.bmfwNum != null">bmfw_num= #{entity.bmfwNum,jdbcType=NUMERIC},</if>
+				<if test="entity.xzxkFinishNum != null">xzxk_finish_num=
+					#{entity.xzxkFinishNum,jdbcType=NUMERIC},</if>
+				<if test="entity.fxzxkFinishNum != null">fxzxk_finish_num=
+					#{entity.fxzxkFinishNum,jdbcType=NUMERIC},</if>
+				<if test="entity.bmfwFinishNum != null">bmfw_finish_num=
+					#{entity.bmfwFinishNum,jdbcType=NUMERIC},</if>
+				<if test="entity.complainNum != null">complain_num= #{entity.complainNum,jdbcType=NUMERIC},
+				</if>
+				<if test="entity.comNum != null">com_num= #{entity.comNum,jdbcType=NUMERIC},</if>
+				<if test="entity.complainReplyNum != null">complain_reply_num=
+					#{entity.complainReplyNum,jdbcType=NUMERIC},</if>
+				<if test="entity.consultNum != null">consult_num= #{entity.consultNum,jdbcType=NUMERIC},</if>
+				<if test="entity.consultReplayNum != null">consult_replay_num=
+					#{entity.consultReplayNum,jdbcType=NUMERIC},</if>
+				<if test="entity.moneyNum != null">money_num= #{entity.moneyNum,jdbcType=NUMERIC},</if>
+				<if test="entity.normalNum != null">normal_num= #{entity.normalNum,jdbcType=NUMERIC},</if>
+				<if test="entity.redNum != null">red_num= #{entity.redNum,jdbcType=NUMERIC},</if>
+				<if test="entity.yelloNum != null">yello_num= #{entity.yelloNum,jdbcType=NUMERIC},</if>
+				<if test="entity.greenNum != null">green_num= #{entity.greenNum,jdbcType=NUMERIC},</if>
+				<if test="entity.status != null">status= #{entity.status,jdbcType=VARCHAR},</if>
+				<if test="entity.nowNormalNum != null">now_normal_num= #{entity.nowNormalNum,jdbcType=NUMERIC},
+				</if>
+				<if test="entity.nowRedNum != null">now_red_num= #{entity.nowRedNum,jdbcType=NUMERIC},</if>
+				<if test="entity.nowYelloNum != null">now_yello_num= #{entity.nowYelloNum,jdbcType=NUMERIC},
+				</if>
+				<if test="entity.nowGreenNum != null">now_green_num= #{entity.nowGreenNum,jdbcType=NUMERIC},
+				</if>
+				<if test="entity.finishNormalNum != null">finish_normal_num=
+					#{entity.finishNormalNum,jdbcType=NUMERIC},</if>
+				<if test="entity.finishRedNum != null">finish_red_num= #{entity.finishRedNum,jdbcType=NUMERIC},
+				</if>
+				<if test="entity.finishYelloNum != null">finish_yello_num=
+					#{entity.finishYelloNum,jdbcType=NUMERIC},</if>
+				<if test="entity.finishGreenNum != null">finish_green_num=
+					#{entity.finishGreenNum,jdbcType=NUMERIC},</if>
+				<if test="entity.superviseGreenNum != null">supervise_green_num=
+					#{entity.superviseGreenNum,jdbcType=NUMERIC},</if>
+				<if test="entity.superviseYelloNum != null">supervise_yello_num=
+					#{entity.superviseYelloNum,jdbcType=NUMERIC},</if>
+				<if test="entity.superviseRedNum != null">supervise_red_num=
+					#{entity.superviseRedNum,jdbcType=NUMERIC},</if>
+				<if test="entity.cancelYellowNum != null">cancel_yellow_num=
+					#{entity.cancelYellowNum,jdbcType=NUMERIC},</if>
+				<if test="entity.cancelRedNum != null">cancel_red_num= #{entity.cancelRedNum,jdbcType=NUMERIC},
+				</if>
+				<if test="entity.instanceSuperviseGreenNum != null">instance_supervise_green_num=
+					#{entity.instanceSuperviseGreenNum,jdbcType=NUMERIC},</if>
+				<if test="entity.instanceSuperviseYelloNum != null">instance_supervise_yello_num=
+					#{entity.instanceSuperviseYelloNum,jdbcType=NUMERIC},</if>
+				<if test="entity.instanceSuperviseRedNum != null">instance_supervise_red_num=
+					#{entity.instanceSuperviseRedNum,jdbcType=NUMERIC},</if>
+				<if test="entity.instanceCancelYellowNum != null">instance_cancel_yellow_num=
+					#{entity.instanceCancelYellowNum,jdbcType=NUMERIC},</if>
+				<if test="entity.instanceCancelRedNum != null">instance_cancel_red_num=
+					#{entity.instanceCancelRedNum,jdbcType=NUMERIC},</if>
+				<if test="entity.complainSuperviseGreenNum != null">complain_supervise_green_num=
+					#{entity.complainSuperviseGreenNum,jdbcType=NUMERIC},</if>
+				<if test="entity.complainSuperviseYelloNum != null">complain_supervise_yello_num=
+					#{entity.complainSuperviseYelloNum,jdbcType=NUMERIC},</if>
+				<if test="entity.complainSuperviseRedNum != null">complain_supervise_red_num=
+					#{entity.complainSuperviseRedNum,jdbcType=NUMERIC},</if>
+				<if test="entity.complainCancelYellowNum != null">complain_cancel_yellow_num=
+					#{entity.complainCancelYellowNum,jdbcType=NUMERIC},</if>
+				<if test="entity.complainCancelRedNum != null">complain_cancel_red_num=
+					#{entity.complainCancelRedNum,jdbcType=NUMERIC},</if>
+				<if test="entity.consultSuperviseGreenNum != null">consult_supervise_green_num=
+					#{entity.consultSuperviseGreenNum,jdbcType=NUMERIC},</if>
+				<if test="entity.consultSuperviseYelloNum != null">consult_supervise_yello_num=
+					#{entity.consultSuperviseYelloNum,jdbcType=NUMERIC},</if>
+				<if test="entity.consultSuperviseRedNum != null">consult_supervise_red_num=
+					#{entity.consultSuperviseRedNum,jdbcType=NUMERIC},</if>
+				<if test="entity.consultCancelYellowNum != null">consult_cancel_yellow_num=
+					#{entity.consultCancelYellowNum,jdbcType=NUMERIC},</if>
+				<if test="entity.consultCancelRedNum != null">consult_cancel_red_num=
+					#{entity.consultCancelRedNum,jdbcType=NUMERIC},</if>
+				<if test="entity.xzxkeNum != null">xzxke_num= #{entity.xzxkeNum,jdbcType=NUMERIC},</if>
+				<if test="entity.xzjlNum != null">xzjl_num= #{entity.xzjlNum,jdbcType=NUMERIC},</if>
+				<if test="entity.xzcjNum != null">xzcj_num= #{entity.xzcjNum,jdbcType=NUMERIC},</if>
+				<if test="entity.xzjcNum != null">xzjc_num= #{entity.xzjcNum,jdbcType=NUMERIC},</if>
+				<if test="entity.xzgfNum != null">xzgf_num= #{entity.xzgfNum,jdbcType=NUMERIC},</if>
+				<if test="entity.xzqzNum != null">xzqz_num= #{entity.xzqzNum,jdbcType=NUMERIC},</if>
+				<if test="entity.xzqrNum != null">xzqr_num= #{entity.xzqrNum,jdbcType=NUMERIC},</if>
+				<if test="entity.xzcfNum != null">xzcf_num= #{entity.xzcfNum,jdbcType=NUMERIC},</if>
+				<if test="entity.xzzsNum != null">xzzs_num= #{entity.xzzsNum,jdbcType=NUMERIC},</if>
+				<if test="entity.qtxzqlNum != null">qtxzql_num= #{entity.qtxzqlNum,jdbcType=NUMERIC},</if>
+				<if test="entity.ggfwNum != null">ggfw_num= #{entity.ggfwNum,jdbcType=NUMERIC},</if>
+				<if test="entity.xzxkeFinishNum != null">xzxke_finish_num=
+					#{entity.xzxkeFinishNum,jdbcType=NUMERIC},</if>
+				<if test="entity.xzjlFinishNum != null">xzjl_finish_num=
+					#{entity.xzjlFinishNum,jdbcType=NUMERIC},</if>
+				<if test="entity.xzcjFinishNum != null">xzcj_finish_num=
+					#{entity.xzcjFinishNum,jdbcType=NUMERIC},</if>
+				<if test="entity.xzjcFinishNum != null">xzjc_finish_num=
+					#{entity.xzjcFinishNum,jdbcType=NUMERIC},</if>
+				<if test="entity.xzgfFinishNum != null">xzgf_finish_num=
+					#{entity.xzgfFinishNum,jdbcType=NUMERIC},</if>
+				<if test="entity.xzqzFinishNum != null">xzqz_finish_num=
+					#{entity.xzqzFinishNum,jdbcType=NUMERIC},</if>
+				<if test="entity.xzqrFinishNum != null">xzqr_finish_num=
+					#{entity.xzqrFinishNum,jdbcType=NUMERIC},</if>
+				<if test="entity.xzcfFinishNum != null">xzcf_finish_num=
+					#{entity.xzcfFinishNum,jdbcType=NUMERIC},</if>
+				<if test="entity.xzzsFinishNum != null">xzzs_finish_num=
+					#{entity.xzzsFinishNum,jdbcType=NUMERIC},</if>
+				<if test="entity.qtxzqlFinishNum != null">qtxzql_finish_num=
+					#{entity.qtxzqlFinishNum,jdbcType=NUMERIC},</if>
+				<if test="entity.ggfwFinishNum != null">ggfw_finish_num=
+					#{entity.ggfwFinishNum,jdbcType=NUMERIC},</if>
+				<if test="entity.specialSuperviseGreenNum != null">special_supervise_green_num=
+					#{entity.specialSuperviseGreenNum,jdbcType=NUMERIC},</if>
+				<if test="entity.specialSuperviseYellowNum != null">special_supervise_yellow_num=
+					#{entity.specialSuperviseYellowNum,jdbcType=NUMERIC},</if>
+				<if test="entity.specialSuperviseRedNum != null">special_supervise_red_num=
+					#{entity.specialSuperviseRedNum,jdbcType=NUMERIC}</if>
+			</set>
+			<where>
+				<choose>
+					<when test="entity.recordId != null">and record_id = #{entity.recordId}</when>
+					<otherwise>and record_id = </otherwise>
+				</choose>
+			</where>
+		</foreach>
+	</update>
+
+	<!-- ElementID:selectAll,Generated=true -->
+	<select id="selectAll" resultMap="TongJiResult">
+		select
+		<include refid="column_sql" />
+		from TA_JC_SUM_SUPERVISE_INFO
+	</select>
+
+	<!-- ElementID:selectMany,Generated=true -->
+	<select id="selectMany" parameterType="list" resultMap="TongJiResult">
+		select
+		<include refid="column_sql" />
+		from TA_JC_SUM_SUPERVISE_INFO
+		where TA_JC_SUM_SUPERVISE_INFO.record_id in (
+		<foreach collection="list" item="entity" separator="intersect">
+			select
+			TA_JC_SUM_SUPERVISE_INFO.record_id
+			from TA_JC_SUM_SUPERVISE_INFO
+			<where>
+				<if test="entity.orgId != null">and TA_JC_SUM_SUPERVISE_INFO.org_id = #{entity.orgId}
+				</if>
+				<if test="entity.areaOrgName != null">and TA_JC_SUM_SUPERVISE_INFO.area_org_name =
+					#{entity.areaOrgName}</if>
+				<if test="entity.areaOrgCode != null">and TA_JC_SUM_SUPERVISE_INFO.area_org_code =
+					#{entity.areaOrgCode}</if>
+				<if test="entity.provinceCode != null">and TA_JC_SUM_SUPERVISE_INFO.province_code =
+					#{entity.provinceCode}</if>
+				<if test="entity.cityCode != null">and TA_JC_SUM_SUPERVISE_INFO.city_code =
+					#{entity.cityCode}</if>
+				<if test="entity.countyCode != null">and TA_JC_SUM_SUPERVISE_INFO.county_code =
+					#{entity.countyCode}</if>
+				<if test="entity.streetCode != null">and TA_JC_SUM_SUPERVISE_INFO.street_code =
+					#{entity.streetCode}</if>
+				<if test="entity.villageCode != null">and TA_JC_SUM_SUPERVISE_INFO.village_code =
+					#{entity.villageCode}</if>
+				<if test="entity.orgLevel != null">and TA_JC_SUM_SUPERVISE_INFO.org_level =
+					#{entity.orgLevel}</if>
+				<if test="entity.orgThisLevel != null">and TA_JC_SUM_SUPERVISE_INFO.org_this_level =
+					#{entity.orgThisLevel}</if>
+				<if test="entity.nowDate != null">and TA_JC_SUM_SUPERVISE_INFO.now_date =
+					#{entity.nowDate}</if>
+				<if test="entity.acceptNowDate != null">and TA_JC_SUM_SUPERVISE_INFO.accept_now_date =
+					#{entity.acceptNowDate}</if>
+				<if test="entity.acceptNum != null">and TA_JC_SUM_SUPERVISE_INFO.accept_num =
+					#{entity.acceptNum}</if>
+				<if test="entity.djzAcceptNum != null">and TA_JC_SUM_SUPERVISE_INFO.djz_accept_num =
+					#{entity.djzAcceptNum}</if>
+				<if test="entity.finishNum != null">and TA_JC_SUM_SUPERVISE_INFO.finish_num =
+					#{entity.finishNum}</if>
+				<if test="entity.djzFinishNum != null">and TA_JC_SUM_SUPERVISE_INFO.djz_finish_num =
+					#{entity.djzFinishNum}</if>
+				<if test="entity.normalFinishNum != null">and TA_JC_SUM_SUPERVISE_INFO.normal_finish_num =
+					#{entity.normalFinishNum}</if>
+				<if test="entity.beforeFinishNum != null">and TA_JC_SUM_SUPERVISE_INFO.before_finish_num =
+					#{entity.beforeFinishNum}</if>
+				<if test="entity.afterFinishNum != null">and TA_JC_SUM_SUPERVISE_INFO.after_finish_num =
+					#{entity.afterFinishNum}</if>
+				<if test="entity.unthreadfinishNum != null">and TA_JC_SUM_SUPERVISE_INFO.unthreadfinish_num =
+					#{entity.unthreadfinishNum}</if>
+				<if test="entity.throwFinishNum != null">and TA_JC_SUM_SUPERVISE_INFO.throw_finish_num =
+					#{entity.throwFinishNum}</if>
+				<if test="entity.dayFinishNum != null">and TA_JC_SUM_SUPERVISE_INFO.day_finish_num =
+					#{entity.dayFinishNum}</if>
+				<if test="entity.sumWastingTime != null">and TA_JC_SUM_SUPERVISE_INFO.sum_wasting_time =
+					#{entity.sumWastingTime}</if>
+				<if test="entity.chargeMoney != null">and TA_JC_SUM_SUPERVISE_INFO.charge_money =
+					#{entity.chargeMoney}</if>
+				<if test="entity.rightoffNum != null">and TA_JC_SUM_SUPERVISE_INFO.rightoff_num =
+					#{entity.rightoffNum}</if>
+				<if test="entity.respondNum != null">and TA_JC_SUM_SUPERVISE_INFO.respond_num =
+					#{entity.respondNum}</if>
+				<if test="entity.unionNum != null">and TA_JC_SUM_SUPERVISE_INFO.union_num =
+					#{entity.unionNum}</if>
+				<if test="entity.upNum != null">and TA_JC_SUM_SUPERVISE_INFO.up_num = #{entity.upNum}
+				</if>
+				<if test="entity.xzxkNum != null">and TA_JC_SUM_SUPERVISE_INFO.xzxk_num =
+					#{entity.xzxkNum}</if>
+				<if test="entity.fxzxkNum != null">and TA_JC_SUM_SUPERVISE_INFO.fxzxk_num =
+					#{entity.fxzxkNum}</if>
+				<if test="entity.bmfwNum != null">and TA_JC_SUM_SUPERVISE_INFO.bmfw_num =
+					#{entity.bmfwNum}</if>
+				<if test="entity.xzxkFinishNum != null">and TA_JC_SUM_SUPERVISE_INFO.xzxk_finish_num =
+					#{entity.xzxkFinishNum}</if>
+				<if test="entity.fxzxkFinishNum != null">and TA_JC_SUM_SUPERVISE_INFO.fxzxk_finish_num =
+					#{entity.fxzxkFinishNum}</if>
+				<if test="entity.bmfwFinishNum != null">and TA_JC_SUM_SUPERVISE_INFO.bmfw_finish_num =
+					#{entity.bmfwFinishNum}</if>
+				<if test="entity.complainNum != null">and TA_JC_SUM_SUPERVISE_INFO.complain_num =
+					#{entity.complainNum}</if>
+				<if test="entity.comNum != null">and TA_JC_SUM_SUPERVISE_INFO.com_num = #{entity.comNum}
+				</if>
+				<if test="entity.complainReplyNum != null">and TA_JC_SUM_SUPERVISE_INFO.complain_reply_num =
+					#{entity.complainReplyNum}</if>
+				<if test="entity.consultNum != null">and TA_JC_SUM_SUPERVISE_INFO.consult_num =
+					#{entity.consultNum}</if>
+				<if test="entity.consultReplayNum != null">and TA_JC_SUM_SUPERVISE_INFO.consult_replay_num =
+					#{entity.consultReplayNum}</if>
+				<if test="entity.moneyNum != null">and TA_JC_SUM_SUPERVISE_INFO.money_num =
+					#{entity.moneyNum}</if>
+				<if test="entity.normalNum != null">and TA_JC_SUM_SUPERVISE_INFO.normal_num =
+					#{entity.normalNum}</if>
+				<if test="entity.redNum != null">and TA_JC_SUM_SUPERVISE_INFO.red_num = #{entity.redNum}
+				</if>
+				<if test="entity.yelloNum != null">and TA_JC_SUM_SUPERVISE_INFO.yello_num =
+					#{entity.yelloNum}</if>
+				<if test="entity.greenNum != null">and TA_JC_SUM_SUPERVISE_INFO.green_num =
+					#{entity.greenNum}</if>
+				<if test="entity.status != null">and TA_JC_SUM_SUPERVISE_INFO.status = #{entity.status}
+				</if>
+				<if test="entity.nowNormalNum != null">and TA_JC_SUM_SUPERVISE_INFO.now_normal_num =
+					#{entity.nowNormalNum}</if>
+				<if test="entity.nowRedNum != null">and TA_JC_SUM_SUPERVISE_INFO.now_red_num =
+					#{entity.nowRedNum}</if>
+				<if test="entity.nowYelloNum != null">and TA_JC_SUM_SUPERVISE_INFO.now_yello_num =
+					#{entity.nowYelloNum}</if>
+				<if test="entity.nowGreenNum != null">and TA_JC_SUM_SUPERVISE_INFO.now_green_num =
+					#{entity.nowGreenNum}</if>
+				<if test="entity.finishNormalNum != null">and TA_JC_SUM_SUPERVISE_INFO.finish_normal_num =
+					#{entity.finishNormalNum}</if>
+				<if test="entity.finishRedNum != null">and TA_JC_SUM_SUPERVISE_INFO.finish_red_num =
+					#{entity.finishRedNum}</if>
+				<if test="entity.finishYelloNum != null">and TA_JC_SUM_SUPERVISE_INFO.finish_yello_num =
+					#{entity.finishYelloNum}</if>
+				<if test="entity.finishGreenNum != null">and TA_JC_SUM_SUPERVISE_INFO.finish_green_num =
+					#{entity.finishGreenNum}</if>
+				<if test="entity.superviseGreenNum != null">and TA_JC_SUM_SUPERVISE_INFO.supervise_green_num =
+					#{entity.superviseGreenNum}</if>
+				<if test="entity.superviseYelloNum != null">and TA_JC_SUM_SUPERVISE_INFO.supervise_yello_num =
+					#{entity.superviseYelloNum}</if>
+				<if test="entity.superviseRedNum != null">and TA_JC_SUM_SUPERVISE_INFO.supervise_red_num =
+					#{entity.superviseRedNum}</if>
+				<if test="entity.cancelYellowNum != null">and TA_JC_SUM_SUPERVISE_INFO.cancel_yellow_num =
+					#{entity.cancelYellowNum}</if>
+				<if test="entity.cancelRedNum != null">and TA_JC_SUM_SUPERVISE_INFO.cancel_red_num =
+					#{entity.cancelRedNum}</if>
+				<if test="entity.recordId != null">and TA_JC_SUM_SUPERVISE_INFO.record_id =
+					#{entity.recordId}</if>
+				<if test="entity.instanceSuperviseGreenNum != null">and
+					TA_JC_SUM_SUPERVISE_INFO.instance_supervise_green_num =
+					#{entity.instanceSuperviseGreenNum}</if>
+				<if test="entity.instanceSuperviseYelloNum != null">and
+					TA_JC_SUM_SUPERVISE_INFO.instance_supervise_yello_num =
+					#{entity.instanceSuperviseYelloNum}</if>
+				<if test="entity.instanceSuperviseRedNum != null">and TA_JC_SUM_SUPERVISE_INFO.instance_supervise_red_num
+					= #{entity.instanceSuperviseRedNum}</if>
+				<if test="entity.instanceCancelYellowNum != null">and TA_JC_SUM_SUPERVISE_INFO.instance_cancel_yellow_num
+					= #{entity.instanceCancelYellowNum}</if>
+				<if test="entity.instanceCancelRedNum != null">and TA_JC_SUM_SUPERVISE_INFO.instance_cancel_red_num =
+					#{entity.instanceCancelRedNum}</if>
+				<if test="entity.complainSuperviseGreenNum != null">and
+					TA_JC_SUM_SUPERVISE_INFO.complain_supervise_green_num =
+					#{entity.complainSuperviseGreenNum}</if>
+				<if test="entity.complainSuperviseYelloNum != null">and
+					TA_JC_SUM_SUPERVISE_INFO.complain_supervise_yello_num =
+					#{entity.complainSuperviseYelloNum}</if>
+				<if test="entity.complainSuperviseRedNum != null">and TA_JC_SUM_SUPERVISE_INFO.complain_supervise_red_num
+					= #{entity.complainSuperviseRedNum}</if>
+				<if test="entity.complainCancelYellowNum != null">and TA_JC_SUM_SUPERVISE_INFO.complain_cancel_yellow_num
+					= #{entity.complainCancelYellowNum}</if>
+				<if test="entity.complainCancelRedNum != null">and TA_JC_SUM_SUPERVISE_INFO.complain_cancel_red_num =
+					#{entity.complainCancelRedNum}</if>
+				<if test="entity.consultSuperviseGreenNum != null">and TA_JC_SUM_SUPERVISE_INFO.consult_supervise_green_num
+					= #{entity.consultSuperviseGreenNum}</if>
+				<if test="entity.consultSuperviseYelloNum != null">and TA_JC_SUM_SUPERVISE_INFO.consult_supervise_yello_num
+					= #{entity.consultSuperviseYelloNum}</if>
+				<if test="entity.consultSuperviseRedNum != null">and TA_JC_SUM_SUPERVISE_INFO.consult_supervise_red_num =
+					#{entity.consultSuperviseRedNum}</if>
+				<if test="entity.consultCancelYellowNum != null">and TA_JC_SUM_SUPERVISE_INFO.consult_cancel_yellow_num =
+					#{entity.consultCancelYellowNum}</if>
+				<if test="entity.consultCancelRedNum != null">and TA_JC_SUM_SUPERVISE_INFO.consult_cancel_red_num =
+					#{entity.consultCancelRedNum}</if>
+				<if test="entity.xzxkeNum != null">and TA_JC_SUM_SUPERVISE_INFO.xzxke_num =
+					#{entity.xzxkeNum}</if>
+				<if test="entity.xzjlNum != null">and TA_JC_SUM_SUPERVISE_INFO.xzjl_num =
+					#{entity.xzjlNum}</if>
+				<if test="entity.xzcjNum != null">and TA_JC_SUM_SUPERVISE_INFO.xzcj_num =
+					#{entity.xzcjNum}</if>
+				<if test="entity.xzjcNum != null">and TA_JC_SUM_SUPERVISE_INFO.xzjc_num =
+					#{entity.xzjcNum}</if>
+				<if test="entity.xzgfNum != null">and TA_JC_SUM_SUPERVISE_INFO.xzgf_num =
+					#{entity.xzgfNum}</if>
+				<if test="entity.xzqzNum != null">and TA_JC_SUM_SUPERVISE_INFO.xzqz_num =
+					#{entity.xzqzNum}</if>
+				<if test="entity.xzqrNum != null">and TA_JC_SUM_SUPERVISE_INFO.xzqr_num =
+					#{entity.xzqrNum}</if>
+				<if test="entity.xzcfNum != null">and TA_JC_SUM_SUPERVISE_INFO.xzcf_num =
+					#{entity.xzcfNum}</if>
+				<if test="entity.xzzsNum != null">and TA_JC_SUM_SUPERVISE_INFO.xzzs_num =
+					#{entity.xzzsNum}</if>
+				<if test="entity.qtxzqlNum != null">and TA_JC_SUM_SUPERVISE_INFO.qtxzql_num =
+					#{entity.qtxzqlNum}</if>
+				<if test="entity.ggfwNum != null">and TA_JC_SUM_SUPERVISE_INFO.ggfw_num =
+					#{entity.ggfwNum}</if>
+				<if test="entity.xzxkeFinishNum != null">and TA_JC_SUM_SUPERVISE_INFO.xzxke_finish_num =
+					#{entity.xzxkeFinishNum}</if>
+				<if test="entity.xzjlFinishNum != null">and TA_JC_SUM_SUPERVISE_INFO.xzjl_finish_num =
+					#{entity.xzjlFinishNum}</if>
+				<if test="entity.xzcjFinishNum != null">and TA_JC_SUM_SUPERVISE_INFO.xzcj_finish_num =
+					#{entity.xzcjFinishNum}</if>
+				<if test="entity.xzjcFinishNum != null">and TA_JC_SUM_SUPERVISE_INFO.xzjc_finish_num =
+					#{entity.xzjcFinishNum}</if>
+				<if test="entity.xzgfFinishNum != null">and TA_JC_SUM_SUPERVISE_INFO.xzgf_finish_num =
+					#{entity.xzgfFinishNum}</if>
+				<if test="entity.xzqzFinishNum != null">and TA_JC_SUM_SUPERVISE_INFO.xzqz_finish_num =
+					#{entity.xzqzFinishNum}</if>
+				<if test="entity.xzqrFinishNum != null">and TA_JC_SUM_SUPERVISE_INFO.xzqr_finish_num =
+					#{entity.xzqrFinishNum}</if>
+				<if test="entity.xzcfFinishNum != null">and TA_JC_SUM_SUPERVISE_INFO.xzcf_finish_num =
+					#{entity.xzcfFinishNum}</if>
+				<if test="entity.xzzsFinishNum != null">and TA_JC_SUM_SUPERVISE_INFO.xzzs_finish_num =
+					#{entity.xzzsFinishNum}</if>
+				<if test="entity.qtxzqlFinishNum != null">and TA_JC_SUM_SUPERVISE_INFO.qtxzql_finish_num =
+					#{entity.qtxzqlFinishNum}</if>
+				<if test="entity.ggfwFinishNum != null">and TA_JC_SUM_SUPERVISE_INFO.ggfw_finish_num =
+					#{entity.ggfwFinishNum}</if>
+				<if test="entity.specialSuperviseGreenNum != null">and TA_JC_SUM_SUPERVISE_INFO.special_supervise_green_num
+					= #{entity.specialSuperviseGreenNum}</if>
+				<if test="entity.specialSuperviseYellowNum != null">and
+					TA_JC_SUM_SUPERVISE_INFO.special_supervise_yellow_num =
+					#{entity.specialSuperviseYellowNum}</if>
+				<if test="entity.specialSuperviseRedNum != null">and TA_JC_SUM_SUPERVISE_INFO.special_supervise_red_num =
+					#{entity.specialSuperviseRedNum}</if>
+			</where>
+		</foreach>
+		)
+	</select>
+
+	<!-- ElementID:selectUnion,Generated=true -->
+	<select id="selectUnion" parameterType="list" resultMap="TongJiResult">
+		select
+		<include refid="column_sql" />
+		from TA_JC_SUM_SUPERVISE_INFO
+		INNER JOIN
+		<foreach collection="list" item="entity" separator="UNION"
+			open="(" close=")">
+			SELECT
+			record_id
+			FROM TA_JC_SUM_SUPERVISE_INFO
+			<where>
+				<if test="entity.orgId != null">and TA_JC_SUM_SUPERVISE_INFO.org_id = #{entity.orgId}
+				</if>
+				<if test="entity.areaOrgName != null">and TA_JC_SUM_SUPERVISE_INFO.area_org_name =
+					#{entity.areaOrgName}</if>
+				<if test="entity.areaOrgCode != null">and TA_JC_SUM_SUPERVISE_INFO.area_org_code =
+					#{entity.areaOrgCode}</if>
+				<if test="entity.provinceCode != null">and TA_JC_SUM_SUPERVISE_INFO.province_code =
+					#{entity.provinceCode}</if>
+				<if test="entity.cityCode != null">and TA_JC_SUM_SUPERVISE_INFO.city_code =
+					#{entity.cityCode}</if>
+				<if test="entity.countyCode != null">and TA_JC_SUM_SUPERVISE_INFO.county_code =
+					#{entity.countyCode}</if>
+				<if test="entity.streetCode != null">and TA_JC_SUM_SUPERVISE_INFO.street_code =
+					#{entity.streetCode}</if>
+				<if test="entity.villageCode != null">and TA_JC_SUM_SUPERVISE_INFO.village_code =
+					#{entity.villageCode}</if>
+				<if test="entity.orgLevel != null">and TA_JC_SUM_SUPERVISE_INFO.org_level =
+					#{entity.orgLevel}</if>
+				<if test="entity.orgThisLevel != null">and TA_JC_SUM_SUPERVISE_INFO.org_this_level =
+					#{entity.orgThisLevel}</if>
+				<if test="entity.nowDate != null">and TA_JC_SUM_SUPERVISE_INFO.now_date =
+					#{entity.nowDate}</if>
+				<if test="entity.acceptNowDate != null">and TA_JC_SUM_SUPERVISE_INFO.accept_now_date =
+					#{entity.acceptNowDate}</if>
+				<if test="entity.acceptNum != null">and TA_JC_SUM_SUPERVISE_INFO.accept_num =
+					#{entity.acceptNum}</if>
+				<if test="entity.djzAcceptNum != null">and TA_JC_SUM_SUPERVISE_INFO.djz_accept_num =
+					#{entity.djzAcceptNum}</if>
+				<if test="entity.finishNum != null">and TA_JC_SUM_SUPERVISE_INFO.finish_num =
+					#{entity.finishNum}</if>
+				<if test="entity.djzFinishNum != null">and TA_JC_SUM_SUPERVISE_INFO.djz_finish_num =
+					#{entity.djzFinishNum}</if>
+				<if test="entity.normalFinishNum != null">and TA_JC_SUM_SUPERVISE_INFO.normal_finish_num =
+					#{entity.normalFinishNum}</if>
+				<if test="entity.beforeFinishNum != null">and TA_JC_SUM_SUPERVISE_INFO.before_finish_num =
+					#{entity.beforeFinishNum}</if>
+				<if test="entity.afterFinishNum != null">and TA_JC_SUM_SUPERVISE_INFO.after_finish_num =
+					#{entity.afterFinishNum}</if>
+				<if test="entity.unthreadfinishNum != null">and TA_JC_SUM_SUPERVISE_INFO.unthreadfinish_num =
+					#{entity.unthreadfinishNum}</if>
+				<if test="entity.throwFinishNum != null">and TA_JC_SUM_SUPERVISE_INFO.throw_finish_num =
+					#{entity.throwFinishNum}</if>
+				<if test="entity.dayFinishNum != null">and TA_JC_SUM_SUPERVISE_INFO.day_finish_num =
+					#{entity.dayFinishNum}</if>
+				<if test="entity.sumWastingTime != null">and TA_JC_SUM_SUPERVISE_INFO.sum_wasting_time =
+					#{entity.sumWastingTime}</if>
+				<if test="entity.chargeMoney != null">and TA_JC_SUM_SUPERVISE_INFO.charge_money =
+					#{entity.chargeMoney}</if>
+				<if test="entity.rightoffNum != null">and TA_JC_SUM_SUPERVISE_INFO.rightoff_num =
+					#{entity.rightoffNum}</if>
+				<if test="entity.respondNum != null">and TA_JC_SUM_SUPERVISE_INFO.respond_num =
+					#{entity.respondNum}</if>
+				<if test="entity.unionNum != null">and TA_JC_SUM_SUPERVISE_INFO.union_num =
+					#{entity.unionNum}</if>
+				<if test="entity.upNum != null">and TA_JC_SUM_SUPERVISE_INFO.up_num = #{entity.upNum}
+				</if>
+				<if test="entity.xzxkNum != null">and TA_JC_SUM_SUPERVISE_INFO.xzxk_num =
+					#{entity.xzxkNum}</if>
+				<if test="entity.fxzxkNum != null">and TA_JC_SUM_SUPERVISE_INFO.fxzxk_num =
+					#{entity.fxzxkNum}</if>
+				<if test="entity.bmfwNum != null">and TA_JC_SUM_SUPERVISE_INFO.bmfw_num =
+					#{entity.bmfwNum}</if>
+				<if test="entity.xzxkFinishNum != null">and TA_JC_SUM_SUPERVISE_INFO.xzxk_finish_num =
+					#{entity.xzxkFinishNum}</if>
+				<if test="entity.fxzxkFinishNum != null">and TA_JC_SUM_SUPERVISE_INFO.fxzxk_finish_num =
+					#{entity.fxzxkFinishNum}</if>
+				<if test="entity.bmfwFinishNum != null">and TA_JC_SUM_SUPERVISE_INFO.bmfw_finish_num =
+					#{entity.bmfwFinishNum}</if>
+				<if test="entity.complainNum != null">and TA_JC_SUM_SUPERVISE_INFO.complain_num =
+					#{entity.complainNum}</if>
+				<if test="entity.comNum != null">and TA_JC_SUM_SUPERVISE_INFO.com_num = #{entity.comNum}
+				</if>
+				<if test="entity.complainReplyNum != null">and TA_JC_SUM_SUPERVISE_INFO.complain_reply_num =
+					#{entity.complainReplyNum}</if>
+				<if test="entity.consultNum != null">and TA_JC_SUM_SUPERVISE_INFO.consult_num =
+					#{entity.consultNum}</if>
+				<if test="entity.consultReplayNum != null">and TA_JC_SUM_SUPERVISE_INFO.consult_replay_num =
+					#{entity.consultReplayNum}</if>
+				<if test="entity.moneyNum != null">and TA_JC_SUM_SUPERVISE_INFO.money_num =
+					#{entity.moneyNum}</if>
+				<if test="entity.normalNum != null">and TA_JC_SUM_SUPERVISE_INFO.normal_num =
+					#{entity.normalNum}</if>
+				<if test="entity.redNum != null">and TA_JC_SUM_SUPERVISE_INFO.red_num = #{entity.redNum}
+				</if>
+				<if test="entity.yelloNum != null">and TA_JC_SUM_SUPERVISE_INFO.yello_num =
+					#{entity.yelloNum}</if>
+				<if test="entity.greenNum != null">and TA_JC_SUM_SUPERVISE_INFO.green_num =
+					#{entity.greenNum}</if>
+				<if test="entity.status != null">and TA_JC_SUM_SUPERVISE_INFO.status = #{entity.status}
+				</if>
+				<if test="entity.nowNormalNum != null">and TA_JC_SUM_SUPERVISE_INFO.now_normal_num =
+					#{entity.nowNormalNum}</if>
+				<if test="entity.nowRedNum != null">and TA_JC_SUM_SUPERVISE_INFO.now_red_num =
+					#{entity.nowRedNum}</if>
+				<if test="entity.nowYelloNum != null">and TA_JC_SUM_SUPERVISE_INFO.now_yello_num =
+					#{entity.nowYelloNum}</if>
+				<if test="entity.nowGreenNum != null">and TA_JC_SUM_SUPERVISE_INFO.now_green_num =
+					#{entity.nowGreenNum}</if>
+				<if test="entity.finishNormalNum != null">and TA_JC_SUM_SUPERVISE_INFO.finish_normal_num =
+					#{entity.finishNormalNum}</if>
+				<if test="entity.finishRedNum != null">and TA_JC_SUM_SUPERVISE_INFO.finish_red_num =
+					#{entity.finishRedNum}</if>
+				<if test="entity.finishYelloNum != null">and TA_JC_SUM_SUPERVISE_INFO.finish_yello_num =
+					#{entity.finishYelloNum}</if>
+				<if test="entity.finishGreenNum != null">and TA_JC_SUM_SUPERVISE_INFO.finish_green_num =
+					#{entity.finishGreenNum}</if>
+				<if test="entity.superviseGreenNum != null">and TA_JC_SUM_SUPERVISE_INFO.supervise_green_num =
+					#{entity.superviseGreenNum}</if>
+				<if test="entity.superviseYelloNum != null">and TA_JC_SUM_SUPERVISE_INFO.supervise_yello_num =
+					#{entity.superviseYelloNum}</if>
+				<if test="entity.superviseRedNum != null">and TA_JC_SUM_SUPERVISE_INFO.supervise_red_num =
+					#{entity.superviseRedNum}</if>
+				<if test="entity.cancelYellowNum != null">and TA_JC_SUM_SUPERVISE_INFO.cancel_yellow_num =
+					#{entity.cancelYellowNum}</if>
+				<if test="entity.cancelRedNum != null">and TA_JC_SUM_SUPERVISE_INFO.cancel_red_num =
+					#{entity.cancelRedNum}</if>
+				<if test="entity.recordId != null">and TA_JC_SUM_SUPERVISE_INFO.record_id =
+					#{entity.recordId}</if>
+				<if test="entity.instanceSuperviseGreenNum != null">and
+					TA_JC_SUM_SUPERVISE_INFO.instance_supervise_green_num =
+					#{entity.instanceSuperviseGreenNum}</if>
+				<if test="entity.instanceSuperviseYelloNum != null">and
+					TA_JC_SUM_SUPERVISE_INFO.instance_supervise_yello_num =
+					#{entity.instanceSuperviseYelloNum}</if>
+				<if test="entity.instanceSuperviseRedNum != null">and TA_JC_SUM_SUPERVISE_INFO.instance_supervise_red_num
+					= #{entity.instanceSuperviseRedNum}</if>
+				<if test="entity.instanceCancelYellowNum != null">and TA_JC_SUM_SUPERVISE_INFO.instance_cancel_yellow_num
+					= #{entity.instanceCancelYellowNum}</if>
+				<if test="entity.instanceCancelRedNum != null">and TA_JC_SUM_SUPERVISE_INFO.instance_cancel_red_num =
+					#{entity.instanceCancelRedNum}</if>
+				<if test="entity.complainSuperviseGreenNum != null">and
+					TA_JC_SUM_SUPERVISE_INFO.complain_supervise_green_num =
+					#{entity.complainSuperviseGreenNum}</if>
+				<if test="entity.complainSuperviseYelloNum != null">and
+					TA_JC_SUM_SUPERVISE_INFO.complain_supervise_yello_num =
+					#{entity.complainSuperviseYelloNum}</if>
+				<if test="entity.complainSuperviseRedNum != null">and TA_JC_SUM_SUPERVISE_INFO.complain_supervise_red_num
+					= #{entity.complainSuperviseRedNum}</if>
+				<if test="entity.complainCancelYellowNum != null">and TA_JC_SUM_SUPERVISE_INFO.complain_cancel_yellow_num
+					= #{entity.complainCancelYellowNum}</if>
+				<if test="entity.complainCancelRedNum != null">and TA_JC_SUM_SUPERVISE_INFO.complain_cancel_red_num =
+					#{entity.complainCancelRedNum}</if>
+				<if test="entity.consultSuperviseGreenNum != null">and TA_JC_SUM_SUPERVISE_INFO.consult_supervise_green_num
+					= #{entity.consultSuperviseGreenNum}</if>
+				<if test="entity.consultSuperviseYelloNum != null">and TA_JC_SUM_SUPERVISE_INFO.consult_supervise_yello_num
+					= #{entity.consultSuperviseYelloNum}</if>
+				<if test="entity.consultSuperviseRedNum != null">and TA_JC_SUM_SUPERVISE_INFO.consult_supervise_red_num =
+					#{entity.consultSuperviseRedNum}</if>
+				<if test="entity.consultCancelYellowNum != null">and TA_JC_SUM_SUPERVISE_INFO.consult_cancel_yellow_num =
+					#{entity.consultCancelYellowNum}</if>
+				<if test="entity.consultCancelRedNum != null">and TA_JC_SUM_SUPERVISE_INFO.consult_cancel_red_num =
+					#{entity.consultCancelRedNum}</if>
+				<if test="entity.xzxkeNum != null">and TA_JC_SUM_SUPERVISE_INFO.xzxke_num =
+					#{entity.xzxkeNum}</if>
+				<if test="entity.xzjlNum != null">and TA_JC_SUM_SUPERVISE_INFO.xzjl_num =
+					#{entity.xzjlNum}</if>
+				<if test="entity.xzcjNum != null">and TA_JC_SUM_SUPERVISE_INFO.xzcj_num =
+					#{entity.xzcjNum}</if>
+				<if test="entity.xzjcNum != null">and TA_JC_SUM_SUPERVISE_INFO.xzjc_num =
+					#{entity.xzjcNum}</if>
+				<if test="entity.xzgfNum != null">and TA_JC_SUM_SUPERVISE_INFO.xzgf_num =
+					#{entity.xzgfNum}</if>
+				<if test="entity.xzqzNum != null">and TA_JC_SUM_SUPERVISE_INFO.xzqz_num =
+					#{entity.xzqzNum}</if>
+				<if test="entity.xzqrNum != null">and TA_JC_SUM_SUPERVISE_INFO.xzqr_num =
+					#{entity.xzqrNum}</if>
+				<if test="entity.xzcfNum != null">and TA_JC_SUM_SUPERVISE_INFO.xzcf_num =
+					#{entity.xzcfNum}</if>
+				<if test="entity.xzzsNum != null">and TA_JC_SUM_SUPERVISE_INFO.xzzs_num =
+					#{entity.xzzsNum}</if>
+				<if test="entity.qtxzqlNum != null">and TA_JC_SUM_SUPERVISE_INFO.qtxzql_num =
+					#{entity.qtxzqlNum}</if>
+				<if test="entity.ggfwNum != null">and TA_JC_SUM_SUPERVISE_INFO.ggfw_num =
+					#{entity.ggfwNum}</if>
+				<if test="entity.xzxkeFinishNum != null">and TA_JC_SUM_SUPERVISE_INFO.xzxke_finish_num =
+					#{entity.xzxkeFinishNum}</if>
+				<if test="entity.xzjlFinishNum != null">and TA_JC_SUM_SUPERVISE_INFO.xzjl_finish_num =
+					#{entity.xzjlFinishNum}</if>
+				<if test="entity.xzcjFinishNum != null">and TA_JC_SUM_SUPERVISE_INFO.xzcj_finish_num =
+					#{entity.xzcjFinishNum}</if>
+				<if test="entity.xzjcFinishNum != null">and TA_JC_SUM_SUPERVISE_INFO.xzjc_finish_num =
+					#{entity.xzjcFinishNum}</if>
+				<if test="entity.xzgfFinishNum != null">and TA_JC_SUM_SUPERVISE_INFO.xzgf_finish_num =
+					#{entity.xzgfFinishNum}</if>
+				<if test="entity.xzqzFinishNum != null">and TA_JC_SUM_SUPERVISE_INFO.xzqz_finish_num =
+					#{entity.xzqzFinishNum}</if>
+				<if test="entity.xzqrFinishNum != null">and TA_JC_SUM_SUPERVISE_INFO.xzqr_finish_num =
+					#{entity.xzqrFinishNum}</if>
+				<if test="entity.xzcfFinishNum != null">and TA_JC_SUM_SUPERVISE_INFO.xzcf_finish_num =
+					#{entity.xzcfFinishNum}</if>
+				<if test="entity.xzzsFinishNum != null">and TA_JC_SUM_SUPERVISE_INFO.xzzs_finish_num =
+					#{entity.xzzsFinishNum}</if>
+				<if test="entity.qtxzqlFinishNum != null">and TA_JC_SUM_SUPERVISE_INFO.qtxzql_finish_num =
+					#{entity.qtxzqlFinishNum}</if>
+				<if test="entity.ggfwFinishNum != null">and TA_JC_SUM_SUPERVISE_INFO.ggfw_finish_num =
+					#{entity.ggfwFinishNum}</if>
+				<if test="entity.specialSuperviseGreenNum != null">and TA_JC_SUM_SUPERVISE_INFO.special_supervise_green_num
+					= #{entity.specialSuperviseGreenNum}</if>
+				<if test="entity.specialSuperviseYellowNum != null">and
+					TA_JC_SUM_SUPERVISE_INFO.special_supervise_yellow_num =
+					#{entity.specialSuperviseYellowNum}</if>
+				<if test="entity.specialSuperviseRedNum != null">and TA_JC_SUM_SUPERVISE_INFO.special_supervise_red_num =
+					#{entity.specialSuperviseRedNum}</if>
+			</where>
+		</foreach>
+		c2_temp_table ON TA_JC_SUM_SUPERVISE_INFO.record_id =
+		c2_temp_table.record_id
+	</select>
+
+	<!-- ElementID:selectByID,Generated=true -->
+	<select id="selectByID" parameterType="java.lang.String"
+		resultMap="TongJiResult">
+		select
+		<include refid="column_sql" />
+		from TA_JC_SUM_SUPERVISE_INFO
+		where TA_JC_SUM_SUPERVISE_INFO.record_id = #{recordId,jdbcType=VARCHAR}
+	</select>
+
+	<!-- ElementID:selectByPage,Generated=true -->
+	<select id="selectByPage" parameterType="com.chinacreator.dzjc_tongji.TongJi"
+		resultMap="TongJiResult">
+		select
+		<include refid="column_sql" />
+		from TA_JC_SUM_SUPERVISE_INFO
+		<where>
+			<include refid="whereClause_sql" />
+		</where>
+	</select>
+
+	<select id="getOrg" parameterType="com.chinacreator.dzjc_tongji.TongJi"
+		resultMap="TongJiResult">
+		select
+		<include refid="column_sql" />
+		from TA_JC_SUM_SUPERVISE_INFO where record_id in (
+		<foreach collection="list" item="entity" index="index"
+			separator=",">
+			#{entity}
+		</foreach>
+		)
+	</select>
+
+	<insert id="insertCards" parameterType="list">
+		insert into TA_JC_SUM_SUPERVISE_INFO
+		(org_id,area_org_name,area_org_code,province_code,city_code,county_code,street_code,
+		village_code,org_level,org_this_level,now_date,accept_now_date,record_id,SUPERVISE_GREEN_NUM,SUPERVISE_YELLO_NUM,
+		SUPERVISE_RED_NUM,INSTANCE_SUPERVISE_GREEN_NUM,INSTANCE_SUPERVISE_YELLO_NUM,INSTANCE_SUPERVISE_RED_NUM,COMPLAIN_SUPERVISE_GREEN_NUM,
+		COMPLAIN_SUPERVISE_YELLO_NUM,COMPLAIN_SUPERVISE_RED_NUM,CONSULT_SUPERVISE_GREEN_NUM,CONSULT_SUPERVISE_YELLO_NUM,CONSULT_SUPERVISE_RED_NUM,
+		SPECIAL_SUPERVISE_GREEN_NUM,SPECIAL_SUPERVISE_YELLOW_NUM,SPECIAL_SUPERVISE_RED_NUM,WSBS_GREEN_NUM,WSBS_YELLOW_NUM,WSBS_RED_NUM,
+		BJCZ_GREEN_NUM,BJCZ_YELLOW_NUM,BJCZ_RED_NUM)
+		<foreach collection="list" item="entity" index="index"
+			separator="union all">
+			select
+			#{entity.orgId,jdbcType = VARCHAR},
+			#{entity.areaOrgName,jdbcType = VARCHAR},
+			#{entity.areaOrgCode,jdbcType = VARCHAR},
+			#{entity.provinceCode,jdbcType = VARCHAR},
+			#{entity.cityCode,jdbcType = VARCHAR},
+			#{entity.countyCode,jdbcType = VARCHAR},
+			#{entity.streetCode,jdbcType = VARCHAR},
+			#{entity.villageCode,jdbcType = VARCHAR},
+			#{entity.orgLevel,jdbcType = VARCHAR},
+			#{entity.orgThisLevel,jdbcType = VARCHAR},
+			#{entity.nowDate,jdbcType = VARCHAR},
+			#{entity.acceptNowDate,jdbcType = VARCHAR},
+			#{entity.recordId,jdbcType = VARCHAR},
+			#{entity.superviseGreenNum,jdbcType = NUMERIC},
+			#{entity.superviseYelloNum,jdbcType = NUMERIC},
+			#{entity.superviseRedNum,jdbcType = NUMERIC},
+			#{entity.instanceSuperviseGreenNum,jdbcType = NUMERIC},
+			#{entity.instanceSuperviseYelloNum,jdbcType = NUMERIC},
+			#{entity.instanceSuperviseRedNum,jdbcType = NUMERIC},
+			#{entity.complainSuperviseGreenNum,jdbcType = NUMERIC},
+			#{entity.complainSuperviseYelloNum,jdbcType = NUMERIC},
+			#{entity.complainSuperviseRedNum,jdbcType = NUMERIC},
+			#{entity.consultSuperviseGreenNum,jdbcType = NUMERIC},
+			#{entity.consultSuperviseYelloNum,jdbcType = NUMERIC},
+			#{entity.consultSuperviseRedNum,jdbcType = NUMERIC},
+			#{entity.specialSuperviseGreenNum,jdbcType = NUMERIC},
+			#{entity.specialSuperviseYellowNum,jdbcType = NUMERIC},
+			#{entity.specialSuperviseRedNum,jdbcType = NUMERIC},
+			#{entity.wsbsGreenNum,jdbcType = NUMERIC},
+			#{entity.wsbsYellowNum,jdbcType = NUMERIC},
+			#{entity.wsbsRedNum,jdbcType = NUMERIC},
+			#{entity.bjczGreenNum,jdbcType = NUMERIC},
+			#{entity.bjczYellowNum,jdbcType = NUMERIC},
+			#{entity.bjczRedNum,jdbcType = NUMERIC}
+			from dual
+		</foreach>
+	</insert>
+
+</mapper>

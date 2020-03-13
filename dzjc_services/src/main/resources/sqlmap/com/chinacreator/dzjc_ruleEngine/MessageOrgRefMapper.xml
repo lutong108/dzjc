@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"><mapper namespace="com.chinacreator.dzjc_ruleEngine.MessageOrgRefMapper">	
+
+<!-- ElementID:column_sql,Generated=true -->
+<sql id="column_sql">
+		  TA_JC_MESSAGE_ORGREF.id ,
+		  TA_JC_MESSAGE_ORGREF.accept_org_id ,
+		  TA_JC_MESSAGE_ORGREF.street_org_id ,
+		  TA_JC_MESSAGE_ORGREF.accept_org_name ,
+		  TA_JC_MESSAGE_ORGREF.street_org_name 
+</sql>
+
+<!-- ElementID:whereClause_sql,Generated=true -->
+<sql id="whereClause_sql">
+	    <if test="id != null">and TA_JC_MESSAGE_ORGREF.id = #{id}</if>
+	    <if test="acceptOrgId != null">and TA_JC_MESSAGE_ORGREF.accept_org_id = #{acceptOrgId}</if>
+	    <if test="streetOrgId != null">and TA_JC_MESSAGE_ORGREF.street_org_id = #{streetOrgId}</if>
+	    <if test="acceptOrgName != null">and TA_JC_MESSAGE_ORGREF.accept_org_name = #{acceptOrgName}</if>
+	    <if test="streetOrgName != null">and TA_JC_MESSAGE_ORGREF.street_org_name = #{streetOrgName}</if>
+</sql>
+
+
+<!-- ElementID:MessageOrgRefResult,Generated=true -->
+<resultMap id="MessageOrgRefResult" type="com.chinacreator.dzjc_ruleEngine.MessageOrgRef">
+	<id property="id" column="id"/>
+	<result property="acceptOrgId" column="accept_org_id"/>
+	<result property="streetOrgId" column="street_org_id"/>
+	<result property="acceptOrgName" column="accept_org_name"/>
+	<result property="streetOrgName" column="street_org_name"/>
+</resultMap>
+
+
+<!-- ElementID:insert,Generated=true -->
+<insert id="insert" parameterType="com.chinacreator.dzjc_ruleEngine.MessageOrgRef">
+	insert into TA_JC_MESSAGE_ORGREF(
+	         <if test="id != null">id</if>
+	         <if test="acceptOrgId != null">,accept_org_id</if>
+	         <if test="streetOrgId != null">,street_org_id</if>
+	         <if test="acceptOrgName != null">,accept_org_name</if>
+	         <if test="streetOrgName != null">,street_org_name</if>
+	 	 	 )
+	 values (
+	         <if test="id != null">#{id,jdbcType=VARCHAR}</if>
+	         <if test="acceptOrgId != null">,#{acceptOrgId,jdbcType=VARCHAR}</if>
+	         <if test="streetOrgId != null">,#{streetOrgId,jdbcType=VARCHAR}</if>
+	         <if test="acceptOrgName != null">,#{acceptOrgName,jdbcType=VARCHAR}</if>
+	         <if test="streetOrgName != null">,#{streetOrgName,jdbcType=VARCHAR}</if>
+	 	 	 )
+</insert>
+
+<!-- ElementID:count,Generated=true -->
+<select id="count" parameterType="com.chinacreator.dzjc_ruleEngine.MessageOrgRef" resultType="int">
+	select count(*) from TA_JC_MESSAGE_ORGREF 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<!-- ElementID:update,Generated=true -->
+<update id="update" parameterType="com.chinacreator.dzjc_ruleEngine.MessageOrgRef">
+	update TA_JC_MESSAGE_ORGREF
+<set>
+	<if test="acceptOrgId != null">accept_org_id=#{acceptOrgId,jdbcType=VARCHAR},</if>
+	<if test="streetOrgId != null">street_org_id=#{streetOrgId,jdbcType=VARCHAR},</if>
+	<if test="acceptOrgName != null">accept_org_name=#{acceptOrgName,jdbcType=VARCHAR},</if>
+	<if test="streetOrgName != null">street_org_name=#{streetOrgName,jdbcType=VARCHAR}</if>
+</set>
+<where>
+	<choose>
+        <when test="id != null">and id = #{id}</when>
+        <otherwise>and id = </otherwise>
+    </choose>
+</where>
+</update>
+
+<!-- ElementID:updateNull,Generated=true -->
+<update id="updateNull" parameterType="map">
+	update TA_JC_MESSAGE_ORGREF
+	<set>
+		<trim suffixOverrides=",">
+		    <if test="acceptOrgId==null">accept_org_id = null,</if>
+		    <if test="streetOrgId==null">street_org_id = null,</if>
+		    <if test="acceptOrgName==null">accept_org_name = null,</if>
+		    <if test="streetOrgName==null">street_org_name = null,</if>
+		</trim>
+	</set>
+	<where>
+		<choose>
+			<when test="id != null">and id = #{id}</when>
+			<otherwise>and id = </otherwise>
+		</choose>
+	</where>
+</update>
+
+<!-- ElementID:delete,Generated=true -->
+<delete id="delete" parameterType="com.chinacreator.dzjc_ruleEngine.MessageOrgRef">
+    delete from TA_JC_MESSAGE_ORGREF where 1=1 and id = #{id}
+</delete>
+
+<!-- ElementID:select,Generated=true -->
+<select id="select" parameterType="com.chinacreator.dzjc_ruleEngine.MessageOrgRef" resultMap="MessageOrgRefResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_MESSAGE_ORGREF 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+
+<!-- ElementID:insertBatch,Generated=true -->
+<insert id="insertBatch" parameterType="list">
+	insert into TA_JC_MESSAGE_ORGREF (id,accept_org_id,street_org_id,accept_org_name,street_org_name) 
+<foreach collection="list" item="entity" index="index" separator="union all">
+		select 
+		#{entity.id,jdbcType = VARCHAR},
+				#{entity.acceptOrgId,jdbcType = VARCHAR},
+				#{entity.streetOrgId,jdbcType = VARCHAR},
+				#{entity.acceptOrgName,jdbcType = VARCHAR},
+				#{entity.streetOrgName,jdbcType = VARCHAR}
+		from dual
+</foreach>
+</insert>
+
+<!-- ElementID:deleteBatch,Generated=true -->
+<delete id="deleteBatch" parameterType="List">
+	delete from TA_JC_MESSAGE_ORGREF where id in
+<trim prefix="(" suffix=")" suffixOverrides=",">
+<foreach collection="list" item="entity" separator=",">
+	<choose>
+		<when test="@com.chinacreator.c2.dao.util.EntityBeanUtil@isEntityObj(entity)">#{entity.id}</when>
+		<otherwise>#{entity}</otherwise>
+	</choose>
+</foreach>
+</trim>
+</delete>
+
+<!-- ElementID:updateBatch,Generated=true -->
+<update id="updateBatch" parameterType="list">
+	<foreach collection="list" item="entity" open="begin" close=";end;" separator=";">
+			update TA_JC_MESSAGE_ORGREF
+	<set>
+	<if test="entity.acceptOrgId != null">accept_org_id= #{entity.acceptOrgId,jdbcType=VARCHAR},</if>
+	<if test="entity.streetOrgId != null">street_org_id= #{entity.streetOrgId,jdbcType=VARCHAR},</if>
+	<if test="entity.acceptOrgName != null">accept_org_name= #{entity.acceptOrgName,jdbcType=VARCHAR},</if>
+	<if test="entity.streetOrgName != null">street_org_name= #{entity.streetOrgName,jdbcType=VARCHAR}</if>
+	</set>
+		<where>
+			<choose>
+				<when test="entity.id != null">and id = #{entity.id}</when>
+				<otherwise>and id = </otherwise>
+			</choose>
+		</where>
+	</foreach>
+</update>
+
+<!-- ElementID:selectAll,Generated=true -->
+<select id="selectAll" resultMap="MessageOrgRefResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_MESSAGE_ORGREF 
+</select>
+
+<!-- ElementID:selectMany,Generated=true -->
+<select id="selectMany" parameterType="list" resultMap="MessageOrgRefResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_JC_MESSAGE_ORGREF 
+	where TA_JC_MESSAGE_ORGREF.id in (
+<foreach collection="list" item="entity" separator="intersect">
+		select 
+		TA_JC_MESSAGE_ORGREF.id
+	    from TA_JC_MESSAGE_ORGREF 
+		 <where>
+	        <if test="entity.id != null">and TA_JC_MESSAGE_ORGREF.id = #{entity.id}</if>
+	        <if test="entity.acceptOrgId != null">and TA_JC_MESSAGE_ORGREF.accept_org_id = #{entity.acceptOrgId}</if>
+	        <if test="entity.streetOrgId != null">and TA_JC_MESSAGE_ORGREF.street_org_id = #{entity.streetOrgId}</if>
+	        <if test="entity.acceptOrgName != null">and TA_JC_MESSAGE_ORGREF.accept_org_name = #{entity.acceptOrgName}</if>
+	        <if test="entity.streetOrgName != null">and TA_JC_MESSAGE_ORGREF.street_org_name = #{entity.streetOrgName}</if>
+		</where>
+</foreach>
+)
+</select>
+
+<!-- ElementID:selectUnion,Generated=true -->
+<select id="selectUnion" parameterType="list" resultMap="MessageOrgRefResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_JC_MESSAGE_ORGREF 
+	 INNER JOIN
+<foreach collection="list" item="entity" separator="UNION" open="(" close=")">
+		SELECT 
+			 id
+		FROM TA_JC_MESSAGE_ORGREF 
+			<where>
+	        <if test="entity.id != null">and TA_JC_MESSAGE_ORGREF.id = #{entity.id}</if>
+	        <if test="entity.acceptOrgId != null">and TA_JC_MESSAGE_ORGREF.accept_org_id = #{entity.acceptOrgId}</if>
+	        <if test="entity.streetOrgId != null">and TA_JC_MESSAGE_ORGREF.street_org_id = #{entity.streetOrgId}</if>
+	        <if test="entity.acceptOrgName != null">and TA_JC_MESSAGE_ORGREF.accept_org_name = #{entity.acceptOrgName}</if>
+	        <if test="entity.streetOrgName != null">and TA_JC_MESSAGE_ORGREF.street_org_name = #{entity.streetOrgName}</if>
+			</where>
+</foreach>
+	c2_temp_table ON TA_JC_MESSAGE_ORGREF.id = c2_temp_table.id
+</select>
+
+<!-- ElementID:selectByID,Generated=true -->
+<select id="selectByID" parameterType="java.lang.String" resultMap="MessageOrgRefResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_MESSAGE_ORGREF 
+		 where TA_JC_MESSAGE_ORGREF.id = #{id,jdbcType=VARCHAR}
+</select>
+
+<!-- ElementID:selectByPage,Generated=true -->
+<select id="selectByPage" parameterType="com.chinacreator.dzjc_ruleEngine.MessageOrgRef" resultMap="MessageOrgRefResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_MESSAGE_ORGREF 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+</mapper>

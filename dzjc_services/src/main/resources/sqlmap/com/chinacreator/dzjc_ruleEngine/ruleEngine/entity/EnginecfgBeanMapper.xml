@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.chinacreator.dzjc_ruleEngine.ruleEngine.entity.EnginecfgBeanMapper">
+
+	<!-- ElementID:column_sql,Generated=true -->
+	<sql id="column_sql">
+		TA_JC_RULE_ENGINECFG.cfg_id ,
+		TA_JC_RULE_ENGINECFG.cfg_type ,
+		TA_JC_RULE_ENGINECFG.cfg_value ,
+		TA_JC_RULE_ENGINECFG.cfg_remark ,
+		TA_JC_RULE_ENGINECFG.cfg_order ,
+		TA_JC_RULE_ENGINECFG.is_valid ,
+		TA_JC_RULE_ENGINECFG.is_usetimelimit ,
+		TA_JC_RULE_ENGINECFG.area_code
+	</sql>
+
+
+	<!-- ElementID:whereClause_sql,Generated=true -->
+	<sql id="whereClause_sql">
+		<if test="cfgId != null">and TA_JC_RULE_ENGINECFG.cfg_id = #{cfgId}</if>
+		<if test="cfgType != null">and TA_JC_RULE_ENGINECFG.cfg_type = #{cfgType}</if>
+		<if test="cfgValue != null">and TA_JC_RULE_ENGINECFG.cfg_value = #{cfgValue}</if>
+		<if test="cfgRemark != null">and TA_JC_RULE_ENGINECFG.cfg_remark = #{cfgRemark}</if>
+		<if test="cfgOrder != null">and TA_JC_RULE_ENGINECFG.cfg_order = #{cfgOrder}</if>
+		<if test="isValid != null">and TA_JC_RULE_ENGINECFG.is_valid = #{isValid}</if>
+		<if test="isUsetimelimit != null">and TA_JC_RULE_ENGINECFG.is_usetimelimit =
+			#{isUsetimelimit}</if>
+		<if test="areaCode != null">and TA_JC_RULE_ENGINECFG.area_code = #{areaCode}</if>
+	</sql>
+
+
+	<!-- ElementID:EnginecfgBeanResult,Generated=true -->
+	<resultMap id="EnginecfgBeanResult"
+		type="com.chinacreator.dzjc_ruleEngine.ruleEngine.entity.EnginecfgBean">
+		<id property="cfgId" column="cfg_id" />
+		<result property="cfgType" column="cfg_type" />
+		<result property="cfgValue" column="cfg_value" />
+		<result property="cfgRemark" column="cfg_remark" />
+		<result property="cfgOrder" column="cfg_order" />
+		<result property="isValid" column="is_valid" />
+		<result property="isUsetimelimit" column="is_usetimelimit" />
+		<result property="areaCode" column="area_code" />
+	</resultMap>
+
+
+
+	<!-- ElementName:cache,Generated=true -->
+	<cache type="C2_Default_Dao_Cache" />
+
+	<!-- ElementID:insert,Generated=true -->
+	<insert id="insert"
+		parameterType="com.chinacreator.dzjc_ruleEngine.ruleEngine.entity.EnginecfgBean">
+		insert into TA_JC_RULE_ENGINECFG(
+		<if test="cfgId != null">cfg_id</if>
+		<if test="cfgType != null">,cfg_type</if>
+		<if test="cfgValue != null">,cfg_value</if>
+		<if test="cfgRemark != null">,cfg_remark</if>
+		<if test="cfgOrder != null">,cfg_order</if>
+		<if test="isValid != null">,is_valid</if>
+		<if test="isUsetimelimit != null">,is_usetimelimit</if>
+		<if test="areaCode != null">,area_code</if>
+		)
+		values (
+		<if test="cfgId != null">#{cfgId,jdbcType=VARCHAR}</if>
+		<if test="cfgType != null">,#{cfgType,jdbcType=VARCHAR}</if>
+		<if test="cfgValue != null">,#{cfgValue,jdbcType=VARCHAR}</if>
+		<if test="cfgRemark != null">,#{cfgRemark,jdbcType=VARCHAR}</if>
+		<if test="cfgOrder != null">,#{cfgOrder,jdbcType=VARCHAR}</if>
+		<if test="isValid != null">,#{isValid,jdbcType=VARCHAR}</if>
+		<if test="isUsetimelimit != null">,#{isUsetimelimit,jdbcType=VARCHAR}</if>
+		<if test="areaCode != null">,#{areaCode,jdbcType=VARCHAR}</if>
+		)
+	</insert>
+
+	<!-- ElementID:count,Generated=true -->
+	<select id="count"
+		parameterType="com.chinacreator.dzjc_ruleEngine.ruleEngine.entity.EnginecfgBean"
+		resultType="int">
+		select count(*) from TA_JC_RULE_ENGINECFG
+		<where>
+			<include refid="whereClause_sql" />
+		</where>
+	</select>
+
+	<!-- ElementID:update,Generated=true -->
+	<update id="update"
+		parameterType="com.chinacreator.dzjc_ruleEngine.ruleEngine.entity.EnginecfgBean">
+		update TA_JC_RULE_ENGINECFG
+		<set>
+			<if test="cfgType != null">cfg_type=#{cfgType,jdbcType=VARCHAR},</if>
+			<if test="cfgValue != null">cfg_value=#{cfgValue,jdbcType=VARCHAR},</if>
+			<if test="cfgRemark != null">cfg_remark=#{cfgRemark,jdbcType=VARCHAR},</if>
+			<if test="cfgOrder != null">cfg_order=#{cfgOrder,jdbcType=VARCHAR},</if>
+			<if test="isValid != null">is_valid=#{isValid,jdbcType=VARCHAR},</if>
+			<if test="isUsetimelimit != null">is_usetimelimit=#{isUsetimelimit,jdbcType=VARCHAR},</if>
+			<if test="areaCode != null">area_code=#{areaCode,jdbcType=VARCHAR}</if>
+		</set>
+		<where>
+			<choose>
+				<when test="cfgId != null">and cfg_id = #{cfgId}</when>
+				<otherwise>and cfg_id = </otherwise>
+			</choose>
+		</where>
+	</update>
+
+	<!-- ElementID:updateNull,Generated=true -->
+	<update id="updateNull" parameterType="map">
+		update TA_JC_RULE_ENGINECFG
+		<set>
+			<trim suffixOverrides=",">
+				<if test="cfgType==null">cfg_type = null,</if>
+				<if test="cfgValue==null">cfg_value = null,</if>
+				<if test="cfgRemark==null">cfg_remark = null,</if>
+				<if test="cfgOrder==null">cfg_order = null,</if>
+				<if test="isValid==null">is_valid = null,</if>
+				<if test="isUsetimelimit==null">is_usetimelimit = null,</if>
+				<if test="areaCode==null">area_code = null,</if>
+			</trim>
+		</set>
+		<where>
+			<choose>
+				<when test="cfgId != null">and cfg_id = #{cfgId}</when>
+				<otherwise>and cfg_id = </otherwise>
+			</choose>
+		</where>
+	</update>
+
+	<!-- ElementID:delete,Generated=true -->
+	<delete id="delete"
+		parameterType="com.chinacreator.dzjc_ruleEngine.ruleEngine.entity.EnginecfgBean">
+		delete from TA_JC_RULE_ENGINECFG where 1=1 and cfg_id = #{cfgId}
+	</delete>
+
+	<!-- ElementID:select,Generated=true -->
+	<select id="select"
+		parameterType="com.chinacreator.dzjc_ruleEngine.ruleEngine.entity.EnginecfgBean"
+		resultMap="EnginecfgBeanResult">
+		select
+		<include refid="column_sql" />
+		from TA_JC_RULE_ENGINECFG
+		<where>
+			<include refid="whereClause_sql" />
+		</where>
+	</select>
+
+
+	<!-- ElementID:insertBatch,Generated=true -->
+	<insert id="insertBatch" parameterType="list">
+		insert into TA_JC_RULE_ENGINECFG
+		(cfg_id,cfg_type,cfg_value,cfg_remark,cfg_order,is_valid,is_usetimelimit,area_code)
+		<foreach collection="list" item="entity" index="index"
+			separator="union all">
+			select
+			#{entity.cfgId,jdbcType = VARCHAR},
+			#{entity.cfgType,jdbcType = VARCHAR},
+			#{entity.cfgValue,jdbcType = VARCHAR},
+			#{entity.cfgRemark,jdbcType = VARCHAR},
+			#{entity.cfgOrder,jdbcType = VARCHAR},
+			#{entity.isValid,jdbcType = VARCHAR},
+			#{entity.isUsetimelimit,jdbcType = VARCHAR},
+			#{entity.areaCode,jdbcType = VARCHAR}
+			from dual
+		</foreach>
+	</insert>
+
+	<!-- ElementID:deleteBatch,Generated=true -->
+	<delete id="deleteBatch" parameterType="List">
+		delete from TA_JC_RULE_ENGINECFG where cfg_id in
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<foreach collection="list" item="entity" separator=",">
+				<choose>
+					<when
+						test="@com.chinacreator.c2.dao.util.EntityBeanUtil@isEntityObj(entity)">#{entity.cfgId}</when>
+					<otherwise>#{entity}</otherwise>
+				</choose>
+			</foreach>
+		</trim>
+	</delete>
+
+	<!-- ElementID:updateBatch,Generated=true -->
+	<update id="updateBatch" parameterType="list">
+		<foreach collection="list" item="entity" open="begin" close=";end;"
+			separator=";">
+			update TA_JC_RULE_ENGINECFG
+			<set>
+				<if test="entity.cfgType != null">cfg_type= #{entity.cfgType,jdbcType=VARCHAR},</if>
+				<if test="entity.cfgValue != null">cfg_value= #{entity.cfgValue,jdbcType=VARCHAR},</if>
+				<if test="entity.cfgRemark != null">cfg_remark= #{entity.cfgRemark,jdbcType=VARCHAR},</if>
+				<if test="entity.cfgOrder != null">cfg_order= #{entity.cfgOrder,jdbcType=VARCHAR},</if>
+				<if test="entity.isValid != null">is_valid= #{entity.isValid,jdbcType=VARCHAR},</if>
+				<if test="entity.isUsetimelimit != null">is_usetimelimit=
+					#{entity.isUsetimelimit,jdbcType=VARCHAR},</if>
+				<if test="entity.areaCode != null">area_code= #{entity.areaCode,jdbcType=VARCHAR}</if>
+			</set>
+			<where>
+				<choose>
+					<when test="entity.cfgId != null">and cfg_id = #{entity.cfgId}</when>
+					<otherwise>and cfg_id = </otherwise>
+				</choose>
+			</where>
+		</foreach>
+	</update>
+
+	<!-- ElementID:selectAll,Generated=true -->
+	<select id="selectAll" resultMap="EnginecfgBeanResult">
+		select
+		<include refid="column_sql" />
+		from TA_JC_RULE_ENGINECFG
+	</select>
+
+	<!-- ElementID:selectMany,Generated=true -->
+	<select id="selectMany" parameterType="list" resultMap="EnginecfgBeanResult">
+		select
+		<include refid="column_sql" />
+		from TA_JC_RULE_ENGINECFG
+		where TA_JC_RULE_ENGINECFG.cfg_id in (
+		<foreach collection="list" item="entity" separator="intersect">
+			select
+			TA_JC_RULE_ENGINECFG.cfg_id
+			from TA_JC_RULE_ENGINECFG
+			<where>
+				<if test="entity.cfgId != null">and TA_JC_RULE_ENGINECFG.cfg_id = #{entity.cfgId}</if>
+				<if test="entity.cfgType != null">and TA_JC_RULE_ENGINECFG.cfg_type = #{entity.cfgType}
+				</if>
+				<if test="entity.cfgValue != null">and TA_JC_RULE_ENGINECFG.cfg_value = #{entity.cfgValue}
+				</if>
+				<if test="entity.cfgRemark != null">and TA_JC_RULE_ENGINECFG.cfg_remark =
+					#{entity.cfgRemark}</if>
+				<if test="entity.cfgOrder != null">and TA_JC_RULE_ENGINECFG.cfg_order = #{entity.cfgOrder}
+				</if>
+				<if test="entity.isValid != null">and TA_JC_RULE_ENGINECFG.is_valid = #{entity.isValid}
+				</if>
+				<if test="entity.isUsetimelimit != null">and TA_JC_RULE_ENGINECFG.is_usetimelimit =
+					#{entity.isUsetimelimit}</if>
+				<if test="entity.areaCode != null">and TA_JC_RULE_ENGINECFG.area_code = #{entity.areaCode}
+				</if>
+			</where>
+		</foreach>
+		)
+	</select>
+
+	<!-- ElementID:selectUnion,Generated=true -->
+	<select id="selectUnion" parameterType="list" resultMap="EnginecfgBeanResult">
+		select
+		<include refid="column_sql" />
+		from TA_JC_RULE_ENGINECFG
+		INNER JOIN
+		<foreach collection="list" item="entity" separator="UNION"
+			open="(" close=")">
+			SELECT
+			cfg_id
+			FROM TA_JC_RULE_ENGINECFG
+			<where>
+				<if test="entity.cfgId != null">and TA_JC_RULE_ENGINECFG.cfg_id = #{entity.cfgId}</if>
+				<if test="entity.cfgType != null">and TA_JC_RULE_ENGINECFG.cfg_type = #{entity.cfgType}
+				</if>
+				<if test="entity.cfgValue != null">and TA_JC_RULE_ENGINECFG.cfg_value = #{entity.cfgValue}
+				</if>
+				<if test="entity.cfgRemark != null">and TA_JC_RULE_ENGINECFG.cfg_remark =
+					#{entity.cfgRemark}</if>
+				<if test="entity.cfgOrder != null">and TA_JC_RULE_ENGINECFG.cfg_order = #{entity.cfgOrder}
+				</if>
+				<if test="entity.isValid != null">and TA_JC_RULE_ENGINECFG.is_valid = #{entity.isValid}
+				</if>
+				<if test="entity.isUsetimelimit != null">and TA_JC_RULE_ENGINECFG.is_usetimelimit =
+					#{entity.isUsetimelimit}</if>
+				<if test="entity.areaCode != null">and TA_JC_RULE_ENGINECFG.area_code = #{entity.areaCode}
+				</if>
+			</where>
+		</foreach>
+		c2_temp_table ON TA_JC_RULE_ENGINECFG.cfg_id = c2_temp_table.cfg_id
+	</select>
+
+	<!-- ElementID:selectByID,Generated=true -->
+	<select id="selectByID" parameterType="java.lang.String"
+		resultMap="EnginecfgBeanResult">
+		select
+		<include refid="column_sql" />
+		from TA_JC_RULE_ENGINECFG
+		where TA_JC_RULE_ENGINECFG.cfg_id = #{cfgId,jdbcType=VARCHAR}
+	</select>
+
+	<!-- ElementID:selectByPage,Generated=true -->
+	<select id="selectByPage"
+		parameterType="com.chinacreator.dzjc_ruleEngine.ruleEngine.entity.EnginecfgBean"
+		resultMap="EnginecfgBeanResult">
+		select
+		<include refid="column_sql" />
+		from TA_JC_RULE_ENGINECFG
+		<where>
+			<include refid="whereClause_sql" />
+		</where>
+	</select>
+
+<!-- 查询所有 -->
+	<select id="selectAllEnginecfg"
+		parameterType="com.chinacreator.dzjc_ruleEngine.ruleEngine.entity.EnginecfgBean"
+		resultMap="EnginecfgBeanResult">
+		select
+		<include refid="column_sql"></include>
+		from TA_JC_RULE_ENGINECFG
+	</select>
+</mapper>

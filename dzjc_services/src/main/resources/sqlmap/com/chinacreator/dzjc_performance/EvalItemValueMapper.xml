@@ -1,0 +1,468 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"><mapper namespace="com.chinacreator.dzjc_performance.EvalItemValueMapper">	
+
+<!-- ElementID:column_sql,Generated=true -->
+<sql id="column_sql">
+		  TA_JC_EVAL_ITEM_VALUE.record_id ,
+		  TA_JC_EVAL_ITEM_VALUE.item_id ,
+		  TA_JC_EVAL_ITEM_VALUE.table_id ,
+		  TA_JC_EVAL_ITEM_VALUE.org_code ,
+		  TA_JC_EVAL_ITEM_VALUE.item_value ,
+		  TA_JC_EVAL_ITEM_VALUE.final_item_value ,
+		  TA_JC_EVAL_ITEM_VALUE.order_no ,
+		  TA_JC_EVAL_ITEM_VALUE.area_code ,
+		  TA_JC_EVAL_ITEM_VALUE.remark ,
+		  TA_JC_EVAL_ITEM_VALUE.cc_form_instanceid ,
+		  TA_JC_EVAL_ITEM_VALUE.eval_time ,
+		  TA_JC_EVAL_ITEM_VALUE.eval_type ,
+		  TA_JC_EVAL_ITEM_VALUE.is_totalvalue ,
+		  TA_JC_EVAL_ITEM_VALUE.is_issue ,
+		  TA_JC_EVAL_ITEM_VALUE.org_id ,
+		  TA_JC_EVAL_ITEM_VALUE.instance_id ,
+		  TA_JC_EVAL_ITEM_VALUE.eval_object_id ,
+		  TA_JC_EVAL_ITEM_VALUE.eval_object_name 
+</sql>
+
+<!-- ElementID:whereClause_sql,Generated=true -->
+<sql id="whereClause_sql">
+	    <if test="recordId != null">and TA_JC_EVAL_ITEM_VALUE.record_id = #{recordId}</if>
+	    <if test="itemId != null">and TA_JC_EVAL_ITEM_VALUE.item_id = #{itemId}</if>
+	    <if test="tableId != null">and TA_JC_EVAL_ITEM_VALUE.table_id = #{tableId}</if>
+	    <if test="orgCode != null">and TA_JC_EVAL_ITEM_VALUE.org_code = #{orgCode}</if>
+	    <if test="itemValue != null">and TA_JC_EVAL_ITEM_VALUE.item_value = #{itemValue}</if>
+	    <if test="finalItemValue != null">and TA_JC_EVAL_ITEM_VALUE.final_item_value = #{finalItemValue}</if>
+	    <if test="orderNo != null">and TA_JC_EVAL_ITEM_VALUE.order_no = #{orderNo}</if>
+	    <if test="areaCode != null">and TA_JC_EVAL_ITEM_VALUE.area_code = #{areaCode}</if>
+	    <if test="remark != null">and TA_JC_EVAL_ITEM_VALUE.remark = #{remark}</if>
+	    <if test="ccFormInstanceid != null">and TA_JC_EVAL_ITEM_VALUE.cc_form_instanceid = #{ccFormInstanceid}</if>
+	    <if test="evalTime != null">and TA_JC_EVAL_ITEM_VALUE.eval_time = #{evalTime}</if>
+	    <if test="evalType != null">and TA_JC_EVAL_ITEM_VALUE.eval_type = #{evalType}</if>
+	    <if test="isTotalvalue != null">and TA_JC_EVAL_ITEM_VALUE.is_totalvalue = #{isTotalvalue}</if>
+	    <if test="isIssue != null">and TA_JC_EVAL_ITEM_VALUE.is_issue = #{isIssue}</if>
+	    <if test="orgId != null">and TA_JC_EVAL_ITEM_VALUE.org_id = #{orgId}</if>
+	    <if test="instanceId != null">and TA_JC_EVAL_ITEM_VALUE.instance_id = #{instanceId}</if>
+	    <if test="evalObjectId != null">and TA_JC_EVAL_ITEM_VALUE.eval_object_id = #{evalObjectId}</if>
+	    <if test="evalObjectName != null">and TA_JC_EVAL_ITEM_VALUE.eval_object_name = #{evalObjectName}</if>
+</sql>
+
+
+<!-- ElementID:EvalItemValueResult,Generated=true -->
+<resultMap id="EvalItemValueResult" type="com.chinacreator.dzjc_performance.EvalItemValue">
+	<id property="recordId" column="record_id"/>
+	<result property="itemId" column="item_id"/>
+	<result property="tableId" column="table_id"/>
+	<result property="orgCode" column="org_code"/>
+	<result property="itemValue" column="item_value"/>
+	<result property="finalItemValue" column="final_item_value"/>
+	<result property="orderNo" column="order_no"/>
+	<result property="areaCode" column="area_code"/>
+	<result property="remark" column="remark"/>
+	<result property="ccFormInstanceid" column="cc_form_instanceid"/>
+	<result property="evalTime" column="eval_time"/>
+	<result property="evalType" column="eval_type"/>
+	<result property="isTotalvalue" column="is_totalvalue"/>
+	<result property="isIssue" column="is_issue"/>
+	<result property="orgId" column="org_id"/>
+	<result property="instanceId" column="instance_id"/>
+	<result property="evalObjectId" column="eval_object_id"/>
+	<result property="evalObjectName" column="eval_object_name"/>
+</resultMap>
+
+<!-- Generated=false -->
+<resultMap id="EvalItemValueResult2" type="com.chinacreator.dzjc_performance.EvalItemValueExp">
+    <id property="recordId" column="record_id"/>
+    <result property="itemId" column="item_id"/>
+    <result property="tableId" column="table_id"/>
+    <result property="orgCode" column="org_code"/>
+    <result property="itemValue" column="item_value"/>
+    <result property="finalItemValue" column="final_item_value"/>
+    <result property="orderNo" column="order_no"/>
+    <result property="areaCode" column="area_code"/>
+    <result property="remark" column="remark"/>
+    <result property="ccFormInstanceid" column="cc_form_instanceid"/>
+    <result property="evalTime" column="eval_time"/>
+    <result property="evalType" column="eval_type"/>
+    <result property="isTotalvalue" column="is_totalvalue"/>
+    <result property="isIssue" column="is_issue"/>
+    <result property="orgId" column="org_id"/> 
+    <result property="orgName" column="name"/>
+    <result property="itemName" column="item_name"/>
+    <result property="tableName" column="table_name"/>
+</resultMap>
+
+<!-- ElementID:insert,Generated=true -->
+<insert id="insert" parameterType="com.chinacreator.dzjc_performance.EvalItemValue">
+	insert into TA_JC_EVAL_ITEM_VALUE(
+	         <if test="recordId != null">record_id</if>
+	         <if test="itemId != null">,item_id</if>
+	         <if test="tableId != null">,table_id</if>
+	         <if test="orgCode != null">,org_code</if>
+	         <if test="itemValue != null">,item_value</if>
+	         <if test="finalItemValue != null">,final_item_value</if>
+	         <if test="orderNo != null">,order_no</if>
+	         <if test="areaCode != null">,area_code</if>
+	         <if test="remark != null">,remark</if>
+	         <if test="ccFormInstanceid != null">,cc_form_instanceid</if>
+	         <if test="evalTime != null">,eval_time</if>
+	         <if test="evalType != null">,eval_type</if>
+	         <if test="isTotalvalue != null">,is_totalvalue</if>
+	         <if test="isIssue != null">,is_issue</if>
+	         <if test="orgId != null">,org_id</if>
+	         <if test="instanceId != null">,instance_id</if>
+	         <if test="evalObjectId != null">,eval_object_id</if>
+	         <if test="evalObjectName != null">,eval_object_name</if>
+	 	 	 )
+	 values (
+	         <if test="recordId != null">#{recordId,jdbcType=VARCHAR}</if>
+	         <if test="itemId != null">,#{itemId,jdbcType=VARCHAR}</if>
+	         <if test="tableId != null">,#{tableId,jdbcType=VARCHAR}</if>
+	         <if test="orgCode != null">,#{orgCode,jdbcType=VARCHAR}</if>
+	         <if test="itemValue != null">,#{itemValue,jdbcType=NUMERIC}</if>
+	         <if test="finalItemValue != null">,#{finalItemValue,jdbcType=NUMERIC}</if>
+	         <if test="orderNo != null">,#{orderNo,jdbcType=NUMERIC}</if>
+	         <if test="areaCode != null">,#{areaCode,jdbcType=VARCHAR}</if>
+	         <if test="remark != null">,#{remark,jdbcType=VARCHAR}</if>
+	         <if test="ccFormInstanceid != null">,#{ccFormInstanceid,jdbcType=VARCHAR}</if>
+	         <if test="evalTime != null">,#{evalTime,jdbcType=DATE}</if>
+	         <if test="evalType != null">,#{evalType,jdbcType=VARCHAR}</if>
+	         <if test="isTotalvalue != null">,#{isTotalvalue,jdbcType=CHAR}</if>
+	         <if test="isIssue != null">,#{isIssue,jdbcType=VARCHAR}</if>
+	         <if test="orgId != null">,#{orgId,jdbcType=VARCHAR}</if>
+	         <if test="instanceId != null">,#{instanceId,jdbcType=VARCHAR}</if>
+	         <if test="evalObjectId != null">,#{evalObjectId,jdbcType=VARCHAR}</if>
+	         <if test="evalObjectName != null">,#{evalObjectName,jdbcType=VARCHAR}</if>
+	 	 	 )
+</insert>
+
+<!-- ElementID:count,Generated=true -->
+<select id="count" parameterType="com.chinacreator.dzjc_performance.EvalItemValue" resultType="int">
+	select count(*) from TA_JC_EVAL_ITEM_VALUE 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<!-- ElementID:update,Generated=true -->
+<update id="update" parameterType="com.chinacreator.dzjc_performance.EvalItemValue">
+	update TA_JC_EVAL_ITEM_VALUE
+<set>
+	<if test="itemId != null">item_id=#{itemId,jdbcType=VARCHAR},</if>
+	<if test="tableId != null">table_id=#{tableId,jdbcType=VARCHAR},</if>
+	<if test="orgCode != null">org_code=#{orgCode,jdbcType=VARCHAR},</if>
+	<if test="itemValue != null">item_value=#{itemValue,jdbcType=NUMERIC},</if>
+	<if test="finalItemValue != null">final_item_value=#{finalItemValue,jdbcType=NUMERIC},</if>
+	<if test="orderNo != null">order_no=#{orderNo,jdbcType=NUMERIC},</if>
+	<if test="areaCode != null">area_code=#{areaCode,jdbcType=VARCHAR},</if>
+	<if test="remark != null">remark=#{remark,jdbcType=VARCHAR},</if>
+	<if test="ccFormInstanceid != null">cc_form_instanceid=#{ccFormInstanceid,jdbcType=VARCHAR},</if>
+	<if test="evalTime != null">eval_time=#{evalTime,jdbcType=DATE},</if>
+	<if test="evalType != null">eval_type=#{evalType,jdbcType=VARCHAR},</if>
+	<if test="isTotalvalue != null">is_totalvalue=#{isTotalvalue,jdbcType=CHAR},</if>
+	<if test="isIssue != null">is_issue=#{isIssue,jdbcType=VARCHAR},</if>
+	<if test="orgId != null">org_id=#{orgId,jdbcType=VARCHAR},</if>
+	<if test="instanceId != null">instance_id=#{instanceId,jdbcType=VARCHAR},</if>
+	<if test="evalObjectId != null">eval_object_id=#{evalObjectId,jdbcType=VARCHAR},</if>
+	<if test="evalObjectName != null">eval_object_name=#{evalObjectName,jdbcType=VARCHAR}</if>
+</set>
+<where>
+	<choose>
+        <when test="recordId != null">and record_id = #{recordId}</when>
+        <otherwise>and record_id = </otherwise>
+    </choose>
+</where>
+</update>
+
+<!-- ElementID:updateNull,Generated=true -->
+<update id="updateNull" parameterType="map">
+	update TA_JC_EVAL_ITEM_VALUE
+	<set>
+		<trim suffixOverrides=",">
+		    <if test="itemId==null">item_id = null,</if>
+		    <if test="tableId==null">table_id = null,</if>
+		    <if test="orgCode==null">org_code = null,</if>
+		    <if test="itemValue==null">item_value = null,</if>
+		    <if test="finalItemValue==null">final_item_value = null,</if>
+		    <if test="orderNo==null">order_no = null,</if>
+		    <if test="areaCode==null">area_code = null,</if>
+		    <if test="remark==null">remark = null,</if>
+		    <if test="ccFormInstanceid==null">cc_form_instanceid = null,</if>
+		    <if test="evalTime==null">eval_time = null,</if>
+		    <if test="evalType==null">eval_type = null,</if>
+		    <if test="isTotalvalue==null">is_totalvalue = null,</if>
+		    <if test="isIssue==null">is_issue = null,</if>
+		    <if test="orgId==null">org_id = null,</if>
+		    <if test="instanceId==null">instance_id = null,</if>
+		    <if test="evalObjectId==null">eval_object_id = null,</if>
+		    <if test="evalObjectName==null">eval_object_name = null,</if>
+		</trim>
+	</set>
+	<where>
+		<choose>
+			<when test="recordId != null">and record_id = #{recordId}</when>
+			<otherwise>and record_id = </otherwise>
+		</choose>
+	</where>
+</update>
+
+<!-- ElementID:delete,Generated=true -->
+<delete id="delete" parameterType="com.chinacreator.dzjc_performance.EvalItemValue">
+    delete from TA_JC_EVAL_ITEM_VALUE where 1=1 and record_id = #{recordId}
+</delete>
+
+<!-- ElementID:select,Generated=true -->
+<select id="select" parameterType="com.chinacreator.dzjc_performance.EvalItemValue" resultMap="EvalItemValueResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_EVAL_ITEM_VALUE 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+
+<!-- ElementID:insertBatch,Generated=true -->
+<insert id="insertBatch" parameterType="list">
+	insert into TA_JC_EVAL_ITEM_VALUE (record_id,item_id,table_id,org_code,item_value,final_item_value,order_no,area_code,remark,cc_form_instanceid,eval_time,eval_type,is_totalvalue,is_issue,org_id,instance_id,eval_object_id,eval_object_name) 
+<foreach collection="list" item="entity" index="index" separator="union all">
+		select 
+		#{entity.recordId,jdbcType = VARCHAR},
+				#{entity.itemId,jdbcType = VARCHAR},
+				#{entity.tableId,jdbcType = VARCHAR},
+				#{entity.orgCode,jdbcType = VARCHAR},
+				#{entity.itemValue,jdbcType = NUMERIC},
+				#{entity.finalItemValue,jdbcType = NUMERIC},
+				#{entity.orderNo,jdbcType = NUMERIC},
+				#{entity.areaCode,jdbcType = VARCHAR},
+				#{entity.remark,jdbcType = VARCHAR},
+				#{entity.ccFormInstanceid,jdbcType = VARCHAR},
+				#{entity.evalTime,jdbcType = DATE},
+				#{entity.evalType,jdbcType = VARCHAR},
+				#{entity.isTotalvalue,jdbcType = CHAR},
+				#{entity.isIssue,jdbcType = VARCHAR},
+				#{entity.orgId,jdbcType = VARCHAR},
+				#{entity.instanceId,jdbcType = VARCHAR},
+				#{entity.evalObjectId,jdbcType = VARCHAR},
+				#{entity.evalObjectName,jdbcType = VARCHAR}
+		from dual
+</foreach>
+</insert>
+
+<!-- ElementID:deleteBatch,Generated=true -->
+<delete id="deleteBatch" parameterType="List">
+	delete from TA_JC_EVAL_ITEM_VALUE where record_id in
+<trim prefix="(" suffix=")" suffixOverrides=",">
+<foreach collection="list" item="entity" separator=",">
+	<choose>
+		<when test="@com.chinacreator.c2.dao.util.EntityBeanUtil@isEntityObj(entity)">#{entity.recordId}</when>
+		<otherwise>#{entity}</otherwise>
+	</choose>
+</foreach>
+</trim>
+</delete>
+
+<!-- ElementID:updateBatch,Generated=true -->
+<update id="updateBatch" parameterType="list">
+	<foreach collection="list" item="entity" open="begin" close=";end;" separator=";">
+			update TA_JC_EVAL_ITEM_VALUE
+	<set>
+	<if test="entity.itemId != null">item_id= #{entity.itemId,jdbcType=VARCHAR},</if>
+	<if test="entity.tableId != null">table_id= #{entity.tableId,jdbcType=VARCHAR},</if>
+	<if test="entity.orgCode != null">org_code= #{entity.orgCode,jdbcType=VARCHAR},</if>
+	<if test="entity.itemValue != null">item_value= #{entity.itemValue,jdbcType=NUMERIC},</if>
+	<if test="entity.finalItemValue != null">final_item_value= #{entity.finalItemValue,jdbcType=NUMERIC},</if>
+	<if test="entity.orderNo != null">order_no= #{entity.orderNo,jdbcType=NUMERIC},</if>
+	<if test="entity.areaCode != null">area_code= #{entity.areaCode,jdbcType=VARCHAR},</if>
+	<if test="entity.remark != null">remark= #{entity.remark,jdbcType=VARCHAR},</if>
+	<if test="entity.ccFormInstanceid != null">cc_form_instanceid= #{entity.ccFormInstanceid,jdbcType=VARCHAR},</if>
+	<if test="entity.evalTime != null">eval_time= #{entity.evalTime,jdbcType=DATE},</if>
+	<if test="entity.evalType != null">eval_type= #{entity.evalType,jdbcType=VARCHAR},</if>
+	<if test="entity.isTotalvalue != null">is_totalvalue= #{entity.isTotalvalue,jdbcType=CHAR},</if>
+	<if test="entity.isIssue != null">is_issue= #{entity.isIssue,jdbcType=VARCHAR},</if>
+	<if test="entity.orgId != null">org_id= #{entity.orgId,jdbcType=VARCHAR},</if>
+	<if test="entity.instanceId != null">instance_id= #{entity.instanceId,jdbcType=VARCHAR},</if>
+	<if test="entity.evalObjectId != null">eval_object_id= #{entity.evalObjectId,jdbcType=VARCHAR},</if>
+	<if test="entity.evalObjectName != null">eval_object_name= #{entity.evalObjectName,jdbcType=VARCHAR}</if>
+	</set>
+		<where>
+			<choose>
+				<when test="entity.recordId != null">and record_id = #{entity.recordId}</when>
+				<otherwise>and record_id = </otherwise>
+			</choose>
+		</where>
+	</foreach>
+</update>
+
+<!-- ElementID:selectAll,Generated=true -->
+<select id="selectAll" resultMap="EvalItemValueResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_EVAL_ITEM_VALUE 
+</select>
+
+<!-- ElementID:selectMany,Generated=true -->
+<select id="selectMany" parameterType="list" resultMap="EvalItemValueResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_JC_EVAL_ITEM_VALUE 
+	where TA_JC_EVAL_ITEM_VALUE.record_id in (
+<foreach collection="list" item="entity" separator="intersect">
+		select 
+		TA_JC_EVAL_ITEM_VALUE.record_id
+	    from TA_JC_EVAL_ITEM_VALUE 
+		 <where>
+	        <if test="entity.recordId != null">and TA_JC_EVAL_ITEM_VALUE.record_id = #{entity.recordId}</if>
+	        <if test="entity.itemId != null">and TA_JC_EVAL_ITEM_VALUE.item_id = #{entity.itemId}</if>
+	        <if test="entity.tableId != null">and TA_JC_EVAL_ITEM_VALUE.table_id = #{entity.tableId}</if>
+	        <if test="entity.orgCode != null">and TA_JC_EVAL_ITEM_VALUE.org_code = #{entity.orgCode}</if>
+	        <if test="entity.itemValue != null">and TA_JC_EVAL_ITEM_VALUE.item_value = #{entity.itemValue}</if>
+	        <if test="entity.finalItemValue != null">and TA_JC_EVAL_ITEM_VALUE.final_item_value = #{entity.finalItemValue}</if>
+	        <if test="entity.orderNo != null">and TA_JC_EVAL_ITEM_VALUE.order_no = #{entity.orderNo}</if>
+	        <if test="entity.areaCode != null">and TA_JC_EVAL_ITEM_VALUE.area_code = #{entity.areaCode}</if>
+	        <if test="entity.remark != null">and TA_JC_EVAL_ITEM_VALUE.remark = #{entity.remark}</if>
+	        <if test="entity.ccFormInstanceid != null">and TA_JC_EVAL_ITEM_VALUE.cc_form_instanceid = #{entity.ccFormInstanceid}</if>
+	        <if test="entity.evalTime != null">and TA_JC_EVAL_ITEM_VALUE.eval_time = #{entity.evalTime}</if>
+	        <if test="entity.evalType != null">and TA_JC_EVAL_ITEM_VALUE.eval_type = #{entity.evalType}</if>
+	        <if test="entity.isTotalvalue != null">and TA_JC_EVAL_ITEM_VALUE.is_totalvalue = #{entity.isTotalvalue}</if>
+	        <if test="entity.isIssue != null">and TA_JC_EVAL_ITEM_VALUE.is_issue = #{entity.isIssue}</if>
+	        <if test="entity.orgId != null">and TA_JC_EVAL_ITEM_VALUE.org_id = #{entity.orgId}</if>
+	        <if test="entity.instanceId != null">and TA_JC_EVAL_ITEM_VALUE.instance_id = #{entity.instanceId}</if>
+	        <if test="entity.evalObjectId != null">and TA_JC_EVAL_ITEM_VALUE.eval_object_id = #{entity.evalObjectId}</if>
+	        <if test="entity.evalObjectName != null">and TA_JC_EVAL_ITEM_VALUE.eval_object_name = #{entity.evalObjectName}</if>
+		</where>
+</foreach>
+)
+</select>
+
+<!-- ElementID:selectUnion,Generated=true -->
+<select id="selectUnion" parameterType="list" resultMap="EvalItemValueResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_JC_EVAL_ITEM_VALUE 
+	 INNER JOIN
+<foreach collection="list" item="entity" separator="UNION" open="(" close=")">
+		SELECT 
+			 record_id
+		FROM TA_JC_EVAL_ITEM_VALUE 
+			<where>
+	        <if test="entity.recordId != null">and TA_JC_EVAL_ITEM_VALUE.record_id = #{entity.recordId}</if>
+	        <if test="entity.itemId != null">and TA_JC_EVAL_ITEM_VALUE.item_id = #{entity.itemId}</if>
+	        <if test="entity.tableId != null">and TA_JC_EVAL_ITEM_VALUE.table_id = #{entity.tableId}</if>
+	        <if test="entity.orgCode != null">and TA_JC_EVAL_ITEM_VALUE.org_code = #{entity.orgCode}</if>
+	        <if test="entity.itemValue != null">and TA_JC_EVAL_ITEM_VALUE.item_value = #{entity.itemValue}</if>
+	        <if test="entity.finalItemValue != null">and TA_JC_EVAL_ITEM_VALUE.final_item_value = #{entity.finalItemValue}</if>
+	        <if test="entity.orderNo != null">and TA_JC_EVAL_ITEM_VALUE.order_no = #{entity.orderNo}</if>
+	        <if test="entity.areaCode != null">and TA_JC_EVAL_ITEM_VALUE.area_code = #{entity.areaCode}</if>
+	        <if test="entity.remark != null">and TA_JC_EVAL_ITEM_VALUE.remark = #{entity.remark}</if>
+	        <if test="entity.ccFormInstanceid != null">and TA_JC_EVAL_ITEM_VALUE.cc_form_instanceid = #{entity.ccFormInstanceid}</if>
+	        <if test="entity.evalTime != null">and TA_JC_EVAL_ITEM_VALUE.eval_time = #{entity.evalTime}</if>
+	        <if test="entity.evalType != null">and TA_JC_EVAL_ITEM_VALUE.eval_type = #{entity.evalType}</if>
+	        <if test="entity.isTotalvalue != null">and TA_JC_EVAL_ITEM_VALUE.is_totalvalue = #{entity.isTotalvalue}</if>
+	        <if test="entity.isIssue != null">and TA_JC_EVAL_ITEM_VALUE.is_issue = #{entity.isIssue}</if>
+	        <if test="entity.orgId != null">and TA_JC_EVAL_ITEM_VALUE.org_id = #{entity.orgId}</if>
+	        <if test="entity.instanceId != null">and TA_JC_EVAL_ITEM_VALUE.instance_id = #{entity.instanceId}</if>
+	        <if test="entity.evalObjectId != null">and TA_JC_EVAL_ITEM_VALUE.eval_object_id = #{entity.evalObjectId}</if>
+	        <if test="entity.evalObjectName != null">and TA_JC_EVAL_ITEM_VALUE.eval_object_name = #{entity.evalObjectName}</if>
+			</where>
+</foreach>
+	c2_temp_table ON TA_JC_EVAL_ITEM_VALUE.record_id = c2_temp_table.record_id
+</select>
+
+<!-- ElementID:selectByID,Generated=true -->
+<select id="selectByID" parameterType="java.lang.String" resultMap="EvalItemValueResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_EVAL_ITEM_VALUE 
+		 where TA_JC_EVAL_ITEM_VALUE.record_id = #{recordId,jdbcType=VARCHAR}
+</select>
+
+<!-- ElementID:selectByPage,Generated=true -->
+<select id="selectByPage" parameterType="com.chinacreator.dzjc_performance.EvalItemValue" resultMap="EvalItemValueResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_EVAL_ITEM_VALUE 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<select id="selectValueByPage" parameterType="com.chinacreator.dzjc_performance.EvalItemValueExp" resultMap="EvalItemValueResult2">
+select o.name,
+       t.org_id,
+       round(t.final_item_value, 3) final_item_value,
+       t.is_totalvalue,
+       t.order_no
+  from (select v.org_id,
+               avg(v.final_item_value) final_item_value,
+               is_totalvalue,
+               v.order_no
+          from ta_jc_eval_item_value v
+         where eval_type = 'month' 
+          <if test="startDate != null">
+           <![CDATA[
+              and to_date(to_char(eval_time, 'yyyy-MM'), 'yyyy-MM') >=  to_date(#{startDate}, 'yyyy-MM') 
+               ]]>
+          </if>
+          <if test="endDate != null">
+           <![CDATA[
+             and to_date(to_char(eval_time, 'yyyy-MM'), 'yyyy-MM') <=  to_date(#{endDate}, 'yyyy-MM') 
+              ]]>
+          </if> 
+            <if test="tableId != null">and table_id = #{tableId} </if>
+           <if test="areaCode != null">and area_code = #{areaCode} </if>
+         group by v.order_no, v.org_id, is_totalvalue) t,
+       v_org o
+ where o.id = t.org_id
+ order by o.sn, o.id, t.order_no
+</select>
+<select id="selectByPage2" parameterType="com.chinacreator.dzjc_performance.EvalItemValueExp" resultMap="EvalItemValueResult2">
+        select i.item_name,t.table_name,o.name,
+        <include refid="column_sql"/>
+         from  ta_jc_eval_item_value 
+		inner join ta_jc_eval_item i
+		on ta_jc_eval_item_value.item_id=i.item_id
+		inner join ta_jc_eval_table t
+		on ta_jc_eval_item_value.table_id = t.table_id
+		inner join v_org o
+		on ta_jc_eval_item_value.org_id = o.id
+		where eval_type = 'month' 
+		
+</select>
+
+<!-- Generated=false -->
+<select id="selectByObjectAndItemId" parameterType="com.chinacreator.dzjc_performance.EvalItemValue" resultMap="EvalItemValueResult">
+    select 
+        <include refid="column_sql"/>
+        from TA_JC_EVAL_ITEM_VALUE 
+         where TA_JC_EVAL_ITEM_VALUE.item_id = #{itemId,jdbcType=VARCHAR}
+         and TA_JC_EVAL_ITEM_VALUE.eval_objectId = #{evalObjectId,jdbcType=VARCHAR} 
+</select>
+
+<!-- Generated=false -->
+<select id="selectByObjectAndInstanceAndItem" parameterType="com.chinacreator.dzjc_performance.EvalItemValue" resultMap="EvalItemValueResult">
+    select 
+        <include refid="column_sql"/>
+        from TA_JC_EVAL_ITEM_VALUE 
+         where TA_JC_EVAL_ITEM_VALUE.instance_id = #{instanceId,jdbcType=VARCHAR}
+         and TA_JC_EVAL_ITEM_VALUE.eval_objectId = #{objectId,jdbcType=VARCHAR} 
+         and TA_JC_EVAL_ITEM_VALUE.item_id = #{itemId,jdbcType=VARCHAR}
+</select>
+
+<select id="selectByOne" parameterType="com.chinacreator.dzjc_performance.EvalItemValue" resultMap="EvalItemValueResult">
+    select 
+        <include refid="column_sql"/>
+        from TA_JC_EVAL_ITEM_VALUE 
+         <where>
+         <if test="itemId != null">and TA_JC_EVAL_ITEM_VALUE.item_id = #{itemId}</if>
+         <if test="tableId != null">and TA_JC_EVAL_ITEM_VALUE.table_id = #{tableId}</if>
+         <if test="evalType != null">and TA_JC_EVAL_ITEM_VALUE.eval_type = #{evalType}</if>
+         <if test="orgId != null">and TA_JC_EVAL_ITEM_VALUE.org_id = #{orgId}</if>
+         <if test="instanceId != null">and TA_JC_EVAL_ITEM_VALUE.instance_id = #{instanceId}</if>
+         <if test="evalObjectId != null">and TA_JC_EVAL_ITEM_VALUE.eval_object_id = #{evalObjectId}</if>
+         <if test="evalObjectName != null">and TA_JC_EVAL_ITEM_VALUE.eval_object_name = #{evalObjectName}</if>
+         </where>
+</select>
+
+<delete id="deleteItemValue" parameterType="com.chinacreator.dzjc_performance.EvalItemValue">
+    delete from TA_JC_EVAL_ITEM_VALUE where 1=1 and instance_id = #{instanceId}
+</delete>
+</mapper>

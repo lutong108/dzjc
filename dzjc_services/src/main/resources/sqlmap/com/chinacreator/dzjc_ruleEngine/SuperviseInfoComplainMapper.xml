@@ -1,0 +1,1130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"><mapper namespace="com.chinacreator.dzjc_ruleEngine.SuperviseInfoComplainMapper">
+
+	<!-- ElementID:column_sql,Generated=false -->
+	<sql id="column_sql">
+		VA_TA_JC_COMPLAIN_BASEINFO.supervise_result_no ,
+		VA_TA_JC_COMPLAIN_BASEINFO.complain_id ,
+		VA_TA_JC_COMPLAIN_BASEINFO.query_code ,
+		VA_TA_JC_COMPLAIN_BASEINFO.accept_time ,
+		VA_TA_JC_COMPLAIN_BASEINFO.bycomplained_user_org ,
+		VA_TA_JC_COMPLAIN_BASEINFO.bycomplained_user_post ,
+		VA_TA_JC_COMPLAIN_BASEINFO.bycomplained_org ,
+		VA_TA_JC_COMPLAIN_BASEINFO.complain_user_name ,
+		VA_TA_JC_COMPLAIN_BASEINFO.complain_user_mobile ,
+		VA_TA_JC_COMPLAIN_BASEINFO.complain_user_card ,
+		VA_TA_JC_COMPLAIN_BASEINFO.complain_title ,
+		VA_TA_JC_COMPLAIN_BASEINFO.complain_content ,
+		VA_TA_JC_COMPLAIN_BASEINFO.leader_idea ,
+		VA_TA_JC_COMPLAIN_BASEINFO.enregister_time ,
+		VA_TA_JC_COMPLAIN_BASEINFO.state ,
+		VA_TA_JC_COMPLAIN_BASEINFO.problem_type ,
+		VA_TA_JC_COMPLAIN_BASEINFO.problem_small_type ,
+		 (select t.dictdata_value from TD_SM_DICTDATA t where t.DICTTYPE_ID=(select d.DICTTYPE_ID from TD_SM_DICTTYPE d where d.DICTTYPE_NAME='满意度') and t.dictdata_name=VA_TA_JC_COMPLAIN_BASEINFO.Is_Satisfied) as is_satisfied,
+		VA_TA_JC_COMPLAIN_BASEINFO.not_satisfied_reason ,
+		VA_TA_JC_COMPLAIN_BASEINFO.lastmodifytime ,
+		VA_TA_JC_COMPLAIN_BASEINFO.is_public ,
+		VA_TA_JC_COMPLAIN_BASEINFO.handle_status ,
+		VA_TA_JC_COMPLAIN_BASEINFO.expire_date ,
+		VA_TA_JC_COMPLAIN_BASEINFO.accept_user_id ,
+		VA_TA_JC_COMPLAIN_BASEINFO.handle_user_id ,
+		VA_TA_JC_COMPLAIN_BASEINFO.complain_user_org ,
+		VA_TA_JC_COMPLAIN_BASEINFO.complain_user_phone ,
+		VA_TA_JC_COMPLAIN_BASEINFO.reply_orgname ,
+		VA_TA_JC_COMPLAIN_BASEINFO.reply_orgid ,
+		VA_TA_JC_COMPLAIN_BASEINFO.reply_time ,
+		VA_TA_JC_COMPLAIN_BASEINFO.reply_user_id ,
+		VA_TA_JC_COMPLAIN_BASEINFO.commitnum ,
+		VA_TA_JC_COMPLAIN_BASEINFO.complain_user_address ,
+		VA_TA_JC_COMPLAIN_BASEINFO.bycomplained_user_address ,
+		VA_TA_JC_COMPLAIN_BASEINFO.bycomplained_user_phone ,
+		(select t.dictdata_value from TD_SM_DICTDATA t where t.DICTTYPE_ID=(select d.DICTTYPE_ID from TD_SM_DICTTYPE d where d.DICTTYPE_NAME='投诉方式') and t.dictdata_name=VA_TA_JC_COMPLAIN_BASEINFO.problem_mode) as problem_mode_name,
+		VA_TA_JC_COMPLAIN_BASEINFO.problem_mode ,
+		VA_TA_JC_COMPLAIN_BASEINFO.mainappeal ,
+		VA_TA_JC_COMPLAIN_BASEINFO.proessstate ,
+		VA_TA_JC_COMPLAIN_BASEINFO.correlationid ,
+		VA_TA_JC_COMPLAIN_BASEINFO.handleis_public ,
+		VA_TA_JC_COMPLAIN_BASEINFO.caseno ,
+		VA_TA_JC_COMPLAIN_BASEINFO.commitment_limit ,
+		VA_TA_JC_COMPLAIN_BASEINFO.issurereceive ,
+		VA_TA_JC_COMPLAIN_BASEINFO.taskid ,
+		VA_TA_JC_COMPLAIN_BASEINFO.is_examine ,
+		VA_TA_JC_COMPLAIN_BASEINFO.is_preaccepsend ,
+		VA_TA_JC_COMPLAIN_BASEINFO.is_acceptsend ,
+		VA_TA_JC_COMPLAIN_BASEINFO.accept_org_id ,
+		VA_TA_JC_COMPLAIN_BASEINFO.islocalsector ,
+		VA_TA_JC_COMPLAIN_BASEINFO.accept_org_name ,
+		VA_TA_JC_COMPLAIN_BASEINFO.accept_org_level ,
+		VA_TA_JC_COMPLAIN_BASEINFO.sure_receive_time ,
+		VA_TA_JC_COMPLAIN_BASEINFO.brachcanshift ,
+		VA_TA_JC_COMPLAIN_BASEINFO.commitment_city_limit ,
+		VA_TA_JC_COMPLAIN_BASEINFO.expire_city_date ,
+		VA_TA_JC_COMPLAIN_BASEINFO.extens_day ,
+		VA_TA_JC_COMPLAIN_BASEINFO.extens_reason ,
+		TA_JC_DIC_SUPERVISE_RESULT.supervise_result_name ,
+		VA_TA_JC_COMPLAIN_BASEINFO.supervise_type_code ,
+		VA_TA_JC_COMPLAIN_BASEINFO.supervise_type_name,
+		VA_TA_JC_COMPLAIN_BASEINFO.end_time,
+		VA_TA_JC_COMPLAIN_BASEINFO.supervise_time
+	</sql>
+	
+	
+	<sql id="column_sqlId">
+		VA_TA_JC_COMPLAIN_BASEINFO.supervise_result_no ,
+		VA_TA_JC_COMPLAIN_BASEINFO.complain_id ,
+		VA_TA_JC_COMPLAIN_BASEINFO.query_code ,
+		VA_TA_JC_COMPLAIN_BASEINFO.accept_time ,
+		VA_TA_JC_COMPLAIN_BASEINFO.bycomplained_user_org ,
+		VA_TA_JC_COMPLAIN_BASEINFO.bycomplained_user_post ,
+		VA_TA_JC_COMPLAIN_BASEINFO.bycomplained_org ,
+		VA_TA_JC_COMPLAIN_BASEINFO.complain_user_name ,
+		VA_TA_JC_COMPLAIN_BASEINFO.complain_user_mobile ,
+		VA_TA_JC_COMPLAIN_BASEINFO.complain_user_card ,
+		VA_TA_JC_COMPLAIN_BASEINFO.complain_title ,
+		VA_TA_JC_COMPLAIN_BASEINFO.complain_content ,
+		VA_TA_JC_COMPLAIN_BASEINFO.leader_idea ,
+		VA_TA_JC_COMPLAIN_BASEINFO.enregister_time ,
+		VA_TA_JC_COMPLAIN_BASEINFO.state ,
+		TA_JC_DIC_PROBLEM_TYPE.PROBLEM_TYPE_NAME AS PROBLEM_TYPE,
+		VA_TA_JC_COMPLAIN_BASEINFO.problem_small_type ,
+		VA_TA_JC_COMPLAIN_BASEINFO.not_satisfied_reason ,
+		VA_TA_JC_COMPLAIN_BASEINFO.lastmodifytime ,
+		VA_TA_JC_COMPLAIN_BASEINFO.is_public ,
+		VA_TA_JC_COMPLAIN_BASEINFO.handle_status ,
+		VA_TA_JC_COMPLAIN_BASEINFO.expire_date ,
+		VA_TA_JC_COMPLAIN_BASEINFO.accept_user_id ,
+		VA_TA_JC_COMPLAIN_BASEINFO.handle_user_id ,
+		VA_TA_JC_COMPLAIN_BASEINFO.complain_user_org ,
+		VA_TA_JC_COMPLAIN_BASEINFO.complain_user_phone ,
+		VA_TA_JC_COMPLAIN_BASEINFO.reply_orgname ,
+		VA_TA_JC_COMPLAIN_BASEINFO.reply_orgid ,
+		VA_TA_JC_COMPLAIN_BASEINFO.reply_time ,
+		VA_TA_JC_COMPLAIN_BASEINFO.reply_user_id ,
+		VA_TA_JC_COMPLAIN_BASEINFO.commitnum ,
+		VA_TA_JC_COMPLAIN_BASEINFO.complain_user_address ,
+		VA_TA_JC_COMPLAIN_BASEINFO.bycomplained_user_address ,
+		VA_TA_JC_COMPLAIN_BASEINFO.bycomplained_user_phone ,
+		VA_TA_JC_COMPLAIN_BASEINFO.problem_mode ,
+		VA_TA_JC_COMPLAIN_BASEINFO.mainappeal ,
+		VA_TA_JC_COMPLAIN_BASEINFO.proessstate ,
+		VA_TA_JC_COMPLAIN_BASEINFO.correlationid ,
+		VA_TA_JC_COMPLAIN_BASEINFO.handleis_public ,
+		VA_TA_JC_COMPLAIN_BASEINFO.caseno ,
+		VA_TA_JC_COMPLAIN_BASEINFO.commitment_limit ,
+		VA_TA_JC_COMPLAIN_BASEINFO.issurereceive ,
+		VA_TA_JC_COMPLAIN_BASEINFO.taskid ,
+		VA_TA_JC_COMPLAIN_BASEINFO.is_examine ,
+		VA_TA_JC_COMPLAIN_BASEINFO.is_preaccepsend ,
+		VA_TA_JC_COMPLAIN_BASEINFO.is_acceptsend ,
+		VA_TA_JC_COMPLAIN_BASEINFO.accept_org_id ,
+		VA_TA_JC_COMPLAIN_BASEINFO.islocalsector ,
+		VA_TA_JC_COMPLAIN_BASEINFO.accept_org_name ,
+		VA_TA_JC_COMPLAIN_BASEINFO.accept_org_level ,
+		VA_TA_JC_COMPLAIN_BASEINFO.sure_receive_time ,
+		VA_TA_JC_COMPLAIN_BASEINFO.brachcanshift ,
+		VA_TA_JC_COMPLAIN_BASEINFO.commitment_city_limit ,
+		VA_TA_JC_COMPLAIN_BASEINFO.expire_city_date ,
+		VA_TA_JC_COMPLAIN_BASEINFO.extens_day ,
+		VA_TA_JC_COMPLAIN_BASEINFO.extens_reason ,
+		TA_JC_DIC_SUPERVISE_RESULT.supervise_result_name ,
+		VA_TA_JC_COMPLAIN_BASEINFO.supervise_type_code ,
+		VA_TA_JC_COMPLAIN_BASEINFO.supervise_type_name,
+		(select t.dictdata_value from TD_SM_DICTDATA t where t.DICTTYPE_ID=(select d.DICTTYPE_ID from TD_SM_DICTTYPE d where d.DICTTYPE_NAME='满意度') and t.dictdata_name=VA_TA_JC_COMPLAIN_BASEINFO.Is_Satisfied) as is_satisfied,
+		(select t.dictdata_value from TD_SM_DICTDATA t where t.DICTTYPE_ID=(select d.DICTTYPE_ID from TD_SM_DICTTYPE d where d.DICTTYPE_NAME='投诉方式') and t.dictdata_name=VA_TA_JC_COMPLAIN_BASEINFO.problem_mode) as problem_mode_name
+	</sql>
+
+	<!-- ElementID:whereClause_sql,Generated=false -->
+	<sql id="whereClause_sql">
+		<if test="superviseResultNo != null">and VA_TA_JC_COMPLAIN_BASEINFO.supervise_result_no =
+			#{superviseResultNo}</if>
+		<if test="complainId != null">and VA_TA_JC_COMPLAIN_BASEINFO.complain_id = #{complainId}
+		</if>
+		<if test="queryCode != null">and VA_TA_JC_COMPLAIN_BASEINFO.query_code = #{queryCode}
+		</if>
+		<if test="acceptTime != null">and VA_TA_JC_COMPLAIN_BASEINFO.accept_time = #{acceptTime}
+		</if>
+		<if test="bycomplainedUserOrg != null">and VA_TA_JC_COMPLAIN_BASEINFO.bycomplained_user_org =
+			#{bycomplainedUserOrg}</if>
+		<if test="bycomplainedUserPost != null">and VA_TA_JC_COMPLAIN_BASEINFO.bycomplained_user_post =
+			#{bycomplainedUserPost}</if>
+		<if test="bycomplainedOrg != null">and VA_TA_JC_COMPLAIN_BASEINFO.bycomplained_org =
+			#{bycomplainedOrg}</if>
+		<if test="complainUserName != null">and VA_TA_JC_COMPLAIN_BASEINFO.complain_user_name =
+			#{complainUserName}</if>
+		<if test="complainUserMobile != null">and VA_TA_JC_COMPLAIN_BASEINFO.complain_user_mobile =
+			#{complainUserMobile}</if>
+		<if test="complainUserCard != null">and VA_TA_JC_COMPLAIN_BASEINFO.complain_user_card =
+			#{complainUserCard}</if>
+		<if test="complainTitle != null">and VA_TA_JC_COMPLAIN_BASEINFO.complain_title =
+			#{complainTitle}</if>
+		<if test="complainContent != null">and VA_TA_JC_COMPLAIN_BASEINFO.complain_content =
+			#{complainContent}</if>
+		<if test="leaderIdea != null">and VA_TA_JC_COMPLAIN_BASEINFO.leader_idea = #{leaderIdea}
+		</if>
+		<if test="enregisterTime != null">and VA_TA_JC_COMPLAIN_BASEINFO.enregister_time =
+			#{enregisterTime}</if>
+		<if test="state != null">and VA_TA_JC_COMPLAIN_BASEINFO.state = #{state}</if>
+		<if test="problemType != null">and VA_TA_JC_COMPLAIN_BASEINFO.problem_type =
+			#{problemType}</if>
+		<if test="problemSmallType != null">and VA_TA_JC_COMPLAIN_BASEINFO.problem_small_type =
+			#{problemSmallType}</if>
+		<if test="isSatisfied != null">and VA_TA_JC_COMPLAIN_BASEINFO.is_satisfied =
+			#{isSatisfied}</if>
+		<if test="notSatisfiedReason != null">and VA_TA_JC_COMPLAIN_BASEINFO.not_satisfied_reason =
+			#{notSatisfiedReason}</if>
+		<if test="lastmodifytime != null">and VA_TA_JC_COMPLAIN_BASEINFO.lastmodifytime =
+			#{lastmodifytime}</if>
+		<if test="isPublic != null">and VA_TA_JC_COMPLAIN_BASEINFO.is_public = #{isPublic}
+		</if>
+		<if test="handleStatus != null">and VA_TA_JC_COMPLAIN_BASEINFO.handle_status =
+			#{handleStatus}</if>
+		<if test="expireDate != null">and VA_TA_JC_COMPLAIN_BASEINFO.expire_date = #{expireDate}
+		</if>
+		<if test="acceptUserId != null">and VA_TA_JC_COMPLAIN_BASEINFO.accept_user_id =
+			#{acceptUserId}</if>
+		<if test="handleUserId != null">and VA_TA_JC_COMPLAIN_BASEINFO.handle_user_id =
+			#{handleUserId}</if>
+		<if test="complainUserOrg != null">and VA_TA_JC_COMPLAIN_BASEINFO.complain_user_org =
+			#{complainUserOrg}</if>
+		<if test="complainUserPhone != null">and VA_TA_JC_COMPLAIN_BASEINFO.complain_user_phone =
+			#{complainUserPhone}</if>
+		<if test="replyOrgname != null">and VA_TA_JC_COMPLAIN_BASEINFO.reply_orgname =
+			#{replyOrgname}</if>
+		<if test="replyOrgid != null">and VA_TA_JC_COMPLAIN_BASEINFO.reply_orgid = #{replyOrgid}
+		</if>
+		<if test="replyTime != null">and VA_TA_JC_COMPLAIN_BASEINFO.reply_time = #{replyTime}
+		</if>
+		<if test="replyUserId != null">and VA_TA_JC_COMPLAIN_BASEINFO.reply_user_id =
+			#{replyUserId}</if>
+		<if test="commitnum != null">and VA_TA_JC_COMPLAIN_BASEINFO.commitnum = #{commitnum}
+		</if>
+		<if test="complainUserAddress != null">and VA_TA_JC_COMPLAIN_BASEINFO.complain_user_address =
+			#{complainUserAddress}</if>
+		<if test="bycomplainedUserAddress != null">and VA_TA_JC_COMPLAIN_BASEINFO.bycomplained_user_address =
+			#{bycomplainedUserAddress}</if>
+		<if test="bycomplainedUserPhone != null">and VA_TA_JC_COMPLAIN_BASEINFO.bycomplained_user_phone =
+			#{bycomplainedUserPhone}</if>
+		<if test="problemMode != null">and VA_TA_JC_COMPLAIN_BASEINFO.problem_mode =
+			#{problemMode}</if>
+		<if test="mainappeal != null">and VA_TA_JC_COMPLAIN_BASEINFO.mainappeal = #{mainappeal}
+		</if>
+		<if test="proessstate != null">and VA_TA_JC_COMPLAIN_BASEINFO.proessstate =
+			#{proessstate}</if>
+		<if test="correlationid != null">and VA_TA_JC_COMPLAIN_BASEINFO.correlationid =
+			#{correlationid}</if>
+		<if test="handleisPublic != null">and VA_TA_JC_COMPLAIN_BASEINFO.handleis_public =
+			#{handleisPublic}</if>
+		<if test="caseno != null">and VA_TA_JC_COMPLAIN_BASEINFO.caseno = #{caseno}</if>
+		<if test="commitmentLimit != null">and VA_TA_JC_COMPLAIN_BASEINFO.commitment_limit =
+			#{commitmentLimit}</if>
+		<if test="issurereceive != null">and VA_TA_JC_COMPLAIN_BASEINFO.issurereceive =
+			#{issurereceive}</if>
+		<if test="taskid != null">and VA_TA_JC_COMPLAIN_BASEINFO.taskid = #{taskid}</if>
+		<if test="isExamine != null">and VA_TA_JC_COMPLAIN_BASEINFO.is_examine = #{isExamine}
+		</if>
+		<if test="isPreaccepsend != null">and VA_TA_JC_COMPLAIN_BASEINFO.is_preaccepsend =
+			#{isPreaccepsend}</if>
+		<if test="isAcceptsend != null">and VA_TA_JC_COMPLAIN_BASEINFO.is_acceptsend =
+			#{isAcceptsend}</if>
+		<if test="acceptOrgId != null">and VA_TA_JC_COMPLAIN_BASEINFO.accept_org_id =
+			#{acceptOrgId}</if>
+		<if test="islocalsector != null">and VA_TA_JC_COMPLAIN_BASEINFO.islocalsector =
+			#{islocalsector}</if>
+		<if test="acceptOrgName != null">and VA_TA_JC_COMPLAIN_BASEINFO.accept_org_name =
+			#{acceptOrgName}</if>
+		<if test="acceptOrgLevel != null">and VA_TA_JC_COMPLAIN_BASEINFO.accept_org_level =
+			#{acceptOrgLevel}</if>
+		<if test="sureReceiveTime != null">and VA_TA_JC_COMPLAIN_BASEINFO.sure_receive_time =
+			#{sureReceiveTime}</if>
+		<if test="brachcanshift != null">and VA_TA_JC_COMPLAIN_BASEINFO.brachcanshift =
+			#{brachcanshift}</if>
+		<if test="commitmentCityLimit != null">and VA_TA_JC_COMPLAIN_BASEINFO.commitment_city_limit =
+			#{commitmentCityLimit}</if>
+		<if test="expireCityDate != null">and VA_TA_JC_COMPLAIN_BASEINFO.expire_city_date =
+			#{expireCityDate}</if>
+		<if test="extensDay != null">and VA_TA_JC_COMPLAIN_BASEINFO.extens_day = #{extensDay}
+		</if>
+		<if test="extensReason != null">and VA_TA_JC_COMPLAIN_BASEINFO.extens_reason =
+			#{extensReason}</if>
+		<if test="superviseResultName != null">and TA_JC_DIC_SUPERVISE_RESULT.supervise_result_name =
+			#{superviseResultName}</if>
+		<if test="superviseTypeCode != null">and VA_TA_JC_COMPLAIN_BASEINFO.supervise_type_code =
+			#{superviseTypeCode}</if>
+		<if test="superviseTypeName != null">and VA_TA_JC_COMPLAIN_BASEINFO.supervise_type_name =
+			#{superviseTypeName}</if>
+		<if test="beginDate != null">and VA_TA_JC_COMPLAIN_BASEINFO.accept_time &gt;= #{beginDate}
+		</if>
+		<if test="acceptTime != null">and VA_TA_JC_COMPLAIN_BASEINFO.accept_time &lt;= #{endDate}
+		</if>		
+			
+	</sql>
+	<sql id="whereClause_sql1">
+		<if test="superviseResultNo != null">and TEMP2.supervise_result_no = #{superviseResultNo}</if>
+		<if test="complainId != null">and TEMP2.complain_id = #{complainId}</if>
+		<if test="queryCode != null">and TEMP2.query_code = #{queryCode}</if>
+		<if test="acceptTime != null">and TEMP2.accept_time = #{acceptTime}</if>
+		<if test="bycomplainedUserOrg != null">and TEMP2.bycomplained_user_org = #{bycomplainedUserOrg}
+		</if>
+		<if test="bycomplainedUserPost != null">and TEMP2.bycomplained_user_post = #{bycomplainedUserPost}
+		</if>
+		<if test="bycomplainedOrg != null">and TEMP2.bycomplained_org = #{bycomplainedOrg}</if>
+		<if test="complainUserName != null">and TEMP2.complain_user_name = #{complainUserName}</if>
+		<if test="complainUserMobile != null">and TEMP2.complain_user_mobile = #{complainUserMobile}
+		</if>
+		<if test="complainUserCard != null">and TEMP2.complain_user_card = #{complainUserCard}</if>
+		<if test="complainTitle != null">and TEMP2.complain_title = #{complainTitle}</if>
+		<if test="complainContent != null">and TEMP2.complain_content = #{complainContent}</if>
+		<if test="leaderIdea != null">and TEMP2.leader_idea = #{leaderIdea}</if>
+		<if test="enregisterTime != null">and TEMP2.enregister_time = #{enregisterTime}</if>
+		<if test="state != null">and TEMP2.state = #{state}</if>
+		<if test="problemType != null">and TEMP2.problem_type = #{problemType}</if>
+		<if test="problemSmallType != null">and TEMP2.problem_small_type = #{problemSmallType}</if>
+		<if test="isSatisfied != null">and TEMP2.is_satisfied = #{isSatisfied}</if>
+		<if test="notSatisfiedReason != null">and TEMP2.not_satisfied_reason = #{notSatisfiedReason}
+		</if>
+		<if test="lastmodifytime != null">and TEMP2.lastmodifytime = #{lastmodifytime}</if>
+		<if test="isPublic != null">and TEMP2.is_public = #{isPublic}</if>
+		<if test="handleStatus != null">and TEMP2.handle_status = #{handleStatus}</if>
+		<if test="expireDate != null">and TEMP2.expire_date = #{expireDate}</if>
+		<if test="acceptUserId != null">and TEMP2.accept_user_id = #{acceptUserId}</if>
+		<if test="handleUserId != null">and TEMP2.handle_user_id = #{handleUserId}</if>
+		<if test="complainUserOrg != null">and TEMP2.complain_user_org = #{complainUserOrg}</if>
+		<if test="complainUserPhone != null">and TEMP2.complain_user_phone = #{complainUserPhone}</if>
+		<if test="replyOrgname != null">and TEMP2.reply_orgname = #{replyOrgname}</if>
+		<if test="replyTime != null">and TEMP2.reply_time = #{replyTime}</if>
+		<if test="replyUserId != null">and TEMP2.reply_user_id = #{replyUserId}</if>
+		<if test="commitnum != null">and TEMP2.commitnum = #{commitnum}</if>
+		<if test="complainUserAddress != null">and TEMP2.complain_user_address = #{complainUserAddress}
+		</if>
+		<if test="bycomplainedUserAddress != null">and TEMP2.bycomplained_user_address =
+			#{bycomplainedUserAddress}</if>
+		<if test="bycomplainedUserPhone != null">and TEMP2.bycomplained_user_phone =
+			#{bycomplainedUserPhone}</if>
+		<if test="problemMode != null">and TEMP2.problem_mode = #{problemMode}</if>
+		<if test="mainappeal != null">and TEMP2.mainappeal = #{mainappeal}</if>
+		<if test="proessstate != null">and TEMP2.proessstate = #{proessstate}</if>
+		<if test="correlationid != null">and TEMP2.correlationid = #{correlationid}</if>
+		<if test="handleisPublic != null">and TEMP2.handleis_public = #{handleisPublic}</if>
+		<if test="caseno != null">and TEMP2.caseno = #{caseno}</if>
+		<if test="commitmentLimit != null">and TEMP2.commitment_limit = #{commitmentLimit}</if>
+		<if test="issurereceive != null">and TEMP2.issurereceive = #{issurereceive}</if>
+		<if test="taskid != null">and TEMP2.taskid = #{taskid}</if>
+		<if test="isExamine != null">and TEMP2.is_examine = #{isExamine}</if>
+		<if test="isPreaccepsend != null">and TEMP2.is_preaccepsend = #{isPreaccepsend}</if>
+		<if test="isAcceptsend != null">and TEMP2.is_acceptsend = #{isAcceptsend}</if>
+		<if test="acceptOrgId != null">and TEMP2.accept_org_id = #{acceptOrgId}</if>
+		<if test="islocalsector != null">and TEMP2.islocalsector = #{islocalsector}</if>
+		<if test="acceptOrgName != null">and TEMP2.accept_org_name = #{acceptOrgName}</if>
+		<if test="acceptOrgLevel != null">and TEMP2.accept_org_level = #{acceptOrgLevel}</if>
+		<if test="sureReceiveTime != null">and TEMP2.sure_receive_time = #{sureReceiveTime}</if>
+		<if test="brachcanshift != null">and TEMP2.brachcanshift = #{brachcanshift}</if>
+		<if test="commitmentCityLimit != null">and TEMP2.commitment_city_limit = #{commitmentCityLimit}
+		</if>
+		<if test="expireCityDate != null">and TEMP2.expire_city_date = #{expireCityDate}</if>
+		<if test="extensDay != null">and TEMP2.extens_day = #{extensDay}</if>
+		<if test="extensReason != null">and TEMP2.extens_reason = #{extensReason}</if>
+		<if test="superviseResultName != null">and TEMP2.supervise_result_name = #{superviseResultName}
+		</if>
+		<if test="superviseTypeCode != null">and TEMP2.supervise_type_code = #{superviseTypeCode}</if>
+		<if test="superviseTypeName != null">and TEMP2.supervise_type_name = #{superviseTypeName}</if>
+		<if test="beginDate != null">and TEMP2.accept_time &gt;= #{beginDate}</if>
+	    <if test="endDate != null">and TEMP2.accept_time &lt;= #{endDate}</if>
+	    <if test="beginJcDate != null">and TEMP2.supervise_time &gt;= #{beginJcDate}</if>
+      	<if test="endJcDate != null">and TEMP2.supervise_time &lt;= #{endJcDate}</if>
+	</sql>
+
+
+	<!-- ElementID:SuperviseInfoComplainResult,Generated=true -->
+	<resultMap id="SuperviseInfoComplainResult" type="com.chinacreator.dzjc_ruleEngine.SuperviseInfoComplain">
+	<id property="complainId" column="complain_id"/>
+	<result property="superviseResultNo" column="supervise_result_no"/>
+	<result property="queryCode" column="query_code"/>
+	<result property="acceptTime" column="accept_time"/>
+	<result property="bycomplainedUserOrg" column="bycomplained_user_org"/>
+	<result property="bycomplainedUserPost" column="bycomplained_user_post"/>
+	<result property="bycomplainedOrg" column="bycomplained_org"/>
+	<result property="complainUserName" column="complain_user_name"/>
+	<result property="complainUserMobile" column="complain_user_mobile"/>
+	<result property="complainUserCard" column="complain_user_card"/>
+	<result property="complainTitle" column="complain_title"/>
+	<result property="complainContent" column="complain_content"/>
+	<result property="leaderIdea" column="leader_idea"/>
+	<result property="enregisterTime" column="enregister_time"/>
+	<result property="state" column="state"/>
+	<result property="problemType" column="problem_type"/>
+	<result property="problemSmallType" column="problem_small_type"/>
+	<result property="isSatisfied" column="is_satisfied"/>
+	<result property="notSatisfiedReason" column="not_satisfied_reason"/>
+	<result property="lastmodifytime" column="lastmodifytime"/>
+	<result property="isPublic" column="is_public"/>
+	<result property="handleStatus" column="handle_status"/>
+	<result property="expireDate" column="expire_date"/>
+	<result property="acceptUserId" column="accept_user_id"/>
+	<result property="handleUserId" column="handle_user_id"/>
+	<result property="complainUserOrg" column="complain_user_org"/>
+	<result property="complainUserPhone" column="complain_user_phone"/>
+	<result property="replyOrgname" column="reply_orgname"/>
+	<result property="replyOrgid" column="reply_orgid"/>
+	<result property="replyTime" column="reply_time"/>
+	<result property="replyUserId" column="reply_user_id"/>
+	<result property="commitnum" column="commitnum"/>
+	<result property="complainUserAddress" column="complain_user_address"/>
+	<result property="bycomplainedUserAddress" column="bycomplained_user_address"/>
+	<result property="bycomplainedUserPhone" column="bycomplained_user_phone"/>
+	<result property="problemMode" column="problem_mode"/>
+	<result property="mainappeal" column="mainappeal"/>
+	<result property="proessstate" column="proessstate"/>
+	<result property="correlationid" column="correlationid"/>
+	<result property="handleisPublic" column="handleis_public"/>
+	<result property="caseno" column="caseno"/>
+	<result property="commitmentLimit" column="commitment_limit"/>
+	<result property="issurereceive" column="issurereceive"/>
+	<result property="taskid" column="taskid"/>
+	<result property="isExamine" column="is_examine"/>
+	<result property="isPreaccepsend" column="is_preaccepsend"/>
+	<result property="isAcceptsend" column="is_acceptsend"/>
+	<result property="acceptOrgId" column="accept_org_id"/>
+	<result property="islocalsector" column="islocalsector"/>
+	<result property="acceptOrgName" column="accept_org_name"/>
+	<result property="acceptOrgLevel" column="accept_org_level"/>
+	<result property="sureReceiveTime" column="sure_receive_time"/>
+	<result property="brachcanshift" column="brachcanshift"/>
+	<result property="commitmentCityLimit" column="commitment_city_limit"/>
+	<result property="expireCityDate" column="expire_city_date"/>
+	<result property="extensDay" column="extens_day"/>
+	<result property="extensReason" column="extens_reason"/>
+	<result property="superviseResultName" column="supervise_result_name"/>
+	<result property="superviseTypeCode" column="supervise_type_code"/>
+	<result property="superviseTypeName" column="supervise_type_name"/>
+	<result property="beginDate" column="beginDate"/>
+	<result property="endDate" column="endDate"/>
+	<result property="IsSatisfiedName" column="Is_Satisfied_name"/>
+	<result property="problemModeName" column="problem_mode_name"/>
+	<result property="endTime" column="end_time"/>
+	<result property="superviseTime" column="supervise_time"/>
+	<result property="beginJcDate" column="beginJcDate"/>
+	<result property="endJcDate" column="endJcDate"/>
+</resultMap>
+
+
+
+	<!-- ElementName:cache,Generated=true 
+	<cache type="C2_Default_Dao_Cache" />-->
+
+	<!-- ElementID:insert,Generated=false -->
+	<insert id="insert" parameterType="com.chinacreator.dzjc_ruleEngine.SuperviseInfoComplain">
+	insert into VA_TA_JC_COMPLAIN_BASEINFO(
+	         <if test="superviseResultNo != null">supervise_result_no</if>
+	         <if test="complainId != null">,complain_id</if>
+	         <if test="queryCode != null">,query_code</if>
+	         <if test="acceptTime != null">,accept_time</if>
+	         <if test="bycomplainedUserOrg != null">,bycomplained_user_org</if>
+	         <if test="bycomplainedUserPost != null">,bycomplained_user_post</if>
+	         <if test="bycomplainedOrg != null">,bycomplained_org</if>
+	         <if test="complainUserName != null">,complain_user_name</if>
+	         <if test="complainUserMobile != null">,complain_user_mobile</if>
+	         <if test="complainUserCard != null">,complain_user_card</if>
+	         <if test="complainTitle != null">,complain_title</if>
+	         <if test="complainContent != null">,complain_content</if>
+	         <if test="leaderIdea != null">,leader_idea</if>
+	         <if test="enregisterTime != null">,enregister_time</if>
+	         <if test="state != null">,state</if>
+	         <if test="problemType != null">,problem_type</if>
+	         <if test="problemSmallType != null">,problem_small_type</if>
+	         <if test="isSatisfied != null">,is_satisfied</if>
+	         <if test="notSatisfiedReason != null">,not_satisfied_reason</if>
+	         <if test="lastmodifytime != null">,lastmodifytime</if>
+	         <if test="isPublic != null">,is_public</if>
+	         <if test="handleStatus != null">,handle_status</if>
+	         <if test="expireDate != null">,expire_date</if>
+	         <if test="acceptUserId != null">,accept_user_id</if>
+	         <if test="handleUserId != null">,handle_user_id</if>
+	         <if test="complainUserOrg != null">,complain_user_org</if>
+	         <if test="complainUserPhone != null">,complain_user_phone</if>
+	         <if test="replyOrgname != null">,reply_orgname</if>
+	         <if test="replyOrgid != null">,reply_orgid</if>
+	         <if test="replyTime != null">,reply_time</if>
+	         <if test="replyUserId != null">,reply_user_id</if>
+	         <if test="commitnum != null">,commitnum</if>
+	         <if test="complainUserAddress != null">,complain_user_address</if>
+	         <if test="bycomplainedUserAddress != null">,bycomplained_user_address</if>
+	         <if test="bycomplainedUserPhone != null">,bycomplained_user_phone</if>
+	         <if test="problemMode != null">,problem_mode</if>
+	         <if test="mainappeal != null">,mainappeal</if>
+	         <if test="proessstate != null">,proessstate</if>
+	         <if test="correlationid != null">,correlationid</if>
+	         <if test="handleisPublic != null">,handleis_public</if>
+	         <if test="caseno != null">,caseno</if>
+	         <if test="commitmentLimit != null">,commitment_limit</if>
+	         <if test="issurereceive != null">,issurereceive</if>
+	         <if test="taskid != null">,taskid</if>
+	         <if test="isExamine != null">,is_examine</if>
+	         <if test="isPreaccepsend != null">,is_preaccepsend</if>
+	         <if test="isAcceptsend != null">,is_acceptsend</if>
+	         <if test="acceptOrgId != null">,accept_org_id</if>
+	         <if test="islocalsector != null">,islocalsector</if>
+	         <if test="acceptOrgName != null">,accept_org_name</if>
+	         <if test="acceptOrgLevel != null">,accept_org_level</if>
+	         <if test="sureReceiveTime != null">,sure_receive_time</if>
+	         <if test="brachcanshift != null">,brachcanshift</if>
+	         <if test="commitmentCityLimit != null">,commitment_city_limit</if>
+	         <if test="expireCityDate != null">,expire_city_date</if>
+	         <if test="extensDay != null">,extens_day</if>
+	         <if test="extensReason != null">,extens_reason</if>
+	         <if test="superviseResultName != null">,supervise_result_name</if>
+	         <if test="superviseTypeCode != null">,supervise_type_code</if>
+	         <if test="superviseTypeName != null">,supervise_type_name</if>
+	         <if test="beginDate != null">,beginDate</if>
+	         <if test="endDate != null">,endDate</if>
+	         <if test="IsSatisfiedName != null">,Is_Satisfied_name</if>
+	         <if test="problemModeName != null">,problem_mode_name</if>
+	         <if test="endTime != null">,end_time</if>
+	         <if test="superviseTime != null">,supervise_time</if>
+	 	 	 )
+	 values (
+	         <if test="superviseResultNo != null">#{superviseResultNo,jdbcType=VARCHAR}</if>
+	         <if test="complainId != null">,#{complainId,jdbcType=VARCHAR}</if>
+	         <if test="queryCode != null">,#{queryCode,jdbcType=VARCHAR}</if>
+	         <if test="acceptTime != null">,#{acceptTime,jdbcType=DATE}</if>
+	         <if test="bycomplainedUserOrg != null">,#{bycomplainedUserOrg,jdbcType=VARCHAR}</if>
+	         <if test="bycomplainedUserPost != null">,#{bycomplainedUserPost,jdbcType=VARCHAR}</if>
+	         <if test="bycomplainedOrg != null">,#{bycomplainedOrg,jdbcType=VARCHAR}</if>
+	         <if test="complainUserName != null">,#{complainUserName,jdbcType=VARCHAR}</if>
+	         <if test="complainUserMobile != null">,#{complainUserMobile,jdbcType=VARCHAR}</if>
+	         <if test="complainUserCard != null">,#{complainUserCard,jdbcType=VARCHAR}</if>
+	         <if test="complainTitle != null">,#{complainTitle,jdbcType=VARCHAR}</if>
+	         <if test="complainContent != null">,#{complainContent,jdbcType=VARCHAR}</if>
+	         <if test="leaderIdea != null">,#{leaderIdea,jdbcType=VARCHAR}</if>
+	         <if test="enregisterTime != null">,#{enregisterTime,jdbcType=DATE}</if>
+	         <if test="state != null">,#{state,jdbcType=VARCHAR}</if>
+	         <if test="problemType != null">,#{problemType,jdbcType=VARCHAR}</if>
+	         <if test="problemSmallType != null">,#{problemSmallType,jdbcType=VARCHAR}</if>
+	         <if test="isSatisfied != null">,#{isSatisfied,jdbcType=VARCHAR}</if>
+	         <if test="notSatisfiedReason != null">,#{notSatisfiedReason,jdbcType=VARCHAR}</if>
+	         <if test="lastmodifytime != null">,#{lastmodifytime,jdbcType=DATE}</if>
+	         <if test="isPublic != null">,#{isPublic,jdbcType=VARCHAR}</if>
+	         <if test="handleStatus != null">,#{handleStatus,jdbcType=VARCHAR}</if>
+	         <if test="expireDate != null">,#{expireDate,jdbcType=VARCHAR}</if>
+	         <if test="acceptUserId != null">,#{acceptUserId,jdbcType=VARCHAR}</if>
+	         <if test="handleUserId != null">,#{handleUserId,jdbcType=VARCHAR}</if>
+	         <if test="complainUserOrg != null">,#{complainUserOrg,jdbcType=VARCHAR}</if>
+	         <if test="complainUserPhone != null">,#{complainUserPhone,jdbcType=VARCHAR}</if>
+	         <if test="replyOrgname != null">,#{replyOrgname,jdbcType=VARCHAR}</if>
+	         <if test="replyOrgid != null">,#{replyOrgid,jdbcType=VARCHAR}</if>
+	         <if test="replyTime != null">,#{replyTime,jdbcType=DATE}</if>
+	         <if test="replyUserId != null">,#{replyUserId,jdbcType=VARCHAR}</if>
+	         <if test="commitnum != null">,#{commitnum,jdbcType=VARCHAR}</if>
+	         <if test="complainUserAddress != null">,#{complainUserAddress,jdbcType=VARCHAR}</if>
+	         <if test="bycomplainedUserAddress != null">,#{bycomplainedUserAddress,jdbcType=VARCHAR}</if>
+	         <if test="bycomplainedUserPhone != null">,#{bycomplainedUserPhone,jdbcType=VARCHAR}</if>
+	         <if test="problemMode != null">,#{problemMode,jdbcType=VARCHAR}</if>
+	         <if test="mainappeal != null">,#{mainappeal,jdbcType=VARCHAR}</if>
+	         <if test="proessstate != null">,#{proessstate,jdbcType=VARCHAR}</if>
+	         <if test="correlationid != null">,#{correlationid,jdbcType=VARCHAR}</if>
+	         <if test="handleisPublic != null">,#{handleisPublic,jdbcType=VARCHAR}</if>
+	         <if test="caseno != null">,#{caseno,jdbcType=VARCHAR}</if>
+	         <if test="commitmentLimit != null">,#{commitmentLimit,jdbcType=VARCHAR}</if>
+	         <if test="issurereceive != null">,#{issurereceive,jdbcType=VARCHAR}</if>
+	         <if test="taskid != null">,#{taskid,jdbcType=VARCHAR}</if>
+	         <if test="isExamine != null">,#{isExamine,jdbcType=VARCHAR}</if>
+	         <if test="isPreaccepsend != null">,#{isPreaccepsend,jdbcType=VARCHAR}</if>
+	         <if test="isAcceptsend != null">,#{isAcceptsend,jdbcType=VARCHAR}</if>
+	         <if test="acceptOrgId != null">,#{acceptOrgId,jdbcType=VARCHAR}</if>
+	         <if test="islocalsector != null">,#{islocalsector,jdbcType=VARCHAR}</if>
+	         <if test="acceptOrgName != null">,#{acceptOrgName,jdbcType=VARCHAR}</if>
+	         <if test="acceptOrgLevel != null">,#{acceptOrgLevel,jdbcType=VARCHAR}</if>
+	         <if test="sureReceiveTime != null">,#{sureReceiveTime,jdbcType=DATE}</if>
+	         <if test="brachcanshift != null">,#{brachcanshift,jdbcType=VARCHAR}</if>
+	         <if test="commitmentCityLimit != null">,#{commitmentCityLimit,jdbcType=VARCHAR}</if>
+	         <if test="expireCityDate != null">,#{expireCityDate,jdbcType=DATE}</if>
+	         <if test="extensDay != null">,#{extensDay,jdbcType=VARCHAR}</if>
+	         <if test="extensReason != null">,#{extensReason,jdbcType=VARCHAR}</if>
+	         <if test="superviseResultName != null">,#{superviseResultName,jdbcType=VARCHAR}</if>
+	         <if test="superviseTypeCode != null">,#{superviseTypeCode,jdbcType=VARCHAR}</if>
+	         <if test="superviseTypeName != null">,#{superviseTypeName,jdbcType=VARCHAR}</if>
+	         <if test="beginDate != null">,#{beginDate,jdbcType=DATE}</if>
+	         <if test="endDate != null">,#{endDate,jdbcType=DATE}</if>
+	         <if test="IsSatisfiedName != null">,#{IsSatisfiedName,jdbcType=VARCHAR}</if>
+	         <if test="problemModeName != null">,#{problemModeName,jdbcType=VARCHAR}</if>
+	         <if test="endTime != null">,#{endTime,jdbcType=DATE}</if>
+	         <if test="superviseTime != null">,#{superviseTime,jdbcType=DATE}</if>
+	 	 	 )
+</insert>
+
+	<!-- ElementID:count,Generated=false -->
+	<select id="count" parameterType="com.chinacreator.dzjc_ruleEngine.SuperviseInfoComplain" resultType="int">
+	select count(*) from VA_TA_JC_COMPLAIN_BASEINFO 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+	<!-- ElementID:update,Generated=false -->
+	<update id="update" parameterType="com.chinacreator.dzjc_ruleEngine.SuperviseInfoComplain">
+	update VA_TA_JC_COMPLAIN_BASEINFO
+<set>
+	<if test="superviseResultNo != null">supervise_result_no=#{superviseResultNo,jdbcType=VARCHAR},</if>
+	<if test="queryCode != null">query_code=#{queryCode,jdbcType=VARCHAR},</if>
+	<if test="acceptTime != null">accept_time=#{acceptTime,jdbcType=DATE},</if>
+	<if test="bycomplainedUserOrg != null">bycomplained_user_org=#{bycomplainedUserOrg,jdbcType=VARCHAR},</if>
+	<if test="bycomplainedUserPost != null">bycomplained_user_post=#{bycomplainedUserPost,jdbcType=VARCHAR},</if>
+	<if test="bycomplainedOrg != null">bycomplained_org=#{bycomplainedOrg,jdbcType=VARCHAR},</if>
+	<if test="complainUserName != null">complain_user_name=#{complainUserName,jdbcType=VARCHAR},</if>
+	<if test="complainUserMobile != null">complain_user_mobile=#{complainUserMobile,jdbcType=VARCHAR},</if>
+	<if test="complainUserCard != null">complain_user_card=#{complainUserCard,jdbcType=VARCHAR},</if>
+	<if test="complainTitle != null">complain_title=#{complainTitle,jdbcType=VARCHAR},</if>
+	<if test="complainContent != null">complain_content=#{complainContent,jdbcType=VARCHAR},</if>
+	<if test="leaderIdea != null">leader_idea=#{leaderIdea,jdbcType=VARCHAR},</if>
+	<if test="enregisterTime != null">enregister_time=#{enregisterTime,jdbcType=DATE},</if>
+	<if test="state != null">state=#{state,jdbcType=VARCHAR},</if>
+	<if test="problemType != null">problem_type=#{problemType,jdbcType=VARCHAR},</if>
+	<if test="problemSmallType != null">problem_small_type=#{problemSmallType,jdbcType=VARCHAR},</if>
+	<if test="isSatisfied != null">is_satisfied=#{isSatisfied,jdbcType=VARCHAR},</if>
+	<if test="notSatisfiedReason != null">not_satisfied_reason=#{notSatisfiedReason,jdbcType=VARCHAR},</if>
+	<if test="lastmodifytime != null">lastmodifytime=#{lastmodifytime,jdbcType=DATE},</if>
+	<if test="isPublic != null">is_public=#{isPublic,jdbcType=VARCHAR},</if>
+	<if test="handleStatus != null">handle_status=#{handleStatus,jdbcType=VARCHAR},</if>
+	<if test="expireDate != null">expire_date=#{expireDate,jdbcType=VARCHAR},</if>
+	<if test="acceptUserId != null">accept_user_id=#{acceptUserId,jdbcType=VARCHAR},</if>
+	<if test="handleUserId != null">handle_user_id=#{handleUserId,jdbcType=VARCHAR},</if>
+	<if test="complainUserOrg != null">complain_user_org=#{complainUserOrg,jdbcType=VARCHAR},</if>
+	<if test="complainUserPhone != null">complain_user_phone=#{complainUserPhone,jdbcType=VARCHAR},</if>
+	<if test="replyOrgname != null">reply_orgname=#{replyOrgname,jdbcType=VARCHAR},</if>
+	<if test="replyOrgid != null">reply_orgid=#{replyOrgid,jdbcType=VARCHAR},</if>
+	<if test="replyTime != null">reply_time=#{replyTime,jdbcType=DATE},</if>
+	<if test="replyUserId != null">reply_user_id=#{replyUserId,jdbcType=VARCHAR},</if>
+	<if test="commitnum != null">commitnum=#{commitnum,jdbcType=VARCHAR},</if>
+	<if test="complainUserAddress != null">complain_user_address=#{complainUserAddress,jdbcType=VARCHAR},</if>
+	<if test="bycomplainedUserAddress != null">bycomplained_user_address=#{bycomplainedUserAddress,jdbcType=VARCHAR},</if>
+	<if test="bycomplainedUserPhone != null">bycomplained_user_phone=#{bycomplainedUserPhone,jdbcType=VARCHAR},</if>
+	<if test="problemMode != null">problem_mode=#{problemMode,jdbcType=VARCHAR},</if>
+	<if test="mainappeal != null">mainappeal=#{mainappeal,jdbcType=VARCHAR},</if>
+	<if test="proessstate != null">proessstate=#{proessstate,jdbcType=VARCHAR},</if>
+	<if test="correlationid != null">correlationid=#{correlationid,jdbcType=VARCHAR},</if>
+	<if test="handleisPublic != null">handleis_public=#{handleisPublic,jdbcType=VARCHAR},</if>
+	<if test="caseno != null">caseno=#{caseno,jdbcType=VARCHAR},</if>
+	<if test="commitmentLimit != null">commitment_limit=#{commitmentLimit,jdbcType=VARCHAR},</if>
+	<if test="issurereceive != null">issurereceive=#{issurereceive,jdbcType=VARCHAR},</if>
+	<if test="taskid != null">taskid=#{taskid,jdbcType=VARCHAR},</if>
+	<if test="isExamine != null">is_examine=#{isExamine,jdbcType=VARCHAR},</if>
+	<if test="isPreaccepsend != null">is_preaccepsend=#{isPreaccepsend,jdbcType=VARCHAR},</if>
+	<if test="isAcceptsend != null">is_acceptsend=#{isAcceptsend,jdbcType=VARCHAR},</if>
+	<if test="acceptOrgId != null">accept_org_id=#{acceptOrgId,jdbcType=VARCHAR},</if>
+	<if test="islocalsector != null">islocalsector=#{islocalsector,jdbcType=VARCHAR},</if>
+	<if test="acceptOrgName != null">accept_org_name=#{acceptOrgName,jdbcType=VARCHAR},</if>
+	<if test="acceptOrgLevel != null">accept_org_level=#{acceptOrgLevel,jdbcType=VARCHAR},</if>
+	<if test="sureReceiveTime != null">sure_receive_time=#{sureReceiveTime,jdbcType=DATE},</if>
+	<if test="brachcanshift != null">brachcanshift=#{brachcanshift,jdbcType=VARCHAR},</if>
+	<if test="commitmentCityLimit != null">commitment_city_limit=#{commitmentCityLimit,jdbcType=VARCHAR},</if>
+	<if test="expireCityDate != null">expire_city_date=#{expireCityDate,jdbcType=DATE},</if>
+	<if test="extensDay != null">extens_day=#{extensDay,jdbcType=VARCHAR},</if>
+	<if test="extensReason != null">extens_reason=#{extensReason,jdbcType=VARCHAR},</if>
+	<if test="superviseResultName != null">supervise_result_name=#{superviseResultName,jdbcType=VARCHAR},</if>
+	<if test="superviseTypeCode != null">supervise_type_code=#{superviseTypeCode,jdbcType=VARCHAR},</if>
+	<if test="superviseTypeName != null">supervise_type_name=#{superviseTypeName,jdbcType=VARCHAR},</if>
+	<if test="beginDate != null">beginDate=#{beginDate,jdbcType=DATE},</if>
+	<if test="endDate != null">endDate=#{endDate,jdbcType=DATE},</if>
+	<if test="IsSatisfiedName != null">Is_Satisfied_name=#{IsSatisfiedName,jdbcType=VARCHAR},</if>
+	<if test="problemModeName != null">problem_mode_name=#{problemModeName,jdbcType=VARCHAR},</if>
+	<if test="endTime != null">end_time=#{endTime,jdbcType=DATE},</if>
+	<if test="superviseTime != null">supervise_time=#{superviseTime,jdbcType=DATE}</if>
+</set>
+<where>
+	<choose>
+        <when test="complainId != null">and complain_id = #{complainId}</when>
+        <otherwise>and complain_id = </otherwise>
+    </choose>
+</where>
+</update>
+
+	<!-- ElementID:updateNull,Generated=false -->
+	<update id="updateNull" parameterType="map">
+	update VA_TA_JC_COMPLAIN_BASEINFO
+	<set>
+		<trim suffixOverrides=",">
+		    <if test="superviseResultNo==null">supervise_result_no = null,</if>
+		    <if test="queryCode==null">query_code = null,</if>
+		    <if test="acceptTime==null">accept_time = null,</if>
+		    <if test="bycomplainedUserOrg==null">bycomplained_user_org = null,</if>
+		    <if test="bycomplainedUserPost==null">bycomplained_user_post = null,</if>
+		    <if test="bycomplainedOrg==null">bycomplained_org = null,</if>
+		    <if test="complainUserName==null">complain_user_name = null,</if>
+		    <if test="complainUserMobile==null">complain_user_mobile = null,</if>
+		    <if test="complainUserCard==null">complain_user_card = null,</if>
+		    <if test="complainTitle==null">complain_title = null,</if>
+		    <if test="complainContent==null">complain_content = null,</if>
+		    <if test="leaderIdea==null">leader_idea = null,</if>
+		    <if test="enregisterTime==null">enregister_time = null,</if>
+		    <if test="state==null">state = null,</if>
+		    <if test="problemType==null">problem_type = null,</if>
+		    <if test="problemSmallType==null">problem_small_type = null,</if>
+		    <if test="isSatisfied==null">is_satisfied = null,</if>
+		    <if test="notSatisfiedReason==null">not_satisfied_reason = null,</if>
+		    <if test="lastmodifytime==null">lastmodifytime = null,</if>
+		    <if test="isPublic==null">is_public = null,</if>
+		    <if test="handleStatus==null">handle_status = null,</if>
+		    <if test="expireDate==null">expire_date = null,</if>
+		    <if test="acceptUserId==null">accept_user_id = null,</if>
+		    <if test="handleUserId==null">handle_user_id = null,</if>
+		    <if test="complainUserOrg==null">complain_user_org = null,</if>
+		    <if test="complainUserPhone==null">complain_user_phone = null,</if>
+		    <if test="replyOrgname==null">reply_orgname = null,</if>
+		    <if test="replyOrgid==null">reply_orgid = null,</if>
+		    <if test="replyTime==null">reply_time = null,</if>
+		    <if test="replyUserId==null">reply_user_id = null,</if>
+		    <if test="commitnum==null">commitnum = null,</if>
+		    <if test="complainUserAddress==null">complain_user_address = null,</if>
+		    <if test="bycomplainedUserAddress==null">bycomplained_user_address = null,</if>
+		    <if test="bycomplainedUserPhone==null">bycomplained_user_phone = null,</if>
+		    <if test="problemMode==null">problem_mode = null,</if>
+		    <if test="mainappeal==null">mainappeal = null,</if>
+		    <if test="proessstate==null">proessstate = null,</if>
+		    <if test="correlationid==null">correlationid = null,</if>
+		    <if test="handleisPublic==null">handleis_public = null,</if>
+		    <if test="caseno==null">caseno = null,</if>
+		    <if test="commitmentLimit==null">commitment_limit = null,</if>
+		    <if test="issurereceive==null">issurereceive = null,</if>
+		    <if test="taskid==null">taskid = null,</if>
+		    <if test="isExamine==null">is_examine = null,</if>
+		    <if test="isPreaccepsend==null">is_preaccepsend = null,</if>
+		    <if test="isAcceptsend==null">is_acceptsend = null,</if>
+		    <if test="acceptOrgId==null">accept_org_id = null,</if>
+		    <if test="islocalsector==null">islocalsector = null,</if>
+		    <if test="acceptOrgName==null">accept_org_name = null,</if>
+		    <if test="acceptOrgLevel==null">accept_org_level = null,</if>
+		    <if test="sureReceiveTime==null">sure_receive_time = null,</if>
+		    <if test="brachcanshift==null">brachcanshift = null,</if>
+		    <if test="commitmentCityLimit==null">commitment_city_limit = null,</if>
+		    <if test="expireCityDate==null">expire_city_date = null,</if>
+		    <if test="extensDay==null">extens_day = null,</if>
+		    <if test="extensReason==null">extens_reason = null,</if>
+		    <if test="superviseResultName==null">supervise_result_name = null,</if>
+		    <if test="superviseTypeCode==null">supervise_type_code = null,</if>
+		    <if test="superviseTypeName==null">supervise_type_name = null,</if>
+		    <if test="beginDate==null">beginDate = null,</if>
+		    <if test="endDate==null">endDate = null,</if>
+		    <if test="IsSatisfiedName==null">Is_Satisfied_name = null,</if>
+		    <if test="problemModeName==null">problem_mode_name = null,</if>
+		    <if test="endTime==null">end_time = null,</if>
+		    <if test="superviseTime==null">supervise_time = null,</if>
+		</trim>
+	</set>
+	<where>
+		<choose>
+			<when test="complainId != null">and complain_id = #{complainId}</when>
+			<otherwise>and complain_id = </otherwise>
+		</choose>
+	</where>
+</update>
+
+	<!-- ElementID:delete,Generated=false -->
+	<delete id="delete" parameterType="com.chinacreator.dzjc_ruleEngine.SuperviseInfoComplain">
+    delete from VA_TA_JC_COMPLAIN_BASEINFO where 1=1 and complain_id = #{complainId}
+</delete>
+
+	<!-- ElementID:select,Generated=false -->
+	<select id="select" parameterType="com.chinacreator.dzjc_ruleEngine.SuperviseInfoComplain" resultMap="SuperviseInfoComplainResult">
+	select 
+		<include refid="column_sql"/>
+	    from VA_TA_JC_COMPLAIN_BASEINFO 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+
+	<!-- ElementID:insertBatch,Generated=false -->
+	<insert id="insertBatch" parameterType="list">
+	insert into VA_TA_JC_COMPLAIN_BASEINFO (supervise_result_no,complain_id,query_code,accept_time,bycomplained_user_org,bycomplained_user_post,bycomplained_org,complain_user_name,complain_user_mobile,complain_user_card,complain_title,complain_content,leader_idea,enregister_time,state,problem_type,problem_small_type,is_satisfied,not_satisfied_reason,lastmodifytime,is_public,handle_status,expire_date,accept_user_id,handle_user_id,complain_user_org,complain_user_phone,reply_orgname,reply_orgid,reply_time,reply_user_id,commitnum,complain_user_address,bycomplained_user_address,bycomplained_user_phone,problem_mode,mainappeal,proessstate,correlationid,handleis_public,caseno,commitment_limit,issurereceive,taskid,is_examine,is_preaccepsend,is_acceptsend,accept_org_id,islocalsector,accept_org_name,accept_org_level,sure_receive_time,brachcanshift,commitment_city_limit,expire_city_date,extens_day,extens_reason,supervise_result_name,supervise_type_code,supervise_type_name,beginDate,endDate,Is_Satisfied_name,problem_mode_name,end_time,supervise_time) 
+<foreach collection="list" item="entity" index="index" separator="union all">
+		select 
+		#{entity.superviseResultNo,jdbcType = VARCHAR},
+				#{entity.complainId,jdbcType = VARCHAR},
+				#{entity.queryCode,jdbcType = VARCHAR},
+				#{entity.acceptTime,jdbcType = DATE},
+				#{entity.bycomplainedUserOrg,jdbcType = VARCHAR},
+				#{entity.bycomplainedUserPost,jdbcType = VARCHAR},
+				#{entity.bycomplainedOrg,jdbcType = VARCHAR},
+				#{entity.complainUserName,jdbcType = VARCHAR},
+				#{entity.complainUserMobile,jdbcType = VARCHAR},
+				#{entity.complainUserCard,jdbcType = VARCHAR},
+				#{entity.complainTitle,jdbcType = VARCHAR},
+				#{entity.complainContent,jdbcType = VARCHAR},
+				#{entity.leaderIdea,jdbcType = VARCHAR},
+				#{entity.enregisterTime,jdbcType = DATE},
+				#{entity.state,jdbcType = VARCHAR},
+				#{entity.problemType,jdbcType = VARCHAR},
+				#{entity.problemSmallType,jdbcType = VARCHAR},
+				#{entity.isSatisfied,jdbcType = VARCHAR},
+				#{entity.notSatisfiedReason,jdbcType = VARCHAR},
+				#{entity.lastmodifytime,jdbcType = DATE},
+				#{entity.isPublic,jdbcType = VARCHAR},
+				#{entity.handleStatus,jdbcType = VARCHAR},
+				#{entity.expireDate,jdbcType = VARCHAR},
+				#{entity.acceptUserId,jdbcType = VARCHAR},
+				#{entity.handleUserId,jdbcType = VARCHAR},
+				#{entity.complainUserOrg,jdbcType = VARCHAR},
+				#{entity.complainUserPhone,jdbcType = VARCHAR},
+				#{entity.replyOrgname,jdbcType = VARCHAR},
+				#{entity.replyOrgid,jdbcType = VARCHAR},
+				#{entity.replyTime,jdbcType = DATE},
+				#{entity.replyUserId,jdbcType = VARCHAR},
+				#{entity.commitnum,jdbcType = VARCHAR},
+				#{entity.complainUserAddress,jdbcType = VARCHAR},
+				#{entity.bycomplainedUserAddress,jdbcType = VARCHAR},
+				#{entity.bycomplainedUserPhone,jdbcType = VARCHAR},
+				#{entity.problemMode,jdbcType = VARCHAR},
+				#{entity.mainappeal,jdbcType = VARCHAR},
+				#{entity.proessstate,jdbcType = VARCHAR},
+				#{entity.correlationid,jdbcType = VARCHAR},
+				#{entity.handleisPublic,jdbcType = VARCHAR},
+				#{entity.caseno,jdbcType = VARCHAR},
+				#{entity.commitmentLimit,jdbcType = VARCHAR},
+				#{entity.issurereceive,jdbcType = VARCHAR},
+				#{entity.taskid,jdbcType = VARCHAR},
+				#{entity.isExamine,jdbcType = VARCHAR},
+				#{entity.isPreaccepsend,jdbcType = VARCHAR},
+				#{entity.isAcceptsend,jdbcType = VARCHAR},
+				#{entity.acceptOrgId,jdbcType = VARCHAR},
+				#{entity.islocalsector,jdbcType = VARCHAR},
+				#{entity.acceptOrgName,jdbcType = VARCHAR},
+				#{entity.acceptOrgLevel,jdbcType = VARCHAR},
+				#{entity.sureReceiveTime,jdbcType = DATE},
+				#{entity.brachcanshift,jdbcType = VARCHAR},
+				#{entity.commitmentCityLimit,jdbcType = VARCHAR},
+				#{entity.expireCityDate,jdbcType = DATE},
+				#{entity.extensDay,jdbcType = VARCHAR},
+				#{entity.extensReason,jdbcType = VARCHAR},
+				#{entity.superviseResultName,jdbcType = VARCHAR},
+				#{entity.superviseTypeCode,jdbcType = VARCHAR},
+				#{entity.superviseTypeName,jdbcType = VARCHAR},
+				#{entity.beginDate,jdbcType = DATE},
+				#{entity.endDate,jdbcType = DATE},
+				#{entity.IsSatisfiedName,jdbcType = VARCHAR},
+				#{entity.problemModeName,jdbcType = VARCHAR},
+				#{entity.endTime,jdbcType = DATE},
+				#{entity.superviseTime,jdbcType = DATE}
+		from dual
+</foreach>
+</insert>
+
+	<!-- ElementID:deleteBatch,Generated=false -->
+	<delete id="deleteBatch" parameterType="List">
+	delete from VA_TA_JC_COMPLAIN_BASEINFO where complain_id in
+<trim prefix="(" suffix=")" suffixOverrides=",">
+<foreach collection="list" item="entity" separator=",">
+	<choose>
+		<when test="@com.chinacreator.c2.dao.util.EntityBeanUtil@isEntityObj(entity)">#{entity.complainId}</when>
+		<otherwise>#{entity}</otherwise>
+	</choose>
+</foreach>
+</trim>
+</delete>
+
+	<!-- ElementID:updateBatch,Generated=false -->
+	<update id="updateBatch" parameterType="list">
+	<foreach collection="list" item="entity" open="begin" close=";end;" separator=";">
+			update VA_TA_JC_COMPLAIN_BASEINFO
+	<set>
+	<if test="entity.superviseResultNo != null">supervise_result_no= #{entity.superviseResultNo,jdbcType=VARCHAR},</if>
+	<if test="entity.queryCode != null">query_code= #{entity.queryCode,jdbcType=VARCHAR},</if>
+	<if test="entity.acceptTime != null">accept_time= #{entity.acceptTime,jdbcType=DATE},</if>
+	<if test="entity.bycomplainedUserOrg != null">bycomplained_user_org= #{entity.bycomplainedUserOrg,jdbcType=VARCHAR},</if>
+	<if test="entity.bycomplainedUserPost != null">bycomplained_user_post= #{entity.bycomplainedUserPost,jdbcType=VARCHAR},</if>
+	<if test="entity.bycomplainedOrg != null">bycomplained_org= #{entity.bycomplainedOrg,jdbcType=VARCHAR},</if>
+	<if test="entity.complainUserName != null">complain_user_name= #{entity.complainUserName,jdbcType=VARCHAR},</if>
+	<if test="entity.complainUserMobile != null">complain_user_mobile= #{entity.complainUserMobile,jdbcType=VARCHAR},</if>
+	<if test="entity.complainUserCard != null">complain_user_card= #{entity.complainUserCard,jdbcType=VARCHAR},</if>
+	<if test="entity.complainTitle != null">complain_title= #{entity.complainTitle,jdbcType=VARCHAR},</if>
+	<if test="entity.complainContent != null">complain_content= #{entity.complainContent,jdbcType=VARCHAR},</if>
+	<if test="entity.leaderIdea != null">leader_idea= #{entity.leaderIdea,jdbcType=VARCHAR},</if>
+	<if test="entity.enregisterTime != null">enregister_time= #{entity.enregisterTime,jdbcType=DATE},</if>
+	<if test="entity.state != null">state= #{entity.state,jdbcType=VARCHAR},</if>
+	<if test="entity.problemType != null">problem_type= #{entity.problemType,jdbcType=VARCHAR},</if>
+	<if test="entity.problemSmallType != null">problem_small_type= #{entity.problemSmallType,jdbcType=VARCHAR},</if>
+	<if test="entity.isSatisfied != null">is_satisfied= #{entity.isSatisfied,jdbcType=VARCHAR},</if>
+	<if test="entity.notSatisfiedReason != null">not_satisfied_reason= #{entity.notSatisfiedReason,jdbcType=VARCHAR},</if>
+	<if test="entity.lastmodifytime != null">lastmodifytime= #{entity.lastmodifytime,jdbcType=DATE},</if>
+	<if test="entity.isPublic != null">is_public= #{entity.isPublic,jdbcType=VARCHAR},</if>
+	<if test="entity.handleStatus != null">handle_status= #{entity.handleStatus,jdbcType=VARCHAR},</if>
+	<if test="entity.expireDate != null">expire_date= #{entity.expireDate,jdbcType=VARCHAR},</if>
+	<if test="entity.acceptUserId != null">accept_user_id= #{entity.acceptUserId,jdbcType=VARCHAR},</if>
+	<if test="entity.handleUserId != null">handle_user_id= #{entity.handleUserId,jdbcType=VARCHAR},</if>
+	<if test="entity.complainUserOrg != null">complain_user_org= #{entity.complainUserOrg,jdbcType=VARCHAR},</if>
+	<if test="entity.complainUserPhone != null">complain_user_phone= #{entity.complainUserPhone,jdbcType=VARCHAR},</if>
+	<if test="entity.replyOrgname != null">reply_orgname= #{entity.replyOrgname,jdbcType=VARCHAR},</if>
+	<if test="entity.replyOrgid != null">reply_orgid= #{entity.replyOrgid,jdbcType=VARCHAR},</if>
+	<if test="entity.replyTime != null">reply_time= #{entity.replyTime,jdbcType=DATE},</if>
+	<if test="entity.replyUserId != null">reply_user_id= #{entity.replyUserId,jdbcType=VARCHAR},</if>
+	<if test="entity.commitnum != null">commitnum= #{entity.commitnum,jdbcType=VARCHAR},</if>
+	<if test="entity.complainUserAddress != null">complain_user_address= #{entity.complainUserAddress,jdbcType=VARCHAR},</if>
+	<if test="entity.bycomplainedUserAddress != null">bycomplained_user_address= #{entity.bycomplainedUserAddress,jdbcType=VARCHAR},</if>
+	<if test="entity.bycomplainedUserPhone != null">bycomplained_user_phone= #{entity.bycomplainedUserPhone,jdbcType=VARCHAR},</if>
+	<if test="entity.problemMode != null">problem_mode= #{entity.problemMode,jdbcType=VARCHAR},</if>
+	<if test="entity.mainappeal != null">mainappeal= #{entity.mainappeal,jdbcType=VARCHAR},</if>
+	<if test="entity.proessstate != null">proessstate= #{entity.proessstate,jdbcType=VARCHAR},</if>
+	<if test="entity.correlationid != null">correlationid= #{entity.correlationid,jdbcType=VARCHAR},</if>
+	<if test="entity.handleisPublic != null">handleis_public= #{entity.handleisPublic,jdbcType=VARCHAR},</if>
+	<if test="entity.caseno != null">caseno= #{entity.caseno,jdbcType=VARCHAR},</if>
+	<if test="entity.commitmentLimit != null">commitment_limit= #{entity.commitmentLimit,jdbcType=VARCHAR},</if>
+	<if test="entity.issurereceive != null">issurereceive= #{entity.issurereceive,jdbcType=VARCHAR},</if>
+	<if test="entity.taskid != null">taskid= #{entity.taskid,jdbcType=VARCHAR},</if>
+	<if test="entity.isExamine != null">is_examine= #{entity.isExamine,jdbcType=VARCHAR},</if>
+	<if test="entity.isPreaccepsend != null">is_preaccepsend= #{entity.isPreaccepsend,jdbcType=VARCHAR},</if>
+	<if test="entity.isAcceptsend != null">is_acceptsend= #{entity.isAcceptsend,jdbcType=VARCHAR},</if>
+	<if test="entity.acceptOrgId != null">accept_org_id= #{entity.acceptOrgId,jdbcType=VARCHAR},</if>
+	<if test="entity.islocalsector != null">islocalsector= #{entity.islocalsector,jdbcType=VARCHAR},</if>
+	<if test="entity.acceptOrgName != null">accept_org_name= #{entity.acceptOrgName,jdbcType=VARCHAR},</if>
+	<if test="entity.acceptOrgLevel != null">accept_org_level= #{entity.acceptOrgLevel,jdbcType=VARCHAR},</if>
+	<if test="entity.sureReceiveTime != null">sure_receive_time= #{entity.sureReceiveTime,jdbcType=DATE},</if>
+	<if test="entity.brachcanshift != null">brachcanshift= #{entity.brachcanshift,jdbcType=VARCHAR},</if>
+	<if test="entity.commitmentCityLimit != null">commitment_city_limit= #{entity.commitmentCityLimit,jdbcType=VARCHAR},</if>
+	<if test="entity.expireCityDate != null">expire_city_date= #{entity.expireCityDate,jdbcType=DATE},</if>
+	<if test="entity.extensDay != null">extens_day= #{entity.extensDay,jdbcType=VARCHAR},</if>
+	<if test="entity.extensReason != null">extens_reason= #{entity.extensReason,jdbcType=VARCHAR},</if>
+	<if test="entity.superviseResultName != null">supervise_result_name= #{entity.superviseResultName,jdbcType=VARCHAR},</if>
+	<if test="entity.superviseTypeCode != null">supervise_type_code= #{entity.superviseTypeCode,jdbcType=VARCHAR},</if>
+	<if test="entity.superviseTypeName != null">supervise_type_name= #{entity.superviseTypeName,jdbcType=VARCHAR},</if>
+	<if test="entity.beginDate != null">beginDate= #{entity.beginDate,jdbcType=DATE},</if>
+	<if test="entity.endDate != null">endDate= #{entity.endDate,jdbcType=DATE},</if>
+	<if test="entity.IsSatisfiedName != null">Is_Satisfied_name= #{entity.IsSatisfiedName,jdbcType=VARCHAR},</if>
+	<if test="entity.problemModeName != null">problem_mode_name= #{entity.problemModeName,jdbcType=VARCHAR},</if>
+	<if test="entity.endTime != null">end_time= #{entity.endTime,jdbcType=DATE},</if>
+	<if test="entity.superviseTime != null">supervise_time= #{entity.superviseTime,jdbcType=DATE}</if>
+	</set>
+		<where>
+			<choose>
+				<when test="entity.complainId != null">and complain_id = #{entity.complainId}</when>
+				<otherwise>and complain_id = </otherwise>
+			</choose>
+		</where>
+	</foreach>
+</update>
+
+	<!-- ElementID:selectAll,Generated=false -->
+	<select id="selectAll" resultMap="SuperviseInfoComplainResult">
+	select 
+		<include refid="column_sql"/>
+	    from VA_TA_JC_COMPLAIN_BASEINFO 
+</select>
+
+	<!-- ElementID:selectMany,Generated=false -->
+	<select id="selectMany" parameterType="list" resultMap="SuperviseInfoComplainResult">
+select 
+	<include refid="column_sql"/> 
+	from VA_TA_JC_COMPLAIN_BASEINFO 
+	where VA_TA_JC_COMPLAIN_BASEINFO.complain_id in (
+<foreach collection="list" item="entity" separator="intersect">
+		select 
+		VA_TA_JC_COMPLAIN_BASEINFO.complain_id
+	    from VA_TA_JC_COMPLAIN_BASEINFO 
+		 <where>
+	        <if test="entity.superviseResultNo != null">and VA_TA_JC_COMPLAIN_BASEINFO.supervise_result_no = #{entity.superviseResultNo}</if>
+	        <if test="entity.complainId != null">and VA_TA_JC_COMPLAIN_BASEINFO.complain_id = #{entity.complainId}</if>
+	        <if test="entity.queryCode != null">and VA_TA_JC_COMPLAIN_BASEINFO.query_code = #{entity.queryCode}</if>
+	        <if test="entity.acceptTime != null">and VA_TA_JC_COMPLAIN_BASEINFO.accept_time = #{entity.acceptTime}</if>
+	        <if test="entity.bycomplainedUserOrg != null">and VA_TA_JC_COMPLAIN_BASEINFO.bycomplained_user_org = #{entity.bycomplainedUserOrg}</if>
+	        <if test="entity.bycomplainedUserPost != null">and VA_TA_JC_COMPLAIN_BASEINFO.bycomplained_user_post = #{entity.bycomplainedUserPost}</if>
+	        <if test="entity.bycomplainedOrg != null">and VA_TA_JC_COMPLAIN_BASEINFO.bycomplained_org = #{entity.bycomplainedOrg}</if>
+	        <if test="entity.complainUserName != null">and VA_TA_JC_COMPLAIN_BASEINFO.complain_user_name = #{entity.complainUserName}</if>
+	        <if test="entity.complainUserMobile != null">and VA_TA_JC_COMPLAIN_BASEINFO.complain_user_mobile = #{entity.complainUserMobile}</if>
+	        <if test="entity.complainUserCard != null">and VA_TA_JC_COMPLAIN_BASEINFO.complain_user_card = #{entity.complainUserCard}</if>
+	        <if test="entity.complainTitle != null">and VA_TA_JC_COMPLAIN_BASEINFO.complain_title = #{entity.complainTitle}</if>
+	        <if test="entity.complainContent != null">and VA_TA_JC_COMPLAIN_BASEINFO.complain_content = #{entity.complainContent}</if>
+	        <if test="entity.leaderIdea != null">and VA_TA_JC_COMPLAIN_BASEINFO.leader_idea = #{entity.leaderIdea}</if>
+	        <if test="entity.enregisterTime != null">and VA_TA_JC_COMPLAIN_BASEINFO.enregister_time = #{entity.enregisterTime}</if>
+	        <if test="entity.state != null">and VA_TA_JC_COMPLAIN_BASEINFO.state = #{entity.state}</if>
+	        <if test="entity.problemType != null">and VA_TA_JC_COMPLAIN_BASEINFO.problem_type = #{entity.problemType}</if>
+	        <if test="entity.problemSmallType != null">and VA_TA_JC_COMPLAIN_BASEINFO.problem_small_type = #{entity.problemSmallType}</if>
+	        <if test="entity.isSatisfied != null">and VA_TA_JC_COMPLAIN_BASEINFO.is_satisfied = #{entity.isSatisfied}</if>
+	        <if test="entity.notSatisfiedReason != null">and VA_TA_JC_COMPLAIN_BASEINFO.not_satisfied_reason = #{entity.notSatisfiedReason}</if>
+	        <if test="entity.lastmodifytime != null">and VA_TA_JC_COMPLAIN_BASEINFO.lastmodifytime = #{entity.lastmodifytime}</if>
+	        <if test="entity.isPublic != null">and VA_TA_JC_COMPLAIN_BASEINFO.is_public = #{entity.isPublic}</if>
+	        <if test="entity.handleStatus != null">and VA_TA_JC_COMPLAIN_BASEINFO.handle_status = #{entity.handleStatus}</if>
+	        <if test="entity.expireDate != null">and VA_TA_JC_COMPLAIN_BASEINFO.expire_date = #{entity.expireDate}</if>
+	        <if test="entity.acceptUserId != null">and VA_TA_JC_COMPLAIN_BASEINFO.accept_user_id = #{entity.acceptUserId}</if>
+	        <if test="entity.handleUserId != null">and VA_TA_JC_COMPLAIN_BASEINFO.handle_user_id = #{entity.handleUserId}</if>
+	        <if test="entity.complainUserOrg != null">and VA_TA_JC_COMPLAIN_BASEINFO.complain_user_org = #{entity.complainUserOrg}</if>
+	        <if test="entity.complainUserPhone != null">and VA_TA_JC_COMPLAIN_BASEINFO.complain_user_phone = #{entity.complainUserPhone}</if>
+	        <if test="entity.replyOrgname != null">and VA_TA_JC_COMPLAIN_BASEINFO.reply_orgname = #{entity.replyOrgname}</if>
+	        <if test="entity.replyOrgid != null">and VA_TA_JC_COMPLAIN_BASEINFO.reply_orgid = #{entity.replyOrgid}</if>
+	        <if test="entity.replyTime != null">and VA_TA_JC_COMPLAIN_BASEINFO.reply_time = #{entity.replyTime}</if>
+	        <if test="entity.replyUserId != null">and VA_TA_JC_COMPLAIN_BASEINFO.reply_user_id = #{entity.replyUserId}</if>
+	        <if test="entity.commitnum != null">and VA_TA_JC_COMPLAIN_BASEINFO.commitnum = #{entity.commitnum}</if>
+	        <if test="entity.complainUserAddress != null">and VA_TA_JC_COMPLAIN_BASEINFO.complain_user_address = #{entity.complainUserAddress}</if>
+	        <if test="entity.bycomplainedUserAddress != null">and VA_TA_JC_COMPLAIN_BASEINFO.bycomplained_user_address = #{entity.bycomplainedUserAddress}</if>
+	        <if test="entity.bycomplainedUserPhone != null">and VA_TA_JC_COMPLAIN_BASEINFO.bycomplained_user_phone = #{entity.bycomplainedUserPhone}</if>
+	        <if test="entity.problemMode != null">and VA_TA_JC_COMPLAIN_BASEINFO.problem_mode = #{entity.problemMode}</if>
+	        <if test="entity.mainappeal != null">and VA_TA_JC_COMPLAIN_BASEINFO.mainappeal = #{entity.mainappeal}</if>
+	        <if test="entity.proessstate != null">and VA_TA_JC_COMPLAIN_BASEINFO.proessstate = #{entity.proessstate}</if>
+	        <if test="entity.correlationid != null">and VA_TA_JC_COMPLAIN_BASEINFO.correlationid = #{entity.correlationid}</if>
+	        <if test="entity.handleisPublic != null">and VA_TA_JC_COMPLAIN_BASEINFO.handleis_public = #{entity.handleisPublic}</if>
+	        <if test="entity.caseno != null">and VA_TA_JC_COMPLAIN_BASEINFO.caseno = #{entity.caseno}</if>
+	        <if test="entity.commitmentLimit != null">and VA_TA_JC_COMPLAIN_BASEINFO.commitment_limit = #{entity.commitmentLimit}</if>
+	        <if test="entity.issurereceive != null">and VA_TA_JC_COMPLAIN_BASEINFO.issurereceive = #{entity.issurereceive}</if>
+	        <if test="entity.taskid != null">and VA_TA_JC_COMPLAIN_BASEINFO.taskid = #{entity.taskid}</if>
+	        <if test="entity.isExamine != null">and VA_TA_JC_COMPLAIN_BASEINFO.is_examine = #{entity.isExamine}</if>
+	        <if test="entity.isPreaccepsend != null">and VA_TA_JC_COMPLAIN_BASEINFO.is_preaccepsend = #{entity.isPreaccepsend}</if>
+	        <if test="entity.isAcceptsend != null">and VA_TA_JC_COMPLAIN_BASEINFO.is_acceptsend = #{entity.isAcceptsend}</if>
+	        <if test="entity.acceptOrgId != null">and VA_TA_JC_COMPLAIN_BASEINFO.accept_org_id = #{entity.acceptOrgId}</if>
+	        <if test="entity.islocalsector != null">and VA_TA_JC_COMPLAIN_BASEINFO.islocalsector = #{entity.islocalsector}</if>
+	        <if test="entity.acceptOrgName != null">and VA_TA_JC_COMPLAIN_BASEINFO.accept_org_name = #{entity.acceptOrgName}</if>
+	        <if test="entity.acceptOrgLevel != null">and VA_TA_JC_COMPLAIN_BASEINFO.accept_org_level = #{entity.acceptOrgLevel}</if>
+	        <if test="entity.sureReceiveTime != null">and VA_TA_JC_COMPLAIN_BASEINFO.sure_receive_time = #{entity.sureReceiveTime}</if>
+	        <if test="entity.brachcanshift != null">and VA_TA_JC_COMPLAIN_BASEINFO.brachcanshift = #{entity.brachcanshift}</if>
+	        <if test="entity.commitmentCityLimit != null">and VA_TA_JC_COMPLAIN_BASEINFO.commitment_city_limit = #{entity.commitmentCityLimit}</if>
+	        <if test="entity.expireCityDate != null">and VA_TA_JC_COMPLAIN_BASEINFO.expire_city_date = #{entity.expireCityDate}</if>
+	        <if test="entity.extensDay != null">and VA_TA_JC_COMPLAIN_BASEINFO.extens_day = #{entity.extensDay}</if>
+	        <if test="entity.extensReason != null">and VA_TA_JC_COMPLAIN_BASEINFO.extens_reason = #{entity.extensReason}</if>
+	        <if test="entity.superviseResultName != null">and VA_TA_JC_COMPLAIN_BASEINFO.supervise_result_name = #{entity.superviseResultName}</if>
+	        <if test="entity.superviseTypeCode != null">and VA_TA_JC_COMPLAIN_BASEINFO.supervise_type_code = #{entity.superviseTypeCode}</if>
+	        <if test="entity.superviseTypeName != null">and VA_TA_JC_COMPLAIN_BASEINFO.supervise_type_name = #{entity.superviseTypeName}</if>
+	        <if test="entity.beginDate != null">and VA_TA_JC_COMPLAIN_BASEINFO.beginDate = #{entity.beginDate}</if>
+	        <if test="entity.endDate != null">and VA_TA_JC_COMPLAIN_BASEINFO.endDate = #{entity.endDate}</if>
+	        <if test="entity.IsSatisfiedName != null">and VA_TA_JC_COMPLAIN_BASEINFO.Is_Satisfied_name = #{entity.IsSatisfiedName}</if>
+	        <if test="entity.problemModeName != null">and VA_TA_JC_COMPLAIN_BASEINFO.problem_mode_name = #{entity.problemModeName}</if>
+	        <if test="entity.endTime != null">and VA_TA_JC_COMPLAIN_BASEINFO.end_time = #{entity.endTime}</if>
+	        <if test="entity.superviseTime != null">and VA_TA_JC_COMPLAIN_BASEINFO.supervise_time = #{entity.superviseTime}</if>
+		</where>
+</foreach>
+)
+</select>
+
+	<!-- ElementID:selectUnion,Generated=false -->
+	<select id="selectUnion" parameterType="list" resultMap="SuperviseInfoComplainResult">
+select 
+	<include refid="column_sql"/> 
+	from VA_TA_JC_COMPLAIN_BASEINFO 
+	 INNER JOIN
+<foreach collection="list" item="entity" separator="UNION" open="(" close=")">
+		SELECT 
+			 complain_id
+		FROM VA_TA_JC_COMPLAIN_BASEINFO 
+			<where>
+	        <if test="entity.superviseResultNo != null">and VA_TA_JC_COMPLAIN_BASEINFO.supervise_result_no = #{entity.superviseResultNo}</if>
+	        <if test="entity.complainId != null">and VA_TA_JC_COMPLAIN_BASEINFO.complain_id = #{entity.complainId}</if>
+	        <if test="entity.queryCode != null">and VA_TA_JC_COMPLAIN_BASEINFO.query_code = #{entity.queryCode}</if>
+	        <if test="entity.acceptTime != null">and VA_TA_JC_COMPLAIN_BASEINFO.accept_time = #{entity.acceptTime}</if>
+	        <if test="entity.bycomplainedUserOrg != null">and VA_TA_JC_COMPLAIN_BASEINFO.bycomplained_user_org = #{entity.bycomplainedUserOrg}</if>
+	        <if test="entity.bycomplainedUserPost != null">and VA_TA_JC_COMPLAIN_BASEINFO.bycomplained_user_post = #{entity.bycomplainedUserPost}</if>
+	        <if test="entity.bycomplainedOrg != null">and VA_TA_JC_COMPLAIN_BASEINFO.bycomplained_org = #{entity.bycomplainedOrg}</if>
+	        <if test="entity.complainUserName != null">and VA_TA_JC_COMPLAIN_BASEINFO.complain_user_name = #{entity.complainUserName}</if>
+	        <if test="entity.complainUserMobile != null">and VA_TA_JC_COMPLAIN_BASEINFO.complain_user_mobile = #{entity.complainUserMobile}</if>
+	        <if test="entity.complainUserCard != null">and VA_TA_JC_COMPLAIN_BASEINFO.complain_user_card = #{entity.complainUserCard}</if>
+	        <if test="entity.complainTitle != null">and VA_TA_JC_COMPLAIN_BASEINFO.complain_title = #{entity.complainTitle}</if>
+	        <if test="entity.complainContent != null">and VA_TA_JC_COMPLAIN_BASEINFO.complain_content = #{entity.complainContent}</if>
+	        <if test="entity.leaderIdea != null">and VA_TA_JC_COMPLAIN_BASEINFO.leader_idea = #{entity.leaderIdea}</if>
+	        <if test="entity.enregisterTime != null">and VA_TA_JC_COMPLAIN_BASEINFO.enregister_time = #{entity.enregisterTime}</if>
+	        <if test="entity.state != null">and VA_TA_JC_COMPLAIN_BASEINFO.state = #{entity.state}</if>
+	        <if test="entity.problemType != null">and VA_TA_JC_COMPLAIN_BASEINFO.problem_type = #{entity.problemType}</if>
+	        <if test="entity.problemSmallType != null">and VA_TA_JC_COMPLAIN_BASEINFO.problem_small_type = #{entity.problemSmallType}</if>
+	        <if test="entity.isSatisfied != null">and VA_TA_JC_COMPLAIN_BASEINFO.is_satisfied = #{entity.isSatisfied}</if>
+	        <if test="entity.notSatisfiedReason != null">and VA_TA_JC_COMPLAIN_BASEINFO.not_satisfied_reason = #{entity.notSatisfiedReason}</if>
+	        <if test="entity.lastmodifytime != null">and VA_TA_JC_COMPLAIN_BASEINFO.lastmodifytime = #{entity.lastmodifytime}</if>
+	        <if test="entity.isPublic != null">and VA_TA_JC_COMPLAIN_BASEINFO.is_public = #{entity.isPublic}</if>
+	        <if test="entity.handleStatus != null">and VA_TA_JC_COMPLAIN_BASEINFO.handle_status = #{entity.handleStatus}</if>
+	        <if test="entity.expireDate != null">and VA_TA_JC_COMPLAIN_BASEINFO.expire_date = #{entity.expireDate}</if>
+	        <if test="entity.acceptUserId != null">and VA_TA_JC_COMPLAIN_BASEINFO.accept_user_id = #{entity.acceptUserId}</if>
+	        <if test="entity.handleUserId != null">and VA_TA_JC_COMPLAIN_BASEINFO.handle_user_id = #{entity.handleUserId}</if>
+	        <if test="entity.complainUserOrg != null">and VA_TA_JC_COMPLAIN_BASEINFO.complain_user_org = #{entity.complainUserOrg}</if>
+	        <if test="entity.complainUserPhone != null">and VA_TA_JC_COMPLAIN_BASEINFO.complain_user_phone = #{entity.complainUserPhone}</if>
+	        <if test="entity.replyOrgname != null">and VA_TA_JC_COMPLAIN_BASEINFO.reply_orgname = #{entity.replyOrgname}</if>
+	        <if test="entity.replyOrgid != null">and VA_TA_JC_COMPLAIN_BASEINFO.reply_orgid = #{entity.replyOrgid}</if>
+	        <if test="entity.replyTime != null">and VA_TA_JC_COMPLAIN_BASEINFO.reply_time = #{entity.replyTime}</if>
+	        <if test="entity.replyUserId != null">and VA_TA_JC_COMPLAIN_BASEINFO.reply_user_id = #{entity.replyUserId}</if>
+	        <if test="entity.commitnum != null">and VA_TA_JC_COMPLAIN_BASEINFO.commitnum = #{entity.commitnum}</if>
+	        <if test="entity.complainUserAddress != null">and VA_TA_JC_COMPLAIN_BASEINFO.complain_user_address = #{entity.complainUserAddress}</if>
+	        <if test="entity.bycomplainedUserAddress != null">and VA_TA_JC_COMPLAIN_BASEINFO.bycomplained_user_address = #{entity.bycomplainedUserAddress}</if>
+	        <if test="entity.bycomplainedUserPhone != null">and VA_TA_JC_COMPLAIN_BASEINFO.bycomplained_user_phone = #{entity.bycomplainedUserPhone}</if>
+	        <if test="entity.problemMode != null">and VA_TA_JC_COMPLAIN_BASEINFO.problem_mode = #{entity.problemMode}</if>
+	        <if test="entity.mainappeal != null">and VA_TA_JC_COMPLAIN_BASEINFO.mainappeal = #{entity.mainappeal}</if>
+	        <if test="entity.proessstate != null">and VA_TA_JC_COMPLAIN_BASEINFO.proessstate = #{entity.proessstate}</if>
+	        <if test="entity.correlationid != null">and VA_TA_JC_COMPLAIN_BASEINFO.correlationid = #{entity.correlationid}</if>
+	        <if test="entity.handleisPublic != null">and VA_TA_JC_COMPLAIN_BASEINFO.handleis_public = #{entity.handleisPublic}</if>
+	        <if test="entity.caseno != null">and VA_TA_JC_COMPLAIN_BASEINFO.caseno = #{entity.caseno}</if>
+	        <if test="entity.commitmentLimit != null">and VA_TA_JC_COMPLAIN_BASEINFO.commitment_limit = #{entity.commitmentLimit}</if>
+	        <if test="entity.issurereceive != null">and VA_TA_JC_COMPLAIN_BASEINFO.issurereceive = #{entity.issurereceive}</if>
+	        <if test="entity.taskid != null">and VA_TA_JC_COMPLAIN_BASEINFO.taskid = #{entity.taskid}</if>
+	        <if test="entity.isExamine != null">and VA_TA_JC_COMPLAIN_BASEINFO.is_examine = #{entity.isExamine}</if>
+	        <if test="entity.isPreaccepsend != null">and VA_TA_JC_COMPLAIN_BASEINFO.is_preaccepsend = #{entity.isPreaccepsend}</if>
+	        <if test="entity.isAcceptsend != null">and VA_TA_JC_COMPLAIN_BASEINFO.is_acceptsend = #{entity.isAcceptsend}</if>
+	        <if test="entity.acceptOrgId != null">and VA_TA_JC_COMPLAIN_BASEINFO.accept_org_id = #{entity.acceptOrgId}</if>
+	        <if test="entity.islocalsector != null">and VA_TA_JC_COMPLAIN_BASEINFO.islocalsector = #{entity.islocalsector}</if>
+	        <if test="entity.acceptOrgName != null">and VA_TA_JC_COMPLAIN_BASEINFO.accept_org_name = #{entity.acceptOrgName}</if>
+	        <if test="entity.acceptOrgLevel != null">and VA_TA_JC_COMPLAIN_BASEINFO.accept_org_level = #{entity.acceptOrgLevel}</if>
+	        <if test="entity.sureReceiveTime != null">and VA_TA_JC_COMPLAIN_BASEINFO.sure_receive_time = #{entity.sureReceiveTime}</if>
+	        <if test="entity.brachcanshift != null">and VA_TA_JC_COMPLAIN_BASEINFO.brachcanshift = #{entity.brachcanshift}</if>
+	        <if test="entity.commitmentCityLimit != null">and VA_TA_JC_COMPLAIN_BASEINFO.commitment_city_limit = #{entity.commitmentCityLimit}</if>
+	        <if test="entity.expireCityDate != null">and VA_TA_JC_COMPLAIN_BASEINFO.expire_city_date = #{entity.expireCityDate}</if>
+	        <if test="entity.extensDay != null">and VA_TA_JC_COMPLAIN_BASEINFO.extens_day = #{entity.extensDay}</if>
+	        <if test="entity.extensReason != null">and VA_TA_JC_COMPLAIN_BASEINFO.extens_reason = #{entity.extensReason}</if>
+	        <if test="entity.superviseResultName != null">and VA_TA_JC_COMPLAIN_BASEINFO.supervise_result_name = #{entity.superviseResultName}</if>
+	        <if test="entity.superviseTypeCode != null">and VA_TA_JC_COMPLAIN_BASEINFO.supervise_type_code = #{entity.superviseTypeCode}</if>
+	        <if test="entity.superviseTypeName != null">and VA_TA_JC_COMPLAIN_BASEINFO.supervise_type_name = #{entity.superviseTypeName}</if>
+	        <if test="entity.beginDate != null">and VA_TA_JC_COMPLAIN_BASEINFO.beginDate = #{entity.beginDate}</if>
+	        <if test="entity.endDate != null">and VA_TA_JC_COMPLAIN_BASEINFO.endDate = #{entity.endDate}</if>
+	        <if test="entity.IsSatisfiedName != null">and VA_TA_JC_COMPLAIN_BASEINFO.Is_Satisfied_name = #{entity.IsSatisfiedName}</if>
+	        <if test="entity.problemModeName != null">and VA_TA_JC_COMPLAIN_BASEINFO.problem_mode_name = #{entity.problemModeName}</if>
+	        <if test="entity.endTime != null">and VA_TA_JC_COMPLAIN_BASEINFO.end_time = #{entity.endTime}</if>
+	        <if test="entity.superviseTime != null">and VA_TA_JC_COMPLAIN_BASEINFO.supervise_time = #{entity.superviseTime}</if>
+			</where>
+</foreach>
+	c2_temp_table ON VA_TA_JC_COMPLAIN_BASEINFO.complain_id = c2_temp_table.complain_id
+</select>
+
+	<!-- ElementID:selectByID,Generated=false -->
+	<select id="selectByID" parameterType="java.lang.String" resultMap="SuperviseInfoComplainResult">
+		select
+		<include refid="column_sqlId"/>
+		from VA_TA_JC_COMPLAIN_BASEINFO
+		left join TA_JC_DIC_SUPERVISE_RESULT
+		on
+		VA_TA_JC_COMPLAIN_BASEINFO.supervise_result_no=TA_JC_DIC_SUPERVISE_RESULT.Supervise_Result_Code
+		left join TA_JC_DIC_PROBLEM_TYPE
+	    ON VA_TA_JC_COMPLAIN_BASEINFO.PROBLEM_TYPE = TA_JC_DIC_PROBLEM_TYPE.PROBLEM_TYPE_ID
+		where VA_TA_JC_COMPLAIN_BASEINFO.complain_id =
+		#{complainId,jdbcType=VARCHAR}
+	</select>
+
+	<!-- ElementID:selectByPage,Generated=false -->
+	<select id="selectByPage" parameterType="com.chinacreator.dzjc_ruleEngine.SuperviseInfoComplain" resultMap="SuperviseInfoComplainResult">
+		select * from (
+				select <include refid="column_sql"/>	from VA_TA_JC_COMPLAIN_BASEINFO
+				  left join TA_JC_DIC_SUPERVISE_RESULT on VA_TA_JC_COMPLAIN_BASEINFO.supervise_result_no=TA_JC_DIC_SUPERVISE_RESULT.Supervise_Result_Code
+					where 
+		      exists (
+		          select id from (
+			          SELECT * FROM V_ORG V
+							    <where>
+							      <if test="replyOrgid != null">
+							        V.CODE LIKE CONCAT(#{replyOrgid},'%') OR
+							        V.ID = #{replyOrgid,jdbcType=VARCHAR}
+							      </if>
+							    </where>
+		          ) temp  where VA_TA_JC_COMPLAIN_BASEINFO.REPLY_ORGID=temp.id
+		       )
+				UNION
+				select <include refid="column_sql"/> from VA_TA_JC_COMPLAIN_BASEINFO
+				left join TA_JC_DIC_SUPERVISE_RESULT on VA_TA_JC_COMPLAIN_BASEINFO.supervise_result_no=TA_JC_DIC_SUPERVISE_RESULT.Supervise_Result_Code
+					where 
+		      exists (
+		          select id from (
+		            SELECT * FROM V_ORG V
+		              <where>
+		                <if test="replyOrgid != null">
+		                  V.CODE LIKE CONCAT(#{replyOrgid},'%') OR
+		                  V.ID = #{replyOrgid,jdbcType=VARCHAR}
+		                </if>
+		              </where>
+	            ) temp  where VA_TA_JC_COMPLAIN_BASEINFO.REPLY_ORGID=SUBSTR(TEMP.CODE,0,12)
+	        )
+    ) TEMP2
+		<where>
+			<include refid="whereClause_sql1"/>
+		</where>
+		order by TEMP2.ENREGISTER_TIME desc
+	</select>
+
+<!-- ElementID:cache,Generated=false -->
+<cache type="C2_Default_Dao_Cache"/>
+</mapper>

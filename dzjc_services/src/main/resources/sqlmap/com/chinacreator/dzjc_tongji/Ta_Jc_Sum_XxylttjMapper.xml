@@ -1,0 +1,686 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"><mapper namespace="com.chinacreator.dzjc_tongji.Ta_Jc_Sum_XxylttjMapper">	
+
+<!-- ElementID:column_sql,Generated=true -->
+<sql id="column_sql">
+		  TA_JC_SUM_XXYLTTJ.id ,
+		  TA_JC_SUM_XXYLTTJ.type ,
+		  TA_JC_SUM_XXYLTTJ.accept_org_id ,
+		  TA_JC_SUM_XXYLTTJ.org_id ,
+		  TA_JC_SUM_XXYLTTJ.begin_data ,
+		  TA_JC_SUM_XXYLTTJ.end_data ,
+		  TA_JC_SUM_XXYLTTJ.approve_id ,
+		  TA_JC_SUM_XXYLTTJ.sls_num ,
+		  TA_JC_SUM_XXYLTTJ.bjs_num ,
+		  TA_JC_SUM_XXYLTTJ.xzshl_num ,
+		  TA_JC_SUM_XXYLTTJ.xjshl_num ,
+		  TA_JC_SUM_XXYLTTJ.red_num ,
+		  TA_JC_SUM_XXYLTTJ.yellow_num ,
+		  TA_JC_SUM_XXYLTTJ.shareName ,
+		  TA_JC_SUM_XXYLTTJ.codeName ,
+		  TA_JC_SUM_XXYLTTJ.approve_name ,
+		  TA_JC_SUM_XXYLTTJ.approve_type ,
+		  TA_JC_SUM_XXYLTTJ.p_accept_org_id ,
+		  TA_JC_SUM_XXYLTTJ.remarks_name 
+</sql>
+
+<!-- ElementID:whereClause_sql,Generated=true -->
+<sql id="whereClause_sql">
+	    <if test="id != null">and TA_JC_SUM_XXYLTTJ.id = #{id}</if>
+	    <if test="type != null">and TA_JC_SUM_XXYLTTJ.type = #{type}</if>
+	    <if test="acceptOrgId != null">and TA_JC_SUM_XXYLTTJ.accept_org_id = #{acceptOrgId}</if>
+	    <if test="orgId != null">and TA_JC_SUM_XXYLTTJ.org_id = #{orgId}</if>
+	    <if test="beginData != null">and TA_JC_SUM_XXYLTTJ.begin_data = #{beginData}</if>
+	    <if test="endData != null">and TA_JC_SUM_XXYLTTJ.end_data = #{endData}</if>
+	    <if test="approveId != null">and TA_JC_SUM_XXYLTTJ.approve_id = #{approveId}</if>
+	    <if test="slsNum != null">and TA_JC_SUM_XXYLTTJ.sls_num = #{slsNum}</if>
+	    <if test="bjsNum != null">and TA_JC_SUM_XXYLTTJ.bjs_num = #{bjsNum}</if>
+	    <if test="xzshlNum != null">and TA_JC_SUM_XXYLTTJ.xzshl_num = #{xzshlNum}</if>
+	    <if test="xjshlNum != null">and TA_JC_SUM_XXYLTTJ.xjshl_num = #{xjshlNum}</if>
+	    <if test="redNum != null">and TA_JC_SUM_XXYLTTJ.red_num = #{redNum}</if>
+	    <if test="yellowNum != null">and TA_JC_SUM_XXYLTTJ.yellow_num = #{yellowNum}</if>
+	    <if test="shareName != null">and TA_JC_SUM_XXYLTTJ.shareName = #{shareName}</if>
+	    <if test="codeName != null">and TA_JC_SUM_XXYLTTJ.codeName = #{codeName}</if>
+	    <if test="approveName != null">and TA_JC_SUM_XXYLTTJ.approve_name = #{approveName}</if>
+	    <if test="approveType != null">and TA_JC_SUM_XXYLTTJ.approve_type = #{approveType}</if>
+	    <if test="pAcceptOrgId != null">and TA_JC_SUM_XXYLTTJ.p_accept_org_id = #{pAcceptOrgId}</if>
+	    <if test="remarksName != null">and TA_JC_SUM_XXYLTTJ.remarks_name = #{remarksName}</if>
+</sql>
+
+
+<!-- ElementID:Ta_Jc_Sum_XxylttjResult,Generated=true -->
+<resultMap id="Ta_Jc_Sum_XxylttjResult" type="com.chinacreator.dzjc_tongji.Ta_Jc_Sum_Xxylttj">
+	<id property="id" column="id"/>
+	<result property="type" column="type"/>
+	<result property="acceptOrgId" column="accept_org_id"/>
+	<result property="orgId" column="org_id"/>
+	<result property="beginData" column="begin_data"/>
+	<result property="endData" column="end_data"/>
+	<result property="approveId" column="approve_id"/>
+	<result property="slsNum" column="sls_num"/>
+	<result property="bjsNum" column="bjs_num"/>
+	<result property="xzshlNum" column="xzshl_num"/>
+	<result property="xjshlNum" column="xjshl_num"/>
+	<result property="redNum" column="red_num"/>
+	<result property="yellowNum" column="yellow_num"/>
+	<result property="shareName" column="shareName"/>
+	<result property="codeName" column="codeName"/>
+	<result property="approveName" column="approve_name"/>
+	<result property="approveType" column="approve_type"/>
+	<result property="pAcceptOrgId" column="p_accept_org_id"/>
+	<result property="remarksName" column="remarks_name"/>
+</resultMap>
+
+
+<!-- ElementID:insert,Generated=true -->
+<insert id="insert" parameterType="com.chinacreator.dzjc_tongji.Ta_Jc_Sum_Xxylttj">
+	insert into TA_JC_SUM_XXYLTTJ(
+	         <if test="id != null">id</if>
+	         <if test="type != null">,type</if>
+	         <if test="acceptOrgId != null">,accept_org_id</if>
+	         <if test="orgId != null">,org_id</if>
+	         <if test="beginData != null">,begin_data</if>
+	         <if test="endData != null">,end_data</if>
+	         <if test="approveId != null">,approve_id</if>
+	         <if test="slsNum != null">,sls_num</if>
+	         <if test="bjsNum != null">,bjs_num</if>
+	         <if test="xzshlNum != null">,xzshl_num</if>
+	         <if test="xjshlNum != null">,xjshl_num</if>
+	         <if test="redNum != null">,red_num</if>
+	         <if test="yellowNum != null">,yellow_num</if>
+	         <if test="shareName != null">,shareName</if>
+	         <if test="codeName != null">,codeName</if>
+	         <if test="approveName != null">,approve_name</if>
+	         <if test="approveType != null">,approve_type</if>
+	         <if test="pAcceptOrgId != null">,p_accept_org_id</if>
+	         <if test="remarksName != null">,remarks_name</if>
+	 	 	 )
+	 values (
+	         <if test="id != null">#{id,jdbcType=VARCHAR}</if>
+	         <if test="type != null">,#{type,jdbcType=VARCHAR}</if>
+	         <if test="acceptOrgId != null">,#{acceptOrgId,jdbcType=VARCHAR}</if>
+	         <if test="orgId != null">,#{orgId,jdbcType=VARCHAR}</if>
+	         <if test="beginData != null">,#{beginData,jdbcType=VARCHAR}</if>
+	         <if test="endData != null">,#{endData,jdbcType=VARCHAR}</if>
+	         <if test="approveId != null">,#{approveId,jdbcType=VARCHAR}</if>
+	         <if test="slsNum != null">,#{slsNum,jdbcType=NUMERIC}</if>
+	         <if test="bjsNum != null">,#{bjsNum,jdbcType=NUMERIC}</if>
+	         <if test="xzshlNum != null">,#{xzshlNum,jdbcType=NUMERIC}</if>
+	         <if test="xjshlNum != null">,#{xjshlNum,jdbcType=NUMERIC}</if>
+	         <if test="redNum != null">,#{redNum,jdbcType=NUMERIC}</if>
+	         <if test="yellowNum != null">,#{yellowNum,jdbcType=NUMERIC}</if>
+	         <if test="shareName != null">,#{shareName,jdbcType=VARCHAR}</if>
+	         <if test="codeName != null">,#{codeName,jdbcType=VARCHAR}</if>
+	         <if test="approveName != null">,#{approveName,jdbcType=VARCHAR}</if>
+	         <if test="approveType != null">,#{approveType,jdbcType=VARCHAR}</if>
+	         <if test="pAcceptOrgId != null">,#{pAcceptOrgId,jdbcType=VARCHAR}</if>
+	         <if test="remarksName != null">,#{remarksName,jdbcType=VARCHAR}</if>
+	 	 	 )
+</insert>
+
+<!-- ElementID:count,Generated=true -->
+<select id="count" parameterType="com.chinacreator.dzjc_tongji.Ta_Jc_Sum_Xxylttj" resultType="int">
+	select count(*) from TA_JC_SUM_XXYLTTJ 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<!-- ElementID:update,Generated=true -->
+<update id="update" parameterType="com.chinacreator.dzjc_tongji.Ta_Jc_Sum_Xxylttj">
+	update TA_JC_SUM_XXYLTTJ
+<set>
+	<if test="type != null">type=#{type,jdbcType=VARCHAR},</if>
+	<if test="acceptOrgId != null">accept_org_id=#{acceptOrgId,jdbcType=VARCHAR},</if>
+	<if test="orgId != null">org_id=#{orgId,jdbcType=VARCHAR},</if>
+	<if test="beginData != null">begin_data=#{beginData,jdbcType=VARCHAR},</if>
+	<if test="endData != null">end_data=#{endData,jdbcType=VARCHAR},</if>
+	<if test="approveId != null">approve_id=#{approveId,jdbcType=VARCHAR},</if>
+	<if test="slsNum != null">sls_num=#{slsNum,jdbcType=NUMERIC},</if>
+	<if test="bjsNum != null">bjs_num=#{bjsNum,jdbcType=NUMERIC},</if>
+	<if test="xzshlNum != null">xzshl_num=#{xzshlNum,jdbcType=NUMERIC},</if>
+	<if test="xjshlNum != null">xjshl_num=#{xjshlNum,jdbcType=NUMERIC},</if>
+	<if test="redNum != null">red_num=#{redNum,jdbcType=NUMERIC},</if>
+	<if test="yellowNum != null">yellow_num=#{yellowNum,jdbcType=NUMERIC},</if>
+	<if test="shareName != null">shareName=#{shareName,jdbcType=VARCHAR},</if>
+	<if test="codeName != null">codeName=#{codeName,jdbcType=VARCHAR},</if>
+	<if test="approveName != null">approve_name=#{approveName,jdbcType=VARCHAR},</if>
+	<if test="approveType != null">approve_type=#{approveType,jdbcType=VARCHAR},</if>
+	<if test="pAcceptOrgId != null">p_accept_org_id=#{pAcceptOrgId,jdbcType=VARCHAR},</if>
+	<if test="remarksName != null">remarks_name=#{remarksName,jdbcType=VARCHAR}</if>
+</set>
+<where>
+	<choose>
+        <when test="id != null">and id = #{id}</when>
+        <otherwise>and id = </otherwise>
+    </choose>
+</where>
+</update>
+
+<!-- ElementID:updateNull,Generated=true -->
+<update id="updateNull" parameterType="map">
+	update TA_JC_SUM_XXYLTTJ
+	<set>
+		<trim suffixOverrides=",">
+		    <if test="type==null">type = null,</if>
+		    <if test="acceptOrgId==null">accept_org_id = null,</if>
+		    <if test="orgId==null">org_id = null,</if>
+		    <if test="beginData==null">begin_data = null,</if>
+		    <if test="endData==null">end_data = null,</if>
+		    <if test="approveId==null">approve_id = null,</if>
+		    <if test="slsNum==null">sls_num = null,</if>
+		    <if test="bjsNum==null">bjs_num = null,</if>
+		    <if test="xzshlNum==null">xzshl_num = null,</if>
+		    <if test="xjshlNum==null">xjshl_num = null,</if>
+		    <if test="redNum==null">red_num = null,</if>
+		    <if test="yellowNum==null">yellow_num = null,</if>
+		    <if test="shareName==null">shareName = null,</if>
+		    <if test="codeName==null">codeName = null,</if>
+		    <if test="approveName==null">approve_name = null,</if>
+		    <if test="approveType==null">approve_type = null,</if>
+		    <if test="pAcceptOrgId==null">p_accept_org_id = null,</if>
+		    <if test="remarksName==null">remarks_name = null,</if>
+		</trim>
+	</set>
+	<where>
+		<choose>
+			<when test="id != null">and id = #{id}</when>
+			<otherwise>and id = </otherwise>
+		</choose>
+	</where>
+</update>
+
+<!-- ElementID:delete,Generated=true -->
+<delete id="delete" parameterType="com.chinacreator.dzjc_tongji.Ta_Jc_Sum_Xxylttj">
+    delete from TA_JC_SUM_XXYLTTJ where 1=1 and id = #{id}
+</delete>
+
+<!-- ElementID:select,Generated=true -->
+<select id="select" parameterType="com.chinacreator.dzjc_tongji.Ta_Jc_Sum_Xxylttj" resultMap="Ta_Jc_Sum_XxylttjResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_SUM_XXYLTTJ 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+
+<!-- ElementID:insertBatch,Generated=true -->
+<insert id="insertBatch" parameterType="list">
+	insert into TA_JC_SUM_XXYLTTJ (id,type,accept_org_id,org_id,begin_data,end_data,approve_id,sls_num,bjs_num,xzshl_num,xjshl_num,red_num,yellow_num,shareName,codeName,approve_name,approve_type,p_accept_org_id,remarks_name) 
+<foreach collection="list" item="entity" index="index" separator="union all">
+		select 
+		#{entity.id,jdbcType = VARCHAR},
+				#{entity.type,jdbcType = VARCHAR},
+				#{entity.acceptOrgId,jdbcType = VARCHAR},
+				#{entity.orgId,jdbcType = VARCHAR},
+				#{entity.beginData,jdbcType = VARCHAR},
+				#{entity.endData,jdbcType = VARCHAR},
+				#{entity.approveId,jdbcType = VARCHAR},
+				#{entity.slsNum,jdbcType = NUMERIC},
+				#{entity.bjsNum,jdbcType = NUMERIC},
+				#{entity.xzshlNum,jdbcType = NUMERIC},
+				#{entity.xjshlNum,jdbcType = NUMERIC},
+				#{entity.redNum,jdbcType = NUMERIC},
+				#{entity.yellowNum,jdbcType = NUMERIC},
+				#{entity.shareName,jdbcType = VARCHAR},
+				#{entity.codeName,jdbcType = VARCHAR},
+				#{entity.approveName,jdbcType = VARCHAR},
+				#{entity.approveType,jdbcType = VARCHAR},
+				#{entity.pAcceptOrgId,jdbcType = VARCHAR},
+				#{entity.remarksName,jdbcType = VARCHAR}
+		from dual
+</foreach>
+</insert>
+
+<!-- ElementID:deleteBatch,Generated=true -->
+<delete id="deleteBatch" parameterType="List">
+	delete from TA_JC_SUM_XXYLTTJ where id in
+<trim prefix="(" suffix=")" suffixOverrides=",">
+<foreach collection="list" item="entity" separator=",">
+	<choose>
+		<when test="@com.chinacreator.c2.dao.util.EntityBeanUtil@isEntityObj(entity)">#{entity.id}</when>
+		<otherwise>#{entity}</otherwise>
+	</choose>
+</foreach>
+</trim>
+</delete>
+
+<!-- ElementID:updateBatch,Generated=true -->
+<update id="updateBatch" parameterType="list">
+	<foreach collection="list" item="entity" open="begin" close=";end;" separator=";">
+			update TA_JC_SUM_XXYLTTJ
+	<set>
+	<if test="entity.type != null">type= #{entity.type,jdbcType=VARCHAR},</if>
+	<if test="entity.acceptOrgId != null">accept_org_id= #{entity.acceptOrgId,jdbcType=VARCHAR},</if>
+	<if test="entity.orgId != null">org_id= #{entity.orgId,jdbcType=VARCHAR},</if>
+	<if test="entity.beginData != null">begin_data= #{entity.beginData,jdbcType=VARCHAR},</if>
+	<if test="entity.endData != null">end_data= #{entity.endData,jdbcType=VARCHAR},</if>
+	<if test="entity.approveId != null">approve_id= #{entity.approveId,jdbcType=VARCHAR},</if>
+	<if test="entity.slsNum != null">sls_num= #{entity.slsNum,jdbcType=NUMERIC},</if>
+	<if test="entity.bjsNum != null">bjs_num= #{entity.bjsNum,jdbcType=NUMERIC},</if>
+	<if test="entity.xzshlNum != null">xzshl_num= #{entity.xzshlNum,jdbcType=NUMERIC},</if>
+	<if test="entity.xjshlNum != null">xjshl_num= #{entity.xjshlNum,jdbcType=NUMERIC},</if>
+	<if test="entity.redNum != null">red_num= #{entity.redNum,jdbcType=NUMERIC},</if>
+	<if test="entity.yellowNum != null">yellow_num= #{entity.yellowNum,jdbcType=NUMERIC},</if>
+	<if test="entity.shareName != null">shareName= #{entity.shareName,jdbcType=VARCHAR},</if>
+	<if test="entity.codeName != null">codeName= #{entity.codeName,jdbcType=VARCHAR},</if>
+	<if test="entity.approveName != null">approve_name= #{entity.approveName,jdbcType=VARCHAR},</if>
+	<if test="entity.approveType != null">approve_type= #{entity.approveType,jdbcType=VARCHAR},</if>
+	<if test="entity.pAcceptOrgId != null">p_accept_org_id= #{entity.pAcceptOrgId,jdbcType=VARCHAR},</if>
+	<if test="entity.remarksName != null">remarks_name= #{entity.remarksName,jdbcType=VARCHAR}</if>
+	</set>
+		<where>
+			<choose>
+				<when test="entity.id != null">and id = #{entity.id}</when>
+				<otherwise>and id = </otherwise>
+			</choose>
+		</where>
+	</foreach>
+</update>
+
+<!-- ElementID:selectAll,Generated=true -->
+<select id="selectAll" resultMap="Ta_Jc_Sum_XxylttjResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_SUM_XXYLTTJ 
+</select>
+
+<!-- ElementID:selectMany,Generated=true -->
+<select id="selectMany" parameterType="list" resultMap="Ta_Jc_Sum_XxylttjResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_JC_SUM_XXYLTTJ 
+	where TA_JC_SUM_XXYLTTJ.id in (
+<foreach collection="list" item="entity" separator="intersect">
+		select 
+		TA_JC_SUM_XXYLTTJ.id
+	    from TA_JC_SUM_XXYLTTJ 
+		 <where>
+	        <if test="entity.id != null">and TA_JC_SUM_XXYLTTJ.id = #{entity.id}</if>
+	        <if test="entity.type != null">and TA_JC_SUM_XXYLTTJ.type = #{entity.type}</if>
+	        <if test="entity.acceptOrgId != null">and TA_JC_SUM_XXYLTTJ.accept_org_id = #{entity.acceptOrgId}</if>
+	        <if test="entity.orgId != null">and TA_JC_SUM_XXYLTTJ.org_id = #{entity.orgId}</if>
+	        <if test="entity.beginData != null">and TA_JC_SUM_XXYLTTJ.begin_data = #{entity.beginData}</if>
+	        <if test="entity.endData != null">and TA_JC_SUM_XXYLTTJ.end_data = #{entity.endData}</if>
+	        <if test="entity.approveId != null">and TA_JC_SUM_XXYLTTJ.approve_id = #{entity.approveId}</if>
+	        <if test="entity.slsNum != null">and TA_JC_SUM_XXYLTTJ.sls_num = #{entity.slsNum}</if>
+	        <if test="entity.bjsNum != null">and TA_JC_SUM_XXYLTTJ.bjs_num = #{entity.bjsNum}</if>
+	        <if test="entity.xzshlNum != null">and TA_JC_SUM_XXYLTTJ.xzshl_num = #{entity.xzshlNum}</if>
+	        <if test="entity.xjshlNum != null">and TA_JC_SUM_XXYLTTJ.xjshl_num = #{entity.xjshlNum}</if>
+	        <if test="entity.redNum != null">and TA_JC_SUM_XXYLTTJ.red_num = #{entity.redNum}</if>
+	        <if test="entity.yellowNum != null">and TA_JC_SUM_XXYLTTJ.yellow_num = #{entity.yellowNum}</if>
+	        <if test="entity.shareName != null">and TA_JC_SUM_XXYLTTJ.shareName = #{entity.shareName}</if>
+	        <if test="entity.codeName != null">and TA_JC_SUM_XXYLTTJ.codeName = #{entity.codeName}</if>
+	        <if test="entity.approveName != null">and TA_JC_SUM_XXYLTTJ.approve_name = #{entity.approveName}</if>
+	        <if test="entity.approveType != null">and TA_JC_SUM_XXYLTTJ.approve_type = #{entity.approveType}</if>
+	        <if test="entity.pAcceptOrgId != null">and TA_JC_SUM_XXYLTTJ.p_accept_org_id = #{entity.pAcceptOrgId}</if>
+	        <if test="entity.remarksName != null">and TA_JC_SUM_XXYLTTJ.remarks_name = #{entity.remarksName}</if>
+		</where>
+</foreach>
+)
+</select>
+
+<!-- ElementID:selectUnion,Generated=true -->
+<select id="selectUnion" parameterType="list" resultMap="Ta_Jc_Sum_XxylttjResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_JC_SUM_XXYLTTJ 
+	 INNER JOIN
+<foreach collection="list" item="entity" separator="UNION" open="(" close=")">
+		SELECT 
+			 id
+		FROM TA_JC_SUM_XXYLTTJ 
+			<where>
+	        <if test="entity.id != null">and TA_JC_SUM_XXYLTTJ.id = #{entity.id}</if>
+	        <if test="entity.type != null">and TA_JC_SUM_XXYLTTJ.type = #{entity.type}</if>
+	        <if test="entity.acceptOrgId != null">and TA_JC_SUM_XXYLTTJ.accept_org_id = #{entity.acceptOrgId}</if>
+	        <if test="entity.orgId != null">and TA_JC_SUM_XXYLTTJ.org_id = #{entity.orgId}</if>
+	        <if test="entity.beginData != null">and TA_JC_SUM_XXYLTTJ.begin_data = #{entity.beginData}</if>
+	        <if test="entity.endData != null">and TA_JC_SUM_XXYLTTJ.end_data = #{entity.endData}</if>
+	        <if test="entity.approveId != null">and TA_JC_SUM_XXYLTTJ.approve_id = #{entity.approveId}</if>
+	        <if test="entity.slsNum != null">and TA_JC_SUM_XXYLTTJ.sls_num = #{entity.slsNum}</if>
+	        <if test="entity.bjsNum != null">and TA_JC_SUM_XXYLTTJ.bjs_num = #{entity.bjsNum}</if>
+	        <if test="entity.xzshlNum != null">and TA_JC_SUM_XXYLTTJ.xzshl_num = #{entity.xzshlNum}</if>
+	        <if test="entity.xjshlNum != null">and TA_JC_SUM_XXYLTTJ.xjshl_num = #{entity.xjshlNum}</if>
+	        <if test="entity.redNum != null">and TA_JC_SUM_XXYLTTJ.red_num = #{entity.redNum}</if>
+	        <if test="entity.yellowNum != null">and TA_JC_SUM_XXYLTTJ.yellow_num = #{entity.yellowNum}</if>
+	        <if test="entity.shareName != null">and TA_JC_SUM_XXYLTTJ.shareName = #{entity.shareName}</if>
+	        <if test="entity.codeName != null">and TA_JC_SUM_XXYLTTJ.codeName = #{entity.codeName}</if>
+	        <if test="entity.approveName != null">and TA_JC_SUM_XXYLTTJ.approve_name = #{entity.approveName}</if>
+	        <if test="entity.approveType != null">and TA_JC_SUM_XXYLTTJ.approve_type = #{entity.approveType}</if>
+	        <if test="entity.pAcceptOrgId != null">and TA_JC_SUM_XXYLTTJ.p_accept_org_id = #{entity.pAcceptOrgId}</if>
+	        <if test="entity.remarksName != null">and TA_JC_SUM_XXYLTTJ.remarks_name = #{entity.remarksName}</if>
+			</where>
+</foreach>
+	c2_temp_table ON TA_JC_SUM_XXYLTTJ.id = c2_temp_table.id
+</select>
+
+<!-- ElementID:selectByID,Generated=true -->
+<select id="selectByID" parameterType="java.lang.String" resultMap="Ta_Jc_Sum_XxylttjResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_SUM_XXYLTTJ 
+		 where TA_JC_SUM_XXYLTTJ.id = #{id,jdbcType=VARCHAR}
+</select>
+
+<!-- ElementID:selectByPage,Generated=false -->
+<select id="selectByPage" parameterType="com.chinacreator.dzjc_tongji.Ta_Jc_Sum_Xxylttj" resultMap="Ta_Jc_Sum_XxylttjResult">
+	
+	<choose>
+	<!--村级办件统计  -->
+	<when test="codeName==1">
+		SELECT 
+		his.ORG_ID orgId,
+		HIS.ORG_NAME shareName,
+       NVL(H.SLS_NUM, 0) slsNum,
+       NVL(H.BJS_NUM, 0) bjsNum,
+       NVL(H.XZSHL_NUM, 0) xzshlNum,
+       NVL(H.XJSHL_NUM, 0) xjshlNum
+  FROM (SELECT V.ORG_NAME, V.ORG_ID
+          FROM V_TD_SM_ORGANIZATION1 V
+         WHERE 1=1  <if test="orgId!=null"> AND V.ORG_ID IN
+               (SELECT V1.ID
+                  FROM V_ORG V1
+                CONNECT BY PRIOR V1.ID = V1.PID
+                 START WITH V1.ID = #{orgId}) </if>
+           AND V.ORG_LEVEL = '4'
+           AND V.VILLAGE_CODE NOT IN ('000000000000')
+           AND SUBSTR(V.VILLAGE_CODE, 10, 12) NOT IN ('999') 
+             ) HIS
+  LEFT JOIN (SELECT SUM(T.SLS_NUM) SLS_NUM,
+                    SUM(T.BJS_NUM) BJS_NUM,
+                    SUM(T.XZSHL_NUM) XZSHL_NUM,
+                    SUM(T.XJSHL_NUM) XJSHL_NUM,
+                    T.ACCEPT_ORG_ID
+               FROM v_ta_jc_sum_xxylttj_street T
+               LEFT JOIN  TA_SP_APPROVE_INFO T1
+                 ON T.APPROVE_ID = T1.APPROVE_ID
+              LEFT JOIN  TA_DIC_APPROVETYPE T2
+                 ON T1.TYPE_CODE = T2.TYPE_CODE
+                 WHERE 1=1 
+                 <if test="approveName != null">
+                 	AND T1.APPROVE_NAME like UPPER('%'||#{approveName}||'%')
+                 </if>
+                 <if test="approveType!=null">
+                 	AND  T1.TYPE_CODE=#{approveType}
+                 </if>
+                 <if test="beginData!=null and endData!=null ">
+                 	AND  T.BEGIN_DATA  &gt;= #{beginData}
+                 	AND  T.BEGIN_DATA   &lt;= #{endData}
+                 </if>
+              GROUP BY T.ACCEPT_ORG_ID) H
+    ON HIS.ORG_ID = H.ACCEPT_ORG_ID
+    ORDER BY slsNum DESC
+	</when>
+	<!--村级办件统计明细  -->
+	<when test="codeName==2">
+	
+		SELECT D.APPROVE_NAME   approveName,
+		       D.TYPE_NAME approveType,
+		       D.ORG_NAME shareName,
+		       NVL(H.SLS_NUM, 0) SLSNUM,
+		       NVL(H.BJS_NUM, 0) BJSNUM,
+		       NVL(H.XZSHL_NUM, 0) XZSHLNUM,
+		       NVL(H.XJSHL_NUM, 0) XJSHLNUM
+		  FROM (SELECT  T1.APPROVE_ID, T2.APPROVE_NAME, T3.TYPE_NAME, VS.NAME ORG_NAME, T1.ORG_ID
+		          FROM  TA_SP_STREET T1
+		          INNER JOIN V_ORG VS ON T1.ORG_ID=VS.ID
+		         INNER JOIN  TA_SP_APPROVE_INFO T2
+		            ON T1.APPROVE_ID = T2.APPROVE_ID
+		         LEFT JOIN  TA_DIC_APPROVETYPE T3
+		            ON T2.TYPE_CODE = T3.TYPE_CODE
+		            WHERE 1=1
+		            AND  T1.IS_DELETE='Y'
+		              AND t1.org_id=#{orgId}
+		           <if test="approveName != null">
+                 	AND T2.APPROVE_NAME like UPPER('%'||#{approveName}||'%')
+                   </if>
+                    <if test="approveType!=null">
+                 	AND  T2.TYPE_CODE=#{approveType}
+                    </if>
+		            ) D
+		          
+		  LEFT JOIN (SELECT SUM(T.SLS_NUM) SLS_NUM,
+		                    SUM(T.BJS_NUM) BJS_NUM,
+		                    SUM(T.XZSHL_NUM) XZSHL_NUM,
+		                    SUM(T.XJSHL_NUM) XJSHL_NUM,
+		                    T.ACCEPT_ORG_ID,
+		                    T.APPROVE_ID
+		               FROM v_ta_jc_sum_xxylttj_street T WHERE 1=1
+		                <if test="beginData!=null and endData!=null ">
+		                 	AND  T.BEGIN_DATA  &gt;= #{beginData}
+		                 	AND  T.BEGIN_DATA   &lt;= #{endData}
+                   		</if>
+		              GROUP BY T.ACCEPT_ORG_ID , T.APPROVE_ID) H
+		    ON D.ORG_ID = H.ACCEPT_ORG_ID AND  H.APPROVE_ID=D.APPROVE_ID
+			ORDER BY slsNum DESC
+	
+	</when>
+	<!--乡镇办件统计  -->
+	<when test="codeName==3">
+			SELECT D.ORG_NAME SHARENAME,
+	       D.ORG_ID,
+	       NVL(H.SLS_NUM, 0) SLSNUM,
+	       NVL(H.BJS_NUM, 0) BJSNUM,
+	       NVL(H.XZSHL_NUM, 0) XZSHLNUM,
+	       NVL(H.XJSHL_NUM, 0) XJSHLNUM
+	  FROM (SELECT V.ORG_NAME, V.ORG_ID
+	          FROM V_TD_SM_ORGANIZATION1 V
+	         WHERE 1=1    <if test="orgId!=null"> AND V.ORG_ID IN
+	               (  
+	                SELECT V1.ID
+	                  FROM V_ORG V1
+	                CONNECT BY PRIOR V1.ID = V1.PID
+	                 START WITH V1.ID = #{orgId})
+	                 </if>
+	           AND V.ORG_LEVEL = '4'
+	           AND V.VILLAGE_CODE IN ('000000000000')
+	           AND SUBSTR(V.VILLAGE_CODE, 10, 12) NOT IN ('999')
+	           AND SUBSTR(V.STREET_CODE, 7, 3) NOT IN ('999')) D
+	  LEFT JOIN (SELECT SUM(T.SLS_NUM) SLS_NUM,
+	                    SUM(T.BJS_NUM) BJS_NUM,
+	                    SUM(T.XZSHL_NUM) XZSHL_NUM,
+	                    SUM(T.XJSHL_NUM) XJSHL_NUM,
+	                    T.P_ACCEPT_ORG_ID
+	               FROM v_ta_jc_sum_xxylttj_street T
+	                LEFT JOIN  TA_SP_APPROVE_INFO T1
+                 ON T.APPROVE_ID = T1.APPROVE_ID
+              	LEFT JOIN  TA_DIC_APPROVETYPE T2
+                 ON T1.TYPE_CODE = T2.TYPE_CODE
+	              WHERE 1 = 1
+	               <if test="approveName != null">
+                 	AND T1.APPROVE_NAME like UPPER('%'||#{approveName}||'%')
+                 </if>
+                 <if test="approveType!=null">
+                 	AND  T1.TYPE_CODE=#{approveType}
+                 </if>
+                 <if test="beginData!=null and endData!=null ">
+                 	AND  T.BEGIN_DATA  &gt;= #{beginData}
+                 	AND  T.BEGIN_DATA   &lt;= #{endData}
+                 </if> 
+	              GROUP BY T.P_ACCEPT_ORG_ID) H
+	    ON D.ORG_ID = H.P_ACCEPT_ORG_ID
+		ORDER BY slsNum DESC
+	</when>
+	<!--乡镇办件明细  -->
+	<when test="codeName==4">
+			SELECT D.APPROVE_NAME   approveName,
+           D.TYPE_NAME approveType,
+           D.ORG_NAME shareName,
+           NVL(H.SLS_NUM, 0) SLSNUM,
+           NVL(H.BJS_NUM, 0) BJSNUM,
+           NVL(H.XZSHL_NUM, 0) XZSHLNUM,
+           NVL(H.XJSHL_NUM, 0) XJSHLNUM
+      FROM (SELECT  distinct T1.APPROVE_ID, T2.APPROVE_NAME, T3.TYPE_NAME, VS.NAME ORG_NAME, T1.ORG_ID, VS.PID, VS.CODE   
+              FROM  TA_SP_STREET T1
+              INNER JOIN V_ORG VS ON T1.ORG_ID=VS.ID
+             INNER JOIN  TA_SP_APPROVE_INFO T2
+                ON T1.APPROVE_ID = T2.APPROVE_ID
+             LEFT JOIN  TA_DIC_APPROVETYPE T3
+                ON T2.TYPE_CODE = T3.TYPE_CODE
+                WHERE 1=1
+                 <if test="approveName != null">
+                 	AND T2.APPROVE_NAME like UPPER('%'||#{approveName}||'%')
+                 </if>
+                 <if test="approveType!=null">
+                 	AND  T2.TYPE_CODE=#{approveType}
+                 </if>
+                AND  T1.IS_DELETE='Y'
+                  AND VS.PID = #{orgId} 
+                  AND SUBSTR(VS.CODE, 10, 3) NOT IN('999') 
+                ) D
+              
+      LEFT JOIN (SELECT SUM(T.SLS_NUM) SLS_NUM,
+                        SUM(T.BJS_NUM) BJS_NUM,
+                        SUM(T.XZSHL_NUM) XZSHL_NUM,
+                        SUM(T.XJSHL_NUM) XJSHL_NUM,
+                        T.ACCEPT_ORG_ID,
+                        T.APPROVE_ID
+                   FROM v_ta_jc_sum_xxylttj_street T WHERE 1=1
+                    <if test="beginData!=null and endData!=null ">
+                 	AND  T.BEGIN_DATA  &gt;= #{beginData}
+                 	AND  T.BEGIN_DATA   &lt;= #{endData}
+                 </if> 
+                  GROUP BY T.ACCEPT_ORG_ID , T.APPROVE_ID) H
+        ON D.ORG_ID = H.ACCEPT_ORG_ID AND  H.APPROVE_ID=D.APPROVE_ID
+		ORDER BY slsNum DESC
+	</when>
+	<!--部门办件统计  -->
+	<when test="codeName==5">
+	
+	  SELECT D.ORG_NAME SHARENAME,
+         D.ORG_ID,
+         NVL(H.SLS_NUM, 0) SLSNUM,
+         NVL(H.BJS_NUM, 0) BJSNUM,
+         NVL(H.XZSHL_NUM, 0) XZSHLNUM,
+         NVL(H.XJSHL_NUM, 0) XJSHLNUM
+    FROM (SELECT V1.NAME AS ORG_NAME,V1.ID AS ORG_ID FROM V_ORG V1
+          		WHERE 1=1 
+            	AND SUBSTR(V1.CODE,7,3) = '999' 
+           		AND SUBSTR(V1.CODE,10) NOT IN ('000000000000000')
+            	<if test="orgId!=null">
+                CONNECT BY PRIOR V1.ID = V1.PID
+				START WITH  V1.ID = #{orgId}
+                  </if> ) D
+    LEFT JOIN (SELECT SUM(T.SLS_NUM) SLS_NUM,
+                      SUM(T.BJS_NUM) BJS_NUM,
+                      SUM(T.XZSHL_NUM) XZSHL_NUM,
+                      SUM(T.XJSHL_NUM) XJSHL_NUM,
+                      T.org_id
+                 FROM v_ta_jc_sum_xxylttj_street T
+                  LEFT JOIN  TA_SP_APPROVE_INFO T1
+                 ON T.APPROVE_ID = T1.APPROVE_ID
+                LEFT JOIN  TA_DIC_APPROVETYPE T2
+                 ON T1.TYPE_CODE = T2.TYPE_CODE
+                WHERE 1 = 1
+                 <if test="beginData!=null and endData!=null ">
+                 	AND  T.BEGIN_DATA  &gt;= #{beginData}
+                 	AND  T.BEGIN_DATA   &lt;= #{endData}
+                 </if> 
+                 <if test="approveName != null">
+                 	AND T1.APPROVE_NAME like UPPER('%'||#{approveName}||'%')
+                 </if>
+                 <if test="approveType!=null">
+                 	AND  T1.TYPE_CODE=#{approveType}
+                 </if>
+                GROUP BY T.org_id) H
+      ON D.ORG_ID = H.org_id
+		ORDER BY slsNum DESC
+	</when>
+	
+	<when test="codeName==6">
+		  SELECT D.APPROVE_NAME   approveName,
+           D.TYPE_NAME approveType,
+           D.ORG_NAME shareName,
+           D.REMARKS_NAME remarks_name,
+           NVL(H.SLS_NUM, 0) SLSNUM,
+           NVL(H.BJS_NUM, 0) BJSNUM,
+           NVL(H.XZSHL_NUM, 0) XZSHLNUM,
+           NVL(H.XJSHL_NUM, 0) XJSHLNUM
+      FROM (SELECT  distinct T1.APPROVE_ID, T2.APPROVE_NAME, T3.TYPE_NAME, VS.NAME ORG_NAME, T1.ORG_ID, VS.PID, VS.CODE,VS1.NAME remarks_name   
+              FROM  TA_SP_STREET T1
+              INNER JOIN V_ORG VS ON T1.ORG_ID=VS.ID
+              INNER JOIN V_ORG VS1 ON VS1.ID = VS.PID 
+             INNER JOIN  TA_SP_APPROVE_INFO T2
+                ON T1.APPROVE_ID = T2.APPROVE_ID
+             LEFT JOIN  TA_DIC_APPROVETYPE T3
+                ON T2.TYPE_CODE = T3.TYPE_CODE
+                WHERE 1=1
+                 <if test="approveName != null">
+                 	AND T2.APPROVE_NAME like UPPER('%'||#{approveName}||'%')
+                 </if>
+                 <if test="approveType!=null">
+                 	AND  T2.TYPE_CODE=#{approveType}
+                 </if>
+                AND  T1.IS_DELETE='Y'
+                  AND T2.ORG_ID = #{orgId} 
+                ) D
+              
+      LEFT JOIN (SELECT SUM(T.SLS_NUM) SLS_NUM,
+                        SUM(T.BJS_NUM) BJS_NUM,
+                        SUM(T.XZSHL_NUM) XZSHL_NUM,
+                        SUM(T.XJSHL_NUM) XJSHL_NUM,
+                        T.ACCEPT_ORG_ID,
+                        T.APPROVE_ID
+                   FROM v_ta_jc_sum_xxylttj_street T WHERE 1=1
+                   <if test="beginData!=null and endData!=null ">
+                 	AND  T.BEGIN_DATA  &gt;= #{beginData}
+                 	AND  T.BEGIN_DATA   &lt;= #{endData}
+                 </if> 
+                  GROUP BY T.ACCEPT_ORG_ID , T.APPROVE_ID) H
+        ON D.ORG_ID = H.ACCEPT_ORG_ID AND  H.APPROVE_ID=D.APPROVE_ID
+        ORDER BY slsNum DESC
+	</when>
+	</choose>
+	
+	
+	
+	
+	
+	<!-- select 
+		<include refid="column_sql"/>
+	    from TA_JC_SUM_XXYLTTJ 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where> -->
+</select>
+<!-- ElementID:deleteAll,Generated=false 湘西一路通统计删除zouhailin -->
+<delete id="deleteAll">
+    delete from TA_JC_SUM_XXYLTTJ
+</delete>
+<!-- ElementID:init,Generated=false 湘西一路通统计初始化zouhailin-->
+<select id="init">
+  insert into ta_jc_sum_xxylttj(
+  accept_org_id, 
+  p_accept_org_id,
+  org_id, 
+  begin_data, 
+  approve_id, 
+  sls_num, 
+  bjs_num, 
+  xjshl_num,
+  xzshl_num)
+  select 
+      accept_org_id,
+      p_accept_org_id,
+      org_id,
+      now_date,
+      approve_id,
+      sls_num,
+      bjs_num,
+      xjshl_num,
+      xzshl_num
+   from v_ta_jc_sum_xxylttj
+</select>
+
+<select id="proc_insert_ta_jc_sum_xxylttj" statementType="CALLABLE" >  
+    <![CDATA[ 
+    {call proc_insert_ta_jc_sum_xxylttj()} 
+      ]]>  
+</select>
+
+
+
+</mapper>

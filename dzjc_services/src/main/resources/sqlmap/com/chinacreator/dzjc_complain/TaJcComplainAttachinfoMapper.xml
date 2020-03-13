@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"><mapper namespace="com.chinacreator.dzjc_complain.TaJcComplainAttachinfoMapper">	
+
+<!-- ElementID:column_sql,Generated=true -->
+<sql id="column_sql">
+		  TA_JC_COMPLAIN_ATTACHINFO.attach_id ,
+		  TA_JC_COMPLAIN_ATTACHINFO.complain_id ,
+		  TA_JC_COMPLAIN_ATTACHINFO.attach_content ,
+		  TA_JC_COMPLAIN_ATTACHINFO.attach_name ,
+		  TA_JC_COMPLAIN_ATTACHINFO.create_time ,
+		  TA_JC_COMPLAIN_ATTACHINFO.datasource ,
+		  TA_JC_COMPLAIN_ATTACHINFO.creater_user_id ,
+		  TA_JC_COMPLAIN_ATTACHINFO.business_type 
+</sql>
+
+<!-- ElementID:whereClause_sql,Generated=true -->
+<sql id="whereClause_sql">
+	    <if test="attachId != null">and TA_JC_COMPLAIN_ATTACHINFO.attach_id = #{attachId}</if>
+	    <if test="complainId != null">and TA_JC_COMPLAIN_ATTACHINFO.complain_id = #{complainId}</if>
+	    <if test="attachName != null">and TA_JC_COMPLAIN_ATTACHINFO.attach_name = #{attachName}</if>
+	    <if test="createTime != null">and TA_JC_COMPLAIN_ATTACHINFO.create_time = #{createTime}</if>
+	    <if test="datasource != null">and TA_JC_COMPLAIN_ATTACHINFO.datasource = #{datasource}</if>
+	    <if test="createrUserId != null">and TA_JC_COMPLAIN_ATTACHINFO.creater_user_id = #{createrUserId}</if>
+	    <if test="businessType != null">and TA_JC_COMPLAIN_ATTACHINFO.business_type = #{businessType}</if>
+</sql>
+
+
+<!-- ElementID:TaJcComplainAttachinfoResult,Generated=true -->
+<resultMap id="TaJcComplainAttachinfoResult" type="com.chinacreator.dzjc_complain.TaJcComplainAttachinfo">
+	<id property="attachId" column="attach_id"/>
+	<result property="complainId" column="complain_id"/>
+	<result property="attachContent" column="attach_content"/>
+	<result property="attachName" column="attach_name"/>
+	<result property="createTime" column="create_time"/>
+	<result property="datasource" column="datasource"/>
+	<result property="createrUserId" column="creater_user_id"/>
+	<result property="businessType" column="business_type"/>
+</resultMap>
+
+
+
+
+
+
+<!-- ElementID:insert,Generated=true -->
+<insert id="insert" parameterType="com.chinacreator.dzjc_complain.TaJcComplainAttachinfo">
+	insert into TA_JC_COMPLAIN_ATTACHINFO(
+	         <if test="attachId != null">attach_id</if>
+	         <if test="complainId != null">,complain_id</if>
+	         <if test="attachContent != null">,attach_content</if>
+	         <if test="attachName != null">,attach_name</if>
+	         <if test="createTime != null">,create_time</if>
+	         <if test="datasource != null">,datasource</if>
+	         <if test="createrUserId != null">,creater_user_id</if>
+	         <if test="businessType != null">,business_type</if>
+	 	 	 )
+	 values (
+	         <if test="attachId != null">#{attachId,jdbcType=VARCHAR}</if>
+	         <if test="complainId != null">,#{complainId,jdbcType=VARCHAR}</if>
+	         <if test="attachContent != null">,#{attachContent,jdbcType=BLOB}</if>
+	         <if test="attachName != null">,#{attachName,jdbcType=VARCHAR}</if>
+	         <if test="createTime != null">,#{createTime,jdbcType=DATE}</if>
+	         <if test="datasource != null">,#{datasource,jdbcType=VARCHAR}</if>
+	         <if test="createrUserId != null">,#{createrUserId,jdbcType=VARCHAR}</if>
+	         <if test="businessType != null">,#{businessType,jdbcType=VARCHAR}</if>
+	 	 	 )
+</insert>
+
+<!-- ElementID:count,Generated=true -->
+<select id="count" parameterType="com.chinacreator.dzjc_complain.TaJcComplainAttachinfo" resultType="int">
+	select count(*) from TA_JC_COMPLAIN_ATTACHINFO 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<!-- ElementID:update,Generated=true -->
+<update id="update" parameterType="com.chinacreator.dzjc_complain.TaJcComplainAttachinfo">
+	update TA_JC_COMPLAIN_ATTACHINFO
+<set>
+	<if test="complainId != null">complain_id=#{complainId,jdbcType=VARCHAR},</if>
+	<if test="attachContent != null">attach_content=#{attachContent,jdbcType=BLOB},</if>
+	<if test="attachName != null">attach_name=#{attachName,jdbcType=VARCHAR},</if>
+	<if test="createTime != null">create_time=#{createTime,jdbcType=DATE},</if>
+	<if test="datasource != null">datasource=#{datasource,jdbcType=VARCHAR},</if>
+	<if test="createrUserId != null">creater_user_id=#{createrUserId,jdbcType=VARCHAR},</if>
+	<if test="businessType != null">business_type=#{businessType,jdbcType=VARCHAR}</if>
+</set>
+<where>
+	<choose>
+        <when test="attachId != null">and attach_id = #{attachId}</when>
+        <otherwise>and attach_id = </otherwise>
+    </choose>
+</where>
+</update>
+
+<!-- ElementID:updateNull,Generated=true -->
+<update id="updateNull" parameterType="map">
+	update TA_JC_COMPLAIN_ATTACHINFO
+	<set>
+		<trim suffixOverrides=",">
+		    <if test="complainId==null">complain_id = null,</if>
+		    <if test="attachContent==null">attach_content = null,</if>
+		    <if test="attachName==null">attach_name = null,</if>
+		    <if test="createTime==null">create_time = null,</if>
+		    <if test="datasource==null">datasource = null,</if>
+		    <if test="createrUserId==null">creater_user_id = null,</if>
+		    <if test="businessType==null">business_type = null,</if>
+		</trim>
+	</set>
+	<where>
+		<choose>
+			<when test="attachId != null">and attach_id = #{attachId}</when>
+			<otherwise>and attach_id = </otherwise>
+		</choose>
+	</where>
+</update>
+
+<!-- ElementID:delete,Generated=true -->
+<delete id="delete" parameterType="com.chinacreator.dzjc_complain.TaJcComplainAttachinfo">
+    delete from TA_JC_COMPLAIN_ATTACHINFO where 1=1 and attach_id = #{attachId}
+</delete>
+
+<!-- ElementID:select,Generated=true -->
+<select id="select" parameterType="com.chinacreator.dzjc_complain.TaJcComplainAttachinfo" resultMap="TaJcComplainAttachinfoResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_COMPLAIN_ATTACHINFO 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+	order by 
+			create_time desc
+</select>
+
+
+<!-- ElementID:insertBatch,Generated=true -->
+<insert id="insertBatch" parameterType="list">
+	insert into TA_JC_COMPLAIN_ATTACHINFO (attach_id,complain_id,attach_content,attach_name,create_time,datasource,creater_user_id,business_type) 
+<foreach collection="list" item="entity" index="index" separator="union all">
+		select 
+		#{entity.attachId,jdbcType = VARCHAR},
+				#{entity.complainId,jdbcType = VARCHAR},
+				#{entity.attachContent,jdbcType = BLOB},
+				#{entity.attachName,jdbcType = VARCHAR},
+				#{entity.createTime,jdbcType = DATE},
+				#{entity.datasource,jdbcType = VARCHAR},
+				#{entity.createrUserId,jdbcType = VARCHAR},
+				#{entity.businessType,jdbcType = VARCHAR}
+		from dual
+</foreach>
+</insert>
+
+<!-- ElementID:deleteBatch,Generated=true -->
+<delete id="deleteBatch" parameterType="List">
+	delete from TA_JC_COMPLAIN_ATTACHINFO where attach_id in
+<trim prefix="(" suffix=")" suffixOverrides=",">
+<foreach collection="list" item="entity" separator=",">
+	<choose>
+		<when test="@com.chinacreator.c2.dao.util.EntityBeanUtil@isEntityObj(entity)">#{entity.attachId}</when>
+		<otherwise>#{entity}</otherwise>
+	</choose>
+</foreach>
+</trim>
+</delete>
+
+<!-- ElementID:updateBatch,Generated=true -->
+<update id="updateBatch" parameterType="list">
+	<foreach collection="list" item="entity" open="begin" close=";end;" separator=";">
+			update TA_JC_COMPLAIN_ATTACHINFO
+	<set>
+	<if test="entity.complainId != null">complain_id= #{entity.complainId,jdbcType=VARCHAR},</if>
+	<if test="entity.attachContent != null">attach_content= #{entity.attachContent,jdbcType=BLOB},</if>
+	<if test="entity.attachName != null">attach_name= #{entity.attachName,jdbcType=VARCHAR},</if>
+	<if test="entity.createTime != null">create_time= #{entity.createTime,jdbcType=DATE},</if>
+	<if test="entity.datasource != null">datasource= #{entity.datasource,jdbcType=VARCHAR},</if>
+	<if test="entity.createrUserId != null">creater_user_id= #{entity.createrUserId,jdbcType=VARCHAR},</if>
+	<if test="entity.businessType != null">business_type= #{entity.businessType,jdbcType=VARCHAR}</if>
+	</set>
+		<where>
+			<choose>
+				<when test="entity.attachId != null">and attach_id = #{entity.attachId}</when>
+				<otherwise>and attach_id = </otherwise>
+			</choose>
+		</where>
+	</foreach>
+</update>
+
+<!-- ElementID:selectAll,Generated=true -->
+<select id="selectAll" resultMap="TaJcComplainAttachinfoResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_COMPLAIN_ATTACHINFO 
+</select>
+
+<!-- ElementID:selectMany,Generated=true -->
+<select id="selectMany" parameterType="list" resultMap="TaJcComplainAttachinfoResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_JC_COMPLAIN_ATTACHINFO 
+	where TA_JC_COMPLAIN_ATTACHINFO.attach_id in (
+<foreach collection="list" item="entity" separator="intersect">
+		select 
+		TA_JC_COMPLAIN_ATTACHINFO.attach_id
+	    from TA_JC_COMPLAIN_ATTACHINFO 
+		 <where>
+	        <if test="entity.attachId != null">and TA_JC_COMPLAIN_ATTACHINFO.attach_id = #{entity.attachId}</if>
+	        <if test="entity.complainId != null">and TA_JC_COMPLAIN_ATTACHINFO.complain_id = #{entity.complainId}</if>
+	        <if test="entity.attachName != null">and TA_JC_COMPLAIN_ATTACHINFO.attach_name = #{entity.attachName}</if>
+	        <if test="entity.createTime != null">and TA_JC_COMPLAIN_ATTACHINFO.create_time = #{entity.createTime}</if>
+	        <if test="entity.datasource != null">and TA_JC_COMPLAIN_ATTACHINFO.datasource = #{entity.datasource}</if>
+	        <if test="entity.createrUserId != null">and TA_JC_COMPLAIN_ATTACHINFO.creater_user_id = #{entity.createrUserId}</if>
+	        <if test="entity.businessType != null">and TA_JC_COMPLAIN_ATTACHINFO.business_type = #{entity.businessType}</if>
+		</where>
+</foreach>
+)
+</select>
+
+<!-- ElementID:selectUnion,Generated=true -->
+<select id="selectUnion" parameterType="list" resultMap="TaJcComplainAttachinfoResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_JC_COMPLAIN_ATTACHINFO 
+	 INNER JOIN
+<foreach collection="list" item="entity" separator="UNION" open="(" close=")">
+		SELECT 
+			 attach_id
+		FROM TA_JC_COMPLAIN_ATTACHINFO 
+			<where>
+	        <if test="entity.attachId != null">and TA_JC_COMPLAIN_ATTACHINFO.attach_id = #{entity.attachId}</if>
+	        <if test="entity.complainId != null">and TA_JC_COMPLAIN_ATTACHINFO.complain_id = #{entity.complainId}</if>
+	        <if test="entity.attachName != null">and TA_JC_COMPLAIN_ATTACHINFO.attach_name = #{entity.attachName}</if>
+	        <if test="entity.createTime != null">and TA_JC_COMPLAIN_ATTACHINFO.create_time = #{entity.createTime}</if>
+	        <if test="entity.datasource != null">and TA_JC_COMPLAIN_ATTACHINFO.datasource = #{entity.datasource}</if>
+	        <if test="entity.createrUserId != null">and TA_JC_COMPLAIN_ATTACHINFO.creater_user_id = #{entity.createrUserId}</if>
+	        <if test="entity.businessType != null">and TA_JC_COMPLAIN_ATTACHINFO.business_type = #{entity.businessType}</if>
+			</where>
+</foreach>
+	c2_temp_table ON TA_JC_COMPLAIN_ATTACHINFO.attach_id = c2_temp_table.attach_id
+</select>
+
+<!-- ElementID:selectByID,Generated=true -->
+<select id="selectByID" parameterType="java.lang.String" resultMap="TaJcComplainAttachinfoResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_COMPLAIN_ATTACHINFO 
+		 where TA_JC_COMPLAIN_ATTACHINFO.attach_id = #{attachId,jdbcType=VARCHAR}
+</select>
+
+<!-- ElementID:selectByPage,Generated=true -->
+<select id="selectByPage" parameterType="com.chinacreator.dzjc_complain.TaJcComplainAttachinfo" resultMap="TaJcComplainAttachinfoResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_COMPLAIN_ATTACHINFO 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+	order by 
+			create_time desc
+</select>
+
+
+<!-- 
+	查询材料信息是否存在文件名重复
+ -->
+<select id="selectFileName" parameterType="Map" resultType="Integer">
+	SELECT COUNT(ATTACH_ID)AS COUNTS 
+	FROM TA_JC_COMPLAIN_ATTACHINFO 
+	WHERE COMPLAIN_ID = #{complainId,jdbcType=VARCHAR}
+	AND ATTACH_NAME LIKE CONCAT('%',#{fileName,jdbcType=VARCHAR})
+	and business_Type = #{businessType,jdbcType=VARCHAR}
+</select>
+
+</mapper>

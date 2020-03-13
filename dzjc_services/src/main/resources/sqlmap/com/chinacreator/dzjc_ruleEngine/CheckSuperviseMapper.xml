@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"><mapper namespace="com.chinacreator.dzjc_ruleEngine.CheckSuperviseMapper">	
+
+<!-- ElementID:column_sql,Generated=false -->
+<sql id="column_sql">
+		  VA_JC_CHECK_SUPERVISE.supervise_info_id ,
+		  VA_JC_CHECK_SUPERVISE.business_id ,
+		  VA_JC_CHECK_SUPERVISE.supervise_type_no ,
+		  VA_JC_CHECK_SUPERVISE.supervise_result_no ,
+		  VA_JC_CHECK_SUPERVISE.accept_time ,
+		  VA_JC_CHECK_SUPERVISE.end_time ,
+		  VA_JC_CHECK_SUPERVISE.commitment_limit ,
+		  VA_JC_CHECK_SUPERVISE.approve_limit,
+		  VA_JC_CHECK_SUPERVISE.rule_id, 
+		  VA_JC_CHECK_SUPERVISE.rule_version, 
+		  VA_JC_CHECK_SUPERVISE.cfg_value, 
+		  VA_JC_CHECK_SUPERVISE.compa, 
+		  VA_JC_CHECK_SUPERVISE.work_time, 
+		  VA_JC_CHECK_SUPERVISE.holiday_count      
+</sql>
+
+<!-- ElementID:whereClause_sql,Generated=false -->
+<sql id="whereClause_sql">
+	    <if test="superviseInfoId != null">and VA_JC_CHECK_SUPERVISE.supervise_info_id = #{superviseInfoId}</if>
+	    <if test="businessId != null">and VA_JC_CHECK_SUPERVISE.business_id = #{businessId}</if>
+	    <if test="superviseTypeNo != null">and VA_JC_CHECK_SUPERVISE.supervise_type_no = #{superviseTypeNo}</if>
+	    <if test="superviseResultNo != null">and VA_JC_CHECK_SUPERVISE.supervise_result_no = #{superviseResultNo}</if>
+	    <if test="acceptTime != null">and VA_JC_CHECK_SUPERVISE.accept_time = #{acceptTime}</if>
+	    <if test="endTime != null">and VA_JC_CHECK_SUPERVISE.end_time = #{endTime}</if>
+	    <if test="commitmentLimit != null">and VA_JC_CHECK_SUPERVISE.commitment_limit = #{commitmentLimit}</if>
+	    <if test="approveLimit != null">and VA_JC_CHECK_SUPERVISE.approve_limit = #{approveLimit}</if>
+</sql>
+
+
+<!-- ElementID:CheckSuperviseResult,Generated=true -->
+<resultMap id="CheckSuperviseResult" type="com.chinacreator.dzjc_ruleEngine.CheckSupervise">
+	<id property="superviseInfoId" column="supervise_info_id"/>
+	<result property="businessId" column="business_id"/>
+	<result property="superviseTypeNo" column="supervise_type_no"/>
+	<result property="superviseResultNo" column="supervise_result_no"/>
+	<result property="acceptTime" column="accept_time"/>
+	<result property="endTime" column="end_time"/>
+	<result property="commitmentLimit" column="commitment_limit"/>
+	<result property="approveLimit" column="approve_limit"/>
+	<result property="ruleId" column="rule_id"/>
+	<result property="ruleVersion" column="rule_version"/>
+	<result property="cfgValue" column="cfg_value"/>
+	<result property="compa" column="compa"/>
+	<result property="useTime" column="use_time"/>
+	<result property="outDays" column="out_days"/>
+	<result property="workTime" column="work_time"/>
+	<result property="holidayCount" column="holiday_count"/>
+</resultMap>
+
+<!-- ElementID:count,Generated=true -->
+<select id="count" parameterType="com.chinacreator.dzjc_ruleEngine.CheckSupervise" resultType="int">
+	select count(*) from VA_JC_CHECK_SUPERVISE 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<!-- ElementID:selectByID,Generated=true -->
+<select id="selectByID" parameterType="java.lang.String" resultMap="CheckSuperviseResult">
+	select 
+		<include refid="column_sql"/>
+	    from VA_JC_CHECK_SUPERVISE 
+		 where VA_JC_CHECK_SUPERVISE.supervise_info_id = #{superviseInfoId,jdbcType=VARCHAR}
+</select>
+
+<!-- ElementID:selectByPage,Generated=true -->
+<select id="selectByPage" parameterType="com.chinacreator.dzjc_ruleEngine.CheckSupervise" resultMap="CheckSuperviseResult">
+	select 
+		<include refid="column_sql"/>
+	    from VA_JC_CHECK_SUPERVISE 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<select id="selectCheckSuperviseList" parameterType="java.util.HashMap" resultMap="CheckSuperviseResult">
+      SELECT supervise_info_id, business_id, supervise_type_no, supervise_result_no,accept_time, end_time,
+       commitment_limit,approve_limit,
+       rule_id,rule_version,cfg_value,compa,work_time,holiday_count  
+       FROM(
+　　    		SELECT ROWNUM rn,
+             t1.supervise_info_id, t1.business_id, t1.supervise_type_no, t1.supervise_result_no,
+                      t1.accept_time, t1.end_time,t1.commitment_limit,t1.approve_limit,
+                      t1.rule_id,t1.rule_version,t1.cfg_value,t1.compa,t1.work_time,t1.holiday_count   
+                      FROM(
+　　           		      select a.supervise_info_id, a.business_id, a.supervise_type_no, a.supervise_result_no ,
+                       a.accept_time,a.end_time ,a.commitment_limit, a.approve_limit,
+                       a.rule_id,a.rule_version,a.cfg_value,a.compa,a.work_time,a.holiday_count  
+　　                  	from va_jc_check_supervise a  		
+　　                   order by a.business_id asc 
+　　                  )t1 WHERE ROWNUM &lt;= #{endIndex}
+　　  ) WHERE rn &gt; #{startIndex}
+</select>
+
+<update id="updateCheckStatus">
+	update ta_jc_supervise_info 
+		set check_status = check_status_temp,
+		check_status_temp = '' 
+		where check_status_temp is not null
+</update>
+
+<!-- ElementID:insert,Generated=true -->
+<insert id="insert" parameterType="com.chinacreator.dzjc_ruleEngine.CheckSupervise">
+	insert into VA_JC_CHECK_SUPERVISE(
+	         <if test="superviseInfoId != null">supervise_info_id</if>
+	         <if test="businessId != null">,business_id</if>
+	         <if test="superviseTypeNo != null">,supervise_type_no</if>
+	         <if test="superviseResultNo != null">,supervise_result_no</if>
+	         <if test="acceptTime != null">,accept_time</if>
+	         <if test="endTime != null">,end_time</if>
+	         <if test="commitmentLimit != null">,commitment_limit</if>
+	         <if test="approveLimit != null">,approve_limit</if>
+	         <if test="ruleId != null">,rule_id</if>
+	         <if test="ruleVersion != null">,rule_version</if>
+	         <if test="cfgValue != null">,cfg_value</if>
+	         <if test="compa != null">,compa</if>
+	         <if test="useTime != null">,use_time</if>
+	         <if test="outDays != null">,out_days</if>
+	         <if test="workTime != null">,work_time</if>
+	         <if test="holidayCount != null">,holiday_count</if>
+	 	 	 )
+	 values (
+	         <if test="superviseInfoId != null">#{superviseInfoId,jdbcType=VARCHAR}</if>
+	         <if test="businessId != null">,#{businessId,jdbcType=VARCHAR}</if>
+	         <if test="superviseTypeNo != null">,#{superviseTypeNo,jdbcType=VARCHAR}</if>
+	         <if test="superviseResultNo != null">,#{superviseResultNo,jdbcType=VARCHAR}</if>
+	         <if test="acceptTime != null">,#{acceptTime,jdbcType=DATE}</if>
+	         <if test="endTime != null">,#{endTime,jdbcType=DATE}</if>
+	         <if test="commitmentLimit != null">,#{commitmentLimit,jdbcType=NUMERIC}</if>
+	         <if test="approveLimit != null">,#{approveLimit,jdbcType=NUMERIC}</if>
+	         <if test="ruleId != null">,#{ruleId,jdbcType=VARCHAR}</if>
+	         <if test="ruleVersion != null">,#{ruleVersion,jdbcType=VARCHAR}</if>
+	         <if test="cfgValue != null">,#{cfgValue,jdbcType=VARCHAR}</if>
+	         <if test="compa != null">,#{compa,jdbcType=VARCHAR}</if>
+	         <if test="useTime != null">,#{useTime,jdbcType=NUMERIC}</if>
+	         <if test="outDays != null">,#{outDays,jdbcType=NUMERIC}</if>
+	         <if test="workTime != null">,#{workTime,jdbcType=VARCHAR}</if>
+	         <if test="holidayCount != null">,#{holidayCount,jdbcType=NUMERIC}</if>
+	 	 	 )
+</insert>
+<!-- ElementID:update,Generated=true -->
+<update id="update" parameterType="com.chinacreator.dzjc_ruleEngine.CheckSupervise">
+	update VA_JC_CHECK_SUPERVISE
+<set>
+	<if test="businessId != null">business_id=#{businessId,jdbcType=VARCHAR},</if>
+	<if test="superviseTypeNo != null">supervise_type_no=#{superviseTypeNo,jdbcType=VARCHAR},</if>
+	<if test="superviseResultNo != null">supervise_result_no=#{superviseResultNo,jdbcType=VARCHAR},</if>
+	<if test="acceptTime != null">accept_time=#{acceptTime,jdbcType=DATE},</if>
+	<if test="endTime != null">end_time=#{endTime,jdbcType=DATE},</if>
+	<if test="commitmentLimit != null">commitment_limit=#{commitmentLimit,jdbcType=NUMERIC},</if>
+	<if test="approveLimit != null">approve_limit=#{approveLimit,jdbcType=NUMERIC},</if>
+	<if test="ruleId != null">rule_id=#{ruleId,jdbcType=VARCHAR},</if>
+	<if test="ruleVersion != null">rule_version=#{ruleVersion,jdbcType=VARCHAR},</if>
+	<if test="cfgValue != null">cfg_value=#{cfgValue,jdbcType=VARCHAR},</if>
+	<if test="compa != null">compa=#{compa,jdbcType=VARCHAR},</if>
+	<if test="useTime != null">use_time=#{useTime,jdbcType=NUMERIC},</if>
+	<if test="outDays != null">out_days=#{outDays,jdbcType=NUMERIC},</if>
+	<if test="workTime != null">work_time=#{workTime,jdbcType=VARCHAR},</if>
+	<if test="holidayCount != null">holiday_count=#{holidayCount,jdbcType=NUMERIC}</if>
+</set>
+<where>
+	<choose>
+        <when test="superviseInfoId != null">and supervise_info_id = #{superviseInfoId}</when>
+        <otherwise>and supervise_info_id = </otherwise>
+    </choose>
+</where>
+</update>
+<!-- ElementID:updateNull,Generated=true -->
+<update id="updateNull" parameterType="map">
+	update VA_JC_CHECK_SUPERVISE
+	<set>
+		<trim suffixOverrides=",">
+		    <if test="businessId==null">business_id = null,</if>
+		    <if test="superviseTypeNo==null">supervise_type_no = null,</if>
+		    <if test="superviseResultNo==null">supervise_result_no = null,</if>
+		    <if test="acceptTime==null">accept_time = null,</if>
+		    <if test="endTime==null">end_time = null,</if>
+		    <if test="commitmentLimit==null">commitment_limit = null,</if>
+		    <if test="approveLimit==null">approve_limit = null,</if>
+		    <if test="ruleId==null">rule_id = null,</if>
+		    <if test="ruleVersion==null">rule_version = null,</if>
+		    <if test="cfgValue==null">cfg_value = null,</if>
+		    <if test="compa==null">compa = null,</if>
+		    <if test="useTime==null">use_time = null,</if>
+		    <if test="outDays==null">out_days = null,</if>
+		    <if test="workTime==null">work_time = null,</if>
+		    <if test="holidayCount==null">holiday_count = null,</if>
+		</trim>
+	</set>
+	<where>
+		<choose>
+			<when test="superviseInfoId != null">and supervise_info_id = #{superviseInfoId}</when>
+			<otherwise>and supervise_info_id = </otherwise>
+		</choose>
+	</where>
+</update>
+<!-- ElementID:delete,Generated=true -->
+<delete id="delete" parameterType="com.chinacreator.dzjc_ruleEngine.CheckSupervise">
+    delete from VA_JC_CHECK_SUPERVISE where 1=1 and supervise_info_id = #{superviseInfoId}
+</delete>
+<!-- ElementID:select,Generated=true -->
+<select id="select" parameterType="com.chinacreator.dzjc_ruleEngine.CheckSupervise" resultMap="CheckSuperviseResult">
+	select 
+		<include refid="column_sql"/>
+	    from VA_JC_CHECK_SUPERVISE 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+<!-- ElementID:insertBatch,Generated=true -->
+<insert id="insertBatch" parameterType="list">
+	insert into VA_JC_CHECK_SUPERVISE (supervise_info_id,business_id,supervise_type_no,supervise_result_no,accept_time,end_time,commitment_limit,approve_limit,rule_id,rule_version,cfg_value,compa,use_time,out_days,work_time,holiday_count) 
+<foreach collection="list" item="entity" index="index" separator="union all">
+		select 
+		#{entity.superviseInfoId,jdbcType = VARCHAR},
+				#{entity.businessId,jdbcType = VARCHAR},
+				#{entity.superviseTypeNo,jdbcType = VARCHAR},
+				#{entity.superviseResultNo,jdbcType = VARCHAR},
+				#{entity.acceptTime,jdbcType = DATE},
+				#{entity.endTime,jdbcType = DATE},
+				#{entity.commitmentLimit,jdbcType = NUMERIC},
+				#{entity.approveLimit,jdbcType = NUMERIC},
+				#{entity.ruleId,jdbcType = VARCHAR},
+				#{entity.ruleVersion,jdbcType = VARCHAR},
+				#{entity.cfgValue,jdbcType = VARCHAR},
+				#{entity.compa,jdbcType = VARCHAR},
+				#{entity.useTime,jdbcType = NUMERIC},
+				#{entity.outDays,jdbcType = NUMERIC},
+				#{entity.workTime,jdbcType = VARCHAR},
+				#{entity.holidayCount,jdbcType = NUMERIC}
+		from dual
+</foreach>
+</insert>
+<!-- ElementID:deleteBatch,Generated=true -->
+<delete id="deleteBatch" parameterType="List">
+	delete from VA_JC_CHECK_SUPERVISE where supervise_info_id in
+<trim prefix="(" suffix=")" suffixOverrides=",">
+<foreach collection="list" item="entity" separator=",">
+	<choose>
+		<when test="@com.chinacreator.c2.dao.util.EntityBeanUtil@isEntityObj(entity)">#{entity.superviseInfoId}</when>
+		<otherwise>#{entity}</otherwise>
+	</choose>
+</foreach>
+</trim>
+</delete>
+<!-- ElementID:updateBatch,Generated=true -->
+<update id="updateBatch" parameterType="list">
+	<foreach collection="list" item="entity" open="begin" close=";end;" separator=";">
+			update VA_JC_CHECK_SUPERVISE
+	<set>
+	<if test="entity.businessId != null">business_id= #{entity.businessId,jdbcType=VARCHAR},</if>
+	<if test="entity.superviseTypeNo != null">supervise_type_no= #{entity.superviseTypeNo,jdbcType=VARCHAR},</if>
+	<if test="entity.superviseResultNo != null">supervise_result_no= #{entity.superviseResultNo,jdbcType=VARCHAR},</if>
+	<if test="entity.acceptTime != null">accept_time= #{entity.acceptTime,jdbcType=DATE},</if>
+	<if test="entity.endTime != null">end_time= #{entity.endTime,jdbcType=DATE},</if>
+	<if test="entity.commitmentLimit != null">commitment_limit= #{entity.commitmentLimit,jdbcType=NUMERIC},</if>
+	<if test="entity.approveLimit != null">approve_limit= #{entity.approveLimit,jdbcType=NUMERIC},</if>
+	<if test="entity.ruleId != null">rule_id= #{entity.ruleId,jdbcType=VARCHAR},</if>
+	<if test="entity.ruleVersion != null">rule_version= #{entity.ruleVersion,jdbcType=VARCHAR},</if>
+	<if test="entity.cfgValue != null">cfg_value= #{entity.cfgValue,jdbcType=VARCHAR},</if>
+	<if test="entity.compa != null">compa= #{entity.compa,jdbcType=VARCHAR},</if>
+	<if test="entity.useTime != null">use_time= #{entity.useTime,jdbcType=NUMERIC},</if>
+	<if test="entity.outDays != null">out_days= #{entity.outDays,jdbcType=NUMERIC},</if>
+	<if test="entity.workTime != null">work_time= #{entity.workTime,jdbcType=VARCHAR},</if>
+	<if test="entity.holidayCount != null">holiday_count= #{entity.holidayCount,jdbcType=NUMERIC}</if>
+	</set>
+		<where>
+			<choose>
+				<when test="entity.superviseInfoId != null">and supervise_info_id = #{entity.superviseInfoId}</when>
+				<otherwise>and supervise_info_id = </otherwise>
+			</choose>
+		</where>
+	</foreach>
+</update>
+<!-- ElementID:selectAll,Generated=true -->
+<select id="selectAll" resultMap="CheckSuperviseResult">
+	select 
+		<include refid="column_sql"/>
+	    from VA_JC_CHECK_SUPERVISE 
+</select>
+<!-- ElementID:selectMany,Generated=true -->
+<select id="selectMany" parameterType="list" resultMap="CheckSuperviseResult">
+select 
+	<include refid="column_sql"/> 
+	from VA_JC_CHECK_SUPERVISE 
+	where VA_JC_CHECK_SUPERVISE.supervise_info_id in (
+<foreach collection="list" item="entity" separator="intersect">
+		select 
+		VA_JC_CHECK_SUPERVISE.supervise_info_id
+	    from VA_JC_CHECK_SUPERVISE 
+		 <where>
+	        <if test="entity.superviseInfoId != null">and VA_JC_CHECK_SUPERVISE.supervise_info_id = #{entity.superviseInfoId}</if>
+	        <if test="entity.businessId != null">and VA_JC_CHECK_SUPERVISE.business_id = #{entity.businessId}</if>
+	        <if test="entity.superviseTypeNo != null">and VA_JC_CHECK_SUPERVISE.supervise_type_no = #{entity.superviseTypeNo}</if>
+	        <if test="entity.superviseResultNo != null">and VA_JC_CHECK_SUPERVISE.supervise_result_no = #{entity.superviseResultNo}</if>
+	        <if test="entity.acceptTime != null">and VA_JC_CHECK_SUPERVISE.accept_time = #{entity.acceptTime}</if>
+	        <if test="entity.endTime != null">and VA_JC_CHECK_SUPERVISE.end_time = #{entity.endTime}</if>
+	        <if test="entity.commitmentLimit != null">and VA_JC_CHECK_SUPERVISE.commitment_limit = #{entity.commitmentLimit}</if>
+	        <if test="entity.approveLimit != null">and VA_JC_CHECK_SUPERVISE.approve_limit = #{entity.approveLimit}</if>
+	        <if test="entity.ruleId != null">and VA_JC_CHECK_SUPERVISE.rule_id = #{entity.ruleId}</if>
+	        <if test="entity.ruleVersion != null">and VA_JC_CHECK_SUPERVISE.rule_version = #{entity.ruleVersion}</if>
+	        <if test="entity.cfgValue != null">and VA_JC_CHECK_SUPERVISE.cfg_value = #{entity.cfgValue}</if>
+	        <if test="entity.compa != null">and VA_JC_CHECK_SUPERVISE.compa = #{entity.compa}</if>
+	        <if test="entity.useTime != null">and VA_JC_CHECK_SUPERVISE.use_time = #{entity.useTime}</if>
+	        <if test="entity.outDays != null">and VA_JC_CHECK_SUPERVISE.out_days = #{entity.outDays}</if>
+	        <if test="entity.workTime != null">and VA_JC_CHECK_SUPERVISE.work_time = #{entity.workTime}</if>
+	        <if test="entity.holidayCount != null">and VA_JC_CHECK_SUPERVISE.holiday_count = #{entity.holidayCount}</if>
+		</where>
+</foreach>
+)
+</select>
+<!-- ElementID:selectUnion,Generated=true -->
+<select id="selectUnion" parameterType="list" resultMap="CheckSuperviseResult">
+select 
+	<include refid="column_sql"/> 
+	from VA_JC_CHECK_SUPERVISE 
+	 INNER JOIN
+<foreach collection="list" item="entity" separator="UNION" open="(" close=")">
+		SELECT 
+			 supervise_info_id
+		FROM VA_JC_CHECK_SUPERVISE 
+			<where>
+	        <if test="entity.superviseInfoId != null">and VA_JC_CHECK_SUPERVISE.supervise_info_id = #{entity.superviseInfoId}</if>
+	        <if test="entity.businessId != null">and VA_JC_CHECK_SUPERVISE.business_id = #{entity.businessId}</if>
+	        <if test="entity.superviseTypeNo != null">and VA_JC_CHECK_SUPERVISE.supervise_type_no = #{entity.superviseTypeNo}</if>
+	        <if test="entity.superviseResultNo != null">and VA_JC_CHECK_SUPERVISE.supervise_result_no = #{entity.superviseResultNo}</if>
+	        <if test="entity.acceptTime != null">and VA_JC_CHECK_SUPERVISE.accept_time = #{entity.acceptTime}</if>
+	        <if test="entity.endTime != null">and VA_JC_CHECK_SUPERVISE.end_time = #{entity.endTime}</if>
+	        <if test="entity.commitmentLimit != null">and VA_JC_CHECK_SUPERVISE.commitment_limit = #{entity.commitmentLimit}</if>
+	        <if test="entity.approveLimit != null">and VA_JC_CHECK_SUPERVISE.approve_limit = #{entity.approveLimit}</if>
+	        <if test="entity.ruleId != null">and VA_JC_CHECK_SUPERVISE.rule_id = #{entity.ruleId}</if>
+	        <if test="entity.ruleVersion != null">and VA_JC_CHECK_SUPERVISE.rule_version = #{entity.ruleVersion}</if>
+	        <if test="entity.cfgValue != null">and VA_JC_CHECK_SUPERVISE.cfg_value = #{entity.cfgValue}</if>
+	        <if test="entity.compa != null">and VA_JC_CHECK_SUPERVISE.compa = #{entity.compa}</if>
+	        <if test="entity.useTime != null">and VA_JC_CHECK_SUPERVISE.use_time = #{entity.useTime}</if>
+	        <if test="entity.outDays != null">and VA_JC_CHECK_SUPERVISE.out_days = #{entity.outDays}</if>
+	        <if test="entity.workTime != null">and VA_JC_CHECK_SUPERVISE.work_time = #{entity.workTime}</if>
+	        <if test="entity.holidayCount != null">and VA_JC_CHECK_SUPERVISE.holiday_count = #{entity.holidayCount}</if>
+			</where>
+</foreach>
+	c2_temp_table ON VA_JC_CHECK_SUPERVISE.supervise_info_id = c2_temp_table.supervise_info_id
+</select>
+</mapper>

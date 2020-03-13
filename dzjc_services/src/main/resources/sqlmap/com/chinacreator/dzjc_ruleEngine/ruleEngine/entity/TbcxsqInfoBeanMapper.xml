@@ -1,0 +1,462 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"><mapper namespace="com.chinacreator.dzjc_ruleEngine.ruleEngine.entity.TbcxsqInfoBeanMapper">	
+
+<!-- ElementID:column_sql,Generated=false -->
+<sql id="column_sql">
+		  TA_SP_SUSPEND.suspend_id ,
+		  TA_SP_SUSPEND.instance_id ,
+		  TA_SP_SUSPEND.special_type ,
+		  TA_SP_SUSPEND.start_reason ,
+		  TA_SP_SUSPEND.start_date ,
+		  TA_SP_SUSPEND.special_timelimit ,
+		  TA_SP_SUSPEND.approver ,
+		  TA_SP_SUSPEND.approver_tel ,
+		  TA_SP_SUSPEND.lastmodifiedtime ,
+		  TA_SP_SUSPEND.suspend_userid ,
+		  TA_SP_SUSPEND.suspend_username ,
+		  TA_SP_SUSPEND.proc_inst_id ,
+		  TA_SP_SUSPEND.action_defid ,
+		  TA_SP_SUSPEND.action_name ,
+		  TA_SP_SUSPEND.flag ,
+		  TA_SP_SUSPEND.is_need_supervise ,
+		  TA_SP_SUSPEND.last_supervise 
+</sql>
+
+<select id="selectendtime" resultType="java.lang.String">
+	select t.END_DATE
+	from ta_sp_resume t
+	where 
+	INSTANCE_ID = #{instanceId}
+	and suspend_id = #{tscxsqId}
+
+</select>
+
+<!-- ElementID:whereClause_sql,Generated=false -->
+<sql id="whereClause_sql">
+	    <if test="suspendId != null">and TA_SP_SUSPEND.suspend_id = #{suspendId}</if>
+	    <if test="instanceId != null">and TA_SP_SUSPEND.instance_id = #{instanceId}</if>
+	    <if test="specialType != null">and TA_SP_SUSPEND.special_type = #{specialType}</if>
+	    <if test="startReason != null">and TA_SP_SUSPEND.start_reason = #{startReason}</if>
+	    <if test="startDate != null">and TA_SP_SUSPEND.start_date = #{startDate}</if>
+	    <if test="specialTimelimit != null">and TA_SP_SUSPEND.special_timelimit = #{specialTimelimit}</if>
+	    <if test="approver != null">and TA_SP_SUSPEND.approver = #{approver}</if>
+	    <if test="approverTel != null">and TA_SP_SUSPEND.approver_tel = #{approverTel}</if>
+	    <if test="lastmodifiedtime != null">and TA_SP_SUSPEND.lastmodifiedtime = #{lastmodifiedtime}</if>
+	    <if test="suspendUserid != null">and TA_SP_SUSPEND.suspend_userid = #{suspendUserid}</if>
+	    <if test="suspendUsername != null">and TA_SP_SUSPEND.suspend_username = #{suspendUsername}</if>
+	    <if test="procInstId != null">and TA_SP_SUSPEND.proc_inst_id = #{procInstId}</if>
+	    <if test="actionDefid != null">and TA_SP_SUSPEND.action_defid = #{actionDefid}</if>
+	    <if test="actionName != null">and TA_SP_SUSPEND.action_name = #{actionName}</if>
+	    <if test="flag != null">and TA_SP_SUSPEND.flag = #{flag}</if>
+	    <if test="isNeedSupervise != null">and TA_SP_SUSPEND.is_need_supervise = #{isNeedSupervise}</if>
+	    <if test="lastSupervise != null">and TA_SP_SUSPEND.last_supervise = #{lastSupervise}</if>
+</sql>
+
+
+<!-- ElementID:TbcxsqInfoBeanResult,Generated=true -->
+<resultMap id="TbcxsqInfoBeanResult" type="com.chinacreator.dzjc_ruleEngine.ruleEngine.entity.TbcxsqInfoBean">
+	<id property="suspendId" column="suspend_id"/>
+	<result property="instanceId" column="instance_id"/>
+	<result property="specialType" column="special_type"/>
+	<result property="startReason" column="start_reason"/>
+	<result property="startDate" column="start_date"/>
+	<result property="specialTimelimit" column="special_timelimit"/>
+	<result property="approver" column="approver"/>
+	<result property="approverTel" column="approver_tel"/>
+	<result property="lastmodifiedtime" column="lastmodifiedtime"/>
+	<result property="suspendUserid" column="suspend_userid"/>
+	<result property="suspendUsername" column="suspend_username"/>
+	<result property="procInstId" column="proc_inst_id"/>
+	<result property="actionDefid" column="action_defid"/>
+	<result property="actionName" column="action_name"/>
+	<result property="flag" column="flag"/>
+	<result property="isNeedSupervise" column="is_need_supervise"/>
+	<result property="lastSupervise" column="last_supervise"/>
+	<result property="endDate" column="end_date"/>
+	<result property="businessId" column="business_id"/>
+	<result property="workTime" column="work_time"/>
+	<result property="holidayCount" column="holiday_count"/>
+</resultMap>
+
+<!-- ElementID:insert,Generated=false -->
+<insert id="insert" parameterType="com.chinacreator.dzjc_ruleEngine.ruleEngine.entity.TbcxsqInfoBean">
+	insert into TA_SP_SUSPEND(
+	         <if test="suspendId != null">suspend_id</if>
+	         <if test="instanceId != null">,instance_id</if>
+	         <if test="specialType != null">,special_type</if>
+	         <if test="startReason != null">,start_reason</if>
+	         <if test="startDate != null">,start_date</if>
+	         <if test="specialTimelimit != null">,special_timelimit</if>
+	         <if test="approver != null">,approver</if>
+	         <if test="approverTel != null">,approver_tel</if>
+	         <if test="lastmodifiedtime != null">,lastmodifiedtime</if>
+	         <if test="suspendUserid != null">,suspend_userid</if>
+	         <if test="suspendUsername != null">,suspend_username</if>
+	         <if test="procInstId != null">,proc_inst_id</if>
+	         <if test="actionDefid != null">,action_defid</if>
+	         <if test="actionName != null">,action_name</if>
+	         <if test="flag != null">,flag</if>
+	         <if test="isNeedSupervise != null">,is_need_supervise</if>
+	         <if test="lastSupervise != null">,last_supervise</if>
+	 	 	 )
+	 values (
+	         <if test="suspendId != null">#{suspendId,jdbcType=VARCHAR}</if>
+	         <if test="instanceId != null">,#{instanceId,jdbcType=VARCHAR}</if>
+	         <if test="specialType != null">,#{specialType,jdbcType=VARCHAR}</if>
+	         <if test="startReason != null">,#{startReason,jdbcType=VARCHAR}</if>
+	         <if test="startDate != null">,#{startDate,jdbcType=DATE}</if>
+	         <if test="specialTimelimit != null">,#{specialTimelimit,jdbcType=NUMERIC}</if>
+	         <if test="approver != null">,#{approver,jdbcType=VARCHAR}</if>
+	         <if test="approverTel != null">,#{approverTel,jdbcType=VARCHAR}</if>
+	         <if test="lastmodifiedtime != null">,#{lastmodifiedtime,jdbcType=DATE}</if>
+	         <if test="suspendUserid != null">,#{suspendUserid,jdbcType=VARCHAR}</if>
+	         <if test="suspendUsername != null">,#{suspendUsername,jdbcType=VARCHAR}</if>
+	         <if test="procInstId != null">,#{procInstId,jdbcType=VARCHAR}</if>
+	         <if test="actionDefid != null">,#{actionDefid,jdbcType=VARCHAR}</if>
+	         <if test="actionName != null">,#{actionName,jdbcType=VARCHAR}</if>
+	         <if test="flag != null">,#{flag,jdbcType=VARCHAR}</if>
+	         <if test="isNeedSupervise != null">,#{isNeedSupervise,jdbcType=VARCHAR}</if>
+	         <if test="lastSupervise != null">,#{lastSupervise,jdbcType=VARCHAR}</if>
+	 	 	 )
+</insert>
+
+<!-- ElementID:count,Generated=false -->
+<select id="count" parameterType="com.chinacreator.dzjc_ruleEngine.ruleEngine.entity.TbcxsqInfoBean" resultType="int">
+	select count(*) from TA_SP_SUSPEND 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<!-- ElementID:update,Generated=false -->
+<update id="update" parameterType="com.chinacreator.dzjc_ruleEngine.ruleEngine.entity.TbcxsqInfoBean">
+	update TA_SP_SUSPEND
+<set>
+	<if test="instanceId != null">instance_id=#{instanceId,jdbcType=VARCHAR},</if>
+	<if test="specialType != null">special_type=#{specialType,jdbcType=VARCHAR},</if>
+	<if test="startReason != null">start_reason=#{startReason,jdbcType=VARCHAR},</if>
+	<if test="startDate != null">start_date=#{startDate,jdbcType=DATE},</if>
+	<if test="specialTimelimit != null">special_timelimit=#{specialTimelimit,jdbcType=NUMERIC},</if>
+	<if test="approver != null">approver=#{approver,jdbcType=VARCHAR},</if>
+	<if test="approverTel != null">approver_tel=#{approverTel,jdbcType=VARCHAR},</if>
+	<if test="lastmodifiedtime != null">lastmodifiedtime=#{lastmodifiedtime,jdbcType=DATE},</if>
+	<if test="suspendUserid != null">suspend_userid=#{suspendUserid,jdbcType=VARCHAR},</if>
+	<if test="suspendUsername != null">suspend_username=#{suspendUsername,jdbcType=VARCHAR},</if>
+	<if test="procInstId != null">proc_inst_id=#{procInstId,jdbcType=VARCHAR},</if>
+	<if test="actionDefid != null">action_defid=#{actionDefid,jdbcType=VARCHAR},</if>
+	<if test="actionName != null">action_name=#{actionName,jdbcType=VARCHAR},</if>
+	<if test="flag != null">flag=#{flag,jdbcType=VARCHAR},</if>
+	<if test="isNeedSupervise != null">is_need_supervise=#{isNeedSupervise,jdbcType=VARCHAR},</if>
+	<if test="lastSupervise != null">last_supervise=#{lastSupervise,jdbcType=VARCHAR}</if>
+</set>
+<where>
+	<choose>
+        <when test="suspendId != null">and suspend_id = #{suspendId}</when>
+        <otherwise>and suspend_id = </otherwise>
+    </choose>
+</where>
+</update>
+
+<!-- ElementID:updateNull,Generated=false -->
+<update id="updateNull" parameterType="map">
+	update TA_SP_SUSPEND
+	<set>
+		<trim suffixOverrides=",">
+		    <if test="instanceId==null">instance_id = null,</if>
+		    <if test="specialType==null">special_type = null,</if>
+		    <if test="startReason==null">start_reason = null,</if>
+		    <if test="startDate==null">start_date = null,</if>
+		    <if test="specialTimelimit==null">special_timelimit = null,</if>
+		    <if test="approver==null">approver = null,</if>
+		    <if test="approverTel==null">approver_tel = null,</if>
+		    <if test="lastmodifiedtime==null">lastmodifiedtime = null,</if>
+		    <if test="suspendUserid==null">suspend_userid = null,</if>
+		    <if test="suspendUsername==null">suspend_username = null,</if>
+		    <if test="procInstId==null">proc_inst_id = null,</if>
+		    <if test="actionDefid==null">action_defid = null,</if>
+		    <if test="actionName==null">action_name = null,</if>
+		    <if test="flag==null">flag = null,</if>
+		    <if test="isNeedSupervise==null">is_need_supervise = null,</if>
+		    <if test="lastSupervise==null">last_supervise = null</if>
+		</trim>
+	</set>
+	<where>
+		<choose>
+			<when test="suspendId != null">and suspend_id = #{suspendId}</when>
+			<otherwise>and suspend_id = </otherwise>
+		</choose>
+	</where>
+</update>
+
+<!-- ElementID:delete,Generated=false -->
+<delete id="delete" parameterType="com.chinacreator.dzjc_ruleEngine.ruleEngine.entity.TbcxsqInfoBean">
+    delete from TA_SP_SUSPEND where 1=1 and suspend_id = #{suspendId}
+</delete>
+
+<!-- ElementID:select,Generated=false -->
+<select id="select" parameterType="com.chinacreator.dzjc_ruleEngine.ruleEngine.entity.TbcxsqInfoBean" resultMap="TbcxsqInfoBeanResult">
+	select 
+		a.suspend_id,a.start_date ,b.end_date,a.special_timelimit  
+	    from ta_sp_suspend a 
+      left join ta_sp_resume b on b.suspend_id = a.suspend_id 
+      where a.instance_id = #{instanceId}
+</select>
+
+<select id="selectBatchList" parameterType="list" resultMap="TbcxsqInfoBeanResult">
+	select 
+		t.suspend_id,t.instance_id,t.start_date ,b.end_date,t.special_timelimit,
+     (select (a.am_begin_time || '##' ||a.am_end_time||'##'||a.pm_begin_time||'##'||a.pm_end_time)    
+	    from WF_WORKDATE a 
+	    where to_date(to_char(t.start_date,'yyyy-mm-dd'),'yyyy-mm-dd') between to_date(a.begin_date,'yyyy-mm-dd')
+	    and to_date(a.end_date,'yyyy-mm-dd')) as work_time,
+     (select count(*) from WF_HOLIDAY a where a.holiday 
+             between to_char(t.start_date,'yyyy-mm-dd') 
+             and to_char(case when b.end_date is null then sysdate else b.end_date end,'yyyy-mm-dd')) as holiday_count
+	    from ta_sp_suspend t 
+      left join ta_sp_resume b on b.suspend_id = t.suspend_id  
+      where t.instance_id in 
+      <foreach collection="list" item="instanceId" index="index" open="(" separator="," close=")">
+			#{instanceId,jdbcType=VARCHAR}
+	  </foreach>
+</select>
+
+<!-- 查找环节的特别程序，条件是：特别程序的申请时间在环节的开始时间和结束时间之间的 -->
+<select id="selectHuanJieList" parameterType="list" resultMap="TbcxsqInfoBeanResult">
+	select 
+    t.suspend_id,t.instance_id,c.opinion_id as business_id,t.start_date ,b.end_date,t.special_timelimit,
+     (select (a.am_begin_time || '##' ||a.am_end_time||'##'||a.pm_begin_time||'##'||a.pm_end_time)    
+      from WF_WORKDATE a 
+      where to_date(to_char(t.start_date,'yyyy-mm-dd'),'yyyy-mm-dd') between to_date(a.begin_date,'yyyy-mm-dd')
+      and to_date(a.end_date,'yyyy-mm-dd')) as work_time,
+     (select count(*) from WF_HOLIDAY a where a.holiday 
+             between to_char(t.start_date,'yyyy-mm-dd') 
+             and to_char(case when b.end_date is null then sysdate else b.end_date end,'yyyy-mm-dd')) as holiday_count
+      from ta_sp_suspend t 
+      left join ta_sp_resume b on b.suspend_id = t.suspend_id 
+      left join ta_sp_result_opinion c on c.instance_id = t.instance_id 
+      where c.opinion_id in 
+      <foreach collection="list" item="huanJieId" index="index" open="(" separator="," close=")">
+			#{huanJieId,jdbcType=VARCHAR}
+	  </foreach>
+      and t.start_date &gt;= c.begin_time 
+      and t.start_date &lt;= case when c.opinion_time is null then sysdate else c.opinion_time end
+</select>
+
+<!-- ElementID:insertBatch,Generated=false -->
+<insert id="insertBatch" parameterType="list">
+	insert into TA_SP_SUSPEND (suspend_id,instance_id,special_type,start_reason,start_date,special_timelimit,approver,approver_tel,lastmodifiedtime,suspend_userid,suspend_username,proc_inst_id,action_defid,action_name,flag,is_need_supervise,last_supervise) 
+<foreach collection="list" item="entity" index="index" separator="union all">
+		select 
+		#{entity.suspendId,jdbcType = VARCHAR},
+				#{entity.instanceId,jdbcType = VARCHAR},
+				#{entity.specialType,jdbcType = VARCHAR},
+				#{entity.startReason,jdbcType = VARCHAR},
+				#{entity.startDate,jdbcType = DATE},
+				#{entity.specialTimelimit,jdbcType = NUMERIC},
+				#{entity.approver,jdbcType = VARCHAR},
+				#{entity.approverTel,jdbcType = VARCHAR},
+				#{entity.lastmodifiedtime,jdbcType = DATE},
+				#{entity.suspendUserid,jdbcType = VARCHAR},
+				#{entity.suspendUsername,jdbcType = VARCHAR},
+				#{entity.procInstId,jdbcType = VARCHAR},
+				#{entity.actionDefid,jdbcType = VARCHAR},
+				#{entity.actionName,jdbcType = VARCHAR},
+				#{entity.flag,jdbcType = VARCHAR},
+				#{entity.isNeedSupervise,jdbcType = VARCHAR},
+				#{entity.lastSupervise,jdbcType = VARCHAR}
+		from dual
+</foreach>
+</insert>
+
+<!-- ElementID:deleteBatch,Generated=false -->
+<delete id="deleteBatch" parameterType="List">
+	delete from TA_SP_SUSPEND where suspend_id in
+<trim prefix="(" suffix=")" suffixOverrides=",">
+<foreach collection="list" item="entity" separator=",">
+	<choose>
+		<when test="@com.chinacreator.c2.dao.util.EntityBeanUtil@isEntityObj(entity)">#{entity.suspendId}</when>
+		<otherwise>#{entity}</otherwise>
+	</choose>
+</foreach>
+</trim>
+</delete>
+
+<!-- ElementID:updateBatch,Generated=true -->
+
+
+<!-- ElementID:selectAll,Generated=false -->
+<select id="selectAll" resultMap="TbcxsqInfoBeanResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_SP_SUSPEND 
+</select>
+
+<!-- ElementID:selectMany,Generated=false -->
+<select id="selectMany" parameterType="list" resultMap="TbcxsqInfoBeanResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_SP_SUSPEND 
+	where TA_SP_SUSPEND.suspend_id in (
+<foreach collection="list" item="entity" separator="intersect">
+		select 
+		TA_SP_SUSPEND.suspend_id
+	    from TA_SP_SUSPEND 
+		 <where>
+	        <if test="entity.suspendId != null">and TA_SP_SUSPEND.suspend_id = #{entity.suspendId}</if>
+	        <if test="entity.instanceId != null">and TA_SP_SUSPEND.instance_id = #{entity.instanceId}</if>
+	        <if test="entity.specialType != null">and TA_SP_SUSPEND.special_type = #{entity.specialType}</if>
+	        <if test="entity.startReason != null">and TA_SP_SUSPEND.start_reason = #{entity.startReason}</if>
+	        <if test="entity.startDate != null">and TA_SP_SUSPEND.start_date = #{entity.startDate}</if>
+	        <if test="entity.specialTimelimit != null">and TA_SP_SUSPEND.special_timelimit = #{entity.specialTimelimit}</if>
+	        <if test="entity.approver != null">and TA_SP_SUSPEND.approver = #{entity.approver}</if>
+	        <if test="entity.approverTel != null">and TA_SP_SUSPEND.approver_tel = #{entity.approverTel}</if>
+	        <if test="entity.lastmodifiedtime != null">and TA_SP_SUSPEND.lastmodifiedtime = #{entity.lastmodifiedtime}</if>
+	        <if test="entity.suspendUserid != null">and TA_SP_SUSPEND.suspend_userid = #{entity.suspendUserid}</if>
+	        <if test="entity.suspendUsername != null">and TA_SP_SUSPEND.suspend_username = #{entity.suspendUsername}</if>
+	        <if test="entity.procInstId != null">and TA_SP_SUSPEND.proc_inst_id = #{entity.procInstId}</if>
+	        <if test="entity.actionDefid != null">and TA_SP_SUSPEND.action_defid = #{entity.actionDefid}</if>
+	        <if test="entity.actionName != null">and TA_SP_SUSPEND.action_name = #{entity.actionName}</if>
+	        <if test="entity.flag != null">and TA_SP_SUSPEND.flag = #{entity.flag}</if>
+	        <if test="entity.isNeedSupervise != null">and TA_SP_SUSPEND.is_need_supervise = #{entity.isNeedSupervise}</if>
+	        <if test="entity.lastSupervise != null">and TA_SP_SUSPEND.last_supervise = #{entity.lastSupervise}</if>
+		</where>
+</foreach>
+)
+</select>
+
+<!-- ElementID:selectUnion,Generated=false -->
+<select id="selectUnion" parameterType="list" resultMap="TbcxsqInfoBeanResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_SP_SUSPEND 
+	 INNER JOIN
+<foreach collection="list" item="entity" separator="UNION" open="(" close=")">
+		SELECT 
+			 suspend_id
+		FROM TA_SP_SUSPEND 
+			<where>
+	        <if test="entity.suspendId != null">and TA_SP_SUSPEND.suspend_id = #{entity.suspendId}</if>
+	        <if test="entity.instanceId != null">and TA_SP_SUSPEND.instance_id = #{entity.instanceId}</if>
+	        <if test="entity.specialType != null">and TA_SP_SUSPEND.special_type = #{entity.specialType}</if>
+	        <if test="entity.startReason != null">and TA_SP_SUSPEND.start_reason = #{entity.startReason}</if>
+	        <if test="entity.startDate != null">and TA_SP_SUSPEND.start_date = #{entity.startDate}</if>
+	        <if test="entity.specialTimelimit != null">and TA_SP_SUSPEND.special_timelimit = #{entity.specialTimelimit}</if>
+	        <if test="entity.approver != null">and TA_SP_SUSPEND.approver = #{entity.approver}</if>
+	        <if test="entity.approverTel != null">and TA_SP_SUSPEND.approver_tel = #{entity.approverTel}</if>
+	        <if test="entity.lastmodifiedtime != null">and TA_SP_SUSPEND.lastmodifiedtime = #{entity.lastmodifiedtime}</if>
+	        <if test="entity.suspendUserid != null">and TA_SP_SUSPEND.suspend_userid = #{entity.suspendUserid}</if>
+	        <if test="entity.suspendUsername != null">and TA_SP_SUSPEND.suspend_username = #{entity.suspendUsername}</if>
+	        <if test="entity.procInstId != null">and TA_SP_SUSPEND.proc_inst_id = #{entity.procInstId}</if>
+	        <if test="entity.actionDefid != null">and TA_SP_SUSPEND.action_defid = #{entity.actionDefid}</if>
+	        <if test="entity.actionName != null">and TA_SP_SUSPEND.action_name = #{entity.actionName}</if>
+	        <if test="entity.flag != null">and TA_SP_SUSPEND.flag = #{entity.flag}</if>
+	        <if test="entity.isNeedSupervise != null">and TA_SP_SUSPEND.is_need_supervise = #{entity.isNeedSupervise}</if>
+	        <if test="entity.lastSupervise != null">and TA_SP_SUSPEND.last_supervise = #{entity.lastSupervise}</if>
+			</where>
+</foreach>
+	c2_temp_table ON TA_SP_SUSPEND.suspend_id = c2_temp_table.suspend_id
+</select>
+
+<!-- ElementID:selectByID,Generated=false -->
+<select id="selectByID" parameterType="java.lang.String" resultMap="TbcxsqInfoBeanResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_SP_SUSPEND 
+		 where TA_SP_SUSPEND.suspend_id = #{suspendId,jdbcType=VARCHAR}
+</select>
+
+<!-- ElementID:selectByPage,Generated=false -->
+<select id="selectByPage" parameterType="com.chinacreator.dzjc_ruleEngine.ruleEngine.entity.TbcxsqInfoBean" resultMap="TbcxsqInfoBeanResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_SP_SUSPEND 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+
+<update id="updateBatch" parameterType="list">
+	<foreach collection="list" item="entity" open="begin" close=";end;" separator=";">
+			update TA_SP_SUSPEND
+	<set>
+	<if test="entity.instanceId != null">instance_id= #{entity.instanceId,jdbcType=VARCHAR},</if>
+	<if test="entity.specialType != null">special_type= #{entity.specialType,jdbcType=VARCHAR},</if>
+	<if test="entity.startReason != null">start_reason= #{entity.startReason,jdbcType=VARCHAR},</if>
+	<if test="entity.startDate != null">start_date= #{entity.startDate,jdbcType=DATE},</if>
+	<if test="entity.specialTimelimit != null">special_timelimit= #{entity.specialTimelimit,jdbcType=NUMERIC},</if>
+	<if test="entity.approver != null">approver= #{entity.approver,jdbcType=VARCHAR},</if>
+	<if test="entity.approverTel != null">approver_tel= #{entity.approverTel,jdbcType=VARCHAR},</if>
+	<if test="entity.lastmodifiedtime != null">lastmodifiedtime= #{entity.lastmodifiedtime,jdbcType=DATE},</if>
+	<if test="entity.suspendUserid != null">suspend_userid= #{entity.suspendUserid,jdbcType=VARCHAR},</if>
+	<if test="entity.suspendUsername != null">suspend_username= #{entity.suspendUsername,jdbcType=VARCHAR},</if>
+	<if test="entity.procInstId != null">proc_inst_id= #{entity.procInstId,jdbcType=VARCHAR},</if>
+	<if test="entity.actionDefid != null">action_defid= #{entity.actionDefid,jdbcType=VARCHAR},</if>
+	<if test="entity.actionName != null">action_name= #{entity.actionName,jdbcType=VARCHAR},</if>
+	<if test="entity.flag != null">flag= #{entity.flag,jdbcType=VARCHAR},</if>
+	<if test="entity.isNeedSupervise != null">is_need_supervise= #{entity.isNeedSupervise,jdbcType=VARCHAR},</if>
+	<if test="entity.lastSupervise != null">last_supervise= #{entity.lastSupervise,jdbcType=VARCHAR},</if>
+	<if test="entity.endDate != null">end_date= #{entity.endDate,jdbcType=DATE},</if>
+	<if test="entity.businessId != null">business_id= #{entity.businessId,jdbcType=VARCHAR},</if>
+	<if test="entity.workTime != null">work_time= #{entity.workTime,jdbcType=VARCHAR},</if>
+	<if test="entity.holidayCount != null">holiday_count= #{entity.holidayCount,jdbcType=NUMERIC}</if>
+	</set>
+		<where>
+			<choose>
+				<when test="entity.suspendId != null">and suspend_id = #{entity.suspendId}</when>
+				<otherwise>and suspend_id = </otherwise>
+			</choose>
+		</where>
+	</foreach>
+</update>
+
+<select id="selectAllById" parameterType="java.util.List" resultMap="TbcxsqInfoBeanResult">
+	select ins.instance_id || '$$' || sq.suspend_id as business_id, 
+			sq.special_timelimit,
+			sq.start_date,
+			sr.end_date,
+      (select (a.am_begin_time || '##' ||a.am_end_time||'##'||a.pm_begin_time||'##'||a.pm_end_time)    
+	    from WF_WORKDATE a 
+	    where to_date(to_char(sq.start_date,'yyyy-mm-dd'),'yyyy-mm-dd') between to_date(a.begin_date,'yyyy-mm-dd')
+	    and to_date(a.end_date,'yyyy-mm-dd')) as work_time,
+     (select count(*) from WF_HOLIDAY a where a.holiday 
+             between to_char(sq.start_date,'yyyy-mm-dd') 
+             and to_char(case when sr.end_date is null then sysdate else sr.end_date end,'yyyy-mm-dd')) as holiday_count   
+			from ta_sp_suspend sq 
+      inner join ta_sp_instance ins on ins.instance_id = sq.instance_id 
+      left join ta_sp_resume sr on sr.suspend_id = sq.suspend_id 
+	  where sq.special_timelimit is not null 
+	    and ins.instance_id || '$$' || sq.suspend_id in 
+	    <foreach collection="list" item="businessId" index="index" open="(" separator="," close=")">
+			#{businessId,jdbcType=VARCHAR}
+		</foreach>
+</select>
+
+<select id="selectFinishByBusinessId" parameterType="java.util.List" resultMap="TbcxsqInfoBeanResult">  
+    select 
+  	sq.suspend_id ,sr.end_date ,sq.last_supervise 
+  from ta_sp_suspend sq   
+  left join ta_sp_resume sr on sr.suspend_id = sq.suspend_id
+  where sq.special_timelimit is not null
+  and sq.suspend_id in 
+  <foreach collection="list" item="suspend" index="index" open="(" separator="," close=")">
+	#{suspend.suspendId,jdbcType=VARCHAR}
+  </foreach>
+</select>
+
+<update id="batchUpdateSupervise" parameterType="java.util.List">
+	<foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+		UPDATE ta_sp_suspend 
+		<set>
+			<if test="item.isNeedSupervise != null">is_need_supervise=#{item.isNeedSupervise,jdbcType=VARCHAR},</if>
+			<if test="item.lastSupervise != null">last_supervise=#{item.lastSupervise,jdbcType=VARCHAR}</if>
+		</set>
+		<where>
+			<choose>
+		        <when test="item.suspendId != null">and suspend_id = #{item.suspendId}</when>
+		        <otherwise>and suspend_id = </otherwise>
+		    </choose>
+		</where>
+	</foreach>
+</update>
+</mapper>

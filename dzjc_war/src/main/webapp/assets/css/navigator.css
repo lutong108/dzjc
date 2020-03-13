@@ -1,0 +1,1341 @@
+.tipsy { font-size: 10px; position: absolute; padding: 5px; z-index: 100000; }
+  .tipsy-inner { background-color: #000; color: #FFF; max-width: 200px; padding: 5px 8px 4px 8px; text-align: center; }
+
+  /* Rounded corners */
+  .tipsy-inner { border-radius: 3px; -moz-border-radius: 3px; -webkit-border-radius: 3px; }
+  
+  /* Uncomment for shadow */
+  /*.tipsy-inner { box-shadow: 0 0 5px #000000; -webkit-box-shadow: 0 0 5px #000000; -moz-box-shadow: 0 0 5px #000000; }*/
+  
+  .tipsy-arrow { position: absolute; width: 0; height: 0; line-height: 0; border: 5px dashed #000; }
+  
+  /* Rules to colour arrows */
+  .tipsy-arrow-n { border-bottom-color: #000; }
+  .tipsy-arrow-s { border-top-color: #000; }
+  .tipsy-arrow-e { border-left-color: #000; }
+  .tipsy-arrow-w { border-right-color: #000; }
+  
+	.tipsy-n .tipsy-arrow { top: 0px; left: 50%; margin-left: -5px; border-bottom-style: solid; border-top: none; border-left-color: transparent; border-right-color: transparent; }
+    .tipsy-nw .tipsy-arrow { top: 0; left: 10px; border-bottom-style: solid; border-top: none; border-left-color: transparent; border-right-color: transparent;}
+    .tipsy-ne .tipsy-arrow { top: 0; right: 10px; border-bottom-style: solid; border-top: none;  border-left-color: transparent; border-right-color: transparent;}
+  .tipsy-s .tipsy-arrow { bottom: 0; left: 50%; margin-left: -5px; border-top-style: solid; border-bottom: none;  border-left-color: transparent; border-right-color: transparent; }
+    .tipsy-sw .tipsy-arrow { bottom: 0; left: 10px; border-top-style: solid; border-bottom: none;  border-left-color: transparent; border-right-color: transparent; }
+    .tipsy-se .tipsy-arrow { bottom: 0; right: 10px; border-top-style: solid; border-bottom: none; border-left-color: transparent; border-right-color: transparent; }
+  .tipsy-e .tipsy-arrow { right: 0; top: 50%; margin-top: -5px; border-left-style: solid; border-right: none; border-top-color: transparent; border-bottom-color: transparent; }
+  .tipsy-w .tipsy-arrow { left: 0; top: 50%; margin-top: -5px; border-right-style: solid; border-left: none; border-top-color: transparent; border-bottom-color: transparent; }
+
+
+html {
+    font-family: sans-serif;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+}
+
+a {
+    cursor: pointer;
+}
+a:hover {
+    color: #039;
+}
+
+body {
+    margin: 0;
+    font-size: 12px;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+    font-family: "Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragino Sans GB", STHeiti, "Microsoft YaHei";
+}
+
+*,
+*:before,
+*:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.viewFramework-topbar {
+    position: fixed;
+    width: 100%;
+    height: 50px;
+    background: #373d41;
+    z-index: 101;
+}
+
+.console-component-topbar {
+    position: relative;
+    z-index: 100;
+    clear: both;
+    height: 50px;
+    background: #373d41;
+    font-size: 12px;
+    min-width: 990px;
+}
+
+.console-component-topbar span,
+.console-component-topbar a,
+.console-component-topbar p,
+.console-component-topbar li {
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    letter-spacing: 0.02em;
+}
+
+.console-component-topbar a {
+    text-decoration: none;
+}
+
+.console-component-topbar a:focus {
+    outline: none;
+}
+
+.console-component-topbar .accessibility-ast {
+    position: absolute;
+    top: -10000px;
+    left: -10000px;
+    width: 100px;
+}
+
+.console-component-topbar .accessibility-ast:focus {
+    position: absolute;
+    top: 0;
+    left: 310px;
+}
+
+.console-component-topbar .icon-arrow-down {
+    display: inline-block;
+    width: 18px;
+    text-align: center;
+    vertical-align: middle;
+    transition: transform 0.2s, vertical-align 0.2s;
+    -o-transition: transform 0.2s, vertical-align 0.2s;
+    -ms-transition: transform 0.2s, vertical-align 0.2s;
+    -moz-transition: transform 0.2s, vertical-align 0.2s;
+    -webkit-transition: transform 0.2s, vertical-align 0.2s;
+}
+
+.console-component-topbar .dropdown .dropdown-menu {
+    z-index: 1;
+    font-size: 12px;
+    border-radius: 0;
+    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.console-component-topbar .dropdown .dropdown-menu a {
+    padding: 0;
+}
+
+.console-component-topbar .dropdown.open .icon-arrow-down {
+    vertical-align: text-top;
+    transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+}
+
+.console-component-topbar .topbar-show {
+    display: block !important;
+}
+
+.console-component-topbar .topbar-info-dropdown {
+    position: relative;
+}
+
+.console-component-topbar .topbar-info-dropdown .topbar-btn {
+    position: relative;
+}
+
+.console-component-topbar .topbar-info-dropdown .topbar-info-dropdown-toggle {
+    color: #fff;
+}
+
+.console-component-topbar .topbar-info-dropdown:hover .topbar-info-dropdown-memu {
+    visibility: visible;
+    opacity: 1;
+}
+
+.console-component-topbar .topbar-info-dropdown:hover .topbar-info-dropdown-toggle {
+    background: #2a2f32;
+}
+
+.console-component-topbar .topbar-info-dropdown:hover .topbar-info-dropdown-toggle:hover {
+    background: #2a2f32;
+}
+
+.console-component-topbar .topbar-info-dropdown:hover .icon-arrow-down {
+    transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+}
+
+.console-component-topbar .topbar-info-dropdown-memu {
+    padding: 0;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    visibility: hidden;
+    float: left;
+    list-style: none;
+    background-color: #ffffff;
+    background-clip: padding-box;
+    z-index: 1;
+    font-size: 12px;
+    min-width: 100%;
+    margin: 0;
+    border: none;
+    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    -webkit-transition: opacity 0.15s, visibility 0s 0.15s;
+    transition: opacity 0.15s, visibility 0s 0.15s;
+    opacity: 0;
+}
+
+.console-component-topbar .topbar-info-dropdown-memu li a {
+    display: block;
+    padding: 0 20px;
+    clear: both;
+    font-weight: normal;
+    line-height: 1.428571429;
+    color: #333333;
+    white-space: nowrap;
+    min-width: 140px;
+    -webkit-transition: all 0.15s;
+    transition: all 0.15s;
+}
+
+.console-component-topbar .topbar-info-dropdown-memu li a:hover,
+.console-component-topbar .topbar-info-dropdown-memu li a:focus {
+    background-color: #f5f5f5;
+}
+
+.console-component-topbar .topbar-info-dropdown-toggle {
+    -webkit-transition: background 0.2s, color 0.2s;
+    transition: background 0.2s, color 0.2s;
+}
+
+.console-component-topbar .topbar-wrap,
+.console-component-topbar .topbar-logo,
+.console-component-topbar .topbar-home,
+.console-component-topbar .topbar-home-link,
+.console-component-topbar .topbar-product,
+.console-component-topbar .topbar-info {
+    height: 100%;
+}
+
+.console-component-topbar .topbar-wrap {
+    display: none;
+}
+
+.topbar-left {
+    float: left;
+}
+
+.console-component-topbar .topbar-right {
+    float: right;
+}
+
+.console-component-topbar .topbar-clearfix:before,
+.console-component-topbar .topbar-clearfix:after {
+    display: table;
+    content: " ";
+}
+
+.console-component-topbar .topbar-clearfix:after {
+    clear: both;
+}
+
+.console-component-topbar .topbar-align-right {
+    right: 0;
+    left: auto;
+}
+
+.console-component-topbar .topbar-head {
+    background: #2a2f32;
+    height: 50px;
+    position: relative;
+    z-index: 3;
+}
+
+.console-component-topbar .topbar-product {
+    position: relative;
+    z-index: 2;
+    background: #373d41;
+}
+
+.console-component-topbar .topbar-logo {
+    display: block;
+    width: 50px;
+    font-size: 24px !important;
+    color: #FFF;
+    text-align: center;
+    line-height: 50px;
+    margin-right: 1px;
+}
+
+.console-component-topbar .topbar-logo-expand {
+    display: block;
+    width: 50px;
+    font-size: 24px !important;
+    color: #FFF;
+    text-align: center;
+    line-height: 50px;
+    margin-right: 1px;
+}
+
+.console-component-topbar .topbar-logo span {
+    line-height: 50px;
+}
+
+.console-component-topbar .topbar-logo {
+    background: #373d41;
+}
+
+.console-component-topbar .topbar-home-link {
+    margin-right: 1px;
+    background: #373d41;
+    width: 129px;
+    text-align: center;
+}
+
+.console-component-topbar .topbar-home,
+.console-component-topbar .topbar-transition {
+    -o-transition: all 0.2s, 0.05s;
+    -moz-transition: all 0.2s, 0.05s;
+    -webkit-transition: all 0.2s, 0.05s;
+    transition: all 0.2s, 0.05s;
+}
+
+.console-component-topbar .topbar-btn {
+    color: #fff;
+    font-size: 14px;
+    line-height: 50px;
+}
+
+.console-component-topbar .topbar-btn:hover,
+.console-component-topbar .topbar-btn.topbar-btn-dark {
+    background: #2a2f32;
+}
+
+.console-component-topbar .topbar-product.open .topbar-product-btn {
+    background: #fff;
+    color: #333;
+}
+
+.console-component-topbar .topbar-product.open .icon-arrow-down {
+    vertical-align: text-top;
+    transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+}
+
+.console-component-topbar .topbar-product-btn {
+    padding: 0 20px;
+    display: inline-block;
+    height: 50px;
+    cursor: pointer;
+}
+
+.console-component-topbar .topbar-product-dropdown {
+    position: fixed;
+    top: 50px;
+    right: 0;
+    left: 0;
+    border: none;
+    margin: 0;
+    z-index: -1 !important;
+    display: none;
+}
+
+.topbar-product-dropdown ul,.topbar-product-container ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.topbar-product-dropdown ul li>a ,.topbar-product-container ul li>a {
+    color: #333;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+}
+
+.topbar-product-container {
+    position: absolute;
+    min-height: 240px;
+    left: 0;
+    right: 0;
+    background: #fff;
+    -o-transition: all 0.15s, 0.15s;
+    -moz-transition: all 0.15s, 0.15s;
+    -webkit-transition: all 0.15s, 0.15s;
+    transition: all 0.15s, 0.15s;
+    -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.topbar-product-container-simple .topbar-product-content {
+    margin-left: 181px;
+}
+
+.topbar-product-container-simple .topbar-product-all-item ul.topbar-product-all-list li a {
+    width: 140px;
+}
+
+.topbar-product-nav {
+    height: 100%;
+    border-right: 1px solid #f1f1f1;
+    padding: 16px 0 16px 16px;
+    width: 180px;
+}
+
+.topbar-product-nav ul.topbar-product-nav-list li {
+    height: 32px;
+    line-height: 32px;
+    padding-left: 16px;
+    width: 164px;
+    -o-transition: all 0.1s, 0s;
+    -moz-transition: all 0.1s 0s;
+    -webkit-transition: all 0.1s 0s;
+    transition: all 0.1s 0s;
+}
+
+.topbar-product-nav ul.topbar-product-nav-list li.active {
+    color: #fff;
+    background: #00c1de;
+}
+
+.topbar-product-nav ul.topbar-product-nav-list li>span {
+    cursor: default;
+}
+
+.topbar-product-content {
+    margin-left: 361px;
+    background: #fff;
+    position: relative;
+    z-index: 2;
+}
+
+.topbar-product-content>.topbar-product-category {
+    display: none;
+}
+
+.console-component-topbar .topbar-product-close {
+    position: absolute;
+    left: 50%;
+    bottom: -20px;
+    width: 50px;
+    height: 20px;
+    margin-left: -25px;
+    text-align: center;
+    line-height: 20px;
+    background: #fff;
+    cursor: pointer;
+    -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    color: #666;
+    -o-transition: all 0.15s, 0.15s;
+    -moz-transition: all 0.15s, 0.15s;
+    -webkit-transition: all 0.15s, 0.15s;
+    transition: all 0.15s, 0.15s;
+}
+
+.console-component-topbar .topbar-product-close:hover {
+    color: #333;
+}
+
+.topbar-product-all {
+    overflow: hidden;
+}
+
+.topbar-product-title {
+    font-size: 14px;
+    margin: 8px 8px 16px 10px;
+}
+
+.topbar-product-all-item {
+    margin-left: -4px;
+}
+
+.topbar-product-all-item ul.topbar-product-all-list li {
+    height: 28px;
+    line-height: 28px;
+}
+
+.topbar-product-category .topbar-product-category-col {
+    width: 33%;
+}
+
+.topbar-product-category .product-item {
+    padding: 12px 16px;
+    -o-transition: all 0.1s, 0s;
+    -moz-transition: all 0.1s, 0s;
+    -webkit-transition: all 0.1s, 0s;
+    transition: all 0.1s, 0s;
+}
+
+.topbar-product-category .product-item:hover {
+    background: #00c1de;
+    color: #fff;
+}
+
+.topbar-product-category .product-name {
+    padding-bottom: 2px;
+    font-size: 13px;
+}
+
+.topbar-product-category .product-description {
+    color: #999;
+    line-height: 16px;
+}
+
+.topbar-product-category .product-item:hover .product-description {
+    color: #fff;
+}
+
+.console-component-topbar .topbar-info {
+    background: #2a2f32;
+    position: absolute;
+    z-index: 3;
+    top: 0;
+    right: 0;
+}
+
+.console-component-topbar .topbar-info-item {
+    display: inline-block;
+}
+
+.console-component-topbar .topbar-info .topbar-btn {
+    padding: 0 18px;
+    height: 50px;
+    display: block;
+    z-index: 2;
+    background: #373d41;
+    border-right: 1px solid #2a2f32;
+}
+
+.viewFramework-body {
+    position: absolute;
+    width: 100%;
+    top: 50px;
+    bottom: 0px;
+    background-color: #000;
+}
+
+.viewFramework-sidebar {
+    width: 0px;
+    display: none;
+    position: fixed;
+    top: 50px;
+    bottom: 0px;
+    background-color: #293038;
+    /* z-index: 102; */
+    overflow-x: hidden;
+}
+
+.viewFramework-sidebar-full .viewFramework-sidebar,
+.viewFramework-sidebar.sidebar-full {
+    width: 180px;
+    display: block;
+}
+
+.viewFramework-sidebar-mini .viewFramework-sidebar .sidebar-title .sidebar-title-text,
+.viewFramework-sidebar.sidebar-mini .sidebar-title .sidebar-title-text {
+    display: none;
+}
+
+.console-component-sidebar.sidebar-content {
+    width: 180px;
+    height: 100%;
+    overflow: auto;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+.console-component-sidebar .sidebar-inner {
+    position: relative;
+}
+
+.console-component-sidebar .sidebar-fold {
+    height: 30px;
+    width: 100%;
+    background: #4A5064;
+    color: #aeb9c2;
+    text-align: center;
+    line-height: 30px !important;
+    font-size: 12px;
+    user-select: none;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+}
+
+.viewFramework-sidebar-mini .viewFramework-sidebar .sidebar-fold,
+.viewFramework-sidebar.sidebar-mini .sidebar-fold {
+    width: 50px;
+}
+
+.viewFramework-sidebar-mini .console-component-sidebar,
+.viewFramework-sidebar-mini .sidebar-content {
+    width: 50px !important;
+    display: block;
+}
+
+.console-component-sidebar .sidebar-nav {
+    width: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.console-component-sidebar .sidebar-nav .sidebar-title {
+    height: 40px;
+    background: #42485B;
+    color: #fff;
+    line-height: 40px;
+    position: relative;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    overflow: hidden;
+}
+
+.console-component-sidebar .sidebar-nav-active .sidebar-title-icon {
+    vertical-align: text-top;
+    transform: rotate(90deg);
+}
+
+.console-component-sidebar .sidebar-nav .sidebar-title-icon {
+    display: inline-block;
+    margin: 0 8px 0 20px;
+    vertical-align: middle;
+    transition: transform 0.12s;
+    -o-transition: -o-transform 0.12s;
+    -ms-transition: -ms-transform 0.12s;
+    -moz-transition: -moz-transform 0.12s;
+    -webkit-transition: -webkit-transform 0.12s;
+}
+
+.console-component-sidebar span,
+.console-component-sidebar a,
+.console-component-sidebar p,
+.console-component-sidebar li {
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    letter-spacing: 0.02em;
+}
+
+.console-component-sidebar .sidebar-manage {
+    vertical-align: middle;
+    position: absolute;
+    height: 40px;
+    width: 40px;
+    right: 0;
+    top: 0;
+    display: none;
+}
+
+.console-component-sidebar .sidebar-manage a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    line-height: 40px;
+    font-size: 16px;
+    color: #fff;
+    text-decoration: none;
+}
+
+.console-component-sidebar .sidebar-nav ul {
+    width: 200px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.console-component-sidebar .sidebar-nav .nav-item {
+    position: relative;
+}
+
+.console-component-sidebar .sidebar-nav li a {
+    display: block;
+    width: 180px;
+    height: 40px;
+    line-height: 40px;
+    overflow: hidden;
+}
+
+.viewFramework-sidebar-full .viewFramework-sidebar .sidebar-nav .nav-icon,
+.viewFramework-sidebar.sidebar-full .sidebar-nav .nav-icon {
+    width: 50px;
+}
+
+.viewFramework-sidebar-mini .viewFramework-sidebar,
+.viewFramework-sidebar.sidebar-mini {
+    width: 50px;
+    display: block;
+}
+
+.console-component-sidebar .sidebar-nav .nav-icon {
+    width: 50px;
+    text-align: center;
+    font-size: 16px;
+    float: left;
+    color: #aeb9c2;
+}
+
+.console-component-sidebar .sidebar-nav .nav-title {
+    float: left;
+    overflow: hidden;
+    color: #fff;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: block;
+    width: 130px;
+}
+
+.console-component-sidebar span,
+.console-component-sidebar a,
+.console-component-sidebar p,
+.console-component-sidebar li {
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    letter-spacing: 0.02em;
+}
+
+.console-component-sidebar .sidebar-nav .sidebar-title:hover {
+    background: #00C1DE;
+}
+
+.console-component-sidebar .sidebar-nav li.active a {
+    background: #00C1DE !important;
+    transition: none;
+    -webkit-transition: none;
+}
+
+.console-component-sidebar .sidebar-nav li a:hover {
+    background: #4A5064;
+}
+
+.viewFramework-product {
+    width: auto;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    right: 0px;
+    overflow: hidden;
+    background: #FFF;
+}
+
+.viewFramework-product-body {
+    position: absolute;
+    width: auto;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    overflow: hidden;
+    overflow-y: auto;
+    -o-transition: all 0.2s ease;
+    -ms-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    -webkit-transition: all 0.2s ease;
+}
+
+.viewFramework-sidebar-full .viewFramework-product {
+    left: 180px;
+}
+
+.viewFramework-sidebar-mini .viewFramework-product {
+    left: 50px;
+}
+
+.console-component-topbar .topbar-info .topbar-info-btn a {
+    height: 40px;
+    line-height: 39px;
+    padding: 0 18px;
+}
+
+.console-component-topbar .topbar-info-dropdown-memu {
+    padding: 0;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    visibility: hidden;
+    float: left;
+    list-style: none;
+    background-color: #ffffff;
+    background-clip: padding-box;
+    z-index: 1;
+    font-size: 12px;
+    min-width: 100%;
+    margin: 0;
+    border: none;
+    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    -webkit-transition: opacity 0.15s, visibility 0s 0.15s;
+    transition: opacity 0.15s, visibility 0s 0.15s;
+    opacity: 0;
+}
+
+.console-component-topbar .topbar-info-dropdown-memu-list {
+    padding: 10px 0;
+    margin: -3px;
+}
+
+/* 选择项加入菜单 */
+.collect-apps-flex{
+	display: flex !important;
+    flex: 1 1 auto;
+}
+.collect-apps-1{
+	display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+}
+.collect-apps-0{
+	display: flex;
+    flex: 0 0 auto;
+	align-self: center;
+}
+.star-overflow{
+	opacity: 0;
+	color: #fff;
+}
+.apps-sketch:hover span{
+    opacity: 0.8;
+    color: #fff !important;
+    -webkit-transition-delay: 50ms;
+    transition-delay: 100ms;
+}
+.apps-sketch span:hover{
+    opacity: 1 !important;
+    color: #fff;
+    -webkit-transition-delay: 50ms;
+    transition-delay: 100ms;
+	cursor:pointer;
+}
+.f-16{
+	font-size: 16px !important;	
+}
+.star-active {
+    color: #00BCD4 !important;
+    opacity: 1 !important;
+}
+.star-active:hover{
+	color: #fff !important;
+}
+.topbar-product-category .product-item:hover a {
+    color: #fff;
+}
+
+
+/*二级导航*/
+.viewFramework-product-navbar {
+    width: 0px;
+    float: left;
+    background-color: #EAEDF1;
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    z-index: 2;
+    overflow: hidden;
+    -o-transition: all 0.2s ease;
+    -ms-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    -webkit-transition: all 0.2s ease;
+}
+.viewFramework-product-col-1 .viewFramework-product-navbar-bg, .viewFramework-product-col-1 .viewFramework-product-navbar {
+    width: 180px;
+}
+.viewFramework-product-navbar .product-nav-stage {
+    width: 180px;
+    overflow: hidden;
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    right: 0px;
+}
+.viewFramework-product-navbar .product-nav-stage-main .product-nav-main-scene {
+    left: 0px;
+}
+.viewFramework-product-navbar .product-nav-stage .product-nav-main-scene {
+    left: 0px;
+}
+.viewFramework-product-navbar .product-nav-stage .product-nav-scene {
+    width: 180px;
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    -webkit-transition: position,.2s,linear;
+    -moz-transition: position,.2s,linear;
+}
+.viewFramework-product-navbar .product-nav-main-scene .product-nav-title {
+    font-weight: bold;
+    text-indent: 20px;
+}
+.viewFramework-product-navbar .product-nav-scene .product-nav-title {
+    width: 180px;
+    height: 70px;
+    line-height: 70px;
+    background: #D9DEE4;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.viewFramework-product-navbar .product-nav-list {
+    position: absolute;
+    top: 70px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.viewFramework-product-navbar .product-nav-stage-main .product-nav-sub-scene {
+    left: 180px;
+}
+.viewFramework-product-navbar .product-nav-stage .product-nav-sub-scene {
+    left: 180px;
+}
+.viewFramework-product-navbar .product-nav-stage .product-nav-scene {
+    width: 180px;
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    -webkit-transition: position,.2s,linear;
+    -moz-transition: position,.2s,linear;
+}
+.viewFramework-product-navbar .product-nav-sub-scene .product-nav-title {
+    text-align: center;
+}
+.viewFramework-product-navbar .product-nav-list ul {
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+} 
+.viewFramework-product-navbar .product-nav-list li.active a {
+    background-color: #FFF;
+}
+.viewFramework-product-navbar .product-nav-list li a {
+    width: 180px;
+    height: 40px;
+    line-height: 40px;
+    display: block;
+    color: #333;
+}
+.viewFramework-product-navbar .product-nav-list .nav-icon {
+    width: 30px;
+    height: 40px;
+    float: left;
+    text-align: center;
+    font-size: 16px;
+    color: #333;
+}
+.viewFramework-product-navbar .product-nav-list .nav-title {
+    width: 138px;
+    float: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.viewFramework-product-navbar .product-nav-list li a:hover {
+    background-color: #F4F6F8;
+}
+.icon-arrow-down:before {
+    content: "\e608";
+}
+[class^="icon-"], [class*=" icon-"] {
+    font-family: 'aliyun-console-font' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.viewFramework-product-navbar .product-nav-list ul ul li a .nav-title {
+    text-indent: 8px;
+}
+
+.viewFramework-product-navbar .product-nav-list ul ul li a {
+    color: #666;
+}
+
+.viewFramework-sidebar.sidebar-mini .sidebar-nav .nav-title {
+    display: none;
+}
+
+.viewFramework-sidebar-mini .sidebar-content .sidebar-nav ul li a {
+    width: 50px;
+}
+.viewFramework-product-col-1 .viewFramework-product-body {
+    left: 180px;
+}
+
+/*  page-header样式调整 */
+.page-header {
+    padding: 16px 0px;
+    min-height: 70px;
+    margin: 0 15px;
+    border-bottom: 1px solid #DDD;
+}
+.page-header h1 {
+    margin: 8px;
+    color: #333;
+    font-size: 14px;
+    text-indent: 8px;
+    border-left: 2px solid #88B7E0;
+}
+
+/* header 消息通知 */
+.console-component-topbar .topbar-notice {
+    position: relative;
+    font-size: 12px;
+}
+.console-component-topbar * {
+    box-sizing: border-box;
+}
+.console-component-topbar .topbar-notice .topbar-btn {
+    padding: 0 16px;
+}
+.console-component-topbar .topbar-btn-notice {
+    width: auto;
+    display: block;
+    height: 50px;
+}
+.console-component-topbar .topbar-btn {
+    color: #fff;
+    font-size: 14px;
+    line-height: 50px;
+}
+a:hover, a:link, a:visited {
+    text-decoration: none;
+}
+.console-component-topbar a {
+    text-decoration: none;
+    color: #06C;
+    cursor: pointer;
+}
+.console-component-topbar span, .console-component-topbar a, .console-component-topbar p, .console-component-topbar li {
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    letter-spacing: 0.02em;
+}
+.console-component-topbar .topbar-btn-notice .topbar-btn-notice-icon {
+    font-size: 15px;
+    line-height: 50px;
+    vertical-align: text-bottom;
+    margin-right: 2px;
+}
+.console-component-topbar [class^="icon-"], .console-component-topbar [class*=" icon-"] {
+    font-family: 'aliyun-console-font' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.console-component-topbar .topbar-btn-notice .topbar-btn-notice-num {
+    font-size: 12px;
+    color: #fff;
+    background: #ff9900;
+    border-radius: 5px;
+    padding: 2px 5px;
+    display: inline-block;
+    margin-top: 15px;
+    line-height: 16px;
+    vertical-align: top;
+    text-align: center;
+}
+.console-component-topbar .topbar-notice .topbar-notice-panel {
+    position: absolute;
+    top: 50px;
+    left: -220px;
+    margin-left: 50%;
+    width: 440px;
+    border-radius: 2px;
+    z-index: 15;
+    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.175);
+    -moz-box-shadow: 0 1px 2px rgba(0,0,0,0.175);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.175);
+}
+.console-component-topbar .topbar-notice .topbar-notice-panel .topbar-notice-arrow {
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-bottom: 6px solid #eaedf1;
+    position: absolute;
+    top: -6px;
+    left: 217px;
+}
+.console-component-topbar .topbar-notice .topbar-notice-panel .topbar-notice-head {
+    height: 50px;
+    background-color: #eaedf1;
+    padding: 0 15px;
+    line-height: 50px;
+    color: #333;
+    font-size: 14px;
+}
+.console-component-topbar .topbar-notice .topbar-notice-panel .topbar-notice-body {
+    height: 300px;
+    overflow-y: auto;
+    background: #fff;
+    font-size: 12px;
+}
+.console-component-topbar .topbar-notice .topbar-notice-panel .topbar-notice-foot {
+    height: 50px;
+    line-height: 50px;
+    background: #fff;
+    text-align: center;
+}
+.console-component-topbar span, .console-component-topbar a, .console-component-topbar p, .console-component-topbar li {
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    letter-spacing: 0.02em;
+}
+.console-component-topbar a {
+    text-decoration: none;
+    color: #06C;
+    cursor: pointer;
+}
+.console-component-topbar .topbar-notice .topbar-notice-panel .topbar-notice-body ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.console-component-topbar .topbar-notice .topbar-notice-panel .topbar-notice-body ul li {
+    height: 60px;
+    line-height: 20px;
+    border-bottom: 1px solid #eaedf1;
+}
+.console-component-topbar .topbar-notice .topbar-notice-panel .topbar-notice-body ul li a {
+    display: block;
+    height: 100%;
+    padding: 10px 10px;
+    background: #fff;
+    color: #333;
+}
+.clearfix:after {
+    clear: both;
+    visibility: hidden;
+    font-size: 0;
+    height: 0;
+}
+.console-component-topbar .topbar-notice .topbar-notice-panel .topbar-notice-body ul li a .topbar-notice-link {
+    display: block;
+    max-width: 300px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: #06c;
+}
+.console-component-topbar .topbar-notice .topbar-notice-panel .topbar-notice-body ul li a:hover {
+   background: #f9f9f9;
+}
+.topbar-notice-head a:hover, .topbar-notice-foot a:hover{
+   color: #039;
+}
+
+.console-component-topbar .topbar-user .topbar-info-dropdown-memu .user-btn-list .user-btn-link {
+    height: 50px;
+    line-height: 50px;
+    display: block;
+    -webkit-transition: all 0.15s;
+    transition: all 0.15s;
+    text-align: center;
+    color: #333;
+    border-top: 1px solid #f5f5f5;
+}
+
+.console-component-sidebar .sidebar-nav li.active a .nav-icon {
+    color: #fff;
+}
+
+/*登录者头像*/
+#userImg{
+	width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+.portal-logo{
+	position: relative;
+    top: -3px;
+    cursor: pointer;
+}
+
+/*个人资料*/
+.console-component-topbar .topbar-user .topbar-info-dropdown-memu .topbar-user-entrance-list {
+    overflow: hidden;
+    width: 270px;
+    margin: 8px 0;
+    padding: 8px 15px;
+}
+
+.console-component-topbar .topbar-user .topbar-info-dropdown-memu .topbar-user-entrance {
+    width: 80px;
+    height: 80px;
+    float: left;
+    text-align: center;
+    color: #333;
+    -webkit-transition: background 0.15s;
+    transition: background 0.15s;
+    border-radius: 2px;
+}
+
+/*固定应用管理和应用部署*/
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 180px !important;
+    outline: none;
+    z-index: 2;
+    background: #373d41;
+}
+
+/*收藏入口增加按钮*/
+.console-component-sidebar .sidebar-add {
+    height: 30px;
+    width: 100%;
+    color: #aeb9c2;
+    text-align: center;
+    line-height: 30px !important;
+    font-size: 12px;
+    user-select: none;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+}
+
+.viewFramework-sidebar-mini .viewFramework-sidebar .sidebar-add,
+.viewFramework-sidebar.sidebar-mini .sidebar-add {
+    width: 50px;
+}
+
+#popup {
+  display: none;
+  opacity: 0; 
+  position: absolute;
+  z-index: 105;
+  top: 150px;
+  left:250px;
+  width: 800px;
+  height: 260px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+#popup .title {
+  position: relative;
+  width: 100%;
+  height: 40px;
+  background-color: #fff;
+  cursor: move;
+}
+
+#popup .title p {
+  padding-left: 14px;
+  line-height: 40px;
+}
+
+#popup .title span {
+  position: absolute;
+  top: 12px;
+  right: 20px;
+  width: 30px;
+  height: 30px;
+  color: #000;
+  opacity: .2;
+  font-size: 21px;
+  cursor: pointer;
+  text-align: center;
+}
+
+#popup .cont { 
+	width: 100%; background-color: #EDEDED;    
+}
+
+#mask_shadow {
+  display: none;
+  opacity: 0;
+  position: fixed;
+  z-index: 103;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .5);
+}
+
+.viewFramework-sidebar-full .border {
+    width: 180px;
+    color: #aeb9c2;
+    line-height: 30px !important;
+    font-size: 12px;
+    user-select: none;
+    -webkit-user-select: none;
+    border: 1px dashed #60656c;
+    background: #373d41;
+    -moz-user-select: none;
+}
+.viewFramework-sidebar-full .border a {
+    height: 30px !important;
+    line-height: 30px !important;
+}
+
+.viewFramework-sidebar-mini .border {
+    color: #aeb9c2;
+    line-height: 30px !important;
+    font-size: 12px;
+    user-select: none;
+    -webkit-user-select: none;
+    border: 1px dashed #60656c;
+    background: #373d41;
+    -moz-user-select: none;
+    width: 50px;
+}
+.viewFramework-sidebar-mini .border a {
+    height: 30px !important;
+    line-height: 30px !important;
+}
+
+/*应用名称样式*/
+.console-component-topbar .topbar-name{
+	margin-right: 1px;
+    background: #373d41;
+    width: 129px;
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: inherit;
+    cursor: pointer;
+}

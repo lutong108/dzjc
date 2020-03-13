@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"><mapper namespace="com.chinacreator.dzjc_ruleEngine.ruleEngine.entity.HuanJieResultElementMapper">	
+
+<!-- ElementID:column_sql,Generated=true -->
+<sql id="column_sql">
+		  TA_JC_HUANJIE_ELEM_RESULT.rlt_id ,
+		  TA_JC_HUANJIE_ELEM_RESULT.elem_id ,
+		  TA_JC_HUANJIE_ELEM_RESULT.business_id ,
+		  TA_JC_HUANJIE_ELEM_RESULT.rlt_value ,
+		  TA_JC_HUANJIE_ELEM_RESULT.rlt_memo ,
+		  TA_JC_HUANJIE_ELEM_RESULT.is_timesupervise ,
+		  TA_JC_HUANJIE_ELEM_RESULT.area_code ,
+		  TA_JC_HUANJIE_ELEM_RESULT.business_type ,
+		  TA_JC_HUANJIE_ELEM_RESULT.batch_id ,
+		  TA_JC_HUANJIE_ELEM_RESULT.tbcx_times 
+</sql>
+
+<!-- ElementID:whereClause_sql,Generated=true -->
+<sql id="whereClause_sql">
+	    <if test="rltId != null">and TA_JC_HUANJIE_ELEM_RESULT.rlt_id = #{rltId}</if>
+	    <if test="elemId != null">and TA_JC_HUANJIE_ELEM_RESULT.elem_id = #{elemId}</if>
+	    <if test="businessId != null">and TA_JC_HUANJIE_ELEM_RESULT.business_id = #{businessId}</if>
+	    <if test="rltValue != null">and TA_JC_HUANJIE_ELEM_RESULT.rlt_value = #{rltValue}</if>
+	    <if test="rltMemo != null">and TA_JC_HUANJIE_ELEM_RESULT.rlt_memo = #{rltMemo}</if>
+	    <if test="isTimesupervise != null">and TA_JC_HUANJIE_ELEM_RESULT.is_timesupervise = #{isTimesupervise}</if>
+	    <if test="areaCode != null">and TA_JC_HUANJIE_ELEM_RESULT.area_code = #{areaCode}</if>
+	    <if test="businessType != null">and TA_JC_HUANJIE_ELEM_RESULT.business_type = #{businessType}</if>
+	    <if test="batchId != null">and TA_JC_HUANJIE_ELEM_RESULT.batch_id = #{batchId}</if>
+	    <if test="tbcxTimes != null">and TA_JC_HUANJIE_ELEM_RESULT.tbcx_times = #{tbcxTimes}</if>
+</sql>
+
+
+<!-- ElementID:HuanJieResultElementResult,Generated=true -->
+<resultMap id="HuanJieResultElementResult" type="com.chinacreator.dzjc_ruleEngine.ruleEngine.entity.HuanJieResultElement">
+	<id property="rltId" column="rlt_id"/>
+	<result property="elemId" column="elem_id"/>
+	<result property="businessId" column="business_id"/>
+	<result property="rltValue" column="rlt_value"/>
+	<result property="rltMemo" column="rlt_memo"/>
+	<result property="isTimesupervise" column="is_timesupervise"/>
+	<result property="areaCode" column="area_code"/>
+	<result property="businessType" column="business_type"/>
+	<result property="batchId" column="batch_id"/>
+	<result property="tbcxTimes" column="tbcx_times"/>
+</resultMap>
+
+
+<!-- ElementID:insert,Generated=false -->
+
+<!-- ElementID:count,Generated=false -->
+
+<!-- ElementID:update,Generated=false -->
+
+<!-- ElementID:updateNull,Generated=false -->
+
+
+<!-- ElementID:delete,Generated=false -->
+
+<!-- ElementID:insertBatch,Generated=true -->
+<insert id="insertBatch" parameterType="list">
+	insert into TA_JC_HUANJIE_ELEM_RESULT (rlt_id,elem_id,business_id,rlt_value,rlt_memo,is_timesupervise,area_code,business_type,batch_id,tbcx_times) 
+<foreach collection="list" item="entity" index="index" separator="union all">
+		select 
+		sys_guid(),
+				#{entity.elemId,jdbcType = VARCHAR},
+				#{entity.businessId,jdbcType = VARCHAR},
+				#{entity.rltValue,jdbcType = VARCHAR},
+				#{entity.rltMemo,jdbcType = VARCHAR},
+				#{entity.isTimesupervise,jdbcType = VARCHAR},
+				#{entity.areaCode,jdbcType = VARCHAR},
+				#{entity.businessType,jdbcType = VARCHAR},
+				#{entity.batchId,jdbcType = VARCHAR},
+				#{entity.tbcxTimes,jdbcType = VARCHAR}
+		from dual
+</foreach>
+</insert>
+
+<!-- ElementID:deleteBatch,Generated=false -->
+
+<!-- ElementID:updateBatch,Generated=false -->
+
+<!-- ElementID:selectAll,Generated=false -->
+
+<!-- ElementID:selectMany,Generated=false -->
+
+<!-- ElementID:selectUnion,Generated=false -->
+
+<!-- ElementID:selectByID,Generated=false -->
+
+<!-- ElementID:selectByPage,Generated=false -->
+
+<delete id="deleteAll">
+	delete from TA_JC_HUANJIE_ELEM_RESULT where 1=1
+</delete>
+
+
+</mapper>

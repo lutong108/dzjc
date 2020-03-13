@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"><mapper namespace="com.chinacreator.dzjc_performance.VEvalPointMapper">	
+
+<!-- ElementID:column_sql,Generated=true -->
+<sql id="column_sql">
+		  V_JC_EVAL_POINT.point_id ,
+		  V_JC_EVAL_POINT.point_name ,
+		  V_JC_EVAL_POINT.parent_point_id ,
+		  V_JC_EVAL_POINT.area_code ,
+		  V_JC_EVAL_POINT.order_no ,
+		  V_JC_EVAL_POINT.type 
+</sql>
+
+<!-- ElementID:whereClause_sql,Generated=true -->
+<sql id="whereClause_sql">
+	    <if test="pointId != null">and V_JC_EVAL_POINT.point_id = #{pointId}</if>
+	    <if test="pointName != null">and V_JC_EVAL_POINT.point_name = #{pointName}</if>
+	    <if test="parentPointId != null">and V_JC_EVAL_POINT.parent_point_id = #{parentPointId}</if>
+	    <if test="areaCode != null">and V_JC_EVAL_POINT.area_code = #{areaCode}</if>
+	    <if test="orderNo != null">and V_JC_EVAL_POINT.order_no = #{orderNo}</if>
+	    <if test="type != null">and V_JC_EVAL_POINT.type = #{type}</if>
+</sql>
+
+
+<!-- ElementID:VEvalPointResult,Generated=true -->
+<resultMap id="VEvalPointResult" type="com.chinacreator.dzjc_performance.VEvalPoint">
+	<id property="pointId" column="point_id"/>
+	<result property="pointName" column="point_name"/>
+	<result property="parentPointId" column="parent_point_id"/>
+	<result property="areaCode" column="area_code"/>
+	<result property="orderNo" column="order_no"/>
+	<result property="type" column="type"/>
+</resultMap>
+
+
+<!-- ElementID:insert,Generated=true -->
+<insert id="insert" parameterType="com.chinacreator.dzjc_performance.VEvalPoint">
+	insert into V_JC_EVAL_POINT(
+	         <if test="pointId != null">point_id</if>
+	         <if test="pointName != null">,point_name</if>
+	         <if test="parentPointId != null">,parent_point_id</if>
+	         <if test="areaCode != null">,area_code</if>
+	         <if test="orderNo != null">,order_no</if>
+	         <if test="type != null">,type</if>
+	 	 	 )
+	 values (
+	         <if test="pointId != null">#{pointId,jdbcType=VARCHAR}</if>
+	         <if test="pointName != null">,#{pointName,jdbcType=VARCHAR}</if>
+	         <if test="parentPointId != null">,#{parentPointId,jdbcType=VARCHAR}</if>
+	         <if test="areaCode != null">,#{areaCode,jdbcType=VARCHAR}</if>
+	         <if test="orderNo != null">,#{orderNo,jdbcType=NUMERIC}</if>
+	         <if test="type != null">,#{type,jdbcType=VARCHAR}</if>
+	 	 	 )
+</insert>
+
+<!-- ElementID:count,Generated=true -->
+<select id="count" parameterType="com.chinacreator.dzjc_performance.VEvalPoint" resultType="int">
+	select count(*) from V_JC_EVAL_POINT 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<!-- ElementID:update,Generated=true -->
+<update id="update" parameterType="com.chinacreator.dzjc_performance.VEvalPoint">
+	update V_JC_EVAL_POINT
+<set>
+	<if test="pointName != null">point_name=#{pointName,jdbcType=VARCHAR},</if>
+	<if test="parentPointId != null">parent_point_id=#{parentPointId,jdbcType=VARCHAR},</if>
+	<if test="areaCode != null">area_code=#{areaCode,jdbcType=VARCHAR},</if>
+	<if test="orderNo != null">order_no=#{orderNo,jdbcType=NUMERIC},</if>
+	<if test="type != null">type=#{type,jdbcType=VARCHAR}</if>
+</set>
+<where>
+	<choose>
+        <when test="pointId != null">and point_id = #{pointId}</when>
+        <otherwise>and point_id = </otherwise>
+    </choose>
+</where>
+</update>
+
+<!-- ElementID:updateNull,Generated=true -->
+<update id="updateNull" parameterType="map">
+	update V_JC_EVAL_POINT
+	<set>
+		<trim suffixOverrides=",">
+		    <if test="pointName==null">point_name = null,</if>
+		    <if test="parentPointId==null">parent_point_id = null,</if>
+		    <if test="areaCode==null">area_code = null,</if>
+		    <if test="orderNo==null">order_no = null,</if>
+		    <if test="type==null">type = null,</if>
+		</trim>
+	</set>
+	<where>
+		<choose>
+			<when test="pointId != null">and point_id = #{pointId}</when>
+			<otherwise>and point_id = </otherwise>
+		</choose>
+	</where>
+</update>
+
+<!-- ElementID:delete,Generated=true -->
+<delete id="delete" parameterType="com.chinacreator.dzjc_performance.VEvalPoint">
+    delete from V_JC_EVAL_POINT where 1=1 and point_id = #{pointId}
+</delete>
+
+<!-- ElementID:select,Generated=true -->
+<select id="select" parameterType="com.chinacreator.dzjc_performance.VEvalPoint" resultMap="VEvalPointResult">
+	select 
+		<include refid="column_sql"/>
+	    from V_JC_EVAL_POINT 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+
+<!-- ElementID:insertBatch,Generated=true -->
+<insert id="insertBatch" parameterType="list">
+	insert into V_JC_EVAL_POINT (point_id,point_name,parent_point_id,area_code,order_no,type) 
+<foreach collection="list" item="entity" index="index" separator="union all">
+		select 
+		#{entity.pointId,jdbcType = VARCHAR},
+				#{entity.pointName,jdbcType = VARCHAR},
+				#{entity.parentPointId,jdbcType = VARCHAR},
+				#{entity.areaCode,jdbcType = VARCHAR},
+				#{entity.orderNo,jdbcType = NUMERIC},
+				#{entity.type,jdbcType = VARCHAR}
+		from dual
+</foreach>
+</insert>
+
+<!-- ElementID:deleteBatch,Generated=true -->
+<delete id="deleteBatch" parameterType="List">
+	delete from V_JC_EVAL_POINT where point_id in
+<trim prefix="(" suffix=")" suffixOverrides=",">
+<foreach collection="list" item="entity" separator=",">
+	<choose>
+		<when test="@com.chinacreator.c2.dao.util.EntityBeanUtil@isEntityObj(entity)">#{entity.pointId}</when>
+		<otherwise>#{entity}</otherwise>
+	</choose>
+</foreach>
+</trim>
+</delete>
+
+<!-- ElementID:updateBatch,Generated=true -->
+<update id="updateBatch" parameterType="list">
+	<foreach collection="list" item="entity" open="begin" close=";end;" separator=";">
+			update V_JC_EVAL_POINT
+	<set>
+	<if test="entity.pointName != null">point_name= #{entity.pointName,jdbcType=VARCHAR},</if>
+	<if test="entity.parentPointId != null">parent_point_id= #{entity.parentPointId,jdbcType=VARCHAR},</if>
+	<if test="entity.areaCode != null">area_code= #{entity.areaCode,jdbcType=VARCHAR},</if>
+	<if test="entity.orderNo != null">order_no= #{entity.orderNo,jdbcType=NUMERIC},</if>
+	<if test="entity.type != null">type= #{entity.type,jdbcType=VARCHAR}</if>
+	</set>
+		<where>
+			<choose>
+				<when test="entity.pointId != null">and point_id = #{entity.pointId}</when>
+				<otherwise>and point_id = </otherwise>
+			</choose>
+		</where>
+	</foreach>
+</update>
+
+<!-- ElementID:selectAll,Generated=true -->
+<select id="selectAll" resultMap="VEvalPointResult">
+	select 
+		<include refid="column_sql"/>
+	    from V_JC_EVAL_POINT 
+</select>
+
+<!-- ElementID:selectMany,Generated=true -->
+<select id="selectMany" parameterType="list" resultMap="VEvalPointResult">
+select 
+	<include refid="column_sql"/> 
+	from V_JC_EVAL_POINT 
+	where V_JC_EVAL_POINT.point_id in (
+<foreach collection="list" item="entity" separator="intersect">
+		select 
+		V_JC_EVAL_POINT.point_id
+	    from V_JC_EVAL_POINT 
+		 <where>
+	        <if test="entity.pointId != null">and V_JC_EVAL_POINT.point_id = #{entity.pointId}</if>
+	        <if test="entity.pointName != null">and V_JC_EVAL_POINT.point_name = #{entity.pointName}</if>
+	        <if test="entity.parentPointId != null">and V_JC_EVAL_POINT.parent_point_id = #{entity.parentPointId}</if>
+	        <if test="entity.areaCode != null">and V_JC_EVAL_POINT.area_code = #{entity.areaCode}</if>
+	        <if test="entity.orderNo != null">and V_JC_EVAL_POINT.order_no = #{entity.orderNo}</if>
+	        <if test="entity.type != null">and V_JC_EVAL_POINT.type = #{entity.type}</if>
+		</where>
+</foreach>
+)
+</select>
+
+<!-- ElementID:selectUnion,Generated=true -->
+<select id="selectUnion" parameterType="list" resultMap="VEvalPointResult">
+select 
+	<include refid="column_sql"/> 
+	from V_JC_EVAL_POINT 
+	 INNER JOIN
+<foreach collection="list" item="entity" separator="UNION" open="(" close=")">
+		SELECT 
+			 point_id
+		FROM V_JC_EVAL_POINT 
+			<where>
+	        <if test="entity.pointId != null">and V_JC_EVAL_POINT.point_id = #{entity.pointId}</if>
+	        <if test="entity.pointName != null">and V_JC_EVAL_POINT.point_name = #{entity.pointName}</if>
+	        <if test="entity.parentPointId != null">and V_JC_EVAL_POINT.parent_point_id = #{entity.parentPointId}</if>
+	        <if test="entity.areaCode != null">and V_JC_EVAL_POINT.area_code = #{entity.areaCode}</if>
+	        <if test="entity.orderNo != null">and V_JC_EVAL_POINT.order_no = #{entity.orderNo}</if>
+	        <if test="entity.type != null">and V_JC_EVAL_POINT.type = #{entity.type}</if>
+			</where>
+</foreach>
+	c2_temp_table ON V_JC_EVAL_POINT.point_id = c2_temp_table.point_id
+</select>
+
+<!-- ElementID:selectByID,Generated=true -->
+<select id="selectByID" parameterType="java.lang.String" resultMap="VEvalPointResult">
+	select 
+		<include refid="column_sql"/>
+	    from V_JC_EVAL_POINT 
+		 where V_JC_EVAL_POINT.point_id = #{pointId,jdbcType=VARCHAR}
+</select>
+
+<!-- ElementID:selectByPage,Generated=true -->
+<select id="selectByPage" parameterType="com.chinacreator.dzjc_performance.VEvalPoint" resultMap="VEvalPointResult">
+	select 
+		<include refid="column_sql"/>
+	    from V_JC_EVAL_POINT 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+<!-- Generated=false -->
+<select id="selectByAreaCode" parameterType="com.chinacreator.dzjc_performance.VEvalPoint" resultMap="VEvalPointResult">
+     select
+     <include refid="column_sql"/> 
+     from 
+     V_JC_EVAL_POINT 
+      <where>
+         <if test="areaCode != null">and V_JC_EVAL_POINT.area_code = #{areaCode}</if>
+     </where>
+</select>
+</mapper>

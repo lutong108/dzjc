@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"><mapper namespace="com.chinacreator.dzjc_ruleEngine.ruleEngine.entity.ServicesGuideInfoMapper">	
+
+<!-- ElementID:column_sql,Generated=true -->
+<sql id="column_sql">
+		  V_JC_TA_SP_SERVICES_GUIDE.approve_code ,
+		  V_JC_TA_SP_SERVICES_GUIDE.area_code ,
+		  V_JC_TA_SP_SERVICES_GUIDE.approve_name ,
+		  V_JC_TA_SP_SERVICES_GUIDE.type_code ,
+		  V_JC_TA_SP_SERVICES_GUIDE.approve_id ,
+		  V_JC_TA_SP_SERVICES_GUIDE.approve_limit ,
+		  V_JC_TA_SP_SERVICES_GUIDE.commitment_limit 
+</sql>
+
+<!-- ElementID:whereClause_sql,Generated=true -->
+<sql id="whereClause_sql">
+	    <if test="approveCode != null">and V_JC_TA_SP_SERVICES_GUIDE.approve_code = #{approveCode}</if>
+	    <if test="areaCode != null">and V_JC_TA_SP_SERVICES_GUIDE.area_code = #{areaCode}</if>
+	    <if test="approveName != null">and V_JC_TA_SP_SERVICES_GUIDE.approve_name = #{approveName}</if>
+	    <if test="typeCode != null">and V_JC_TA_SP_SERVICES_GUIDE.type_code = #{typeCode}</if>
+	    <if test="approveId != null">and V_JC_TA_SP_SERVICES_GUIDE.approve_id = #{approveId}</if>
+	    <if test="approveLimit != null">and V_JC_TA_SP_SERVICES_GUIDE.approve_limit = #{approveLimit}</if>
+	    <if test="commitmentLimit != null">and V_JC_TA_SP_SERVICES_GUIDE.commitment_limit = #{commitmentLimit}</if>
+</sql>
+
+
+<!-- ElementID:ServicesGuideInfoResult,Generated=true -->
+<resultMap id="ServicesGuideInfoResult" type="com.chinacreator.dzjc_ruleEngine.ruleEngine.entity.ServicesGuideInfo">
+	<id property="approveId" column="approve_id"/>
+	<result property="approveCode" column="approve_code"/>
+	<result property="areaCode" column="area_code"/>
+	<result property="approveName" column="approve_name"/>
+	<result property="typeCode" column="type_code"/>
+	<result property="approveLimit" column="approve_limit"/>
+	<result property="commitmentLimit" column="commitment_limit"/>
+</resultMap>
+
+
+
+
+
+
+<!-- ElementID:insert,Generated=true -->
+<insert id="insert" parameterType="com.chinacreator.dzjc_ruleEngine.ruleEngine.entity.ServicesGuideInfo">
+	insert into V_JC_TA_SP_SERVICES_GUIDE(
+	         <if test="approveCode != null">approve_code</if>
+	         <if test="areaCode != null">,area_code</if>
+	         <if test="approveName != null">,approve_name</if>
+	         <if test="typeCode != null">,type_code</if>
+	         <if test="approveId != null">,approve_id</if>
+	         <if test="approveLimit != null">,approve_limit</if>
+	         <if test="commitmentLimit != null">,commitment_limit</if>
+	 	 	 )
+	 values (
+	         <if test="approveCode != null">#{approveCode,jdbcType=VARCHAR}</if>
+	         <if test="areaCode != null">,#{areaCode,jdbcType=VARCHAR}</if>
+	         <if test="approveName != null">,#{approveName,jdbcType=VARCHAR}</if>
+	         <if test="typeCode != null">,#{typeCode,jdbcType=VARCHAR}</if>
+	         <if test="approveId != null">,#{approveId,jdbcType=VARCHAR}</if>
+	         <if test="approveLimit != null">,#{approveLimit,jdbcType=NUMERIC}</if>
+	         <if test="commitmentLimit != null">,#{commitmentLimit,jdbcType=NUMERIC}</if>
+	 	 	 )
+</insert>
+
+<!-- ElementID:count,Generated=true -->
+<select id="count" parameterType="com.chinacreator.dzjc_ruleEngine.ruleEngine.entity.ServicesGuideInfo" resultType="int">
+	select count(*) from V_JC_TA_SP_SERVICES_GUIDE 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<!-- ElementID:update,Generated=true -->
+<update id="update" parameterType="com.chinacreator.dzjc_ruleEngine.ruleEngine.entity.ServicesGuideInfo">
+	update V_JC_TA_SP_SERVICES_GUIDE
+<set>
+	<if test="approveCode != null">approve_code=#{approveCode,jdbcType=VARCHAR},</if>
+	<if test="areaCode != null">area_code=#{areaCode,jdbcType=VARCHAR},</if>
+	<if test="approveName != null">approve_name=#{approveName,jdbcType=VARCHAR},</if>
+	<if test="typeCode != null">type_code=#{typeCode,jdbcType=VARCHAR},</if>
+	<if test="approveLimit != null">approve_limit=#{approveLimit,jdbcType=NUMERIC},</if>
+	<if test="commitmentLimit != null">commitment_limit=#{commitmentLimit,jdbcType=NUMERIC}</if>
+</set>
+<where>
+	<choose>
+        <when test="approveId != null">and approve_id = #{approveId}</when>
+        <otherwise>and approve_id = </otherwise>
+    </choose>
+</where>
+</update>
+
+<!-- ElementID:updateNull,Generated=true -->
+<update id="updateNull" parameterType="map">
+	update V_JC_TA_SP_SERVICES_GUIDE
+	<set>
+		<trim suffixOverrides=",">
+		    <if test="approveCode==null">approve_code = null,</if>
+		    <if test="areaCode==null">area_code = null,</if>
+		    <if test="approveName==null">approve_name = null,</if>
+		    <if test="typeCode==null">type_code = null,</if>
+		    <if test="approveLimit==null">approve_limit = null,</if>
+		    <if test="commitmentLimit==null">commitment_limit = null,</if>
+		</trim>
+	</set>
+	<where>
+		<choose>
+			<when test="approveId != null">and approve_id = #{approveId}</when>
+			<otherwise>and approve_id = </otherwise>
+		</choose>
+	</where>
+</update>
+
+<!-- ElementID:delete,Generated=true -->
+<delete id="delete" parameterType="com.chinacreator.dzjc_ruleEngine.ruleEngine.entity.ServicesGuideInfo">
+    delete from V_JC_TA_SP_SERVICES_GUIDE where 1=1 and approve_id = #{approveId}
+</delete>
+
+<!-- ElementID:select,Generated=true -->
+<select id="select" parameterType="com.chinacreator.dzjc_ruleEngine.ruleEngine.entity.ServicesGuideInfo" resultMap="ServicesGuideInfoResult">
+	select 
+		<include refid="column_sql"/>
+	    from V_JC_TA_SP_SERVICES_GUIDE 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+
+<!-- ElementID:insertBatch,Generated=true -->
+<insert id="insertBatch" parameterType="list">
+	insert into V_JC_TA_SP_SERVICES_GUIDE (approve_code,area_code,approve_name,type_code,approve_id,approve_limit,commitment_limit) 
+<foreach collection="list" item="entity" index="index" separator="union all">
+		select 
+		#{entity.approveCode,jdbcType = VARCHAR},
+				#{entity.areaCode,jdbcType = VARCHAR},
+				#{entity.approveName,jdbcType = VARCHAR},
+				#{entity.typeCode,jdbcType = VARCHAR},
+				#{entity.approveId,jdbcType = VARCHAR},
+				#{entity.approveLimit,jdbcType = NUMERIC},
+				#{entity.commitmentLimit,jdbcType = NUMERIC}
+		from dual
+</foreach>
+</insert>
+
+<!-- ElementID:deleteBatch,Generated=true -->
+<delete id="deleteBatch" parameterType="List">
+	delete from V_JC_TA_SP_SERVICES_GUIDE where approve_id in
+<trim prefix="(" suffix=")" suffixOverrides=",">
+<foreach collection="list" item="entity" separator=",">
+	<choose>
+		<when test="@com.chinacreator.c2.dao.util.EntityBeanUtil@isEntityObj(entity)">#{entity.approveId}</when>
+		<otherwise>#{entity}</otherwise>
+	</choose>
+</foreach>
+</trim>
+</delete>
+
+<!-- ElementID:updateBatch,Generated=true -->
+<update id="updateBatch" parameterType="list">
+	<foreach collection="list" item="entity" open="begin" close=";end;" separator=";">
+			update V_JC_TA_SP_SERVICES_GUIDE
+	<set>
+	<if test="entity.approveCode != null">approve_code= #{entity.approveCode,jdbcType=VARCHAR},</if>
+	<if test="entity.areaCode != null">area_code= #{entity.areaCode,jdbcType=VARCHAR},</if>
+	<if test="entity.approveName != null">approve_name= #{entity.approveName,jdbcType=VARCHAR},</if>
+	<if test="entity.typeCode != null">type_code= #{entity.typeCode,jdbcType=VARCHAR},</if>
+	<if test="entity.approveLimit != null">approve_limit= #{entity.approveLimit,jdbcType=NUMERIC},</if>
+	<if test="entity.commitmentLimit != null">commitment_limit= #{entity.commitmentLimit,jdbcType=NUMERIC}</if>
+	</set>
+		<where>
+			<choose>
+				<when test="entity.approveId != null">and approve_id = #{entity.approveId}</when>
+				<otherwise>and approve_id = </otherwise>
+			</choose>
+		</where>
+	</foreach>
+</update>
+
+<!-- ElementID:selectAll,Generated=true -->
+<select id="selectAll" resultMap="ServicesGuideInfoResult">
+	select 
+		<include refid="column_sql"/>
+	    from V_JC_TA_SP_SERVICES_GUIDE 
+</select>
+
+<!-- ElementID:selectMany,Generated=true -->
+<select id="selectMany" parameterType="list" resultMap="ServicesGuideInfoResult">
+select 
+	<include refid="column_sql"/> 
+	from V_JC_TA_SP_SERVICES_GUIDE 
+	where V_JC_TA_SP_SERVICES_GUIDE.approve_id in (
+<foreach collection="list" item="entity" separator="intersect">
+		select 
+		V_JC_TA_SP_SERVICES_GUIDE.approve_id
+	    from V_JC_TA_SP_SERVICES_GUIDE 
+		 <where>
+	        <if test="entity.approveCode != null">and V_JC_TA_SP_SERVICES_GUIDE.approve_code = #{entity.approveCode}</if>
+	        <if test="entity.areaCode != null">and V_JC_TA_SP_SERVICES_GUIDE.area_code = #{entity.areaCode}</if>
+	        <if test="entity.approveName != null">and V_JC_TA_SP_SERVICES_GUIDE.approve_name = #{entity.approveName}</if>
+	        <if test="entity.typeCode != null">and V_JC_TA_SP_SERVICES_GUIDE.type_code = #{entity.typeCode}</if>
+	        <if test="entity.approveId != null">and V_JC_TA_SP_SERVICES_GUIDE.approve_id = #{entity.approveId}</if>
+	        <if test="entity.approveLimit != null">and V_JC_TA_SP_SERVICES_GUIDE.approve_limit = #{entity.approveLimit}</if>
+	        <if test="entity.commitmentLimit != null">and V_JC_TA_SP_SERVICES_GUIDE.commitment_limit = #{entity.commitmentLimit}</if>
+		</where>
+</foreach>
+)
+</select>
+
+<!-- ElementID:selectUnion,Generated=true -->
+<select id="selectUnion" parameterType="list" resultMap="ServicesGuideInfoResult">
+select 
+	<include refid="column_sql"/> 
+	from V_JC_TA_SP_SERVICES_GUIDE 
+	 INNER JOIN
+<foreach collection="list" item="entity" separator="UNION" open="(" close=")">
+		SELECT 
+			 approve_id
+		FROM V_JC_TA_SP_SERVICES_GUIDE 
+			<where>
+	        <if test="entity.approveCode != null">and V_JC_TA_SP_SERVICES_GUIDE.approve_code = #{entity.approveCode}</if>
+	        <if test="entity.areaCode != null">and V_JC_TA_SP_SERVICES_GUIDE.area_code = #{entity.areaCode}</if>
+	        <if test="entity.approveName != null">and V_JC_TA_SP_SERVICES_GUIDE.approve_name = #{entity.approveName}</if>
+	        <if test="entity.typeCode != null">and V_JC_TA_SP_SERVICES_GUIDE.type_code = #{entity.typeCode}</if>
+	        <if test="entity.approveId != null">and V_JC_TA_SP_SERVICES_GUIDE.approve_id = #{entity.approveId}</if>
+	        <if test="entity.approveLimit != null">and V_JC_TA_SP_SERVICES_GUIDE.approve_limit = #{entity.approveLimit}</if>
+	        <if test="entity.commitmentLimit != null">and V_JC_TA_SP_SERVICES_GUIDE.commitment_limit = #{entity.commitmentLimit}</if>
+			</where>
+</foreach>
+	c2_temp_table ON V_JC_TA_SP_SERVICES_GUIDE.approve_id = c2_temp_table.approve_id
+</select>
+
+<!-- ElementID:selectByID,Generated=true -->
+<select id="selectByID" parameterType="java.lang.String" resultMap="ServicesGuideInfoResult">
+	select 
+		<include refid="column_sql"/>
+	    from V_JC_TA_SP_SERVICES_GUIDE 
+		 where V_JC_TA_SP_SERVICES_GUIDE.approve_id = #{approveId,jdbcType=VARCHAR}
+</select>
+
+<!-- ElementID:selectByPage,Generated=true -->
+<select id="selectByPage" parameterType="com.chinacreator.dzjc_ruleEngine.ruleEngine.entity.ServicesGuideInfo" resultMap="ServicesGuideInfoResult">
+	select 
+		<include refid="column_sql"/>
+	    from V_JC_TA_SP_SERVICES_GUIDE 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+</mapper>

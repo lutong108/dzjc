@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"><mapper namespace="com.chinacreator.dzjc_complain.TaJcComplainBasecountMapper">	
+
+<!-- ElementID:column_sql,Generated=true -->
+<sql id="column_sql">
+		  TA_JC_COMPLAIN_BASECOUNT.basecountid ,
+		  TA_JC_COMPLAIN_BASECOUNT.complain_id ,
+		  TA_JC_COMPLAIN_BASECOUNT.correlationid ,
+		  TA_JC_COMPLAIN_BASECOUNT.basecount 
+</sql>
+
+<!-- ElementID:whereClause_sql,Generated=true -->
+<sql id="whereClause_sql">
+	    <if test="basecountid != null">and TA_JC_COMPLAIN_BASECOUNT.basecountid = #{basecountid}</if>
+	    <if test="complainId != null">and TA_JC_COMPLAIN_BASECOUNT.complain_id = #{complainId}</if>
+	    <if test="correlationid != null">and TA_JC_COMPLAIN_BASECOUNT.correlationid = #{correlationid}</if>
+	    <if test="basecount != null">and TA_JC_COMPLAIN_BASECOUNT.basecount = #{basecount}</if>
+</sql>
+
+
+<!-- ElementID:TaJcComplainBasecountResult,Generated=true -->
+<resultMap id="TaJcComplainBasecountResult" type="com.chinacreator.dzjc_complain.TaJcComplainBasecount">
+	<id property="basecountid" column="basecountid"/>
+	<result property="complainId" column="complain_id"/>
+	<result property="correlationid" column="correlationid"/>
+	<result property="basecount" column="basecount"/>
+</resultMap>
+
+
+
+
+
+
+<!-- ElementID:insert,Generated=true -->
+<insert id="insert" parameterType="com.chinacreator.dzjc_complain.TaJcComplainBasecount">
+	insert into TA_JC_COMPLAIN_BASECOUNT(
+	         <if test="basecountid != null">basecountid</if>
+	         <if test="complainId != null">,complain_id</if>
+	         <if test="correlationid != null">,correlationid</if>
+	         <if test="basecount != null">,basecount</if>
+	 	 	 )
+	 values (
+	         <if test="basecountid != null">#{basecountid,jdbcType=VARCHAR}</if>
+	         <if test="complainId != null">,#{complainId,jdbcType=VARCHAR}</if>
+	         <if test="correlationid != null">,#{correlationid,jdbcType=VARCHAR}</if>
+	         <if test="basecount != null">,#{basecount,jdbcType=VARCHAR}</if>
+	 	 	 )
+</insert>
+
+<!-- ElementID:count,Generated=true -->
+<select id="count" parameterType="com.chinacreator.dzjc_complain.TaJcComplainBasecount" resultType="int">
+	select count(*) from TA_JC_COMPLAIN_BASECOUNT 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<!-- ElementID:update,Generated=true -->
+<update id="update" parameterType="com.chinacreator.dzjc_complain.TaJcComplainBasecount">
+	update TA_JC_COMPLAIN_BASECOUNT
+<set>
+	<if test="complainId != null">complain_id=#{complainId,jdbcType=VARCHAR},</if>
+	<if test="correlationid != null">correlationid=#{correlationid,jdbcType=VARCHAR},</if>
+	<if test="basecount != null">basecount=#{basecount,jdbcType=VARCHAR}</if>
+</set>
+<where>
+	<choose>
+        <when test="basecountid != null">and basecountid = #{basecountid}</when>
+        <otherwise>and basecountid = </otherwise>
+    </choose>
+</where>
+</update>
+
+<!-- ElementID:updateNull,Generated=true -->
+<update id="updateNull" parameterType="map">
+	update TA_JC_COMPLAIN_BASECOUNT
+	<set>
+		<trim suffixOverrides=",">
+		    <if test="complainId==null">complain_id = null,</if>
+		    <if test="correlationid==null">correlationid = null,</if>
+		    <if test="basecount==null">basecount = null,</if>
+		</trim>
+	</set>
+	<where>
+		<choose>
+			<when test="basecountid != null">and basecountid = #{basecountid}</when>
+			<otherwise>and basecountid = </otherwise>
+		</choose>
+	</where>
+</update>
+
+<!-- ElementID:delete,Generated=true -->
+<delete id="delete" parameterType="com.chinacreator.dzjc_complain.TaJcComplainBasecount">
+    delete from TA_JC_COMPLAIN_BASECOUNT where 1=1 and basecountid = #{basecountid}
+</delete>
+
+<!-- ElementID:select,Generated=true -->
+<select id="select" parameterType="com.chinacreator.dzjc_complain.TaJcComplainBasecount" resultMap="TaJcComplainBasecountResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_COMPLAIN_BASECOUNT 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+
+<!-- ElementID:insertBatch,Generated=true -->
+<insert id="insertBatch" parameterType="list">
+	insert into TA_JC_COMPLAIN_BASECOUNT (basecountid,complain_id,correlationid,basecount) 
+<foreach collection="list" item="entity" index="index" separator="union all">
+		select 
+		#{entity.basecountid,jdbcType = VARCHAR},
+				#{entity.complainId,jdbcType = VARCHAR},
+				#{entity.correlationid,jdbcType = VARCHAR},
+				#{entity.basecount,jdbcType = VARCHAR}
+		from dual
+</foreach>
+</insert>
+
+<!-- ElementID:deleteBatch,Generated=true -->
+<delete id="deleteBatch" parameterType="List">
+	delete from TA_JC_COMPLAIN_BASECOUNT where basecountid in
+<trim prefix="(" suffix=")" suffixOverrides=",">
+<foreach collection="list" item="entity" separator=",">
+	<choose>
+		<when test="@com.chinacreator.c2.dao.util.EntityBeanUtil@isEntityObj(entity)">#{entity.basecountid}</when>
+		<otherwise>#{entity}</otherwise>
+	</choose>
+</foreach>
+</trim>
+</delete>
+
+<!-- ElementID:updateBatch,Generated=true -->
+<update id="updateBatch" parameterType="list">
+	<foreach collection="list" item="entity" open="begin" close=";end;" separator=";">
+			update TA_JC_COMPLAIN_BASECOUNT
+	<set>
+	<if test="entity.complainId != null">complain_id= #{entity.complainId,jdbcType=VARCHAR},</if>
+	<if test="entity.correlationid != null">correlationid= #{entity.correlationid,jdbcType=VARCHAR},</if>
+	<if test="entity.basecount != null">basecount= #{entity.basecount,jdbcType=VARCHAR}</if>
+	</set>
+		<where>
+			<choose>
+				<when test="entity.basecountid != null">and basecountid = #{entity.basecountid}</when>
+				<otherwise>and basecountid = </otherwise>
+			</choose>
+		</where>
+	</foreach>
+</update>
+
+<!-- ElementID:selectAll,Generated=true -->
+<select id="selectAll" resultMap="TaJcComplainBasecountResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_COMPLAIN_BASECOUNT 
+</select>
+
+<!-- ElementID:selectMany,Generated=true -->
+<select id="selectMany" parameterType="list" resultMap="TaJcComplainBasecountResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_JC_COMPLAIN_BASECOUNT 
+	where TA_JC_COMPLAIN_BASECOUNT.basecountid in (
+<foreach collection="list" item="entity" separator="intersect">
+		select 
+		TA_JC_COMPLAIN_BASECOUNT.basecountid
+	    from TA_JC_COMPLAIN_BASECOUNT 
+		 <where>
+	        <if test="entity.basecountid != null">and TA_JC_COMPLAIN_BASECOUNT.basecountid = #{entity.basecountid}</if>
+	        <if test="entity.complainId != null">and TA_JC_COMPLAIN_BASECOUNT.complain_id = #{entity.complainId}</if>
+	        <if test="entity.correlationid != null">and TA_JC_COMPLAIN_BASECOUNT.correlationid = #{entity.correlationid}</if>
+	        <if test="entity.basecount != null">and TA_JC_COMPLAIN_BASECOUNT.basecount = #{entity.basecount}</if>
+		</where>
+</foreach>
+)
+</select>
+
+<!-- ElementID:selectUnion,Generated=true -->
+<select id="selectUnion" parameterType="list" resultMap="TaJcComplainBasecountResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_JC_COMPLAIN_BASECOUNT 
+	 INNER JOIN
+<foreach collection="list" item="entity" separator="UNION" open="(" close=")">
+		SELECT 
+			 basecountid
+		FROM TA_JC_COMPLAIN_BASECOUNT 
+			<where>
+	        <if test="entity.basecountid != null">and TA_JC_COMPLAIN_BASECOUNT.basecountid = #{entity.basecountid}</if>
+	        <if test="entity.complainId != null">and TA_JC_COMPLAIN_BASECOUNT.complain_id = #{entity.complainId}</if>
+	        <if test="entity.correlationid != null">and TA_JC_COMPLAIN_BASECOUNT.correlationid = #{entity.correlationid}</if>
+	        <if test="entity.basecount != null">and TA_JC_COMPLAIN_BASECOUNT.basecount = #{entity.basecount}</if>
+			</where>
+</foreach>
+	c2_temp_table ON TA_JC_COMPLAIN_BASECOUNT.basecountid = c2_temp_table.basecountid
+</select>
+
+<!-- ElementID:selectByID,Generated=true -->
+<select id="selectByID" parameterType="java.lang.String" resultMap="TaJcComplainBasecountResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_COMPLAIN_BASECOUNT 
+		 where TA_JC_COMPLAIN_BASECOUNT.basecountid = #{basecountid,jdbcType=VARCHAR}
+</select>
+
+<!-- ElementID:selectByPage,Generated=true -->
+<select id="selectByPage" parameterType="com.chinacreator.dzjc_complain.TaJcComplainBasecount" resultMap="TaJcComplainBasecountResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_COMPLAIN_BASECOUNT 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+</mapper>

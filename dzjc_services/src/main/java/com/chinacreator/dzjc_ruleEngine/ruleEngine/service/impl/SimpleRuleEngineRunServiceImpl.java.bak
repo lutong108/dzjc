@@ -1,0 +1,58 @@
+﻿package com.chinacreator.dzjc_ruleEngine.ruleEngine.service.impl;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import com.chinacreator.dzjc_ruleEngine.ruleEngine.dao.SuperviseInfoDao;
+import com.chinacreator.dzjc_ruleEngine.ruleEngine.dao.impl.SuperviseInfoDaoImpl;
+import com.chinacreator.dzjc_ruleEngine.ruleEngine.entity.ExpressionBean;
+import com.chinacreator.dzjc_ruleEngine.ruleEngine.entity.RuleBean;
+import com.chinacreator.dzjc_ruleEngine.ruleEngine.entity.RuleWithBusinessBean;
+import com.chinacreator.dzjc_ruleEngine.ruleEngine.service.ExpressionServicesIfc;
+import com.chinacreator.dzjc_ruleEngine.ruleEngine.service.RuleEngineRunServiceIfc;
+import com.chinacreator.dzjc_ruleEngine.ruleEngine.service.SuperviseInfoServiceIfc;
+
+/**
+ *<p>Title:</p>
+ *<p>Description:简单规则运行</p>
+ *<p>Copyright:Copyright (c) 2011</p>
+ *<p>Company:湖南科创</p>
+ *@author 刘尹
+ *@version 1.0
+ *@date 2011-9-4
+ */
+public class SimpleRuleEngineRunServiceImpl implements RuleEngineRunServiceIfc {
+	
+	//private static final Logger LOG = Logger.getLogger(SimpleRuleEngineRunServiceImpl.class.getName());
+
+
+	public void doRun(RuleBean ruleBean, List<String> businessIdList,
+			RuleWithBusinessBean ruleWithBusinessBean) throws Exception {
+		SuperviseInfoDao superviseInfoDao = new SuperviseInfoDaoImpl();
+		SuperviseInfoServiceIfc superviseinfoservice = new SuperviseInfoServiceImpl();
+		ExpressionServicesIfc expreesionServises = new ExpressionServicesImpl();
+		//简单规则对应一个表达式（一个表达式对应多个表达式片段）
+		ExpressionBean expreesionBean = ruleWithBusinessBean.getRuleIdAndExpressionBeanList().get(ruleBean.getRuleId()).get(0);
+		try{
+	        for(String businessId : businessIdList){
+	        	//如果以前没有监察过，执行
+	        	if(superviseInfoDao.isSuperviseBefore(businessId, ruleBean.getRuleId(), ruleBean.getRuleVersion())){
+	        		//表达式计算为true,执行
+	        		if(expreesionServises.execute(expreesionBean, businessId, ruleWithBusinessBean)){
+	        			Map superviseParamMap = new HashMap(); // 监察逻辑的参数
+	        			superviseParamMap.put("businessId", businessId);
+	        			superviseParamMap.put("ruleBean", ruleBean);
+	        			superviseParamMap.put("superviseDefBean",ruleWithBusinessBean.getExpIdAndSuperviseDefinitionBean().get(expreesionBean.getExp_id()));
+	        			superviseinfoservice.doSupervise(superviseParamMap);
+	        		}
+	        	}
+	        }
+		}catch(Exception e){
+			//LOG.error(e.getMessage());
+			//LOG.info("运行简单规则异常");
+			throw e;
+		}
+	}
+
+}

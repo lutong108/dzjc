@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form:Form xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dync="http://www.chinacreator.com/platform/mvc/ui/dync" xmlns:form="http://www.chinacreator.com/platform/mvc/form" name="帮你办积分兑换" sn="bnb_jifen" type="form">
+  <form:control type="page/normal">
+    <form:attributes source="page/normal">
+      <dync:attribute default="" group="HTML" id="showHead" name="显示标题" value="">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="" group="HTML" id="title" name="标题" value="">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="" group="HTML" id="desc" name="描述" value="">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="false" group="HTML" id="fixedHeight" name="自动高度" value="false">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="false" group="HTML" id="compact" name="紧凑页面" value="false">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="false" group="HTML" id="dirtyCheck" name="脏检查" value="false">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="" group="注入配置" id="angularJsServices" name="注入服务" value="">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="" group="事件" id="beforeDataSourceLoad" name="数据源加载前" value="page_beforeDataSourceLoad($params)">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="" group="事件" id="afterDataSourceLoad" name="数据源加载后" value="">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+    </form:attributes>
+  </form:control>
+  <form:child xsi:type="form:Group" id="div" name="简单容器(DIV)">
+    <form:control type="container/div">
+      <form:attributes source="container/div"/>
+    </form:control>
+    <form:child xsi:type="form:Field" id="dateTimeRangePicker" name="时间范围" customize="true">
+      <form:control type="widget/date_time_range_picker">
+        <form:attributes source="widget/date_time_range_picker">
+          <dync:attribute default="6" group="基本设置" id="span" name="空间宽度" value="4">
+            <dync:render colSpan="1" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="" group="时间设置" id="startBind" name="开始时间数据绑定" value="$params.beginDate">
+            <dync:render colSpan="1" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="" group="时间设置" id="endBind" name="结束时间数据绑定" value="$params.endDate">
+            <dync:render colSpan="1" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+      <form:validation/>
+    </form:child>
+    <form:child xsi:type="form:Field" id="button" name="查询" customize="true">
+      <form:control type="widget/button">
+        <form:attributes source="widget/button">
+          <dync:attribute default="" group="事件设置" id="click" name="点击事件" value="button_click($event)">
+            <dync:render colSpan="1" height="0" multi="false" name="event">
+              <dync:item name="params" value="$event"/>
+            </dync:render>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+      <form:validation/>
+    </form:child>
+    <form:child xsi:type="form:Field" id="button1" name="重置" customize="true">
+      <form:control type="widget/button">
+        <form:attributes source="widget/button">
+          <dync:attribute default="" group="事件设置" id="click" name="点击事件" value="button1_click($event)">
+            <dync:render colSpan="1" height="0" multi="false" name="event">
+              <dync:item name="params" value="$event"/>
+            </dync:render>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+      <form:validation/>
+    </form:child>
+    <form:child xsi:type="form:Field" id="button2" name="Excel导出" customize="true">
+      <form:control type="widget/button">
+        <form:attributes source="widget/button">
+          <dync:attribute default="" group="事件设置" id="click" name="点击事件" value="button2_click($event)">
+            <dync:render colSpan="1" height="0" multi="false" name="event">
+              <dync:item name="params" value="$event"/>
+            </dync:render>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+      <form:validation/>
+    </form:child>
+  </form:child>
+  <form:child xsi:type="form:Group" binding="$model.list" id="list" name="列表型数据源">
+    <form:control type="container/table_jqgrid">
+      <form:attributes source="container/table_jqgrid">
+        <dync:attribute default="" group="表格设置" id="paramData" name="初始化参数" value="{beginDate:$params.beginDate,endDate:$params.endDate}">
+          <dync:render colSpan="1" height="0" multi="false" name="text"/>
+          <dync:children/>
+        </dync:attribute>
+      </form:attributes>
+    </form:control>
+    <form:child xsi:type="form:Field" binding="redeemId" id="colJqgrid" name="ID" customize="true">
+      <form:control type="widget/col_jqgrid">
+        <form:attributes source="widget/col_jqgrid">
+          <dync:attribute default="false" group="表格设置" id="key" name="主键列" value="true">
+            <dync:render colSpan="1" height="0" multi="false" name="checkbox"/>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="false" group="表格设置" id="hidden" name="隐藏列" value="true">
+            <dync:render colSpan="1" height="0" multi="false" name="checkbox"/>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+      <form:validation/>
+    </form:child>
+    <form:child xsi:type="form:Group" id="toolbar_table" name="toolbar_table">
+      <form:control type="container/toolbar_table">
+        <form:attributes source="container/toolbar_table"/>
+      </form:control>
+      <form:child xsi:type="form:Field" id="buttonRefresh" name="刷新">
+        <form:control type="widget/button_a_table">
+          <form:attributes source="widget/button_a_table">
+            <dync:attribute id="clickType" value="refrash">
+              <dync:render/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute id="icon" value="fa-refresh">
+              <dync:render/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute id="iconColor" value="green">
+              <dync:render/>
+              <dync:children/>
+            </dync:attribute>
+          </form:attributes>
+        </form:control>
+      </form:child>
+    </form:child>
+    <form:child xsi:type="form:Field" binding="community" id="colJqgrid1" name="社区">
+      <form:control type="widget/col_jqgrid">
+        <form:attributes source="widget/col_jqgrid"/>
+      </form:control>
+    </form:child>
+    <form:child xsi:type="form:Field" binding="gridName" id="colJqgrid2" name="网格员/党员" customize="true">
+      <form:control type="widget/col_jqgrid">
+        <form:attributes source="widget/col_jqgrid">
+          <dync:attribute default="false" group="基本设置" id="title" name="鼠标悬浮显示" value="true">
+            <dync:render colSpan="1" height="0" multi="false" name="checkbox"/>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+      <form:validation/>
+    </form:child>
+    <form:child xsi:type="form:Field" binding="blsxs" id="colJqgrid3&#xD;&#xA;" name="办理办件总数" customize="true">
+      <form:control type="widget/col_jqgrid">
+        <form:attributes source="widget/col_jqgrid"/>
+      </form:control>
+      <form:validation/>
+    </form:child>
+    <form:child xsi:type="form:Field" binding="ylsx" id="colJqgrid4" name="一类事项办件数" customize="true">
+      <form:control type="widget/col_jqgrid">
+        <form:attributes source="widget/col_jqgrid"/>
+      </form:control>
+      <form:validation/>
+    </form:child>
+    <form:child xsi:type="form:Field" binding="elsx" id="colJqgrid5" name="二类事项办件数" customize="true">
+      <form:control type="widget/col_jqgrid">
+        <form:attributes source="widget/col_jqgrid"/>
+      </form:control>
+      <form:validation/>
+    </form:child>
+    <form:child xsi:type="form:Field" binding="ylsxScore" id="colJqgrid6" name="一类事项积分" customize="true">
+      <form:control type="widget/col_jqgrid">
+        <form:attributes source="widget/col_jqgrid"/>
+      </form:control>
+      <form:validation/>
+    </form:child>
+    <form:child xsi:type="form:Field" binding="elsxScore" id="colJqgrid7" name="二类事项积分" customize="true">
+      <form:control type="widget/col_jqgrid">
+        <form:attributes source="widget/col_jqgrid"/>
+      </form:control>
+      <form:validation/>
+    </form:child>
+    <form:child xsi:type="form:Field" binding="goodPoints" id="colJqgrid8" name="好评积分" customize="true">
+      <form:control type="widget/col_jqgrid">
+        <form:attributes source="widget/col_jqgrid"/>
+      </form:control>
+      <form:validation/>
+    </form:child>
+    <form:child xsi:type="form:Field" binding="totalScore" id="colJqgrid9" name="总积分" customize="true">
+      <form:control type="widget/col_jqgrid">
+        <form:attributes source="widget/col_jqgrid"/>
+      </form:control>
+      <form:validation/>
+    </form:child>
+    <form:child xsi:type="form:Field" binding="totalMoney" id="colJqgrid10" name="总金额" customize="true">
+      <form:control type="widget/col_jqgrid">
+        <form:attributes source="widget/col_jqgrid"/>
+      </form:control>
+      <form:validation/>
+    </form:child>
+  </form:child>
+  <form:datasources>
+    <form:datasource xsi:type="form:PagingDataSource" id="list" name="列表型数据源" base="service" pageSize="10" type="url" url="lsx_bnb_JiFen/score"/>
+  </form:datasources>
+  <form:scripts>//初始化控件&#xD;
+initDateTimeRangePicker:function(){&#xD;
+	var date_ = new Date();  &#xD;
+    date_.setDate(1); &#xD;
+	$params.beginDate=date_;&#xD;
+    var currentMonth=date_.getMonth();&#xD;
+    var nextMonth=++currentMonth;&#xD;
+ 	var nextMonthFirstDay=new Date(date_.getFullYear(),nextMonth,1);&#xD;
+ 	var t=new Date(); &#xD;
+ 	t.setTime(nextMonthFirstDay-1000*60*60*24); &#xD;
+ 	$params.endDate=t; &#xD;
+},&#xD;
+&#xD;
+//开始时间选择&#xD;
+dateTimeRangePicker_startOnChange:function(date,oldDate){&#xD;
+	$params.beginDate = date;&#xD;
+},&#xD;
+//结束时间选择&#xD;
+dateTimeRangePicker_endOnChange:function(date,oldDate){&#xD;
+	$params.endDate = date;&#xD;
+},&#xD;
+
+//数据加载前事件
+page_beforeDataSourceLoad:function($params){&#xD;
+	functions.initDateTimeRangePicker();
+},&#xD;
+&#xD;
+//加载数据&#xD;
+loadData:function(){&#xD;
+	var beginDate = $view.dateTimeRangePicker.getStartDatetimeObj().getValue();&#xD;
+	var endDate = $view.dateTimeRangePicker.getEndDatetimeObj().getValue();&#xD;
+	$view.list.refresh({beginDate:beginDate,endDate:endDate});&#xD;
+},&#xD;
+&#xD;
+//查询事件
+button_click:function($event){
+	functions.loadData();
+},
+&#xD;
+//重置事件
+button1_click:function($event){
+	functions.initDateTimeRangePicker();&#xD;
+	setTimeout(function(){&#xD;
+		functions.initDateTimeRangePicker();&#xD;
+		functions.loadData();&#xD;
+	},500);
+},
+&#xD;
+//导出Excel表格
+button2_click:function($event){&#xD;
+	Modal.openConfirm({message:&quot;是否导出当前数据！&quot;},function(data){&#xD;
+	//导出调用查询方法&#xD;
+	functions.button_click();&#xD;
+	var beginDate = $view.dateTimeRangePicker.getStartDatetimeObj().getValue();&#xD;
+	var endDate = $view.dateTimeRangePicker.getEndDatetimeObj().getValue();&#xD;
+	var url = c2.base(&quot;service&quot;)+&quot;LsxExcelExportServlet?type=3&amp;beginDate=&quot;+beginDate+&quot;&amp;endDate=&quot;+endDate;&#xD;
+			window.location.href =url;&#xD;
+	});
+},&#xD;
+</form:scripts>
+</form:Form>

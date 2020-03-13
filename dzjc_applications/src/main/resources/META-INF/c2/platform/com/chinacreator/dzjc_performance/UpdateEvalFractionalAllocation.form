@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form:Form xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dync="http://www.chinacreator.com/platform/mvc/ui/dync" xmlns:form="http://www.chinacreator.com/platform/mvc/form" name="修改" res="" sn="dzjc_performance/updateEvalFractionalAllocation">
+  <form:control type="page/modal">
+    <form:attributes source="page/modal">
+      <dync:attribute id="title" value="修改模板">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="" group="HTML" id="width" name="页面宽度" value="800px;">
+        <dync:render colSpan="2" height="0" multi="false" name="text"/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="" group="事件" id="afterDataSourceLoad" name="数据源加载后" value="page_afterDataSourceLoad()">
+        <dync:render colSpan="2" height="0" multi="false" name="event">
+          <dync:item name="param" value=""/>
+        </dync:render>
+        <dync:children/>
+      </dync:attribute>
+    </form:attributes>
+  </form:control>
+  <form:child xsi:type="form:Group" id="main" name="扣分与加分原因配置表">
+    <form:control type="container/div">
+      <form:attributes source="container/div"/>
+    </form:control>
+    <form:child xsi:type="form:Field" binding="$model.entity.id" id="id" name="ID号" customize="true">
+      <form:control type="widget/text">
+        <form:attributes source="widget/text">
+          <dync:attribute default="false" desc="是否验证必填，可以为表达式和变量。&#xA;                &#x9;只有当焦点离开文本框时才开始验证，验证失败会有验证失败的样式和提示。也有单独触发验证的方法：`check()`。" group="数据校验" hidden="false" id="required" name="必填项" required="true" value="true">
+            <dync:render colSpan="1" height="0" multi="false" name="checkboxAndExpr"/>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="true" group="文本框设置" id="show" name="可见" value="false">
+            <dync:render colSpan="1" height="0" multi="false" name="checkboxAndExpr"/>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+      <form:validation/>
+    </form:child>
+    <form:child xsi:type="form:Field" binding="$model.entity.allocationType" id="allocationType" name="模板类型" customize="true">
+      <form:control type="widget/select_simple">
+        <form:attributes source="widget/select_simple">
+          <dync:attribute default="" group="下拉框设置" id="selectOptions" name="选项" value="{&quot;1&quot;:&quot;扣分&quot;,&quot;2&quot;:&quot;加分&quot;}">
+            <dync:render colSpan="1" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="75" group="基本设置" id="lableWidth" name="lable宽度" value="100">
+            <dync:render colSpan="1" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="6" group="基本设置" id="span" name="占位数" value="8">
+            <dync:render colSpan="1" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="" group="事件设置" id="change" name="值变换事件" value="allocationType_change()">
+            <dync:render colSpan="2" height="0" multi="false" name="event">
+              <dync:item name="params" value=""/>
+            </dync:render>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+      <form:validation/>
+    </form:child>
+    <form:child xsi:type="form:Group" id="tablediv" name="简单容器(DIV)">
+      <form:control type="container/div">
+        <form:attributes source="container/div"/>
+      </form:control>
+      <form:child xsi:type="form:Field" binding="$model.entity.tableName" id="tableName2" name="考核表名称" customize="true">
+        <form:control type="widget/select_tree">
+          <form:attributes source="widget/select_tree">
+            <dync:attribute default="" group="树数据设置" id="treeBinding" name="树数据源" value="$model.tableTree">
+              <dync:render colSpan="1" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="auto" group="树显示设置" id="height" name="高度" value="200px">
+              <dync:render colSpan="1" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="" group="树事件设置" id="nodeClick" name="单击" value="tableName_nodeClick(event,treeId,treeNode,clickFlag)">
+              <dync:render colSpan="1" height="0" multi="false" name="event">
+                <dync:item name="params" value="event,treeId,treeNode,clickFlag"/>
+              </dync:render>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="6" group="控件外观" id="span" name="占位数" value="7">
+              <dync:render colSpan="1" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="75" group="控件外观" id="lableWidth" name="lable宽度" value="85">
+              <dync:render colSpan="1" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+          </form:attributes>
+        </form:control>
+        <form:validation/>
+      </form:child>
+      <form:child xsi:type="form:Field" binding="$model.entity.allocationExamination" id="itemTree6" name="考核项" customize="true">
+        <form:control type="widget/select_tree">
+          <form:attributes source="widget/select_tree">
+            <dync:attribute default="" group="树数据设置" id="treeBinding" name="树数据源" value="$model.itemTree">
+              <dync:render colSpan="1" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="{ &quot;Y&quot;: &quot;ps&quot;, &quot;N&quot;: &quot;ps&quot; }" group="树显示设置" id="chkboxType" name="父子节点关联" value="{ &quot;Y&quot;: &quot;&quot;, &quot;N&quot;: &quot;&quot; }">
+              <dync:render colSpan="1" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="" group="树事件设置" id="nodeClick" name="单击" value="itemTree1_nodeClick(event,treeId,treeNode,clickFlag)">
+              <dync:render colSpan="1" height="0" multi="false" name="event">
+                <dync:item name="params" value="event,treeId,treeNode,clickFlag"/>
+              </dync:render>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="auto" group="树显示设置" id="height" name="高度" value="200">
+              <dync:render colSpan="1" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="true" group="控件外观" id="show" name="可见" value="false">
+              <dync:render colSpan="1" height="0" multi="false" name="checkboxAndExpr"/>
+              <dync:children/>
+            </dync:attribute>
+          </form:attributes>
+        </form:control>
+        <form:validation/>
+      </form:child>
+    </form:child>
+    <form:child xsi:type="form:Group" id="pointiddiv" name="简单容器(DIV)">
+      <form:control type="container/div">
+        <form:attributes source="container/div"/>
+      </form:control>
+      <form:child xsi:type="form:Field" binding="$model.entity.allocationExamination" id="selectTree6" name="指标选择" customize="true">
+        <form:control type="widget/select_tree">
+          <form:attributes source="widget/select_tree">
+            <dync:attribute default="auto" group="树显示设置" id="height" name="高度" value="200px">
+              <dync:render colSpan="1" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="" group="树数据设置" id="treeBinding" name="树数据源" value="$model.pointrerr">
+              <dync:render colSpan="1" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="" group="树事件设置" id="nodeClick" name="单击" value="selectTree6_nodeClick(event,treeId,treeNode,clickFlag)">
+              <dync:render colSpan="1" height="0" multi="false" name="event">
+                <dync:item name="params" value="event,treeId,treeNode,clickFlag"/>
+              </dync:render>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="6" group="控件外观" id="span" name="占位数" value="7">
+              <dync:render colSpan="1" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="75" group="控件外观" id="lableWidth" name="lable宽度" value="85">
+              <dync:render colSpan="1" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+          </form:attributes>
+        </form:control>
+        <form:validation/>
+      </form:child>
+    </form:child>
+    <form:child xsi:type="form:Field" binding="$model.entity.allocationReason" id="allocationReason" name="扣分与加分原因" customize="true">
+      <form:control type="widget/textarea">
+        <form:attributes source="widget/textarea">
+          <dync:attribute default="75" group="HTML设置" id="lableWidth" name="lable宽度" value="100">
+            <dync:render colSpan="1" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+      <form:validation/>
+    </form:child>
+  </form:child>
+  <form:child xsi:type="form:Group" id="toolbar" name="主按钮组">
+    <form:control type="container/toolbar_modal_footer">
+      <form:attributes source="container/toolbar_modal_footer"/>
+    </form:control>
+    <form:child xsi:type="form:Field" id="btn_update" name="修改">
+      <form:control type="widget/button">
+        <form:attributes source="widget/button">
+          <dync:attribute default="" desc="按钮图标，Font Awesom 3.2.1中定义的所有图标都可用" group="HTML设置" hidden="false" id="icon" name="图标" required="false" value="fa-check">
+            <dync:render colSpan="1" height="0" multi="false" name="selectIcon"/>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="" desc="按钮事件。&#xA;                $param $event AngularJS的[event](https://docs.angularjs.org/guide/expression#-event-)事件。" group="事件设置" hidden="false" id="click" name="点击事件" required="false" value="btn_update_click($event)">
+            <dync:render colSpan="1" height="0" multi="false" name="event">
+              <dync:item name="params" value="$event"/>
+            </dync:render>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="btn-primary" desc="按钮样式" group="HTML设置" hidden="false" id="style" name="样式" required="false" value="btn-success">
+            <dync:render colSpan="1" height="0" multi="false" name="select">
+              <dync:item name="默认" value="btn-default"/>
+              <dync:item name="主要" value="btn-primary"/>
+              <dync:item name="成功" value="btn-success"/>
+              <dync:item name="信息" value="btn-info"/>
+              <dync:item name="警告" value="btn-warning"/>
+              <dync:item name="危险" value="btn-danger"/>
+              <dync:item name="链接" value="btn-link"/>
+              <dync:item name="通用" value="btn-white no-border"/>
+            </dync:render>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+    </form:child>
+    <form:child xsi:type="form:Field" id="btn_edit" name="取消">
+      <form:control type="widget/button">
+        <form:attributes source="widget/button">
+          <dync:attribute default="" desc="按钮图标，Font Awesom 3.2.1中定义的所有图标都可用" group="HTML设置" hidden="false" id="icon" name="图标" required="false" value="fa-times">
+            <dync:render colSpan="1" height="0" multi="false" name="selectIcon"/>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="" desc="按钮事件。&#xA;                $param $event AngularJS的[event](https://docs.angularjs.org/guide/expression#-event-)事件。" group="事件设置" hidden="false" id="click" name="点击事件" required="false" value="btn_edit_click($event)">
+            <dync:render colSpan="1" height="0" multi="false" name="event">
+              <dync:item name="params" value="$event"/>
+            </dync:render>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+    </form:child>
+  </form:child>
+  <form:datasources>
+    <form:datasource xsi:type="form:EntityDataSource" id="entity" name="实体数据源" base="service" sn="dzjc_performance/v1/EvalFractionalAllocation" entity="entity:com.chinacreator.dzjc_performance.EvalFractionalAllocation">
+      <form:entityObj pk="id" restResource="true"/>
+    </form:datasource>
+    <form:datasource xsi:type="form:TreeDataSource" id="itemTree" name="树型数据源" base="service" type="url" url="dzjc_performance/v1/getItemTree"/>
+    <form:datasource xsi:type="form:TreeDataSource" id="tableTree" name="树型数据源" base="service" type="url" url="dzjc_performance/v1/getTableTreeByAreaCode"/>
+    <form:datasource xsi:type="form:TreeDataSource" id="pointrerr" name="树型数据源" base="service" type="url" url="dzjc_performance/v1/getPointTreeList"/>
+  </form:datasources>
+  <form:scripts>
+btn_update_click:function($event){
+	if($model.entity.allocationType==&quot;&quot; || $model.entity.allocationType==undefined){
+		Messenger.error('请选择模板类型');
+		$(&quot;#allocationType&quot;).focus();
+		return false;
+	}
+	if($model.entity.allocationType==1){
+		if($model.entity.tableName==&quot;&quot; || $model.entity.tableName==undefined){
+		Messenger.error('请选择考核表名');
+		$(&quot;#tableName2&quot;).focus();
+		return false;
+		}
+		if($model.entity.allocationExamination==&quot;&quot; || $model.entity.allocationExamination==undefined){
+			Messenger.error('请选择考核指标');
+			$(&quot;#selectTree6&quot;).focus();
+			return false;
+		}
+	}else{
+		$model.entity.tableName=&quot;&quot;;
+		$model.entity.allocationExamination=&quot;&quot;
+	}
+	if($model.entity.allocationReason==&quot;&quot; || $model.entity.allocationReason==undefined){
+		Messenger.error('请选择扣分与加分原因');
+		$(&quot;#allocationReason&quot;).focus();
+		return false;
+	}
+	 var allocationReason= $model.entity.allocationReason;
+	 	 allocationReason = allocationReason.split(&quot;&quot;);
+	 	 if(allocationReason.length>2000){
+	 		Messenger.error(&quot;扣分与加分原因长度超过2000&quot;);
+	 		return;
+	 }
+	$model.entity.$save(function(){
+		Modal.instance.close();
+		Messenger.post({type:'success',message:'修改成功'});
+	});
+},
+btn_edit_click:function($event){
+	Modal.instance.close();
+},
+
+
+itemTree1_nodeClick:function(event,treeId,treeNode,clickFlag){
+	$model.entity.allocationExamination=treeNode.name;
+},
+
+tableName_nodeClick:function(event,treeId,treeNode,clickFlag){
+	$model.entity.tableName=treeNode.name;
+	$view.selectTree6.clean();
+	$view.selectTree6.getTree().refresh2({tableName:treeNode.id});
+},
+
+selectTree6_nodeClick:function(event,treeId,treeNode,clickFlag){
+	$model.entity.allocationExamination = treeNode.name;
+},
+
+page_afterDataSourceLoad:function(){
+	if($model.entity.allocationType==2){
+		$(&quot;#pointiddiv&quot;).hide();
+		$(&quot;#tablediv&quot;).hide();
+	}
+},
+
+allocationType_change:function(){
+	if($model.entity.allocationType==2){
+		$(&quot;#tablediv&quot;).hide();
+		$(&quot;#pointiddiv&quot;).hide();
+		
+	}else{
+		$(&quot;#tablediv&quot;).show();
+		$(&quot;#pointiddiv&quot;).show();
+	}
+}</form:scripts>
+</form:Form>

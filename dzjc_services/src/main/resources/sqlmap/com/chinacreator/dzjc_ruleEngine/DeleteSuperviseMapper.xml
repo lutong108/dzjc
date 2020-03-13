@@ -1,0 +1,543 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"><mapper namespace="com.chinacreator.dzjc_ruleEngine.DeleteSuperviseMapper">	
+
+<!-- ElementID:column_sql,Generated=true -->
+<sql id="column_sql">
+		  TA_JC_SUPERVISE_DELETELOG.supervise_info_id ,
+		  TA_JC_SUPERVISE_DELETELOG.business_id ,
+		  TA_JC_SUPERVISE_DELETELOG.receive_org_name ,
+		  TA_JC_SUPERVISE_DELETELOG.supervise_type_no ,
+		  TA_JC_SUPERVISE_DELETELOG.supervise_result_no ,
+		  TA_JC_SUPERVISE_DELETELOG.supervise_time ,
+		  TA_JC_SUPERVISE_DELETELOG.supervise_descript ,
+		  TA_JC_SUPERVISE_DELETELOG.supervise_gist ,
+		  TA_JC_SUPERVISE_DELETELOG.warning_content ,
+		  TA_JC_SUPERVISE_DELETELOG.duty_tache_code ,
+		  TA_JC_SUPERVISE_DELETELOG.rule_id ,
+		  TA_JC_SUPERVISE_DELETELOG.feedback_endtime ,
+		  TA_JC_SUPERVISE_DELETELOG.state ,
+		  TA_JC_SUPERVISE_DELETELOG.last_updatetime ,
+		  TA_JC_SUPERVISE_DELETELOG.cc_form_instanceid ,
+		  TA_JC_SUPERVISE_DELETELOG.remarka ,
+		  TA_JC_SUPERVISE_DELETELOG.remarkb ,
+		  TA_JC_SUPERVISE_DELETELOG.rule_version ,
+		  TA_JC_SUPERVISE_DELETELOG.org_id ,
+		  TA_JC_SUPERVISE_DELETELOG.tscx_code ,
+		  TA_JC_SUPERVISE_DELETELOG.pici ,
+		  TA_JC_SUPERVISE_DELETELOG.revocation_reason ,
+		  TA_JC_SUPERVISE_DELETELOG.start_time ,
+		  TA_JC_SUPERVISE_DELETELOG.end_time ,
+		  TA_JC_SUPERVISE_DELETELOG.status ,
+		  TA_JC_SUPERVISE_DELETELOG.promise_limit ,
+		  TA_JC_SUPERVISE_DELETELOG.process_limit ,
+		  TA_JC_SUPERVISE_DELETELOG.expire_date ,
+		  TA_JC_SUPERVISE_DELETELOG.out_days ,
+		  TA_JC_SUPERVISE_DELETELOG.delete_date ,
+		  TA_JC_SUPERVISE_DELETELOG.check_time ,
+		  TA_JC_SUPERVISE_DELETELOG.check_status ,
+		  TA_JC_SUPERVISE_DELETELOG.check_end_time ,
+		  TA_JC_SUPERVISE_DELETELOG.check_status_temp 
+</sql>
+
+<!-- ElementID:whereClause_sql,Generated=true -->
+<sql id="whereClause_sql">
+	    <if test="superviseInfoId != null">and TA_JC_SUPERVISE_DELETELOG.supervise_info_id = #{superviseInfoId}</if>
+	    <if test="businessId != null">and TA_JC_SUPERVISE_DELETELOG.business_id = #{businessId}</if>
+	    <if test="receiveOrgName != null">and TA_JC_SUPERVISE_DELETELOG.receive_org_name = #{receiveOrgName}</if>
+	    <if test="superviseTypeNo != null">and TA_JC_SUPERVISE_DELETELOG.supervise_type_no = #{superviseTypeNo}</if>
+	    <if test="superviseResultNo != null">and TA_JC_SUPERVISE_DELETELOG.supervise_result_no = #{superviseResultNo}</if>
+	    <if test="superviseTime != null">and TA_JC_SUPERVISE_DELETELOG.supervise_time = #{superviseTime}</if>
+	    <if test="superviseDescript != null">and TA_JC_SUPERVISE_DELETELOG.supervise_descript = #{superviseDescript}</if>
+	    <if test="superviseGist != null">and TA_JC_SUPERVISE_DELETELOG.supervise_gist = #{superviseGist}</if>
+	    <if test="warningContent != null">and TA_JC_SUPERVISE_DELETELOG.warning_content = #{warningContent}</if>
+	    <if test="dutyTacheCode != null">and TA_JC_SUPERVISE_DELETELOG.duty_tache_code = #{dutyTacheCode}</if>
+	    <if test="ruleId != null">and TA_JC_SUPERVISE_DELETELOG.rule_id = #{ruleId}</if>
+	    <if test="feedbackEndtime != null">and TA_JC_SUPERVISE_DELETELOG.feedback_endtime = #{feedbackEndtime}</if>
+	    <if test="state != null">and TA_JC_SUPERVISE_DELETELOG.state = #{state}</if>
+	    <if test="lastUpdatetime != null">and TA_JC_SUPERVISE_DELETELOG.last_updatetime = #{lastUpdatetime}</if>
+	    <if test="ccFormInstanceid != null">and TA_JC_SUPERVISE_DELETELOG.cc_form_instanceid = #{ccFormInstanceid}</if>
+	    <if test="remarka != null">and TA_JC_SUPERVISE_DELETELOG.remarka = #{remarka}</if>
+	    <if test="remarkb != null">and TA_JC_SUPERVISE_DELETELOG.remarkb = #{remarkb}</if>
+	    <if test="ruleVersion != null">and TA_JC_SUPERVISE_DELETELOG.rule_version = #{ruleVersion}</if>
+	    <if test="orgId != null">and TA_JC_SUPERVISE_DELETELOG.org_id = #{orgId}</if>
+	    <if test="tscxCode != null">and TA_JC_SUPERVISE_DELETELOG.tscx_code = #{tscxCode}</if>
+	    <if test="pici != null">and TA_JC_SUPERVISE_DELETELOG.pici = #{pici}</if>
+	    <if test="revocationReason != null">and TA_JC_SUPERVISE_DELETELOG.revocation_reason = #{revocationReason}</if>
+	    <if test="startTime != null">and TA_JC_SUPERVISE_DELETELOG.start_time = #{startTime}</if>
+	    <if test="endTime != null">and TA_JC_SUPERVISE_DELETELOG.end_time = #{endTime}</if>
+	    <if test="status != null">and TA_JC_SUPERVISE_DELETELOG.status = #{status}</if>
+	    <if test="promiseLimit != null">and TA_JC_SUPERVISE_DELETELOG.promise_limit = #{promiseLimit}</if>
+	    <if test="processLimit != null">and TA_JC_SUPERVISE_DELETELOG.process_limit = #{processLimit}</if>
+	    <if test="expireDate != null">and TA_JC_SUPERVISE_DELETELOG.expire_date = #{expireDate}</if>
+	    <if test="outDays != null">and TA_JC_SUPERVISE_DELETELOG.out_days = #{outDays}</if>
+	    <if test="deleteDate != null">and TA_JC_SUPERVISE_DELETELOG.delete_date = #{deleteDate}</if>
+	    <if test="checkTime != null">and TA_JC_SUPERVISE_DELETELOG.check_time = #{checkTime}</if>
+	    <if test="checkStatus != null">and TA_JC_SUPERVISE_DELETELOG.check_status = #{checkStatus}</if>
+	    <if test="checkEndTime != null">and TA_JC_SUPERVISE_DELETELOG.check_end_time = #{checkEndTime}</if>
+	    <if test="checkStatusTemp != null">and TA_JC_SUPERVISE_DELETELOG.check_status_temp = #{checkStatusTemp}</if>
+</sql>
+
+
+<!-- ElementID:DeleteSuperviseResult,Generated=true -->
+<resultMap id="DeleteSuperviseResult" type="com.chinacreator.dzjc_ruleEngine.DeleteSupervise">
+	<id property="superviseInfoId" column="supervise_info_id"/>
+	<result property="businessId" column="business_id"/>
+	<result property="receiveOrgName" column="receive_org_name"/>
+	<result property="superviseTypeNo" column="supervise_type_no"/>
+	<result property="superviseResultNo" column="supervise_result_no"/>
+	<result property="superviseTime" column="supervise_time"/>
+	<result property="superviseDescript" column="supervise_descript"/>
+	<result property="superviseGist" column="supervise_gist"/>
+	<result property="warningContent" column="warning_content"/>
+	<result property="dutyTacheCode" column="duty_tache_code"/>
+	<result property="ruleId" column="rule_id"/>
+	<result property="feedbackEndtime" column="feedback_endtime"/>
+	<result property="state" column="state"/>
+	<result property="lastUpdatetime" column="last_updatetime"/>
+	<result property="ccFormInstanceid" column="cc_form_instanceid"/>
+	<result property="remarka" column="remarka"/>
+	<result property="remarkb" column="remarkb"/>
+	<result property="ruleVersion" column="rule_version"/>
+	<result property="orgId" column="org_id"/>
+	<result property="tscxCode" column="tscx_code"/>
+	<result property="pici" column="pici"/>
+	<result property="revocationReason" column="revocation_reason"/>
+	<result property="startTime" column="start_time"/>
+	<result property="endTime" column="end_time"/>
+	<result property="status" column="status"/>
+	<result property="promiseLimit" column="promise_limit"/>
+	<result property="processLimit" column="process_limit"/>
+	<result property="expireDate" column="expire_date"/>
+	<result property="outDays" column="out_days"/>
+	<result property="deleteDate" column="delete_date"/>
+	<result property="checkTime" column="check_time"/>
+	<result property="checkStatus" column="check_status"/>
+	<result property="checkEndTime" column="check_end_time"/>
+	<result property="checkStatusTemp" column="check_status_temp"/>
+</resultMap>
+
+
+<!-- ElementID:insert,Generated=true -->
+<insert id="insert" parameterType="com.chinacreator.dzjc_ruleEngine.DeleteSupervise">
+	insert into TA_JC_SUPERVISE_DELETELOG(
+	         <if test="superviseInfoId != null">supervise_info_id</if>
+	         <if test="businessId != null">,business_id</if>
+	         <if test="receiveOrgName != null">,receive_org_name</if>
+	         <if test="superviseTypeNo != null">,supervise_type_no</if>
+	         <if test="superviseResultNo != null">,supervise_result_no</if>
+	         <if test="superviseTime != null">,supervise_time</if>
+	         <if test="superviseDescript != null">,supervise_descript</if>
+	         <if test="superviseGist != null">,supervise_gist</if>
+	         <if test="warningContent != null">,warning_content</if>
+	         <if test="dutyTacheCode != null">,duty_tache_code</if>
+	         <if test="ruleId != null">,rule_id</if>
+	         <if test="feedbackEndtime != null">,feedback_endtime</if>
+	         <if test="state != null">,state</if>
+	         <if test="lastUpdatetime != null">,last_updatetime</if>
+	         <if test="ccFormInstanceid != null">,cc_form_instanceid</if>
+	         <if test="remarka != null">,remarka</if>
+	         <if test="remarkb != null">,remarkb</if>
+	         <if test="ruleVersion != null">,rule_version</if>
+	         <if test="orgId != null">,org_id</if>
+	         <if test="tscxCode != null">,tscx_code</if>
+	         <if test="pici != null">,pici</if>
+	         <if test="revocationReason != null">,revocation_reason</if>
+	         <if test="startTime != null">,start_time</if>
+	         <if test="endTime != null">,end_time</if>
+	         <if test="status != null">,status</if>
+	         <if test="promiseLimit != null">,promise_limit</if>
+	         <if test="processLimit != null">,process_limit</if>
+	         <if test="expireDate != null">,expire_date</if>
+	         <if test="outDays != null">,out_days</if>
+	         <if test="deleteDate != null">,delete_date</if>
+	         <if test="checkTime != null">,check_time</if>
+	         <if test="checkStatus != null">,check_status</if>
+	         <if test="checkEndTime != null">,check_end_time</if>
+	         <if test="checkStatusTemp != null">,check_status_temp</if>
+	 	 	 )
+	 values (
+	         <if test="superviseInfoId != null">#{superviseInfoId,jdbcType=VARCHAR}</if>
+	         <if test="businessId != null">,#{businessId,jdbcType=VARCHAR}</if>
+	         <if test="receiveOrgName != null">,#{receiveOrgName,jdbcType=VARCHAR}</if>
+	         <if test="superviseTypeNo != null">,#{superviseTypeNo,jdbcType=VARCHAR}</if>
+	         <if test="superviseResultNo != null">,#{superviseResultNo,jdbcType=VARCHAR}</if>
+	         <if test="superviseTime != null">,#{superviseTime,jdbcType=DATE}</if>
+	         <if test="superviseDescript != null">,#{superviseDescript,jdbcType=VARCHAR}</if>
+	         <if test="superviseGist != null">,#{superviseGist,jdbcType=VARCHAR}</if>
+	         <if test="warningContent != null">,#{warningContent,jdbcType=VARCHAR}</if>
+	         <if test="dutyTacheCode != null">,#{dutyTacheCode,jdbcType=VARCHAR}</if>
+	         <if test="ruleId != null">,#{ruleId,jdbcType=VARCHAR}</if>
+	         <if test="feedbackEndtime != null">,#{feedbackEndtime,jdbcType=DATE}</if>
+	         <if test="state != null">,#{state,jdbcType=VARCHAR}</if>
+	         <if test="lastUpdatetime != null">,#{lastUpdatetime,jdbcType=DATE}</if>
+	         <if test="ccFormInstanceid != null">,#{ccFormInstanceid,jdbcType=VARCHAR}</if>
+	         <if test="remarka != null">,#{remarka,jdbcType=VARCHAR}</if>
+	         <if test="remarkb != null">,#{remarkb,jdbcType=VARCHAR}</if>
+	         <if test="ruleVersion != null">,#{ruleVersion,jdbcType=VARCHAR}</if>
+	         <if test="orgId != null">,#{orgId,jdbcType=VARCHAR}</if>
+	         <if test="tscxCode != null">,#{tscxCode,jdbcType=VARCHAR}</if>
+	         <if test="pici != null">,#{pici,jdbcType=VARCHAR}</if>
+	         <if test="revocationReason != null">,#{revocationReason,jdbcType=VARCHAR}</if>
+	         <if test="startTime != null">,#{startTime,jdbcType=DATE}</if>
+	         <if test="endTime != null">,#{endTime,jdbcType=DATE}</if>
+	         <if test="status != null">,#{status,jdbcType=VARCHAR}</if>
+	         <if test="promiseLimit != null">,#{promiseLimit,jdbcType=NUMERIC}</if>
+	         <if test="processLimit != null">,#{processLimit,jdbcType=NUMERIC}</if>
+	         <if test="expireDate != null">,#{expireDate,jdbcType=DATE}</if>
+	         <if test="outDays != null">,#{outDays,jdbcType=VARCHAR}</if>
+	         <if test="deleteDate != null">,#{deleteDate,jdbcType=DATE}</if>
+	         <if test="checkTime != null">,#{checkTime,jdbcType=DATE}</if>
+	         <if test="checkStatus != null">,#{checkStatus,jdbcType=VARCHAR}</if>
+	         <if test="checkEndTime != null">,#{checkEndTime,jdbcType=DATE}</if>
+	         <if test="checkStatusTemp != null">,#{checkStatusTemp,jdbcType=VARCHAR}</if>
+	 	 	 )
+</insert>
+
+<!-- ElementID:count,Generated=true -->
+<select id="count" parameterType="com.chinacreator.dzjc_ruleEngine.DeleteSupervise" resultType="int">
+	select count(*) from TA_JC_SUPERVISE_DELETELOG 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<!-- ElementID:update,Generated=true -->
+<update id="update" parameterType="com.chinacreator.dzjc_ruleEngine.DeleteSupervise">
+	update TA_JC_SUPERVISE_DELETELOG
+<set>
+	<if test="businessId != null">business_id=#{businessId,jdbcType=VARCHAR},</if>
+	<if test="receiveOrgName != null">receive_org_name=#{receiveOrgName,jdbcType=VARCHAR},</if>
+	<if test="superviseTypeNo != null">supervise_type_no=#{superviseTypeNo,jdbcType=VARCHAR},</if>
+	<if test="superviseResultNo != null">supervise_result_no=#{superviseResultNo,jdbcType=VARCHAR},</if>
+	<if test="superviseTime != null">supervise_time=#{superviseTime,jdbcType=DATE},</if>
+	<if test="superviseDescript != null">supervise_descript=#{superviseDescript,jdbcType=VARCHAR},</if>
+	<if test="superviseGist != null">supervise_gist=#{superviseGist,jdbcType=VARCHAR},</if>
+	<if test="warningContent != null">warning_content=#{warningContent,jdbcType=VARCHAR},</if>
+	<if test="dutyTacheCode != null">duty_tache_code=#{dutyTacheCode,jdbcType=VARCHAR},</if>
+	<if test="ruleId != null">rule_id=#{ruleId,jdbcType=VARCHAR},</if>
+	<if test="feedbackEndtime != null">feedback_endtime=#{feedbackEndtime,jdbcType=DATE},</if>
+	<if test="state != null">state=#{state,jdbcType=VARCHAR},</if>
+	<if test="lastUpdatetime != null">last_updatetime=#{lastUpdatetime,jdbcType=DATE},</if>
+	<if test="ccFormInstanceid != null">cc_form_instanceid=#{ccFormInstanceid,jdbcType=VARCHAR},</if>
+	<if test="remarka != null">remarka=#{remarka,jdbcType=VARCHAR},</if>
+	<if test="remarkb != null">remarkb=#{remarkb,jdbcType=VARCHAR},</if>
+	<if test="ruleVersion != null">rule_version=#{ruleVersion,jdbcType=VARCHAR},</if>
+	<if test="orgId != null">org_id=#{orgId,jdbcType=VARCHAR},</if>
+	<if test="tscxCode != null">tscx_code=#{tscxCode,jdbcType=VARCHAR},</if>
+	<if test="pici != null">pici=#{pici,jdbcType=VARCHAR},</if>
+	<if test="revocationReason != null">revocation_reason=#{revocationReason,jdbcType=VARCHAR},</if>
+	<if test="startTime != null">start_time=#{startTime,jdbcType=DATE},</if>
+	<if test="endTime != null">end_time=#{endTime,jdbcType=DATE},</if>
+	<if test="status != null">status=#{status,jdbcType=VARCHAR},</if>
+	<if test="promiseLimit != null">promise_limit=#{promiseLimit,jdbcType=NUMERIC},</if>
+	<if test="processLimit != null">process_limit=#{processLimit,jdbcType=NUMERIC},</if>
+	<if test="expireDate != null">expire_date=#{expireDate,jdbcType=DATE},</if>
+	<if test="outDays != null">out_days=#{outDays,jdbcType=VARCHAR},</if>
+	<if test="deleteDate != null">delete_date=#{deleteDate,jdbcType=DATE},</if>
+	<if test="checkTime != null">check_time=#{checkTime,jdbcType=DATE},</if>
+	<if test="checkStatus != null">check_status=#{checkStatus,jdbcType=VARCHAR},</if>
+	<if test="checkEndTime != null">check_end_time=#{checkEndTime,jdbcType=DATE},</if>
+	<if test="checkStatusTemp != null">check_status_temp=#{checkStatusTemp,jdbcType=VARCHAR}</if>
+</set>
+<where>
+	<choose>
+        <when test="superviseInfoId != null">and supervise_info_id = #{superviseInfoId}</when>
+        <otherwise>and supervise_info_id = </otherwise>
+    </choose>
+</where>
+</update>
+
+<!-- ElementID:updateNull,Generated=true -->
+<update id="updateNull" parameterType="map">
+	update TA_JC_SUPERVISE_DELETELOG
+	<set>
+		<trim suffixOverrides=",">
+		    <if test="businessId==null">business_id = null,</if>
+		    <if test="receiveOrgName==null">receive_org_name = null,</if>
+		    <if test="superviseTypeNo==null">supervise_type_no = null,</if>
+		    <if test="superviseResultNo==null">supervise_result_no = null,</if>
+		    <if test="superviseTime==null">supervise_time = null,</if>
+		    <if test="superviseDescript==null">supervise_descript = null,</if>
+		    <if test="superviseGist==null">supervise_gist = null,</if>
+		    <if test="warningContent==null">warning_content = null,</if>
+		    <if test="dutyTacheCode==null">duty_tache_code = null,</if>
+		    <if test="ruleId==null">rule_id = null,</if>
+		    <if test="feedbackEndtime==null">feedback_endtime = null,</if>
+		    <if test="state==null">state = null,</if>
+		    <if test="lastUpdatetime==null">last_updatetime = null,</if>
+		    <if test="ccFormInstanceid==null">cc_form_instanceid = null,</if>
+		    <if test="remarka==null">remarka = null,</if>
+		    <if test="remarkb==null">remarkb = null,</if>
+		    <if test="ruleVersion==null">rule_version = null,</if>
+		    <if test="orgId==null">org_id = null,</if>
+		    <if test="tscxCode==null">tscx_code = null,</if>
+		    <if test="pici==null">pici = null,</if>
+		    <if test="revocationReason==null">revocation_reason = null,</if>
+		    <if test="startTime==null">start_time = null,</if>
+		    <if test="endTime==null">end_time = null,</if>
+		    <if test="status==null">status = null,</if>
+		    <if test="promiseLimit==null">promise_limit = null,</if>
+		    <if test="processLimit==null">process_limit = null,</if>
+		    <if test="expireDate==null">expire_date = null,</if>
+		    <if test="outDays==null">out_days = null,</if>
+		    <if test="deleteDate==null">delete_date = null,</if>
+		    <if test="checkTime==null">check_time = null,</if>
+		    <if test="checkStatus==null">check_status = null,</if>
+		    <if test="checkEndTime==null">check_end_time = null,</if>
+		    <if test="checkStatusTemp==null">check_status_temp = null,</if>
+		</trim>
+	</set>
+	<where>
+		<choose>
+			<when test="superviseInfoId != null">and supervise_info_id = #{superviseInfoId}</when>
+			<otherwise>and supervise_info_id = </otherwise>
+		</choose>
+	</where>
+</update>
+
+<!-- ElementID:delete,Generated=true -->
+<delete id="delete" parameterType="com.chinacreator.dzjc_ruleEngine.DeleteSupervise">
+    delete from TA_JC_SUPERVISE_DELETELOG where 1=1 and supervise_info_id = #{superviseInfoId}
+</delete>
+
+<!-- ElementID:select,Generated=true -->
+<select id="select" parameterType="com.chinacreator.dzjc_ruleEngine.DeleteSupervise" resultMap="DeleteSuperviseResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_SUPERVISE_DELETELOG 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+
+<!-- ElementID:insertBatch,Generated=true -->
+<insert id="insertBatch" parameterType="list">
+	insert into TA_JC_SUPERVISE_DELETELOG (supervise_info_id,business_id,receive_org_name,supervise_type_no,supervise_result_no,supervise_time,supervise_descript,supervise_gist,warning_content,duty_tache_code,rule_id,feedback_endtime,state,last_updatetime,cc_form_instanceid,remarka,remarkb,rule_version,org_id,tscx_code,pici,revocation_reason,start_time,end_time,status,promise_limit,process_limit,expire_date,out_days,delete_date,check_time,check_status,check_end_time,check_status_temp) 
+<foreach collection="list" item="entity" index="index" separator="union all">
+		select 
+		#{entity.superviseInfoId,jdbcType = VARCHAR},
+				#{entity.businessId,jdbcType = VARCHAR},
+				#{entity.receiveOrgName,jdbcType = VARCHAR},
+				#{entity.superviseTypeNo,jdbcType = VARCHAR},
+				#{entity.superviseResultNo,jdbcType = VARCHAR},
+				#{entity.superviseTime,jdbcType = DATE},
+				#{entity.superviseDescript,jdbcType = VARCHAR},
+				#{entity.superviseGist,jdbcType = VARCHAR},
+				#{entity.warningContent,jdbcType = VARCHAR},
+				#{entity.dutyTacheCode,jdbcType = VARCHAR},
+				#{entity.ruleId,jdbcType = VARCHAR},
+				#{entity.feedbackEndtime,jdbcType = DATE},
+				#{entity.state,jdbcType = VARCHAR},
+				#{entity.lastUpdatetime,jdbcType = DATE},
+				#{entity.ccFormInstanceid,jdbcType = VARCHAR},
+				#{entity.remarka,jdbcType = VARCHAR},
+				#{entity.remarkb,jdbcType = VARCHAR},
+				#{entity.ruleVersion,jdbcType = VARCHAR},
+				#{entity.orgId,jdbcType = VARCHAR},
+				#{entity.tscxCode,jdbcType = VARCHAR},
+				#{entity.pici,jdbcType = VARCHAR},
+				#{entity.revocationReason,jdbcType = VARCHAR},
+				#{entity.startTime,jdbcType = DATE},
+				#{entity.endTime,jdbcType = DATE},
+				#{entity.status,jdbcType = VARCHAR},
+				#{entity.promiseLimit,jdbcType = NUMERIC},
+				#{entity.processLimit,jdbcType = NUMERIC},
+				#{entity.expireDate,jdbcType = DATE},
+				#{entity.outDays,jdbcType = VARCHAR},
+				#{entity.deleteDate,jdbcType = DATE},
+				#{entity.checkTime,jdbcType = DATE},
+				#{entity.checkStatus,jdbcType = VARCHAR},
+				#{entity.checkEndTime,jdbcType = DATE},
+				#{entity.checkStatusTemp,jdbcType = VARCHAR}
+		from dual
+</foreach>
+</insert>
+
+<!-- ElementID:deleteBatch,Generated=true -->
+<delete id="deleteBatch" parameterType="List">
+	delete from TA_JC_SUPERVISE_DELETELOG where supervise_info_id in
+<trim prefix="(" suffix=")" suffixOverrides=",">
+<foreach collection="list" item="entity" separator=",">
+	<choose>
+		<when test="@com.chinacreator.c2.dao.util.EntityBeanUtil@isEntityObj(entity)">#{entity.superviseInfoId}</when>
+		<otherwise>#{entity}</otherwise>
+	</choose>
+</foreach>
+</trim>
+</delete>
+
+<!-- ElementID:updateBatch,Generated=true -->
+<update id="updateBatch" parameterType="list">
+	<foreach collection="list" item="entity" open="begin" close=";end;" separator=";">
+			update TA_JC_SUPERVISE_DELETELOG
+	<set>
+	<if test="entity.businessId != null">business_id= #{entity.businessId,jdbcType=VARCHAR},</if>
+	<if test="entity.receiveOrgName != null">receive_org_name= #{entity.receiveOrgName,jdbcType=VARCHAR},</if>
+	<if test="entity.superviseTypeNo != null">supervise_type_no= #{entity.superviseTypeNo,jdbcType=VARCHAR},</if>
+	<if test="entity.superviseResultNo != null">supervise_result_no= #{entity.superviseResultNo,jdbcType=VARCHAR},</if>
+	<if test="entity.superviseTime != null">supervise_time= #{entity.superviseTime,jdbcType=DATE},</if>
+	<if test="entity.superviseDescript != null">supervise_descript= #{entity.superviseDescript,jdbcType=VARCHAR},</if>
+	<if test="entity.superviseGist != null">supervise_gist= #{entity.superviseGist,jdbcType=VARCHAR},</if>
+	<if test="entity.warningContent != null">warning_content= #{entity.warningContent,jdbcType=VARCHAR},</if>
+	<if test="entity.dutyTacheCode != null">duty_tache_code= #{entity.dutyTacheCode,jdbcType=VARCHAR},</if>
+	<if test="entity.ruleId != null">rule_id= #{entity.ruleId,jdbcType=VARCHAR},</if>
+	<if test="entity.feedbackEndtime != null">feedback_endtime= #{entity.feedbackEndtime,jdbcType=DATE},</if>
+	<if test="entity.state != null">state= #{entity.state,jdbcType=VARCHAR},</if>
+	<if test="entity.lastUpdatetime != null">last_updatetime= #{entity.lastUpdatetime,jdbcType=DATE},</if>
+	<if test="entity.ccFormInstanceid != null">cc_form_instanceid= #{entity.ccFormInstanceid,jdbcType=VARCHAR},</if>
+	<if test="entity.remarka != null">remarka= #{entity.remarka,jdbcType=VARCHAR},</if>
+	<if test="entity.remarkb != null">remarkb= #{entity.remarkb,jdbcType=VARCHAR},</if>
+	<if test="entity.ruleVersion != null">rule_version= #{entity.ruleVersion,jdbcType=VARCHAR},</if>
+	<if test="entity.orgId != null">org_id= #{entity.orgId,jdbcType=VARCHAR},</if>
+	<if test="entity.tscxCode != null">tscx_code= #{entity.tscxCode,jdbcType=VARCHAR},</if>
+	<if test="entity.pici != null">pici= #{entity.pici,jdbcType=VARCHAR},</if>
+	<if test="entity.revocationReason != null">revocation_reason= #{entity.revocationReason,jdbcType=VARCHAR},</if>
+	<if test="entity.startTime != null">start_time= #{entity.startTime,jdbcType=DATE},</if>
+	<if test="entity.endTime != null">end_time= #{entity.endTime,jdbcType=DATE},</if>
+	<if test="entity.status != null">status= #{entity.status,jdbcType=VARCHAR},</if>
+	<if test="entity.promiseLimit != null">promise_limit= #{entity.promiseLimit,jdbcType=NUMERIC},</if>
+	<if test="entity.processLimit != null">process_limit= #{entity.processLimit,jdbcType=NUMERIC},</if>
+	<if test="entity.expireDate != null">expire_date= #{entity.expireDate,jdbcType=DATE},</if>
+	<if test="entity.outDays != null">out_days= #{entity.outDays,jdbcType=VARCHAR},</if>
+	<if test="entity.deleteDate != null">delete_date= #{entity.deleteDate,jdbcType=DATE},</if>
+	<if test="entity.checkTime != null">check_time= #{entity.checkTime,jdbcType=DATE},</if>
+	<if test="entity.checkStatus != null">check_status= #{entity.checkStatus,jdbcType=VARCHAR},</if>
+	<if test="entity.checkEndTime != null">check_end_time= #{entity.checkEndTime,jdbcType=DATE},</if>
+	<if test="entity.checkStatusTemp != null">check_status_temp= #{entity.checkStatusTemp,jdbcType=VARCHAR}</if>
+	</set>
+		<where>
+			<choose>
+				<when test="entity.superviseInfoId != null">and supervise_info_id = #{entity.superviseInfoId}</when>
+				<otherwise>and supervise_info_id = </otherwise>
+			</choose>
+		</where>
+	</foreach>
+</update>
+
+<!-- ElementID:selectAll,Generated=true -->
+<select id="selectAll" resultMap="DeleteSuperviseResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_SUPERVISE_DELETELOG 
+</select>
+
+<!-- ElementID:selectMany,Generated=true -->
+<select id="selectMany" parameterType="list" resultMap="DeleteSuperviseResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_JC_SUPERVISE_DELETELOG 
+	where TA_JC_SUPERVISE_DELETELOG.supervise_info_id in (
+<foreach collection="list" item="entity" separator="intersect">
+		select 
+		TA_JC_SUPERVISE_DELETELOG.supervise_info_id
+	    from TA_JC_SUPERVISE_DELETELOG 
+		 <where>
+	        <if test="entity.superviseInfoId != null">and TA_JC_SUPERVISE_DELETELOG.supervise_info_id = #{entity.superviseInfoId}</if>
+	        <if test="entity.businessId != null">and TA_JC_SUPERVISE_DELETELOG.business_id = #{entity.businessId}</if>
+	        <if test="entity.receiveOrgName != null">and TA_JC_SUPERVISE_DELETELOG.receive_org_name = #{entity.receiveOrgName}</if>
+	        <if test="entity.superviseTypeNo != null">and TA_JC_SUPERVISE_DELETELOG.supervise_type_no = #{entity.superviseTypeNo}</if>
+	        <if test="entity.superviseResultNo != null">and TA_JC_SUPERVISE_DELETELOG.supervise_result_no = #{entity.superviseResultNo}</if>
+	        <if test="entity.superviseTime != null">and TA_JC_SUPERVISE_DELETELOG.supervise_time = #{entity.superviseTime}</if>
+	        <if test="entity.superviseDescript != null">and TA_JC_SUPERVISE_DELETELOG.supervise_descript = #{entity.superviseDescript}</if>
+	        <if test="entity.superviseGist != null">and TA_JC_SUPERVISE_DELETELOG.supervise_gist = #{entity.superviseGist}</if>
+	        <if test="entity.warningContent != null">and TA_JC_SUPERVISE_DELETELOG.warning_content = #{entity.warningContent}</if>
+	        <if test="entity.dutyTacheCode != null">and TA_JC_SUPERVISE_DELETELOG.duty_tache_code = #{entity.dutyTacheCode}</if>
+	        <if test="entity.ruleId != null">and TA_JC_SUPERVISE_DELETELOG.rule_id = #{entity.ruleId}</if>
+	        <if test="entity.feedbackEndtime != null">and TA_JC_SUPERVISE_DELETELOG.feedback_endtime = #{entity.feedbackEndtime}</if>
+	        <if test="entity.state != null">and TA_JC_SUPERVISE_DELETELOG.state = #{entity.state}</if>
+	        <if test="entity.lastUpdatetime != null">and TA_JC_SUPERVISE_DELETELOG.last_updatetime = #{entity.lastUpdatetime}</if>
+	        <if test="entity.ccFormInstanceid != null">and TA_JC_SUPERVISE_DELETELOG.cc_form_instanceid = #{entity.ccFormInstanceid}</if>
+	        <if test="entity.remarka != null">and TA_JC_SUPERVISE_DELETELOG.remarka = #{entity.remarka}</if>
+	        <if test="entity.remarkb != null">and TA_JC_SUPERVISE_DELETELOG.remarkb = #{entity.remarkb}</if>
+	        <if test="entity.ruleVersion != null">and TA_JC_SUPERVISE_DELETELOG.rule_version = #{entity.ruleVersion}</if>
+	        <if test="entity.orgId != null">and TA_JC_SUPERVISE_DELETELOG.org_id = #{entity.orgId}</if>
+	        <if test="entity.tscxCode != null">and TA_JC_SUPERVISE_DELETELOG.tscx_code = #{entity.tscxCode}</if>
+	        <if test="entity.pici != null">and TA_JC_SUPERVISE_DELETELOG.pici = #{entity.pici}</if>
+	        <if test="entity.revocationReason != null">and TA_JC_SUPERVISE_DELETELOG.revocation_reason = #{entity.revocationReason}</if>
+	        <if test="entity.startTime != null">and TA_JC_SUPERVISE_DELETELOG.start_time = #{entity.startTime}</if>
+	        <if test="entity.endTime != null">and TA_JC_SUPERVISE_DELETELOG.end_time = #{entity.endTime}</if>
+	        <if test="entity.status != null">and TA_JC_SUPERVISE_DELETELOG.status = #{entity.status}</if>
+	        <if test="entity.promiseLimit != null">and TA_JC_SUPERVISE_DELETELOG.promise_limit = #{entity.promiseLimit}</if>
+	        <if test="entity.processLimit != null">and TA_JC_SUPERVISE_DELETELOG.process_limit = #{entity.processLimit}</if>
+	        <if test="entity.expireDate != null">and TA_JC_SUPERVISE_DELETELOG.expire_date = #{entity.expireDate}</if>
+	        <if test="entity.outDays != null">and TA_JC_SUPERVISE_DELETELOG.out_days = #{entity.outDays}</if>
+	        <if test="entity.deleteDate != null">and TA_JC_SUPERVISE_DELETELOG.delete_date = #{entity.deleteDate}</if>
+	        <if test="entity.checkTime != null">and TA_JC_SUPERVISE_DELETELOG.check_time = #{entity.checkTime}</if>
+	        <if test="entity.checkStatus != null">and TA_JC_SUPERVISE_DELETELOG.check_status = #{entity.checkStatus}</if>
+	        <if test="entity.checkEndTime != null">and TA_JC_SUPERVISE_DELETELOG.check_end_time = #{entity.checkEndTime}</if>
+	        <if test="entity.checkStatusTemp != null">and TA_JC_SUPERVISE_DELETELOG.check_status_temp = #{entity.checkStatusTemp}</if>
+		</where>
+</foreach>
+)
+</select>
+
+<!-- ElementID:selectUnion,Generated=true -->
+<select id="selectUnion" parameterType="list" resultMap="DeleteSuperviseResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_JC_SUPERVISE_DELETELOG 
+	 INNER JOIN
+<foreach collection="list" item="entity" separator="UNION" open="(" close=")">
+		SELECT 
+			 supervise_info_id
+		FROM TA_JC_SUPERVISE_DELETELOG 
+			<where>
+	        <if test="entity.superviseInfoId != null">and TA_JC_SUPERVISE_DELETELOG.supervise_info_id = #{entity.superviseInfoId}</if>
+	        <if test="entity.businessId != null">and TA_JC_SUPERVISE_DELETELOG.business_id = #{entity.businessId}</if>
+	        <if test="entity.receiveOrgName != null">and TA_JC_SUPERVISE_DELETELOG.receive_org_name = #{entity.receiveOrgName}</if>
+	        <if test="entity.superviseTypeNo != null">and TA_JC_SUPERVISE_DELETELOG.supervise_type_no = #{entity.superviseTypeNo}</if>
+	        <if test="entity.superviseResultNo != null">and TA_JC_SUPERVISE_DELETELOG.supervise_result_no = #{entity.superviseResultNo}</if>
+	        <if test="entity.superviseTime != null">and TA_JC_SUPERVISE_DELETELOG.supervise_time = #{entity.superviseTime}</if>
+	        <if test="entity.superviseDescript != null">and TA_JC_SUPERVISE_DELETELOG.supervise_descript = #{entity.superviseDescript}</if>
+	        <if test="entity.superviseGist != null">and TA_JC_SUPERVISE_DELETELOG.supervise_gist = #{entity.superviseGist}</if>
+	        <if test="entity.warningContent != null">and TA_JC_SUPERVISE_DELETELOG.warning_content = #{entity.warningContent}</if>
+	        <if test="entity.dutyTacheCode != null">and TA_JC_SUPERVISE_DELETELOG.duty_tache_code = #{entity.dutyTacheCode}</if>
+	        <if test="entity.ruleId != null">and TA_JC_SUPERVISE_DELETELOG.rule_id = #{entity.ruleId}</if>
+	        <if test="entity.feedbackEndtime != null">and TA_JC_SUPERVISE_DELETELOG.feedback_endtime = #{entity.feedbackEndtime}</if>
+	        <if test="entity.state != null">and TA_JC_SUPERVISE_DELETELOG.state = #{entity.state}</if>
+	        <if test="entity.lastUpdatetime != null">and TA_JC_SUPERVISE_DELETELOG.last_updatetime = #{entity.lastUpdatetime}</if>
+	        <if test="entity.ccFormInstanceid != null">and TA_JC_SUPERVISE_DELETELOG.cc_form_instanceid = #{entity.ccFormInstanceid}</if>
+	        <if test="entity.remarka != null">and TA_JC_SUPERVISE_DELETELOG.remarka = #{entity.remarka}</if>
+	        <if test="entity.remarkb != null">and TA_JC_SUPERVISE_DELETELOG.remarkb = #{entity.remarkb}</if>
+	        <if test="entity.ruleVersion != null">and TA_JC_SUPERVISE_DELETELOG.rule_version = #{entity.ruleVersion}</if>
+	        <if test="entity.orgId != null">and TA_JC_SUPERVISE_DELETELOG.org_id = #{entity.orgId}</if>
+	        <if test="entity.tscxCode != null">and TA_JC_SUPERVISE_DELETELOG.tscx_code = #{entity.tscxCode}</if>
+	        <if test="entity.pici != null">and TA_JC_SUPERVISE_DELETELOG.pici = #{entity.pici}</if>
+	        <if test="entity.revocationReason != null">and TA_JC_SUPERVISE_DELETELOG.revocation_reason = #{entity.revocationReason}</if>
+	        <if test="entity.startTime != null">and TA_JC_SUPERVISE_DELETELOG.start_time = #{entity.startTime}</if>
+	        <if test="entity.endTime != null">and TA_JC_SUPERVISE_DELETELOG.end_time = #{entity.endTime}</if>
+	        <if test="entity.status != null">and TA_JC_SUPERVISE_DELETELOG.status = #{entity.status}</if>
+	        <if test="entity.promiseLimit != null">and TA_JC_SUPERVISE_DELETELOG.promise_limit = #{entity.promiseLimit}</if>
+	        <if test="entity.processLimit != null">and TA_JC_SUPERVISE_DELETELOG.process_limit = #{entity.processLimit}</if>
+	        <if test="entity.expireDate != null">and TA_JC_SUPERVISE_DELETELOG.expire_date = #{entity.expireDate}</if>
+	        <if test="entity.outDays != null">and TA_JC_SUPERVISE_DELETELOG.out_days = #{entity.outDays}</if>
+	        <if test="entity.deleteDate != null">and TA_JC_SUPERVISE_DELETELOG.delete_date = #{entity.deleteDate}</if>
+	        <if test="entity.checkTime != null">and TA_JC_SUPERVISE_DELETELOG.check_time = #{entity.checkTime}</if>
+	        <if test="entity.checkStatus != null">and TA_JC_SUPERVISE_DELETELOG.check_status = #{entity.checkStatus}</if>
+	        <if test="entity.checkEndTime != null">and TA_JC_SUPERVISE_DELETELOG.check_end_time = #{entity.checkEndTime}</if>
+	        <if test="entity.checkStatusTemp != null">and TA_JC_SUPERVISE_DELETELOG.check_status_temp = #{entity.checkStatusTemp}</if>
+			</where>
+</foreach>
+	c2_temp_table ON TA_JC_SUPERVISE_DELETELOG.supervise_info_id = c2_temp_table.supervise_info_id
+</select>
+
+<!-- ElementID:selectByID,Generated=true -->
+<select id="selectByID" parameterType="java.lang.String" resultMap="DeleteSuperviseResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_SUPERVISE_DELETELOG 
+		 where TA_JC_SUPERVISE_DELETELOG.supervise_info_id = #{superviseInfoId,jdbcType=VARCHAR}
+</select>
+
+<!-- ElementID:selectByPage,Generated=true -->
+<select id="selectByPage" parameterType="com.chinacreator.dzjc_ruleEngine.DeleteSupervise" resultMap="DeleteSuperviseResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_SUPERVISE_DELETELOG 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+</mapper>

@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"><mapper namespace="com.chinacreator.dzjc_performance.ComplainRevieweMapper">	
+
+<!-- ElementID:column_sql,Generated=true -->
+<sql id="column_sql">
+		  TA_JC_EVAL_COMPLAIN_REVIEWE.id ,
+		  TA_JC_EVAL_COMPLAIN_REVIEWE.eval_instance_id ,
+		  TA_JC_EVAL_COMPLAIN_REVIEWE.table_id ,
+		  TA_JC_EVAL_COMPLAIN_REVIEWE.table_name ,
+		  TA_JC_EVAL_COMPLAIN_REVIEWE.point_id ,
+		  TA_JC_EVAL_COMPLAIN_REVIEWE.point_name ,
+		  TA_JC_EVAL_COMPLAIN_REVIEWE.eval_object_type ,
+		  TA_JC_EVAL_COMPLAIN_REVIEWE.point_score ,
+		  TA_JC_EVAL_COMPLAIN_REVIEWE.eval_object_id ,
+		  TA_JC_EVAL_COMPLAIN_REVIEWE.eval_object_name ,
+		  TA_JC_EVAL_COMPLAIN_REVIEWE.deduct_reasons ,
+		  TA_JC_EVAL_COMPLAIN_REVIEWE.comp_reasons ,
+		  TA_JC_EVAL_COMPLAIN_REVIEWE.org_id ,
+		  TA_JC_EVAL_COMPLAIN_REVIEWE.org_name ,
+		  TA_JC_EVAL_COMPLAIN_REVIEWE.eval_time ,
+		  TA_JC_EVAL_COMPLAIN_REVIEWE.comp_time ,
+		  TA_JC_EVAL_COMPLAIN_REVIEWE.reviewe_states ,
+		  TA_JC_EVAL_COMPLAIN_REVIEWE.eval_point_value_id 
+</sql>
+
+<!-- ElementID:whereClause_sql,Generated=true -->
+<sql id="whereClause_sql">
+	    <if test="id != null">and TA_JC_EVAL_COMPLAIN_REVIEWE.id = #{id}</if>
+	    <if test="evalInstanceId != null">and TA_JC_EVAL_COMPLAIN_REVIEWE.eval_instance_id = #{evalInstanceId}</if>
+	    <if test="tableId != null">and TA_JC_EVAL_COMPLAIN_REVIEWE.table_id = #{tableId}</if>
+	    <if test="tableName != null">and TA_JC_EVAL_COMPLAIN_REVIEWE.table_name = #{tableName}</if>
+	    <if test="pointId != null">and TA_JC_EVAL_COMPLAIN_REVIEWE.point_id = #{pointId}</if>
+	    <if test="pointName != null">and TA_JC_EVAL_COMPLAIN_REVIEWE.point_name = #{pointName}</if>
+	    <if test="evalObjectType != null">and TA_JC_EVAL_COMPLAIN_REVIEWE.eval_object_type = #{evalObjectType}</if>
+	    <if test="pointScore != null">and TA_JC_EVAL_COMPLAIN_REVIEWE.point_score = #{pointScore}</if>
+	    <if test="evalObjectId != null">and TA_JC_EVAL_COMPLAIN_REVIEWE.eval_object_id = #{evalObjectId}</if>
+	    <if test="evalObjectName != null">and TA_JC_EVAL_COMPLAIN_REVIEWE.eval_object_name = #{evalObjectName}</if>
+	    <if test="deductReasons != null">and TA_JC_EVAL_COMPLAIN_REVIEWE.deduct_reasons = #{deductReasons}</if>
+	    <if test="compReasons != null">and TA_JC_EVAL_COMPLAIN_REVIEWE.comp_reasons = #{compReasons}</if>
+	    <if test="orgId != null">and TA_JC_EVAL_COMPLAIN_REVIEWE.org_id = #{orgId}</if>
+	    <if test="orgName != null">and TA_JC_EVAL_COMPLAIN_REVIEWE.org_name = #{orgName}</if>
+	    <if test="evalTime != null">and TA_JC_EVAL_COMPLAIN_REVIEWE.eval_time = #{evalTime}</if>
+	    <if test="compTime != null">and TA_JC_EVAL_COMPLAIN_REVIEWE.comp_time = #{compTime}</if>
+	    <if test="revieweStates != null">and TA_JC_EVAL_COMPLAIN_REVIEWE.reviewe_states = #{revieweStates}</if>
+	    <if test="evalPointValueId != null">and TA_JC_EVAL_COMPLAIN_REVIEWE.eval_point_value_id = #{evalPointValueId}</if>
+</sql>
+
+
+<!-- ElementID:ComplainRevieweResult,Generated=true -->
+<resultMap id="ComplainRevieweResult" type="com.chinacreator.dzjc_performance.ComplainReviewe">
+	<id property="id" column="id"/>
+	<result property="evalInstanceId" column="eval_instance_id"/>
+	<result property="tableId" column="table_id"/>
+	<result property="tableName" column="table_name"/>
+	<result property="pointId" column="point_id"/>
+	<result property="pointName" column="point_name"/>
+	<result property="evalObjectType" column="eval_object_type"/>
+	<result property="pointScore" column="point_score"/>
+	<result property="evalObjectId" column="eval_object_id"/>
+	<result property="evalObjectName" column="eval_object_name"/>
+	<result property="deductReasons" column="deduct_reasons"/>
+	<result property="compReasons" column="comp_reasons"/>
+	<result property="orgId" column="org_id"/>
+	<result property="orgName" column="org_name"/>
+	<result property="evalTime" column="eval_time"/>
+	<result property="compTime" column="comp_time"/>
+	<result property="revieweStates" column="reviewe_states"/>
+	<result property="evalPointValueId" column="eval_point_value_id"/>
+</resultMap>
+
+
+<!-- ElementID:insert,Generated=true -->
+<insert id="insert" parameterType="com.chinacreator.dzjc_performance.ComplainReviewe">
+	insert into TA_JC_EVAL_COMPLAIN_REVIEWE(
+	         <if test="id != null">id</if>
+	         <if test="evalInstanceId != null">,eval_instance_id</if>
+	         <if test="tableId != null">,table_id</if>
+	         <if test="tableName != null">,table_name</if>
+	         <if test="pointId != null">,point_id</if>
+	         <if test="pointName != null">,point_name</if>
+	         <if test="evalObjectType != null">,eval_object_type</if>
+	         <if test="pointScore != null">,point_score</if>
+	         <if test="evalObjectId != null">,eval_object_id</if>
+	         <if test="evalObjectName != null">,eval_object_name</if>
+	         <if test="deductReasons != null">,deduct_reasons</if>
+	         <if test="compReasons != null">,comp_reasons</if>
+	         <if test="orgId != null">,org_id</if>
+	         <if test="orgName != null">,org_name</if>
+	         <if test="evalTime != null">,eval_time</if>
+	         <if test="compTime != null">,comp_time</if>
+	         <if test="revieweStates != null">,reviewe_states</if>
+	         <if test="evalPointValueId != null">,eval_point_value_id</if>
+	 	 	 )
+	 values (
+	         <if test="id != null">#{id,jdbcType=VARCHAR}</if>
+	         <if test="evalInstanceId != null">,#{evalInstanceId,jdbcType=VARCHAR}</if>
+	         <if test="tableId != null">,#{tableId,jdbcType=VARCHAR}</if>
+	         <if test="tableName != null">,#{tableName,jdbcType=VARCHAR}</if>
+	         <if test="pointId != null">,#{pointId,jdbcType=VARCHAR}</if>
+	         <if test="pointName != null">,#{pointName,jdbcType=VARCHAR}</if>
+	         <if test="evalObjectType != null">,#{evalObjectType,jdbcType=VARCHAR}</if>
+	         <if test="pointScore != null">,#{pointScore,jdbcType=NUMERIC}</if>
+	         <if test="evalObjectId != null">,#{evalObjectId,jdbcType=VARCHAR}</if>
+	         <if test="evalObjectName != null">,#{evalObjectName,jdbcType=VARCHAR}</if>
+	         <if test="deductReasons != null">,#{deductReasons,jdbcType=VARCHAR}</if>
+	         <if test="compReasons != null">,#{compReasons,jdbcType=VARCHAR}</if>
+	         <if test="orgId != null">,#{orgId,jdbcType=VARCHAR}</if>
+	         <if test="orgName != null">,#{orgName,jdbcType=VARCHAR}</if>
+	         <if test="evalTime != null">,#{evalTime,jdbcType=DATE}</if>
+	         <if test="compTime != null">,#{compTime,jdbcType=DATE}</if>
+	         <if test="revieweStates != null">,#{revieweStates,jdbcType=VARCHAR}</if>
+	         <if test="evalPointValueId != null">,#{evalPointValueId,jdbcType=VARCHAR}</if>
+	 	 	 )
+</insert>
+
+<!-- ElementID:count,Generated=true -->
+<select id="count" parameterType="com.chinacreator.dzjc_performance.ComplainReviewe" resultType="int">
+	select count(*) from TA_JC_EVAL_COMPLAIN_REVIEWE 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<!-- ElementID:update,Generated=true -->
+<update id="update" parameterType="com.chinacreator.dzjc_performance.ComplainReviewe">
+	update TA_JC_EVAL_COMPLAIN_REVIEWE
+<set>
+	<if test="evalInstanceId != null">eval_instance_id=#{evalInstanceId,jdbcType=VARCHAR},</if>
+	<if test="tableId != null">table_id=#{tableId,jdbcType=VARCHAR},</if>
+	<if test="tableName != null">table_name=#{tableName,jdbcType=VARCHAR},</if>
+	<if test="pointId != null">point_id=#{pointId,jdbcType=VARCHAR},</if>
+	<if test="pointName != null">point_name=#{pointName,jdbcType=VARCHAR},</if>
+	<if test="evalObjectType != null">eval_object_type=#{evalObjectType,jdbcType=VARCHAR},</if>
+	<if test="pointScore != null">point_score=#{pointScore,jdbcType=NUMERIC},</if>
+	<if test="evalObjectId != null">eval_object_id=#{evalObjectId,jdbcType=VARCHAR},</if>
+	<if test="evalObjectName != null">eval_object_name=#{evalObjectName,jdbcType=VARCHAR},</if>
+	<if test="deductReasons != null">deduct_reasons=#{deductReasons,jdbcType=VARCHAR},</if>
+	<if test="compReasons != null">comp_reasons=#{compReasons,jdbcType=VARCHAR},</if>
+	<if test="orgId != null">org_id=#{orgId,jdbcType=VARCHAR},</if>
+	<if test="orgName != null">org_name=#{orgName,jdbcType=VARCHAR},</if>
+	<if test="evalTime != null">eval_time=#{evalTime,jdbcType=DATE},</if>
+	<if test="compTime != null">comp_time=#{compTime,jdbcType=DATE},</if>
+	<if test="revieweStates != null">reviewe_states=#{revieweStates,jdbcType=VARCHAR},</if>
+	<if test="evalPointValueId != null">eval_point_value_id=#{evalPointValueId,jdbcType=VARCHAR}</if>
+</set>
+<where>
+	<choose>
+        <when test="id != null">and id = #{id}</when>
+        <otherwise>and id = </otherwise>
+    </choose>
+</where>
+</update>
+
+<!-- ElementID:updateNull,Generated=true -->
+<update id="updateNull" parameterType="map">
+	update TA_JC_EVAL_COMPLAIN_REVIEWE
+	<set>
+		<trim suffixOverrides=",">
+		    <if test="evalInstanceId==null">eval_instance_id = null,</if>
+		    <if test="tableId==null">table_id = null,</if>
+		    <if test="tableName==null">table_name = null,</if>
+		    <if test="pointId==null">point_id = null,</if>
+		    <if test="pointName==null">point_name = null,</if>
+		    <if test="evalObjectType==null">eval_object_type = null,</if>
+		    <if test="pointScore==null">point_score = null,</if>
+		    <if test="evalObjectId==null">eval_object_id = null,</if>
+		    <if test="evalObjectName==null">eval_object_name = null,</if>
+		    <if test="deductReasons==null">deduct_reasons = null,</if>
+		    <if test="compReasons==null">comp_reasons = null,</if>
+		    <if test="orgId==null">org_id = null,</if>
+		    <if test="orgName==null">org_name = null,</if>
+		    <if test="evalTime==null">eval_time = null,</if>
+		    <if test="compTime==null">comp_time = null,</if>
+		    <if test="revieweStates==null">reviewe_states = null,</if>
+		    <if test="evalPointValueId==null">eval_point_value_id = null,</if>
+		</trim>
+	</set>
+	<where>
+		<choose>
+			<when test="id != null">and id = #{id}</when>
+			<otherwise>and id = </otherwise>
+		</choose>
+	</where>
+</update>
+
+<!-- ElementID:delete,Generated=true -->
+<delete id="delete" parameterType="com.chinacreator.dzjc_performance.ComplainReviewe">
+    delete from TA_JC_EVAL_COMPLAIN_REVIEWE where 1=1 and id = #{id}
+</delete>
+
+<!-- ElementID:select,Generated=true -->
+<select id="select" parameterType="com.chinacreator.dzjc_performance.ComplainReviewe" resultMap="ComplainRevieweResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_EVAL_COMPLAIN_REVIEWE 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+
+<!-- ElementID:insertBatch,Generated=true -->
+<insert id="insertBatch" parameterType="list">
+	insert into TA_JC_EVAL_COMPLAIN_REVIEWE (id,eval_instance_id,table_id,table_name,point_id,point_name,eval_object_type,point_score,eval_object_id,eval_object_name,deduct_reasons,comp_reasons,org_id,org_name,eval_time,comp_time,reviewe_states,eval_point_value_id) 
+<foreach collection="list" item="entity" index="index" separator="union all">
+		select 
+		#{entity.id,jdbcType = VARCHAR},
+				#{entity.evalInstanceId,jdbcType = VARCHAR},
+				#{entity.tableId,jdbcType = VARCHAR},
+				#{entity.tableName,jdbcType = VARCHAR},
+				#{entity.pointId,jdbcType = VARCHAR},
+				#{entity.pointName,jdbcType = VARCHAR},
+				#{entity.evalObjectType,jdbcType = VARCHAR},
+				#{entity.pointScore,jdbcType = NUMERIC},
+				#{entity.evalObjectId,jdbcType = VARCHAR},
+				#{entity.evalObjectName,jdbcType = VARCHAR},
+				#{entity.deductReasons,jdbcType = VARCHAR},
+				#{entity.compReasons,jdbcType = VARCHAR},
+				#{entity.orgId,jdbcType = VARCHAR},
+				#{entity.orgName,jdbcType = VARCHAR},
+				#{entity.evalTime,jdbcType = DATE},
+				#{entity.compTime,jdbcType = DATE},
+				#{entity.revieweStates,jdbcType = VARCHAR},
+				#{entity.evalPointValueId,jdbcType = VARCHAR}
+		from dual
+</foreach>
+</insert>
+
+<!-- ElementID:deleteBatch,Generated=true -->
+<delete id="deleteBatch" parameterType="List">
+	delete from TA_JC_EVAL_COMPLAIN_REVIEWE where id in
+<trim prefix="(" suffix=")" suffixOverrides=",">
+<foreach collection="list" item="entity" separator=",">
+	<choose>
+		<when test="@com.chinacreator.c2.dao.util.EntityBeanUtil@isEntityObj(entity)">#{entity.id}</when>
+		<otherwise>#{entity}</otherwise>
+	</choose>
+</foreach>
+</trim>
+</delete>
+
+<!-- ElementID:updateBatch,Generated=true -->
+<update id="updateBatch" parameterType="list">
+	<foreach collection="list" item="entity" open="begin" close=";end;" separator=";">
+			update TA_JC_EVAL_COMPLAIN_REVIEWE
+	<set>
+	<if test="entity.evalInstanceId != null">eval_instance_id= #{entity.evalInstanceId,jdbcType=VARCHAR},</if>
+	<if test="entity.tableId != null">table_id= #{entity.tableId,jdbcType=VARCHAR},</if>
+	<if test="entity.tableName != null">table_name= #{entity.tableName,jdbcType=VARCHAR},</if>
+	<if test="entity.pointId != null">point_id= #{entity.pointId,jdbcType=VARCHAR},</if>
+	<if test="entity.pointName != null">point_name= #{entity.pointName,jdbcType=VARCHAR},</if>
+	<if test="entity.evalObjectType != null">eval_object_type= #{entity.evalObjectType,jdbcType=VARCHAR},</if>
+	<if test="entity.pointScore != null">point_score= #{entity.pointScore,jdbcType=NUMERIC},</if>
+	<if test="entity.evalObjectId != null">eval_object_id= #{entity.evalObjectId,jdbcType=VARCHAR},</if>
+	<if test="entity.evalObjectName != null">eval_object_name= #{entity.evalObjectName,jdbcType=VARCHAR},</if>
+	<if test="entity.deductReasons != null">deduct_reasons= #{entity.deductReasons,jdbcType=VARCHAR},</if>
+	<if test="entity.compReasons != null">comp_reasons= #{entity.compReasons,jdbcType=VARCHAR},</if>
+	<if test="entity.orgId != null">org_id= #{entity.orgId,jdbcType=VARCHAR},</if>
+	<if test="entity.orgName != null">org_name= #{entity.orgName,jdbcType=VARCHAR},</if>
+	<if test="entity.evalTime != null">eval_time= #{entity.evalTime,jdbcType=DATE},</if>
+	<if test="entity.compTime != null">comp_time= #{entity.compTime,jdbcType=DATE},</if>
+	<if test="entity.revieweStates != null">reviewe_states= #{entity.revieweStates,jdbcType=VARCHAR},</if>
+	<if test="entity.evalPointValueId != null">eval_point_value_id= #{entity.evalPointValueId,jdbcType=VARCHAR}</if>
+	</set>
+		<where>
+			<choose>
+				<when test="entity.id != null">and id = #{entity.id}</when>
+				<otherwise>and id = </otherwise>
+			</choose>
+		</where>
+	</foreach>
+</update>
+
+<!-- ElementID:selectAll,Generated=true -->
+<select id="selectAll" resultMap="ComplainRevieweResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_EVAL_COMPLAIN_REVIEWE 
+</select>
+
+<!-- ElementID:selectMany,Generated=true -->
+<select id="selectMany" parameterType="list" resultMap="ComplainRevieweResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_JC_EVAL_COMPLAIN_REVIEWE 
+	where TA_JC_EVAL_COMPLAIN_REVIEWE.id in (
+<foreach collection="list" item="entity" separator="intersect">
+		select 
+		TA_JC_EVAL_COMPLAIN_REVIEWE.id
+	    from TA_JC_EVAL_COMPLAIN_REVIEWE 
+		 <where>
+	        <if test="entity.id != null">and TA_JC_EVAL_COMPLAIN_REVIEWE.id = #{entity.id}</if>
+	        <if test="entity.evalInstanceId != null">and TA_JC_EVAL_COMPLAIN_REVIEWE.eval_instance_id = #{entity.evalInstanceId}</if>
+	        <if test="entity.tableId != null">and TA_JC_EVAL_COMPLAIN_REVIEWE.table_id = #{entity.tableId}</if>
+	        <if test="entity.tableName != null">and TA_JC_EVAL_COMPLAIN_REVIEWE.table_name = #{entity.tableName}</if>
+	        <if test="entity.pointId != null">and TA_JC_EVAL_COMPLAIN_REVIEWE.point_id = #{entity.pointId}</if>
+	        <if test="entity.pointName != null">and TA_JC_EVAL_COMPLAIN_REVIEWE.point_name = #{entity.pointName}</if>
+	        <if test="entity.evalObjectType != null">and TA_JC_EVAL_COMPLAIN_REVIEWE.eval_object_type = #{entity.evalObjectType}</if>
+	        <if test="entity.pointScore != null">and TA_JC_EVAL_COMPLAIN_REVIEWE.point_score = #{entity.pointScore}</if>
+	        <if test="entity.evalObjectId != null">and TA_JC_EVAL_COMPLAIN_REVIEWE.eval_object_id = #{entity.evalObjectId}</if>
+	        <if test="entity.evalObjectName != null">and TA_JC_EVAL_COMPLAIN_REVIEWE.eval_object_name = #{entity.evalObjectName}</if>
+	        <if test="entity.deductReasons != null">and TA_JC_EVAL_COMPLAIN_REVIEWE.deduct_reasons = #{entity.deductReasons}</if>
+	        <if test="entity.compReasons != null">and TA_JC_EVAL_COMPLAIN_REVIEWE.comp_reasons = #{entity.compReasons}</if>
+	        <if test="entity.orgId != null">and TA_JC_EVAL_COMPLAIN_REVIEWE.org_id = #{entity.orgId}</if>
+	        <if test="entity.orgName != null">and TA_JC_EVAL_COMPLAIN_REVIEWE.org_name = #{entity.orgName}</if>
+	        <if test="entity.evalTime != null">and TA_JC_EVAL_COMPLAIN_REVIEWE.eval_time = #{entity.evalTime}</if>
+	        <if test="entity.compTime != null">and TA_JC_EVAL_COMPLAIN_REVIEWE.comp_time = #{entity.compTime}</if>
+	        <if test="entity.revieweStates != null">and TA_JC_EVAL_COMPLAIN_REVIEWE.reviewe_states = #{entity.revieweStates}</if>
+	        <if test="entity.evalPointValueId != null">and TA_JC_EVAL_COMPLAIN_REVIEWE.eval_point_value_id = #{entity.evalPointValueId}</if>
+		</where>
+</foreach>
+)
+</select>
+
+<!-- ElementID:selectUnion,Generated=true -->
+<select id="selectUnion" parameterType="list" resultMap="ComplainRevieweResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_JC_EVAL_COMPLAIN_REVIEWE 
+	 INNER JOIN
+<foreach collection="list" item="entity" separator="UNION" open="(" close=")">
+		SELECT 
+			 id
+		FROM TA_JC_EVAL_COMPLAIN_REVIEWE 
+			<where>
+	        <if test="entity.id != null">and TA_JC_EVAL_COMPLAIN_REVIEWE.id = #{entity.id}</if>
+	        <if test="entity.evalInstanceId != null">and TA_JC_EVAL_COMPLAIN_REVIEWE.eval_instance_id = #{entity.evalInstanceId}</if>
+	        <if test="entity.tableId != null">and TA_JC_EVAL_COMPLAIN_REVIEWE.table_id = #{entity.tableId}</if>
+	        <if test="entity.tableName != null">and TA_JC_EVAL_COMPLAIN_REVIEWE.table_name = #{entity.tableName}</if>
+	        <if test="entity.pointId != null">and TA_JC_EVAL_COMPLAIN_REVIEWE.point_id = #{entity.pointId}</if>
+	        <if test="entity.pointName != null">and TA_JC_EVAL_COMPLAIN_REVIEWE.point_name = #{entity.pointName}</if>
+	        <if test="entity.evalObjectType != null">and TA_JC_EVAL_COMPLAIN_REVIEWE.eval_object_type = #{entity.evalObjectType}</if>
+	        <if test="entity.pointScore != null">and TA_JC_EVAL_COMPLAIN_REVIEWE.point_score = #{entity.pointScore}</if>
+	        <if test="entity.evalObjectId != null">and TA_JC_EVAL_COMPLAIN_REVIEWE.eval_object_id = #{entity.evalObjectId}</if>
+	        <if test="entity.evalObjectName != null">and TA_JC_EVAL_COMPLAIN_REVIEWE.eval_object_name = #{entity.evalObjectName}</if>
+	        <if test="entity.deductReasons != null">and TA_JC_EVAL_COMPLAIN_REVIEWE.deduct_reasons = #{entity.deductReasons}</if>
+	        <if test="entity.compReasons != null">and TA_JC_EVAL_COMPLAIN_REVIEWE.comp_reasons = #{entity.compReasons}</if>
+	        <if test="entity.orgId != null">and TA_JC_EVAL_COMPLAIN_REVIEWE.org_id = #{entity.orgId}</if>
+	        <if test="entity.orgName != null">and TA_JC_EVAL_COMPLAIN_REVIEWE.org_name = #{entity.orgName}</if>
+	        <if test="entity.evalTime != null">and TA_JC_EVAL_COMPLAIN_REVIEWE.eval_time = #{entity.evalTime}</if>
+	        <if test="entity.compTime != null">and TA_JC_EVAL_COMPLAIN_REVIEWE.comp_time = #{entity.compTime}</if>
+	        <if test="entity.revieweStates != null">and TA_JC_EVAL_COMPLAIN_REVIEWE.reviewe_states = #{entity.revieweStates}</if>
+	        <if test="entity.evalPointValueId != null">and TA_JC_EVAL_COMPLAIN_REVIEWE.eval_point_value_id = #{entity.evalPointValueId}</if>
+			</where>
+</foreach>
+	c2_temp_table ON TA_JC_EVAL_COMPLAIN_REVIEWE.id = c2_temp_table.id
+</select>
+
+<!-- ElementID:selectByID,Generated=true -->
+<select id="selectByID" parameterType="java.lang.String" resultMap="ComplainRevieweResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_EVAL_COMPLAIN_REVIEWE 
+		 where TA_JC_EVAL_COMPLAIN_REVIEWE.id = #{id,jdbcType=VARCHAR}
+</select>
+
+<!-- ElementID:selectByPage,Generated=true -->
+<select id="selectByPage" parameterType="com.chinacreator.dzjc_performance.ComplainReviewe" resultMap="ComplainRevieweResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_EVAL_COMPLAIN_REVIEWE 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+</mapper>

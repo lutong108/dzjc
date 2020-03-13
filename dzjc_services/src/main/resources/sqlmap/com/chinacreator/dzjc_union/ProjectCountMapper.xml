@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"><mapper namespace="com.chinacreator.dzjc_union.ProjectCountMapper">	
+
+<!-- ElementID:column_sql,Generated=true -->
+<sql id="column_sql">
+		  VA_TA_UNION_PROJECT_SUPERVISE_COUNT.xzqm ,
+		  VA_TA_UNION_PROJECT_SUPERVISE_COUNT.project_total ,
+		  VA_TA_UNION_PROJECT_SUPERVISE_COUNT.stage1_total ,
+		  VA_TA_UNION_PROJECT_SUPERVISE_COUNT.stage2_total ,
+		  VA_TA_UNION_PROJECT_SUPERVISE_COUNT.stage3_total ,
+		  VA_TA_UNION_PROJECT_SUPERVISE_COUNT.stage4_total ,
+		  VA_TA_UNION_PROJECT_SUPERVISE_COUNT.stage5_total ,
+		  VA_TA_UNION_PROJECT_SUPERVISE_COUNT.yujing_total ,
+		  VA_TA_UNION_PROJECT_SUPERVISE_COUNT.huangpai_total ,
+		  VA_TA_UNION_PROJECT_SUPERVISE_COUNT.hongpai_total ,
+		  VA_TA_UNION_PROJECT_SUPERVISE_COUNT.stage0_total 
+		  
+</sql>
+
+<!-- ElementID:whereClause_sql,Generated=true -->
+<sql id="whereClause_sql">
+	    <if test="xzqm != null">and VA_TA_UNION_PROJECT_SUPERVISE_COUNT.xzqm = #{xzqm}</if>
+	    <if test="projectTotal != null">and VA_TA_UNION_PROJECT_SUPERVISE_COUNT.project_total = #{projectTotal}</if>
+	    <if test="stage1Total != null">and VA_TA_UNION_PROJECT_SUPERVISE_COUNT.stage1_total = #{stage1Total}</if>
+	    <if test="stage2Total != null">and VA_TA_UNION_PROJECT_SUPERVISE_COUNT.stage2_total = #{stage2Total}</if>
+	    <if test="stage3Total != null">and VA_TA_UNION_PROJECT_SUPERVISE_COUNT.stage3_total = #{stage3Total}</if>
+	    <if test="stage4Total != null">and VA_TA_UNION_PROJECT_SUPERVISE_COUNT.stage4_total = #{stage4Total}</if>
+	    <if test="stage5Total != null">and VA_TA_UNION_PROJECT_SUPERVISE_COUNT.stage5_total = #{stage5Total}</if>
+	    <if test="yujingTotal != null">and VA_TA_UNION_PROJECT_SUPERVISE_COUNT.yujing_total = #{yujingTotal}</if>
+	    <if test="huangpaiTotal != null">and VA_TA_UNION_PROJECT_SUPERVISE_COUNT.huangpai_total = #{huangpaiTotal}</if>
+	    <if test="hongpaiTotal != null">and VA_TA_UNION_PROJECT_SUPERVISE_COUNT.hongpai_total = #{hongpaiTotal}</if>
+</sql>
+
+
+<!-- ElementID:ProjectCountResult,Generated=true -->
+<resultMap id="ProjectCountResult" type="com.chinacreator.dzjc_union.ProjectCount">
+	<id property="xzqm" column="xzqm"/>
+	<result property="projectTotal" column="project_total"/>
+	<result property="stage1Total" column="stage1_total"/>
+	<result property="stage2Total" column="stage2_total"/>
+	<result property="stage3Total" column="stage3_total"/>
+	<result property="stage4Total" column="stage4_total"/>
+	<result property="stage5Total" column="stage5_total"/>
+	<result property="yujingTotal" column="yujing_total"/>
+	<result property="huangpaiTotal" column="huangpai_total"/>
+	<result property="hongpaiTotal" column="hongpai_total"/>
+	<result property="stage0Total" column="stage0_total"/>
+</resultMap>
+
+
+<!-- ElementID:insert,Generated=true -->
+<insert id="insert" parameterType="com.chinacreator.dzjc_union.ProjectCount">
+	insert into VA_TA_UNION_PROJECT_SUPERVISE_COUNT(
+	         <if test="xzqm != null">xzqm</if>
+	         <if test="projectTotal != null">,project_total</if>
+	         <if test="stage1Total != null">,stage1_total</if>
+	         <if test="stage2Total != null">,stage2_total</if>
+	         <if test="stage3Total != null">,stage3_total</if>
+	         <if test="stage4Total != null">,stage4_total</if>
+	         <if test="stage5Total != null">,stage5_total</if>
+	         <if test="yujingTotal != null">,yujing_total</if>
+	         <if test="huangpaiTotal != null">,huangpai_total</if>
+	         <if test="hongpaiTotal != null">,hongpai_total</if>
+	 	 	 )
+	 values (
+	         <if test="xzqm != null">#{xzqm,jdbcType=CHAR}</if>
+	         <if test="projectTotal != null">,#{projectTotal,jdbcType=NUMERIC}</if>
+	         <if test="stage1Total != null">,#{stage1Total,jdbcType=NUMERIC}</if>
+	         <if test="stage2Total != null">,#{stage2Total,jdbcType=NUMERIC}</if>
+	         <if test="stage3Total != null">,#{stage3Total,jdbcType=NUMERIC}</if>
+	         <if test="stage4Total != null">,#{stage4Total,jdbcType=NUMERIC}</if>
+	         <if test="stage5Total != null">,#{stage5Total,jdbcType=NUMERIC}</if>
+	         <if test="yujingTotal != null">,#{yujingTotal,jdbcType=NUMERIC}</if>
+	         <if test="huangpaiTotal != null">,#{huangpaiTotal,jdbcType=NUMERIC}</if>
+	         <if test="hongpaiTotal != null">,#{hongpaiTotal,jdbcType=NUMERIC}</if>
+	 	 	 )
+</insert>
+
+<!-- ElementID:count,Generated=true -->
+<select id="count" parameterType="com.chinacreator.dzjc_union.ProjectCount" resultType="int">
+	select count(*) from VA_TA_UNION_PROJECT_SUPERVISE_COUNT 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<!-- ElementID:update,Generated=true -->
+<update id="update" parameterType="com.chinacreator.dzjc_union.ProjectCount">
+	update VA_TA_UNION_PROJECT_SUPERVISE_COUNT
+<set>
+	<if test="projectTotal != null">project_total=#{projectTotal,jdbcType=NUMERIC},</if>
+	<if test="stage1Total != null">stage1_total=#{stage1Total,jdbcType=NUMERIC},</if>
+	<if test="stage2Total != null">stage2_total=#{stage2Total,jdbcType=NUMERIC},</if>
+	<if test="stage3Total != null">stage3_total=#{stage3Total,jdbcType=NUMERIC},</if>
+	<if test="stage4Total != null">stage4_total=#{stage4Total,jdbcType=NUMERIC},</if>
+	<if test="stage5Total != null">stage5_total=#{stage5Total,jdbcType=NUMERIC},</if>
+	<if test="yujingTotal != null">yujing_total=#{yujingTotal,jdbcType=NUMERIC},</if>
+	<if test="huangpaiTotal != null">huangpai_total=#{huangpaiTotal,jdbcType=NUMERIC},</if>
+	<if test="hongpaiTotal != null">hongpai_total=#{hongpaiTotal,jdbcType=NUMERIC}</if>
+</set>
+<where>
+	<choose>
+        <when test="xzqm != null">and xzqm = #{xzqm}</when>
+        <otherwise>and xzqm = </otherwise>
+    </choose>
+</where>
+</update>
+
+<!-- ElementID:updateNull,Generated=true -->
+<update id="updateNull" parameterType="map">
+	update VA_TA_UNION_PROJECT_SUPERVISE_COUNT
+	<set>
+		<trim suffixOverrides=",">
+		    <if test="projectTotal==null">project_total = null,</if>
+		    <if test="stage1Total==null">stage1_total = null,</if>
+		    <if test="stage2Total==null">stage2_total = null,</if>
+		    <if test="stage3Total==null">stage3_total = null,</if>
+		    <if test="stage4Total==null">stage4_total = null,</if>
+		    <if test="stage5Total==null">stage5_total = null,</if>
+		    <if test="yujingTotal==null">yujing_total = null,</if>
+		    <if test="huangpaiTotal==null">huangpai_total = null,</if>
+		    <if test="hongpaiTotal==null">hongpai_total = null,</if>
+		</trim>
+	</set>
+	<where>
+		<choose>
+			<when test="xzqm != null">and xzqm = #{xzqm}</when>
+			<otherwise>and xzqm = </otherwise>
+		</choose>
+	</where>
+</update>
+
+<!-- ElementID:delete,Generated=true -->
+<delete id="delete" parameterType="com.chinacreator.dzjc_union.ProjectCount">
+    delete from VA_TA_UNION_PROJECT_SUPERVISE_COUNT where 1=1 and xzqm = #{xzqm}
+</delete>
+
+<!-- ElementID:select,Generated=true -->
+<select id="select" parameterType="com.chinacreator.dzjc_union.ProjectCount" resultMap="ProjectCountResult">
+	select 
+		<include refid="column_sql"/>
+	    from VA_TA_UNION_PROJECT_SUPERVISE_COUNT 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+
+<!-- ElementID:insertBatch,Generated=true -->
+<insert id="insertBatch" parameterType="list">
+	insert into VA_TA_UNION_PROJECT_SUPERVISE_COUNT (xzqm,project_total,stage1_total,stage2_total,stage3_total,stage4_total,stage5_total,yujing_total,huangpai_total,hongpai_total) 
+<foreach collection="list" item="entity" index="index" separator="union all">
+		select 
+		#{entity.xzqm,jdbcType = CHAR},
+				#{entity.projectTotal,jdbcType = NUMERIC},
+				#{entity.stage1Total,jdbcType = NUMERIC},
+				#{entity.stage2Total,jdbcType = NUMERIC},
+				#{entity.stage3Total,jdbcType = NUMERIC},
+				#{entity.stage4Total,jdbcType = NUMERIC},
+				#{entity.stage5Total,jdbcType = NUMERIC},
+				#{entity.yujingTotal,jdbcType = NUMERIC},
+				#{entity.huangpaiTotal,jdbcType = NUMERIC},
+				#{entity.hongpaiTotal,jdbcType = NUMERIC}
+		from dual
+</foreach>
+</insert>
+
+<!-- ElementID:deleteBatch,Generated=true -->
+
+
+<!-- ElementID:updateBatch,Generated=true -->
+
+
+<!-- ElementID:selectAll,Generated=true -->
+<select id="selectAll" resultMap="ProjectCountResult">
+	select 
+		<include refid="column_sql"/>
+	    from VA_TA_UNION_PROJECT_SUPERVISE_COUNT 
+</select>
+
+<!-- ElementID:selectMany,Generated=true -->
+<select id="selectMany" parameterType="list" resultMap="ProjectCountResult">
+select 
+	<include refid="column_sql"/> 
+	from VA_TA_UNION_PROJECT_SUPERVISE_COUNT 
+	where VA_TA_UNION_PROJECT_SUPERVISE_COUNT.xzqm in (
+<foreach collection="list" item="entity" separator="intersect">
+		select 
+		VA_TA_UNION_PROJECT_SUPERVISE_COUNT.xzqm
+	    from VA_TA_UNION_PROJECT_SUPERVISE_COUNT 
+		 <where>
+	        <if test="entity.xzqm != null">and VA_TA_UNION_PROJECT_SUPERVISE_COUNT.xzqm = #{entity.xzqm}</if>
+	        <if test="entity.projectTotal != null">and VA_TA_UNION_PROJECT_SUPERVISE_COUNT.project_total = #{entity.projectTotal}</if>
+	        <if test="entity.stage1Total != null">and VA_TA_UNION_PROJECT_SUPERVISE_COUNT.stage1_total = #{entity.stage1Total}</if>
+	        <if test="entity.stage2Total != null">and VA_TA_UNION_PROJECT_SUPERVISE_COUNT.stage2_total = #{entity.stage2Total}</if>
+	        <if test="entity.stage3Total != null">and VA_TA_UNION_PROJECT_SUPERVISE_COUNT.stage3_total = #{entity.stage3Total}</if>
+	        <if test="entity.stage4Total != null">and VA_TA_UNION_PROJECT_SUPERVISE_COUNT.stage4_total = #{entity.stage4Total}</if>
+	        <if test="entity.stage5Total != null">and VA_TA_UNION_PROJECT_SUPERVISE_COUNT.stage5_total = #{entity.stage5Total}</if>
+	        <if test="entity.yujingTotal != null">and VA_TA_UNION_PROJECT_SUPERVISE_COUNT.yujing_total = #{entity.yujingTotal}</if>
+	        <if test="entity.huangpaiTotal != null">and VA_TA_UNION_PROJECT_SUPERVISE_COUNT.huangpai_total = #{entity.huangpaiTotal}</if>
+	        <if test="entity.hongpaiTotal != null">and VA_TA_UNION_PROJECT_SUPERVISE_COUNT.hongpai_total = #{entity.hongpaiTotal}</if>
+		</where>
+</foreach>
+)
+</select>
+
+<!-- ElementID:selectUnion,Generated=true -->
+<select id="selectUnion" parameterType="list" resultMap="ProjectCountResult">
+select 
+	<include refid="column_sql"/> 
+	from VA_TA_UNION_PROJECT_SUPERVISE_COUNT 
+	 INNER JOIN
+<foreach collection="list" item="entity" separator="UNION" open="(" close=")">
+		SELECT 
+			 xzqm
+		FROM VA_TA_UNION_PROJECT_SUPERVISE_COUNT 
+			<where>
+	        <if test="entity.xzqm != null">and VA_TA_UNION_PROJECT_SUPERVISE_COUNT.xzqm = #{entity.xzqm}</if>
+	        <if test="entity.projectTotal != null">and VA_TA_UNION_PROJECT_SUPERVISE_COUNT.project_total = #{entity.projectTotal}</if>
+	        <if test="entity.stage1Total != null">and VA_TA_UNION_PROJECT_SUPERVISE_COUNT.stage1_total = #{entity.stage1Total}</if>
+	        <if test="entity.stage2Total != null">and VA_TA_UNION_PROJECT_SUPERVISE_COUNT.stage2_total = #{entity.stage2Total}</if>
+	        <if test="entity.stage3Total != null">and VA_TA_UNION_PROJECT_SUPERVISE_COUNT.stage3_total = #{entity.stage3Total}</if>
+	        <if test="entity.stage4Total != null">and VA_TA_UNION_PROJECT_SUPERVISE_COUNT.stage4_total = #{entity.stage4Total}</if>
+	        <if test="entity.stage5Total != null">and VA_TA_UNION_PROJECT_SUPERVISE_COUNT.stage5_total = #{entity.stage5Total}</if>
+	        <if test="entity.yujingTotal != null">and VA_TA_UNION_PROJECT_SUPERVISE_COUNT.yujing_total = #{entity.yujingTotal}</if>
+	        <if test="entity.huangpaiTotal != null">and VA_TA_UNION_PROJECT_SUPERVISE_COUNT.huangpai_total = #{entity.huangpaiTotal}</if>
+	        <if test="entity.hongpaiTotal != null">and VA_TA_UNION_PROJECT_SUPERVISE_COUNT.hongpai_total = #{entity.hongpaiTotal}</if>
+			</where>
+</foreach>
+	c2_temp_table ON VA_TA_UNION_PROJECT_SUPERVISE_COUNT.xzqm = c2_temp_table.xzqm
+</select>
+
+<!-- ElementID:selectByID,Generated=true -->
+
+
+<!-- ElementID:selectByPage,Generated=true -->
+<select id="selectByPage" parameterType="com.chinacreator.dzjc_union.ProjectCount" resultMap="ProjectCountResult">
+	select 
+		<include refid="column_sql"/>
+	    from VA_TA_UNION_PROJECT_SUPERVISE_COUNT 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+
+<delete id="deleteBatch" parameterType="List">
+	delete from VA_TA_UNION_PROJECT_SUPERVISE_COUNT where xzqm in
+<trim prefix="(" suffix=")" suffixOverrides=",">
+<foreach collection="list" item="entity" separator=",">
+	<choose>
+		<when test="@com.chinacreator.c2.dao.util.EntityBeanUtil@isEntityObj(entity)">#{entity.xzqm}</when>
+		<otherwise>#{entity}</otherwise>
+	</choose>
+</foreach>
+</trim>
+</delete>
+
+<update id="updateBatch" parameterType="list">
+	<foreach collection="list" item="entity" open="begin" close=";end;" separator=";">
+			update VA_TA_UNION_PROJECT_SUPERVISE_COUNT
+	<set>
+	<if test="entity.projectTotal != null">project_total= #{entity.projectTotal,jdbcType=NUMERIC},</if>
+	<if test="entity.stage1Total != null">stage1_total= #{entity.stage1Total,jdbcType=NUMERIC},</if>
+	<if test="entity.stage2Total != null">stage2_total= #{entity.stage2Total,jdbcType=NUMERIC},</if>
+	<if test="entity.stage3Total != null">stage3_total= #{entity.stage3Total,jdbcType=NUMERIC},</if>
+	<if test="entity.stage4Total != null">stage4_total= #{entity.stage4Total,jdbcType=NUMERIC},</if>
+	<if test="entity.stage5Total != null">stage5_total= #{entity.stage5Total,jdbcType=NUMERIC},</if>
+	<if test="entity.yujingTotal != null">yujing_total= #{entity.yujingTotal,jdbcType=NUMERIC},</if>
+	<if test="entity.huangpaiTotal != null">huangpai_total= #{entity.huangpaiTotal,jdbcType=NUMERIC},</if>
+	<if test="entity.hongpaiTotal != null">hongpai_total= #{entity.hongpaiTotal,jdbcType=NUMERIC}</if>
+	</set>
+		<where>
+			<choose>
+				<when test="entity.xzqm != null">and xzqm = #{entity.xzqm}</when>
+				<otherwise>and xzqm = </otherwise>
+			</choose>
+		</where>
+	</foreach>
+</update>
+
+<select id="selectByID" parameterType="java.lang.String" resultMap="ProjectCountResult">
+	select 
+		<include refid="column_sql"/>
+	    from VA_TA_UNION_PROJECT_SUPERVISE_COUNT 
+		 where VA_TA_UNION_PROJECT_SUPERVISE_COUNT.xzqm = #{xzqm,jdbcType=CHAR}
+</select>
+</mapper>

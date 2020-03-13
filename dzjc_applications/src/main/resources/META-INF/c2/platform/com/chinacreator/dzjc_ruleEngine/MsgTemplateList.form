@@ -1,0 +1,466 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form:Form xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dync="http://www.chinacreator.com/platform/mvc/ui/dync" xmlns:form="http://www.chinacreator.com/platform/mvc/form" name="消息模板列表" res="" sn="dzjc_ruleEngine/MsgTemplateList" type="form">
+  <form:control type="page/normal">
+    <form:attributes source="page/normal">
+      <dync:attribute default="" group="HTML" id="showHead" name="显示标题" value="">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="" group="HTML" id="title" name="标题" value="">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="" group="HTML" id="desc" name="描述" value="">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="false" group="HTML" id="fixedHeight" name="自动高度" value="false">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="false" group="HTML" id="compact" name="紧凑页面" value="false">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="false" group="HTML" id="dirtyCheck" name="脏检查" value="false">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="" group="注入配置" id="angularJsServices" name="注入服务" value="">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="" group="事件" id="afterDataSourceLoad" name="数据源加载后" value="">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="" group="事件" id="onload" name="页面加载完成" value="">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+    </form:attributes>
+  </form:control>
+  <form:child xsi:type="form:Group" id="div1" name="简单容器(DIV)">
+    <form:control type="container/div">
+      <form:attributes source="container/div">
+        <dync:attribute default="" group="高级自定义" id="style" name="自定义style" value="height:30px;">
+          <dync:render colSpan="2" height="0" multi="false" name="text"/>
+          <dync:children/>
+        </dync:attribute>
+      </form:attributes>
+    </form:control>
+  </form:child>
+  <form:child xsi:type="form:Group" id="div" name="简单容器(DIV)">
+    <form:control type="container/div">
+      <form:attributes source="container/div"/>
+    </form:control>
+    <form:child xsi:type="form:Field" binding="$model.list.templateName" id="text" name="模板名称：" customize="true">
+      <form:control type="widget/text">
+        <form:attributes source="widget/text">
+          <dync:attribute default="6" group="基本设置" id="span" name="占位数" value="4">
+            <dync:render colSpan="1" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+      <form:validation/>
+    </form:child>
+    <form:child xsi:type="form:Field" binding="$model.list.templateDesc" id="text1" name="模板描述：" customize="true">
+      <form:control type="widget/text">
+        <form:attributes source="widget/text">
+          <dync:attribute default="6" group="基本设置" id="span" name="占位数" value="4">
+            <dync:render colSpan="1" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+      <form:validation/>
+    </form:child>
+    <form:child xsi:type="form:Field" binding="$model.list.templateType" id="selectSimple" name="业务类型：" customize="true">
+      <form:control type="widget/select_tree">
+        <form:attributes source="widget/select_tree">
+          <dync:attribute default="" group="树数据设置" id="treeBinding" name="树数据源" value="$model.businessTypeName">
+            <dync:render colSpan="1" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="6" group="控件外观" id="span" name="占位数" value="4">
+            <dync:render colSpan="1" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="" group="树事件设置" id="beforeInit" name="初始化树控件之前" value="selectSimple_beforeInit(zTreeOptions)">
+            <dync:render colSpan="1" height="0" multi="false" name="event">
+              <dync:item name="params" value="zTreeOptions"/>
+            </dync:render>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+      <form:validation/>
+    </form:child>
+    <form:child xsi:type="form:Field" binding="$model.list.isPublic" id="selectSimple1" name="是否默认：" customize="true">
+      <form:control type="widget/select_simple">
+        <form:attributes source="widget/select_simple">
+          <dync:attribute default="" group="下拉框设置" id="selectOptions" name="选项" value="[{&quot;id&quot;:&quot;&quot;,&quot;name&quot;:&quot;全部&quot;},{&quot;id&quot;:&quot;默认&quot;,&quot;name&quot;:&quot;默认&quot;},{&quot;id&quot;:&quot;自定义&quot;,&quot;name&quot;:&quot;自定义&quot;}]">
+            <dync:render colSpan="1" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="6" group="基本设置" id="span" name="占位数" value="4">
+            <dync:render colSpan="1" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+      <form:validation/>
+    </form:child>
+    <form:child xsi:type="form:Field" binding="$model.list.isValid" id="selectSimple2" name="是否有效：" customize="true">
+      <form:control type="widget/select_simple">
+        <form:attributes source="widget/select_simple">
+          <dync:attribute default="" group="下拉框设置" id="selectOptions" name="选项" value="[{&quot;id&quot;:&quot;&quot;,&quot;name&quot;:&quot;全部&quot;},{&quot;id&quot;:&quot;有效&quot;,&quot;name&quot;:&quot;有效&quot;},{&quot;id&quot;:&quot;无效&quot;,&quot;name&quot;:&quot;无效&quot;}]">
+            <dync:render colSpan="1" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="6" group="基本设置" id="span" name="占位数" value="4">
+            <dync:render colSpan="1" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+      <form:validation/>
+    </form:child>
+    <form:child xsi:type="form:Field" id="button" name="查询" customize="true">
+      <form:control type="widget/button">
+        <form:attributes source="widget/button">
+          <dync:attribute default="" group="事件设置" id="click" name="点击事件" value="button_click($event)">
+            <dync:render colSpan="1" height="0" multi="false" name="event">
+              <dync:item name="params" value="$event"/>
+            </dync:render>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+      <form:validation/>
+    </form:child>
+    <form:child xsi:type="form:Field" id="button1" name="重置" customize="true">
+      <form:control type="widget/button">
+        <form:attributes source="widget/button">
+          <dync:attribute default="" group="事件设置" id="click" name="点击事件" value="button1_click($event)">
+            <dync:render colSpan="1" height="0" multi="false" name="event">
+              <dync:item name="params" value="$event"/>
+            </dync:render>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+      <form:validation/>
+    </form:child>
+  </form:child>
+  <form:child xsi:type="form:Group" binding="$model.list" id="list" name="grouplist">
+    <form:control type="container/table_jqgrid">
+      <form:attributes source="container/table_jqgrid">
+        <dync:attribute group="表格设置" id="tableKey" name="主键属性" value="template_id">
+          <dync:render/>
+          <dync:children/>
+        </dync:attribute>
+        <dync:attribute default="" group="加载后事件" id="ondblClickRow" name="双击行" value="list_ondblClickRow(rowid,iRow,iCol,e)">
+          <dync:render colSpan="1" height="0" multi="false" name="event">
+            <dync:item name="param" value="rowid,iRow,iCol,e"/>
+          </dync:render>
+          <dync:children/>
+        </dync:attribute>
+      </form:attributes>
+    </form:control>
+    <form:child xsi:type="form:Group" id="toolbar_table" name="toolbar_table">
+      <form:control type="container/toolbar_table">
+        <form:attributes source="container/toolbar_table"/>
+      </form:control>
+      <form:child xsi:type="form:Field" id="buttonAdd" name="新增">
+        <form:control type="widget/button_a_table">
+          <form:attributes source="widget/button_a_table">
+            <dync:attribute default="" group="事件设置" id="click" name="单击事件" value="buttonAdd_click(rowId,rowData,tableData)">
+              <dync:render colSpan="1" height="0" multi="false" name="event">
+                <dync:item name="params" value="rowId,rowData,tableData"/>
+              </dync:render>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute id="icon" value="fa-plus">
+              <dync:render/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute id="iconColor" value="purple">
+              <dync:render/>
+              <dync:children/>
+            </dync:attribute>
+          </form:attributes>
+        </form:control>
+      </form:child>
+      <form:child xsi:type="form:Field" id="buttonDel" name="删除">
+        <form:control type="widget/button_a_table">
+          <form:attributes source="widget/button_a_table">
+            <dync:attribute default="" group="事件设置" id="click" name="单击事件" value="buttonDelete_click(rowId,rowData,tableData)">
+              <dync:render colSpan="1" height="0" multi="false" name="event">
+                <dync:item name="params" value="rowId,rowData,tableData"/>
+              </dync:render>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute id="icon" value="fa-trash-o">
+              <dync:render/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute id="iconColor" value="red">
+              <dync:render/>
+              <dync:children/>
+            </dync:attribute>
+          </form:attributes>
+        </form:control>
+      </form:child>
+      <form:child xsi:type="form:Field" id="buttonEdit" name="编辑">
+        <form:control type="widget/button_a_table">
+          <form:attributes source="widget/button_a_table">
+            <dync:attribute default="" group="事件设置" id="click" name="单击事件" value="buttonEdit_click(rowId,rowData,tableData)">
+              <dync:render colSpan="1" height="0" multi="false" name="event">
+                <dync:item name="params" value="rowId,rowData,tableData"/>
+              </dync:render>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute id="icon" value="fa-pencil">
+              <dync:render/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute id="iconColor" value="blue">
+              <dync:render/>
+              <dync:children/>
+            </dync:attribute>
+          </form:attributes>
+        </form:control>
+      </form:child>
+      <form:child xsi:type="form:Field" id="buttonRefresh" name="刷新">
+        <form:control type="widget/button_a_table">
+          <form:attributes source="widget/button_a_table">
+            <dync:attribute id="clickType" value="refrash">
+              <dync:render/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute id="icon" value="fa-refresh">
+              <dync:render/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute id="iconColor" value="green">
+              <dync:render/>
+              <dync:children/>
+            </dync:attribute>
+          </form:attributes>
+        </form:control>
+      </form:child>
+    </form:child>
+    <form:child xsi:type="form:Field" binding="templateId" id="templateId" name="模版ID">
+      <form:control type="widget/col_jqgrid">
+        <form:attributes source="widget/col_jqgrid">
+          <dync:attribute id="key" value="true">
+            <dync:render/>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute id="hidden" value="true">
+            <dync:render/>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+    </form:child>
+    <form:child xsi:type="form:Field" binding="templateName" id="templateName" name="模板名称">
+      <form:control type="widget/col_jqgrid">
+        <form:attributes source="widget/col_jqgrid">
+          <dync:attribute id="editable" value="true">
+            <dync:render/>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+    </form:child>
+    <form:child xsi:type="form:Field" binding="templateContent" id="templateContent" name="模板内容">
+      <form:control type="widget/col_jqgrid">
+        <form:attributes source="widget/col_jqgrid">
+          <dync:attribute id="editable" value="true">
+            <dync:render/>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="false" group="基本设置" id="title" name="鼠标悬浮显示" value="true">
+            <dync:render colSpan="1" height="0" multi="false" name="checkbox"/>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+    </form:child>
+    <form:child xsi:type="form:Field" binding="templateDesc" id="templateDesc" name="模板描述">
+      <form:control type="widget/col_jqgrid">
+        <form:attributes source="widget/col_jqgrid">
+          <dync:attribute id="editable" value="true">
+            <dync:render/>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+    </form:child>
+    <form:child xsi:type="form:Field" binding="templateType" id="templateType" name="业务类型代码">
+      <form:control type="widget/col_jqgrid">
+        <form:attributes source="widget/col_jqgrid">
+          <dync:attribute id="editable" value="true">
+            <dync:render/>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="false" group="表格设置" id="hidden" name="隐藏列" value="true">
+            <dync:render colSpan="1" height="0" multi="false" name="checkbox"/>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+    </form:child>
+    <form:child xsi:type="form:Field" binding="businessTypeName" id="businessTypeName" name="业务名称">
+      <form:control type="widget/col_jqgrid">
+        <form:attributes source="widget/col_jqgrid">
+          <dync:attribute id="editable" value="true">
+            <dync:render/>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+    </form:child>
+    <form:child xsi:type="form:Field" binding="isValid" id="isValid" name="是否有效">
+      <form:control type="widget/col_jqgrid">
+        <form:attributes source="widget/col_jqgrid">
+          <dync:attribute id="editable" value="true">
+            <dync:render/>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+    </form:child>
+    <form:child xsi:type="form:Field" binding="ccFormInstanceid" id="ccFormInstanceid" name="平台实例编号">
+      <form:control type="widget/col_jqgrid">
+        <form:attributes source="widget/col_jqgrid">
+          <dync:attribute id="editable" value="true">
+            <dync:render/>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="false" group="表格设置" id="hidden" name="隐藏列" value="true">
+            <dync:render colSpan="1" height="0" multi="false" name="checkbox"/>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+    </form:child>
+    <form:child xsi:type="form:Field" binding="isPublic" id="isPublic" name="默认">
+      <form:control type="widget/col_jqgrid">
+        <form:attributes source="widget/col_jqgrid">
+          <dync:attribute id="editable" value="true">
+            <dync:render/>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+    </form:child>
+    <form:child xsi:type="form:Field" binding="areaCode" id="areaCode" name="区域编码">
+      <form:control type="widget/col_jqgrid">
+        <form:attributes source="widget/col_jqgrid">
+          <dync:attribute id="editable" value="true">
+            <dync:render/>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="false" group="表格设置" id="hidden" name="隐藏列" value="true">
+            <dync:render colSpan="1" height="0" multi="false" name="checkbox"/>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+    </form:child>
+  </form:child>
+  <form:datasources>
+    <form:datasource xsi:type="form:PagingDataSource" id="list" name="列表数据源" base="service" sn="dzjc_ruleEngine/v1/msgTemplate" elementType="entity:com.chinacreator.dzjc_ruleEngine.MsgTemplate">
+      <form:entityObj pk="template_id" restResource="true"/>
+    </form:datasource>
+    <form:datasource xsi:type="form:TreeDataSource" id="businessTypeName" name="树型数据源" type="url" url="dzjc_ruleEngine/v1/dicBusinessType/dicBusinessName"/>
+  </form:datasources>
+  <form:scripts>buttonAdd_click:function(rowId,rowData,tableData){&#xD;
+	Modal.open(&quot;f/dzjc_ruleEngine/createMsgTemplate&quot;,{},function(data){&#xD;
+		$view.list.refresh();&#xD;
+	});&#xD;
+},&#xD;
+buttonEdit_click:function(rowId,rowData,tableData){&#xD;
+	var ids = $view.list.getSelectRowIds() ;&#xD;
+	if(ids.length==0){&#xD;
+		Messenger.error(&quot;请选中表格项!&quot;);&#xD;
+	}else if(ids.length==1){&#xD;
+		Modal.open(&quot;f/dzjc_ruleEngine/updateMsgTemplate&quot;,{id:rowId},function(data){&#xD;
+			$view.list.refresh();&#xD;
+		});&#xD;
+	}else{&#xD;
+		Messenger.error(&quot;修改每次只能修改一项，请单选一项修改!&quot;);&#xD;
+	}&#xD;
+},&#xD;
+buttonDelete_click:function(rowId,rowData,tableData){&#xD;
+	var ids = $view.list.getSelectRowIds() ;&#xD;
+	if(ids.length==0){&#xD;
+		Messenger.error(&quot;请选中表格项!&quot;);&#xD;
+	}else{&#xD;
+		Modal.openDelConfirm({message:&quot;确定是否删除！&quot;},&#xD;
+			function(data){&#xD;
+				if(ids.length==1){&#xD;
+					$http.delete(c2.base(&quot;service&quot;)+&quot;dzjc_ruleEngine/v1/msgTemplate/&quot;+ids[0]).success(function(){&#xD;
+						$view.list.refresh();&#xD;
+					});&#xD;
+				}else{&#xD;
+					 var queryStr=&quot;&quot;;&#xD;
+					 for (var i =0; i&lt; ids.length;i++){&#xD;
+						if(i==0){&#xD;
+						   queryStr+=&quot;id=&quot;+ids[i] ;&#xD;
+						}else{&#xD;
+						   queryStr+=&quot;&amp;id=&quot;+ids[i];&#xD;
+						}&#xD;
+					  }&#xD;
+					$http.delete(c2.base(&quot;service&quot;)+&quot;dzjc_ruleEngine/v1/msgTemplate?&quot;+queryStr).success(function(){&#xD;
+						$view.list.refresh();&#xD;
+					});&#xD;
+				 }&#xD;
+		});&#xD;
+	}&#xD;
+},
+
+button_click:function($event){
+	var queryParams = new Array();&#xD;
+	if($model.list.templateName!= '' &amp;&amp; $model.list.templateName!= null){&#xD;
+		queryParams.push({field:&quot;templateName&quot;,op:&quot;cn&quot;,data:$model.list.templateName}) ;&#xD;
+	}&#xD;
+	if($model.list.templateDesc!= '' &amp;&amp; $model.list.templateDesc!= null){&#xD;
+		queryParams.push({field:&quot;templateDesc&quot;,op:&quot;cn&quot;,data:$model.list.templateDesc}) ;&#xD;
+	}&#xD;
+	if($model.list.templateType!= '' &amp;&amp; $model.list.templateType!= null){&#xD;
+		queryParams.push({field:&quot;templateType&quot;,op:&quot;cn&quot;,data:$model.list.templateType}) ;&#xD;
+	}&#xD;
+	if($model.list.isValid!= '' &amp;&amp; $model.list.isValid!= null){&#xD;
+		queryParams.push({field:&quot;isValid&quot;,op:&quot;eq&quot;,data:$model.list.isValid}) ;&#xD;
+	}&#xD;
+	if($model.list.isPublic!= '' &amp;&amp; $model.list.isPublic!= null){&#xD;
+		queryParams.push({field:&quot;isPublic&quot;,op:&quot;eq&quot;,data:$model.list.isPublic}) ;&#xD;
+	}&#xD;
+	if(queryParams.length != 0 ){&#xD;
+		var filters={groupOp:&quot;AND&quot;,rules:queryParams}&#xD;
+		$view.list.refresh({filters:filters});&#xD;
+	}else{&#xD;
+		$view.list.refresh({});&#xD;
+	}
+},
+
+button1_click:function($event){
+	$view.mainForm.clean();&#xD;
+	$view.list.refresh({});
+},
+
+list_ondblClickRow:function(rowid,iRow,iCol,e){&#xD;
+	if(rowid){&#xD;
+		Modal.open(&quot;f/dzjc_ruleEngine/updateMsgTemplate&quot;,{id:rowid},function(data){&#xD;
+			$view.list.refresh();&#xD;
+		});&#xD;
+	}else{&#xD;
+		Messenger.error(&quot;请选中表格项!&quot;);&#xD;
+	}
+}</form:scripts>
+</form:Form>

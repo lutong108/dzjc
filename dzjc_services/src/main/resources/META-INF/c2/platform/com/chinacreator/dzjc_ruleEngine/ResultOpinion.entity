@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity:Entity xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cdata="http://www.chinacreator.com/platform/mvc/cdata" xmlns:docket="http://www.chinacreator.com/platform/mvc/docket" xmlns:entity="http://www.chinacreator.com/platform/mvc/entity" dbType="Oracle" sn="dzjc_ruleEngine/v1/resultOpinion">
+  <docket:name>审批结果意见</docket:name>
+  <docket:createType>来自数据库</docket:createType>
+  <docket:primaryKey>
+    <docket:pkAttribute attribute="opinion_id" type="UUID"/>
+  </docket:primaryKey>
+  <docket:attributes>
+    <docket:attribute code="opinion_id" length="50" name="意见ID" nullable="false" type="string64" default="">
+      <docket:valueRange xsi:type="cdata:AllValueRange"/>
+    </docket:attribute>
+    <docket:attribute code="instance_id" length="50" name="实例ID" nullable="false" type="string64" default="">
+      <docket:valueRange xsi:type="cdata:AllValueRange"/>
+    </docket:attribute>
+    <docket:attribute code="opinion_content" length="1000" name="意见内容" nullable="false" type="string1024" default="">
+      <docket:valueRange xsi:type="cdata:AllValueRange"/>
+    </docket:attribute>
+    <docket:attribute code="user_name" length="50" name="审核人名称" nullable="false" type="string64" default="">
+      <docket:valueRange xsi:type="cdata:AllValueRange"/>
+    </docket:attribute>
+    <docket:attribute code="opinion_time" length="7" name="审核时间" nullable="false" type="date" default="sysdate&#xA;">
+      <docket:valueRange xsi:type="cdata:AllValueRange"/>
+    </docket:attribute>
+    <docket:attribute code="tache_name" length="100" name="环节名称" nullable="false" type="string128" default="">
+      <docket:valueRange xsi:type="cdata:AllValueRange"/>
+    </docket:attribute>
+    <docket:attribute code="user_id" length="50" name="审核人ID" nullable="true" type="string64" default="">
+      <docket:valueRange xsi:type="cdata:AllValueRange"/>
+    </docket:attribute>
+    <docket:attribute code="handle_result" length="50" name="处理结果(是：通过；否：回退; 特别程序申请;特别申请结果;)" nullable="false" type="string64" default="'是' ">
+      <docket:valueRange xsi:type="cdata:AllValueRange"/>
+    </docket:attribute>
+    <docket:attribute code="is_exchange" length="1" name="是否已交换(N/Y,默认:N)" nullable="true" type="string5" default="'N'&#xA;">
+      <docket:valueRange xsi:type="cdata:AllValueRange"/>
+    </docket:attribute>
+    <docket:attribute code="mod_flag" length="1" name="是否已交换标志2(N/Y,默认:N)" nullable="true" type="string5" default="'N'&#xA;">
+      <docket:valueRange xsi:type="cdata:AllValueRange"/>
+    </docket:attribute>
+    <docket:attribute code="business_key" length="255" name="业务标识" nullable="true" type="string256">
+      <docket:valueRange xsi:type="cdata:AllValueRange"/>
+    </docket:attribute>
+    <docket:attribute code="type" length="2" name="意见类型（1:受理;2:中间环节;3:办结）" nullable="true" type="string5" default="">
+      <docket:valueRange xsi:type="cdata:AllValueRange"/>
+    </docket:attribute>
+    <docket:attribute code="org_id" length="50" name="环节归属单位" nullable="true" type="string64" default="">
+      <docket:valueRange xsi:type="cdata:AllValueRange"/>
+    </docket:attribute>
+    <docket:attribute code="begin_time" length="7" name="环节开始时间" nullable="true" type="date" default="">
+      <docket:valueRange xsi:type="cdata:AllValueRange"/>
+    </docket:attribute>
+    <docket:attribute code="link_time" length="0" name="环节时限" nullable="true" type="bigdouble" default="">
+      <docket:valueRange xsi:type="cdata:AllValueRange"/>
+    </docket:attribute>
+    <docket:attribute code="link_flag" length="2" name="环节办理标志（1，已办环节；2，待办环节）" nullable="true" type="string5" default="">
+      <docket:valueRange xsi:type="cdata:AllValueRange"/>
+    </docket:attribute>
+    <docket:attribute code="mark_id" length="100" name="流程唯一id，用于调益政接口，获取该环节相关责任人列表" nullable="true" type="string128" default="">
+      <docket:valueRange xsi:type="cdata:AllValueRange"/>
+    </docket:attribute>
+    <docket:attribute code="is_need_supervise" length="2" name="是否需要监察：Y：需要；N：不需要；默认Y" nullable="true" type="string5" default="'Y'">
+      <docket:valueRange xsi:type="cdata:AllValueRange"/>
+    </docket:attribute>
+    <docket:attribute code="last_supervise" length="2" name="最近发牌" nullable="true" type="string5" default="">
+      <docket:valueRange xsi:type="cdata:AllValueRange"/>
+    </docket:attribute>
+    <docket:attribute code="time_use" length="30" name="环节使用时长" nullable="true" type="bigdouble" default="">
+      <docket:valueRange xsi:type="cdata:AllValueRange"/>
+    </docket:attribute>
+    <docket:attribute code="supervise_time" length="7" name="监察日期" nullable="true" type="date" default="">
+      <docket:valueRange xsi:type="cdata:AllValueRange"/>
+    </docket:attribute>
+    <docket:attribute code="work_time" length="128" name="工作时间拼接的字符串" nullable="true" type="string128">
+      <docket:valueRange xsi:type="cdata:AllValueRange"/>
+    </docket:attribute>
+    <docket:attribute code="holiday_count" length="10" name="节假日天数" nullable="true" type="int">
+      <docket:valueRange xsi:type="cdata:AllValueRange"/>
+    </docket:attribute>
+    <docket:attribute code="supervise_flag" length="5" name="监察标识：Y：正常；N：异常，如果开始时间或环节时限为空，则会修改该字段为N" nullable="true" type="string5" default="">
+      <docket:valueRange xsi:type="cdata:AllValueRange"/>
+    </docket:attribute>
+  </docket:attributes>
+  <docket:subDokcets/>
+  <docket:events/>
+  <docket:table ds="acceptdata" table="TA_SP_RESULT_OPINION"/>
+  <docket:cache>false</docket:cache>
+  <docket:sequenceName>TA_SP_RESULT_OPINION_SEQ</docket:sequenceName>
+  <docket:restResource>true</docket:restResource>
+  <entity:datas/>
+  <entity:views/>
+</entity:Entity>

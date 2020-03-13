@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"><mapper namespace="com.chinacreator.dzjc_tongji.OrgCacheConfigMapper">	
+
+<!-- ElementID:column_sql,Generated=true -->
+<sql id="column_sql">
+		  TA_JC_TONGJI_ORGCACHE_CONFIG.org_id ,
+		  TA_JC_TONGJI_ORGCACHE_CONFIG.org_name 
+</sql>
+
+<!-- ElementID:whereClause_sql,Generated=true -->
+<sql id="whereClause_sql">
+	    <if test="orgId != null">and TA_JC_TONGJI_ORGCACHE_CONFIG.org_id = #{orgId}</if>
+	    <if test="orgName != null">and TA_JC_TONGJI_ORGCACHE_CONFIG.org_name = #{orgName}</if>
+</sql>
+
+
+<!-- ElementID:OrgCacheConfigResult,Generated=true -->
+<resultMap id="OrgCacheConfigResult" type="com.chinacreator.dzjc_tongji.OrgCacheConfig">
+	<id property="orgId" column="org_id"/>
+	<result property="orgName" column="org_name"/>
+</resultMap>
+
+
+<!-- ElementID:insert,Generated=true -->
+<insert id="insert" parameterType="com.chinacreator.dzjc_tongji.OrgCacheConfig">
+	insert into TA_JC_TONGJI_ORGCACHE_CONFIG(
+	         <if test="orgId != null">org_id</if>
+	         <if test="orgName != null">,org_name</if>
+	 	 	 )
+	 values (
+	         <if test="orgId != null">#{orgId,jdbcType=VARCHAR}</if>
+	         <if test="orgName != null">,#{orgName,jdbcType=VARCHAR}</if>
+	 	 	 )
+</insert>
+
+<!-- ElementID:count,Generated=true -->
+<select id="count" parameterType="com.chinacreator.dzjc_tongji.OrgCacheConfig" resultType="int">
+	select count(*) from TA_JC_TONGJI_ORGCACHE_CONFIG 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<!-- ElementID:update,Generated=true -->
+<update id="update" parameterType="com.chinacreator.dzjc_tongji.OrgCacheConfig">
+	update TA_JC_TONGJI_ORGCACHE_CONFIG
+<set>
+	<if test="orgName != null">org_name=#{orgName,jdbcType=VARCHAR}</if>
+</set>
+<where>
+	<choose>
+        <when test="orgId != null">and org_id = #{orgId}</when>
+        <otherwise>and org_id = </otherwise>
+    </choose>
+</where>
+</update>
+
+<!-- ElementID:updateNull,Generated=true -->
+<update id="updateNull" parameterType="map">
+	update TA_JC_TONGJI_ORGCACHE_CONFIG
+	<set>
+		<trim suffixOverrides=",">
+		    <if test="orgName==null">org_name = null,</if>
+		</trim>
+	</set>
+	<where>
+		<choose>
+			<when test="orgId != null">and org_id = #{orgId}</when>
+			<otherwise>and org_id = </otherwise>
+		</choose>
+	</where>
+</update>
+
+<!-- ElementID:delete,Generated=true -->
+<delete id="delete" parameterType="com.chinacreator.dzjc_tongji.OrgCacheConfig">
+    delete from TA_JC_TONGJI_ORGCACHE_CONFIG where 1=1 and org_id = #{orgId}
+</delete>
+
+<!-- ElementID:select,Generated=true -->
+<select id="select" parameterType="com.chinacreator.dzjc_tongji.OrgCacheConfig" resultMap="OrgCacheConfigResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_TONGJI_ORGCACHE_CONFIG 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+
+<!-- ElementID:insertBatch,Generated=true -->
+<insert id="insertBatch" parameterType="list">
+	insert into TA_JC_TONGJI_ORGCACHE_CONFIG (org_id,org_name) 
+<foreach collection="list" item="entity" index="index" separator="union all">
+		select 
+		#{entity.orgId,jdbcType = VARCHAR},
+				#{entity.orgName,jdbcType = VARCHAR}
+		from dual
+</foreach>
+</insert>
+
+<!-- ElementID:deleteBatch,Generated=true -->
+<delete id="deleteBatch" parameterType="List">
+	delete from TA_JC_TONGJI_ORGCACHE_CONFIG where org_id in
+<trim prefix="(" suffix=")" suffixOverrides=",">
+<foreach collection="list" item="entity" separator=",">
+	<choose>
+		<when test="@com.chinacreator.c2.dao.util.EntityBeanUtil@isEntityObj(entity)">#{entity.orgId}</when>
+		<otherwise>#{entity}</otherwise>
+	</choose>
+</foreach>
+</trim>
+</delete>
+
+<!-- ElementID:updateBatch,Generated=true -->
+<update id="updateBatch" parameterType="list">
+	<foreach collection="list" item="entity" open="begin" close=";end;" separator=";">
+			update TA_JC_TONGJI_ORGCACHE_CONFIG
+	<set>
+	<if test="entity.orgName != null">org_name= #{entity.orgName,jdbcType=VARCHAR}</if>
+	</set>
+		<where>
+			<choose>
+				<when test="entity.orgId != null">and org_id = #{entity.orgId}</when>
+				<otherwise>and org_id = </otherwise>
+			</choose>
+		</where>
+	</foreach>
+</update>
+
+<!-- ElementID:selectAll,Generated=true -->
+<select id="selectAll" resultMap="OrgCacheConfigResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_TONGJI_ORGCACHE_CONFIG 
+</select>
+
+<!-- ElementID:selectMany,Generated=true -->
+<select id="selectMany" parameterType="list" resultMap="OrgCacheConfigResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_JC_TONGJI_ORGCACHE_CONFIG 
+	where TA_JC_TONGJI_ORGCACHE_CONFIG.org_id in (
+<foreach collection="list" item="entity" separator="intersect">
+		select 
+		TA_JC_TONGJI_ORGCACHE_CONFIG.org_id
+	    from TA_JC_TONGJI_ORGCACHE_CONFIG 
+		 <where>
+	        <if test="entity.orgId != null">and TA_JC_TONGJI_ORGCACHE_CONFIG.org_id = #{entity.orgId}</if>
+	        <if test="entity.orgName != null">and TA_JC_TONGJI_ORGCACHE_CONFIG.org_name = #{entity.orgName}</if>
+		</where>
+</foreach>
+)
+</select>
+
+<!-- ElementID:selectUnion,Generated=true -->
+<select id="selectUnion" parameterType="list" resultMap="OrgCacheConfigResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_JC_TONGJI_ORGCACHE_CONFIG 
+	 INNER JOIN
+<foreach collection="list" item="entity" separator="UNION" open="(" close=")">
+		SELECT 
+			 org_id
+		FROM TA_JC_TONGJI_ORGCACHE_CONFIG 
+			<where>
+	        <if test="entity.orgId != null">and TA_JC_TONGJI_ORGCACHE_CONFIG.org_id = #{entity.orgId}</if>
+	        <if test="entity.orgName != null">and TA_JC_TONGJI_ORGCACHE_CONFIG.org_name = #{entity.orgName}</if>
+			</where>
+</foreach>
+	c2_temp_table ON TA_JC_TONGJI_ORGCACHE_CONFIG.org_id = c2_temp_table.org_id
+</select>
+
+<!-- ElementID:selectByID,Generated=true -->
+<select id="selectByID" parameterType="java.lang.String" resultMap="OrgCacheConfigResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_TONGJI_ORGCACHE_CONFIG 
+		 where TA_JC_TONGJI_ORGCACHE_CONFIG.org_id = #{orgId,jdbcType=VARCHAR}
+</select>
+
+<!-- ElementID:selectByPage,Generated=false -->
+<select id="selectByPage" parameterType="com.chinacreator.dzjc_tongji.OrgCacheConfig" resultMap="OrgCacheConfigResult">
+	select 
+		TA_JC_TONGJI_ORGCACHE_CONFIG.org_id org_id,
+		v_jc_org.NAME ORG_NAME
+	    from TA_JC_TONGJI_ORGCACHE_CONFIG left join v_jc_org
+      on TA_JC_TONGJI_ORGCACHE_CONFIG.org_id = v_jc_org.id
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+</mapper>

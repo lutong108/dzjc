@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"><mapper namespace="com.chinacreator.dzjc_performance.DicEvalPointClassMapper">	
+
+<!-- ElementID:column_sql,Generated=true -->
+<sql id="column_sql">
+		  TA_JC_DIC_EVALPOINT_CLASS.point_type_id ,
+		  TA_JC_DIC_EVALPOINT_CLASS.parent_pointtype_id ,
+		  TA_JC_DIC_EVALPOINT_CLASS.point_type_name ,
+		  TA_JC_DIC_EVALPOINT_CLASS.remark ,
+		  TA_JC_DIC_EVALPOINT_CLASS.area_code ,
+		  TA_JC_DIC_EVALPOINT_CLASS.order_no ,
+		  TA_JC_DIC_EVALPOINT_CLASS.is_valid ,
+		  TA_JC_DIC_EVALPOINT_CLASS.cc_form_instanceid ,
+		  TA_JC_DIC_EVALPOINT_CLASS.is_public 
+		   TA_JC_DIC_EVALPOINT_CLASS.value ,
+          TA_JC_DIC_EVALPOINT_CLASS.proportion,
+          TA_JC_DIC_EVALPOINT_CLASS.is_parent
+</sql>
+
+<!-- ElementID:whereClause_sql,Generated=false -->
+<sql id="whereClause_sql">
+	    <if test="pointTypeId != null">and TA_JC_DIC_EVALPOINT_CLASS.point_type_id = #{pointTypeId}</if>
+	    <if test="parentPointtypeId != null">and TA_JC_DIC_EVALPOINT_CLASS.parent_pointtype_id = #{parentPointtypeId}</if>
+	    <if test="pointTypeName != null">and TA_JC_DIC_EVALPOINT_CLASS.point_type_name = #{pointTypeName}</if>
+	    <if test="remark != null">and TA_JC_DIC_EVALPOINT_CLASS.remark = #{remark}</if>
+	    <if test="areaCode != null">and TA_JC_DIC_EVALPOINT_CLASS.area_code = #{areaCode}</if>
+	    <if test="orderNo != null">and TA_JC_DIC_EVALPOINT_CLASS.order_no = #{orderNo}</if>
+	    <if test="isValid != null">and TA_JC_DIC_EVALPOINT_CLASS.is_valid = #{isValid}</if>
+	    <if test="ccFormInstanceid != null">and TA_JC_DIC_EVALPOINT_CLASS.cc_form_instanceid = #{ccFormInstanceid}</if>
+	    <if test="isPublic != null">and TA_JC_DIC_EVALPOINT_CLASS.is_public = #{isPublic}</if>
+	    <if test="value != null">and TA_JC_DIC_EVALPOINT_CLASS.value = #{value}</if>
+        <if test="proportion != null">and TA_JC_DIC_EVALPOINT_CLASS.proportion = #{proportion}</if>
+        <if test="isParent != null">and TA_JC_DIC_EVALPOINT_CLASS.is_parent = #{isParent}</if>
+        
+</sql>
+
+<!-- ElementID:whereClause_sql,Generated=false -->
+<sql id="whereClause_sql_exp">
+	    <if test="pointTypeId != null">and a.point_type_id = #{pointTypeId}</if>
+	    <if test="parentPointtypeId != null">and a.parent_pointtype_id = #{parentPointtypeId}</if>
+	    <if test="pointTypeName != null">and a.point_type_name = #{pointTypeName}</if>
+	    <if test="remark != null">and a.remark = #{remark}</if>
+	    <if test="areaCode != null">and a.area_code = #{areaCode}</if>
+	    <if test="orderNo != null">and a.order_no = #{orderNo}</if>
+	    <if test="isValid != null">and a.is_valid = #{isValid}</if>
+	    <if test="ccFormInstanceid != null">and a.cc_form_instanceid = #{ccFormInstanceid}</if>
+	    <if test="isPublic != null">and a.is_public = #{isPublic}</if>
+	    <if test="parentPointtypeName != null">and a.parent_pointtype_name = #{parentPointtypeName}</if>
+	    <if test="value != null">and TA_JC_DIC_EVALPOINT_CLASS.value = #{value}</if>
+        <if test="proportion != null">and TA_JC_DIC_EVALPOINT_CLASS.proportion = #{proportion}</if>
+        <if test="isParent != null">and TA_JC_DIC_EVALPOINT_CLASS.is_parent = #{isParent}</if>
+</sql>
+
+
+<!-- ElementID:DicEvalPointClassResult,Generated=false -->
+<resultMap id="DicEvalPointClassResult" type="com.chinacreator.dzjc_performance.DicEvalPointClass">
+	<id property="pointTypeId" column="point_type_id"/>
+	<result property="parentPointtypeId" column="parent_pointtype_id"/>
+	<result property="pointTypeName" column="point_type_name"/>
+	<result property="remark" column="remark"/>
+	<result property="areaCode" column="area_code"/>
+	<result property="orderNo" column="order_no"/>
+	<result property="isValid" column="is_valid"/>
+	<result property="ccFormInstanceid" column="cc_form_instanceid"/>
+	<result property="isPublic" column="is_public"/>
+	<result property="value" column="value"/>
+    <result property="proportion" column="proportion"/>
+    <result property="isParent" column="is_parent"/>
+</resultMap>
+
+<!-- ElementID:DicEvalPointClassResult,Generated=false -->
+<resultMap id="DicEvalPointClassResultExp" type="com.chinacreator.dzjc_performance.DicEvalPointClassExp">
+	<id property="pointTypeId" column="point_type_id"/>
+	<result property="parentPointtypeId" column="parent_pointtype_id"/>
+	<result property="parentPointtypeName" column="parent_pointtype_name"/>
+	<result property="pointTypeName" column="point_type_name"/>
+	<result property="remark" column="remark"/>
+	<result property="areaCode" column="area_code"/>
+	<result property="orderNo" column="order_no"/>
+	<result property="isValid" column="is_valid"/>
+	<result property="ccFormInstanceid" column="cc_form_instanceid"/>
+	<result property="isPublic" column="is_public"/>
+	<result property="value" column="value"/>
+	<result property="proportion" column="proportion"/>
+	<result property="isParent" column="is_parent"/>
+	<result property="areaName" column="area_name"/>
+</resultMap>
+
+
+<!-- ElementID:insert,Generated=true -->
+<insert id="insert" parameterType="com.chinacreator.dzjc_performance.DicEvalPointClass">
+	insert into TA_JC_DIC_EVALPOINT_CLASS(
+	         <if test="pointTypeId != null">point_type_id</if>
+	         <if test="parentPointtypeId != null">,parent_pointtype_id</if>
+	         <if test="pointTypeName != null">,point_type_name</if>
+	         <if test="remark != null">,remark</if>
+	         <if test="areaCode != null">,area_code</if>
+	         <if test="orderNo != null">,order_no</if>
+	         <if test="isValid != null">,is_valid</if>
+	         <if test="ccFormInstanceid != null">,cc_form_instanceid</if>
+	         <if test="isPublic != null">,is_public</if>
+	         <if test="value != null">,value</if>
+	         <if test="proportion != null">,proportion</if>
+	         <if test="isParent != null">,is_parent</if>
+	 	 	 )
+	 values (
+	         <if test="pointTypeId != null">#{pointTypeId,jdbcType=VARCHAR}</if>
+	         <if test="parentPointtypeId != null">,#{parentPointtypeId,jdbcType=VARCHAR}</if>
+	         <if test="pointTypeName != null">,#{pointTypeName,jdbcType=VARCHAR}</if>
+	         <if test="remark != null">,#{remark,jdbcType=VARCHAR}</if>
+	         <if test="areaCode != null">,#{areaCode,jdbcType=VARCHAR}</if>
+	         <if test="orderNo != null">,#{orderNo,jdbcType=NUMERIC}</if>
+	         <if test="isValid != null">,#{isValid,jdbcType=VARCHAR}</if>
+	         <if test="ccFormInstanceid != null">,#{ccFormInstanceid,jdbcType=VARCHAR}</if>
+	         <if test="isPublic != null">,#{isPublic,jdbcType=VARCHAR}</if>
+	         <if test="value != null">,#{value,jdbcType=NUMERIC}</if>
+	         <if test="proportion != null">,#{proportion,jdbcType=VARCHAR}</if>
+	         <if test="isParent != null">,#{isParent,jdbcType=CHAR}</if>
+	 	 	 )
+</insert>
+
+<!-- ElementID:count,Generated=true -->
+<select id="count" parameterType="com.chinacreator.dzjc_performance.DicEvalPointClass" resultType="int">
+	select count(*) from TA_JC_DIC_EVALPOINT_CLASS 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<!-- ElementID:update,Generated=true -->
+<update id="update" parameterType="com.chinacreator.dzjc_performance.DicEvalPointClass">
+	update TA_JC_DIC_EVALPOINT_CLASS
+<set>
+	<if test="parentPointtypeId != null">parent_pointtype_id=#{parentPointtypeId,jdbcType=VARCHAR},</if>
+	<if test="pointTypeName != null">point_type_name=#{pointTypeName,jdbcType=VARCHAR},</if>
+	<if test="remark != null">remark=#{remark,jdbcType=VARCHAR},</if>
+	<if test="areaCode != null">area_code=#{areaCode,jdbcType=VARCHAR},</if>
+	<if test="orderNo != null">order_no=#{orderNo,jdbcType=NUMERIC},</if>
+	<if test="isValid != null">is_valid=#{isValid,jdbcType=VARCHAR},</if>
+	<if test="ccFormInstanceid != null">cc_form_instanceid=#{ccFormInstanceid,jdbcType=VARCHAR},</if>
+	<if test="isPublic != null">is_public=#{isPublic,jdbcType=VARCHAR},</if>
+	<if test="value != null">value=#{value,jdbcType=NUMERIC},</if>
+	<if test="proportion != null">proportion=#{proportion,jdbcType=VARCHAR},</if>
+	<if test="isParent != null">is_parent=#{isParent,jdbcType=CHAR}</if>
+</set>
+<where>
+	<choose>
+        <when test="pointTypeId != null">and point_type_id = #{pointTypeId}</when>
+        <otherwise>and point_type_id = </otherwise>
+    </choose>
+</where>
+</update>
+
+<!-- ElementID:updateNull,Generated=true -->
+<update id="updateNull" parameterType="map">
+	update TA_JC_DIC_EVALPOINT_CLASS
+	<set>
+		<trim suffixOverrides=",">
+		    <if test="parentPointtypeId==null">parent_pointtype_id = null,</if>
+		    <if test="pointTypeName==null">point_type_name = null,</if>
+		    <if test="remark==null">remark = null,</if>
+		    <if test="areaCode==null">area_code = null,</if>
+		    <if test="orderNo==null">order_no = null,</if>
+		    <if test="isValid==null">is_valid = null,</if>
+		    <if test="ccFormInstanceid==null">cc_form_instanceid = null,</if>
+		    <if test="isPublic==null">is_public = null,</if>
+		    <if test="value==null">value = null,</if>
+		    <if test="proportion==null">proportion = null,</if>
+		    <if test="isParent==null">is_parent = null,</if>
+		</trim>
+	</set>
+	<where>
+		<choose>
+			<when test="pointTypeId != null">and point_type_id = #{pointTypeId}</when>
+			<otherwise>and point_type_id = </otherwise>
+		</choose>
+	</where>
+</update>
+
+<!-- ElementID:delete,Generated=true -->
+<delete id="delete" parameterType="com.chinacreator.dzjc_performance.DicEvalPointClass">
+    delete from TA_JC_DIC_EVALPOINT_CLASS where 1=1 and point_type_id = #{pointTypeId}
+</delete>
+
+<!-- ElementID:select,Generated=true -->
+<select id="select" parameterType="com.chinacreator.dzjc_performance.DicEvalPointClass" resultMap="DicEvalPointClassResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_DIC_EVALPOINT_CLASS 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+
+<!-- ElementID:insertBatch,Generated=true -->
+<insert id="insertBatch" parameterType="list">
+	insert into TA_JC_DIC_EVALPOINT_CLASS (point_type_id,parent_pointtype_id,point_type_name,remark,area_code,order_no,is_valid,cc_form_instanceid,is_public,value,proportion,is_parent) 
+<foreach collection="list" item="entity" index="index" separator="union all">
+		select 
+		#{entity.pointTypeId,jdbcType = VARCHAR},
+				#{entity.parentPointtypeId,jdbcType = VARCHAR},
+				#{entity.pointTypeName,jdbcType = VARCHAR},
+				#{entity.remark,jdbcType = VARCHAR},
+				#{entity.areaCode,jdbcType = VARCHAR},
+				#{entity.orderNo,jdbcType = NUMERIC},
+				#{entity.isValid,jdbcType = VARCHAR},
+				#{entity.ccFormInstanceid,jdbcType = VARCHAR},
+				#{entity.isPublic,jdbcType = VARCHAR},
+				#{entity.value,jdbcType = NUMERIC},
+				#{entity.proportion,jdbcType = VARCHAR},
+				#{entity.isParent,jdbcType = CHAR}
+		from dual
+</foreach>
+</insert>
+
+<!-- ElementID:deleteBatch,Generated=true -->
+<delete id="deleteBatch" parameterType="List">
+	delete from TA_JC_DIC_EVALPOINT_CLASS where point_type_id in
+<trim prefix="(" suffix=")" suffixOverrides=",">
+<foreach collection="list" item="entity" separator=",">
+	<choose>
+		<when test="@com.chinacreator.c2.dao.util.EntityBeanUtil@isEntityObj(entity)">#{entity.pointTypeId}</when>
+		<otherwise>#{entity}</otherwise>
+	</choose>
+</foreach>
+</trim>
+</delete>
+
+<!-- ElementID:updateBatch,Generated=true -->
+<update id="updateBatch" parameterType="list">
+	<foreach collection="list" item="entity" open="begin" close=";end;" separator=";">
+			update TA_JC_DIC_EVALPOINT_CLASS
+	<set>
+	<if test="entity.parentPointtypeId != null">parent_pointtype_id= #{entity.parentPointtypeId,jdbcType=VARCHAR},</if>
+	<if test="entity.pointTypeName != null">point_type_name= #{entity.pointTypeName,jdbcType=VARCHAR},</if>
+	<if test="entity.remark != null">remark= #{entity.remark,jdbcType=VARCHAR},</if>
+	<if test="entity.areaCode != null">area_code= #{entity.areaCode,jdbcType=VARCHAR},</if>
+	<if test="entity.orderNo != null">order_no= #{entity.orderNo,jdbcType=NUMERIC},</if>
+	<if test="entity.isValid != null">is_valid= #{entity.isValid,jdbcType=VARCHAR},</if>
+	<if test="entity.ccFormInstanceid != null">cc_form_instanceid= #{entity.ccFormInstanceid,jdbcType=VARCHAR},</if>
+	<if test="entity.isPublic != null">is_public= #{entity.isPublic,jdbcType=VARCHAR},</if>
+	<if test="entity.value != null">value= #{entity.value,jdbcType=NUMERIC},</if>
+	<if test="entity.proportion != null">proportion= #{entity.proportion,jdbcType=VARCHAR},</if>
+	<if test="entity.isParent != null">is_parent= #{entity.isParent,jdbcType=CHAR}</if>
+	</set>
+		<where>
+			<choose>
+				<when test="entity.pointTypeId != null">and point_type_id = #{entity.pointTypeId}</when>
+				<otherwise>and point_type_id = </otherwise>
+			</choose>
+		</where>
+	</foreach>
+</update>
+
+<!-- ElementID:selectAll,Generated=true -->
+<select id="selectAll" resultMap="DicEvalPointClassResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_DIC_EVALPOINT_CLASS 
+</select>
+
+<!-- ElementID:selectMany,Generated=true -->
+<select id="selectMany" parameterType="list" resultMap="DicEvalPointClassResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_JC_DIC_EVALPOINT_CLASS 
+	where TA_JC_DIC_EVALPOINT_CLASS.point_type_id in (
+<foreach collection="list" item="entity" separator="intersect">
+		select 
+		TA_JC_DIC_EVALPOINT_CLASS.point_type_id
+	    from TA_JC_DIC_EVALPOINT_CLASS 
+		 <where>
+	        <if test="entity.pointTypeId != null">and TA_JC_DIC_EVALPOINT_CLASS.point_type_id = #{entity.pointTypeId}</if>
+	        <if test="entity.parentPointtypeId != null">and TA_JC_DIC_EVALPOINT_CLASS.parent_pointtype_id = #{entity.parentPointtypeId}</if>
+	        <if test="entity.pointTypeName != null">and TA_JC_DIC_EVALPOINT_CLASS.point_type_name = #{entity.pointTypeName}</if>
+	        <if test="entity.remark != null">and TA_JC_DIC_EVALPOINT_CLASS.remark = #{entity.remark}</if>
+	        <if test="entity.areaCode != null">and TA_JC_DIC_EVALPOINT_CLASS.area_code = #{entity.areaCode}</if>
+	        <if test="entity.orderNo != null">and TA_JC_DIC_EVALPOINT_CLASS.order_no = #{entity.orderNo}</if>
+	        <if test="entity.isValid != null">and TA_JC_DIC_EVALPOINT_CLASS.is_valid = #{entity.isValid}</if>
+	        <if test="entity.ccFormInstanceid != null">and TA_JC_DIC_EVALPOINT_CLASS.cc_form_instanceid = #{entity.ccFormInstanceid}</if>
+	        <if test="entity.isPublic != null">and TA_JC_DIC_EVALPOINT_CLASS.is_public = #{entity.isPublic}</if>
+	        <if test="entity.value != null">and TA_JC_DIC_EVALPOINT_CLASS.value = #{entity.value}</if>
+	        <if test="entity.proportion != null">and TA_JC_DIC_EVALPOINT_CLASS.proportion = #{entity.proportion}</if>
+	        <if test="entity.isParent != null">and TA_JC_DIC_EVALPOINT_CLASS.is_parent = #{entity.isParent}</if>
+		</where>
+</foreach>
+)
+</select>
+
+<!-- ElementID:selectUnion,Generated=true -->
+<select id="selectUnion" parameterType="list" resultMap="DicEvalPointClassResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_JC_DIC_EVALPOINT_CLASS 
+	 INNER JOIN
+<foreach collection="list" item="entity" separator="UNION" open="(" close=")">
+		SELECT 
+			 point_type_id
+		FROM TA_JC_DIC_EVALPOINT_CLASS 
+			<where>
+	        <if test="entity.pointTypeId != null">and TA_JC_DIC_EVALPOINT_CLASS.point_type_id = #{entity.pointTypeId}</if>
+	        <if test="entity.parentPointtypeId != null">and TA_JC_DIC_EVALPOINT_CLASS.parent_pointtype_id = #{entity.parentPointtypeId}</if>
+	        <if test="entity.pointTypeName != null">and TA_JC_DIC_EVALPOINT_CLASS.point_type_name = #{entity.pointTypeName}</if>
+	        <if test="entity.remark != null">and TA_JC_DIC_EVALPOINT_CLASS.remark = #{entity.remark}</if>
+	        <if test="entity.areaCode != null">and TA_JC_DIC_EVALPOINT_CLASS.area_code = #{entity.areaCode}</if>
+	        <if test="entity.orderNo != null">and TA_JC_DIC_EVALPOINT_CLASS.order_no = #{entity.orderNo}</if>
+	        <if test="entity.isValid != null">and TA_JC_DIC_EVALPOINT_CLASS.is_valid = #{entity.isValid}</if>
+	        <if test="entity.ccFormInstanceid != null">and TA_JC_DIC_EVALPOINT_CLASS.cc_form_instanceid = #{entity.ccFormInstanceid}</if>
+	        <if test="entity.isPublic != null">and TA_JC_DIC_EVALPOINT_CLASS.is_public = #{entity.isPublic}</if>
+	        <if test="entity.value != null">and TA_JC_DIC_EVALPOINT_CLASS.value = #{entity.value}</if>
+	        <if test="entity.proportion != null">and TA_JC_DIC_EVALPOINT_CLASS.proportion = #{entity.proportion}</if>
+	        <if test="entity.isParent != null">and TA_JC_DIC_EVALPOINT_CLASS.is_parent = #{entity.isParent}</if>
+			</where>
+</foreach>
+	c2_temp_table ON TA_JC_DIC_EVALPOINT_CLASS.point_type_id = c2_temp_table.point_type_id
+</select>
+
+<!-- ElementID:column_sql,Generated=false -->
+<sql id="column_sql_id">
+		  a.point_type_id ,
+		   
+		  a.point_type_name ,
+		  a.remark ,
+		  a.area_code ,
+		  a.order_no ,
+		   
+		  a.cc_form_instanceid ,
+		  a.is_valid,
+		  <!-- decode(a.is_valid, 'Y', '有效', 'N' , '无效') as is_valid, -->
+          decode(a.parent_pointtype_id, 0, ' ', b.point_type_name)as parent_pointtype_name,
+          <!-- decode(a.is_public, 'Y', '默认', 'N', '自定义', '是') as is_public -->
+          a.is_public
+</sql>
+
+<!-- ElementID:selectByID,Generated=false -->
+<select id="selectByID" parameterType="java.lang.String" resultMap="DicEvalPointClassResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_DIC_EVALPOINT_CLASS 
+		 where TA_JC_DIC_EVALPOINT_CLASS.point_type_id = #{pointTypeId,jdbcType=VARCHAR}
+</select>
+
+
+
+<!-- ElementID:selectListByCode,Generated=false -->
+<select id="selectListByCode" parameterType="java.lang.String" resultMap="DicEvalPointClassResultExp">
+	select *
+   	from ta_jc_dic_evalpoint_class t
+  	where t.is_valid = 'Y'
+    	and t.area_code = #{areaCode,jdbcType=VARCHAR}
+  	order by order_no
+</select>
+
+<!-- ElementID:selectByPage,Generated=false -->
+<select id="selectByPage" parameterType="com.chinacreator.dzjc_performance.DicEvalPointClassExp" resultMap="DicEvalPointClassResultExp">
+		
+		select distinct a.point_type_id,
+                a.point_type_name,
+                a.order_no,
+                a.is_valid,
+                decode(a.parent_pointtype_id, 0, ' ', b.point_type_name)as parent_pointtype_name,
+                a.value,
+                a.proportion,
+                a.is_parent,
+                a.area_code,
+                c.area_name
+  		from ta_jc_dic_evalpoint_class a, ta_jc_dic_evalpoint_class b,ta_jc_dic_area c
+  		<where>
+  		    a.area_code = c.area_code 
+  		    and
+  			(a.parent_pointtype_id = b.point_type_id or
+       			a.parent_pointtype_id = 0)
+			<include refid="whereClause_sql_exp"/>
+		</where>
+		order by a.order_no, a.POINT_TYPE_ID asc
+</select>
+
+<!-- Generated=false -->
+<select id="selectByAreaCode" parameterType="java.lang.String" resultMap="DicEvalPointClassResult">
+   select 
+    point_type_id,
+    point_type_name,
+    parent_pointtype_id 
+    from ta_jc_dic_evalpoint_class 
+    where is_valid='Y'
+    <if test="_parameter != null">and TA_JC_DIC_EVALPOINT_CLASS.area_code = #{areaCode,jdbcType=VARCHAR}</if>
+</select>
+
+<!-- Generated=false
+	根据pointTypeId查询该考核项的所有子项的集合
+ -->
+<select id="selectByPointTypeId" parameterType="java.lang.String" resultMap="DicEvalPointClassResult">
+   select * from ta_jc_dic_evalpoint_class t start with t.point_type_id=#{pointTypeId} 
+   connect by prior t.point_type_id = t.parent_pointtype_id
+</select>
+
+
+</mapper>

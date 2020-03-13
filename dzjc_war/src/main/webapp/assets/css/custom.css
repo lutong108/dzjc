@@ -1,0 +1,43 @@
+.wizard-steps li.active:before, .wizard-steps li.complete:before, .wizard-steps li.active .step, .wizard-steps li.complete .step {
+    border-color: rgb(177, 222, 233);
+    background: rgb(52, 192, 226);
+    color: #ffffff;
+}
+.wizard-steps li .step {
+    border: 3px solid #e9edf2;
+    color: #666;
+    font-size: 20px;
+    width: 50px;
+    height: 50px;
+    line-height: 42px;
+}
+.wizard-steps li .title{
+	margin-top: 15px;
+}
+.wizard-steps li{
+	cursor: pointer;
+}
+.m-t-5 {
+    margin-top: 5px;
+}
+.wizard-steps li:before {
+    border-top: 3px solid #e9edf2;
+    top: 25px;
+}
+
+.wizard-steps li.complete .title, .wizard-steps li.active .title {
+    color: #000;
+}
+.wizard-steps li.complete .step:before {
+    background-color: #34c0e2;
+    font-size: 20px;
+    color: #ffffff;
+    padding-top: 7px;
+}
+.remind-next {
+    font-size: 14px;
+    position: absolute;
+    top: -7px;
+    font-weight: 400;
+    color: #34c0e2;
+}

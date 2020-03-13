@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"><mapper namespace="com.chinacreator.dzjc_quartz.QuartzInfoMapper">	
+
+<!-- ElementID:column_sql,Generated=false -->
+<sql id="column_sql">
+		  qrtz_job_details.sched_name,
+		  qrtz_job_details.job_name,
+		  qrtz_job_details.job_group,
+		  qrtz_job_details.is_durable,
+		  qrtz_triggers.trigger_name,
+		  qrtz_triggers.trigger_group,
+		  qrtz_job_details.job_class_name,
+		  qrtz_cron_triggers.cron_expression,
+		  qrtz_triggers.next_fire_time,
+		  qrtz_triggers.prev_fire_time,
+		  qrtz_triggers.start_time,
+		  qrtz_triggers.priority,
+		  qrtz_triggers.trigger_state
+</sql>
+
+<!-- ElementID:whereClause_sql,Generated=false -->
+<sql id="whereClause_sql">
+	    <if test="schedName != null">and QRTZ_JOB_DETAILS.sched_name = #{schedName}</if>
+	    <if test="jobName != null">and QRTZ_JOB_DETAILS.job_name = #{jobName}</if>
+	    <if test="jobGroup != null">and QRTZ_JOB_DETAILS.job_group = #{jobGroup}</if>
+	    <if test="isDurable != null">and QRTZ_JOB_DETAILS.is_durable = #{isDurable}</if>
+	    <if test="triggerName != null">and qrtz_triggers.trigger_name = #{triggerName}</if>
+	    <if test="triggerGroup != null">and qrtz_triggers.trigger_group = #{triggerGroup}</if>
+	    <if test="triggerState != null">and qrtz_triggers.trigger_state = #{triggerState}</if>
+</sql>
+
+
+<!-- ElementID:QuartzInfoResult,Generated=true -->
+<resultMap id="QuartzInfoResult" type="com.chinacreator.dzjc_quartz.QuartzInfo">
+	<id property="jobGroup" column="job_group"/>
+	<result property="description" column="description"/>
+	<result property="jobClassName" column="job_class_name"/>
+	<result property="isDurable" column="is_durable"/>
+	<result property="isNonconcurrent" column="is_nonconcurrent"/>
+	<result property="isUpdateData" column="is_update_data"/>
+	<result property="requestsRecovery" column="requests_recovery"/>
+	<result property="jobData" column="job_data"/>
+	<result property="triggerName" column="trigger_name"/>
+	<result property="triggerGroup" column="trigger_group"/>
+	<result property="cronExpression" column="cron_expression"/>
+	<result property="nextFireTime" column="next_fire_time"/>
+	<result property="prevFireTime" column="prev_fire_time"/>
+	<result property="startTime" column="start_time"/>
+	<result property="priority" column="priority"/>
+	<result property="triggerState" column="trigger_state"/>
+</resultMap>
+
+
+
+
+
+
+<!-- ElementID:insert,Generated=true -->
+<insert id="insert" parameterType="com.chinacreator.dzjc_quartz.QuartzInfo">
+	insert into QRTZ_JOB_DETAILS(
+	         <if test="schedName != null">sched_name</if>
+	         <if test="jobName != null">,job_name</if>
+	         <if test="jobGroup != null">,job_group</if>
+	         <if test="description != null">,description</if>
+	         <if test="jobClassName != null">,job_class_name</if>
+	         <if test="isDurable != null">,is_durable</if>
+	         <if test="isNonconcurrent != null">,is_nonconcurrent</if>
+	         <if test="isUpdateData != null">,is_update_data</if>
+	         <if test="requestsRecovery != null">,requests_recovery</if>
+	         <if test="jobData != null">,job_data</if>
+	         <if test="triggerName != null">,trigger_name</if>
+	         <if test="triggerGroup != null">,trigger_group</if>
+	         <if test="cronExpression != null">,cron_expression</if>
+	         <if test="nextFireTime != null">,next_fire_time</if>
+	         <if test="prevFireTime != null">,prev_fire_time</if>
+	         <if test="startTime != null">,start_time</if>
+	         <if test="priority != null">,priority</if>
+	         <if test="triggerState != null">,trigger_state</if>
+	 	 	 )
+	 values (
+	         <if test="schedName != null">#{schedName,jdbcType=VARCHAR}</if>
+	         <if test="jobName != null">,#{jobName,jdbcType=VARCHAR}</if>
+	         <if test="jobGroup != null">,#{jobGroup,jdbcType=VARCHAR}</if>
+	         <if test="description != null">,#{description,jdbcType=VARCHAR}</if>
+	         <if test="jobClassName != null">,#{jobClassName,jdbcType=VARCHAR}</if>
+	         <if test="isDurable != null">,#{isDurable,jdbcType=VARCHAR}</if>
+	         <if test="isNonconcurrent != null">,#{isNonconcurrent,jdbcType=VARCHAR}</if>
+	         <if test="isUpdateData != null">,#{isUpdateData,jdbcType=VARCHAR}</if>
+	         <if test="requestsRecovery != null">,#{requestsRecovery,jdbcType=VARCHAR}</if>
+	         <if test="jobData != null">,#{jobData,jdbcType=BLOB}</if>
+	         <if test="triggerName != null">,#{triggerName,jdbcType=VARCHAR}</if>
+	         <if test="triggerGroup != null">,#{triggerGroup,jdbcType=VARCHAR}</if>
+	         <if test="cronExpression != null">,#{cronExpression,jdbcType=VARCHAR}</if>
+	         <if test="nextFireTime != null">,#{nextFireTime,jdbcType=VARCHAR}</if>
+	         <if test="prevFireTime != null">,#{prevFireTime,jdbcType=VARCHAR}</if>
+	         <if test="startTime != null">,#{startTime,jdbcType=VARCHAR}</if>
+	         <if test="priority != null">,#{priority,jdbcType=VARCHAR}</if>
+	         <if test="triggerState != null">,#{triggerState,jdbcType=VARCHAR}</if>
+	 	 	 )
+</insert>
+
+<!-- ElementID:count,Generated=true -->
+<select id="count" parameterType="com.chinacreator.dzjc_quartz.QuartzInfo" resultType="int">
+	select count(*) from QRTZ_JOB_DETAILS 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<!-- ElementID:update,Generated=true -->
+<update id="update" parameterType="com.chinacreator.dzjc_quartz.QuartzInfo">
+	update QRTZ_JOB_DETAILS
+<set>
+	<if test="description != null">description=#{description,jdbcType=VARCHAR},</if>
+	<if test="jobClassName != null">job_class_name=#{jobClassName,jdbcType=VARCHAR},</if>
+	<if test="isDurable != null">is_durable=#{isDurable,jdbcType=VARCHAR},</if>
+	<if test="isNonconcurrent != null">is_nonconcurrent=#{isNonconcurrent,jdbcType=VARCHAR},</if>
+	<if test="isUpdateData != null">is_update_data=#{isUpdateData,jdbcType=VARCHAR},</if>
+	<if test="requestsRecovery != null">requests_recovery=#{requestsRecovery,jdbcType=VARCHAR},</if>
+	<if test="jobData != null">job_data=#{jobData,jdbcType=BLOB},</if>
+	<if test="triggerName != null">trigger_name=#{triggerName,jdbcType=VARCHAR},</if>
+	<if test="triggerGroup != null">trigger_group=#{triggerGroup,jdbcType=VARCHAR},</if>
+	<if test="cronExpression != null">cron_expression=#{cronExpression,jdbcType=VARCHAR},</if>
+	<if test="nextFireTime != null">next_fire_time=#{nextFireTime,jdbcType=VARCHAR},</if>
+	<if test="prevFireTime != null">prev_fire_time=#{prevFireTime,jdbcType=VARCHAR},</if>
+	<if test="startTime != null">start_time=#{startTime,jdbcType=VARCHAR},</if>
+	<if test="priority != null">priority=#{priority,jdbcType=VARCHAR},</if>
+	<if test="triggerState != null">trigger_state=#{triggerState,jdbcType=VARCHAR}</if>
+</set>
+<where>
+	<choose>
+        <when test="jobGroup != null">and job_group = #{jobGroup}</when>
+        <otherwise>and job_group = </otherwise>
+    </choose>
+</where>
+</update>
+
+<!-- ElementID:updateNull,Generated=true -->
+<update id="updateNull" parameterType="map">
+	update QRTZ_JOB_DETAILS
+	<set>
+		<trim suffixOverrides=",">
+		    <if test="description==null">description = null,</if>
+		    <if test="jobClassName==null">job_class_name = null,</if>
+		    <if test="isDurable==null">is_durable = null,</if>
+		    <if test="isNonconcurrent==null">is_nonconcurrent = null,</if>
+		    <if test="isUpdateData==null">is_update_data = null,</if>
+		    <if test="requestsRecovery==null">requests_recovery = null,</if>
+		    <if test="jobData==null">job_data = null,</if>
+		    <if test="triggerName==null">trigger_name = null,</if>
+		    <if test="triggerGroup==null">trigger_group = null,</if>
+		    <if test="cronExpression==null">cron_expression = null,</if>
+		    <if test="nextFireTime==null">next_fire_time = null,</if>
+		    <if test="prevFireTime==null">prev_fire_time = null,</if>
+		    <if test="startTime==null">start_time = null,</if>
+		    <if test="priority==null">priority = null,</if>
+		    <if test="triggerState==null">trigger_state = null,</if>
+		</trim>
+	</set>
+	<where>
+		<choose>
+			<when test="jobGroup != null">and job_group = #{jobGroup}</when>
+			<otherwise>and job_group = </otherwise>
+		</choose>
+	</where>
+</update>
+
+<!-- ElementID:delete,Generated=true -->
+<delete id="delete" parameterType="com.chinacreator.dzjc_quartz.QuartzInfo">
+    delete from QRTZ_JOB_DETAILS where 1=1 and job_group = #{jobGroup}
+</delete>
+
+<!-- ElementID:select,Generated=true -->
+<select id="select" parameterType="com.chinacreator.dzjc_quartz.QuartzInfo" resultMap="QuartzInfoResult">
+	select 
+		<include refid="column_sql"/>
+	    from QRTZ_JOB_DETAILS 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+
+<!-- ElementID:insertBatch,Generated=true -->
+<insert id="insertBatch" parameterType="list">
+	insert into QRTZ_JOB_DETAILS (sched_name,job_name,job_group,description,job_class_name,is_durable,is_nonconcurrent,is_update_data,requests_recovery,job_data,trigger_name,trigger_group,cron_expression,next_fire_time,prev_fire_time,start_time,priority,trigger_state) 
+<foreach collection="list" item="entity" index="index" separator="union all">
+		select 
+		#{entity.schedName,jdbcType = VARCHAR},
+				#{entity.jobName,jdbcType = VARCHAR},
+				#{entity.jobGroup,jdbcType = VARCHAR},
+				#{entity.description,jdbcType = VARCHAR},
+				#{entity.jobClassName,jdbcType = VARCHAR},
+				#{entity.isDurable,jdbcType = VARCHAR},
+				#{entity.isNonconcurrent,jdbcType = VARCHAR},
+				#{entity.isUpdateData,jdbcType = VARCHAR},
+				#{entity.requestsRecovery,jdbcType = VARCHAR},
+				#{entity.jobData,jdbcType = BLOB},
+				#{entity.triggerName,jdbcType = VARCHAR},
+				#{entity.triggerGroup,jdbcType = VARCHAR},
+				#{entity.cronExpression,jdbcType = VARCHAR},
+				#{entity.nextFireTime,jdbcType = VARCHAR},
+				#{entity.prevFireTime,jdbcType = VARCHAR},
+				#{entity.startTime,jdbcType = VARCHAR},
+				#{entity.priority,jdbcType = VARCHAR},
+				#{entity.triggerState,jdbcType = VARCHAR}
+		from dual
+</foreach>
+</insert>
+
+<!-- ElementID:deleteBatch,Generated=true -->
+<delete id="deleteBatch" parameterType="List">
+	delete from QRTZ_JOB_DETAILS where job_group in
+<trim prefix="(" suffix=")" suffixOverrides=",">
+<foreach collection="list" item="entity" separator=",">
+	<choose>
+		<when test="@com.chinacreator.c2.dao.util.EntityBeanUtil@isEntityObj(entity)">#{entity.jobGroup}</when>
+		<otherwise>#{entity}</otherwise>
+	</choose>
+</foreach>
+</trim>
+</delete>
+
+<!-- ElementID:updateBatch,Generated=true -->
+<update id="updateBatch" parameterType="list">
+	<foreach collection="list" item="entity" open="begin" close=";end;" separator=";">
+			update QRTZ_JOB_DETAILS
+	<set>
+	<if test="entity.description != null">description= #{entity.description,jdbcType=VARCHAR},</if>
+	<if test="entity.jobClassName != null">job_class_name= #{entity.jobClassName,jdbcType=VARCHAR},</if>
+	<if test="entity.isDurable != null">is_durable= #{entity.isDurable,jdbcType=VARCHAR},</if>
+	<if test="entity.isNonconcurrent != null">is_nonconcurrent= #{entity.isNonconcurrent,jdbcType=VARCHAR},</if>
+	<if test="entity.isUpdateData != null">is_update_data= #{entity.isUpdateData,jdbcType=VARCHAR},</if>
+	<if test="entity.requestsRecovery != null">requests_recovery= #{entity.requestsRecovery,jdbcType=VARCHAR},</if>
+	<if test="entity.jobData != null">job_data= #{entity.jobData,jdbcType=BLOB},</if>
+	<if test="entity.triggerName != null">trigger_name= #{entity.triggerName,jdbcType=VARCHAR},</if>
+	<if test="entity.triggerGroup != null">trigger_group= #{entity.triggerGroup,jdbcType=VARCHAR},</if>
+	<if test="entity.cronExpression != null">cron_expression= #{entity.cronExpression,jdbcType=VARCHAR},</if>
+	<if test="entity.nextFireTime != null">next_fire_time= #{entity.nextFireTime,jdbcType=VARCHAR},</if>
+	<if test="entity.prevFireTime != null">prev_fire_time= #{entity.prevFireTime,jdbcType=VARCHAR},</if>
+	<if test="entity.startTime != null">start_time= #{entity.startTime,jdbcType=VARCHAR},</if>
+	<if test="entity.priority != null">priority= #{entity.priority,jdbcType=VARCHAR},</if>
+	<if test="entity.triggerState != null">trigger_state= #{entity.triggerState,jdbcType=VARCHAR}</if>
+	</set>
+		<where>
+			<choose>
+				<when test="entity.jobGroup != null">and job_group = #{entity.jobGroup}</when>
+				<otherwise>and job_group = </otherwise>
+			</choose>
+		</where>
+	</foreach>
+</update>
+
+<!-- ElementID:selectAll,Generated=false -->
+<select id="selectAll" resultMap="QuartzInfoResult">
+	select 
+		<include refid="column_sql"/>
+	    from 
+	      qrtz_job_details ,
+		  qrtz_triggers ,
+		  qrtz_cron_triggers 
+		where 1=1
+		  and qrtz_job_details.job_name=qrtz_triggers.job_name
+		  and qrtz_job_details.job_group=qrtz_triggers.job_group
+		  and qrtz_job_details.sched_name=qrtz_triggers.sched_name
+		  and qrtz_triggers.trigger_name=qrtz_cron_triggers.trigger_name
+		  and qrtz_triggers.trigger_group=qrtz_cron_triggers.trigger_group
+		  and qrtz_triggers.sched_name=qrtz_cron_triggers.sched_name
+		  <include refid="whereClause_sql"/> 
+</select>
+
+<!-- ElementID:selectMany,Generated=true -->
+<select id="selectMany" parameterType="list" resultMap="QuartzInfoResult">
+select 
+	<include refid="column_sql"/> 
+	from QRTZ_JOB_DETAILS 
+	where QRTZ_JOB_DETAILS.job_group in (
+<foreach collection="list" item="entity" separator="intersect">
+		select 
+		QRTZ_JOB_DETAILS.job_group
+	    from QRTZ_JOB_DETAILS 
+		 <where>
+	        <if test="entity.schedName != null">and QRTZ_JOB_DETAILS.sched_name = #{entity.schedName}</if>
+	        <if test="entity.jobName != null">and QRTZ_JOB_DETAILS.job_name = #{entity.jobName}</if>
+	        <if test="entity.jobGroup != null">and QRTZ_JOB_DETAILS.job_group = #{entity.jobGroup}</if>
+	        <if test="entity.description != null">and QRTZ_JOB_DETAILS.description = #{entity.description}</if>
+	        <if test="entity.jobClassName != null">and QRTZ_JOB_DETAILS.job_class_name = #{entity.jobClassName}</if>
+	        <if test="entity.isDurable != null">and QRTZ_JOB_DETAILS.is_durable = #{entity.isDurable}</if>
+	        <if test="entity.isNonconcurrent != null">and QRTZ_JOB_DETAILS.is_nonconcurrent = #{entity.isNonconcurrent}</if>
+	        <if test="entity.isUpdateData != null">and QRTZ_JOB_DETAILS.is_update_data = #{entity.isUpdateData}</if>
+	        <if test="entity.requestsRecovery != null">and QRTZ_JOB_DETAILS.requests_recovery = #{entity.requestsRecovery}</if>
+	        <if test="entity.triggerName != null">and QRTZ_JOB_DETAILS.trigger_name = #{entity.triggerName}</if>
+	        <if test="entity.triggerGroup != null">and QRTZ_JOB_DETAILS.trigger_group = #{entity.triggerGroup}</if>
+	        <if test="entity.cronExpression != null">and QRTZ_JOB_DETAILS.cron_expression = #{entity.cronExpression}</if>
+	        <if test="entity.nextFireTime != null">and QRTZ_JOB_DETAILS.next_fire_time = #{entity.nextFireTime}</if>
+	        <if test="entity.prevFireTime != null">and QRTZ_JOB_DETAILS.prev_fire_time = #{entity.prevFireTime}</if>
+	        <if test="entity.startTime != null">and QRTZ_JOB_DETAILS.start_time = #{entity.startTime}</if>
+	        <if test="entity.priority != null">and QRTZ_JOB_DETAILS.priority = #{entity.priority}</if>
+	        <if test="entity.triggerState != null">and QRTZ_JOB_DETAILS.trigger_state = #{entity.triggerState}</if>
+		</where>
+</foreach>
+)
+</select>
+
+<!-- ElementID:selectUnion,Generated=true -->
+<select id="selectUnion" parameterType="list" resultMap="QuartzInfoResult">
+select 
+	<include refid="column_sql"/> 
+	from QRTZ_JOB_DETAILS 
+	 INNER JOIN
+<foreach collection="list" item="entity" separator="UNION" open="(" close=")">
+		SELECT 
+			 job_group
+		FROM QRTZ_JOB_DETAILS 
+			<where>
+	        <if test="entity.schedName != null">and QRTZ_JOB_DETAILS.sched_name = #{entity.schedName}</if>
+	        <if test="entity.jobName != null">and QRTZ_JOB_DETAILS.job_name = #{entity.jobName}</if>
+	        <if test="entity.jobGroup != null">and QRTZ_JOB_DETAILS.job_group = #{entity.jobGroup}</if>
+	        <if test="entity.description != null">and QRTZ_JOB_DETAILS.description = #{entity.description}</if>
+	        <if test="entity.jobClassName != null">and QRTZ_JOB_DETAILS.job_class_name = #{entity.jobClassName}</if>
+	        <if test="entity.isDurable != null">and QRTZ_JOB_DETAILS.is_durable = #{entity.isDurable}</if>
+	        <if test="entity.isNonconcurrent != null">and QRTZ_JOB_DETAILS.is_nonconcurrent = #{entity.isNonconcurrent}</if>
+	        <if test="entity.isUpdateData != null">and QRTZ_JOB_DETAILS.is_update_data = #{entity.isUpdateData}</if>
+	        <if test="entity.requestsRecovery != null">and QRTZ_JOB_DETAILS.requests_recovery = #{entity.requestsRecovery}</if>
+	        <if test="entity.triggerName != null">and QRTZ_JOB_DETAILS.trigger_name = #{entity.triggerName}</if>
+	        <if test="entity.triggerGroup != null">and QRTZ_JOB_DETAILS.trigger_group = #{entity.triggerGroup}</if>
+	        <if test="entity.cronExpression != null">and QRTZ_JOB_DETAILS.cron_expression = #{entity.cronExpression}</if>
+	        <if test="entity.nextFireTime != null">and QRTZ_JOB_DETAILS.next_fire_time = #{entity.nextFireTime}</if>
+	        <if test="entity.prevFireTime != null">and QRTZ_JOB_DETAILS.prev_fire_time = #{entity.prevFireTime}</if>
+	        <if test="entity.startTime != null">and QRTZ_JOB_DETAILS.start_time = #{entity.startTime}</if>
+	        <if test="entity.priority != null">and QRTZ_JOB_DETAILS.priority = #{entity.priority}</if>
+	        <if test="entity.triggerState != null">and QRTZ_JOB_DETAILS.trigger_state = #{entity.triggerState}</if>
+			</where>
+</foreach>
+	c2_temp_table ON QRTZ_JOB_DETAILS.job_group = c2_temp_table.job_group
+</select>
+
+<!-- ElementID:selectByID,Generated=false -->
+<select id="selectByID" parameterType="com.chinacreator.dzjc_quartz.QuartzInfo" resultMap="QuartzInfoResult">
+	select 
+		<include refid="column_sql"/>
+	    from 
+	      qrtz_job_details ,
+		  qrtz_triggers ,
+		  qrtz_cron_triggers 
+		where 1=1
+		  and qrtz_job_details.job_name=qrtz_triggers.job_name
+		  and qrtz_job_details.job_group=qrtz_triggers.job_group
+		  and qrtz_job_details.sched_name=qrtz_triggers.sched_name
+		  and qrtz_triggers.trigger_name=qrtz_cron_triggers.trigger_name
+		  and qrtz_triggers.trigger_group=qrtz_cron_triggers.trigger_group
+		  and qrtz_triggers.sched_name=qrtz_cron_triggers.sched_name
+		  and QRTZ_JOB_DETAILS.job_group = #{jobGroup}
+		  and QRTZ_JOB_DETAILS.job_name =#{jobName}
+		 and  QRTZ_JOB_DETAILS.sched_name=#{schedName}
+</select>
+
+<!-- ElementID:selectByPage,Generated=false -->
+<select id="selectByPage" parameterType="com.chinacreator.dzjc_quartz.QuartzInfo" resultMap="QuartzInfoResult">
+	select 
+		<include refid="column_sql"/>
+	    from 
+	      qrtz_job_details ,
+		  qrtz_triggers ,
+		  qrtz_cron_triggers 
+		where 1=1
+		  and qrtz_job_details.job_name=qrtz_triggers.job_name
+		  and qrtz_job_details.job_group=qrtz_triggers.job_group
+		  and qrtz_job_details.sched_name=qrtz_triggers.sched_name
+		  and qrtz_triggers.trigger_name=qrtz_cron_triggers.trigger_name
+		  and qrtz_triggers.trigger_group=qrtz_cron_triggers.trigger_group
+		  and qrtz_triggers.sched_name=qrtz_cron_triggers.sched_name
+		  <include refid="whereClause_sql"/>
+		
+</select>
+
+
+<update id="updateCron" parameterType="com.chinacreator.dzjc_quartz.QuartzInfo">
+	update qrtz_cron_triggers
+<set>
+	<if test="cronExpression != null">qrtz_cron_triggers.cron_expression=#{cronExpression}</if>
+</set>
+where 1=1
+	and qrtz_cron_triggers.trigger_name =#{triggerName}
+	and  qrtz_cron_triggers.sched_name=#{schedName}
+</update>
+
+<update id="updateFireTime" parameterType="map">
+	update QRTZ_TRIGGERS set NEXT_FIRE_TIME=#{nextFireTime} where trigger_name=#{triggerName} and sched_name=#{schedName}
+</update>
+
+</mapper>

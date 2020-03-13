@@ -1,0 +1,421 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"><mapper namespace="com.chinacreator.lanshan.JiFenMapper">	
+
+<!-- ElementID:column_sql,Generated=true -->
+<sql id="column_sql">
+		  TA_SP_REDEEM.redeem_id ,
+		  TA_SP_REDEEM.community ,
+		  TA_SP_REDEEM.grid_name ,
+		  TA_SP_REDEEM.blsxs ,
+		  TA_SP_REDEEM.ylsx ,
+		  TA_SP_REDEEM.elsx ,
+		  TA_SP_REDEEM.ylsx_score ,
+		  TA_SP_REDEEM.elsx_score ,
+		  TA_SP_REDEEM.good_points ,
+		  TA_SP_REDEEM.total_score ,
+		  TA_SP_REDEEM.total_money ,
+		  TA_SP_REDEEM.begin_date ,
+		  TA_SP_REDEEM.end_date 
+</sql>
+
+<!-- ElementID:whereClause_sql,Generated=true -->
+<sql id="whereClause_sql">
+	    <if test="redeemId != null">and TA_SP_REDEEM.redeem_id = #{redeemId}</if>
+	    <if test="community != null">and TA_SP_REDEEM.community = #{community}</if>
+	    <if test="gridName != null">and TA_SP_REDEEM.grid_name = #{gridName}</if>
+	    <if test="blsxs != null">and TA_SP_REDEEM.blsxs = #{blsxs}</if>
+	    <if test="ylsx != null">and TA_SP_REDEEM.ylsx = #{ylsx}</if>
+	    <if test="elsx != null">and TA_SP_REDEEM.elsx = #{elsx}</if>
+	    <if test="ylsxScore != null">and TA_SP_REDEEM.ylsx_score = #{ylsxScore}</if>
+	    <if test="elsxScore != null">and TA_SP_REDEEM.elsx_score = #{elsxScore}</if>
+	    <if test="goodPoints != null">and TA_SP_REDEEM.good_points = #{goodPoints}</if>
+	    <if test="totalScore != null">and TA_SP_REDEEM.total_score = #{totalScore}</if>
+	    <if test="totalMoney != null">and TA_SP_REDEEM.total_money = #{totalMoney}</if>
+	    <if test="beginDate != null">and TA_SP_REDEEM.begin_date = #{beginDate}</if>
+	    <if test="endDate != null">and TA_SP_REDEEM.end_date = #{endDate}</if>
+</sql>
+
+
+<!-- ElementID:JiFenResult,Generated=true -->
+<resultMap id="JiFenResult" type="com.chinacreator.lanshan.JiFen">
+	<id property="redeemId" column="redeem_id"/>
+	<result property="community" column="community"/>
+	<result property="gridName" column="grid_name"/>
+	<result property="blsxs" column="blsxs"/>
+	<result property="ylsx" column="ylsx"/>
+	<result property="elsx" column="elsx"/>
+	<result property="ylsxScore" column="ylsx_score"/>
+	<result property="elsxScore" column="elsx_score"/>
+	<result property="goodPoints" column="good_points"/>
+	<result property="totalScore" column="total_score"/>
+	<result property="totalMoney" column="total_money"/>
+	<result property="beginDate" column="begin_date"/>
+	<result property="endDate" column="end_date"/>
+</resultMap>
+
+
+<!-- ElementID:insert,Generated=true -->
+<insert id="insert" parameterType="com.chinacreator.lanshan.JiFen">
+	insert into TA_SP_REDEEM(
+	         <if test="redeemId != null">redeem_id</if>
+	         <if test="community != null">,community</if>
+	         <if test="gridName != null">,grid_name</if>
+	         <if test="blsxs != null">,blsxs</if>
+	         <if test="ylsx != null">,ylsx</if>
+	         <if test="elsx != null">,elsx</if>
+	         <if test="ylsxScore != null">,ylsx_score</if>
+	         <if test="elsxScore != null">,elsx_score</if>
+	         <if test="goodPoints != null">,good_points</if>
+	         <if test="totalScore != null">,total_score</if>
+	         <if test="totalMoney != null">,total_money</if>
+	         <if test="beginDate != null">,begin_date</if>
+	         <if test="endDate != null">,end_date</if>
+	 	 	 )
+	 values (
+	         <if test="redeemId != null">#{redeemId,jdbcType=VARCHAR}</if>
+	         <if test="community != null">,#{community,jdbcType=VARCHAR}</if>
+	         <if test="gridName != null">,#{gridName,jdbcType=VARCHAR}</if>
+	         <if test="blsxs != null">,#{blsxs,jdbcType=NUMERIC}</if>
+	         <if test="ylsx != null">,#{ylsx,jdbcType=NUMERIC}</if>
+	         <if test="elsx != null">,#{elsx,jdbcType=NUMERIC}</if>
+	         <if test="ylsxScore != null">,#{ylsxScore,jdbcType=NUMERIC}</if>
+	         <if test="elsxScore != null">,#{elsxScore,jdbcType=NUMERIC}</if>
+	         <if test="goodPoints != null">,#{goodPoints,jdbcType=NUMERIC}</if>
+	         <if test="totalScore != null">,#{totalScore,jdbcType=NUMERIC}</if>
+	         <if test="totalMoney != null">,#{totalMoney,jdbcType=NUMERIC}</if>
+	         <if test="beginDate != null">,#{beginDate,jdbcType=DATE}</if>
+	         <if test="endDate != null">,#{endDate,jdbcType=DATE}</if>
+	 	 	 )
+</insert>
+
+<!-- ElementID:count,Generated=true -->
+<select id="count" parameterType="com.chinacreator.lanshan.JiFen" resultType="int">
+	select count(*) from TA_SP_REDEEM 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<!-- ElementID:update,Generated=true -->
+<update id="update" parameterType="com.chinacreator.lanshan.JiFen">
+	update TA_SP_REDEEM
+<set>
+	<if test="community != null">community=#{community,jdbcType=VARCHAR},</if>
+	<if test="gridName != null">grid_name=#{gridName,jdbcType=VARCHAR},</if>
+	<if test="blsxs != null">blsxs=#{blsxs,jdbcType=NUMERIC},</if>
+	<if test="ylsx != null">ylsx=#{ylsx,jdbcType=NUMERIC},</if>
+	<if test="elsx != null">elsx=#{elsx,jdbcType=NUMERIC},</if>
+	<if test="ylsxScore != null">ylsx_score=#{ylsxScore,jdbcType=NUMERIC},</if>
+	<if test="elsxScore != null">elsx_score=#{elsxScore,jdbcType=NUMERIC},</if>
+	<if test="goodPoints != null">good_points=#{goodPoints,jdbcType=NUMERIC},</if>
+	<if test="totalScore != null">total_score=#{totalScore,jdbcType=NUMERIC},</if>
+	<if test="totalMoney != null">total_money=#{totalMoney,jdbcType=NUMERIC},</if>
+	<if test="beginDate != null">begin_date=#{beginDate,jdbcType=DATE},</if>
+	<if test="endDate != null">end_date=#{endDate,jdbcType=DATE}</if>
+</set>
+<where>
+	<choose>
+        <when test="redeemId != null">and redeem_id = #{redeemId}</when>
+        <otherwise>and redeem_id = </otherwise>
+    </choose>
+</where>
+</update>
+
+<!-- ElementID:updateNull,Generated=true -->
+<update id="updateNull" parameterType="map">
+	update TA_SP_REDEEM
+	<set>
+		<trim suffixOverrides=",">
+		    <if test="community==null">community = null,</if>
+		    <if test="gridName==null">grid_name = null,</if>
+		    <if test="blsxs==null">blsxs = null,</if>
+		    <if test="ylsx==null">ylsx = null,</if>
+		    <if test="elsx==null">elsx = null,</if>
+		    <if test="ylsxScore==null">ylsx_score = null,</if>
+		    <if test="elsxScore==null">elsx_score = null,</if>
+		    <if test="goodPoints==null">good_points = null,</if>
+		    <if test="totalScore==null">total_score = null,</if>
+		    <if test="totalMoney==null">total_money = null,</if>
+		    <if test="beginDate==null">begin_date = null,</if>
+		    <if test="endDate==null">end_date = null,</if>
+		</trim>
+	</set>
+	<where>
+		<choose>
+			<when test="redeemId != null">and redeem_id = #{redeemId}</when>
+			<otherwise>and redeem_id = </otherwise>
+		</choose>
+	</where>
+</update>
+
+<!-- ElementID:delete,Generated=true -->
+<delete id="delete" parameterType="com.chinacreator.lanshan.JiFen">
+    delete from TA_SP_REDEEM where 1=1 and redeem_id = #{redeemId}
+</delete>
+
+<!-- ElementID:select,Generated=true -->
+<select id="select" parameterType="com.chinacreator.lanshan.JiFen" resultMap="JiFenResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_SP_REDEEM 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+
+<!-- ElementID:insertBatch,Generated=true -->
+<insert id="insertBatch" parameterType="list">
+	insert into TA_SP_REDEEM (redeem_id,community,grid_name,blsxs,ylsx,elsx,ylsx_score,elsx_score,good_points,total_score,total_money,begin_date,end_date) 
+<foreach collection="list" item="entity" index="index" separator="union all">
+		select 
+		#{entity.redeemId,jdbcType = VARCHAR},
+				#{entity.community,jdbcType = VARCHAR},
+				#{entity.gridName,jdbcType = VARCHAR},
+				#{entity.blsxs,jdbcType = NUMERIC},
+				#{entity.ylsx,jdbcType = NUMERIC},
+				#{entity.elsx,jdbcType = NUMERIC},
+				#{entity.ylsxScore,jdbcType = NUMERIC},
+				#{entity.elsxScore,jdbcType = NUMERIC},
+				#{entity.goodPoints,jdbcType = NUMERIC},
+				#{entity.totalScore,jdbcType = NUMERIC},
+				#{entity.totalMoney,jdbcType = NUMERIC},
+				#{entity.beginDate,jdbcType = DATE},
+				#{entity.endDate,jdbcType = DATE}
+		from dual
+</foreach>
+</insert>
+
+<!-- ElementID:deleteBatch,Generated=true -->
+<delete id="deleteBatch" parameterType="List">
+	delete from TA_SP_REDEEM where redeem_id in
+<trim prefix="(" suffix=")" suffixOverrides=",">
+<foreach collection="list" item="entity" separator=",">
+	<choose>
+		<when test="@com.chinacreator.c2.dao.util.EntityBeanUtil@isEntityObj(entity)">#{entity.redeemId}</when>
+		<otherwise>#{entity}</otherwise>
+	</choose>
+</foreach>
+</trim>
+</delete>
+
+<!-- ElementID:updateBatch,Generated=true -->
+<update id="updateBatch" parameterType="list">
+	<foreach collection="list" item="entity" open="begin" close=";end;" separator=";">
+			update TA_SP_REDEEM
+	<set>
+	<if test="entity.community != null">community= #{entity.community,jdbcType=VARCHAR},</if>
+	<if test="entity.gridName != null">grid_name= #{entity.gridName,jdbcType=VARCHAR},</if>
+	<if test="entity.blsxs != null">blsxs= #{entity.blsxs,jdbcType=NUMERIC},</if>
+	<if test="entity.ylsx != null">ylsx= #{entity.ylsx,jdbcType=NUMERIC},</if>
+	<if test="entity.elsx != null">elsx= #{entity.elsx,jdbcType=NUMERIC},</if>
+	<if test="entity.ylsxScore != null">ylsx_score= #{entity.ylsxScore,jdbcType=NUMERIC},</if>
+	<if test="entity.elsxScore != null">elsx_score= #{entity.elsxScore,jdbcType=NUMERIC},</if>
+	<if test="entity.goodPoints != null">good_points= #{entity.goodPoints,jdbcType=NUMERIC},</if>
+	<if test="entity.totalScore != null">total_score= #{entity.totalScore,jdbcType=NUMERIC},</if>
+	<if test="entity.totalMoney != null">total_money= #{entity.totalMoney,jdbcType=NUMERIC},</if>
+	<if test="entity.beginDate != null">begin_date= #{entity.beginDate,jdbcType=DATE},</if>
+	<if test="entity.endDate != null">end_date= #{entity.endDate,jdbcType=DATE}</if>
+	</set>
+		<where>
+			<choose>
+				<when test="entity.redeemId != null">and redeem_id = #{entity.redeemId}</when>
+				<otherwise>and redeem_id = </otherwise>
+			</choose>
+		</where>
+	</foreach>
+</update>
+
+<!-- ElementID:selectAll,Generated=true -->
+<select id="selectAll" resultMap="JiFenResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_SP_REDEEM 
+</select>
+
+<!-- ElementID:selectMany,Generated=true -->
+<select id="selectMany" parameterType="list" resultMap="JiFenResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_SP_REDEEM 
+	where TA_SP_REDEEM.redeem_id in (
+<foreach collection="list" item="entity" separator="intersect">
+		select 
+		TA_SP_REDEEM.redeem_id
+	    from TA_SP_REDEEM 
+		 <where>
+	        <if test="entity.redeemId != null">and TA_SP_REDEEM.redeem_id = #{entity.redeemId}</if>
+	        <if test="entity.community != null">and TA_SP_REDEEM.community = #{entity.community}</if>
+	        <if test="entity.gridName != null">and TA_SP_REDEEM.grid_name = #{entity.gridName}</if>
+	        <if test="entity.blsxs != null">and TA_SP_REDEEM.blsxs = #{entity.blsxs}</if>
+	        <if test="entity.ylsx != null">and TA_SP_REDEEM.ylsx = #{entity.ylsx}</if>
+	        <if test="entity.elsx != null">and TA_SP_REDEEM.elsx = #{entity.elsx}</if>
+	        <if test="entity.ylsxScore != null">and TA_SP_REDEEM.ylsx_score = #{entity.ylsxScore}</if>
+	        <if test="entity.elsxScore != null">and TA_SP_REDEEM.elsx_score = #{entity.elsxScore}</if>
+	        <if test="entity.goodPoints != null">and TA_SP_REDEEM.good_points = #{entity.goodPoints}</if>
+	        <if test="entity.totalScore != null">and TA_SP_REDEEM.total_score = #{entity.totalScore}</if>
+	        <if test="entity.totalMoney != null">and TA_SP_REDEEM.total_money = #{entity.totalMoney}</if>
+	        <if test="entity.beginDate != null">and TA_SP_REDEEM.begin_date = #{entity.beginDate}</if>
+	        <if test="entity.endDate != null">and TA_SP_REDEEM.end_date = #{entity.endDate}</if>
+		</where>
+</foreach>
+)
+</select>
+
+<!-- ElementID:selectUnion,Generated=true -->
+<select id="selectUnion" parameterType="list" resultMap="JiFenResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_SP_REDEEM 
+	 INNER JOIN
+<foreach collection="list" item="entity" separator="UNION" open="(" close=")">
+		SELECT 
+			 redeem_id
+		FROM TA_SP_REDEEM 
+			<where>
+	        <if test="entity.redeemId != null">and TA_SP_REDEEM.redeem_id = #{entity.redeemId}</if>
+	        <if test="entity.community != null">and TA_SP_REDEEM.community = #{entity.community}</if>
+	        <if test="entity.gridName != null">and TA_SP_REDEEM.grid_name = #{entity.gridName}</if>
+	        <if test="entity.blsxs != null">and TA_SP_REDEEM.blsxs = #{entity.blsxs}</if>
+	        <if test="entity.ylsx != null">and TA_SP_REDEEM.ylsx = #{entity.ylsx}</if>
+	        <if test="entity.elsx != null">and TA_SP_REDEEM.elsx = #{entity.elsx}</if>
+	        <if test="entity.ylsxScore != null">and TA_SP_REDEEM.ylsx_score = #{entity.ylsxScore}</if>
+	        <if test="entity.elsxScore != null">and TA_SP_REDEEM.elsx_score = #{entity.elsxScore}</if>
+	        <if test="entity.goodPoints != null">and TA_SP_REDEEM.good_points = #{entity.goodPoints}</if>
+	        <if test="entity.totalScore != null">and TA_SP_REDEEM.total_score = #{entity.totalScore}</if>
+	        <if test="entity.totalMoney != null">and TA_SP_REDEEM.total_money = #{entity.totalMoney}</if>
+	        <if test="entity.beginDate != null">and TA_SP_REDEEM.begin_date = #{entity.beginDate}</if>
+	        <if test="entity.endDate != null">and TA_SP_REDEEM.end_date = #{entity.endDate}</if>
+			</where>
+</foreach>
+	c2_temp_table ON TA_SP_REDEEM.redeem_id = c2_temp_table.redeem_id
+</select>
+
+<!-- ElementID:selectByID,Generated=true -->
+<select id="selectByID" parameterType="java.lang.String" resultMap="JiFenResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_SP_REDEEM 
+		 where TA_SP_REDEEM.redeem_id = #{redeemId,jdbcType=VARCHAR}
+</select>
+
+<!-- ElementID:selectJiFenPage,Generated=false -->
+<select id="selectByPage" parameterType="java.util.Map" resultMap="JiFenResult">
+SELECT GET_UUID AS REDEEM_ID,
+       COMMUNITY,
+       GRID_NAME,
+       BLSXS,
+       YLSX,
+       ELSX,
+       YLSX * 1.5 AS YLSX_SCORE,
+       ELSX * 2 AS ELSX_SCORE,
+       GOOD_POINTS,
+       (YLSX * 1.5 + ELSX * 2 + GOOD_POINTS) TOTAL_SCORE,
+       (YLSX * 1.5 + ELSX * 2 + GOOD_POINTS) * 10 TOTAL_MONEY
+  FROM (SELECT COMMUNITY,
+               USERNAME AS GRID_NAME,
+               (SUM(YLSX) + SUM(ELSX)) BLSXS,
+               SUM(YLSX) YLSX,
+               SUM(ELSX) ELSX,
+               SUM(EVALUATE_CNT) GOOD_POINTS
+          FROM (SELECT CASE
+                         WHEN X.POSITION = 0 THEN
+                          '党员或其他'
+                         ELSE
+                          SUBSTR(X.USERNAME, 0, X.POSITION + 1)
+                       END AS COMMUNITY,
+                       X.USERNAME,
+                       X.ORDER_ID,
+                       SUM(X.YLSX + Y.YLSX) YLSX,
+                       SUM(X.ELSX + Y.ELSX) ELSX,
+                       SUM(X.EVALUATE + Y.EVALUATE) EVALUATE_CNT
+                  FROM (SELECT CASE
+                                 WHEN (SELECT COUNT(1)
+                                         FROM V_TA_SP_LSX_ADDORDER A
+                                        WHERE A.USERNAME LIKE '%社区%'
+                                          AND T.ORDER_ID = A.ORDER_ID) = 1 THEN
+                                  INSTR(T.USERNAME, '社区', 1)
+                                 ELSE
+                                  0
+                               END AS POSITION,
+                               T.USERNAME,
+                               T.ORDER_ID,
+                               CASE
+                                 WHEN (SELECT COUNT(1)
+                                         FROM V_TA_SP_LSX_BNB A
+                                        WHERE A.BNB_ID = T.APPLYERSERIALID) = 1 THEN
+                                  1
+                                 ELSE
+                                  0
+                               END AS ELSX,
+                               0 AS YLSX,
+                               CASE
+                                 WHEN (SELECT E.EVALUATION_RESULT
+                                            FROM (SELECT T.INSTANCE_ID,
+                                                         T.EVALUATION_RESULT,
+                                                         MAX(T.EVALUATION_ID) EVALUATION_ID
+                                                    FROM V_TA_SP_LSX_EVALUATION T
+                                                   GROUP BY T.INSTANCE_ID,
+                                                            T.EVALUATION_RESULT) E
+                                        WHERE E.INSTANCE_ID = T.APPLYERSERIALID) != 0 THEN
+                                  CASE
+                                    WHEN (SELECT E.EVALUATION_RESULT
+                                            FROM (SELECT T.INSTANCE_ID,
+                                                         T.EVALUATION_RESULT,
+                                                         MAX(T.EVALUATION_ID) EVALUATION_ID
+                                                    FROM V_TA_SP_LSX_EVALUATION T
+                                                   GROUP BY T.INSTANCE_ID,
+                                                            T.EVALUATION_RESULT) E
+                                           WHERE E.INSTANCE_ID = T.APPLYERSERIALID) &gt; 4 THEN
+                                     1
+                                    ELSE
+                                     0
+                                  END
+                                 ELSE
+                                  1
+                               END AS EVALUATE
+                          FROM V_TA_SP_LSX_ADDORDER T
+                          LEFT JOIN V_TA_SP_LSX_BANJIAN_SCHEDULE JD
+                            ON T.APPLYERSERIALID = JD.SCHEDULE_FOREIGN_ID
+                         WHERE 1 = 1
+                           AND T.ORDER_TIME &gt; TO_DATE('2019-04-01 00:00:00', 'yyyy-MM-dd hh24:mi:ss')
+                           <if test="beginDate != null">AND JD.SCHEDULE_DATE &gt; TO_DATE( #{beginDate}, 'yyyy-MM-dd hh24:mi:ss')</if>
+                           <if test="endDate != null">AND trunc(JD.SCHEDULE_DATE,'dd') &lt;TO_DATE( #{endDate}, 'yyyy-MM-dd hh24:mi:ss')</if>
+                           AND JD.SCHEDULE_TACHE = '办结') X,
+                       (SELECT CASE
+                                 WHEN (SELECT COUNT(1)
+                                         FROM V_TA_SP_LSX_ADDORDER A
+                                        WHERE A.USERNAME LIKE '%社区%'
+                                          AND T.ORDER_ID = A.ORDER_ID) = 1 THEN
+                                  INSTR(T.USERNAME, '社区', 1)
+                                 ELSE
+                                  0
+                               END AS POSITION,
+                               T.USERNAME,
+                               T.ORDER_ID,
+                               0 AS ELSX,
+                               CASE
+                                 WHEN (SELECT COUNT(1)
+                                         FROM TA_SP_INSTANCE B
+                                        WHERE B.INSTANCE_CODE =
+                                              T.APPLYERSERIALID) = 1 THEN
+                                  1
+                                 ELSE
+                                  0
+                               END AS YLSX,
+                               0 AS EVALUATE
+                          FROM V_TA_SP_LSX_ADDORDER T
+                          LEFT JOIN V_TA_SP_LSX_BANJIAN_SCHEDULE JD
+                            ON T.APPLYERSERIALID = JD.SCHEDULE_FOREIGN_ID
+                         WHERE 1 = 1
+                           AND T.ORDER_TIME &gt; TO_DATE('2019-04-01 00:00:00', 'yyyy-MM-dd hh24:mi:ss')
+                           <if test="beginDate != null">AND JD.SCHEDULE_DATE &gt; TO_DATE( #{beginDate}, 'yyyy-MM-dd hh24:mi:ss')</if>
+                           <if test="endDate != null">AND trunc(JD.SCHEDULE_DATE,'dd') &lt;TO_DATE( #{endDate}, 'yyyy-MM-dd hh24:mi:ss')</if>
+                           AND JD.SCHEDULE_TACHE = '办结') Y
+                 WHERE X.ORDER_ID = Y.ORDER_ID
+                   AND X.USERNAME = Y.USERNAME
+                 GROUP BY X.USERNAME, X.ORDER_ID，X.POSITION)
+         GROUP BY USERNAME, COMMUNITY)
+ ORDER BY COMMUNITY, TOTAL_MONEY DESC
+</select>
+</mapper>

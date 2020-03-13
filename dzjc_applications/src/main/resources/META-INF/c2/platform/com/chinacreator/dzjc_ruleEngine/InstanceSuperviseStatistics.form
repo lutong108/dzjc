@@ -1,0 +1,527 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form:Form xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dync="http://www.chinacreator.com/platform/mvc/ui/dync" xmlns:form="http://www.chinacreator.com/platform/mvc/form" name="办件统计发牌情况" res="" sn="dzjc_ruleEngine/InstanceSuperviseStatistics" type="form">
+  <form:control type="page/normal">
+    <form:attributes source="page/normal">
+      <dync:attribute default="" group="HTML" id="showHead" name="显示标题" value="">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="" group="HTML" id="title" name="标题" value="办件统计发牌情况">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="" group="HTML" id="desc" name="描述" value="">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="false" group="HTML" id="fixedHeight" name="自动高度" value="false">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="false" group="HTML" id="compact" name="紧凑页面" value="false">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="false" group="HTML" id="dirtyCheck" name="脏检查" value="false">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="" group="注入配置" id="angularJsServices" name="注入服务" value="">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="" group="事件" id="beforeDataSourceLoad" name="数据源加载前" value="page_beforeDataSourceLoad($params)">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="" group="事件" id="afterDataSourceLoad" name="数据源加载后" value="page_afterDataSourceLoad()">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="" group="事件" id="onload" name="页面加载完成" value="">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+    </form:attributes>
+  </form:control>
+  <form:child xsi:type="form:Group" id="div4" name="简单容器(DIV)">
+    <form:control type="container/div">
+      <form:attributes source="container/div">
+        <dync:attribute default="" group="高级自定义" id="style" name="自定义style" value="height:10px;">
+          <dync:render colSpan="2" height="0" multi="false" name="text"/>
+          <dync:children/>
+        </dync:attribute>
+      </form:attributes>
+    </form:control>
+  </form:child>
+  <form:child xsi:type="form:Group" id="DIV5" name="DIV">
+    <form:control type="container/div">
+      <form:attributes source="container/div">
+        <dync:attribute default="" group="高级自定义" id="style" name="自定义style" value="margin-top:5px">
+          <dync:render colSpan="2" height="0" multi="false" name="text"/>
+          <dync:children/>
+        </dync:attribute>
+      </form:attributes>
+    </form:control>
+    <form:child xsi:type="form:Field" binding="$params.beginDate" id="beginDate3" name="开始日期:" customize="true">
+      <form:control type="widget/date_picker">
+        <form:attributes source="widget/date_picker">
+          <dync:attribute default="6" group="基本设置" id="span" name="控件宽度" value="4">
+            <dync:render colSpan="1" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="false" group="时间设置" id="ngRequired" name="必填" value="true">
+            <dync:render colSpan="1" height="0" multi="false" name="checkboxAndExpr"/>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+      <form:validation/>
+    </form:child>
+    <form:child xsi:type="form:Field" binding="$params.endDate" id="endDate3" name="结束日期:" customize="true">
+      <form:control type="widget/date_picker">
+        <form:attributes source="widget/date_picker">
+          <dync:attribute default="6" group="基本设置" id="span" name="控件宽度" value="4">
+            <dync:render colSpan="1" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="false" group="时间设置" id="ngRequired" name="必填" value="true">
+            <dync:render colSpan="1" height="0" multi="false" name="checkboxAndExpr"/>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+      <form:validation/>
+    </form:child>
+    <form:child xsi:type="form:Group" id="div" name="简单容器(DIV)">
+      <form:control type="container/div">
+        <form:attributes source="container/div">
+          <dync:attribute default="12" group="HTML配置" id="span" name="占位数" value="4">
+            <dync:render colSpan="1" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="0" group="HTML配置" id="offset" name="偏移" value="">
+            <dync:render colSpan="1" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+      <form:child xsi:type="form:Field" id="query_button5" name="查询">
+        <form:control type="widget/button">
+          <form:attributes source="widget/button">
+            <dync:attribute id="query_button" value="普通按钮">
+              <dync:render/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="" group="事件设置" id="click" name="点击事件" value="query_button5_click($event)">
+              <dync:render colSpan="1" height="0" multi="false" name="event">
+                <dync:item name="params" value="$event"/>
+              </dync:render>
+              <dync:children/>
+            </dync:attribute>
+          </form:attributes>
+        </form:control>
+      </form:child>
+      <form:child xsi:type="form:Field" id="clean_button5" name="重置">
+        <form:control type="widget/button">
+          <form:attributes source="widget/button">
+            <dync:attribute id="clean_button" value="普通按钮">
+              <dync:render/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="" group="事件设置" id="click" name="点击事件" value="clean_button5_click($event)">
+              <dync:render colSpan="1" height="0" multi="false" name="event">
+                <dync:item name="params" value="$event"/>
+              </dync:render>
+              <dync:children/>
+            </dync:attribute>
+          </form:attributes>
+        </form:control>
+      </form:child>
+      <form:child xsi:type="form:Field" id="wordexport1" name="word导出" customize="true">
+        <form:control type="widget/button">
+          <form:attributes source="widget/button">
+            <dync:attribute default="" group="事件设置" id="click" name="点击事件" value="wordexport1_click($event)">
+              <dync:render colSpan="1" height="0" multi="false" name="event">
+                <dync:item name="params" value="$event"/>
+              </dync:render>
+              <dync:children/>
+            </dync:attribute>
+          </form:attributes>
+        </form:control>
+        <form:validation/>
+      </form:child>
+      <form:child xsi:type="form:Field" id="excelexport1" name="excel导出" customize="true">
+        <form:control type="widget/button">
+          <form:attributes source="widget/button">
+            <dync:attribute default="" group="事件设置" id="click" name="点击事件" value="excelexport1_click($event)">
+              <dync:render colSpan="1" height="0" multi="false" name="event">
+                <dync:item name="params" value="$event"/>
+              </dync:render>
+              <dync:children/>
+            </dync:attribute>
+          </form:attributes>
+        </form:control>
+        <form:validation/>
+      </form:child>
+    </form:child>
+  </form:child>
+  <form:child xsi:type="form:Group" id="div2" name="简单容器(DIV)">
+    <form:control type="container/div">
+      <form:attributes source="container/div">
+        <dync:attribute default="" group="高级自定义" id="html" name="自定义HTML" value="div_html">
+          <dync:render colSpan="2" height="0" multi="false" name="html"/>
+          <dync:children/>
+        </dync:attribute>
+        <dync:attribute default="" group="高级自定义" id="style" name="自定义style" value="margin-top : 0px;">
+          <dync:render colSpan="2" height="0" multi="false" name="text"/>
+          <dync:children/>
+        </dync:attribute>
+      </form:attributes>
+    </form:control>
+  </form:child>
+  <form:datasources>
+    <form:datasource xsi:type="form:TreeDataSource" id="orgTree" name="树型数据源" base="service" type="url" url="dzjc_ruleEngine/v1/GetOrgTree"/>
+  </form:datasources>
+  <form:scripts>
+page_afterDataSourceLoad:function(){
+	//统计全省办件的发牌情况
+	/*$http.post(c2.base(&quot;service&quot;)+&quot;dzjc_ruleEngine/v1/InstanceSuperviseStatistics/getOrgCode&quot;).success(function(result){*/
+	//此处暂用“分类事项办件情况”的权限校验
+	$http.post(c2.base(&quot;service&quot;)+&quot;dzjc_ruleEngine/v1/shiXiangBanJianStatistics/getOrgCode&quot;).success(function(result){
+		if (result.success) {
+			
+			$params.parentCode=result.parentCode;
+			$params.viewFlag=result.viewFlag;
+			
+			if($params.parentCode==&quot;430000000000&quot;){
+				$params.showUnitName=false;
+				$params.showArea=true;
+			}else if($params.parentCode==&quot;439900000000&quot;){
+				$params.showArea=false;
+				$params.showUnitName=true;
+			}else if($params.parentCode!=&quot;439900000000&quot; &amp;&amp; $params.viewFlag==&quot;city&quot; &amp;&amp; $params.parentCode!=&quot;430000000000&quot;){
+				$params.showUnitName=false;
+				$params.showArea=true;
+			}else if($params.parentCode!=&quot;439900000000&quot; &amp;&amp; $params.viewFlag==&quot;area&quot;){
+				$params.showArea=false;
+				$params.showUnitName=true;
+			}else if($params.viewFlag==&quot;org&quot;){
+				$params.showArea=false;
+				$params.showUnitName=true;
+			}
+			$http.get(c2.base(&quot;service&quot;)+&quot;dzjc_ruleEngine/v1/getInstanceSuperviseStatisticsInfo?beginDate=&quot;+$params.beginDate+&quot;&amp;endDate=&quot;+$params.endDate+&quot;&amp;parentCode=&quot;+$params.parentCode+&quot;&amp;viewFlag=&quot;+$params.viewFlag).success(function(data){
+				if(data!=null &amp;&amp; data!=''){
+					$params.jCSumData = data[&quot;dataList&quot;];
+					$params.titleNames = data[&quot;titleName&quot;];
+					$params.oldviewFlagOld =$params.viewFlag;
+					$params.oldviewFlag =$params.viewFlag;
+					$params.viewFlag=data[&quot;viewFlag&quot;];
+					$params.oldparentCodeOld=$params.parentCode;
+					$params.oldparentCode=$params.parentCode;
+					$params.parentCode=data[&quot;parentCode&quot;];
+				}else{
+					$params.jCSumData = null;
+					$params.titleNames = null;
+				}
+			});
+		} else {
+			Messenger.error(result.message);
+		}
+ 	});
+},
+
+
+query_button5_click:function($event){
+	var  org_xzqm=$model.orgTree.id;
+	
+	if($params.beginDate== '' || $params.beginDate== null){
+		Messenger.error(&quot;开始时间不能为空&quot;);
+		return;
+	}
+	if($params.endDate== '' || $params.endDate== null){
+		Messenger.error(&quot;结束时间不能为空&quot;);
+		return;
+	}
+	if($params.endDate!= '' &amp;&amp; $params.endDate!= null){
+	
+		if($params.beginDate > $params.endDate){
+			Messenger.error(&quot;开始时间不能大于结束时间！&quot;);
+			return;
+		}
+	}
+	if($params.parentCode==&quot;430000000000&quot;){
+		$params.showUnitName=false;
+		$params.showArea=true;
+	}else if($params.parentCode==&quot;439900000000&quot;){
+		$params.showArea=false;
+		$params.showUnitName=true;
+	}else if($params.parentCode!=&quot;439900000000&quot; &amp;&amp; $params.oldviewFlag==&quot;city&quot; &amp;&amp; $params.parentCode!=&quot;430000000000&quot;){
+		$params.showUnitName=false;
+		$params.showArea=true;
+	}else if($params.parentCode!=&quot;439900000000&quot; &amp;&amp; $params.oldviewFlag==&quot;area&quot;){
+		$params.showArea=false;
+		$params.showUnitName=true;
+	}else if($params.viewFlag==&quot;org&quot;){
+		$params.showArea=false;
+		$params.showUnitName=true;
+	}
+	$http.get(c2.base(&quot;service&quot;)+&quot;dzjc_ruleEngine/v1/getInstanceSuperviseStatisticsInfo?org_xzqm=&quot;+org_xzqm+&quot;&amp;beginDate=&quot;+$params.beginDate+&quot;&amp;endDate=&quot;+$params.endDate+&quot;&amp;parentCode=&quot;+$params.parentCode+&quot;&amp;viewFlag=&quot;+$params.oldviewFlag).success(function(data){
+		
+		if(data!=null &amp;&amp; data!=''){
+			$params.jCSumData = data[&quot;dataList&quot;];
+			$params.titleNames = data[&quot;titleName&quot;];
+			$params.viewFlag=data[&quot;viewFlag&quot;];
+		}else{
+			$params.jCSumData = null;
+			$params.titleNames = null;
+		}
+	});
+},
+
+clean_button5_click:function($event){
+	var date_ = new Date();  
+    date_.setDate(1); 
+    $params.beginDate=date_.getTime();
+    var currentMonth=date_.getMonth();
+    var nextMonth=++currentMonth;
+ 	var nextMonthFirstDay=new Date(date_.getFullYear(),nextMonth,1);
+ 	var t=new Date(); 
+ 	t.setTime(nextMonthFirstDay-1000*60*60*24); 
+ 	$params.endDate=t.getTime(); 
+	
+	if($params.oldparentCodeOld==&quot;430000000000&quot;){
+		$params.showUnitName=false;
+		$params.showArea=true;
+	}else if($params.oldparentCodeOld==&quot;439900000000&quot;){
+		$params.showArea=false;
+		$params.showUnitName=true;
+	}else if($params.oldparentCodeOld!=&quot;439900000000&quot; &amp;&amp; $params.oldviewFlagOld==&quot;city&quot; &amp;&amp; $params.oldparentCodeOld!=&quot;430000000000&quot;){
+		$params.showUnitName=false;
+		$params.showArea=true;
+	}else if($params.oldparentCodeOld!=&quot;439900000000&quot; &amp;&amp; $params.oldviewFlagOld==&quot;area&quot;){
+		$params.showArea=false;
+		$params.showUnitName=true;
+	}else if($params.oldviewFlagOld==&quot;org&quot;){
+		$params.showArea=false;
+		$params.showUnitName=true;
+	}
+	$params.oldparentCode=$params.oldparentCodeOld;
+	$params.parentCode=$params.oldparentCodeOld;
+	$params.oldviewFlag=$params.oldviewFlagOld;
+	$params.viewFlag=$params.oldviewFlagOld;
+	//统计全省办件的发牌情况
+	$http.get(c2.base(&quot;service&quot;)+&quot;dzjc_ruleEngine/v1/getInstanceSuperviseStatisticsInfo?beginDate=&quot;+$params.beginDate+&quot;&amp;endDate=&quot;+$params.endDate+&quot;&amp;parentCode=&quot;+$params.oldparentCodeOld+&quot;&amp;viewFlag=&quot;+$params.oldviewFlagOld).success(function(data){
+		if(data!=null &amp;&amp; data!=''){
+			$params.jCSumData = data[&quot;dataList&quot;];
+			$params.titleNames = data[&quot;titleName&quot;];
+			$params.viewFlag=data[&quot;viewFlag&quot;];
+		}else{
+			$params.jCSumData = null;
+			$params.titleNames = null;
+		}
+	});
+},
+
+excelexport1_click:function($event){
+	var  org_xzqm=$model.orgTree.id;
+	if($params.jCSumData==null){
+		Messenger.error(&quot;表格数据为空，无法导出!&quot;);
+	}else{
+		Modal.openConfirm({message:&quot;是否导出所有数据！&quot;},function(data){
+			var url = c2.base(&quot;service&quot;)+&quot;JCSumSuperviseInfoAllServlet?type=6&amp;org_xzqm=&quot;+org_xzqm+&quot;&amp;beginDate=&quot;+$params.beginDate+&quot;&amp;endDate=&quot;+$params.endDate+&quot;&amp;parentCode=&quot;+$params.parentCode+&quot;&amp;viewFlag=&quot;+$params.oldviewFlag;
+			window.location.href =url;
+		});
+	}
+},
+
+wordexport1_click:function($event){
+	var  org_xzqm=$model.orgTree.id;
+	if($params.jCSumData==null){
+		Messenger.error(&quot;表格数据为空，无法导出!&quot;);
+	}else{
+		Modal.openConfirm({message:&quot;是否导出所有数据！&quot;},function(data){
+			var url = c2.base(&quot;service&quot;)+&quot;JCSumSuperviseInfoAllServlet?type=5&amp;org_xzqm=&quot;+org_xzqm+&quot;&amp;beginDate=&quot;+$params.beginDate+&quot;&amp;endDate=&quot;+$params.endDate+&quot;&amp;parentCode=&quot;+$params.parentCode+&quot;&amp;viewFlag=&quot;+$params.oldviewFlag;
+			window.location.href =url;
+		});
+	}
+},
+
+page_beforeDataSourceLoad:function($params){
+       var date_ = new Date();  
+       date_.setDate(1); 
+       $params.beginDate=date_.getTime();
+       var currentMonth=date_.getMonth();
+       var nextMonth=++currentMonth;
+ 	   var nextMonthFirstDay=new Date(date_.getFullYear(),nextMonth,1);
+ 	   var t=new Date(); 
+ 	   t.setTime(nextMonthFirstDay-1000*60*60*24); 
+ 	   $params.endDate=t.getTime();   
+},
+
+
+changeAreaCode:function(item){
+	if(item.area_code==&quot;430000000000&quot;){
+		$params.showUnitName=false;
+		$params.showArea=true;
+	}
+	else if(item.area_code==&quot;439900000000&quot;){
+		$params.showArea=false;
+		$params.showUnitName=true;
+	}else if(item.area_code!=&quot;439900000000&quot; &amp;&amp; $params.viewFlag==&quot;city&quot; &amp;&amp; item.parentCode!=&quot;430000000000&quot;){
+	}else if(item.area_code!=&quot;439900000000&quot; &amp;&amp; $params.viewFlag==&quot;area&quot;){
+		$params.showArea=false;
+		$params.showUnitName=true;
+	}else if($params.viewFlag==&quot;org&quot;){
+		$params.showArea=false;
+		$params.showUnitName=true;
+	}
+	$http.get(c2.base(&quot;service&quot;)+&quot;dzjc_ruleEngine/v1/getInstanceSuperviseStatisticsInfo?beginDate=&quot;+$params.beginDate+&quot;&amp;endDate=&quot;+$params.endDate+&quot;&amp;parentCode=&quot;+item.area_code+&quot;&amp;viewFlag=&quot;+$params.viewFlag).success(function(data){
+		if(data!=null &amp;&amp; data!=''){
+			$params.jCSumData = data[&quot;dataList&quot;];
+			$params.titleNames = data[&quot;titleName&quot;];
+			$params.oldviewFlag =$params.viewFlag;
+			$params.viewFlag=data[&quot;viewFlag&quot;];
+			$params.oldparentCode=$params.parentCode;
+			$params.parentCode=data[&quot;parentCode&quot;];
+		}else{
+			$params.jCSumData = null;
+			$params.titleNames = null;
+		}
+	});
+},
+
+//对指定列排序
+sort:function(sortCol){
+	//1,保存sortCol
+	$params.sortCol = sortCol;
+	//2,调用查询按钮的方法保证查询条件不变,另增加参数sortCol
+	var  org_xzqm=$model.orgTree.id;
+	
+	if($params.beginDate== '' || $params.beginDate== null){
+		Messenger.error(&quot;开始时间不能为空&quot;);
+		return;
+	}
+	if($params.endDate== '' || $params.endDate== null){
+		Messenger.error(&quot;结束时间不能为空&quot;);
+		return;
+	}
+	if($params.endDate!= '' &amp;&amp; $params.endDate!= null){
+	
+		if($params.beginDate > $params.endDate){
+			Messenger.error(&quot;开始时间不能大于结束时间！&quot;);
+			return;
+		}
+	}
+	if($params.parentCode==&quot;430000000000&quot;){
+		$params.showUnitName=false;
+		$params.showArea=true;
+	}else if($params.parentCode==&quot;439900000000&quot;){
+		$params.showArea=false;
+		$params.showUnitName=true;
+	}else if($params.parentCode!=&quot;439900000000&quot; &amp;&amp; $params.oldviewFlag==&quot;city&quot; &amp;&amp; $params.parentCode!=&quot;430000000000&quot;){
+		$params.showUnitName=false;
+		$params.showArea=true;
+	}else if($params.parentCode!=&quot;439900000000&quot; &amp;&amp; $params.oldviewFlag==&quot;area&quot;){
+		$params.showArea=false;
+		$params.showUnitName=true;
+	}else if($params.viewFlag==&quot;org&quot;){
+		$params.showArea=false;
+		$params.showUnitName=true;
+	}
+	//与查询按钮功能不同之处在于，此处传参$params.sortCol到后台
+	$http.get(c2.base(&quot;service&quot;)+&quot;dzjc_ruleEngine/v1/getInstanceSuperviseStatisticsInfoBySortCol?org_xzqm=&quot;+org_xzqm+&quot;&amp;beginDate=&quot;+$params.beginDate+&quot;&amp;endDate=&quot;+$params.endDate+&quot;&amp;parentCode=&quot;+$params.parentCode+&quot;&amp;viewFlag=&quot;+$params.oldviewFlag+&quot;&amp;sortCol=&quot;+$params.sortCol).success(function(data){
+		
+		if(data!=null &amp;&amp; data!=''){
+			$params.jCSumData = data[&quot;dataList&quot;];
+			$params.titleNames = data[&quot;titleName&quot;];
+			$params.viewFlag=data[&quot;viewFlag&quot;];
+		}else{
+			$params.jCSumData = null;
+			$params.titleNames = null;
+		}
+	});
+}
+
+</form:scripts>
+  <form:htmls>&lt;style>
+	td{
+		font-weight:bold;
+		text-align: center;
+		height:30px;
+	}
+	th{
+		font-weight:normal;
+		text-align: center;
+		height:25px;
+	}
+	.contentTable{
+	border-collapse:collapse;
+	background:#ffffff;
+	padding:0px;
+	color: #000000;
+	margin: 0px;
+	border: 1px solid #C1C1C1; 
+	font-size: 13px;
+	width:100%;
+	}
+	.header {
+	font-weight: bold;
+	background-color: #ccdff2;
+	text-align: center;
+	}
+	.sort{
+		cursor:pointer;
+	}
+&lt;/style>
+
+&lt;script type=&quot;text/ng-template&quot; id=&quot;div_html&quot;>
+&lt;center>&lt;h3>{{$params.titleNames}}&lt;/h3>&lt;/center>&lt;br/>
+
+&lt;table border=&quot;1&quot; style=&quot;width:100%;margin-top:-15px;&quot;>
+	&lt;tr>
+			&lt;td class=&quot;header&quot; width=&quot;14%&quot; rowspan=&quot;3&quot;>行政区划/组织机构&lt;/td>
+			&lt;td class=&quot;header sort&quot; rowspan=&quot;3&quot; ng-click=&quot;functions.sort('yjs')&quot; ng-mouseover=&quot;functions.sortStyle()&quot;>预警&lt;/td>
+			&lt;td class=&quot;header sort&quot; rowspan=&quot;3&quot; ng-click=&quot;functions.sort('yellow')&quot; ng-mouseover=&quot;functions.sortStyle()&quot;>黄牌&lt;/td>
+			&lt;td class=&quot;header sort&quot; rowspan=&quot;3&quot; ng-click=&quot;functions.sort('red')&quot; ng-mouseover=&quot;functions.sortStyle()&quot;>红牌&lt;/td>
+			&lt;td class=&quot;header&quot; rowspan=&quot;2&quot; colspan=&quot;2&quot;>撤销&lt;/td>
+	&lt;/tr>
+	&lt;tr>
+	&lt;/tr>
+	&lt;tr>
+			&lt;td class=&quot;header sort&quot; ng-click=&quot;functions.sort('cancel_yellow_num')&quot; ng-mouseover=&quot;functions.sortStyle()&quot;>黄牌&lt;/td>
+			&lt;td class=&quot;header sort&quot; ng-click=&quot;functions.sort('cancel_red_num')&quot; ng-mouseover=&quot;functions.sortStyle()&quot;>红牌&lt;/td>
+	&lt;/tr>
+
+&lt;tbody ng-repeat=&quot;jCSumData in $params.jCSumData&quot;>
+
+		&lt;tr  ng-if=&quot;jCSumData.area_name!='合计'&quot;>
+			&lt;th ng-if=&quot;$params.showArea&quot;>&lt;a ng-click=&quot;functions.changeAreaCode(jCSumData)&quot;>{{jCSumData.area_name}}&lt;/a>&lt;/th>
+			&lt;th ng-if=&quot;$params.showUnitName&quot;>{{jCSumData.area_name}}&lt;/th>
+			&lt;th>{{jCSumData.yjs}}&lt;/th>
+			&lt;th>{{jCSumData.yellow}}&lt;/th>
+			&lt;th>{{jCSumData.red}}&lt;/th>
+			&lt;th>{{jCSumData.cancel_yellow_num}}&lt;/th>
+			&lt;th>{{jCSumData.cancel_red_num}}&lt;/th>
+		&lt;/tr>
+
+		&lt;tr  ng-if=&quot;jCSumData.area_name=='合计'&quot; style=&quot;color:red; height:35px;&quot;>
+			&lt;th >{{jCSumData.area_name}}&lt;/th>
+			&lt;th>{{jCSumData.yjs}}&lt;/th>
+			&lt;th>{{jCSumData.yellow}}&lt;/th>
+			&lt;th>{{jCSumData.red}}&lt;/th>
+			&lt;th>{{jCSumData.cancel_yellow_num}}&lt;/th>
+			&lt;th>{{jCSumData.cancel_red_num}}&lt;/th>
+		&lt;/tr>
+
+		
+
+&lt;/tbody>
+
+&lt;/table>
+
+
+
+
+&lt;/script></form:htmls>
+</form:Form>

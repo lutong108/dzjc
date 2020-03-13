@@ -1,0 +1,490 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"><mapper namespace="com.chinacreator.dzjc_ruleEngine.BussinessConMapper">
+
+
+<!-- ElementID:column_sql,Generated=false -->
+<sql id="column_sql">
+		ta_sp_consult.consult_id,
+        ta_sp_consult.consult_title,
+        ta_sp_consult.org_id,
+        ta_sp_consult.org_name,
+        ta_sp_consult.apply_id,
+        (select t.dictdata_value from TD_SM_DICTDATA t where t.DICTTYPE_ID=(select d.DICTTYPE_ID from TD_SM_DICTTYPE d where d.DICTTYPE_NAME='申请者类型') and t.dictdata_name=ta_sp_consult.apply_type) as apply_type_name,
+        ta_sp_consult.apply_type,
+        ta_sp_consult.apply_name,
+        ta_sp_consult.approve_id,
+        ta_sp_consult.consult_time,
+        ta_sp_consult.consult_content,
+        (select t.dictdata_value from TD_SM_DICTDATA t where t.DICTTYPE_ID=(select d.DICTTYPE_ID from TD_SM_DICTTYPE d where d.DICTTYPE_NAME='是否类型') and t.dictdata_name=ta_sp_consult.is_open) as is_open_name,
+        ta_sp_consult.is_open,
+        ta_sp_consult.reply_org,
+        ta_sp_consult.reply_time,
+        ta_sp_consult.reply_content,
+         (select t.dictdata_value from TD_SM_DICTDATA t where t.DICTTYPE_ID=(select d.DICTTYPE_ID from TD_SM_DICTTYPE d where d.DICTTYPE_NAME='信息来源') and t.dictdata_name=ta_sp_consult.consult_source) as consult_source_name,
+        ta_sp_consult.consult_source,
+        ta_sp_consult.area_code,
+        ta_sp_consult.reply_name,
+        ta_sp_consult.apply_phone,
+        ta_sp_consult.approve_name,
+        ta_sp_consult.consult_limit,
+        ta_sp_consult.expire_time,
+        ta_sp_consult.query_code,
+        ta_spxm.PROMISES_LIMIT,
+         ta_spxm.TIME_LIMIT
+</sql>
+
+
+<sql id="column_sqlById">
+		       ta_sp_consult.consult_id,
+        ta_sp_consult.consult_title,
+        ta_sp_consult.org_id,
+        ta_sp_consult.org_name,
+        ta_sp_consult.apply_id,
+         decode(ta_sp_consult.apply_type,'1','个人','2','企业','') apply_type_name,
+       <!--  (select t.dictdata_value from TD_SM_DICTDATA t where t.DICTTYPE_ID=(select d.DICTTYPE_ID from TD_SM_DICTTYPE d where d.DICTTYPE_NAME='申请者类型') and t.dictdata_name=ta_sp_consult.apply_type) as apply_type_name, -->
+        ta_sp_consult.apply_type,
+        ta_sp_consult.apply_name,
+        ta_sp_consult.approve_id,
+        ta_sp_consult.consult_time,
+        ta_sp_consult.consult_content,
+        (select t.dictdata_value from TD_SM_DICTDATA t where t.DICTTYPE_ID=(select d.DICTTYPE_ID from TD_SM_DICTTYPE d where d.DICTTYPE_NAME='是否类型') and t.dictdata_name=ta_sp_consult.is_open) as is_open_name,
+        ta_sp_consult.is_open,
+        ta_sp_consult.reply_org,
+        ta_sp_consult.reply_time,
+        ta_sp_consult.reply_content,
+         (select t.dictdata_value from TD_SM_DICTDATA t where t.DICTTYPE_ID=(select d.DICTTYPE_ID from TD_SM_DICTTYPE d where d.DICTTYPE_NAME='信息来源') and t.dictdata_name=ta_sp_consult.consult_source) as consult_source_name,
+        ta_sp_consult.consult_source,
+        ta_sp_consult.area_code,
+        ta_sp_consult.reply_name,
+        ta_sp_consult.apply_phone,
+        ta_sp_consult.approve_name,
+        ta_sp_consult.consult_limit,
+        ta_sp_consult.expire_time,
+        ta_sp_consult.query_code,
+        ta_spxm.PROMISES_LIMIT,
+        ta_spxm.TIME_LIMIT
+</sql>
+
+
+<!-- ElementID:ConsultInfoResult,Generated=true -->
+<resultMap id="BussinessConResult" type="com.chinacreator.dzjc_ruleEngine.BussinessCon">
+	<id property="consultId" column="consult_id"/>
+	<result property="consultTitle" column="consult_title"/>
+	<result property="orgId" column="org_id"/>
+	<result property="orgName" column="org_name"/>
+	<result property="applyId" column="apply_id"/>
+	<result property="applyType" column="apply_type"/>
+	<result property="applyName" column="apply_name"/>
+	<result property="approveId" column="approve_id"/>
+	<result property="consultTime" column="consult_time"/>
+	<result property="consultContent" column="consult_content"/>
+	<result property="isOpen" column="is_open"/>
+	<result property="replyOrg" column="reply_org"/>
+	<result property="replyTime" column="reply_time"/>
+	<result property="replyContent" column="reply_content"/>
+	<result property="consultSource" column="consult_source"/>
+	<result property="areaCode" column="area_code"/>
+	<result property="replyName" column="reply_name"/>
+	<result property="applyPhone" column="apply_phone"/>
+	<result property="approveName" column="approve_name"/>
+	<result property="consultLimit" column="consult_limit"/>
+	<result property="expireTime" column="expire_time"/>
+	<result property="timeLimit" column="time_limit"/>
+	<result property="promisesLimit" column="promises_limit"/>
+	<result property="applyTypeName" column="apply_type_name"/>
+	<result property="isOpenName" column="is_open_name"/>
+	<result property="consultSourceName" column="consult_source_name"/>
+	<result property="queryCode" column="query_code"/>
+</resultMap>
+
+
+<!-- ElementID:selectByID,Generated=false -->
+<select id="selectByID" parameterType="java.lang.String" resultMap="BussinessConResult">
+	select 
+		<include refid="column_sqlById"/>
+	    from ta_sp_consult 
+	    left join ta_spxm
+		on ta_sp_consult.Apply_Id = ta_spxm.approve_id
+		where ta_sp_consult.consult_id = #{consultId,jdbcType=VARCHAR}
+</select>
+
+
+
+<!-- ElementID:whereClause_sql,Generated=true -->
+<sql id="whereClause_sql">
+	    <if test="consultId != null">and TA_SP_CONSULT.consult_id = #{consultId}</if>
+	    <if test="consultTitle != null">and TA_SP_CONSULT.consult_title = #{consultTitle}</if>
+	    <if test="orgId != null">and TA_SP_CONSULT.org_id = #{orgId}</if>
+	    <if test="orgName != null">and TA_SP_CONSULT.org_name = #{orgName}</if>
+	    <if test="applyId != null">and TA_SP_CONSULT.apply_id = #{applyId}</if>
+	    <if test="applyType != null">and TA_SP_CONSULT.apply_type = #{applyType}</if>
+	    <if test="applyName != null">and TA_SP_CONSULT.apply_name = #{applyName}</if>
+	    <if test="approveId != null">and TA_SP_CONSULT.approve_id = #{approveId}</if>
+	    <if test="consultTime != null">and TA_SP_CONSULT.consult_time = #{consultTime}</if>
+	    <if test="consultContent != null">and TA_SP_CONSULT.consult_content = #{consultContent}</if>
+	    <if test="isOpen != null">and TA_SP_CONSULT.is_open = #{isOpen}</if>
+	    <if test="replyOrg != null">and TA_SP_CONSULT.reply_org = #{replyOrg}</if>
+	    <if test="replyTime != null">and TA_SP_CONSULT.reply_time = #{replyTime}</if>
+	    <if test="replyContent != null">and TA_SP_CONSULT.reply_content = #{replyContent}</if>
+	    <if test="consultSource != null">and TA_SP_CONSULT.consult_source = #{consultSource}</if>
+	    <if test="areaCode != null">and TA_SP_CONSULT.area_code = #{areaCode}</if>
+	    <if test="replyName != null">and TA_SP_CONSULT.reply_name = #{replyName}</if>
+	    <if test="applyPhone != null">and TA_SP_CONSULT.apply_phone = #{applyPhone}</if>
+	    <if test="approveName != null">and TA_SP_CONSULT.approve_name = #{approveName}</if>
+	    <if test="consultLimit != null">and TA_SP_CONSULT.consult_limit = #{consultLimit}</if>
+	    <if test="expireTime != null">and TA_SP_CONSULT.expire_time = #{expireTime}</if>
+	    <if test="timeLimit != null">and TA_SP_CONSULT.time_limit = #{timeLimit}</if>
+	    <if test="promisesLimit != null">and TA_SP_CONSULT.promises_limit = #{promisesLimit}</if>
+	    <if test="applyTypeName != null">and TA_SP_CONSULT.apply_type_name = #{applyTypeName}</if>
+	    <if test="isOpenName != null">and TA_SP_CONSULT.is_open_name = #{isOpenName}</if>
+	    <if test="consultSourceName != null">and TA_SP_CONSULT.consult_source_name = #{consultSourceName}</if>
+	    <if test="queryCode != null">and TA_SP_CONSULT.query_code = #{queryCode}</if>
+</sql>
+
+
+<!-- ElementID:insert,Generated=true -->
+<insert id="insert" parameterType="com.chinacreator.dzjc_ruleEngine.BussinessCon">
+	insert into TA_SP_CONSULT(
+	         <if test="consultId != null">consult_id</if>
+	         <if test="consultTitle != null">,consult_title</if>
+	         <if test="orgId != null">,org_id</if>
+	         <if test="orgName != null">,org_name</if>
+	         <if test="applyId != null">,apply_id</if>
+	         <if test="applyType != null">,apply_type</if>
+	         <if test="applyName != null">,apply_name</if>
+	         <if test="approveId != null">,approve_id</if>
+	         <if test="consultTime != null">,consult_time</if>
+	         <if test="consultContent != null">,consult_content</if>
+	         <if test="isOpen != null">,is_open</if>
+	         <if test="replyOrg != null">,reply_org</if>
+	         <if test="replyTime != null">,reply_time</if>
+	         <if test="replyContent != null">,reply_content</if>
+	         <if test="consultSource != null">,consult_source</if>
+	         <if test="areaCode != null">,area_code</if>
+	         <if test="replyName != null">,reply_name</if>
+	         <if test="applyPhone != null">,apply_phone</if>
+	         <if test="approveName != null">,approve_name</if>
+	         <if test="consultLimit != null">,consult_limit</if>
+	         <if test="expireTime != null">,expire_time</if>
+	         <if test="timeLimit != null">,time_limit</if>
+	         <if test="promisesLimit != null">,promises_limit</if>
+	         <if test="applyTypeName != null">,apply_type_name</if>
+	         <if test="isOpenName != null">,is_open_name</if>
+	         <if test="consultSourceName != null">,consult_source_name</if>
+	         <if test="queryCode != null">,query_code</if>
+	 	 	 )
+	 values (
+	         <if test="consultId != null">#{consultId,jdbcType=VARCHAR}</if>
+	         <if test="consultTitle != null">,#{consultTitle,jdbcType=VARCHAR}</if>
+	         <if test="orgId != null">,#{orgId,jdbcType=VARCHAR}</if>
+	         <if test="orgName != null">,#{orgName,jdbcType=VARCHAR}</if>
+	         <if test="applyId != null">,#{applyId,jdbcType=VARCHAR}</if>
+	         <if test="applyType != null">,#{applyType,jdbcType=VARCHAR}</if>
+	         <if test="applyName != null">,#{applyName,jdbcType=VARCHAR}</if>
+	         <if test="approveId != null">,#{approveId,jdbcType=VARCHAR}</if>
+	         <if test="consultTime != null">,#{consultTime,jdbcType=DATE}</if>
+	         <if test="consultContent != null">,#{consultContent,jdbcType=VARCHAR}</if>
+	         <if test="isOpen != null">,#{isOpen,jdbcType=VARCHAR}</if>
+	         <if test="replyOrg != null">,#{replyOrg,jdbcType=VARCHAR}</if>
+	         <if test="replyTime != null">,#{replyTime,jdbcType=DATE}</if>
+	         <if test="replyContent != null">,#{replyContent,jdbcType=VARCHAR}</if>
+	         <if test="consultSource != null">,#{consultSource,jdbcType=VARCHAR}</if>
+	         <if test="areaCode != null">,#{areaCode,jdbcType=VARCHAR}</if>
+	         <if test="replyName != null">,#{replyName,jdbcType=VARCHAR}</if>
+	         <if test="applyPhone != null">,#{applyPhone,jdbcType=VARCHAR}</if>
+	         <if test="approveName != null">,#{approveName,jdbcType=VARCHAR}</if>
+	         <if test="consultLimit != null">,#{consultLimit,jdbcType=NUMERIC}</if>
+	         <if test="expireTime != null">,#{expireTime,jdbcType=DATE}</if>
+	         <if test="timeLimit != null">,#{timeLimit,jdbcType=VARCHAR}</if>
+	         <if test="promisesLimit != null">,#{promisesLimit,jdbcType=VARCHAR}</if>
+	         <if test="applyTypeName != null">,#{applyTypeName,jdbcType=VARCHAR}</if>
+	         <if test="isOpenName != null">,#{isOpenName,jdbcType=VARCHAR}</if>
+	         <if test="consultSourceName != null">,#{consultSourceName,jdbcType=VARCHAR}</if>
+	         <if test="queryCode != null">,#{queryCode,jdbcType=VARCHAR}</if>
+	 	 	 )
+</insert>
+<!-- ElementID:count,Generated=true -->
+<select id="count" parameterType="com.chinacreator.dzjc_ruleEngine.BussinessCon" resultType="int">
+	select count(*) from TA_SP_CONSULT 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+<!-- ElementID:update,Generated=true -->
+<update id="update" parameterType="com.chinacreator.dzjc_ruleEngine.BussinessCon">
+	update TA_SP_CONSULT
+<set>
+	<if test="consultTitle != null">consult_title=#{consultTitle,jdbcType=VARCHAR},</if>
+	<if test="orgId != null">org_id=#{orgId,jdbcType=VARCHAR},</if>
+	<if test="orgName != null">org_name=#{orgName,jdbcType=VARCHAR},</if>
+	<if test="applyId != null">apply_id=#{applyId,jdbcType=VARCHAR},</if>
+	<if test="applyType != null">apply_type=#{applyType,jdbcType=VARCHAR},</if>
+	<if test="applyName != null">apply_name=#{applyName,jdbcType=VARCHAR},</if>
+	<if test="approveId != null">approve_id=#{approveId,jdbcType=VARCHAR},</if>
+	<if test="consultTime != null">consult_time=#{consultTime,jdbcType=DATE},</if>
+	<if test="consultContent != null">consult_content=#{consultContent,jdbcType=VARCHAR},</if>
+	<if test="isOpen != null">is_open=#{isOpen,jdbcType=VARCHAR},</if>
+	<if test="replyOrg != null">reply_org=#{replyOrg,jdbcType=VARCHAR},</if>
+	<if test="replyTime != null">reply_time=#{replyTime,jdbcType=DATE},</if>
+	<if test="replyContent != null">reply_content=#{replyContent,jdbcType=VARCHAR},</if>
+	<if test="consultSource != null">consult_source=#{consultSource,jdbcType=VARCHAR},</if>
+	<if test="areaCode != null">area_code=#{areaCode,jdbcType=VARCHAR},</if>
+	<if test="replyName != null">reply_name=#{replyName,jdbcType=VARCHAR},</if>
+	<if test="applyPhone != null">apply_phone=#{applyPhone,jdbcType=VARCHAR},</if>
+	<if test="approveName != null">approve_name=#{approveName,jdbcType=VARCHAR},</if>
+	<if test="consultLimit != null">consult_limit=#{consultLimit,jdbcType=NUMERIC},</if>
+	<if test="expireTime != null">expire_time=#{expireTime,jdbcType=DATE},</if>
+	<if test="timeLimit != null">time_limit=#{timeLimit,jdbcType=VARCHAR},</if>
+	<if test="promisesLimit != null">promises_limit=#{promisesLimit,jdbcType=VARCHAR},</if>
+	<if test="applyTypeName != null">apply_type_name=#{applyTypeName,jdbcType=VARCHAR},</if>
+	<if test="isOpenName != null">is_open_name=#{isOpenName,jdbcType=VARCHAR},</if>
+	<if test="consultSourceName != null">consult_source_name=#{consultSourceName,jdbcType=VARCHAR},</if>
+	<if test="queryCode != null">query_code=#{queryCode,jdbcType=VARCHAR}</if>
+</set>
+<where>
+	<choose>
+        <when test="consultId != null">and consult_id = #{consultId}</when>
+        <otherwise>and consult_id = </otherwise>
+    </choose>
+</where>
+</update>
+<!-- ElementID:updateNull,Generated=true -->
+<update id="updateNull" parameterType="map">
+	update TA_SP_CONSULT
+	<set>
+		<trim suffixOverrides=",">
+		    <if test="consultTitle==null">consult_title = null,</if>
+		    <if test="orgId==null">org_id = null,</if>
+		    <if test="orgName==null">org_name = null,</if>
+		    <if test="applyId==null">apply_id = null,</if>
+		    <if test="applyType==null">apply_type = null,</if>
+		    <if test="applyName==null">apply_name = null,</if>
+		    <if test="approveId==null">approve_id = null,</if>
+		    <if test="consultTime==null">consult_time = null,</if>
+		    <if test="consultContent==null">consult_content = null,</if>
+		    <if test="isOpen==null">is_open = null,</if>
+		    <if test="replyOrg==null">reply_org = null,</if>
+		    <if test="replyTime==null">reply_time = null,</if>
+		    <if test="replyContent==null">reply_content = null,</if>
+		    <if test="consultSource==null">consult_source = null,</if>
+		    <if test="areaCode==null">area_code = null,</if>
+		    <if test="replyName==null">reply_name = null,</if>
+		    <if test="applyPhone==null">apply_phone = null,</if>
+		    <if test="approveName==null">approve_name = null,</if>
+		    <if test="consultLimit==null">consult_limit = null,</if>
+		    <if test="expireTime==null">expire_time = null,</if>
+		    <if test="timeLimit==null">time_limit = null,</if>
+		    <if test="promisesLimit==null">promises_limit = null,</if>
+		    <if test="applyTypeName==null">apply_type_name = null,</if>
+		    <if test="isOpenName==null">is_open_name = null,</if>
+		    <if test="consultSourceName==null">consult_source_name = null,</if>
+		    <if test="queryCode==null">query_code = null,</if>
+		</trim>
+	</set>
+	<where>
+		<choose>
+			<when test="consultId != null">and consult_id = #{consultId}</when>
+			<otherwise>and consult_id = </otherwise>
+		</choose>
+	</where>
+</update>
+<!-- ElementID:delete,Generated=true -->
+<delete id="delete" parameterType="com.chinacreator.dzjc_ruleEngine.BussinessCon">
+    delete from TA_SP_CONSULT where 1=1 and consult_id = #{consultId}
+</delete>
+<!-- ElementID:select,Generated=true -->
+<select id="select" parameterType="com.chinacreator.dzjc_ruleEngine.BussinessCon" resultMap="BussinessConResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_SP_CONSULT 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+<!-- ElementID:insertBatch,Generated=true -->
+<insert id="insertBatch" parameterType="list">
+	insert into TA_SP_CONSULT (consult_id,consult_title,org_id,org_name,apply_id,apply_type,apply_name,approve_id,consult_time,consult_content,is_open,reply_org,reply_time,reply_content,consult_source,area_code,reply_name,apply_phone,approve_name,consult_limit,expire_time,time_limit,promises_limit,apply_type_name,is_open_name,consult_source_name,query_code) 
+<foreach collection="list" item="entity" index="index" separator="union all">
+		select 
+		#{entity.consultId,jdbcType = VARCHAR},
+				#{entity.consultTitle,jdbcType = VARCHAR},
+				#{entity.orgId,jdbcType = VARCHAR},
+				#{entity.orgName,jdbcType = VARCHAR},
+				#{entity.applyId,jdbcType = VARCHAR},
+				#{entity.applyType,jdbcType = VARCHAR},
+				#{entity.applyName,jdbcType = VARCHAR},
+				#{entity.approveId,jdbcType = VARCHAR},
+				#{entity.consultTime,jdbcType = DATE},
+				#{entity.consultContent,jdbcType = VARCHAR},
+				#{entity.isOpen,jdbcType = VARCHAR},
+				#{entity.replyOrg,jdbcType = VARCHAR},
+				#{entity.replyTime,jdbcType = DATE},
+				#{entity.replyContent,jdbcType = VARCHAR},
+				#{entity.consultSource,jdbcType = VARCHAR},
+				#{entity.areaCode,jdbcType = VARCHAR},
+				#{entity.replyName,jdbcType = VARCHAR},
+				#{entity.applyPhone,jdbcType = VARCHAR},
+				#{entity.approveName,jdbcType = VARCHAR},
+				#{entity.consultLimit,jdbcType = NUMERIC},
+				#{entity.expireTime,jdbcType = DATE},
+				#{entity.timeLimit,jdbcType = VARCHAR},
+				#{entity.promisesLimit,jdbcType = VARCHAR},
+				#{entity.applyTypeName,jdbcType = VARCHAR},
+				#{entity.isOpenName,jdbcType = VARCHAR},
+				#{entity.consultSourceName,jdbcType = VARCHAR},
+				#{entity.queryCode,jdbcType = VARCHAR}
+		from dual
+</foreach>
+</insert>
+<!-- ElementID:deleteBatch,Generated=true -->
+<delete id="deleteBatch" parameterType="List">
+	delete from TA_SP_CONSULT where consult_id in
+<trim prefix="(" suffix=")" suffixOverrides=",">
+<foreach collection="list" item="entity" separator=",">
+	<choose>
+		<when test="@com.chinacreator.c2.dao.util.EntityBeanUtil@isEntityObj(entity)">#{entity.consultId}</when>
+		<otherwise>#{entity}</otherwise>
+	</choose>
+</foreach>
+</trim>
+</delete>
+<!-- ElementID:selectAll,Generated=true -->
+<select id="selectAll" resultMap="BussinessConResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_SP_CONSULT 
+</select>
+<!-- ElementID:selectUnion,Generated=true -->
+<select id="selectUnion" parameterType="list" resultMap="BussinessConResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_SP_CONSULT 
+	 INNER JOIN
+<foreach collection="list" item="entity" separator="UNION" open="(" close=")">
+		SELECT 
+			 consult_id
+		FROM TA_SP_CONSULT 
+			<where>
+	        <if test="entity.consultId != null">and TA_SP_CONSULT.consult_id = #{entity.consultId}</if>
+	        <if test="entity.consultTitle != null">and TA_SP_CONSULT.consult_title = #{entity.consultTitle}</if>
+	        <if test="entity.orgId != null">and TA_SP_CONSULT.org_id = #{entity.orgId}</if>
+	        <if test="entity.orgName != null">and TA_SP_CONSULT.org_name = #{entity.orgName}</if>
+	        <if test="entity.applyId != null">and TA_SP_CONSULT.apply_id = #{entity.applyId}</if>
+	        <if test="entity.applyType != null">and TA_SP_CONSULT.apply_type = #{entity.applyType}</if>
+	        <if test="entity.applyName != null">and TA_SP_CONSULT.apply_name = #{entity.applyName}</if>
+	        <if test="entity.approveId != null">and TA_SP_CONSULT.approve_id = #{entity.approveId}</if>
+	        <if test="entity.consultTime != null">and TA_SP_CONSULT.consult_time = #{entity.consultTime}</if>
+	        <if test="entity.consultContent != null">and TA_SP_CONSULT.consult_content = #{entity.consultContent}</if>
+	        <if test="entity.isOpen != null">and TA_SP_CONSULT.is_open = #{entity.isOpen}</if>
+	        <if test="entity.replyOrg != null">and TA_SP_CONSULT.reply_org = #{entity.replyOrg}</if>
+	        <if test="entity.replyTime != null">and TA_SP_CONSULT.reply_time = #{entity.replyTime}</if>
+	        <if test="entity.replyContent != null">and TA_SP_CONSULT.reply_content = #{entity.replyContent}</if>
+	        <if test="entity.consultSource != null">and TA_SP_CONSULT.consult_source = #{entity.consultSource}</if>
+	        <if test="entity.areaCode != null">and TA_SP_CONSULT.area_code = #{entity.areaCode}</if>
+	        <if test="entity.replyName != null">and TA_SP_CONSULT.reply_name = #{entity.replyName}</if>
+	        <if test="entity.applyPhone != null">and TA_SP_CONSULT.apply_phone = #{entity.applyPhone}</if>
+	        <if test="entity.approveName != null">and TA_SP_CONSULT.approve_name = #{entity.approveName}</if>
+	        <if test="entity.consultLimit != null">and TA_SP_CONSULT.consult_limit = #{entity.consultLimit}</if>
+	        <if test="entity.expireTime != null">and TA_SP_CONSULT.expire_time = #{entity.expireTime}</if>
+	        <if test="entity.timeLimit != null">and TA_SP_CONSULT.time_limit = #{entity.timeLimit}</if>
+	        <if test="entity.promisesLimit != null">and TA_SP_CONSULT.promises_limit = #{entity.promisesLimit}</if>
+	        <if test="entity.applyTypeName != null">and TA_SP_CONSULT.apply_type_name = #{entity.applyTypeName}</if>
+	        <if test="entity.isOpenName != null">and TA_SP_CONSULT.is_open_name = #{entity.isOpenName}</if>
+	        <if test="entity.consultSourceName != null">and TA_SP_CONSULT.consult_source_name = #{entity.consultSourceName}</if>
+	        <if test="entity.queryCode != null">and TA_SP_CONSULT.query_code = #{entity.queryCode}</if>
+			</where>
+</foreach>
+	c2_temp_table ON TA_SP_CONSULT.consult_id = c2_temp_table.consult_id
+</select>
+<!-- ElementID:selectByPage,Generated=true -->
+<select id="selectByPage" parameterType="com.chinacreator.dzjc_ruleEngine.BussinessCon" resultMap="BussinessConResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_SP_CONSULT 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+<!-- ElementID:selectMany,Generated=true -->
+<select id="selectMany" parameterType="list" resultMap="BussinessConResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_SP_CONSULT 
+	where TA_SP_CONSULT.consult_id in (
+<foreach collection="list" item="entity" separator="intersect">
+		select 
+		TA_SP_CONSULT.consult_id
+	    from TA_SP_CONSULT 
+		 <where>
+	        <if test="entity.consultId != null">and TA_SP_CONSULT.consult_id = #{entity.consultId}</if>
+	        <if test="entity.consultTitle != null">and TA_SP_CONSULT.consult_title = #{entity.consultTitle}</if>
+	        <if test="entity.orgId != null">and TA_SP_CONSULT.org_id = #{entity.orgId}</if>
+	        <if test="entity.orgName != null">and TA_SP_CONSULT.org_name = #{entity.orgName}</if>
+	        <if test="entity.applyId != null">and TA_SP_CONSULT.apply_id = #{entity.applyId}</if>
+	        <if test="entity.applyType != null">and TA_SP_CONSULT.apply_type = #{entity.applyType}</if>
+	        <if test="entity.applyName != null">and TA_SP_CONSULT.apply_name = #{entity.applyName}</if>
+	        <if test="entity.approveId != null">and TA_SP_CONSULT.approve_id = #{entity.approveId}</if>
+	        <if test="entity.consultTime != null">and TA_SP_CONSULT.consult_time = #{entity.consultTime}</if>
+	        <if test="entity.consultContent != null">and TA_SP_CONSULT.consult_content = #{entity.consultContent}</if>
+	        <if test="entity.isOpen != null">and TA_SP_CONSULT.is_open = #{entity.isOpen}</if>
+	        <if test="entity.replyOrg != null">and TA_SP_CONSULT.reply_org = #{entity.replyOrg}</if>
+	        <if test="entity.replyTime != null">and TA_SP_CONSULT.reply_time = #{entity.replyTime}</if>
+	        <if test="entity.replyContent != null">and TA_SP_CONSULT.reply_content = #{entity.replyContent}</if>
+	        <if test="entity.consultSource != null">and TA_SP_CONSULT.consult_source = #{entity.consultSource}</if>
+	        <if test="entity.areaCode != null">and TA_SP_CONSULT.area_code = #{entity.areaCode}</if>
+	        <if test="entity.replyName != null">and TA_SP_CONSULT.reply_name = #{entity.replyName}</if>
+	        <if test="entity.applyPhone != null">and TA_SP_CONSULT.apply_phone = #{entity.applyPhone}</if>
+	        <if test="entity.approveName != null">and TA_SP_CONSULT.approve_name = #{entity.approveName}</if>
+	        <if test="entity.consultLimit != null">and TA_SP_CONSULT.consult_limit = #{entity.consultLimit}</if>
+	        <if test="entity.expireTime != null">and TA_SP_CONSULT.expire_time = #{entity.expireTime}</if>
+	        <if test="entity.timeLimit != null">and TA_SP_CONSULT.time_limit = #{entity.timeLimit}</if>
+	        <if test="entity.promisesLimit != null">and TA_SP_CONSULT.promises_limit = #{entity.promisesLimit}</if>
+	        <if test="entity.applyTypeName != null">and TA_SP_CONSULT.apply_type_name = #{entity.applyTypeName}</if>
+	        <if test="entity.isOpenName != null">and TA_SP_CONSULT.is_open_name = #{entity.isOpenName}</if>
+	        <if test="entity.consultSourceName != null">and TA_SP_CONSULT.consult_source_name = #{entity.consultSourceName}</if>
+	        <if test="entity.queryCode != null">and TA_SP_CONSULT.query_code = #{entity.queryCode}</if>
+		</where>
+</foreach>
+)
+</select>
+<!-- ElementID:updateBatch,Generated=true -->
+<update id="updateBatch" parameterType="list">
+	<foreach collection="list" item="entity" open="begin" close=";end;" separator=";">
+			update TA_SP_CONSULT
+	<set>
+	<if test="entity.consultTitle != null">consult_title= #{entity.consultTitle,jdbcType=VARCHAR},</if>
+	<if test="entity.orgId != null">org_id= #{entity.orgId,jdbcType=VARCHAR},</if>
+	<if test="entity.orgName != null">org_name= #{entity.orgName,jdbcType=VARCHAR},</if>
+	<if test="entity.applyId != null">apply_id= #{entity.applyId,jdbcType=VARCHAR},</if>
+	<if test="entity.applyType != null">apply_type= #{entity.applyType,jdbcType=VARCHAR},</if>
+	<if test="entity.applyName != null">apply_name= #{entity.applyName,jdbcType=VARCHAR},</if>
+	<if test="entity.approveId != null">approve_id= #{entity.approveId,jdbcType=VARCHAR},</if>
+	<if test="entity.consultTime != null">consult_time= #{entity.consultTime,jdbcType=DATE},</if>
+	<if test="entity.consultContent != null">consult_content= #{entity.consultContent,jdbcType=VARCHAR},</if>
+	<if test="entity.isOpen != null">is_open= #{entity.isOpen,jdbcType=VARCHAR},</if>
+	<if test="entity.replyOrg != null">reply_org= #{entity.replyOrg,jdbcType=VARCHAR},</if>
+	<if test="entity.replyTime != null">reply_time= #{entity.replyTime,jdbcType=DATE},</if>
+	<if test="entity.replyContent != null">reply_content= #{entity.replyContent,jdbcType=VARCHAR},</if>
+	<if test="entity.consultSource != null">consult_source= #{entity.consultSource,jdbcType=VARCHAR},</if>
+	<if test="entity.areaCode != null">area_code= #{entity.areaCode,jdbcType=VARCHAR},</if>
+	<if test="entity.replyName != null">reply_name= #{entity.replyName,jdbcType=VARCHAR},</if>
+	<if test="entity.applyPhone != null">apply_phone= #{entity.applyPhone,jdbcType=VARCHAR},</if>
+	<if test="entity.approveName != null">approve_name= #{entity.approveName,jdbcType=VARCHAR},</if>
+	<if test="entity.consultLimit != null">consult_limit= #{entity.consultLimit,jdbcType=NUMERIC},</if>
+	<if test="entity.expireTime != null">expire_time= #{entity.expireTime,jdbcType=DATE},</if>
+	<if test="entity.timeLimit != null">time_limit= #{entity.timeLimit,jdbcType=VARCHAR},</if>
+	<if test="entity.promisesLimit != null">promises_limit= #{entity.promisesLimit,jdbcType=VARCHAR},</if>
+	<if test="entity.applyTypeName != null">apply_type_name= #{entity.applyTypeName,jdbcType=VARCHAR},</if>
+	<if test="entity.isOpenName != null">is_open_name= #{entity.isOpenName,jdbcType=VARCHAR},</if>
+	<if test="entity.consultSourceName != null">consult_source_name= #{entity.consultSourceName,jdbcType=VARCHAR},</if>
+	<if test="entity.queryCode != null">query_code= #{entity.queryCode,jdbcType=VARCHAR}</if>
+	</set>
+		<where>
+			<choose>
+				<when test="entity.consultId != null">and consult_id = #{entity.consultId}</when>
+				<otherwise>and consult_id = </otherwise>
+			</choose>
+		</where>
+	</foreach>
+</update>
+</mapper>

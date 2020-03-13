@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"><mapper namespace="com.chinacreator.dzjc_ruleEngine.SuperviseHumanMapper">	
+
+<!-- ElementID:column_sql,Generated=false -->
+<sql id="column_sql">
+		  TA_JC_SUPERVISE_HUMAN.supervise_human_id ,
+		  TA_JC_SUPERVISE_HUMAN.org_id ,
+		  TA_JC_SUPERVISE_HUMAN.approve_id ,
+		  TA_JC_SUPERVISE_HUMAN.human_rule_id ,
+		  TA_JC_SUPERVISE_HUMAN.supervise_result_no ,
+		  TA_JC_SUPERVISE_HUMAN.supervise_descript ,
+		  TA_JC_SUPERVISE_HUMAN.supervise_gist ,
+		  TA_JC_SUPERVISE_HUMAN.warning_content ,
+		  TA_JC_SUPERVISE_HUMAN.supervise_time ,
+		  TA_JC_SUPERVISE_HUMAN.state
+</sql>
+
+<!-- ElementID:whereClause_sql,Generated=false -->
+<sql id="whereClause_sql">
+	    <if test="superviseHumanId != null">and TA_JC_SUPERVISE_HUMAN.supervise_human_id = #{superviseHumanId}</if>
+	    <!-- <if test="orgId != null">and TA_JC_SUPERVISE_HUMAN.org_id = #{orgId}</if> -->
+	    <if test="approveId != null">and TA_JC_SUPERVISE_HUMAN.approve_id = #{approveId}</if>
+	    <if test="humanRuleId != null">and TA_JC_SUPERVISE_HUMAN.human_rule_id = #{humanRuleId}</if>
+	    <if test="superviseResultNo != null">and TA_JC_SUPERVISE_HUMAN.supervise_result_no = #{superviseResultNo}</if>
+	    <if test="superviseDescript != null">and TA_JC_SUPERVISE_HUMAN.supervise_descript = #{superviseDescript}</if>
+	    <if test="superviseGist != null">and TA_JC_SUPERVISE_HUMAN.supervise_gist = #{superviseGist}</if>
+	    <if test="warningContent != null">and TA_JC_SUPERVISE_HUMAN.warning_content = #{warningContent}</if>
+	    <if test="superviseTime != null">and TA_JC_SUPERVISE_HUMAN.supervise_time = #{superviseTime}</if>
+	    <if test="fpbeginDate != null">and TA_JC_SUPERVISE_HUMAN.supervise_time  &gt;= #{fpbeginDate,jdbcType=VARCHAR}</if>
+	    <if test="fpendDate != null">and TA_JC_SUPERVISE_HUMAN.supervise_time &lt;= #{fpendDate,jdbcType=VARCHAR}</if>
+</sql>
+
+
+<!-- ElementID:SuperviseHumanResult,Generated=true -->
+<resultMap id="SuperviseHumanResult" type="com.chinacreator.dzjc_ruleEngine.SuperviseHuman">
+	<id property="superviseHumanId" column="supervise_human_id"/>
+	<result property="orgId" column="org_id"/>
+	<result property="approveId" column="approve_id"/>
+	<result property="humanRuleId" column="human_rule_id"/>
+	<result property="superviseResultNo" column="supervise_result_no"/>
+	<result property="superviseDescript" column="supervise_descript"/>
+	<result property="superviseGist" column="supervise_gist"/>
+	<result property="warningContent" column="warning_content"/>
+	<result property="superviseTime" column="supervise_time"/>
+	<result property="orgName" column="orgName"/>
+	<result property="approveName" column="approveName"/>
+	<result property="ruleName" column="ruleName"/>
+	<result property="temporgid" column="temporgid"/>
+	<result property="state" column="state"/>
+	<result property="fpbeginDate" column="fpbeginDate"/>
+	<result property="fpendDate" column="fpendDate"/>
+</resultMap>
+
+
+<!-- ElementID:insert,Generated=true -->
+<insert id="insert" parameterType="com.chinacreator.dzjc_ruleEngine.SuperviseHuman">
+	insert into TA_JC_SUPERVISE_HUMAN(
+	         <if test="superviseHumanId != null">supervise_human_id</if>
+	         <if test="orgId != null">,org_id</if>
+	         <if test="approveId != null">,approve_id</if>
+	         <if test="humanRuleId != null">,human_rule_id</if>
+	         <if test="superviseResultNo != null">,supervise_result_no</if>
+	         <if test="superviseDescript != null">,supervise_descript</if>
+	         <if test="superviseGist != null">,supervise_gist</if>
+	         <if test="warningContent != null">,warning_content</if>
+	         <if test="superviseTime != null">,supervise_time</if>
+	         <if test="orgName != null">,orgName</if>
+	         <if test="approveName != null">,approveName</if>
+	         <if test="ruleName != null">,ruleName</if>
+	         <if test="temporgid != null">,temporgid</if>
+	         <if test="state != null">,state</if>
+	         <if test="fpbeginDate != null">,fpbeginDate</if>
+	         <if test="fpendDate != null">,fpendDate</if>
+	 	 	 )
+	 values (
+	         <if test="superviseHumanId != null">#{superviseHumanId,jdbcType=VARCHAR}</if>
+	         <if test="orgId != null">,#{orgId,jdbcType=VARCHAR}</if>
+	         <if test="approveId != null">,#{approveId,jdbcType=VARCHAR}</if>
+	         <if test="humanRuleId != null">,#{humanRuleId,jdbcType=VARCHAR}</if>
+	         <if test="superviseResultNo != null">,#{superviseResultNo,jdbcType=VARCHAR}</if>
+	         <if test="superviseDescript != null">,#{superviseDescript,jdbcType=VARCHAR}</if>
+	         <if test="superviseGist != null">,#{superviseGist,jdbcType=VARCHAR}</if>
+	         <if test="warningContent != null">,#{warningContent,jdbcType=VARCHAR}</if>
+	         <if test="superviseTime != null">,#{superviseTime,jdbcType=DATE}</if>
+	         <if test="orgName != null">,#{orgName,jdbcType=VARCHAR}</if>
+	         <if test="approveName != null">,#{approveName,jdbcType=VARCHAR}</if>
+	         <if test="ruleName != null">,#{ruleName,jdbcType=VARCHAR}</if>
+	         <if test="temporgid != null">,#{temporgid,jdbcType=VARCHAR}</if>
+	         <if test="state != null">,#{state,jdbcType=VARCHAR}</if>
+	         <if test="fpbeginDate != null">,#{fpbeginDate,jdbcType=DATE}</if>
+	         <if test="fpendDate != null">,#{fpendDate,jdbcType=DATE}</if>
+	 	 	 )
+</insert>
+
+<!-- ElementID:count,Generated=true -->
+<select id="count" parameterType="com.chinacreator.dzjc_ruleEngine.SuperviseHuman" resultType="int">
+	select count(*) from TA_JC_SUPERVISE_HUMAN 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<!-- ElementID:update,Generated=true -->
+<update id="update" parameterType="com.chinacreator.dzjc_ruleEngine.SuperviseHuman">
+	update TA_JC_SUPERVISE_HUMAN
+<set>
+	<if test="orgId != null">org_id=#{orgId,jdbcType=VARCHAR},</if>
+	<if test="approveId != null">approve_id=#{approveId,jdbcType=VARCHAR},</if>
+	<if test="humanRuleId != null">human_rule_id=#{humanRuleId,jdbcType=VARCHAR},</if>
+	<if test="superviseResultNo != null">supervise_result_no=#{superviseResultNo,jdbcType=VARCHAR},</if>
+	<if test="superviseDescript != null">supervise_descript=#{superviseDescript,jdbcType=VARCHAR},</if>
+	<if test="superviseGist != null">supervise_gist=#{superviseGist,jdbcType=VARCHAR},</if>
+	<if test="warningContent != null">warning_content=#{warningContent,jdbcType=VARCHAR},</if>
+	<if test="superviseTime != null">supervise_time=#{superviseTime,jdbcType=DATE},</if>
+	<if test="orgName != null">orgName=#{orgName,jdbcType=VARCHAR},</if>
+	<if test="approveName != null">approveName=#{approveName,jdbcType=VARCHAR},</if>
+	<if test="ruleName != null">ruleName=#{ruleName,jdbcType=VARCHAR},</if>
+	<if test="temporgid != null">temporgid=#{temporgid,jdbcType=VARCHAR},</if>
+	<if test="state != null">state=#{state,jdbcType=VARCHAR},</if>
+	<if test="fpbeginDate != null">fpbeginDate=#{fpbeginDate,jdbcType=DATE},</if>
+	<if test="fpendDate != null">fpendDate=#{fpendDate,jdbcType=DATE}</if>
+</set>
+<where>
+	<choose>
+        <when test="superviseHumanId != null">and supervise_human_id = #{superviseHumanId}</when>
+        <otherwise>and supervise_human_id = </otherwise>
+    </choose>
+</where>
+</update>
+
+<!-- ElementID:updateNull,Generated=true -->
+<update id="updateNull" parameterType="map">
+	update TA_JC_SUPERVISE_HUMAN
+	<set>
+		<trim suffixOverrides=",">
+		    <if test="orgId==null">org_id = null,</if>
+		    <if test="approveId==null">approve_id = null,</if>
+		    <if test="humanRuleId==null">human_rule_id = null,</if>
+		    <if test="superviseResultNo==null">supervise_result_no = null,</if>
+		    <if test="superviseDescript==null">supervise_descript = null,</if>
+		    <if test="superviseGist==null">supervise_gist = null,</if>
+		    <if test="warningContent==null">warning_content = null,</if>
+		    <if test="superviseTime==null">supervise_time = null,</if>
+		    <if test="orgName==null">orgName = null,</if>
+		    <if test="approveName==null">approveName = null,</if>
+		    <if test="ruleName==null">ruleName = null,</if>
+		    <if test="temporgid==null">temporgid = null,</if>
+		    <if test="state==null">state = null,</if>
+		    <if test="fpbeginDate==null">fpbeginDate = null,</if>
+		    <if test="fpendDate==null">fpendDate = null,</if>
+		</trim>
+	</set>
+	<where>
+		<choose>
+			<when test="superviseHumanId != null">and supervise_human_id = #{superviseHumanId}</when>
+			<otherwise>and supervise_human_id = </otherwise>
+		</choose>
+	</where>
+</update>
+
+<!-- ElementID:delete,Generated=true -->
+<delete id="delete" parameterType="com.chinacreator.dzjc_ruleEngine.SuperviseHuman">
+    delete from TA_JC_SUPERVISE_HUMAN where 1=1 and supervise_human_id = #{superviseHumanId}
+</delete>
+
+<!-- ElementID:select,Generated=true -->
+<select id="select" parameterType="com.chinacreator.dzjc_ruleEngine.SuperviseHuman" resultMap="SuperviseHumanResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_SUPERVISE_HUMAN 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+
+<!-- ElementID:insertBatch,Generated=true -->
+<insert id="insertBatch" parameterType="list">
+	insert into TA_JC_SUPERVISE_HUMAN (supervise_human_id,org_id,approve_id,human_rule_id,supervise_result_no,supervise_descript,supervise_gist,warning_content,supervise_time,orgName,approveName,ruleName,temporgid,state,fpbeginDate,fpendDate) 
+<foreach collection="list" item="entity" index="index" separator="union all">
+		select 
+		#{entity.superviseHumanId,jdbcType = VARCHAR},
+				#{entity.orgId,jdbcType = VARCHAR},
+				#{entity.approveId,jdbcType = VARCHAR},
+				#{entity.humanRuleId,jdbcType = VARCHAR},
+				#{entity.superviseResultNo,jdbcType = VARCHAR},
+				#{entity.superviseDescript,jdbcType = VARCHAR},
+				#{entity.superviseGist,jdbcType = VARCHAR},
+				#{entity.warningContent,jdbcType = VARCHAR},
+				#{entity.superviseTime,jdbcType = DATE},
+				#{entity.orgName,jdbcType = VARCHAR},
+				#{entity.approveName,jdbcType = VARCHAR},
+				#{entity.ruleName,jdbcType = VARCHAR},
+				#{entity.temporgid,jdbcType = VARCHAR},
+				#{entity.state,jdbcType = VARCHAR},
+				#{entity.fpbeginDate,jdbcType = DATE},
+				#{entity.fpendDate,jdbcType = DATE}
+		from dual
+</foreach>
+</insert>
+
+<!-- ElementID:deleteBatch,Generated=true -->
+<delete id="deleteBatch" parameterType="List">
+	delete from TA_JC_SUPERVISE_HUMAN where supervise_human_id in
+<trim prefix="(" suffix=")" suffixOverrides=",">
+<foreach collection="list" item="entity" separator=",">
+	<choose>
+		<when test="@com.chinacreator.c2.dao.util.EntityBeanUtil@isEntityObj(entity)">#{entity.superviseHumanId}</when>
+		<otherwise>#{entity}</otherwise>
+	</choose>
+</foreach>
+</trim>
+</delete>
+
+<!-- ElementID:updateBatch,Generated=true -->
+<update id="updateBatch" parameterType="list">
+	<foreach collection="list" item="entity" open="begin" close=";end;" separator=";">
+			update TA_JC_SUPERVISE_HUMAN
+	<set>
+	<if test="entity.orgId != null">org_id= #{entity.orgId,jdbcType=VARCHAR},</if>
+	<if test="entity.approveId != null">approve_id= #{entity.approveId,jdbcType=VARCHAR},</if>
+	<if test="entity.humanRuleId != null">human_rule_id= #{entity.humanRuleId,jdbcType=VARCHAR},</if>
+	<if test="entity.superviseResultNo != null">supervise_result_no= #{entity.superviseResultNo,jdbcType=VARCHAR},</if>
+	<if test="entity.superviseDescript != null">supervise_descript= #{entity.superviseDescript,jdbcType=VARCHAR},</if>
+	<if test="entity.superviseGist != null">supervise_gist= #{entity.superviseGist,jdbcType=VARCHAR},</if>
+	<if test="entity.warningContent != null">warning_content= #{entity.warningContent,jdbcType=VARCHAR},</if>
+	<if test="entity.superviseTime != null">supervise_time= #{entity.superviseTime,jdbcType=DATE},</if>
+	<if test="entity.orgName != null">orgName= #{entity.orgName,jdbcType=VARCHAR},</if>
+	<if test="entity.approveName != null">approveName= #{entity.approveName,jdbcType=VARCHAR},</if>
+	<if test="entity.ruleName != null">ruleName= #{entity.ruleName,jdbcType=VARCHAR},</if>
+	<if test="entity.temporgid != null">temporgid= #{entity.temporgid,jdbcType=VARCHAR},</if>
+	<if test="entity.state != null">state= #{entity.state,jdbcType=VARCHAR},</if>
+	<if test="entity.fpbeginDate != null">fpbeginDate= #{entity.fpbeginDate,jdbcType=DATE},</if>
+	<if test="entity.fpendDate != null">fpendDate= #{entity.fpendDate,jdbcType=DATE}</if>
+	</set>
+		<where>
+			<choose>
+				<when test="entity.superviseHumanId != null">and supervise_human_id = #{entity.superviseHumanId}</when>
+				<otherwise>and supervise_human_id = </otherwise>
+			</choose>
+		</where>
+	</foreach>
+</update>
+
+<!-- ElementID:selectAll,Generated=true -->
+<select id="selectAll" resultMap="SuperviseHumanResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_SUPERVISE_HUMAN 
+</select>
+
+<!-- ElementID:selectMany,Generated=true -->
+<select id="selectMany" parameterType="list" resultMap="SuperviseHumanResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_JC_SUPERVISE_HUMAN 
+	where TA_JC_SUPERVISE_HUMAN.supervise_human_id in (
+<foreach collection="list" item="entity" separator="intersect">
+		select 
+		TA_JC_SUPERVISE_HUMAN.supervise_human_id
+	    from TA_JC_SUPERVISE_HUMAN 
+		 <where>
+	        <if test="entity.superviseHumanId != null">and TA_JC_SUPERVISE_HUMAN.supervise_human_id = #{entity.superviseHumanId}</if>
+	        <if test="entity.orgId != null">and TA_JC_SUPERVISE_HUMAN.org_id = #{entity.orgId}</if>
+	        <if test="entity.approveId != null">and TA_JC_SUPERVISE_HUMAN.approve_id = #{entity.approveId}</if>
+	        <if test="entity.humanRuleId != null">and TA_JC_SUPERVISE_HUMAN.human_rule_id = #{entity.humanRuleId}</if>
+	        <if test="entity.superviseResultNo != null">and TA_JC_SUPERVISE_HUMAN.supervise_result_no = #{entity.superviseResultNo}</if>
+	        <if test="entity.superviseDescript != null">and TA_JC_SUPERVISE_HUMAN.supervise_descript = #{entity.superviseDescript}</if>
+	        <if test="entity.superviseGist != null">and TA_JC_SUPERVISE_HUMAN.supervise_gist = #{entity.superviseGist}</if>
+	        <if test="entity.warningContent != null">and TA_JC_SUPERVISE_HUMAN.warning_content = #{entity.warningContent}</if>
+	        <if test="entity.superviseTime != null">and TA_JC_SUPERVISE_HUMAN.supervise_time = #{entity.superviseTime}</if>
+	        <if test="entity.orgName != null">and TA_JC_SUPERVISE_HUMAN.orgName = #{entity.orgName}</if>
+	        <if test="entity.approveName != null">and TA_JC_SUPERVISE_HUMAN.approveName = #{entity.approveName}</if>
+	        <if test="entity.ruleName != null">and TA_JC_SUPERVISE_HUMAN.ruleName = #{entity.ruleName}</if>
+	        <if test="entity.temporgid != null">and TA_JC_SUPERVISE_HUMAN.temporgid = #{entity.temporgid}</if>
+	        <if test="entity.state != null">and TA_JC_SUPERVISE_HUMAN.state = #{entity.state}</if>
+	        <if test="entity.fpbeginDate != null">and TA_JC_SUPERVISE_HUMAN.fpbeginDate = #{entity.fpbeginDate}</if>
+	        <if test="entity.fpendDate != null">and TA_JC_SUPERVISE_HUMAN.fpendDate = #{entity.fpendDate}</if>
+		</where>
+</foreach>
+)
+</select>
+
+<!-- ElementID:selectUnion,Generated=true -->
+<select id="selectUnion" parameterType="list" resultMap="SuperviseHumanResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_JC_SUPERVISE_HUMAN 
+	 INNER JOIN
+<foreach collection="list" item="entity" separator="UNION" open="(" close=")">
+		SELECT 
+			 supervise_human_id
+		FROM TA_JC_SUPERVISE_HUMAN 
+			<where>
+	        <if test="entity.superviseHumanId != null">and TA_JC_SUPERVISE_HUMAN.supervise_human_id = #{entity.superviseHumanId}</if>
+	        <if test="entity.orgId != null">and TA_JC_SUPERVISE_HUMAN.org_id = #{entity.orgId}</if>
+	        <if test="entity.approveId != null">and TA_JC_SUPERVISE_HUMAN.approve_id = #{entity.approveId}</if>
+	        <if test="entity.humanRuleId != null">and TA_JC_SUPERVISE_HUMAN.human_rule_id = #{entity.humanRuleId}</if>
+	        <if test="entity.superviseResultNo != null">and TA_JC_SUPERVISE_HUMAN.supervise_result_no = #{entity.superviseResultNo}</if>
+	        <if test="entity.superviseDescript != null">and TA_JC_SUPERVISE_HUMAN.supervise_descript = #{entity.superviseDescript}</if>
+	        <if test="entity.superviseGist != null">and TA_JC_SUPERVISE_HUMAN.supervise_gist = #{entity.superviseGist}</if>
+	        <if test="entity.warningContent != null">and TA_JC_SUPERVISE_HUMAN.warning_content = #{entity.warningContent}</if>
+	        <if test="entity.superviseTime != null">and TA_JC_SUPERVISE_HUMAN.supervise_time = #{entity.superviseTime}</if>
+	        <if test="entity.orgName != null">and TA_JC_SUPERVISE_HUMAN.orgName = #{entity.orgName}</if>
+	        <if test="entity.approveName != null">and TA_JC_SUPERVISE_HUMAN.approveName = #{entity.approveName}</if>
+	        <if test="entity.ruleName != null">and TA_JC_SUPERVISE_HUMAN.ruleName = #{entity.ruleName}</if>
+	        <if test="entity.temporgid != null">and TA_JC_SUPERVISE_HUMAN.temporgid = #{entity.temporgid}</if>
+	        <if test="entity.state != null">and TA_JC_SUPERVISE_HUMAN.state = #{entity.state}</if>
+	        <if test="entity.fpbeginDate != null">and TA_JC_SUPERVISE_HUMAN.fpbeginDate = #{entity.fpbeginDate}</if>
+	        <if test="entity.fpendDate != null">and TA_JC_SUPERVISE_HUMAN.fpendDate = #{entity.fpendDate}</if>
+			</where>
+</foreach>
+	c2_temp_table ON TA_JC_SUPERVISE_HUMAN.supervise_human_id = c2_temp_table.supervise_human_id
+</select>
+
+<!-- ElementID:selectByID,Generated=false -->
+<select id="selectByID" parameterType="java.lang.String" resultMap="SuperviseHumanResult">
+	select 
+    <include refid="column_sql"/>
+    ,o.NAME as orgName,a.approve_name as approveName ,sr.supervisory_rules_name as ruleName 
+	    from TA_JC_SUPERVISE_HUMAN 
+	    left join V_ORG o on TA_JC_SUPERVISE_HUMAN.org_id=o.ID
+    left join  TA_SP_APPROVE_INFO a on TA_JC_SUPERVISE_HUMAN.approve_id=a.approve_id
+    left join TA_JC_SUPERVISORY_RULES sr on TA_JC_SUPERVISE_HUMAN.human_rule_id=sr.supervisory_rules_id
+		 where TA_JC_SUPERVISE_HUMAN.supervise_human_id = #{superviseHumanId,jdbcType=VARCHAR}
+</select>
+
+<!-- ElementID:selectByPage,Generated=false -->
+<select id="selectByPage" parameterType="com.chinacreator.dzjc_ruleEngine.SuperviseHuman" resultMap="SuperviseHumanResult">
+  select 
+    <include refid="column_sql"/>
+    ,o.NAME as orgName,a.approve_name as approveName ,sr.supervisory_rules_name as ruleName 
+    from   TA_JC_SUPERVISE_HUMAN 
+    left join V_ORG o on TA_JC_SUPERVISE_HUMAN.org_id=o.ID
+    left join  TA_SP_APPROVE_INFO a on TA_JC_SUPERVISE_HUMAN.approve_id=a.approve_id
+    left join TA_JC_SUPERVISORY_RULES sr on TA_JC_SUPERVISE_HUMAN.human_rule_id=sr.supervisory_rules_id
+    where exists (
+              select id from (
+                 <if test="orgId != null">
+                    SELECT v.id,v.code FROM V_ORG V where V.CODE LIKE CONCAT(#{orgId},'%') OR V.ID = #{orgId,jdbcType=VARCHAR}
+                 </if>
+                 <if test="temporgid != null">
+                    select v1.id,v1.code from V_ORG V1 START WITH V1.ID=#{temporgid} CONNECT BY V1.PID = PRIOR V1.ID
+                 </if>
+              ) temp where TA_JC_SUPERVISE_HUMAN.org_id=temp.id
+           )
+     <include refid="whereClause_sql"/>
+</select>
+
+<!-- ElementID:selectByPage,Generated=false -->
+<select id="selectByPage1" parameterType="com.chinacreator.dzjc_ruleEngine.SuperviseHuman" resultMap="SuperviseHumanResult">
+  select 
+    <include refid="column_sql"/>
+    ,o.NAME as orgName,a.approve_name as approveName ,sr.supervisory_rules_name as ruleName 
+    from   TA_JC_SUPERVISE_HUMAN 
+    left join V_ORG o on TA_JC_SUPERVISE_HUMAN.org_id=o.ID
+    left join  TA_SP_APPROVE_INFO a on TA_JC_SUPERVISE_HUMAN.approve_id=a.approve_id
+    left join TA_JC_SUPERVISORY_RULES sr on TA_JC_SUPERVISE_HUMAN.human_rule_id=sr.supervisory_rules_id
+    where exists (
+              select id from (
+                 <if test="orgId != null">
+                    SELECT v.id,v.code FROM V_ORG V where V.CODE LIKE CONCAT(#{orgId},'%') OR V.ID = #{orgId,jdbcType=VARCHAR}
+                 </if>
+                 <if test="temporgid != null">
+                    select v1.id,v1.code from V_ORG V1 START WITH V1.ID=#{temporgid} CONNECT BY V1.PID = PRIOR V1.ID
+                 </if>
+              ) temp where TA_JC_SUPERVISE_HUMAN.org_id=temp.id
+           )
+      and TA_JC_SUPERVISE_HUMAN.supervise_result_no != '1'
+     <include refid="whereClause_sql"/>
+</select>
+
+
+
+</mapper>

@@ -1,0 +1,460 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"><mapper namespace="com.chinacreator.dzjc_tongji.BusinessDealStaInfoMapper">	
+
+<!-- 查询全省或者根据城市查询 -->
+<select id="queryProvinceOrCity" parameterType="java.util.Map" resultMap="TongJiResult">
+	select 
+       t1.ORG_ID as org_id,
+       t1.ORG_CODE as areaOrgCode,
+       t1.ORG_NAME as areaOrgName,
+       
+   	   nvl(sum(t2.acceptNum),0) as acceptNum,
+   	   nvl(sum(t2.normalFinishNum),0) as normalFinishNum,
+   	   nvl(sum(t2.unthreadfinishNum),0) as unthreadfinishNum,
+   	   nvl(sum(t2.throwFinishNum),0) as throwFinishNum,
+   	   nvl(sum(t2.naturalPersonNum),0) as naturalPersonNum,
+   	   nvl(sum(t2.legalPersonNum),0) as legalPersonNum,
+   	   nvl(sum(t2.instanceSuperviseGreenNum),0) as instanceSuperviseGreenNum,
+   	   nvl(sum(t2.instanceSuperviseYelloNum),0) as instanceSuperviseYelloNum,
+   	   nvl(sum(t2.instanceSuperviseRedNum),0) as instanceSuperviseRedNum,
+   	   nvl(sum(t2.instanceCancelYellowNum),0) as instanceCancelYellowNum,
+   	   nvl(sum(t2.instanceCancelRedNum),0) as instanceCancelRedNum,
+   	   nvl(sum(t2.noAcceptNum),0) as noAcceptNum,
+      
+       nvl(sum(t2.comNum),0) as comNum,
+       nvl(sum(t2.complainReplyNum),0) as complainReplyNum,
+       nvl(sum(t2.complainSuperviseGreenNum),0) as complainSuperviseGreenNum,
+       nvl(sum(t2.complainSuperviseYelloNum),0) as complainSuperviseYelloNum,
+       nvl(sum(t2.complainSuperviseRedNum),0) as complainSuperviseRedNum,
+       nvl(sum(t2.complainCancelYellowNum),0) as complainCancelYellowNum,
+       nvl(sum(t2.complainCancelRedNum),0) as complainCancelRedNum,
+      
+       nvl(sum(t2.consultNum),0) as consultNum,
+       nvl(sum(t2.consultReplayNum),0) as consultReplayNum,
+       nvl(sum(t2.consultSuperviseGreenNum),0) as consultSuperviseGreenNum,
+       nvl(sum(t2.consultSuperviseYelloNum),0) as consultSuperviseYelloNum,
+       nvl(sum(t2.consultSuperviseRedNum),0) as consultSuperviseRedNum,
+       nvl(sum(t2.consultCancelYellowNum),0) as consultCancelYellowNum,
+       nvl(sum(t2.consultCancelRedNum),0) as consultCancelRedNum
+  from V_JC_TONGJI_ORG t1
+  left join (select 
+  					<choose>
+				      <when test="orgLevel == 1">
+					      	si.CITY_CODE as area_code,
+				      </when>
+				      <when test="orgLevel == 2">
+				      		si.COUNTY_CODE as area_code,
+				      </when>
+					</choose>
+					sum(si.accept_num) as acceptNum,
+			        sum(si.normal_finish_num) as normalFinishNum,
+			        sum(si.unthreadfinish_num) as unthreadfinishNum,
+			        sum(si.throw_finish_num) as throwFinishNum,
+			        sum(si.natural_person_num) as naturalPersonNum,
+			        sum(si.legal_person_num) as legalPersonNum,
+			        sum(si.instance_supervise_green_num) as instanceSuperviseGreenNum,
+			        sum(si.instance_supervise_yello_num) as instanceSuperviseYelloNum,
+			        sum(si.instance_supervise_red_num) as instanceSuperviseRedNum,
+			        sum(si.instance_cancel_yellow_num) as instanceCancelYellowNum,
+			        sum(si.instance_cancel_red_num) as instanceCancelRedNum,
+			        sum(si.no_accept_num) as noAcceptNum,
+			       
+			        sum(si.com_num) as comNum,
+			        sum(si.complain_reply_num) as complainReplyNum,
+			        sum(si.complain_supervise_green_num) as complainSuperviseGreenNum,
+			        sum(si.complain_supervise_yello_num) as complainSuperviseYelloNum,
+			        sum(si.complain_supervise_red_num) as complainSuperviseRedNum,
+			        sum(si.complain_cancel_yellow_num) as complainCancelYellowNum,
+			        sum(si.complain_cancel_red_num) as complainCancelRedNum,
+			       
+			        sum(si.consult_num) as consultNum,
+			        sum(si.consult_replay_num) as consultReplayNum,
+			        sum(si.consult_supervise_green_num) as consultSuperviseGreenNum,
+			        sum(si.consult_supervise_yello_num) as consultSuperviseYelloNum,
+			        sum(si.consult_supervise_red_num) as consultSuperviseRedNum,
+			        sum(si.consult_cancel_yellow_num) as consultCancelYellowNum,
+			        sum(si.consult_cancel_red_num) as consultCancelRedNum 
+               from ${table} si
+              where 1 = 1
+              <choose>
+                <when test="isInvestmentSupervision != null">
+                    and si.is_investment_supervision = #{isInvestmentSupervision,jdbcType=VARCHAR}
+                </when>
+                <otherwise>
+                    and si.is_investment_supervision &lt;&gt; '1'
+                </otherwise>
+           	  </choose>
+              <if test="beginDate != null and beginDate != ''">
+                 and si.NOW_DATE &gt;= #{beginDate,jdbcType=VARCHAR}
+              </if>
+              <if test="endDate != null and endDate != ''">
+                and si.NOW_DATE &lt;= #{endDate,jdbcType=VARCHAR}
+              </if>
+		    <choose>
+		      <when test="orgLevel == 1">
+			      	group by CITY_CODE) t2
+			    on t1.CITY_CODE = t2.area_code
+		      </when>
+		      <when test="orgLevel == 2">
+		      		group by COUNTY_CODE) t2
+		    	on t1.COUNTY_CODE = t2.area_code
+		      </when>
+			</choose>
+	 where 1 = 1
+	   and t1.p_id = #{pId,jdbcType=VARCHAR}
+	 group by t1.ORG_ID,t1.ORG_NAME, t1.ORG_CODE, t1.ORDER_NUM
+	 order by t1.ORDER_NUM
+</select>
+
+<!-- 根据区县查询  orgLevel(3) -->
+<select id="queryCounty" parameterType="java.util.Map" resultMap="TongJiResult">
+	select 
+       t1.ORG_ID as org_id,
+       t1.ORG_CODE as areaOrgCode,
+       t1.ORG_NAME as areaOrgName,
+       
+   	   nvl(sum(t2.acceptNum),0) as acceptNum,
+   	   nvl(sum(t2.normalFinishNum),0) as normalFinishNum,
+   	   nvl(sum(t2.unthreadfinishNum),0) as unthreadfinishNum,
+   	   nvl(sum(t2.throwFinishNum),0) as throwFinishNum,
+   	   nvl(sum(t2.naturalPersonNum),0) as naturalPersonNum,
+   	   nvl(sum(t2.legalPersonNum),0) as legalPersonNum,
+   	   nvl(sum(t2.instanceSuperviseGreenNum),0) as instanceSuperviseGreenNum,
+   	   nvl(sum(t2.instanceSuperviseYelloNum),0) as instanceSuperviseYelloNum,
+   	   nvl(sum(t2.instanceSuperviseRedNum),0) as instanceSuperviseRedNum,
+   	   nvl(sum(t2.instanceCancelYellowNum),0) as instanceCancelYellowNum,
+   	   nvl(sum(t2.instanceCancelRedNum),0) as instanceCancelRedNum,
+   	   nvl(sum(t2.noAcceptNum),0) as noAcceptNum,
+      
+       nvl(sum(t2.comNum),0) as comNum,
+       nvl(sum(t2.complainReplyNum),0) as complainReplyNum,
+       nvl(sum(t2.complainSuperviseGreenNum),0) as complainSuperviseGreenNum,
+       nvl(sum(t2.complainSuperviseYelloNum),0) as complainSuperviseYelloNum,
+       nvl(sum(t2.complainSuperviseRedNum),0) as complainSuperviseRedNum,
+       nvl(sum(t2.complainCancelYellowNum),0) as complainCancelYellowNum,
+       nvl(sum(t2.complainCancelRedNum),0) as complainCancelRedNum,
+      
+       nvl(sum(t2.consultNum),0) as consultNum,
+       nvl(sum(t2.consultReplayNum),0) as consultReplayNum,
+       nvl(sum(t2.consultSuperviseGreenNum),0) as consultSuperviseGreenNum,
+       nvl(sum(t2.consultSuperviseYelloNum),0) as consultSuperviseYelloNum,
+       nvl(sum(t2.consultSuperviseRedNum),0) as consultSuperviseRedNum,
+       nvl(sum(t2.consultCancelYellowNum),0) as consultCancelYellowNum,
+       nvl(sum(t2.consultCancelRedNum),0) as consultCancelRedNum
+  from V_JC_TONGJI_ORG t1
+  left join (select 
+  					si.AREA_ORG_CODE as area_code,
+					sum(si.accept_num) as acceptNum,
+			        sum(si.normal_finish_num) as normalFinishNum,
+			        sum(si.unthreadfinish_num) as unthreadfinishNum,
+			        sum(si.throw_finish_num) as throwFinishNum,
+					sum(si.natural_person_num) as naturalPersonNum,
+			        sum(si.legal_person_num) as legalPersonNum,
+			        sum(si.instance_supervise_green_num) as instanceSuperviseGreenNum,
+			        sum(si.instance_supervise_yello_num) as instanceSuperviseYelloNum,
+			        sum(si.instance_supervise_red_num) as instanceSuperviseRedNum,
+			        sum(si.instance_cancel_yellow_num) as instanceCancelYellowNum,
+			        sum(si.instance_cancel_red_num) as instanceCancelRedNum,
+			        sum(si.no_accept_num) as noAcceptNum,
+			       
+			        sum(si.com_num) as comNum,
+			        sum(si.complain_reply_num) as complainReplyNum,
+			        sum(si.complain_supervise_green_num) as complainSuperviseGreenNum,
+			        sum(si.complain_supervise_yello_num) as complainSuperviseYelloNum,
+			        sum(si.complain_supervise_red_num) as complainSuperviseRedNum,
+			        sum(si.complain_cancel_yellow_num) as complainCancelYellowNum,
+			        sum(si.complain_cancel_red_num) as complainCancelRedNum,
+			       
+			        sum(si.consult_num) as consultNum,
+			        sum(si.consult_replay_num) as consultReplayNum,
+			        sum(si.consult_supervise_green_num) as consultSuperviseGreenNum,
+			        sum(si.consult_supervise_yello_num) as consultSuperviseYelloNum,
+			        sum(si.consult_supervise_red_num) as consultSuperviseRedNum,
+			        sum(si.consult_cancel_yellow_num) as consultCancelYellowNum,
+			        sum(si.consult_cancel_red_num) as consultCancelRedNum 
+               from ${table} si
+              where 1 = 1
+              <choose>
+                <when test="isInvestmentSupervision != null">
+                    and si.is_investment_supervision = #{isInvestmentSupervision,jdbcType=VARCHAR}
+                </when>
+                <otherwise>
+                    and si.is_investment_supervision &lt;&gt; '1'
+                </otherwise>
+           	  </choose>
+              <if test="beginDate != null and beginDate != ''">
+                 and si.NOW_DATE &gt;= #{beginDate,jdbcType=VARCHAR}
+              </if>
+              <if test="endDate != null and endDate != ''">
+                and si.NOW_DATE &lt;= #{endDate,jdbcType=VARCHAR}
+              </if>
+    group by AREA_ORG_CODE) t2 on t1.ORG_CODE = t2.area_code
+ where 1 = 1
+	   and t1.County_CODE = #{countyCode,jdbcType=VARCHAR}
+	   <!-- and substr(ORG_CODE, 13) != '000000000000' -->
+ group by t1.ORG_ID,t1.ORG_NAME, t1.ORG_CODE, t1.ORDER_NUM
+ order by t1.ORDER_NUM
+</select>
+
+<!-- 查询单个机构   orgLevel(5) -->
+<select id="queryByOrg" parameterType="java.util.Map" resultMap="TongJiResult">
+	select 
+       t1.ORG_ID as org_id,
+       t1.ORG_CODE as areaOrgCode,
+       t1.ORG_NAME as areaOrgName,
+   	   nvl(sum(t2.acceptNum),0) as acceptNum,
+   	   nvl(sum(t2.normalFinishNum),0) as normalFinishNum,
+   	   nvl(sum(t2.unthreadfinishNum),0) as unthreadfinishNum,
+   	   nvl(sum(t2.throwFinishNum),0) as throwFinishNum,
+   	   nvl(sum(t2.naturalPersonNum),0) as naturalPersonNum,
+   	   nvl(sum(t2.legalPersonNum),0) as legalPersonNum,
+   	   nvl(sum(t2.instanceSuperviseGreenNum),0) as instanceSuperviseGreenNum,
+   	   nvl(sum(t2.instanceSuperviseYelloNum),0) as instanceSuperviseYelloNum,
+   	   nvl(sum(t2.instanceSuperviseRedNum),0) as instanceSuperviseRedNum,
+   	   nvl(sum(t2.instanceCancelYellowNum),0) as instanceCancelYellowNum,
+   	   nvl(sum(t2.instanceCancelRedNum),0) as instanceCancelRedNum,
+   	   nvl(sum(t2.noAcceptNum),0) as noAcceptNum,
+      
+       nvl(sum(t2.comNum),0) as comNum,
+       nvl(sum(t2.complainReplyNum),0) as complainReplyNum,
+       nvl(sum(t2.complainSuperviseGreenNum),0) as complainSuperviseGreenNum,
+       nvl(sum(t2.complainSuperviseYelloNum),0) as complainSuperviseYelloNum,
+       nvl(sum(t2.complainSuperviseRedNum),0) as complainSuperviseRedNum,
+       nvl(sum(t2.complainCancelYellowNum),0) as complainCancelYellowNum,
+       nvl(sum(t2.complainCancelRedNum),0) as complainCancelRedNum,
+      
+       nvl(sum(t2.consultNum),0) as consultNum,
+       nvl(sum(t2.consultReplayNum),0) as consultReplayNum,
+       nvl(sum(t2.consultSuperviseGreenNum),0) as consultSuperviseGreenNum,
+       nvl(sum(t2.consultSuperviseYelloNum),0) as consultSuperviseYelloNum,
+       nvl(sum(t2.consultSuperviseRedNum),0) as consultSuperviseRedNum,
+       nvl(sum(t2.consultCancelYellowNum),0) as consultCancelYellowNum,
+       nvl(sum(t2.consultCancelRedNum),0) as consultCancelRedNum
+  from V_JC_TONGJI_ORG t1
+  left join (select 
+  					si.org_id,
+					sum(si.accept_num) as acceptNum,
+			        sum(si.normal_finish_num) as normalFinishNum,
+			        sum(si.unthreadfinish_num) as unthreadfinishNum,
+			        sum(si.throw_finish_num) as throwFinishNum,
+			        sum(si.natural_person_num) as naturalPersonNum,
+			        sum(si.legal_person_num) as legalPersonNum,
+			        sum(si.instance_supervise_green_num) as instanceSuperviseGreenNum,
+			        sum(si.instance_supervise_yello_num) as instanceSuperviseYelloNum,
+			        sum(si.instance_supervise_red_num) as instanceSuperviseRedNum,
+			        sum(si.instance_cancel_yellow_num) as instanceCancelYellowNum,
+			        sum(si.instance_cancel_red_num) as instanceCancelRedNum,
+			        sum(si.no_accept_num) as noAcceptNum,
+			       
+			        sum(si.com_num) as comNum,
+			        sum(si.complain_reply_num) as complainReplyNum,
+			        sum(si.complain_supervise_green_num) as complainSuperviseGreenNum,
+			        sum(si.complain_supervise_yello_num) as complainSuperviseYelloNum,
+			        sum(si.complain_supervise_red_num) as complainSuperviseRedNum,
+			        sum(si.complain_cancel_yellow_num) as complainCancelYellowNum,
+			        sum(si.complain_cancel_red_num) as complainCancelRedNum,
+			       
+			        sum(si.consult_num) as consultNum,
+			        sum(si.consult_replay_num) as consultReplayNum,
+			        sum(si.consult_supervise_green_num) as consultSuperviseGreenNum,
+			        sum(si.consult_supervise_yello_num) as consultSuperviseYelloNum,
+			        sum(si.consult_supervise_red_num) as consultSuperviseRedNum,
+			        sum(si.consult_cancel_yellow_num) as consultCancelYellowNum,
+			        sum(si.consult_cancel_red_num) as consultCancelRedNum 
+               from ${table} si
+              where 1 = 1
+              <choose>
+                <when test="isInvestmentSupervision != null">
+                    and si.is_investment_supervision = #{isInvestmentSupervision,jdbcType=VARCHAR}
+                </when>
+                <otherwise>
+                    and si.is_investment_supervision &lt;&gt; '1'
+                </otherwise>
+           	  </choose>
+              <if test="beginDate != null and beginDate != ''">
+                 and si.NOW_DATE &gt;= #{beginDate,jdbcType=VARCHAR}
+              </if>
+              <if test="endDate != null and endDate != ''">
+                and si.NOW_DATE &lt;= #{endDate,jdbcType=VARCHAR}
+              </if>
+	      	  group by org_id) t2 on t1.org_id = t2.org_id
+ where 1 = 1
+   and t1.org_id = #{orgId,jdbcType=VARCHAR}
+ group by t1.ORG_ID,t1.ORG_NAME, t1.ORG_CODE, t1.ORDER_NUM
+ order by t1.ORDER_NUM
+</select>
+
+<!-- 查询省本级或者市本级   orgLevel(5)-->
+<select id="queryBenJi" parameterType="java.util.Map" resultMap="TongJiResult">
+	select 
+       t1.ORG_ID as org_id,
+       t1.ORG_CODE as areaOrgCode,
+       t1.ORG_NAME as areaOrgName,
+       
+   	   nvl(sum(t2.acceptNum),0) as acceptNum,
+   	   nvl(sum(t2.normalFinishNum),0) as normalFinishNum,
+   	   nvl(sum(t2.unthreadfinishNum),0) as unthreadfinishNum,
+   	   nvl(sum(t2.throwFinishNum),0) as throwFinishNum,
+   	   nvl(sum(t2.naturalPersonNum),0) as naturalPersonNum,
+   	   nvl(sum(t2.legalPersonNum),0) as legalPersonNum,
+   	   nvl(sum(t2.instanceSuperviseGreenNum),0) as instanceSuperviseGreenNum,
+   	   nvl(sum(t2.instanceSuperviseYelloNum),0) as instanceSuperviseYelloNum,
+   	   nvl(sum(t2.instanceSuperviseRedNum),0) as instanceSuperviseRedNum,
+   	   nvl(sum(t2.instanceCancelYellowNum),0) as instanceCancelYellowNum,
+   	   nvl(sum(t2.instanceCancelRedNum),0) as instanceCancelRedNum,
+   	   nvl(sum(t2.noAcceptNum),0) as noAcceptNum,
+      
+       nvl(sum(t2.comNum),0) as comNum,
+       nvl(sum(t2.complainReplyNum),0) as complainReplyNum,
+       nvl(sum(t2.complainSuperviseGreenNum),0) as complainSuperviseGreenNum,
+       nvl(sum(t2.complainSuperviseYelloNum),0) as complainSuperviseYelloNum,
+       nvl(sum(t2.complainSuperviseRedNum),0) as complainSuperviseRedNum,
+       nvl(sum(t2.complainCancelYellowNum),0) as complainCancelYellowNum,
+       nvl(sum(t2.complainCancelRedNum),0) as complainCancelRedNum,
+      
+       nvl(sum(t2.consultNum),0) as consultNum,
+       nvl(sum(t2.consultReplayNum),0) as consultReplayNum,
+       nvl(sum(t2.consultSuperviseGreenNum),0) as consultSuperviseGreenNum,
+       nvl(sum(t2.consultSuperviseYelloNum),0) as consultSuperviseYelloNum,
+       nvl(sum(t2.consultSuperviseRedNum),0) as consultSuperviseRedNum,
+       nvl(sum(t2.consultCancelYellowNum),0) as consultCancelYellowNum,
+       nvl(sum(t2.consultCancelRedNum),0) as consultCancelRedNum
+  from V_JC_TONGJI_ORG t1
+  left join (select 
+  					si.org_id,
+					sum(si.accept_num) as acceptNum,
+			        sum(si.normal_finish_num) as normalFinishNum,
+			        sum(si.unthreadfinish_num) as unthreadfinishNum,
+			        sum(si.throw_finish_num) as throwFinishNum,
+			        sum(si.natural_person_num) as naturalPersonNum,
+			        sum(si.legal_person_num) as legalPersonNum,
+			        sum(si.instance_supervise_green_num) as instanceSuperviseGreenNum,
+			        sum(si.instance_supervise_yello_num) as instanceSuperviseYelloNum,
+			        sum(si.instance_supervise_red_num) as instanceSuperviseRedNum,
+			        sum(si.instance_cancel_yellow_num) as instanceCancelYellowNum,
+			        sum(si.instance_cancel_red_num) as instanceCancelRedNum,
+			        sum(si.no_accept_num) as noAcceptNum,
+			       
+			        sum(si.com_num) as comNum,
+			        sum(si.complain_reply_num) as complainReplyNum,
+			        sum(si.complain_supervise_green_num) as complainSuperviseGreenNum,
+			        sum(si.complain_supervise_yello_num) as complainSuperviseYelloNum,
+			        sum(si.complain_supervise_red_num) as complainSuperviseRedNum,
+			        sum(si.complain_cancel_yellow_num) as complainCancelYellowNum,
+			        sum(si.complain_cancel_red_num) as complainCancelRedNum,
+			       
+			        sum(si.consult_num) as consultNum,
+			        sum(si.consult_replay_num) as consultReplayNum,
+			        sum(si.consult_supervise_green_num) as consultSuperviseGreenNum,
+			        sum(si.consult_supervise_yello_num) as consultSuperviseYelloNum,
+			        sum(si.consult_supervise_red_num) as consultSuperviseRedNum,
+			        sum(si.consult_cancel_yellow_num) as consultCancelYellowNum,
+			        sum(si.consult_cancel_red_num) as consultCancelRedNum 
+               from ${table} si
+              where 1 = 1
+              <choose>
+                <when test="isInvestmentSupervision != null">
+                    and si.is_investment_supervision = #{isInvestmentSupervision,jdbcType=VARCHAR}
+                </when>
+                <otherwise>
+                    and si.is_investment_supervision &lt;&gt; '1'
+                </otherwise>
+           	  </choose>
+              <if test="beginDate != null and beginDate != ''">
+                 and si.NOW_DATE &gt;= #{beginDate,jdbcType=VARCHAR}
+              </if>
+              <if test="endDate != null and endDate != ''">
+                and si.NOW_DATE &lt;= #{endDate,jdbcType=VARCHAR}
+              </if>
+	      	  group by org_id) t2 on t1.org_id = t2.org_id
+ where 1 = 1
+   and t1.p_id = #{pId,jdbcType=VARCHAR}
+ group by t1.ORG_ID,t1.ORG_NAME, t1.ORG_CODE, t1.ORDER_NUM
+ order by t1.ORDER_NUM
+</select>
+
+
+<!-- ElementID:TongJiResult,Generated=true -->
+<resultMap id="TongJiResult" type="com.chinacreator.dzjc_tongji.TongJi">
+	<id property="recordId" column="record_id"/>
+	<result property="orgId" column="org_id"/>
+	<result property="areaOrgName" column="area_org_name"/>
+	<result property="areaOrgCode" column="area_org_code"/>
+	<result property="provinceCode" column="province_code"/>
+	<result property="cityCode" column="city_code"/>
+	<result property="countyCode" column="county_code"/>
+	<result property="streetCode" column="street_code"/>
+	<result property="villageCode" column="village_code"/>
+	<result property="orgLevel" column="org_level"/>
+	<result property="orgThisLevel" column="org_this_level"/>
+	<result property="nowDate" column="now_date"/>
+	<result property="acceptNowDate" column="accept_now_date"/>
+	<result property="acceptNum" column="accept_num"/>
+	<result property="djzAcceptNum" column="djz_accept_num"/>
+	<result property="finishNum" column="finish_num"/>
+	<result property="djzFinishNum" column="djz_finish_num"/>
+	<result property="normalFinishNum" column="normal_finish_num"/>
+	<result property="beforeFinishNum" column="before_finish_num"/>
+	<result property="afterFinishNum" column="after_finish_num"/>
+	<result property="unthreadfinishNum" column="unthreadfinish_num"/>
+	<result property="throwFinishNum" column="throw_finish_num"/>
+	<result property="dayFinishNum" column="day_finish_num"/>
+	<result property="sumWastingTime" column="sum_wasting_time"/>
+	<result property="chargeMoney" column="charge_money"/>
+	<result property="rightoffNum" column="rightoff_num"/>
+	<result property="respondNum" column="respond_num"/>
+	<result property="unionNum" column="union_num"/>
+	<result property="upNum" column="up_num"/>
+	<result property="xzxkNum" column="xzxk_num"/>
+	<result property="fxzxkNum" column="fxzxk_num"/>
+	<result property="bmfwNum" column="bmfw_num"/>
+	<result property="xzxkFinishNum" column="xzxk_finish_num"/>
+	<result property="fxzxkFinishNum" column="fxzxk_finish_num"/>
+	<result property="bmfwFinishNum" column="bmfw_finish_num"/>
+	<result property="complainNum" column="complain_num"/>
+	<result property="comNum" column="com_num"/>
+	<result property="complainReplyNum" column="complain_reply_num"/>
+	<result property="consultNum" column="consult_num"/>
+	<result property="consultReplayNum" column="consult_replay_num"/>
+	<result property="moneyNum" column="money_num"/>
+	<result property="normalNum" column="normal_num"/>
+	<result property="redNum" column="red_num"/>
+	<result property="yelloNum" column="yello_num"/>
+	<result property="greenNum" column="green_num"/>
+	<result property="status" column="status"/>
+	<result property="nowNormalNum" column="now_normal_num"/>
+	<result property="nowRedNum" column="now_red_num"/>
+	<result property="nowYelloNum" column="now_yello_num"/>
+	<result property="nowGreenNum" column="now_green_num"/>
+	<result property="finishNormalNum" column="finish_normal_num"/>
+	<result property="finishRedNum" column="finish_red_num"/>
+	<result property="finishYelloNum" column="finish_yello_num"/>
+	<result property="finishGreenNum" column="finish_green_num"/>
+	<result property="superviseGreenNum" column="supervise_green_num"/>
+	<result property="superviseYelloNum" column="supervise_yello_num"/>
+	<result property="superviseRedNum" column="supervise_red_num"/>
+	<result property="cancelYellowNum" column="cancel_yellow_num"/>
+	<result property="cancelRedNum" column="cancel_red_num"/>
+	<result property="naturalPersonNum" column="natural_person_num"/>
+	<result property="legalPersonNum" column="legal_person_num"/>
+	<result property="instanceSuperviseGreenNum" column="instance_supervise_green_num"/>
+	<result property="instanceSuperviseYelloNum" column="instance_supervise_yello_num"/>
+	<result property="instanceSuperviseRedNum" column="instance_supervise_red_num"/>
+	<result property="instanceCancelYellowNum" column="instance_cancel_yellow_num"/>
+	<result property="instanceCancelRedNum" column="instance_cancel_red_num"/>
+	<result property="complainSuperviseGreenNum" column="complain_supervise_green_num"/>
+	<result property="complainSuperviseYelloNum" column="complain_supervise_yello_num"/>
+	<result property="complainSuperviseRedNum" column="complain_supervise_red_num"/>
+	<result property="complainCancelYellowNum" column="complain_cancel_yellow_num"/>
+	<result property="complainCancelRedNum" column="complain_cancel_red_num"/>
+	<result property="consultSuperviseGreenNum" column="consult_supervise_green_num"/>
+	<result property="consultSuperviseYelloNum" column="consult_supervise_yello_num"/>
+	<result property="consultSuperviseRedNum" column="consult_supervise_red_num"/>
+	<result property="consultCancelYellowNum" column="consult_cancel_yellow_num"/>
+	<result property="consultCancelRedNum" column="consult_cancel_red_num"/>
+	<result property="specialSuperviseGreenNum" column="special_supervise_green_num"/>
+	<result property="specialSuperviseYellowNum" column="special_supervise_yellow_num"/>
+	<result property="specialSuperviseRedNum" column="special_supervise_red_num"/>
+</resultMap>
+
+</mapper>

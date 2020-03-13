@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chinacreator.dzjc_ruleEngine.SuperviseManualInfoAllMapper">
+
+
+<resultMap id="superviseManualResultMap" type="com.chinacreator.dzjc_ruleEngine.JCSumSuperviseInfoAll" >
+		<result property="ORG_ID" column="ORG_ID" />
+		<result property="area_name" column="AREA_NAME" />
+		<result property="area_code" column="AREA_CODE" />
+		<result property="yjs" column="YJS" />
+		<result property="yellow" column="YELLOW" />
+		<result property="red" column="RED" />
+		<result property="cancel_yj_num" column="cancel_yj_num" />
+		<result property="cancel_yellow_num" column="CANCEL_YELLOW_NUM" />
+		<result property="cancel_red_num" column="CANCEL_RED_NUM" />
+		<result property="sls" column="SLS" />
+		<result property="bjs" column="BJS" />
+		<result property="zcbjs" column="ZCBJS" />
+		<result property="thbjs" column="THBJS" />
+		<result property="zfbjs" column="ZFBJS" />
+		<result property="scbjs" column="SCBJS" />
+		<result property="bjl" column="BJL" />
+		<result property="ljsls" column="LJSLS" />
+		<result property="ljbjs" column="LJBJS" />
+		<result property="bysls" column="BYSLS" />
+		<result property="complain_num" column="COMPLAIN_NUM" />
+		<result property="complain_reply_num" column="COMPLAIN_REPLY_NUM" />
+		<result property="consult_num" column="CONSULT_NUM" />
+		<result property="consult_replay_num" column="CONSULT_REPLAY_NUM" />
+		<result property="instance_yjs" column="instance_yjs" />
+		<result property="instance_yellow" column="instance_yellow" />
+		<result property="instance_red" column="instance_red" />
+		<result property="instance_cancel_yellow_num" column="instance_cancel_yellow_num" />
+		<result property="instance_cancel_red_num" column="instance_cancel_red_num" />
+		<result property="complain_yjs" column="complain_yjs" />
+		<result property="complain_yellow" column="complain_yellow" />
+		<result property="complain_red" column="complain_red" />
+		<result property="complain_cancel_yellow_num" column="complain_cancel_yellow_num" />
+		<result property="complain_cancel_red_num" column="complain_cancel_red_num" />
+		<result property="consult_yjs" column="consult_yjs" />
+		<result property="consult_yellow" column="consult_yellow" />
+		<result property="consult_red" column="consult_red" />
+		<result property="consult_cancel_yellow_num" column="consult_cancel_yellow_num" />
+		<result property="consult_cancel_red_num" column="consult_cancel_red_num" />
+		<result property="special_supervise_green_num" column="special_supervise_green_num" />
+		<result property="special_supervise_yellow_num" column="special_supervise_yellow_num" />
+		<result property="special_supervise_red_num" column="special_supervise_red_num" />
+		
+</resultMap>
+
+<!-- 湖南省 -->
+<select id="selectSuperviseManualInfoAllByProvince" resultMap="superviseManualResultMap" parameterType="com.chinacreator.dzjc_ruleEngine.JCSumSuperviseInfoAll">
+<!-- select a.AREA_NAME area_name,
+       a.area_code area_code,
+       a.ORDER_NUM,
+       nvl(sum(t.yjs), 0) yjs,
+       nvl(sum(t.yellow), 0) yellow,
+       nvl(sum(t.red), 0) red,
+       nvl(sum(t.cancel_yj_num), 0) cancel_yj_num,
+       nvl(sum(t.cancel_yellow_num), 0) cancel_yellow_num,
+       nvl(sum(t.cancel_red_num), 0) cancel_red_num
+  from v_ta_dic_area a
+  left join (select ssi.CITY_CODE,
+                    sum(ssi.human_SUPERVISE_GREEN_NUM) as yjs,
+                    sum(ssi.human_SUPERVISE_YELLO_NUM) as yellow,
+                    sum(ssi.human_CANCEL_RED_NUM) as red,
+                    sum(ssi.human_CANCEL_SUPERVISE_GREEN_NUM) as cancel_yj_num,
+                    sum(ssi.human_CANCEL_SUPERVISE_YELLO_NUM) as cancel_yellow_num,
+                    sum(ssi.human_CANCEL_CANCEL_RED_NUM) as cancel_red_num
+               from V_TA_JC_SUM_SUPERVISE_HUMAN ssi
+              where 1 = 1
+                and  ssi.supervise_time &gt;= #{start_time}
+                and  ssi.supervise_time &lt;= #{end_time}
+              group by ssi.CITY_CODE) t
+    on a.AREA_CODE = t.city_code
+ where a.parent_code = '430000000000'
+ group by a.AREA_NAME,a.area_code,a.ORDER_NUM
+<choose>
+	<when test="sortCol != null">
+		order by ${sortCol} desc
+	</when>
+	<otherwise>
+		order by  a.ORDER_NUM
+	</otherwise>
+</choose> -->
+	 SELECT A.AREA_NAME AS AREA_NAME,
+	        A.AREA_CODE AS AREA_CODE,
+	        A.ORDER_NUM AS ORDER_NUM,
+	        NVL(T.YJS, 0) AS YJS,
+	        NVL(T.YELLOW, 0) AS YELLOW,
+	        NVL(T.RED, 0) AS RED,
+	        NVL(T.CANCEL_YJ_NUM, 0) AS CANCEL_YJ_NUM,
+	        NVL(T.CANCEL_YELLOW_NUM, 0) AS CANCEL_YELLOW_NUM,
+	        NVL(T.CANCEL_RED_NUM, 0) AS CANCEL_RED_NUM
+	   FROM V_TA_DIC_AREA A
+	   LEFT JOIN (SELECT SSI.CITY_CODE,
+	                     SUM(SSI.HUMAN_SUPERVISE_GREEN_NUM) AS YJS,
+	                     SUM(SSI.HUMAN_SUPERVISE_YELLO_NUM) AS YELLOW,
+	                     SUM(SSI.HUMAN_CANCEL_RED_NUM) AS RED,
+	                     SUM(SSI.HUMAN_CANCEL_SUPERVISE_GREEN_NUM) AS CANCEL_YJ_NUM,
+	                     SUM(SSI.HUMAN_CANCEL_SUPERVISE_YELLO_NUM) AS CANCEL_YELLOW_NUM,
+	                     SUM(SSI.HUMAN_CANCEL_CANCEL_RED_NUM) AS CANCEL_RED_NUM
+	                FROM V_TA_JC_SUM_SUPERVISE_HUMAN SSI
+	              WHERE  1 = 1
+	                AND  SSI.SUPERVISE_TIME &gt;= #{start_time}
+	                AND  SSI.SUPERVISE_TIME &lt;= #{end_time}
+	               GROUP BY SSI.CITY_CODE) T
+	     ON A.AREA_CODE = T.CITY_CODE
+	  WHERE A.PARENT_CODE = '430000000000'
+	  <choose>
+		<when test="sortCol != null">
+			order by ${sortCol} desc
+		</when>
+		<otherwise>
+			order by  a.ORDER_NUM
+		</otherwise>
+	  </choose>
+	  
+</select>
+
+<!-- 省本级 -->
+<select id="selectSuperviseManualInfoAllByLevel" resultMap="superviseManualResultMap" parameterType="com.chinacreator.dzjc_ruleEngine.JCSumSuperviseInfoAll">
+<!-- select o.ORG_NAME area_name,
+       o.ORDER_NUM,
+       nvl(sum(a.yjs), 0) yjs,
+       nvl(sum(a.yellow), 0) yellow,
+       nvl(sum(a.red), 0) red,
+       nvl(sum(a.cancel_yj_num), 0) cancel_yj_num,
+       nvl(sum(a.cancel_yellow_num), 0) cancel_yellow_num,
+       nvl(sum(a.cancel_red_num), 0) cancel_red_num
+  from v_td_sm_organization1 o
+  left join (select ssi.org_id,
+                    sum(ssi.human_SUPERVISE_GREEN_NUM) as yjs,
+                    sum(ssi.human_SUPERVISE_YELLO_NUM) as yellow,
+                    sum(ssi.human_CANCEL_RED_NUM) as red,
+                    sum(ssi.human_CANCEL_SUPERVISE_GREEN_NUM) as cancel_yj_num,
+                    sum(ssi.human_CANCEL_SUPERVISE_YELLO_NUM) as cancel_yellow_num,
+                    sum(ssi.human_CANCEL_CANCEL_RED_NUM) as cancel_red_num
+               from V_TA_JC_SUM_SUPERVISE_HUMAN ssi
+              where 1 = 1
+                and  ssi.supervise_time &gt;= #{start_time}
+ 				and  ssi.supervise_time &lt;= #{end_time}
+              group by ssi.org_id) a
+    on o.ORG_ID = a.org_id
+ where o.CITY_CODE = '439900000000'
+   and o.ORG_LEVEL != '2'
+ group by o.ORG_NAME, o.ORDER_NUM
+ <choose>
+	<when test="sortCol != null">
+		order by ${sortCol} desc
+	</when>
+	<otherwise>
+		 order by o.ORDER_NUM
+	</otherwise>
+</choose> -->
+	SELECT O.ORG_NAME AS AREA_NAME,
+	       O.ORDER_NUM AS ORDER_NUM,
+	       NVL(A.YJS, 0) AS YJS,
+	       NVL(A.YELLOW, 0) AS YELLOW,
+	       NVL(A.RED, 0) AS RED,
+	       NVL(A.CANCEL_YJ_NUM, 0) AS CANCEL_YJ_NUM,
+	       NVL(A.CANCEL_YELLOW_NUM, 0) AS CANCEL_YELLOW_NUM,
+	       NVL(A.CANCEL_RED_NUM, 0) AS CANCEL_RED_NUM
+	  FROM V_TD_SM_ORGANIZATION1 O
+	  LEFT JOIN (SELECT SSI.ORG_ID,
+	                    SUM(SSI.HUMAN_SUPERVISE_GREEN_NUM) AS YJS,
+	                    SUM(SSI.HUMAN_SUPERVISE_YELLO_NUM) AS YELLOW,
+	                    SUM(SSI.HUMAN_CANCEL_RED_NUM) AS RED,
+	                    SUM(SSI.HUMAN_CANCEL_SUPERVISE_GREEN_NUM) AS CANCEL_YJ_NUM,
+	                    SUM(SSI.HUMAN_CANCEL_SUPERVISE_YELLO_NUM) AS CANCEL_YELLOW_NUM,
+	                    SUM(SSI.HUMAN_CANCEL_CANCEL_RED_NUM) AS CANCEL_RED_NUM
+	               FROM V_TA_JC_SUM_SUPERVISE_HUMAN SSI
+	              WHERE 1 = 1
+	                AND SSI.SUPERVISE_TIME &gt;= #{start_time}
+	                AND SSI.SUPERVISE_TIME &lt;= #{end_time}
+	              GROUP BY SSI.ORG_ID) A
+	    ON O.ORG_ID = A.ORG_ID
+	 WHERE O.CITY_CODE = '439900000000' AND O.ORG_LEVEL != '2'
+	 <choose>
+		<when test="sortCol != null">
+			order by ${sortCol} desc
+		</when>
+		<otherwise>
+			 order by o.ORDER_NUM
+		</otherwise>
+	 </choose>
+	 
+</select>
+
+<!-- 市级 -->
+<select id="selectSuperviseManualInfoAllByCity" resultMap="superviseManualResultMap" parameterType="com.chinacreator.dzjc_ruleEngine.JCSumSuperviseInfoAll">
+<!-- select a.AREA_NAME area_name,
+       a.area_code area_code,
+       a.ORDER_NUM,
+       nvl(sum(t.yjs), 0) yjs,
+       nvl(sum(t.yellow), 0) yellow,
+       nvl(sum(t.red), 0) red,
+       nvl(sum(t.cancel_yj_num), 0) cancel_yj_num,
+       nvl(sum(t.cancel_yellow_num), 0) cancel_yellow_num,
+       nvl(sum(t.cancel_red_num), 0) cancel_red_num
+  from v_ta_dic_area a
+  left join (select ssi.County_CODE,
+                    sum(ssi.human_SUPERVISE_GREEN_NUM) as yjs,
+                    sum(ssi.human_SUPERVISE_YELLO_NUM) as yellow,
+                    sum(ssi.human_CANCEL_RED_NUM) as red,
+                    sum(ssi.human_CANCEL_SUPERVISE_GREEN_NUM) as cancel_yj_num,
+                    sum(ssi.human_CANCEL_SUPERVISE_YELLO_NUM) as cancel_yellow_num,
+                    sum(ssi.human_CANCEL_CANCEL_RED_NUM) as cancel_red_num
+               from V_TA_JC_SUM_SUPERVISE_HUMAN ssi 
+               where 1= 1
+               and  ssi.supervise_time &gt;= #{start_time}
+               and  ssi.supervise_time &lt;= #{end_time}               
+              group by ssi.County_CODE) t
+    on a.AREA_CODE = t.County_CODE
+ where a.parent_code = #{ORG_ID,jdbcType=VARCHAR}
+ group by a.AREA_NAME,a.area_code,a.ORDER_NUM
+<choose>
+	<when test="sortCol != null">
+		order by ${sortCol} desc
+	</when>
+	<otherwise>
+		order by a.ORDER_NUM
+	</otherwise>
+</choose> -->
+  SELECT O.ORG_NAME AS AREA_NAME,
+         SUBSTR(O.ORG_CODE,0,12) AS AREA_CODE,
+         O.ORDER_NUM AS ORDER_NUM,
+         NVL(A.YJS, 0) AS YJS,
+         NVL(A.YELLOW, 0) AS YELLOW,
+         NVL(A.RED, 0) AS RED,
+         NVL(A.CANCEL_YJ_NUM, 0) AS CANCEL_YJ_NUM,
+         NVL(A.CANCEL_YELLOW_NUM, 0) AS CANCEL_YELLOW_NUM,
+         NVL(A.CANCEL_RED_NUM, 0) AS CANCEL_RED_NUM
+    FROM V_TD_SM_ORGANIZATION1 O
+    LEFT JOIN (SELECT SSI.County_CODE,
+                      SUM(SSI.HUMAN_SUPERVISE_GREEN_NUM) AS YJS,
+                      SUM(SSI.HUMAN_SUPERVISE_YELLO_NUM) AS YELLOW,
+                      SUM(SSI.HUMAN_CANCEL_RED_NUM) AS RED,
+                      SUM(SSI.HUMAN_CANCEL_SUPERVISE_GREEN_NUM) AS CANCEL_YJ_NUM,
+                      SUM(SSI.HUMAN_CANCEL_SUPERVISE_YELLO_NUM) AS CANCEL_YELLOW_NUM,
+                      SUM(SSI.HUMAN_CANCEL_CANCEL_RED_NUM) AS CANCEL_RED_NUM
+                 FROM V_TA_JC_SUM_SUPERVISE_HUMAN SSI
+                where 1= 1
+                  and ssi.supervise_time &gt;= #{start_time}
+                  and ssi.supervise_time &lt;= #{end_time}   
+                GROUP BY SSI.County_CODE) A
+      ON O.County_CODE = A.County_CODE
+   WHERE O.CITY_CODE = #{ORG_ID,jdbcType=VARCHAR} AND O.ORG_LEVEL = 3
+   <choose>
+		<when test="sortCol != null">
+			order by ${sortCol} desc
+		</when>
+		<otherwise>
+			order by o.ORDER_NUM
+		</otherwise>
+	</choose>
+	
+</select>
+
+<!-- 区级 -->
+<select id="selectSuperviseManualInfoAllByArea" resultMap="superviseManualResultMap" parameterType="com.chinacreator.dzjc_ruleEngine.JCSumSuperviseInfoAll">
+<!-- select a.ORG_NAME area_name,
+       a.ORG_ID area_code,
+       a.ORDER_NUM,
+       nvl(sum(t.yjs), 0) yjs,
+       nvl(sum(t.yellow), 0) yellow,
+       nvl(sum(t.red), 0) red,
+       nvl(sum(t.cancel_yj_num), 0) cancel_yj_num,
+       nvl(sum(t.cancel_yellow_num), 0) cancel_yellow_num,
+       nvl(sum(t.cancel_red_num), 0) cancel_red_num
+  from v_td_sm_organization1 a
+  left join (select ssi.ORG_ID,
+                    ssi.ORG_NAME,      
+                    sum(ssi.human_SUPERVISE_GREEN_NUM) as yjs,
+                    sum(ssi.human_SUPERVISE_YELLO_NUM) as yellow,
+                    sum(ssi.human_CANCEL_RED_NUM) as red,
+                    sum(ssi.human_CANCEL_SUPERVISE_GREEN_NUM) as cancel_yj_num,
+                    sum(ssi.human_CANCEL_SUPERVISE_YELLO_NUM) as cancel_yellow_num,
+                    sum(ssi.human_CANCEL_CANCEL_RED_NUM) as cancel_red_num
+               from V_TA_JC_SUM_SUPERVISE_HUMAN ssi 
+               where 1= 1
+               and  ssi.supervise_time &gt;= #{start_time}
+               and  ssi.supervise_time &lt;= #{end_time}               
+              group by ssi.ORG_ID,ssi.ORG_NAME) t
+    on a.ORG_ID = t.ORG_ID
+ where a.County_CODE = #{ORG_ID,jdbcType=VARCHAR} and a.ORG_LEVEL = '5'
+ group by a.ORG_NAME,a.ORG_ID,a.ORDER_NUM
+<choose>
+	<when test="sortCol != null">
+		order by ${sortCol} desc
+	</when>
+	<otherwise>
+		order by a.ORDER_NUM
+	</otherwise>
+</choose> -->
+    SELECT O.ORG_NAME AS AREA_NAME,
+         O.ORG_CODE AS AREA_CODE,
+         O.ORDER_NUM AS ORDER_NUM,
+         NVL(A.YJS, 0) AS YJS,
+         NVL(A.YELLOW, 0) AS YELLOW,
+         NVL(A.RED, 0) AS RED,
+         NVL(A.CANCEL_YJ_NUM, 0) AS CANCEL_YJ_NUM,
+         NVL(A.CANCEL_YELLOW_NUM, 0) AS CANCEL_YELLOW_NUM,
+         NVL(A.CANCEL_RED_NUM, 0) AS CANCEL_RED_NUM
+    FROM V_TD_SM_ORGANIZATION1 O
+    LEFT JOIN (SELECT SSI.ORG_ID,
+                      SUM(SSI.HUMAN_SUPERVISE_GREEN_NUM) AS YJS,
+                      SUM(SSI.HUMAN_SUPERVISE_YELLO_NUM) AS YELLOW,
+                      SUM(SSI.HUMAN_CANCEL_RED_NUM) AS RED,
+                      SUM(SSI.HUMAN_CANCEL_SUPERVISE_GREEN_NUM) AS CANCEL_YJ_NUM,
+                      SUM(SSI.HUMAN_CANCEL_SUPERVISE_YELLO_NUM) AS CANCEL_YELLOW_NUM,
+                      SUM(SSI.HUMAN_CANCEL_CANCEL_RED_NUM) AS CANCEL_RED_NUM
+                 FROM V_TA_JC_SUM_SUPERVISE_HUMAN SSI
+                where 1= 1
+                  and ssi.supervise_time &gt;= #{start_time}
+                  and ssi.supervise_time &lt;= #{end_time}  
+                GROUP BY SSI.ORG_ID) A
+      ON O.ORG_ID = A.ORG_ID
+   WHERE O.County_CODE = #{ORG_ID,jdbcType=VARCHAR} AND O.ORG_LEVEL = 5
+   <choose>
+		<when test="sortCol != null">
+			order by ${sortCol} desc
+		</when>
+		<otherwise>
+			order by o.ORDER_NUM
+		</otherwise>
+	</choose>
+	
+</select>
+
+<!-- 根据机构查询 -->
+<select id="selectSuperviseManualInfoAllByOrg" resultMap="superviseManualResultMap" parameterType="com.chinacreator.dzjc_ruleEngine.JCSumSuperviseInfoAll">
+	SELECT O.ORG_NAME AS AREA_NAME,
+	       O.ORDER_NUM AS ORDER_NUM,
+	       NVL(A.YJS, 0) AS YJS,
+	       NVL(A.YELLOW, 0) AS YELLOW,
+	       NVL(A.RED, 0) AS RED,
+	       NVL(A.CANCEL_YJ_NUM, 0) AS CANCEL_YJ_NUM,
+	       NVL(A.CANCEL_YELLOW_NUM, 0) AS CANCEL_YELLOW_NUM,
+	       NVL(A.CANCEL_RED_NUM, 0) AS CANCEL_RED_NUM
+	  FROM V_TD_SM_ORGANIZATION1 O
+	  LEFT JOIN (SELECT SSI.ORG_ID,
+	                    SUM(SSI.HUMAN_SUPERVISE_GREEN_NUM) AS YJS,
+	                    SUM(SSI.HUMAN_SUPERVISE_YELLO_NUM) AS YELLOW,
+	                    SUM(SSI.HUMAN_CANCEL_RED_NUM) AS RED,
+	                    SUM(SSI.HUMAN_CANCEL_SUPERVISE_GREEN_NUM) AS CANCEL_YJ_NUM,
+	                    SUM(SSI.HUMAN_CANCEL_SUPERVISE_YELLO_NUM) AS CANCEL_YELLOW_NUM,
+	                    SUM(SSI.HUMAN_CANCEL_CANCEL_RED_NUM) AS CANCEL_RED_NUM
+	               FROM V_TA_JC_SUM_SUPERVISE_HUMAN SSI
+	              WHERE 1 = 1
+	                AND SSI.SUPERVISE_TIME &gt;= #{start_time}
+	                AND SSI.SUPERVISE_TIME &lt;= #{end_time}
+	              GROUP BY SSI.ORG_ID) A
+	    ON O.ORG_ID = A.ORG_ID
+	 WHERE O.ORG_ID = #{ORG_ID,jdbcType=VARCHAR}
+	 <choose>
+		<when test="sortCol != null">
+			order by ${sortCol} desc
+		</when>
+		<otherwise>
+			 order by o.ORDER_NUM
+		</otherwise>
+	 </choose>
+	 
+</select>
+
+<select id="selectJCSumSuperviseInfoAll" resultMap="superviseManualResultMap" parameterType="com.chinacreator.dzjc_ruleEngine.JCSumSuperviseInfoAll">
+WITH
+	TEMP AS(
+	     SELECT * FROM V_ORG V
+	    where 1=1
+	     	<if test="ORG_ID != null">
+	     		and V.CODE LIKE CONCAT(#{ORG_ID},'%') OR
+	     		V.ID = #{ORG_ID,jdbcType=VARCHAR}
+	     	</if>
+	    
+	),
+	TEMP2 AS(
+		select o.ORG_ID,
+		   o.ORG_NAME area_name,
+	       nvl(t.yjs, 0) yjs,
+	       nvl(t.yellow, 0) yellow,
+	       nvl(t.red, 0) red,
+	       nvl(t.cancel_yellow_num, 0) cancel_yellow_num,
+	       nvl(t.cancel_red_num, 0) cancel_red_num
+	  from V_TD_SM_ORGANIZATION1 o
+	  left join (select ssi.org_id,
+	                    sum(ssi.supervise_green_num) as yjs,
+	                    sum(ssi.supervise_yello_num) as yellow,
+	                    sum(ssi.supervise_red_num) as red,
+	                    sum(ssi.cancel_yellow_num) as cancel_yellow_num,
+	                    sum(ssi.cancel_red_num) as cancel_red_num                    
+	               from ta_JC_sum_supervise_info ssi
+	              where 1=1
+	               <if test="start_time != null">and  ssi.now_date &gt;= #{start_time}</if>
+		   		   <if test="end_time != null">and  ssi.now_date &lt;= #{end_time}</if> 
+	              group by ssi.org_id) t
+	    on o.ORG_ID = t.org_id
+	     INNER JOIN TEMP 
+		ON o.org_id = TEMP.ID
+	)
+ select * from TEMP2 
+</select>
+
+<select id="INSERTTAJCCOUNTSUPERVISEINFO" statementType="CALLABLE" >  
+    <![CDATA[ 
+    {call PROC_INSERT_TA_JC_COUNT_SUPERVISE_INFO()} 
+      ]]>  
+</select> 
+
+
+<select id="INSERTTAJCSUMSUPERVISEINFO" statementType="CALLABLE" >  
+    <![CDATA[ 
+    {call PROC_INSERT_ta_JC_sum_supervise_info()} 
+      ]]>  
+</select> 
+
+</mapper>

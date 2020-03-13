@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"><mapper namespace="com.chinacreator.dzjc_performance.EvalPointValueHisMapper">	
+
+<!-- ElementID:column_sql,Generated=true -->
+<sql id="column_sql">
+		  TA_JC_EVAL_POINT_VALUE_HIS.id ,
+		  TA_JC_EVAL_POINT_VALUE_HIS.point_name ,
+		  TA_JC_EVAL_POINT_VALUE_HIS.point_score ,
+		  TA_JC_EVAL_POINT_VALUE_HIS.subtraction ,
+		  TA_JC_EVAL_POINT_VALUE_HIS.deduct_reasons ,
+		  TA_JC_EVAL_POINT_VALUE_HIS.operator_name ,
+		  TA_JC_EVAL_POINT_VALUE_HIS.scoring_time ,
+		  TA_JC_EVAL_POINT_VALUE_HIS.ta_jc_eval_point_value_id 
+</sql>
+
+<!-- ElementID:whereClause_sql,Generated=true -->
+<sql id="whereClause_sql">
+	    <if test="id != null">and TA_JC_EVAL_POINT_VALUE_HIS.id = #{id}</if>
+	    <if test="pointName != null">and TA_JC_EVAL_POINT_VALUE_HIS.point_name = #{pointName}</if>
+	    <if test="pointScore != null">and TA_JC_EVAL_POINT_VALUE_HIS.point_score = #{pointScore}</if>
+	    <if test="subtraction != null">and TA_JC_EVAL_POINT_VALUE_HIS.subtraction = #{subtraction}</if>
+	    <if test="deductReasons != null">and TA_JC_EVAL_POINT_VALUE_HIS.deduct_reasons = #{deductReasons}</if>
+	    <if test="operatorName != null">and TA_JC_EVAL_POINT_VALUE_HIS.operator_name = #{operatorName}</if>
+	    <if test="scoringTime != null">and TA_JC_EVAL_POINT_VALUE_HIS.scoring_time = #{scoringTime}</if>
+	    <if test="taJcEvalPointValueId != null">and TA_JC_EVAL_POINT_VALUE_HIS.ta_jc_eval_point_value_id = #{taJcEvalPointValueId}</if>
+</sql>
+
+
+<!-- ElementID:EvalPointValueHisResult,Generated=true -->
+<resultMap id="EvalPointValueHisResult" type="com.chinacreator.dzjc_performance.EvalPointValueHis">
+	<id property="id" column="id"/>
+	<result property="pointName" column="point_name"/>
+	<result property="pointScore" column="point_score"/>
+	<result property="subtraction" column="subtraction"/>
+	<result property="deductReasons" column="deduct_reasons"/>
+	<result property="operatorName" column="operator_name"/>
+	<result property="scoringTime" column="scoring_time"/>
+	<result property="taJcEvalPointValueId" column="ta_jc_eval_point_value_id"/>
+</resultMap>
+
+
+<!-- ElementID:insert,Generated=true -->
+<insert id="insert" parameterType="com.chinacreator.dzjc_performance.EvalPointValueHis">
+	insert into TA_JC_EVAL_POINT_VALUE_HIS(
+	         <if test="id != null">id</if>
+	         <if test="pointName != null">,point_name</if>
+	         <if test="pointScore != null">,point_score</if>
+	         <if test="subtraction != null">,subtraction</if>
+	         <if test="deductReasons != null">,deduct_reasons</if>
+	         <if test="operatorName != null">,operator_name</if>
+	         <if test="scoringTime != null">,scoring_time</if>
+	         <if test="taJcEvalPointValueId != null">,ta_jc_eval_point_value_id</if>
+	 	 	 )
+	 values (
+	         <if test="id != null">#{id,jdbcType=VARCHAR}</if>
+	         <if test="pointName != null">,#{pointName,jdbcType=VARCHAR}</if>
+	         <if test="pointScore != null">,#{pointScore,jdbcType=NUMERIC}</if>
+	         <if test="subtraction != null">,#{subtraction,jdbcType=NUMERIC}</if>
+	         <if test="deductReasons != null">,#{deductReasons,jdbcType=VARCHAR}</if>
+	         <if test="operatorName != null">,#{operatorName,jdbcType=VARCHAR}</if>
+	         <if test="scoringTime != null">,#{scoringTime,jdbcType=DATE}</if>
+	         <if test="taJcEvalPointValueId != null">,#{taJcEvalPointValueId,jdbcType=VARCHAR}</if>
+	 	 	 )
+</insert>
+
+<!-- ElementID:count,Generated=true -->
+<select id="count" parameterType="com.chinacreator.dzjc_performance.EvalPointValueHis" resultType="int">
+	select count(*) from TA_JC_EVAL_POINT_VALUE_HIS 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<!-- ElementID:update,Generated=true -->
+<update id="update" parameterType="com.chinacreator.dzjc_performance.EvalPointValueHis">
+	update TA_JC_EVAL_POINT_VALUE_HIS
+<set>
+	<if test="pointName != null">point_name=#{pointName,jdbcType=VARCHAR},</if>
+	<if test="pointScore != null">point_score=#{pointScore,jdbcType=NUMERIC},</if>
+	<if test="subtraction != null">subtraction=#{subtraction,jdbcType=NUMERIC},</if>
+	<if test="deductReasons != null">deduct_reasons=#{deductReasons,jdbcType=VARCHAR},</if>
+	<if test="operatorName != null">operator_name=#{operatorName,jdbcType=VARCHAR},</if>
+	<if test="scoringTime != null">scoring_time=#{scoringTime,jdbcType=DATE},</if>
+	<if test="taJcEvalPointValueId != null">ta_jc_eval_point_value_id=#{taJcEvalPointValueId,jdbcType=VARCHAR}</if>
+</set>
+<where>
+	<choose>
+        <when test="id != null">and id = #{id}</when>
+        <otherwise>and id = </otherwise>
+    </choose>
+</where>
+</update>
+
+<!-- ElementID:updateNull,Generated=true -->
+<update id="updateNull" parameterType="map">
+	update TA_JC_EVAL_POINT_VALUE_HIS
+	<set>
+		<trim suffixOverrides=",">
+		    <if test="pointName==null">point_name = null,</if>
+		    <if test="pointScore==null">point_score = null,</if>
+		    <if test="subtraction==null">subtraction = null,</if>
+		    <if test="deductReasons==null">deduct_reasons = null,</if>
+		    <if test="operatorName==null">operator_name = null,</if>
+		    <if test="scoringTime==null">scoring_time = null,</if>
+		    <if test="taJcEvalPointValueId==null">ta_jc_eval_point_value_id = null,</if>
+		</trim>
+	</set>
+	<where>
+		<choose>
+			<when test="id != null">and id = #{id}</when>
+			<otherwise>and id = </otherwise>
+		</choose>
+	</where>
+</update>
+
+<!-- ElementID:delete,Generated=true -->
+<delete id="delete" parameterType="com.chinacreator.dzjc_performance.EvalPointValueHis">
+    delete from TA_JC_EVAL_POINT_VALUE_HIS where 1=1 and id = #{id}
+</delete>
+
+<!-- ElementID:select,Generated=true -->
+<select id="select" parameterType="com.chinacreator.dzjc_performance.EvalPointValueHis" resultMap="EvalPointValueHisResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_EVAL_POINT_VALUE_HIS 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+
+<!-- ElementID:insertBatch,Generated=true -->
+<insert id="insertBatch" parameterType="list">
+	insert into TA_JC_EVAL_POINT_VALUE_HIS (id,point_name,point_score,subtraction,deduct_reasons,operator_name,scoring_time,ta_jc_eval_point_value_id) 
+<foreach collection="list" item="entity" index="index" separator="union all">
+		select 
+		#{entity.id,jdbcType = VARCHAR},
+				#{entity.pointName,jdbcType = VARCHAR},
+				#{entity.pointScore,jdbcType = NUMERIC},
+				#{entity.subtraction,jdbcType = NUMERIC},
+				#{entity.deductReasons,jdbcType = VARCHAR},
+				#{entity.operatorName,jdbcType = VARCHAR},
+				#{entity.scoringTime,jdbcType = DATE},
+				#{entity.taJcEvalPointValueId,jdbcType = VARCHAR}
+		from dual
+</foreach>
+</insert>
+
+<!-- ElementID:deleteBatch,Generated=true -->
+<delete id="deleteBatch" parameterType="List">
+	delete from TA_JC_EVAL_POINT_VALUE_HIS where id in
+<trim prefix="(" suffix=")" suffixOverrides=",">
+<foreach collection="list" item="entity" separator=",">
+	<choose>
+		<when test="@com.chinacreator.c2.dao.util.EntityBeanUtil@isEntityObj(entity)">#{entity.id}</when>
+		<otherwise>#{entity}</otherwise>
+	</choose>
+</foreach>
+</trim>
+</delete>
+
+<!-- ElementID:updateBatch,Generated=true -->
+<update id="updateBatch" parameterType="list">
+	<foreach collection="list" item="entity" open="begin" close=";end;" separator=";">
+			update TA_JC_EVAL_POINT_VALUE_HIS
+	<set>
+	<if test="entity.pointName != null">point_name= #{entity.pointName,jdbcType=VARCHAR},</if>
+	<if test="entity.pointScore != null">point_score= #{entity.pointScore,jdbcType=NUMERIC},</if>
+	<if test="entity.subtraction != null">subtraction= #{entity.subtraction,jdbcType=NUMERIC},</if>
+	<if test="entity.deductReasons != null">deduct_reasons= #{entity.deductReasons,jdbcType=VARCHAR},</if>
+	<if test="entity.operatorName != null">operator_name= #{entity.operatorName,jdbcType=VARCHAR},</if>
+	<if test="entity.scoringTime != null">scoring_time= #{entity.scoringTime,jdbcType=DATE},</if>
+	<if test="entity.taJcEvalPointValueId != null">ta_jc_eval_point_value_id= #{entity.taJcEvalPointValueId,jdbcType=VARCHAR}</if>
+	</set>
+		<where>
+			<choose>
+				<when test="entity.id != null">and id = #{entity.id}</when>
+				<otherwise>and id = </otherwise>
+			</choose>
+		</where>
+	</foreach>
+</update>
+
+<!-- ElementID:selectAll,Generated=true -->
+<select id="selectAll" resultMap="EvalPointValueHisResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_EVAL_POINT_VALUE_HIS 
+</select>
+
+<!-- ElementID:selectMany,Generated=true -->
+<select id="selectMany" parameterType="list" resultMap="EvalPointValueHisResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_JC_EVAL_POINT_VALUE_HIS 
+	where TA_JC_EVAL_POINT_VALUE_HIS.id in (
+<foreach collection="list" item="entity" separator="intersect">
+		select 
+		TA_JC_EVAL_POINT_VALUE_HIS.id
+	    from TA_JC_EVAL_POINT_VALUE_HIS 
+		 <where>
+	        <if test="entity.id != null">and TA_JC_EVAL_POINT_VALUE_HIS.id = #{entity.id}</if>
+	        <if test="entity.pointName != null">and TA_JC_EVAL_POINT_VALUE_HIS.point_name = #{entity.pointName}</if>
+	        <if test="entity.pointScore != null">and TA_JC_EVAL_POINT_VALUE_HIS.point_score = #{entity.pointScore}</if>
+	        <if test="entity.subtraction != null">and TA_JC_EVAL_POINT_VALUE_HIS.subtraction = #{entity.subtraction}</if>
+	        <if test="entity.deductReasons != null">and TA_JC_EVAL_POINT_VALUE_HIS.deduct_reasons = #{entity.deductReasons}</if>
+	        <if test="entity.operatorName != null">and TA_JC_EVAL_POINT_VALUE_HIS.operator_name = #{entity.operatorName}</if>
+	        <if test="entity.scoringTime != null">and TA_JC_EVAL_POINT_VALUE_HIS.scoring_time = #{entity.scoringTime}</if>
+	        <if test="entity.taJcEvalPointValueId != null">and TA_JC_EVAL_POINT_VALUE_HIS.ta_jc_eval_point_value_id = #{entity.taJcEvalPointValueId}</if>
+		</where>
+</foreach>
+)
+</select>
+
+<!-- ElementID:selectUnion,Generated=true -->
+<select id="selectUnion" parameterType="list" resultMap="EvalPointValueHisResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_JC_EVAL_POINT_VALUE_HIS 
+	 INNER JOIN
+<foreach collection="list" item="entity" separator="UNION" open="(" close=")">
+		SELECT 
+			 id
+		FROM TA_JC_EVAL_POINT_VALUE_HIS 
+			<where>
+	        <if test="entity.id != null">and TA_JC_EVAL_POINT_VALUE_HIS.id = #{entity.id}</if>
+	        <if test="entity.pointName != null">and TA_JC_EVAL_POINT_VALUE_HIS.point_name = #{entity.pointName}</if>
+	        <if test="entity.pointScore != null">and TA_JC_EVAL_POINT_VALUE_HIS.point_score = #{entity.pointScore}</if>
+	        <if test="entity.subtraction != null">and TA_JC_EVAL_POINT_VALUE_HIS.subtraction = #{entity.subtraction}</if>
+	        <if test="entity.deductReasons != null">and TA_JC_EVAL_POINT_VALUE_HIS.deduct_reasons = #{entity.deductReasons}</if>
+	        <if test="entity.operatorName != null">and TA_JC_EVAL_POINT_VALUE_HIS.operator_name = #{entity.operatorName}</if>
+	        <if test="entity.scoringTime != null">and TA_JC_EVAL_POINT_VALUE_HIS.scoring_time = #{entity.scoringTime}</if>
+	        <if test="entity.taJcEvalPointValueId != null">and TA_JC_EVAL_POINT_VALUE_HIS.ta_jc_eval_point_value_id = #{entity.taJcEvalPointValueId}</if>
+			</where>
+</foreach>
+	c2_temp_table ON TA_JC_EVAL_POINT_VALUE_HIS.id = c2_temp_table.id
+</select>
+
+<!-- ElementID:selectByID,Generated=true -->
+<select id="selectByID" parameterType="java.lang.String" resultMap="EvalPointValueHisResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_EVAL_POINT_VALUE_HIS 
+		 where TA_JC_EVAL_POINT_VALUE_HIS.id = #{id,jdbcType=VARCHAR}
+</select>
+
+<!-- ElementID:selectByPage,Generated=true -->
+<select id="selectByPage" parameterType="com.chinacreator.dzjc_performance.EvalPointValueHis" resultMap="EvalPointValueHisResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_EVAL_POINT_VALUE_HIS 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+</mapper>

@@ -1,0 +1,570 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"><mapper namespace="com.chinacreator.dzjc_dealtMatter.VJcDaibanMapper">	
+
+<!-- ElementID:column_sql,Generated=true -->
+<sql id="column_sql">
+		  V_JC_DAIBAN.db_id ,
+		  V_JC_DAIBAN.db_title ,
+		  V_JC_DAIBAN.db_org_id ,
+		  V_JC_DAIBAN.db_org_code ,
+		  V_JC_DAIBAN.db_org_name ,
+		  V_JC_DAIBAN.db_apply_id ,
+		  V_JC_DAIBAN.db_apply_name ,
+		  V_JC_DAIBAN.db_submit_time ,
+		  V_JC_DAIBAN.jc_type_id ,
+		  V_JC_DAIBAN.jc_type_name ,
+		  V_JC_DAIBAN.jc_result_id ,
+		  V_JC_DAIBAN.jc_result_name ,
+		  V_JC_DAIBAN.supervise_info_id 
+</sql>
+
+<!-- ElementID:whereClause_sql,Generated=true -->
+<sql id="whereClause_sql">
+	    <if test="dbId != null">and V_JC_DAIBAN.db_id = #{dbId}</if>
+	    <if test="dbTitle != null">and V_JC_DAIBAN.db_title = #{dbTitle}</if>
+	    <if test="dbOrgId != null">and V_JC_DAIBAN.db_org_id = #{dbOrgId}</if>
+	    <if test="dbOrgCode != null">and V_JC_DAIBAN.db_org_code = #{dbOrgCode}</if>
+	    <if test="dbOrgName != null">and V_JC_DAIBAN.db_org_name = #{dbOrgName}</if>
+	    <if test="dbApplyId != null">and V_JC_DAIBAN.db_apply_id = #{dbApplyId}</if>
+	    <if test="dbApplyName != null">and V_JC_DAIBAN.db_apply_name = #{dbApplyName}</if>
+	    <if test="dbSubmitTime != null">and V_JC_DAIBAN.db_submit_time = #{dbSubmitTime}</if>
+	    <if test="jcTypeId != null">and V_JC_DAIBAN.jc_type_id = #{jcTypeId}</if>
+	    <if test="jcTypeName != null">and V_JC_DAIBAN.jc_type_name = #{jcTypeName}</if>
+	    <if test="jcResultId != null">and V_JC_DAIBAN.jc_result_id = #{jcResultId}</if>
+	    <if test="jcResultName != null">and V_JC_DAIBAN.jc_result_name = #{jcResultName}</if>
+	    <if test="superviseInfoId != null">and V_JC_DAIBAN.supervise_info_id = #{superviseInfoId}</if>
+</sql>
+
+
+<!-- ElementID:VJcDaibanResult,Generated=true -->
+<resultMap id="VJcDaibanResult" type="com.chinacreator.dzjc_dealtMatter.VJcDaiban">
+	<id property="dbId" column="db_id"/>
+	<result property="dbTitle" column="db_title"/>
+	<result property="dbOrgId" column="db_org_id"/>
+	<result property="dbOrgCode" column="db_org_code"/>
+	<result property="dbOrgName" column="db_org_name"/>
+	<result property="dbApplyId" column="db_apply_id"/>
+	<result property="dbApplyName" column="db_apply_name"/>
+	<result property="dbSubmitTime" column="db_submit_time"/>
+	<result property="jcTypeId" column="jc_type_id"/>
+	<result property="jcTypeName" column="jc_type_name"/>
+	<result property="jcResultId" column="jc_result_id"/>
+	<result property="jcResultName" column="jc_result_name"/>
+	<result property="superviseInfoId" column="supervise_info_id"/>
+</resultMap>
+
+
+
+<!-- 
+
+	办件监察详情Map
+
+ -->
+<resultMap id="VAcceptSuperviseResult2" type="com.chinacreator.dzjc_dealtMatter.SuperviseBJ">
+
+	<result property="title" column="title"/>
+	<result property="org_id" column="org_id"/>
+	<result property="org_code" column="org_code"/>
+	<result property="org_name" column="org_name"/>
+	<result property="supervise_info_id" column="supervise_info_id"/>
+	<result property="business_id" column="business_id"/>
+	<result property="supervise_type_no" column="supervise_type_no"/>
+	<result property="supervise_type_name" column="supervise_type_name"/>
+	<result property="supervise_result_no" column="supervise_result_no"/>
+	<result property="supervise_result_name" column="supervise_result_name"/>
+	<result property="supervise_time" column="supervise_time"/>
+	<result property="su_state" column="su_state"/>
+	<result property="fp_state" column="fp_state"/>
+	<result property="instance_code" column="instance_code"/>
+	<result property="apply_id" column="apply_id"/>
+	<result property="apply_name" column="apply_name"/>
+	<result property="approve_id" column="approve_id"/>
+	<result property="approve_name" column="approve_name"/>
+	<result property="accept_time" column="accept_time"/>
+	<result property="time_limit" column="time_limit"/>
+	<result property="promises_limit" column="promises_limit"/>
+
+</resultMap>
+
+<!-- 
+
+	投诉监察信息Map
+	
+ -->
+<resultMap id="VAcceptSuperviseResult3" type="com.chinacreator.dzjc_dealtMatter.SuperviseTS">
+
+	<result property="complain_id" column="complain_id"/>
+	<result property="complain_user_name" column="complain_user_name"/>
+	<result property="complain_user_org" column="complain_user_org"/>
+	<result property="bycomplained_user_org" column="bycomplained_user_org"/>
+	<result property="bycomplained_org" column="bycomplained_org"/>
+	<result property="complain_title" column="complain_title"/>
+	<result property="problem_type" column="problem_type"/>
+	<result property="complain_content" column="complain_content"/>
+	<result property="mainappeal" column="mainappeal"/>
+	<result property="expire_date" column="expire_date"/>
+	<result property="commitment_limit" column="commitment_limit"/>
+	<result property="supervise_result_name" column="supervise_result_name"/>
+
+</resultMap>
+
+
+<!-- 
+
+	咨询监察信息Map
+	
+ -->
+<resultMap id="VAcceptSuperviseResult4" type="com.chinacreator.dzjc_dealtMatter.SuperviseZX">
+
+	<result property="consult_id" column="consult_id"/>
+	<result property="consult_title" column="consult_title"/>
+	<result property="approve_name" column="approve_name"/>
+	<result property="org_id" column="org_id"/>
+	<result property="org_name" column="org_name"/>
+	<result property="apply_id" column="apply_id"/>
+	<result property="apply_name" column="apply_name"/>
+	<result property="consult_content" column="consult_content"/>
+	<result property="consult_time" column="consult_time"/>
+	<result property="expire_time" column="expire_time"/>
+	<result property="supervise_result_name" column="supervise_result_name"/>
+
+</resultMap>
+
+
+
+<!-- ElementID:insert,Generated=true -->
+<insert id="insert" parameterType="com.chinacreator.dzjc_dealtMatter.VJcDaiban">
+	insert into V_JC_DAIBAN(
+	         <if test="dbId != null">db_id</if>
+	         <if test="dbTitle != null">,db_title</if>
+	         <if test="dbOrgId != null">,db_org_id</if>
+	         <if test="dbOrgCode != null">,db_org_code</if>
+	         <if test="dbOrgName != null">,db_org_name</if>
+	         <if test="dbApplyId != null">,db_apply_id</if>
+	         <if test="dbApplyName != null">,db_apply_name</if>
+	         <if test="dbSubmitTime != null">,db_submit_time</if>
+	         <if test="jcTypeId != null">,jc_type_id</if>
+	         <if test="jcTypeName != null">,jc_type_name</if>
+	         <if test="jcResultId != null">,jc_result_id</if>
+	         <if test="jcResultName != null">,jc_result_name</if>
+	         <if test="superviseInfoId != null">,supervise_info_id</if>
+	 	 	 )
+	 values (
+	         <if test="dbId != null">#{dbId,jdbcType=VARCHAR}</if>
+	         <if test="dbTitle != null">,#{dbTitle,jdbcType=VARCHAR}</if>
+	         <if test="dbOrgId != null">,#{dbOrgId,jdbcType=VARCHAR}</if>
+	         <if test="dbOrgCode != null">,#{dbOrgCode,jdbcType=VARCHAR}</if>
+	         <if test="dbOrgName != null">,#{dbOrgName,jdbcType=VARCHAR}</if>
+	         <if test="dbApplyId != null">,#{dbApplyId,jdbcType=VARCHAR}</if>
+	         <if test="dbApplyName != null">,#{dbApplyName,jdbcType=VARCHAR}</if>
+	         <if test="dbSubmitTime != null">,#{dbSubmitTime,jdbcType=DATE}</if>
+	         <if test="jcTypeId != null">,#{jcTypeId,jdbcType=VARCHAR}</if>
+	         <if test="jcTypeName != null">,#{jcTypeName,jdbcType=VARCHAR}</if>
+	         <if test="jcResultId != null">,#{jcResultId,jdbcType=VARCHAR}</if>
+	         <if test="jcResultName != null">,#{jcResultName,jdbcType=VARCHAR}</if>
+	         <if test="superviseInfoId != null">,#{superviseInfoId,jdbcType=VARCHAR}</if>
+	 	 	 )
+</insert>
+
+<!-- ElementID:count,Generated=true -->
+<select id="count" parameterType="com.chinacreator.dzjc_dealtMatter.VJcDaiban" resultType="int">
+	select count(*) from V_JC_DAIBAN 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<!-- ElementID:update,Generated=true -->
+<update id="update" parameterType="com.chinacreator.dzjc_dealtMatter.VJcDaiban">
+	update V_JC_DAIBAN
+<set>
+	<if test="dbTitle != null">db_title=#{dbTitle,jdbcType=VARCHAR},</if>
+	<if test="dbOrgId != null">db_org_id=#{dbOrgId,jdbcType=VARCHAR},</if>
+	<if test="dbOrgCode != null">db_org_code=#{dbOrgCode,jdbcType=VARCHAR},</if>
+	<if test="dbOrgName != null">db_org_name=#{dbOrgName,jdbcType=VARCHAR},</if>
+	<if test="dbApplyId != null">db_apply_id=#{dbApplyId,jdbcType=VARCHAR},</if>
+	<if test="dbApplyName != null">db_apply_name=#{dbApplyName,jdbcType=VARCHAR},</if>
+	<if test="dbSubmitTime != null">db_submit_time=#{dbSubmitTime,jdbcType=DATE},</if>
+	<if test="jcTypeId != null">jc_type_id=#{jcTypeId,jdbcType=VARCHAR},</if>
+	<if test="jcTypeName != null">jc_type_name=#{jcTypeName,jdbcType=VARCHAR},</if>
+	<if test="jcResultId != null">jc_result_id=#{jcResultId,jdbcType=VARCHAR},</if>
+	<if test="jcResultName != null">jc_result_name=#{jcResultName,jdbcType=VARCHAR},</if>
+	<if test="superviseInfoId != null">supervise_info_id=#{superviseInfoId,jdbcType=VARCHAR}</if>
+</set>
+<where>
+	<choose>
+        <when test="dbId != null">and db_id = #{dbId}</when>
+        <otherwise>and db_id = </otherwise>
+    </choose>
+</where>
+</update>
+
+<!-- ElementID:updateNull,Generated=true -->
+<update id="updateNull" parameterType="map">
+	update V_JC_DAIBAN
+	<set>
+		<trim suffixOverrides=",">
+		    <if test="dbTitle==null">db_title = null,</if>
+		    <if test="dbOrgId==null">db_org_id = null,</if>
+		    <if test="dbOrgCode==null">db_org_code = null,</if>
+		    <if test="dbOrgName==null">db_org_name = null,</if>
+		    <if test="dbApplyId==null">db_apply_id = null,</if>
+		    <if test="dbApplyName==null">db_apply_name = null,</if>
+		    <if test="dbSubmitTime==null">db_submit_time = null,</if>
+		    <if test="jcTypeId==null">jc_type_id = null,</if>
+		    <if test="jcTypeName==null">jc_type_name = null,</if>
+		    <if test="jcResultId==null">jc_result_id = null,</if>
+		    <if test="jcResultName==null">jc_result_name = null,</if>
+		    <if test="superviseInfoId==null">supervise_info_id = null,</if>
+		</trim>
+	</set>
+	<where>
+		<choose>
+			<when test="dbId != null">and db_id = #{dbId}</when>
+			<otherwise>and db_id = </otherwise>
+		</choose>
+	</where>
+</update>
+
+<!-- ElementID:delete,Generated=true -->
+<delete id="delete" parameterType="com.chinacreator.dzjc_dealtMatter.VJcDaiban">
+    delete from V_JC_DAIBAN where 1=1 and db_id = #{dbId}
+</delete>
+
+<!-- ElementID:select,Generated=true -->
+<select id="select" parameterType="com.chinacreator.dzjc_dealtMatter.VJcDaiban" resultMap="VJcDaibanResult">
+	select 
+		<include refid="column_sql"/>
+	    from V_JC_DAIBAN 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+
+<!-- ElementID:insertBatch,Generated=true -->
+<insert id="insertBatch" parameterType="list">
+	insert into V_JC_DAIBAN (db_id,db_title,db_org_id,db_org_code,db_org_name,db_apply_id,db_apply_name,db_submit_time,jc_type_id,jc_type_name,jc_result_id,jc_result_name,supervise_info_id) 
+<foreach collection="list" item="entity" index="index" separator="union all">
+		select 
+		#{entity.dbId,jdbcType = VARCHAR},
+				#{entity.dbTitle,jdbcType = VARCHAR},
+				#{entity.dbOrgId,jdbcType = VARCHAR},
+				#{entity.dbOrgCode,jdbcType = VARCHAR},
+				#{entity.dbOrgName,jdbcType = VARCHAR},
+				#{entity.dbApplyId,jdbcType = VARCHAR},
+				#{entity.dbApplyName,jdbcType = VARCHAR},
+				#{entity.dbSubmitTime,jdbcType = DATE},
+				#{entity.jcTypeId,jdbcType = VARCHAR},
+				#{entity.jcTypeName,jdbcType = VARCHAR},
+				#{entity.jcResultId,jdbcType = VARCHAR},
+				#{entity.jcResultName,jdbcType = VARCHAR},
+				#{entity.superviseInfoId,jdbcType = VARCHAR}
+		from dual
+</foreach>
+</insert>
+
+<!-- ElementID:deleteBatch,Generated=true -->
+<delete id="deleteBatch" parameterType="List">
+	delete from V_JC_DAIBAN where db_id in
+<trim prefix="(" suffix=")" suffixOverrides=",">
+<foreach collection="list" item="entity" separator=",">
+	<choose>
+		<when test="@com.chinacreator.c2.dao.util.EntityBeanUtil@isEntityObj(entity)">#{entity.dbId}</when>
+		<otherwise>#{entity}</otherwise>
+	</choose>
+</foreach>
+</trim>
+</delete>
+
+<!-- ElementID:updateBatch,Generated=true -->
+<update id="updateBatch" parameterType="list">
+	<foreach collection="list" item="entity" open="begin" close=";end;" separator=";">
+			update V_JC_DAIBAN
+	<set>
+	<if test="entity.dbTitle != null">db_title= #{entity.dbTitle,jdbcType=VARCHAR},</if>
+	<if test="entity.dbOrgId != null">db_org_id= #{entity.dbOrgId,jdbcType=VARCHAR},</if>
+	<if test="entity.dbOrgCode != null">db_org_code= #{entity.dbOrgCode,jdbcType=VARCHAR},</if>
+	<if test="entity.dbOrgName != null">db_org_name= #{entity.dbOrgName,jdbcType=VARCHAR},</if>
+	<if test="entity.dbApplyId != null">db_apply_id= #{entity.dbApplyId,jdbcType=VARCHAR},</if>
+	<if test="entity.dbApplyName != null">db_apply_name= #{entity.dbApplyName,jdbcType=VARCHAR},</if>
+	<if test="entity.dbSubmitTime != null">db_submit_time= #{entity.dbSubmitTime,jdbcType=DATE},</if>
+	<if test="entity.jcTypeId != null">jc_type_id= #{entity.jcTypeId,jdbcType=VARCHAR},</if>
+	<if test="entity.jcTypeName != null">jc_type_name= #{entity.jcTypeName,jdbcType=VARCHAR},</if>
+	<if test="entity.jcResultId != null">jc_result_id= #{entity.jcResultId,jdbcType=VARCHAR},</if>
+	<if test="entity.jcResultName != null">jc_result_name= #{entity.jcResultName,jdbcType=VARCHAR},</if>
+	<if test="entity.superviseInfoId != null">supervise_info_id= #{entity.superviseInfoId,jdbcType=VARCHAR}</if>
+	</set>
+		<where>
+			<choose>
+				<when test="entity.dbId != null">and db_id = #{entity.dbId}</when>
+				<otherwise>and db_id = </otherwise>
+			</choose>
+		</where>
+	</foreach>
+</update>
+
+<!-- ElementID:selectAll,Generated=true -->
+<select id="selectAll" resultMap="VJcDaibanResult">
+	select 
+		<include refid="column_sql"/>
+	    from V_JC_DAIBAN 
+</select>
+
+<!-- ElementID:selectMany,Generated=true -->
+<select id="selectMany" parameterType="list" resultMap="VJcDaibanResult">
+select 
+	<include refid="column_sql"/> 
+	from V_JC_DAIBAN 
+	where V_JC_DAIBAN.db_id in (
+<foreach collection="list" item="entity" separator="intersect">
+		select 
+		V_JC_DAIBAN.db_id
+	    from V_JC_DAIBAN 
+		 <where>
+	        <if test="entity.dbId != null">and V_JC_DAIBAN.db_id = #{entity.dbId}</if>
+	        <if test="entity.dbTitle != null">and V_JC_DAIBAN.db_title = #{entity.dbTitle}</if>
+	        <if test="entity.dbOrgId != null">and V_JC_DAIBAN.db_org_id = #{entity.dbOrgId}</if>
+	        <if test="entity.dbOrgCode != null">and V_JC_DAIBAN.db_org_code = #{entity.dbOrgCode}</if>
+	        <if test="entity.dbOrgName != null">and V_JC_DAIBAN.db_org_name = #{entity.dbOrgName}</if>
+	        <if test="entity.dbApplyId != null">and V_JC_DAIBAN.db_apply_id = #{entity.dbApplyId}</if>
+	        <if test="entity.dbApplyName != null">and V_JC_DAIBAN.db_apply_name = #{entity.dbApplyName}</if>
+	        <if test="entity.dbSubmitTime != null">and V_JC_DAIBAN.db_submit_time = #{entity.dbSubmitTime}</if>
+	        <if test="entity.jcTypeId != null">and V_JC_DAIBAN.jc_type_id = #{entity.jcTypeId}</if>
+	        <if test="entity.jcTypeName != null">and V_JC_DAIBAN.jc_type_name = #{entity.jcTypeName}</if>
+	        <if test="entity.jcResultId != null">and V_JC_DAIBAN.jc_result_id = #{entity.jcResultId}</if>
+	        <if test="entity.jcResultName != null">and V_JC_DAIBAN.jc_result_name = #{entity.jcResultName}</if>
+	        <if test="entity.superviseInfoId != null">and V_JC_DAIBAN.supervise_info_id = #{entity.superviseInfoId}</if>
+		</where>
+</foreach>
+)
+</select>
+
+<!-- ElementID:selectUnion,Generated=true -->
+<select id="selectUnion" parameterType="list" resultMap="VJcDaibanResult">
+select 
+	<include refid="column_sql"/> 
+	from V_JC_DAIBAN 
+	 INNER JOIN
+<foreach collection="list" item="entity" separator="UNION" open="(" close=")">
+		SELECT 
+			 db_id
+		FROM V_JC_DAIBAN 
+			<where>
+	        <if test="entity.dbId != null">and V_JC_DAIBAN.db_id = #{entity.dbId}</if>
+	        <if test="entity.dbTitle != null">and V_JC_DAIBAN.db_title = #{entity.dbTitle}</if>
+	        <if test="entity.dbOrgId != null">and V_JC_DAIBAN.db_org_id = #{entity.dbOrgId}</if>
+	        <if test="entity.dbOrgCode != null">and V_JC_DAIBAN.db_org_code = #{entity.dbOrgCode}</if>
+	        <if test="entity.dbOrgName != null">and V_JC_DAIBAN.db_org_name = #{entity.dbOrgName}</if>
+	        <if test="entity.dbApplyId != null">and V_JC_DAIBAN.db_apply_id = #{entity.dbApplyId}</if>
+	        <if test="entity.dbApplyName != null">and V_JC_DAIBAN.db_apply_name = #{entity.dbApplyName}</if>
+	        <if test="entity.dbSubmitTime != null">and V_JC_DAIBAN.db_submit_time = #{entity.dbSubmitTime}</if>
+	        <if test="entity.jcTypeId != null">and V_JC_DAIBAN.jc_type_id = #{entity.jcTypeId}</if>
+	        <if test="entity.jcTypeName != null">and V_JC_DAIBAN.jc_type_name = #{entity.jcTypeName}</if>
+	        <if test="entity.jcResultId != null">and V_JC_DAIBAN.jc_result_id = #{entity.jcResultId}</if>
+	        <if test="entity.jcResultName != null">and V_JC_DAIBAN.jc_result_name = #{entity.jcResultName}</if>
+	        <if test="entity.superviseInfoId != null">and V_JC_DAIBAN.supervise_info_id = #{entity.superviseInfoId}</if>
+			</where>
+</foreach>
+	c2_temp_table ON V_JC_DAIBAN.db_id = c2_temp_table.db_id
+</select>
+
+<!-- ElementID:selectByID,Generated=true -->
+<select id="selectByID" parameterType="java.lang.String" resultMap="VJcDaibanResult">
+	select 
+		<include refid="column_sql"/>
+	    from V_JC_DAIBAN 
+		 where V_JC_DAIBAN.db_id = #{dbId,jdbcType=VARCHAR}
+</select>
+
+
+
+<!-- 
+	办件监察详情 SQL
+ -->
+<select id="selectByID2" parameterType="java.lang.String" resultMap="VAcceptSuperviseResult2">
+		SELECT V1.TITLE,
+		       V1.ORG_ID,
+		       V1.ORG_CODE,
+		       V1.ORG_NAME,
+		       V1.SUPERVISE_INFO_ID,
+		       V1.BUSINESS_ID,
+		       V1.SUPERVISE_TYPE_NO,
+		       V1.SUPERVISE_TYPE_NAME,
+		       V1.SUPERVISE_RESULT_NO,
+		       V1.SUPERVISE_RESULT_NAME,
+		       V1.SUPERVISE_TIME,
+		       V1.SU_STATE,
+		       V1.FP_STATE,
+		       E1.INSTANCE_CODE,
+		       E1.APPLY_ID,
+		       E1.APPLY_NAME,
+		       E1.APPROVE_ID,
+		       E1.APPROVE_NAME,
+		       E1.ACCEPT_TIME,
+		       V2.TIME_LIMIT,<!-- 法定时限 -->
+	       	   V2.PROMISES_LIMIT <!-- 承诺时限 -->
+	    FROM V_ACCEPT_SUPERVISE V1
+		INNER JOIN TA_SP_INSTANCE  E1 ON V1.BUSINESS_ID = E1.INSTANCE_ID
+		INNER JOIN TA_SPXM V2 ON E1.APPROVE_ID = V2.APPROVE_ID
+		INNER JOIN TA_JC_WARNING_APPEAL L1 ON V1.SUPERVISE_INFO_ID = L1.SUPERVISE_INFO_ID
+		WHERE V1.SUPERVISE_TYPE_NO IN ('1011','1014','1016','1017','1018') <!-- 限办件监察 -->
+		AND L1.ID = #{businessId,jdbcType=VARCHAR}
+		ORDER BY V1.SUPERVISE_TIME DESC
+</select>
+
+
+
+<!-- 
+	办件监察详情2 SQL
+ -->
+<select id="selectByID22" parameterType="java.lang.String" resultMap="VAcceptSuperviseResult2">
+		
+	SELECT E1.INSTANCE_NAME AS TITLE,
+	       E1.ORG_ID,
+	       (SELECT V.CODE FROM V_ORG V WHERE V.ID = E1.ORG_ID)AS ORG_CODE,
+	       E1.ORG_NAME,
+	       T1.SUPERVISE_INFO_ID,
+	       T1.BUSINESS_ID,
+	       T1.SUPERVISE_TYPE_NO,
+	       T3.SUPERVISE_TYPE_NAME,
+	       T1.SUPERVISE_RESULT_NO,
+	       T2.SUPERVISE_RESULT_NAME,
+	       T1.SUPERVISE_TIME,
+	       '' AS SU_STATE,
+	       '' AS FP_STATE,
+	       E1.INSTANCE_CODE,
+	       E1.APPLY_ID,
+	       E1.APPLY_NAME,
+	       E1.APPROVE_ID,
+	       E1.APPROVE_NAME,
+	       E1.ACCEPT_TIME,
+	       V2.TIME_LIMIT,
+	       V2.PROMISES_LIMIT
+	FROM TA_JC_SUPERVISE_INFO T1
+	INNER JOIN TA_JC_DIC_SUPERVISE_RESULT T2 ON T1.SUPERVISE_RESULT_NO = T2.SUPERVISE_RESULT_CODE
+	INNER JOIN TA_JC_DIC_SUPERVISE_TYPE T3 ON T1.SUPERVISE_TYPE_NO = T3.SUPERVISE_TYPE_CODE
+	INNER JOIN TA_SP_INSTANCE  E1 ON T1.BUSINESS_ID = E1.INSTANCE_ID
+	INNER JOIN TA_SPXM V2 ON E1.APPROVE_ID = V2.APPROVE_ID
+	WHERE T1.SUPERVISE_INFO_ID = #{businessId,jdbcType=VARCHAR}
+	ORDER BY T1.SUPERVISE_TIME DESC
+	
+</select>
+
+
+
+
+<!-- 
+	投诉监察详情 SQL
+ -->
+<select id="selectByID3" parameterType="java.lang.String" resultMap="VAcceptSuperviseResult3">
+	SELECT F1.COMPLAIN_ID,
+			F1.COMPLAIN_USER_NAME,
+			F1.COMPLAIN_USER_ORG,
+			F1.BYCOMPLAINED_USER_ORG,
+			F1.BYCOMPLAINED_ORG,
+			F1.COMPLAIN_TITLE,
+			F2.PROBLEM_TYPE_NAME AS PROBLEM_TYPE,
+			F1.COMPLAIN_CONTENT,
+			F1.MAINAPPEAL,
+			F1.EXPIRE_DATE,
+			F1.COMMITMENT_LIMIT,
+			V1.SUPERVISE_RESULT_NAME
+	FROM V_ACCEPT_SUPERVISE V1
+	INNER JOIN TA_JC_COMPLAIN_BASEINFO F1 ON V1.BUSINESS_ID = F1.COMPLAIN_ID
+	INNER JOIN TA_JC_DIC_PROBLEM_TYPE F2 ON F1.PROBLEM_TYPE = F2.PROBLEM_TYPE_CODE
+	INNER JOIN TA_JC_WARNING_APPEAL L1 ON V1.SUPERVISE_INFO_ID = L1.SUPERVISE_INFO_ID
+	WHERE V1.SUPERVISE_TYPE_NO IN ('1012')<!-- 限投诉监察 -->
+	AND L1.ID =  #{complainId,jdbcType=VARCHAR}
+	ORDER BY V1.SUPERVISE_TIME DESC
+</select>
+
+
+<!-- 
+	投诉监察详情2 SQL
+ -->
+<select id="selectByID33" parameterType="java.lang.String" resultMap="VAcceptSuperviseResult3">
+	SELECT  F1.COMPLAIN_ID,
+	        F1.COMPLAIN_USER_NAME,
+	        F1.COMPLAIN_USER_ORG,
+	        F1.BYCOMPLAINED_USER_ORG,
+	        F1.BYCOMPLAINED_ORG,
+	        F1.COMPLAIN_TITLE,
+	        F2.PROBLEM_TYPE_NAME AS PROBLEM_TYPE,
+	        F1.COMPLAIN_CONTENT,
+	        F1.MAINAPPEAL,
+	        F1.EXPIRE_DATE,
+	        F1.COMMITMENT_LIMIT,
+	        T2.SUPERVISE_RESULT_NAME
+	FROM TA_JC_SUPERVISE_INFO T1
+	INNER JOIN TA_JC_DIC_SUPERVISE_RESULT T2 ON T1.SUPERVISE_RESULT_NO = T2.SUPERVISE_RESULT_CODE
+	INNER JOIN TA_JC_COMPLAIN_BASEINFO F1 ON T1.BUSINESS_ID = F1.COMPLAIN_ID
+	INNER JOIN TA_JC_DIC_PROBLEM_TYPE F2 ON F1.PROBLEM_TYPE = F2.PROBLEM_TYPE_CODE
+	WHERE T1.SUPERVISE_INFO_ID =  #{complainId,jdbcType=VARCHAR}
+	ORDER BY T1.SUPERVISE_TIME DESC
+</select>
+
+
+
+<!-- 
+	咨询监察详情 SQL
+ -->
+<select id="selectByID4" parameterType="java.lang.String" resultMap="VAcceptSuperviseResult4">
+
+	SELECT C1.CONSULT_ID,
+	       C1.CONSULT_TITLE,
+	       C1.APPROVE_NAME,
+	       C1.ORG_ID,
+	       C1.ORG_NAME,
+	       C1.APPLY_ID,
+	       C1.APPLY_NAME,
+	       C1.CONSULT_CONTENT,
+	       C1.CONSULT_TIME,
+	       C1.EXPIRE_TIME,
+	       V1.SUPERVISE_RESULT_NAME
+	FROM V_ACCEPT_SUPERVISE V1
+	INNER JOIN TA_SP_CONSULT C1 ON V1.BUSINESS_ID = C1.CONSULT_ID
+	INNER JOIN TA_JC_WARNING_APPEAL L1 ON V1.SUPERVISE_INFO_ID = L1.SUPERVISE_INFO_ID
+	WHERE V1.SUPERVISE_TYPE_NO IN ('1013','1015')<!-- 限咨询监察 -->
+	AND L1.ID =  #{consultId,jdbcType=VARCHAR}
+	ORDER BY V1.SUPERVISE_TIME DESC
+
+</select>
+
+<!-- 
+	咨询监察详情2 SQL
+ -->
+<select id="selectByID44" parameterType="java.lang.String" resultMap="VAcceptSuperviseResult4">
+
+	SELECT C1.CONSULT_ID,
+	       C1.CONSULT_TITLE,
+	       C1.APPROVE_NAME,
+	       C1.ORG_ID,
+	       C1.ORG_NAME,
+	       C1.APPLY_ID,
+	       C1.APPLY_NAME,
+	       C1.CONSULT_CONTENT,
+	       C1.CONSULT_TIME,
+	       C1.EXPIRE_TIME,
+	       T2.SUPERVISE_RESULT_NAME
+	FROM TA_JC_SUPERVISE_INFO T1
+	INNER JOIN TA_JC_DIC_SUPERVISE_RESULT T2 ON T1.SUPERVISE_RESULT_NO = T2.SUPERVISE_RESULT_CODE
+	INNER JOIN TA_SP_CONSULT C1 ON T1.BUSINESS_ID = C1.CONSULT_ID
+	WHERE T1.SUPERVISE_INFO_ID = #{consultId,jdbcType=VARCHAR}
+	ORDER BY T1.SUPERVISE_TIME DESC
+
+</select>
+
+
+
+<!-- ElementID:selectByPage,Generated=false -->
+<select id="selectByPage" parameterType="com.chinacreator.dzjc_dealtMatter.VJcDaiban" resultMap="VJcDaibanResult">
+	select 
+		<include refid="column_sql"/>
+	    from V_JC_DAIBAN
+	    where 1=1
+	    and V_JC_DAIBAN.jc_result_id !='C'
+	    <if test="dbOrgCode != null">AND (V_JC_DAIBAN.DB_ORG_CODE LIKE CONCAT(#{dbOrgCode},'%') or V_JC_DAIBAN.DB_ORG_CODE = #{dbOrgCode})</if>
+</select>
+
+</mapper>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"><mapper namespace="com.chinacreator.dzjc_tongji.ProcedureStatusDetailMapper">	
+
+<!-- ElementID:column_sql,Generated=true -->
+<sql id="column_sql">
+		  TA_JC_PROCEDURE_STATUS_DETAIL.id ,
+		  TA_JC_PROCEDURE_STATUS_DETAIL.procedure_name ,
+		  TA_JC_PROCEDURE_STATUS_DETAIL.begin_time ,
+		  TA_JC_PROCEDURE_STATUS_DETAIL.end_time ,
+		  TA_JC_PROCEDURE_STATUS_DETAIL.pid 
+</sql>
+
+<!-- ElementID:whereClause_sql,Generated=true -->
+<sql id="whereClause_sql">
+	    <if test="id != null">and TA_JC_PROCEDURE_STATUS_DETAIL.id = #{id}</if>
+	    <if test="procedureName != null">and TA_JC_PROCEDURE_STATUS_DETAIL.procedure_name = #{procedureName}</if>
+	    <if test="beginTime != null">and TA_JC_PROCEDURE_STATUS_DETAIL.begin_time = #{beginTime}</if>
+	    <if test="endTime != null">and TA_JC_PROCEDURE_STATUS_DETAIL.end_time = #{endTime}</if>
+	    <if test="pid != null">and TA_JC_PROCEDURE_STATUS_DETAIL.pid = #{pid}</if>
+</sql>
+
+
+<!-- ElementID:ProcedureStatusDetailResult,Generated=true -->
+<resultMap id="ProcedureStatusDetailResult" type="com.chinacreator.dzjc_tongji.ProcedureStatusDetail">
+	<id property="id" column="id"/>
+	<result property="procedureName" column="procedure_name"/>
+	<result property="beginTime" column="begin_time"/>
+	<result property="endTime" column="end_time"/>
+	<result property="pid" column="pid"/>
+</resultMap>
+
+<!-- ElementID:selectByPage,Generated=true -->
+<select id="selectByPage" parameterType="com.chinacreator.dzjc_tongji.ProcedureStatusDetail" resultMap="ProcedureStatusDetailResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_PROCEDURE_STATUS_DETAIL 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+</mapper>

@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"><mapper namespace="com.chinacreator.dzjc_ruleEngine.ruleEngine.entity.Thread_configMapper">	
+
+<!-- ElementID:column_sql,Generated=true -->
+<sql id="column_sql">
+		  TA_JC_THREAD_CONFIG.config_id ,
+		  TA_JC_THREAD_CONFIG.query_size ,
+		  TA_JC_THREAD_CONFIG.thread_size ,
+		  TA_JC_THREAD_CONFIG.last_update_time 
+</sql>
+
+<!-- ElementID:whereClause_sql,Generated=true -->
+<sql id="whereClause_sql">
+	    <if test="configId != null">and TA_JC_THREAD_CONFIG.config_id = #{configId}</if>
+	    <if test="querySize != null">and TA_JC_THREAD_CONFIG.query_size = #{querySize}</if>
+	    <if test="threadSize != null">and TA_JC_THREAD_CONFIG.thread_size = #{threadSize}</if>
+	    <if test="lastUpdateTime != null">and TA_JC_THREAD_CONFIG.last_update_time = #{lastUpdateTime}</if>
+</sql>
+
+
+<!-- ElementID:Thread_configResult,Generated=true -->
+<resultMap id="Thread_configResult" type="com.chinacreator.dzjc_ruleEngine.ruleEngine.entity.Thread_config">
+	<id property="configId" column="config_id"/>
+	<result property="querySize" column="query_size"/>
+	<result property="threadSize" column="thread_size"/>
+	<result property="lastUpdateTime" column="last_update_time"/>
+</resultMap>
+
+
+
+
+
+
+<!-- ElementID:insert,Generated=true -->
+<insert id="insert" parameterType="com.chinacreator.dzjc_ruleEngine.ruleEngine.entity.Thread_config">
+	insert into TA_JC_THREAD_CONFIG(
+	         <if test="configId != null">config_id</if>
+	         <if test="querySize != null">,query_size</if>
+	         <if test="threadSize != null">,thread_size</if>
+	         <if test="lastUpdateTime != null">,last_update_time</if>
+	 	 	 )
+	 values (
+	         <if test="configId != null">#{configId,jdbcType=VARCHAR}</if>
+	         <if test="querySize != null">,#{querySize,jdbcType=NUMERIC}</if>
+	         <if test="threadSize != null">,#{threadSize,jdbcType=NUMERIC}</if>
+	         <if test="lastUpdateTime != null">,#{lastUpdateTime,jdbcType=DATE}</if>
+	 	 	 )
+</insert>
+
+<!-- ElementID:count,Generated=true -->
+<select id="count" parameterType="com.chinacreator.dzjc_ruleEngine.ruleEngine.entity.Thread_config" resultType="int">
+	select count(*) from TA_JC_THREAD_CONFIG 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<!-- ElementID:update,Generated=true -->
+<update id="update" parameterType="com.chinacreator.dzjc_ruleEngine.ruleEngine.entity.Thread_config">
+	update TA_JC_THREAD_CONFIG
+<set>
+	<if test="querySize != null">query_size=#{querySize,jdbcType=NUMERIC},</if>
+	<if test="threadSize != null">thread_size=#{threadSize,jdbcType=NUMERIC},</if>
+	<if test="lastUpdateTime != null">last_update_time=#{lastUpdateTime,jdbcType=DATE}</if>
+</set>
+<where>
+	<choose>
+        <when test="configId != null">and config_id = #{configId}</when>
+        <otherwise>and config_id = </otherwise>
+    </choose>
+</where>
+</update>
+
+<!-- ElementID:updateNull,Generated=true -->
+<update id="updateNull" parameterType="map">
+	update TA_JC_THREAD_CONFIG
+	<set>
+		<trim suffixOverrides=",">
+		    <if test="querySize==null">query_size = null,</if>
+		    <if test="threadSize==null">thread_size = null,</if>
+		    <if test="lastUpdateTime==null">last_update_time = null,</if>
+		</trim>
+	</set>
+	<where>
+		<choose>
+			<when test="configId != null">and config_id = #{configId}</when>
+			<otherwise>and config_id = </otherwise>
+		</choose>
+	</where>
+</update>
+
+<!-- ElementID:delete,Generated=true -->
+<delete id="delete" parameterType="com.chinacreator.dzjc_ruleEngine.ruleEngine.entity.Thread_config">
+    delete from TA_JC_THREAD_CONFIG where 1=1 and config_id = #{configId}
+</delete>
+
+<!-- ElementID:select,Generated=true -->
+<select id="select" parameterType="com.chinacreator.dzjc_ruleEngine.ruleEngine.entity.Thread_config" resultMap="Thread_configResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_THREAD_CONFIG 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+
+
+<select id="selectAllList" parameterType="com.chinacreator.dzjc_ruleEngine.ruleEngine.entity.Thread_config" resultMap="Thread_configResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_THREAD_CONFIG 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<!-- ElementID:insertBatch,Generated=true -->
+<insert id="insertBatch" parameterType="list">
+	insert into TA_JC_THREAD_CONFIG (config_id,query_size,thread_size,last_update_time) 
+<foreach collection="list" item="entity" index="index" separator="union all">
+		select 
+		#{entity.configId,jdbcType = VARCHAR},
+				#{entity.querySize,jdbcType = NUMERIC},
+				#{entity.threadSize,jdbcType = NUMERIC},
+				#{entity.lastUpdateTime,jdbcType = DATE}
+		from dual
+</foreach>
+</insert>
+
+<!-- ElementID:deleteBatch,Generated=true -->
+<delete id="deleteBatch" parameterType="List">
+	delete from TA_JC_THREAD_CONFIG where config_id in
+<trim prefix="(" suffix=")" suffixOverrides=",">
+<foreach collection="list" item="entity" separator=",">
+	<choose>
+		<when test="@com.chinacreator.c2.dao.util.EntityBeanUtil@isEntityObj(entity)">#{entity.configId}</when>
+		<otherwise>#{entity}</otherwise>
+	</choose>
+</foreach>
+</trim>
+</delete>
+
+<!-- ElementID:updateBatch,Generated=true -->
+<update id="updateBatch" parameterType="list">
+	<foreach collection="list" item="entity" open="begin" close=";end;" separator=";">
+			update TA_JC_THREAD_CONFIG
+	<set>
+	<if test="entity.querySize != null">query_size= #{entity.querySize,jdbcType=NUMERIC},</if>
+	<if test="entity.threadSize != null">thread_size= #{entity.threadSize,jdbcType=NUMERIC},</if>
+	<if test="entity.lastUpdateTime != null">last_update_time= #{entity.lastUpdateTime,jdbcType=DATE}</if>
+	</set>
+		<where>
+			<choose>
+				<when test="entity.configId != null">and config_id = #{entity.configId}</when>
+				<otherwise>and config_id = </otherwise>
+			</choose>
+		</where>
+	</foreach>
+</update>
+
+<!-- ElementID:selectAll,Generated=true -->
+<select id="selectAll" resultMap="Thread_configResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_THREAD_CONFIG 
+</select>
+
+<!-- ElementID:selectMany,Generated=true -->
+<select id="selectMany" parameterType="list" resultMap="Thread_configResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_JC_THREAD_CONFIG 
+	where TA_JC_THREAD_CONFIG.config_id in (
+<foreach collection="list" item="entity" separator="intersect">
+		select 
+		TA_JC_THREAD_CONFIG.config_id
+	    from TA_JC_THREAD_CONFIG 
+		 <where>
+	        <if test="entity.configId != null">and TA_JC_THREAD_CONFIG.config_id = #{entity.configId}</if>
+	        <if test="entity.querySize != null">and TA_JC_THREAD_CONFIG.query_size = #{entity.querySize}</if>
+	        <if test="entity.threadSize != null">and TA_JC_THREAD_CONFIG.thread_size = #{entity.threadSize}</if>
+	        <if test="entity.lastUpdateTime != null">and TA_JC_THREAD_CONFIG.last_update_time = #{entity.lastUpdateTime}</if>
+		</where>
+</foreach>
+)
+</select>
+
+<!-- ElementID:selectUnion,Generated=true -->
+<select id="selectUnion" parameterType="list" resultMap="Thread_configResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_JC_THREAD_CONFIG 
+	 INNER JOIN
+<foreach collection="list" item="entity" separator="UNION" open="(" close=")">
+		SELECT 
+			 config_id
+		FROM TA_JC_THREAD_CONFIG 
+			<where>
+	        <if test="entity.configId != null">and TA_JC_THREAD_CONFIG.config_id = #{entity.configId}</if>
+	        <if test="entity.querySize != null">and TA_JC_THREAD_CONFIG.query_size = #{entity.querySize}</if>
+	        <if test="entity.threadSize != null">and TA_JC_THREAD_CONFIG.thread_size = #{entity.threadSize}</if>
+	        <if test="entity.lastUpdateTime != null">and TA_JC_THREAD_CONFIG.last_update_time = #{entity.lastUpdateTime}</if>
+			</where>
+</foreach>
+	c2_temp_table ON TA_JC_THREAD_CONFIG.config_id = c2_temp_table.config_id
+</select>
+
+<!-- ElementID:selectByID,Generated=true -->
+<select id="selectByID" parameterType="java.lang.String" resultMap="Thread_configResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_THREAD_CONFIG 
+		 where TA_JC_THREAD_CONFIG.config_id = #{configId,jdbcType=VARCHAR}
+</select>
+
+<!-- ElementID:selectByPage,Generated=true -->
+<select id="selectByPage" parameterType="com.chinacreator.dzjc_ruleEngine.ruleEngine.entity.Thread_config" resultMap="Thread_configResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_THREAD_CONFIG 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+</mapper>

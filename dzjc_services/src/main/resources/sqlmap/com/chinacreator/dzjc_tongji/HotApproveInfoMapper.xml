@@ -1,0 +1,533 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"><mapper namespace="com.chinacreator.dzjc_tongji.HotApproveInfoMapper">	
+
+<!-- ElementID:column_sql,Generated=false -->
+<sql id="column_sql">
+		  V_SP_APPROVE_INFO.org_id ,
+		  V_SP_APPROVE_INFO.rights_id ,
+		  V_SP_APPROVE_INFO.approve_id ,
+		  V_SP_APPROVE_INFO.approve_code ,
+		  V_SP_APPROVE_INFO.taskhandleitem ,
+		  V_SP_APPROVE_INFO.approve_name ,
+		  V_SP_APPROVE_INFO.org_name ,
+		  V_SP_APPROVE_INFO.type_code ,
+		  V_SP_APPROVE_INFO.approve_source ,
+		  V_SP_APPROVE_INFO.sjs_num ,
+		  V_SP_APPROVE_INFO.bjs_num ,
+		  V_SP_APPROVE_INFO.red_num ,
+		  V_SP_APPROVE_INFO.yellow_num ,
+		  V_SP_APPROVE_INFO.green_num <!-- ,
+		  V_SP_APPROVE_INFO.beginDate ,
+		  V_SP_APPROVE_INFO.endDate ,
+		  V_SP_APPROVE_INFO.jcBeginDate ,
+		  V_SP_APPROVE_INFO.jcEndDate  -->
+</sql>
+
+<!-- ElementID:whereClause_sql,Generated=true -->
+<sql id="whereClause_sql">
+	    <if test="orgId != null">and V_SP_APPROVE_INFO.org_id = #{orgId}</if>
+	    <if test="rightsId != null">and V_SP_APPROVE_INFO.rights_id = #{rightsId}</if>
+	    <if test="approveId != null">and V_SP_APPROVE_INFO.approve_id = #{approveId}</if>
+	    <if test="approveCode != null">and V_SP_APPROVE_INFO.approve_code = #{approveCode}</if>
+	    <if test="taskhandleitem != null">and V_SP_APPROVE_INFO.taskhandleitem = #{taskhandleitem}</if>
+	    <if test="approveName != null">and V_SP_APPROVE_INFO.approve_name = #{approveName}</if>
+	    <if test="orgName != null">and V_SP_APPROVE_INFO.org_name = #{orgName}</if>
+	    <if test="typeCode != null">and V_SP_APPROVE_INFO.type_code = #{typeCode}</if>
+	    <if test="approveSource != null">and V_SP_APPROVE_INFO.approve_source = #{approveSource}</if>
+	    <if test="sjsNum != null">and V_SP_APPROVE_INFO.sjs_num = #{sjsNum}</if>
+	    <if test="bjsNum != null">and V_SP_APPROVE_INFO.bjs_num = #{bjsNum}</if>
+	    <if test="redNum != null">and V_SP_APPROVE_INFO.red_num = #{redNum}</if>
+	    <if test="yellowNum != null">and V_SP_APPROVE_INFO.yellow_num = #{yellowNum}</if>
+	    <if test="greenNum != null">and V_SP_APPROVE_INFO.green_num = #{greenNum}</if>
+	    <if test="beginDate != null">and V_SP_APPROVE_INFO.beginDate = #{beginDate}</if>
+	    <if test="endDate != null">and V_SP_APPROVE_INFO.endDate = #{endDate}</if>
+	    <if test="jcBeginDate != null">and V_SP_APPROVE_INFO.jcBeginDate = #{jcBeginDate}</if>
+	    <if test="jcEndDate != null">and V_SP_APPROVE_INFO.jcEndDate = #{jcEndDate}</if>
+</sql>
+
+
+<!-- ElementID:HotApproveInfoResult,Generated=true -->
+<resultMap id="HotApproveInfoResult" type="com.chinacreator.dzjc_tongji.HotApproveInfo">
+	<id property="approveId" column="approve_id"/>
+	<result property="orgId" column="org_id"/>
+	<result property="rightsId" column="rights_id"/>
+	<result property="approveCode" column="approve_code"/>
+	<result property="taskhandleitem" column="taskhandleitem"/>
+	<result property="approveName" column="approve_name"/>
+	<result property="orgName" column="org_name"/>
+	<result property="typeCode" column="type_code"/>
+	<result property="approveSource" column="approve_source"/>
+	<result property="sjsNum" column="sjs_num"/>
+	<result property="bjsNum" column="bjs_num"/>
+	<result property="redNum" column="red_num"/>
+	<result property="yellowNum" column="yellow_num"/>
+	<result property="greenNum" column="green_num"/>
+	<!-- <result property="beginDate" column="beginDate"/>
+	<result property="endDate" column="endDate"/>
+	<result property="jcBeginDate" column="jcBeginDate"/>
+	<result property="jcEndDate" column="jcEndDate"/> -->
+</resultMap>
+
+
+<!-- ElementID:insert,Generated=true -->
+<insert id="insert" parameterType="com.chinacreator.dzjc_tongji.HotApproveInfo">
+	insert into V_SP_APPROVE_INFO(
+	         <if test="orgId != null">org_id</if>
+	         <if test="rightsId != null">,rights_id</if>
+	         <if test="approveId != null">,approve_id</if>
+	         <if test="approveCode != null">,approve_code</if>
+	         <if test="taskhandleitem != null">,taskhandleitem</if>
+	         <if test="approveName != null">,approve_name</if>
+	         <if test="orgName != null">,org_name</if>
+	         <if test="typeCode != null">,type_code</if>
+	         <if test="approveSource != null">,approve_source</if>
+	         <if test="sjsNum != null">,sjs_num</if>
+	         <if test="bjsNum != null">,bjs_num</if>
+	         <if test="redNum != null">,red_num</if>
+	         <if test="yellowNum != null">,yellow_num</if>
+	         <if test="greenNum != null">,green_num</if>
+	         <if test="beginDate != null">,beginDate</if>
+	         <if test="endDate != null">,endDate</if>
+	         <if test="jcBeginDate != null">,jcBeginDate</if>
+	         <if test="jcEndDate != null">,jcEndDate</if>
+	 	 	 )
+	 values (
+	         <if test="orgId != null">#{orgId,jdbcType=VARCHAR}</if>
+	         <if test="rightsId != null">,#{rightsId,jdbcType=VARCHAR}</if>
+	         <if test="approveId != null">,#{approveId,jdbcType=VARCHAR}</if>
+	         <if test="approveCode != null">,#{approveCode,jdbcType=VARCHAR}</if>
+	         <if test="taskhandleitem != null">,#{taskhandleitem,jdbcType=VARCHAR}</if>
+	         <if test="approveName != null">,#{approveName,jdbcType=VARCHAR}</if>
+	         <if test="orgName != null">,#{orgName,jdbcType=VARCHAR}</if>
+	         <if test="typeCode != null">,#{typeCode,jdbcType=VARCHAR}</if>
+	         <if test="approveSource != null">,#{approveSource,jdbcType=VARCHAR}</if>
+	         <if test="sjsNum != null">,#{sjsNum,jdbcType=NUMERIC}</if>
+	         <if test="bjsNum != null">,#{bjsNum,jdbcType=NUMERIC}</if>
+	         <if test="redNum != null">,#{redNum,jdbcType=NUMERIC}</if>
+	         <if test="yellowNum != null">,#{yellowNum,jdbcType=NUMERIC}</if>
+	         <if test="greenNum != null">,#{greenNum,jdbcType=NUMERIC}</if>
+	         <if test="beginDate != null">,#{beginDate,jdbcType=DATE}</if>
+	         <if test="endDate != null">,#{endDate,jdbcType=DATE}</if>
+	         <if test="jcBeginDate != null">,#{jcBeginDate,jdbcType=DATE}</if>
+	         <if test="jcEndDate != null">,#{jcEndDate,jdbcType=DATE}</if>
+	 	 	 )
+</insert>
+
+<!-- ElementID:count,Generated=true -->
+<select id="count" parameterType="com.chinacreator.dzjc_tongji.HotApproveInfo" resultType="int">
+	select count(*) from V_SP_APPROVE_INFO 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<!-- ElementID:update,Generated=true -->
+<update id="update" parameterType="com.chinacreator.dzjc_tongji.HotApproveInfo">
+	update V_SP_APPROVE_INFO
+<set>
+	<if test="orgId != null">org_id=#{orgId,jdbcType=VARCHAR},</if>
+	<if test="rightsId != null">rights_id=#{rightsId,jdbcType=VARCHAR},</if>
+	<if test="approveCode != null">approve_code=#{approveCode,jdbcType=VARCHAR},</if>
+	<if test="taskhandleitem != null">taskhandleitem=#{taskhandleitem,jdbcType=VARCHAR},</if>
+	<if test="approveName != null">approve_name=#{approveName,jdbcType=VARCHAR},</if>
+	<if test="orgName != null">org_name=#{orgName,jdbcType=VARCHAR},</if>
+	<if test="typeCode != null">type_code=#{typeCode,jdbcType=VARCHAR},</if>
+	<if test="approveSource != null">approve_source=#{approveSource,jdbcType=VARCHAR},</if>
+	<if test="sjsNum != null">sjs_num=#{sjsNum,jdbcType=NUMERIC},</if>
+	<if test="bjsNum != null">bjs_num=#{bjsNum,jdbcType=NUMERIC},</if>
+	<if test="redNum != null">red_num=#{redNum,jdbcType=NUMERIC},</if>
+	<if test="yellowNum != null">yellow_num=#{yellowNum,jdbcType=NUMERIC},</if>
+	<if test="greenNum != null">green_num=#{greenNum,jdbcType=NUMERIC},</if>
+	<if test="beginDate != null">beginDate=#{beginDate,jdbcType=DATE},</if>
+	<if test="endDate != null">endDate=#{endDate,jdbcType=DATE},</if>
+	<if test="jcBeginDate != null">jcBeginDate=#{jcBeginDate,jdbcType=DATE},</if>
+	<if test="jcEndDate != null">jcEndDate=#{jcEndDate,jdbcType=DATE}</if>
+</set>
+<where>
+	<choose>
+        <when test="approveId != null">and approve_id = #{approveId}</when>
+        <otherwise>and approve_id = </otherwise>
+    </choose>
+</where>
+</update>
+
+<!-- ElementID:updateNull,Generated=true -->
+<update id="updateNull" parameterType="map">
+	update V_SP_APPROVE_INFO
+	<set>
+		<trim suffixOverrides=",">
+		    <if test="orgId==null">org_id = null,</if>
+		    <if test="rightsId==null">rights_id = null,</if>
+		    <if test="approveCode==null">approve_code = null,</if>
+		    <if test="taskhandleitem==null">taskhandleitem = null,</if>
+		    <if test="approveName==null">approve_name = null,</if>
+		    <if test="orgName==null">org_name = null,</if>
+		    <if test="typeCode==null">type_code = null,</if>
+		    <if test="approveSource==null">approve_source = null,</if>
+		    <if test="sjsNum==null">sjs_num = null,</if>
+		    <if test="bjsNum==null">bjs_num = null,</if>
+		    <if test="redNum==null">red_num = null,</if>
+		    <if test="yellowNum==null">yellow_num = null,</if>
+		    <if test="greenNum==null">green_num = null,</if>
+		    <if test="beginDate==null">beginDate = null,</if>
+		    <if test="endDate==null">endDate = null,</if>
+		    <if test="jcBeginDate==null">jcBeginDate = null,</if>
+		    <if test="jcEndDate==null">jcEndDate = null,</if>
+		</trim>
+	</set>
+	<where>
+		<choose>
+			<when test="approveId != null">and approve_id = #{approveId}</when>
+			<otherwise>and approve_id = </otherwise>
+		</choose>
+	</where>
+</update>
+
+<!-- ElementID:delete,Generated=true -->
+<delete id="delete" parameterType="com.chinacreator.dzjc_tongji.HotApproveInfo">
+    delete from V_SP_APPROVE_INFO where 1=1 and approve_id = #{approveId}
+</delete>
+
+<!-- ElementID:select,Generated=true -->
+<select id="select" parameterType="com.chinacreator.dzjc_tongji.HotApproveInfo" resultMap="HotApproveInfoResult">
+	select 
+		<include refid="column_sql"/>
+	    from V_SP_APPROVE_INFO 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+
+<!-- ElementID:insertBatch,Generated=true -->
+<insert id="insertBatch" parameterType="list">
+	insert into V_SP_APPROVE_INFO (org_id,rights_id,approve_id,approve_code,taskhandleitem,approve_name,org_name,type_code,approve_source,sjs_num,bjs_num,red_num,yellow_num,green_num,beginDate,endDate,jcBeginDate,jcEndDate) 
+<foreach collection="list" item="entity" index="index" separator="union all">
+		select 
+		#{entity.orgId,jdbcType = VARCHAR},
+				#{entity.rightsId,jdbcType = VARCHAR},
+				#{entity.approveId,jdbcType = VARCHAR},
+				#{entity.approveCode,jdbcType = VARCHAR},
+				#{entity.taskhandleitem,jdbcType = VARCHAR},
+				#{entity.approveName,jdbcType = VARCHAR},
+				#{entity.orgName,jdbcType = VARCHAR},
+				#{entity.typeCode,jdbcType = VARCHAR},
+				#{entity.approveSource,jdbcType = VARCHAR},
+				#{entity.sjsNum,jdbcType = NUMERIC},
+				#{entity.bjsNum,jdbcType = NUMERIC},
+				#{entity.redNum,jdbcType = NUMERIC},
+				#{entity.yellowNum,jdbcType = NUMERIC},
+				#{entity.greenNum,jdbcType = NUMERIC},
+				#{entity.beginDate,jdbcType = DATE},
+				#{entity.endDate,jdbcType = DATE},
+				#{entity.jcBeginDate,jdbcType = DATE},
+				#{entity.jcEndDate,jdbcType = DATE}
+		from dual
+</foreach>
+</insert>
+
+<!-- ElementID:deleteBatch,Generated=true -->
+<delete id="deleteBatch" parameterType="List">
+	delete from V_SP_APPROVE_INFO where approve_id in
+<trim prefix="(" suffix=")" suffixOverrides=",">
+<foreach collection="list" item="entity" separator=",">
+	<choose>
+		<when test="@com.chinacreator.c2.dao.util.EntityBeanUtil@isEntityObj(entity)">#{entity.approveId}</when>
+		<otherwise>#{entity}</otherwise>
+	</choose>
+</foreach>
+</trim>
+</delete>
+
+<!-- ElementID:updateBatch,Generated=true -->
+<update id="updateBatch" parameterType="list">
+	<foreach collection="list" item="entity" open="begin" close=";end;" separator=";">
+			update V_SP_APPROVE_INFO
+	<set>
+	<if test="entity.orgId != null">org_id= #{entity.orgId,jdbcType=VARCHAR},</if>
+	<if test="entity.rightsId != null">rights_id= #{entity.rightsId,jdbcType=VARCHAR},</if>
+	<if test="entity.approveCode != null">approve_code= #{entity.approveCode,jdbcType=VARCHAR},</if>
+	<if test="entity.taskhandleitem != null">taskhandleitem= #{entity.taskhandleitem,jdbcType=VARCHAR},</if>
+	<if test="entity.approveName != null">approve_name= #{entity.approveName,jdbcType=VARCHAR},</if>
+	<if test="entity.orgName != null">org_name= #{entity.orgName,jdbcType=VARCHAR},</if>
+	<if test="entity.typeCode != null">type_code= #{entity.typeCode,jdbcType=VARCHAR},</if>
+	<if test="entity.approveSource != null">approve_source= #{entity.approveSource,jdbcType=VARCHAR},</if>
+	<if test="entity.sjsNum != null">sjs_num= #{entity.sjsNum,jdbcType=NUMERIC},</if>
+	<if test="entity.bjsNum != null">bjs_num= #{entity.bjsNum,jdbcType=NUMERIC},</if>
+	<if test="entity.redNum != null">red_num= #{entity.redNum,jdbcType=NUMERIC},</if>
+	<if test="entity.yellowNum != null">yellow_num= #{entity.yellowNum,jdbcType=NUMERIC},</if>
+	<if test="entity.greenNum != null">green_num= #{entity.greenNum,jdbcType=NUMERIC},</if>
+	<if test="entity.beginDate != null">beginDate= #{entity.beginDate,jdbcType=DATE},</if>
+	<if test="entity.endDate != null">endDate= #{entity.endDate,jdbcType=DATE},</if>
+	<if test="entity.jcBeginDate != null">jcBeginDate= #{entity.jcBeginDate,jdbcType=DATE},</if>
+	<if test="entity.jcEndDate != null">jcEndDate= #{entity.jcEndDate,jdbcType=DATE}</if>
+	</set>
+		<where>
+			<choose>
+				<when test="entity.approveId != null">and approve_id = #{entity.approveId}</when>
+				<otherwise>and approve_id = </otherwise>
+			</choose>
+		</where>
+	</foreach>
+</update>
+
+<!-- ElementID:selectAll,Generated=true -->
+<select id="selectAll" resultMap="HotApproveInfoResult">
+	select 
+		<include refid="column_sql"/>
+	    from V_SP_APPROVE_INFO 
+</select>
+
+<!-- ElementID:selectMany,Generated=true -->
+<select id="selectMany" parameterType="list" resultMap="HotApproveInfoResult">
+select 
+	<include refid="column_sql"/> 
+	from V_SP_APPROVE_INFO 
+	where V_SP_APPROVE_INFO.approve_id in (
+<foreach collection="list" item="entity" separator="intersect">
+		select 
+		V_SP_APPROVE_INFO.approve_id
+	    from V_SP_APPROVE_INFO 
+		 <where>
+	        <if test="entity.orgId != null">and V_SP_APPROVE_INFO.org_id = #{entity.orgId}</if>
+	        <if test="entity.rightsId != null">and V_SP_APPROVE_INFO.rights_id = #{entity.rightsId}</if>
+	        <if test="entity.approveId != null">and V_SP_APPROVE_INFO.approve_id = #{entity.approveId}</if>
+	        <if test="entity.approveCode != null">and V_SP_APPROVE_INFO.approve_code = #{entity.approveCode}</if>
+	        <if test="entity.taskhandleitem != null">and V_SP_APPROVE_INFO.taskhandleitem = #{entity.taskhandleitem}</if>
+	        <if test="entity.approveName != null">and V_SP_APPROVE_INFO.approve_name = #{entity.approveName}</if>
+	        <if test="entity.orgName != null">and V_SP_APPROVE_INFO.org_name = #{entity.orgName}</if>
+	        <if test="entity.typeCode != null">and V_SP_APPROVE_INFO.type_code = #{entity.typeCode}</if>
+	        <if test="entity.approveSource != null">and V_SP_APPROVE_INFO.approve_source = #{entity.approveSource}</if>
+	        <if test="entity.sjsNum != null">and V_SP_APPROVE_INFO.sjs_num = #{entity.sjsNum}</if>
+	        <if test="entity.bjsNum != null">and V_SP_APPROVE_INFO.bjs_num = #{entity.bjsNum}</if>
+	        <if test="entity.redNum != null">and V_SP_APPROVE_INFO.red_num = #{entity.redNum}</if>
+	        <if test="entity.yellowNum != null">and V_SP_APPROVE_INFO.yellow_num = #{entity.yellowNum}</if>
+	        <if test="entity.greenNum != null">and V_SP_APPROVE_INFO.green_num = #{entity.greenNum}</if>
+	        <if test="entity.beginDate != null">and V_SP_APPROVE_INFO.beginDate = #{entity.beginDate}</if>
+	        <if test="entity.endDate != null">and V_SP_APPROVE_INFO.endDate = #{entity.endDate}</if>
+	        <if test="entity.jcBeginDate != null">and V_SP_APPROVE_INFO.jcBeginDate = #{entity.jcBeginDate}</if>
+	        <if test="entity.jcEndDate != null">and V_SP_APPROVE_INFO.jcEndDate = #{entity.jcEndDate}</if>
+		</where>
+</foreach>
+)
+</select>
+
+<!-- ElementID:selectUnion,Generated=true -->
+<select id="selectUnion" parameterType="list" resultMap="HotApproveInfoResult">
+select 
+	<include refid="column_sql"/> 
+	from V_SP_APPROVE_INFO 
+	 INNER JOIN
+<foreach collection="list" item="entity" separator="UNION" open="(" close=")">
+		SELECT 
+			 approve_id
+		FROM V_SP_APPROVE_INFO 
+			<where>
+	        <if test="entity.orgId != null">and V_SP_APPROVE_INFO.org_id = #{entity.orgId}</if>
+	        <if test="entity.rightsId != null">and V_SP_APPROVE_INFO.rights_id = #{entity.rightsId}</if>
+	        <if test="entity.approveId != null">and V_SP_APPROVE_INFO.approve_id = #{entity.approveId}</if>
+	        <if test="entity.approveCode != null">and V_SP_APPROVE_INFO.approve_code = #{entity.approveCode}</if>
+	        <if test="entity.taskhandleitem != null">and V_SP_APPROVE_INFO.taskhandleitem = #{entity.taskhandleitem}</if>
+	        <if test="entity.approveName != null">and V_SP_APPROVE_INFO.approve_name = #{entity.approveName}</if>
+	        <if test="entity.orgName != null">and V_SP_APPROVE_INFO.org_name = #{entity.orgName}</if>
+	        <if test="entity.typeCode != null">and V_SP_APPROVE_INFO.type_code = #{entity.typeCode}</if>
+	        <if test="entity.approveSource != null">and V_SP_APPROVE_INFO.approve_source = #{entity.approveSource}</if>
+	        <if test="entity.sjsNum != null">and V_SP_APPROVE_INFO.sjs_num = #{entity.sjsNum}</if>
+	        <if test="entity.bjsNum != null">and V_SP_APPROVE_INFO.bjs_num = #{entity.bjsNum}</if>
+	        <if test="entity.redNum != null">and V_SP_APPROVE_INFO.red_num = #{entity.redNum}</if>
+	        <if test="entity.yellowNum != null">and V_SP_APPROVE_INFO.yellow_num = #{entity.yellowNum}</if>
+	        <if test="entity.greenNum != null">and V_SP_APPROVE_INFO.green_num = #{entity.greenNum}</if>
+	        <if test="entity.beginDate != null">and V_SP_APPROVE_INFO.beginDate = #{entity.beginDate}</if>
+	        <if test="entity.endDate != null">and V_SP_APPROVE_INFO.endDate = #{entity.endDate}</if>
+	        <if test="entity.jcBeginDate != null">and V_SP_APPROVE_INFO.jcBeginDate = #{entity.jcBeginDate}</if>
+	        <if test="entity.jcEndDate != null">and V_SP_APPROVE_INFO.jcEndDate = #{entity.jcEndDate}</if>
+			</where>
+</foreach>
+	c2_temp_table ON V_SP_APPROVE_INFO.approve_id = c2_temp_table.approve_id
+</select>
+
+<!-- ElementID:selectByID,Generated=true -->
+<select id="selectByID" parameterType="java.lang.String" resultMap="HotApproveInfoResult">
+	select 
+		<include refid="column_sql"/>
+	    from V_SP_APPROVE_INFO 
+		 where V_SP_APPROVE_INFO.approve_id = #{approveId,jdbcType=VARCHAR}
+</select>
+
+<!-- ElementID:selectByPage,Generated=true -->
+<select id="selectByPage" parameterType="com.chinacreator.dzjc_tongji.HotApproveInfo" resultMap="HotApproveInfoResult">
+	select 
+		<include refid="column_sql"/>
+	    from V_SP_APPROVE_INFO 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<select id="selectData" parameterType="com.chinacreator.dzjc_tongji.HotApproveInfo" resultMap="HotApproveInfoResult">
+ with orgCondition as (
+       SELECT id,code FROM V_ORG START WITH ID = #{orgId,jdbcType=VARCHAR} CONNECT BY PRIOR ID = PID 
+)
+select 
+  t1.ORG_ID,
+  t1.rights_id,
+  t1.approve_id,
+  t1.APPROVE_CODE,
+  t1.TASKHANDLEITEM,
+  t1.approve_name,
+  t1.ORG_NAME,
+  t1.TYPE_CODE,
+  t1.APPROVE_SOURCE,
+  nvl(t2.sjs_num,0) sjs_num,
+  nvl(t2.bjs_num,0) bjs_num,
+  nvl(t3.green_num,0) green_num,
+  nvl(t3.yellow_num,0) yellow_num,
+  nvl(t3.red_num,0) red_num
+from v_jc_approve_info t1 left join (
+      select 
+          t.approve_id,
+          sum(t.ACCEPT_NUM) as sjs_num,
+          sum(t.FINISH_NUM) as bjs_num
+       from TA_JC_SUM_APPROVE_INFO_DAY t
+       <where>
+	       <if test="beginDate != null">
+	          and t.NOW_DATE &gt;= #{beginDate,jdbcType=VARCHAR}
+	       </if>
+	       <if test="endDate != null">
+	          and t.NOW_DATE &lt;= #{endDate,jdbcType=VARCHAR}
+	       </if>
+	       <if test="rightsId != null">
+	          and  t.rights_id = #{rightsId,jdbcType=VARCHAR}
+	       </if>
+       </where>
+       group by t.approve_id
+) t2 on t1.approve_id = t2.approve_id
+left join (
+    select 
+	    t1.approve_id,
+        sum(t1.SUPERVISE_GREEN_NUM) as green_num,
+        sum(t1.SUPERVISE_YELLO_NUM) as yellow_num,
+        sum(t1.SUPERVISE_RED_NUM) as red_num
+     from TA_JC_SUM_APPROVE_INFO_DAY t1 
+    <where>
+		   <if test="jcBeginDate != null">
+	          and t1.NOW_DATE &gt;= #{jcBeginDate,jdbcType=VARCHAR}
+	       </if>
+	       <if test="jcEndDate != null">
+	          and t1.NOW_DATE &lt;= #{jcEndDate,jdbcType=VARCHAR}
+	       </if>
+	       <if test="rightsId != null">
+	          and  t1.rights_id = #{rightsId,jdbcType=VARCHAR}
+	       </if>
+       </where>
+       group by t1.approve_id
+)t3 on t1.approve_id = t3.approve_id
+inner join orgCondition on t1.org_id = orgCondition.id
+<where>
+      <if test="approveCode != null">
+        and  approve_code = #{approveCode,jdbcType=VARCHAR}
+      </if>
+      <if test="taskhandleitem != null">
+        and  taskhandleitem = #{taskhandleitem,jdbcType=VARCHAR}
+      </if>
+      <if test="approveName != null">
+        and  approve_name like #{approveName,jdbcType=VARCHAR}
+      </if>
+      <if test="orgName != null">
+        and  org_name like #{orgName,jdbcType=VARCHAR}
+      </if>
+      <if test="typeCode != null">
+        and  type_code = #{typeCode,jdbcType=VARCHAR}
+      </if>
+      <if test="approveSource != null">
+        and  approve_source = #{approveSource,jdbcType=VARCHAR}
+      </if>
+      <if test="rightsId != null">
+        and  rights_id = #{rightsId,jdbcType=VARCHAR}
+      </if>
+</where>
+order by bjs_num desc
+
+<!-- select 
+  t1.ORG_ID,
+  t1.rights_id,
+  t1.approve_id,
+  t1.APPROVE_CODE,
+  t1.TASKHANDLEITEM,
+  t1.approve_name,
+  t1.ORG_NAME,
+  t1.TYPE_CODE,
+  t1.APPROVE_SOURCE,
+  nvl(t2.sjs_num,0) sjs_num,
+  nvl(t2.bjs_num,0) bjs_num,
+  nvl(t3.green_num,0) green_num,
+  nvl(t3.yellow_num,0) yellow_num,
+  nvl(t3.red_num,0) red_num
+from v_jc_approve_info t1 left join (
+      select 
+          t.approve_id,
+          sum(1)as sjs_num,
+          sum(case when t.project_state in ( '2', '4', '5', '6', '7', '8') and t.end_time is not null then 1 else 0 end) as bjs_num
+       from ta_sp_instance t
+       INNER JOIN(
+          SELECT id,code FROM V_ORG START WITH ID = #{orgId,jdbcType=VARCHAR} CONNECT BY PRIOR ID = PID 
+       )orgCondition on t.org_id = orgCondition.id
+       where t.accept_time is not null
+       and t.project_state in ('1', '2', '4', '5', '6', '7', '8')
+       <if test="beginDate != null">
+          and to_char(accept_time,'yyyy-MM-dd') &gt;= #{beginDate,jdbcType=VARCHAR}
+       </if>
+       <if test="endDate != null">
+         and  to_char(accept_time,'yyyy-MM-dd') &lt;= #{endDate,jdbcType=VARCHAR}
+       </if>
+       group by t.approve_id
+) t2 on t1.approve_id = t2.approve_id
+left join (
+    select 
+    t2.approve_id,
+    sum(case when t1.supervise_result_no=1 then 1 else 0 end) green_num,
+    sum(case when t1.supervise_result_no=2 then 1 else 0 end) yellow_num,
+    sum(case when t1.supervise_result_no=3 then 1 else 0 end) red_num
+     from v_ta_jc_dev_supervise t1 
+    inner join ta_sp_instance t2 on t1.business_id = t2.instance_id
+    INNER JOIN (
+          SELECT id,code FROM V_ORG START WITH ID = #{orgId,jdbcType=VARCHAR} CONNECT BY PRIOR ID = PID 
+    )orgCondition on t2.org_id = orgCondition.id
+    where t1.business_type = '1'
+    and t1.isMaxSupervise = 'Y'
+    <if test="jcBeginDate != null">
+          and to_char(t1.supervise_time,'yyyy-MM-dd') &gt;= #{jcBeginDate,jdbcType=VARCHAR}
+    </if>
+    <if test="jcEndDate != null">
+      and  to_char(t1.supervise_time,'yyyy-MM-dd') &lt;= #{jcEndDate,jdbcType=VARCHAR}
+    </if>
+    group by t2.approve_id
+)t3 on t1.approve_id = t3.approve_id
+<where>
+      <if test="approveCode != null">
+        and  approve_code = #{approveCode,jdbcType=VARCHAR}
+      </if>
+      <if test="taskhandleitem != null">
+        and  taskhandleitem = #{taskhandleitem,jdbcType=VARCHAR}
+      </if>
+      <if test="approveName != null">
+        and  approve_name like #{approveName,jdbcType=VARCHAR}
+      </if>
+      <if test="orgName != null">
+        and  org_name like #{orgName,jdbcType=VARCHAR}
+      </if>
+      <if test="typeCode != null">
+        and  type_code = #{typeCode,jdbcType=VARCHAR}
+      </if>
+      <if test="approveSource != null">
+        and  approve_source = #{approveSource,jdbcType=VARCHAR}
+      </if>
+      <if test="rightsId != null">
+        and  rights_id = #{rightsId,jdbcType=VARCHAR}
+      </if>
+</where>
+order by bjs_num desc -->
+
+</select>
+
+</mapper>

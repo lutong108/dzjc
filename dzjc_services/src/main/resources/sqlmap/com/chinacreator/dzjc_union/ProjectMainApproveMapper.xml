@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"><mapper namespace="com.chinacreator.dzjc_union.ProjectMainApproveMapper">	
+
+<!-- ElementID:column_sql,Generated=true -->
+<sql id="column_sql">
+		  TA_UNION_MAINAPPROVE.mainapprove_id ,
+		  TA_UNION_MAINAPPROVE.mainapprove_name ,
+		  TA_UNION_MAINAPPROVE.mainapprove_code ,
+		  TA_UNION_MAINAPPROVE.project_attr ,
+		  TA_UNION_MAINAPPROVE.leadunit_id ,
+		  TA_UNION_MAINAPPROVE.leadunit_name ,
+		  TA_UNION_MAINAPPROVE.collection_window ,
+		  TA_UNION_MAINAPPROVE.approve_limit ,
+		  TA_UNION_MAINAPPROVE.commitment_limit ,
+		  TA_UNION_MAINAPPROVE.is_valid ,
+		  TA_UNION_MAINAPPROVE.according ,
+		  TA_UNION_MAINAPPROVE.remark ,
+		  TA_UNION_MAINAPPROVE.create_time ,
+		  TA_UNION_MAINAPPROVE.creater_id ,
+		  TA_UNION_MAINAPPROVE.update_time ,
+		  TA_UNION_MAINAPPROVE.update_id ,
+		  TA_UNION_MAINAPPROVE.is_stageaccept ,
+		  TA_UNION_MAINAPPROVE.mainapprove_state ,
+		  TA_UNION_MAINAPPROVE.area_code 
+</sql>
+
+<!-- ElementID:whereClause_sql,Generated=true -->
+<sql id="whereClause_sql">
+	    <if test="mainapproveId != null">and TA_UNION_MAINAPPROVE.mainapprove_id = #{mainapproveId}</if>
+	    <if test="mainapproveName != null">and TA_UNION_MAINAPPROVE.mainapprove_name = #{mainapproveName}</if>
+	    <if test="mainapproveCode != null">and TA_UNION_MAINAPPROVE.mainapprove_code = #{mainapproveCode}</if>
+	    <if test="projectAttr != null">and TA_UNION_MAINAPPROVE.project_attr = #{projectAttr}</if>
+	    <if test="leadunitId != null">and TA_UNION_MAINAPPROVE.leadunit_id = #{leadunitId}</if>
+	    <if test="leadunitName != null">and TA_UNION_MAINAPPROVE.leadunit_name = #{leadunitName}</if>
+	    <if test="collectionWindow != null">and TA_UNION_MAINAPPROVE.collection_window = #{collectionWindow}</if>
+	    <if test="approveLimit != null">and TA_UNION_MAINAPPROVE.approve_limit = #{approveLimit}</if>
+	    <if test="commitmentLimit != null">and TA_UNION_MAINAPPROVE.commitment_limit = #{commitmentLimit}</if>
+	    <if test="isValid != null">and TA_UNION_MAINAPPROVE.is_valid = #{isValid}</if>
+	    <if test="according != null">and TA_UNION_MAINAPPROVE.according = #{according}</if>
+	    <if test="remark != null">and TA_UNION_MAINAPPROVE.remark = #{remark}</if>
+	    <if test="createTime != null">and TA_UNION_MAINAPPROVE.create_time = #{createTime}</if>
+	    <if test="createrId != null">and TA_UNION_MAINAPPROVE.creater_id = #{createrId}</if>
+	    <if test="updateTime != null">and TA_UNION_MAINAPPROVE.update_time = #{updateTime}</if>
+	    <if test="updateId != null">and TA_UNION_MAINAPPROVE.update_id = #{updateId}</if>
+	    <if test="isStageaccept != null">and TA_UNION_MAINAPPROVE.is_stageaccept = #{isStageaccept}</if>
+	    <if test="mainapproveState != null">and TA_UNION_MAINAPPROVE.mainapprove_state = #{mainapproveState}</if>
+	    <if test="areaCode != null">and TA_UNION_MAINAPPROVE.area_code = #{areaCode}</if>
+</sql>
+
+
+<!-- ElementID:ProjectMainApproveResult,Generated=true -->
+<resultMap id="ProjectMainApproveResult" type="com.chinacreator.dzjc_union.ProjectMainApprove">
+	<id property="mainapproveId" column="mainapprove_id"/>
+	<result property="mainapproveName" column="mainapprove_name"/>
+	<result property="mainapproveCode" column="mainapprove_code"/>
+	<result property="projectAttr" column="project_attr"/>
+	<result property="leadunitId" column="leadunit_id"/>
+	<result property="leadunitName" column="leadunit_name"/>
+	<result property="collectionWindow" column="collection_window"/>
+	<result property="approveLimit" column="approve_limit"/>
+	<result property="commitmentLimit" column="commitment_limit"/>
+	<result property="isValid" column="is_valid"/>
+	<result property="according" column="according"/>
+	<result property="remark" column="remark"/>
+	<result property="createTime" column="create_time"/>
+	<result property="createrId" column="creater_id"/>
+	<result property="updateTime" column="update_time"/>
+	<result property="updateId" column="update_id"/>
+	<result property="isStageaccept" column="is_stageaccept"/>
+	<result property="mainapproveState" column="mainapprove_state"/>
+	<result property="areaCode" column="area_code"/>
+</resultMap>
+
+
+<!-- ElementID:insert,Generated=true -->
+<insert id="insert" parameterType="com.chinacreator.dzjc_union.ProjectMainApprove">
+	insert into TA_UNION_MAINAPPROVE(
+	         <if test="mainapproveId != null">mainapprove_id</if>
+	         <if test="mainapproveName != null">,mainapprove_name</if>
+	         <if test="mainapproveCode != null">,mainapprove_code</if>
+	         <if test="projectAttr != null">,project_attr</if>
+	         <if test="leadunitId != null">,leadunit_id</if>
+	         <if test="leadunitName != null">,leadunit_name</if>
+	         <if test="collectionWindow != null">,collection_window</if>
+	         <if test="approveLimit != null">,approve_limit</if>
+	         <if test="commitmentLimit != null">,commitment_limit</if>
+	         <if test="isValid != null">,is_valid</if>
+	         <if test="according != null">,according</if>
+	         <if test="remark != null">,remark</if>
+	         <if test="createTime != null">,create_time</if>
+	         <if test="createrId != null">,creater_id</if>
+	         <if test="updateTime != null">,update_time</if>
+	         <if test="updateId != null">,update_id</if>
+	         <if test="isStageaccept != null">,is_stageaccept</if>
+	         <if test="mainapproveState != null">,mainapprove_state</if>
+	         <if test="areaCode != null">,area_code</if>
+	 	 	 )
+	 values (
+	         <if test="mainapproveId != null">#{mainapproveId,jdbcType=VARCHAR}</if>
+	         <if test="mainapproveName != null">,#{mainapproveName,jdbcType=VARCHAR}</if>
+	         <if test="mainapproveCode != null">,#{mainapproveCode,jdbcType=VARCHAR}</if>
+	         <if test="projectAttr != null">,#{projectAttr,jdbcType=VARCHAR}</if>
+	         <if test="leadunitId != null">,#{leadunitId,jdbcType=VARCHAR}</if>
+	         <if test="leadunitName != null">,#{leadunitName,jdbcType=VARCHAR}</if>
+	         <if test="collectionWindow != null">,#{collectionWindow,jdbcType=VARCHAR}</if>
+	         <if test="approveLimit != null">,#{approveLimit,jdbcType=NUMERIC}</if>
+	         <if test="commitmentLimit != null">,#{commitmentLimit,jdbcType=NUMERIC}</if>
+	         <if test="isValid != null">,#{isValid,jdbcType=VARCHAR}</if>
+	         <if test="according != null">,#{according,jdbcType=VARCHAR}</if>
+	         <if test="remark != null">,#{remark,jdbcType=VARCHAR}</if>
+	         <if test="createTime != null">,#{createTime,jdbcType=DATE}</if>
+	         <if test="createrId != null">,#{createrId,jdbcType=VARCHAR}</if>
+	         <if test="updateTime != null">,#{updateTime,jdbcType=DATE}</if>
+	         <if test="updateId != null">,#{updateId,jdbcType=VARCHAR}</if>
+	         <if test="isStageaccept != null">,#{isStageaccept,jdbcType=VARCHAR}</if>
+	         <if test="mainapproveState != null">,#{mainapproveState,jdbcType=VARCHAR}</if>
+	         <if test="areaCode != null">,#{areaCode,jdbcType=VARCHAR}</if>
+	 	 	 )
+</insert>
+
+<!-- ElementID:count,Generated=true -->
+<select id="count" parameterType="com.chinacreator.dzjc_union.ProjectMainApprove" resultType="int">
+	select count(*) from TA_UNION_MAINAPPROVE 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<!-- ElementID:update,Generated=true -->
+<update id="update" parameterType="com.chinacreator.dzjc_union.ProjectMainApprove">
+	update TA_UNION_MAINAPPROVE
+<set>
+	<if test="mainapproveName != null">mainapprove_name=#{mainapproveName,jdbcType=VARCHAR},</if>
+	<if test="mainapproveCode != null">mainapprove_code=#{mainapproveCode,jdbcType=VARCHAR},</if>
+	<if test="projectAttr != null">project_attr=#{projectAttr,jdbcType=VARCHAR},</if>
+	<if test="leadunitId != null">leadunit_id=#{leadunitId,jdbcType=VARCHAR},</if>
+	<if test="leadunitName != null">leadunit_name=#{leadunitName,jdbcType=VARCHAR},</if>
+	<if test="collectionWindow != null">collection_window=#{collectionWindow,jdbcType=VARCHAR},</if>
+	<if test="approveLimit != null">approve_limit=#{approveLimit,jdbcType=NUMERIC},</if>
+	<if test="commitmentLimit != null">commitment_limit=#{commitmentLimit,jdbcType=NUMERIC},</if>
+	<if test="isValid != null">is_valid=#{isValid,jdbcType=VARCHAR},</if>
+	<if test="according != null">according=#{according,jdbcType=VARCHAR},</if>
+	<if test="remark != null">remark=#{remark,jdbcType=VARCHAR},</if>
+	<if test="createTime != null">create_time=#{createTime,jdbcType=DATE},</if>
+	<if test="createrId != null">creater_id=#{createrId,jdbcType=VARCHAR},</if>
+	<if test="updateTime != null">update_time=#{updateTime,jdbcType=DATE},</if>
+	<if test="updateId != null">update_id=#{updateId,jdbcType=VARCHAR},</if>
+	<if test="isStageaccept != null">is_stageaccept=#{isStageaccept,jdbcType=VARCHAR},</if>
+	<if test="mainapproveState != null">mainapprove_state=#{mainapproveState,jdbcType=VARCHAR},</if>
+	<if test="areaCode != null">area_code=#{areaCode,jdbcType=VARCHAR}</if>
+</set>
+<where>
+	<choose>
+        <when test="mainapproveId != null">and mainapprove_id = #{mainapproveId}</when>
+        <otherwise>and mainapprove_id = </otherwise>
+    </choose>
+</where>
+</update>
+
+<!-- ElementID:updateNull,Generated=true -->
+<update id="updateNull" parameterType="map">
+	update TA_UNION_MAINAPPROVE
+	<set>
+		<trim suffixOverrides=",">
+		    <if test="mainapproveName==null">mainapprove_name = null,</if>
+		    <if test="mainapproveCode==null">mainapprove_code = null,</if>
+		    <if test="projectAttr==null">project_attr = null,</if>
+		    <if test="leadunitId==null">leadunit_id = null,</if>
+		    <if test="leadunitName==null">leadunit_name = null,</if>
+		    <if test="collectionWindow==null">collection_window = null,</if>
+		    <if test="approveLimit==null">approve_limit = null,</if>
+		    <if test="commitmentLimit==null">commitment_limit = null,</if>
+		    <if test="isValid==null">is_valid = null,</if>
+		    <if test="according==null">according = null,</if>
+		    <if test="remark==null">remark = null,</if>
+		    <if test="createTime==null">create_time = null,</if>
+		    <if test="createrId==null">creater_id = null,</if>
+		    <if test="updateTime==null">update_time = null,</if>
+		    <if test="updateId==null">update_id = null,</if>
+		    <if test="isStageaccept==null">is_stageaccept = null,</if>
+		    <if test="mainapproveState==null">mainapprove_state = null,</if>
+		    <if test="areaCode==null">area_code = null,</if>
+		</trim>
+	</set>
+	<where>
+		<choose>
+			<when test="mainapproveId != null">and mainapprove_id = #{mainapproveId}</when>
+			<otherwise>and mainapprove_id = </otherwise>
+		</choose>
+	</where>
+</update>
+
+<!-- ElementID:delete,Generated=true -->
+<delete id="delete" parameterType="com.chinacreator.dzjc_union.ProjectMainApprove">
+    delete from TA_UNION_MAINAPPROVE where 1=1 and mainapprove_id = #{mainapproveId}
+</delete>
+
+<!-- ElementID:select,Generated=true -->
+<select id="select" parameterType="com.chinacreator.dzjc_union.ProjectMainApprove" resultMap="ProjectMainApproveResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_UNION_MAINAPPROVE 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+
+<!-- ElementID:insertBatch,Generated=true -->
+<insert id="insertBatch" parameterType="list">
+	insert into TA_UNION_MAINAPPROVE (mainapprove_id,mainapprove_name,mainapprove_code,project_attr,leadunit_id,leadunit_name,collection_window,approve_limit,commitment_limit,is_valid,according,remark,create_time,creater_id,update_time,update_id,is_stageaccept,mainapprove_state,area_code) 
+<foreach collection="list" item="entity" index="index" separator="union all">
+		select 
+		#{entity.mainapproveId,jdbcType = VARCHAR},
+				#{entity.mainapproveName,jdbcType = VARCHAR},
+				#{entity.mainapproveCode,jdbcType = VARCHAR},
+				#{entity.projectAttr,jdbcType = VARCHAR},
+				#{entity.leadunitId,jdbcType = VARCHAR},
+				#{entity.leadunitName,jdbcType = VARCHAR},
+				#{entity.collectionWindow,jdbcType = VARCHAR},
+				#{entity.approveLimit,jdbcType = NUMERIC},
+				#{entity.commitmentLimit,jdbcType = NUMERIC},
+				#{entity.isValid,jdbcType = VARCHAR},
+				#{entity.according,jdbcType = VARCHAR},
+				#{entity.remark,jdbcType = VARCHAR},
+				#{entity.createTime,jdbcType = DATE},
+				#{entity.createrId,jdbcType = VARCHAR},
+				#{entity.updateTime,jdbcType = DATE},
+				#{entity.updateId,jdbcType = VARCHAR},
+				#{entity.isStageaccept,jdbcType = VARCHAR},
+				#{entity.mainapproveState,jdbcType = VARCHAR},
+				#{entity.areaCode,jdbcType = VARCHAR}
+		from dual
+</foreach>
+</insert>
+
+<!-- ElementID:deleteBatch,Generated=true -->
+<delete id="deleteBatch" parameterType="List">
+	delete from TA_UNION_MAINAPPROVE where mainapprove_id in
+<trim prefix="(" suffix=")" suffixOverrides=",">
+<foreach collection="list" item="entity" separator=",">
+	<choose>
+		<when test="@com.chinacreator.c2.dao.util.EntityBeanUtil@isEntityObj(entity)">#{entity.mainapproveId}</when>
+		<otherwise>#{entity}</otherwise>
+	</choose>
+</foreach>
+</trim>
+</delete>
+
+<!-- ElementID:updateBatch,Generated=true -->
+<update id="updateBatch" parameterType="list">
+	<foreach collection="list" item="entity" open="begin" close=";end;" separator=";">
+			update TA_UNION_MAINAPPROVE
+	<set>
+	<if test="entity.mainapproveName != null">mainapprove_name= #{entity.mainapproveName,jdbcType=VARCHAR},</if>
+	<if test="entity.mainapproveCode != null">mainapprove_code= #{entity.mainapproveCode,jdbcType=VARCHAR},</if>
+	<if test="entity.projectAttr != null">project_attr= #{entity.projectAttr,jdbcType=VARCHAR},</if>
+	<if test="entity.leadunitId != null">leadunit_id= #{entity.leadunitId,jdbcType=VARCHAR},</if>
+	<if test="entity.leadunitName != null">leadunit_name= #{entity.leadunitName,jdbcType=VARCHAR},</if>
+	<if test="entity.collectionWindow != null">collection_window= #{entity.collectionWindow,jdbcType=VARCHAR},</if>
+	<if test="entity.approveLimit != null">approve_limit= #{entity.approveLimit,jdbcType=NUMERIC},</if>
+	<if test="entity.commitmentLimit != null">commitment_limit= #{entity.commitmentLimit,jdbcType=NUMERIC},</if>
+	<if test="entity.isValid != null">is_valid= #{entity.isValid,jdbcType=VARCHAR},</if>
+	<if test="entity.according != null">according= #{entity.according,jdbcType=VARCHAR},</if>
+	<if test="entity.remark != null">remark= #{entity.remark,jdbcType=VARCHAR},</if>
+	<if test="entity.createTime != null">create_time= #{entity.createTime,jdbcType=DATE},</if>
+	<if test="entity.createrId != null">creater_id= #{entity.createrId,jdbcType=VARCHAR},</if>
+	<if test="entity.updateTime != null">update_time= #{entity.updateTime,jdbcType=DATE},</if>
+	<if test="entity.updateId != null">update_id= #{entity.updateId,jdbcType=VARCHAR},</if>
+	<if test="entity.isStageaccept != null">is_stageaccept= #{entity.isStageaccept,jdbcType=VARCHAR},</if>
+	<if test="entity.mainapproveState != null">mainapprove_state= #{entity.mainapproveState,jdbcType=VARCHAR},</if>
+	<if test="entity.areaCode != null">area_code= #{entity.areaCode,jdbcType=VARCHAR}</if>
+	</set>
+		<where>
+			<choose>
+				<when test="entity.mainapproveId != null">and mainapprove_id = #{entity.mainapproveId}</when>
+				<otherwise>and mainapprove_id = </otherwise>
+			</choose>
+		</where>
+	</foreach>
+</update>
+
+<!-- ElementID:selectAll,Generated=true -->
+<select id="selectAll" resultMap="ProjectMainApproveResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_UNION_MAINAPPROVE 
+</select>
+
+<!-- ElementID:selectMany,Generated=true -->
+<select id="selectMany" parameterType="list" resultMap="ProjectMainApproveResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_UNION_MAINAPPROVE 
+	where TA_UNION_MAINAPPROVE.mainapprove_id in (
+<foreach collection="list" item="entity" separator="intersect">
+		select 
+		TA_UNION_MAINAPPROVE.mainapprove_id
+	    from TA_UNION_MAINAPPROVE 
+		 <where>
+	        <if test="entity.mainapproveId != null">and TA_UNION_MAINAPPROVE.mainapprove_id = #{entity.mainapproveId}</if>
+	        <if test="entity.mainapproveName != null">and TA_UNION_MAINAPPROVE.mainapprove_name = #{entity.mainapproveName}</if>
+	        <if test="entity.mainapproveCode != null">and TA_UNION_MAINAPPROVE.mainapprove_code = #{entity.mainapproveCode}</if>
+	        <if test="entity.projectAttr != null">and TA_UNION_MAINAPPROVE.project_attr = #{entity.projectAttr}</if>
+	        <if test="entity.leadunitId != null">and TA_UNION_MAINAPPROVE.leadunit_id = #{entity.leadunitId}</if>
+	        <if test="entity.leadunitName != null">and TA_UNION_MAINAPPROVE.leadunit_name = #{entity.leadunitName}</if>
+	        <if test="entity.collectionWindow != null">and TA_UNION_MAINAPPROVE.collection_window = #{entity.collectionWindow}</if>
+	        <if test="entity.approveLimit != null">and TA_UNION_MAINAPPROVE.approve_limit = #{entity.approveLimit}</if>
+	        <if test="entity.commitmentLimit != null">and TA_UNION_MAINAPPROVE.commitment_limit = #{entity.commitmentLimit}</if>
+	        <if test="entity.isValid != null">and TA_UNION_MAINAPPROVE.is_valid = #{entity.isValid}</if>
+	        <if test="entity.according != null">and TA_UNION_MAINAPPROVE.according = #{entity.according}</if>
+	        <if test="entity.remark != null">and TA_UNION_MAINAPPROVE.remark = #{entity.remark}</if>
+	        <if test="entity.createTime != null">and TA_UNION_MAINAPPROVE.create_time = #{entity.createTime}</if>
+	        <if test="entity.createrId != null">and TA_UNION_MAINAPPROVE.creater_id = #{entity.createrId}</if>
+	        <if test="entity.updateTime != null">and TA_UNION_MAINAPPROVE.update_time = #{entity.updateTime}</if>
+	        <if test="entity.updateId != null">and TA_UNION_MAINAPPROVE.update_id = #{entity.updateId}</if>
+	        <if test="entity.isStageaccept != null">and TA_UNION_MAINAPPROVE.is_stageaccept = #{entity.isStageaccept}</if>
+	        <if test="entity.mainapproveState != null">and TA_UNION_MAINAPPROVE.mainapprove_state = #{entity.mainapproveState}</if>
+	        <if test="entity.areaCode != null">and TA_UNION_MAINAPPROVE.area_code = #{entity.areaCode}</if>
+		</where>
+</foreach>
+)
+</select>
+
+<!-- ElementID:selectUnion,Generated=true -->
+<select id="selectUnion" parameterType="list" resultMap="ProjectMainApproveResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_UNION_MAINAPPROVE 
+	 INNER JOIN
+<foreach collection="list" item="entity" separator="UNION" open="(" close=")">
+		SELECT 
+			 mainapprove_id
+		FROM TA_UNION_MAINAPPROVE 
+			<where>
+	        <if test="entity.mainapproveId != null">and TA_UNION_MAINAPPROVE.mainapprove_id = #{entity.mainapproveId}</if>
+	        <if test="entity.mainapproveName != null">and TA_UNION_MAINAPPROVE.mainapprove_name = #{entity.mainapproveName}</if>
+	        <if test="entity.mainapproveCode != null">and TA_UNION_MAINAPPROVE.mainapprove_code = #{entity.mainapproveCode}</if>
+	        <if test="entity.projectAttr != null">and TA_UNION_MAINAPPROVE.project_attr = #{entity.projectAttr}</if>
+	        <if test="entity.leadunitId != null">and TA_UNION_MAINAPPROVE.leadunit_id = #{entity.leadunitId}</if>
+	        <if test="entity.leadunitName != null">and TA_UNION_MAINAPPROVE.leadunit_name = #{entity.leadunitName}</if>
+	        <if test="entity.collectionWindow != null">and TA_UNION_MAINAPPROVE.collection_window = #{entity.collectionWindow}</if>
+	        <if test="entity.approveLimit != null">and TA_UNION_MAINAPPROVE.approve_limit = #{entity.approveLimit}</if>
+	        <if test="entity.commitmentLimit != null">and TA_UNION_MAINAPPROVE.commitment_limit = #{entity.commitmentLimit}</if>
+	        <if test="entity.isValid != null">and TA_UNION_MAINAPPROVE.is_valid = #{entity.isValid}</if>
+	        <if test="entity.according != null">and TA_UNION_MAINAPPROVE.according = #{entity.according}</if>
+	        <if test="entity.remark != null">and TA_UNION_MAINAPPROVE.remark = #{entity.remark}</if>
+	        <if test="entity.createTime != null">and TA_UNION_MAINAPPROVE.create_time = #{entity.createTime}</if>
+	        <if test="entity.createrId != null">and TA_UNION_MAINAPPROVE.creater_id = #{entity.createrId}</if>
+	        <if test="entity.updateTime != null">and TA_UNION_MAINAPPROVE.update_time = #{entity.updateTime}</if>
+	        <if test="entity.updateId != null">and TA_UNION_MAINAPPROVE.update_id = #{entity.updateId}</if>
+	        <if test="entity.isStageaccept != null">and TA_UNION_MAINAPPROVE.is_stageaccept = #{entity.isStageaccept}</if>
+	        <if test="entity.mainapproveState != null">and TA_UNION_MAINAPPROVE.mainapprove_state = #{entity.mainapproveState}</if>
+	        <if test="entity.areaCode != null">and TA_UNION_MAINAPPROVE.area_code = #{entity.areaCode}</if>
+			</where>
+</foreach>
+	c2_temp_table ON TA_UNION_MAINAPPROVE.mainapprove_id = c2_temp_table.mainapprove_id
+</select>
+
+<!-- ElementID:selectByID,Generated=true -->
+<select id="selectByID" parameterType="java.lang.String" resultMap="ProjectMainApproveResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_UNION_MAINAPPROVE 
+		 where TA_UNION_MAINAPPROVE.mainapprove_id = #{mainapproveId,jdbcType=VARCHAR}
+</select>
+
+<!-- ElementID:selectByPage,Generated=true -->
+<select id="selectByPage" parameterType="com.chinacreator.dzjc_union.ProjectMainApprove" resultMap="ProjectMainApproveResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_UNION_MAINAPPROVE 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+</mapper>

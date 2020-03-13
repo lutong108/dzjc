@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"><mapper namespace="com.chinacreator.dzjc_complain.TaJcComplainTopheadlinesMapper">	
+
+<!-- ElementID:column_sql,Generated=true -->
+<sql id="column_sql">
+		  TA_COMPLAIN_TOPHEADLINES.top_id ,
+		  TA_COMPLAIN_TOPHEADLINES.top_content ,
+		  TA_COMPLAIN_TOPHEADLINES.top_pic ,
+		  TA_COMPLAIN_TOPHEADLINES.create_time ,
+		  TA_COMPLAIN_TOPHEADLINES.lastupdatetime ,
+		  TA_COMPLAIN_TOPHEADLINES.create_user ,
+		  TA_COMPLAIN_TOPHEADLINES.top_title ,
+		  TA_COMPLAIN_TOPHEADLINES.content_validity ,
+		  TA_COMPLAIN_TOPHEADLINES.is_public 
+</sql>
+
+<!-- ElementID:whereClause_sql,Generated=true -->
+<sql id="whereClause_sql">
+	    <if test="topId != null">and TA_COMPLAIN_TOPHEADLINES.top_id = #{topId}</if>
+	    <if test="createTime != null">and TA_COMPLAIN_TOPHEADLINES.create_time = #{createTime}</if>
+	    <if test="lastupdatetime != null">and TA_COMPLAIN_TOPHEADLINES.lastupdatetime = #{lastupdatetime}</if>
+	    <if test="createUser != null">and TA_COMPLAIN_TOPHEADLINES.create_user = #{createUser}</if>
+	    <if test="topTitle != null">and TA_COMPLAIN_TOPHEADLINES.top_title = #{topTitle}</if>
+	    <if test="contentValidity != null">and TA_COMPLAIN_TOPHEADLINES.content_validity = #{contentValidity}</if>
+	    <if test="isPublic != null">and TA_COMPLAIN_TOPHEADLINES.is_public = #{isPublic}</if>
+</sql>
+
+
+<!-- ElementID:TaJcComplainTopheadlinesResult,Generated=true -->
+<resultMap id="TaJcComplainTopheadlinesResult" type="com.chinacreator.dzjc_complain.TaJcComplainTopheadlines">
+	<id property="topId" column="top_id"/>
+	<result property="topContent" column="top_content"/>
+	<result property="topPic" column="top_pic"/>
+	<result property="createTime" column="create_time"/>
+	<result property="lastupdatetime" column="lastupdatetime"/>
+	<result property="createUser" column="create_user"/>
+	<result property="topTitle" column="top_title"/>
+	<result property="contentValidity" column="content_validity"/>
+	<result property="isPublic" column="is_public"/>
+</resultMap>
+
+
+
+
+
+
+<!-- ElementID:insert,Generated=true -->
+<insert id="insert" parameterType="com.chinacreator.dzjc_complain.TaJcComplainTopheadlines">
+	insert into TA_COMPLAIN_TOPHEADLINES(
+	         <if test="topId != null">top_id</if>
+	         <if test="topContent != null">,top_content</if>
+	         <if test="topPic != null">,top_pic</if>
+	         <if test="createTime != null">,create_time</if>
+	         <if test="lastupdatetime != null">,lastupdatetime</if>
+	         <if test="createUser != null">,create_user</if>
+	         <if test="topTitle != null">,top_title</if>
+	         <if test="contentValidity != null">,content_validity</if>
+	         <if test="isPublic != null">,is_public</if>
+	 	 	 )
+	 values (
+	         <if test="topId != null">#{topId,jdbcType=VARCHAR}</if>
+	         <if test="topContent != null">,#{topContent,jdbcType=CLOB}</if>
+	         <if test="topPic != null">,#{topPic,jdbcType=BLOB}</if>
+	         <if test="createTime != null">,#{createTime,jdbcType=DATE}</if>
+	         <if test="lastupdatetime != null">,#{lastupdatetime,jdbcType=DATE}</if>
+	         <if test="createUser != null">,#{createUser,jdbcType=VARCHAR}</if>
+	         <if test="topTitle != null">,#{topTitle,jdbcType=VARCHAR}</if>
+	         <if test="contentValidity != null">,#{contentValidity,jdbcType=VARCHAR}</if>
+	         <if test="isPublic != null">,#{isPublic,jdbcType=VARCHAR}</if>
+	 	 	 )
+</insert>
+
+<!-- ElementID:count,Generated=true -->
+<select id="count" parameterType="com.chinacreator.dzjc_complain.TaJcComplainTopheadlines" resultType="int">
+	select count(*) from TA_COMPLAIN_TOPHEADLINES 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<!-- ElementID:update,Generated=true -->
+<update id="update" parameterType="com.chinacreator.dzjc_complain.TaJcComplainTopheadlines">
+	update TA_COMPLAIN_TOPHEADLINES
+<set>
+	<if test="topContent != null">top_content=#{topContent,jdbcType=CLOB},</if>
+	<if test="topPic != null">top_pic=#{topPic,jdbcType=BLOB},</if>
+	<if test="createTime != null">create_time=#{createTime,jdbcType=DATE},</if>
+	<if test="lastupdatetime != null">lastupdatetime=#{lastupdatetime,jdbcType=DATE},</if>
+	<if test="createUser != null">create_user=#{createUser,jdbcType=VARCHAR},</if>
+	<if test="topTitle != null">top_title=#{topTitle,jdbcType=VARCHAR},</if>
+	<if test="contentValidity != null">content_validity=#{contentValidity,jdbcType=VARCHAR},</if>
+	<if test="isPublic != null">is_public=#{isPublic,jdbcType=VARCHAR}</if>
+</set>
+<where>
+	<choose>
+        <when test="topId != null">and top_id = #{topId}</when>
+        <otherwise>and top_id = </otherwise>
+    </choose>
+</where>
+</update>
+
+<!-- ElementID:updateNull,Generated=true -->
+<update id="updateNull" parameterType="map">
+	update TA_COMPLAIN_TOPHEADLINES
+	<set>
+		<trim suffixOverrides=",">
+		    <if test="topContent==null">top_content = null,</if>
+		    <if test="topPic==null">top_pic = null,</if>
+		    <if test="createTime==null">create_time = null,</if>
+		    <if test="lastupdatetime==null">lastupdatetime = null,</if>
+		    <if test="createUser==null">create_user = null,</if>
+		    <if test="topTitle==null">top_title = null,</if>
+		    <if test="contentValidity==null">content_validity = null,</if>
+		    <if test="isPublic==null">is_public = null,</if>
+		</trim>
+	</set>
+	<where>
+		<choose>
+			<when test="topId != null">and top_id = #{topId}</when>
+			<otherwise>and top_id = </otherwise>
+		</choose>
+	</where>
+</update>
+
+<!-- ElementID:delete,Generated=true -->
+<delete id="delete" parameterType="com.chinacreator.dzjc_complain.TaJcComplainTopheadlines">
+    delete from TA_COMPLAIN_TOPHEADLINES where 1=1 and top_id = #{topId}
+</delete>
+
+<!-- ElementID:select,Generated=true -->
+<select id="select" parameterType="com.chinacreator.dzjc_complain.TaJcComplainTopheadlines" resultMap="TaJcComplainTopheadlinesResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_COMPLAIN_TOPHEADLINES 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+	order by 
+			create_time asc
+</select>
+
+
+<!-- ElementID:insertBatch,Generated=true -->
+<insert id="insertBatch" parameterType="list">
+	insert into TA_COMPLAIN_TOPHEADLINES (top_id,top_content,top_pic,create_time,lastupdatetime,create_user,top_title,content_validity,is_public) 
+<foreach collection="list" item="entity" index="index" separator="union all">
+		select 
+		#{entity.topId,jdbcType = VARCHAR},
+				#{entity.topContent,jdbcType = CLOB},
+				#{entity.topPic,jdbcType = BLOB},
+				#{entity.createTime,jdbcType = DATE},
+				#{entity.lastupdatetime,jdbcType = DATE},
+				#{entity.createUser,jdbcType = VARCHAR},
+				#{entity.topTitle,jdbcType = VARCHAR},
+				#{entity.contentValidity,jdbcType = VARCHAR},
+				#{entity.isPublic,jdbcType = VARCHAR}
+		from dual
+</foreach>
+</insert>
+
+<!-- ElementID:deleteBatch,Generated=true -->
+<delete id="deleteBatch" parameterType="List">
+	delete from TA_COMPLAIN_TOPHEADLINES where top_id in
+<trim prefix="(" suffix=")" suffixOverrides=",">
+<foreach collection="list" item="entity" separator=",">
+	<choose>
+		<when test="@com.chinacreator.c2.dao.util.EntityBeanUtil@isEntityObj(entity)">#{entity.topId}</when>
+		<otherwise>#{entity}</otherwise>
+	</choose>
+</foreach>
+</trim>
+</delete>
+
+<!-- ElementID:updateBatch,Generated=true -->
+<update id="updateBatch" parameterType="list">
+	<foreach collection="list" item="entity" open="begin" close=";end;" separator=";">
+			update TA_COMPLAIN_TOPHEADLINES
+	<set>
+	<if test="entity.topContent != null">top_content= #{entity.topContent,jdbcType=CLOB},</if>
+	<if test="entity.topPic != null">top_pic= #{entity.topPic,jdbcType=BLOB},</if>
+	<if test="entity.createTime != null">create_time= #{entity.createTime,jdbcType=DATE},</if>
+	<if test="entity.lastupdatetime != null">lastupdatetime= #{entity.lastupdatetime,jdbcType=DATE},</if>
+	<if test="entity.createUser != null">create_user= #{entity.createUser,jdbcType=VARCHAR},</if>
+	<if test="entity.topTitle != null">top_title= #{entity.topTitle,jdbcType=VARCHAR},</if>
+	<if test="entity.contentValidity != null">content_validity= #{entity.contentValidity,jdbcType=VARCHAR},</if>
+	<if test="entity.isPublic != null">is_public= #{entity.isPublic,jdbcType=VARCHAR}</if>
+	</set>
+		<where>
+			<choose>
+				<when test="entity.topId != null">and top_id = #{entity.topId}</when>
+				<otherwise>and top_id = </otherwise>
+			</choose>
+		</where>
+	</foreach>
+</update>
+
+<!-- ElementID:selectAll,Generated=true -->
+<select id="selectAll" resultMap="TaJcComplainTopheadlinesResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_COMPLAIN_TOPHEADLINES 
+</select>
+
+<!-- ElementID:selectMany,Generated=true -->
+<select id="selectMany" parameterType="list" resultMap="TaJcComplainTopheadlinesResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_COMPLAIN_TOPHEADLINES 
+	where TA_COMPLAIN_TOPHEADLINES.top_id in (
+<foreach collection="list" item="entity" separator="intersect">
+		select 
+		TA_COMPLAIN_TOPHEADLINES.top_id
+	    from TA_COMPLAIN_TOPHEADLINES 
+		 <where>
+	        <if test="entity.topId != null">and TA_COMPLAIN_TOPHEADLINES.top_id = #{entity.topId}</if>
+	        <if test="entity.createTime != null">and TA_COMPLAIN_TOPHEADLINES.create_time = #{entity.createTime}</if>
+	        <if test="entity.lastupdatetime != null">and TA_COMPLAIN_TOPHEADLINES.lastupdatetime = #{entity.lastupdatetime}</if>
+	        <if test="entity.createUser != null">and TA_COMPLAIN_TOPHEADLINES.create_user = #{entity.createUser}</if>
+	        <if test="entity.topTitle != null">and TA_COMPLAIN_TOPHEADLINES.top_title = #{entity.topTitle}</if>
+	        <if test="entity.contentValidity != null">and TA_COMPLAIN_TOPHEADLINES.content_validity = #{entity.contentValidity}</if>
+	        <if test="entity.isPublic != null">and TA_COMPLAIN_TOPHEADLINES.is_public = #{entity.isPublic}</if>
+		</where>
+</foreach>
+)
+</select>
+
+<!-- ElementID:selectUnion,Generated=true -->
+<select id="selectUnion" parameterType="list" resultMap="TaJcComplainTopheadlinesResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_COMPLAIN_TOPHEADLINES 
+	 INNER JOIN
+<foreach collection="list" item="entity" separator="UNION" open="(" close=")">
+		SELECT 
+			 top_id
+		FROM TA_COMPLAIN_TOPHEADLINES 
+			<where>
+	        <if test="entity.topId != null">and TA_COMPLAIN_TOPHEADLINES.top_id = #{entity.topId}</if>
+	        <if test="entity.createTime != null">and TA_COMPLAIN_TOPHEADLINES.create_time = #{entity.createTime}</if>
+	        <if test="entity.lastupdatetime != null">and TA_COMPLAIN_TOPHEADLINES.lastupdatetime = #{entity.lastupdatetime}</if>
+	        <if test="entity.createUser != null">and TA_COMPLAIN_TOPHEADLINES.create_user = #{entity.createUser}</if>
+	        <if test="entity.topTitle != null">and TA_COMPLAIN_TOPHEADLINES.top_title = #{entity.topTitle}</if>
+	        <if test="entity.contentValidity != null">and TA_COMPLAIN_TOPHEADLINES.content_validity = #{entity.contentValidity}</if>
+	        <if test="entity.isPublic != null">and TA_COMPLAIN_TOPHEADLINES.is_public = #{entity.isPublic}</if>
+			</where>
+</foreach>
+	c2_temp_table ON TA_COMPLAIN_TOPHEADLINES.top_id = c2_temp_table.top_id
+</select>
+
+<!-- ElementID:selectByID,Generated=true -->
+<select id="selectByID" parameterType="java.lang.String" resultMap="TaJcComplainTopheadlinesResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_COMPLAIN_TOPHEADLINES 
+		 where TA_COMPLAIN_TOPHEADLINES.top_id = #{topId,jdbcType=VARCHAR}
+</select>
+
+<!-- ElementID:selectByPage,Generated=false -->
+<select id="selectByPage" parameterType="com.chinacreator.dzjc_complain.TaJcComplainTopheadlines" resultMap="TaJcComplainTopheadlinesResult">
+	select 
+		  TA_COMPLAIN_TOPHEADLINES.top_id ,
+      TA_COMPLAIN_TOPHEADLINES.create_time ,
+      TA_COMPLAIN_TOPHEADLINES.create_user ,
+      TA_COMPLAIN_TOPHEADLINES.top_title ,
+      TA_COMPLAIN_TOPHEADLINES.is_public 
+  from TA_COMPLAIN_TOPHEADLINES 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+</mapper>

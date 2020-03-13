@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form:Form xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dync="http://www.chinacreator.com/platform/mvc/ui/dync" xmlns:form="http://www.chinacreator.com/platform/mvc/form" name="新增" res="" sn="dzjc_ruleEngine/createSuperviseHuman">
+  <form:control type="page/modal">
+    <form:attributes source="page/modal">
+      <dync:attribute id="title" value="人工发牌">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="" group="HTML" id="width" name="页面宽度" value="1200px">
+        <dync:render colSpan="2" height="0" multi="false" name="text"/>
+        <dync:children/>
+      </dync:attribute>
+    </form:attributes>
+  </form:control>
+  <form:child xsi:type="form:Group" id="main" name="人工发牌">
+    <form:control type="container/div">
+      <form:attributes source="container/div"/>
+    </form:control>
+    <form:child xsi:type="form:Field" binding="$model.entity.superviseHumanId" id="superviseHumanId" name="人工发牌id" customize="true">
+      <form:control type="widget/text">
+        <form:attributes source="widget/text">
+          <dync:attribute default="false" desc="是否验证必填，可以为表达式和变量。&#xA;                &#x9;只有当焦点离开文本框时才开始验证，验证失败会有验证失败的样式和提示。也有单独触发验证的方法：`check()`。" group="数据校验" hidden="false" id="required" name="必填项" required="true" value="true">
+            <dync:render colSpan="1" height="0" multi="false" name="checkboxAndExpr"/>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="true" group="文本框设置" id="show" name="可见" value="false">
+            <dync:render colSpan="1" height="0" multi="false" name="checkboxAndExpr"/>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+      <form:validation/>
+    </form:child>
+    <form:child xsi:type="form:Field" binding="$model.entity.orgId" id="orgId" name="机构名称" customize="true">
+      <form:control type="widget/select_tree">
+        <form:attributes source="widget/select_tree">
+          <dync:attribute default="" group="树数据设置" id="treeBinding" name="树数据源" value="$model.OrgTree">
+            <dync:render colSpan="1" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="6" group="控件外观" id="span" name="占位数" value="12">
+            <dync:render colSpan="1" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="" group="树事件设置" id="nodeClick" name="单击" value="orgId_nodeClick(event,treeId,treeNode,clickFlag)">
+            <dync:render colSpan="1" height="0" multi="false" name="event">
+              <dync:item name="params" value="event,treeId,treeNode,clickFlag"/>
+            </dync:render>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="false" group="控件外观" id="required" name="必填项" value="true">
+            <dync:render colSpan="1" height="0" multi="false" name="checkboxAndExpr"/>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+      <form:validation/>
+    </form:child>
+    <form:child xsi:type="form:Field" binding="$model.entity.approveId" id="approveId" name="事项名称" customize="true">
+      <form:control type="widget/select">
+        <form:attributes source="widget/select">
+          <dync:attribute default="text" group="下拉框设置" id="optionName" name="显示属性名" value="name">
+            <dync:render colSpan="1" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="" group="下拉框设置" id="options" name="选项" value="$model.approveTree">
+            <dync:render colSpan="1" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="6" group="基本属性" id="span" name="占位数" value="12">
+            <dync:render colSpan="1" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="" group="基本属性" id="placeholder" name="占位符" value="未选中数据">
+            <dync:render colSpan="1" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="false" group="基本属性" id="selectRequired" name="必填项" value="true">
+            <dync:render colSpan="1" height="0" multi="false" name="checkboxAndExpr"/>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="false" group="基本属性" id="cleanBtn" name="清除按钮" value="true">
+            <dync:render colSpan="1" height="0" multi="false" name="checkbox"/>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+      <form:validation/>
+    </form:child>
+    <form:child xsi:type="form:Field" binding="$model.entity.humanRuleId" id="humanRuleId" name="发牌规则" customize="true">
+      <form:control type="widget/select_tree">
+        <form:attributes source="widget/select_tree">
+          <dync:attribute default="" group="树数据设置" id="treeBinding" name="树数据源" value="$model.SupervisoryruleTree">
+            <dync:render colSpan="1" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="false" group="控件外观" id="required" name="必填项" value="true">
+            <dync:render colSpan="1" height="0" multi="false" name="checkboxAndExpr"/>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+      <form:validation/>
+    </form:child>
+    <form:child xsi:type="form:Field" binding="$model.entity.superviseResultNo" id="superviseResultNo" name="发牌级别" customize="true">
+      <form:control type="widget/select_simple">
+        <form:attributes source="widget/select_simple">
+          <dync:attribute default="" group="下拉框设置" id="selectOptions" name="选项" value="[{&quot;id&quot;:&quot;1&quot;,&quot;name&quot;:&quot;预警&quot;},{&quot;id&quot;:&quot;2&quot;,&quot;name&quot;:&quot;黄牌&quot;},{&quot;id&quot;:&quot;3&quot;,&quot;name&quot;:&quot;红牌&quot;}]">
+            <dync:render colSpan="1" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="false" group="控件外观" id="required" name="必填项" value="true">
+            <dync:render colSpan="1" height="0" multi="false" name="checkboxAndExpr"/>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+      <form:validation/>
+    </form:child>
+    <form:child xsi:type="form:Field" binding="$model.entity.superviseDescript" id="superviseDescript" name="监管描述" customize="true">
+      <form:control type="widget/text">
+        <form:attributes source="widget/text">
+          <dync:attribute default="6" group="基本设置" id="span" name="占位数" value="12">
+            <dync:render colSpan="1" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+      <form:validation/>
+    </form:child>
+    <form:child xsi:type="form:Field" binding="$model.entity.superviseGist" id="superviseGist" name="监管依据" customize="true">
+      <form:control type="widget/text">
+        <form:attributes source="widget/text">
+          <dync:attribute default="6" group="基本设置" id="span" name="占位数" value="12">
+            <dync:render colSpan="1" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+      <form:validation/>
+    </form:child>
+    <form:child xsi:type="form:Field" binding="$model.entity.warningContent" id="warningContent" name="信息内容" customize="true">
+      <form:control type="widget/textarea">
+        <form:attributes source="widget/textarea"/>
+      </form:control>
+      <form:validation/>
+    </form:child>
+    <form:child xsi:type="form:Field" binding="$model.entity.superviseTime" id="superviseTime" name="发牌时间" customize="true">
+      <form:control type="widget/date_picker">
+        <form:attributes source="widget/date_picker">
+          <dync:attribute default="true" group="基本设置" id="visible" name="可见状态" value="false">
+            <dync:render colSpan="1" height="0" multi="false" name="checkboxAndExpr"/>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+      <form:validation/>
+    </form:child>
+  </form:child>
+  <form:child xsi:type="form:Group" id="toolbar" name="主按钮组">
+    <form:control type="container/toolbar_modal_footer">
+      <form:attributes source="container/toolbar_modal_footer"/>
+    </form:control>
+    <form:child xsi:type="form:Field" id="btn_add" name="发牌">
+      <form:control type="widget/button">
+        <form:attributes source="widget/button">
+          <dync:attribute default="" desc="按钮图标，Font Awesom 3.2.1中定义的所有图标都可用" group="HTML设置" hidden="false" id="icon" name="图标" required="false" value="fa-check">
+            <dync:render colSpan="1" height="0" multi="false" name="selectIcon"/>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="" desc="按钮事件。&#xA;                $param $event AngularJS的[event](https://docs.angularjs.org/guide/expression#-event-)事件。" group="事件设置" hidden="false" id="click" name="点击事件" required="false" value="btn_add_click($event)">
+            <dync:render colSpan="1" height="0" multi="false" name="event">
+              <dync:item name="params" value="$event"/>
+            </dync:render>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="btn-primary" desc="按钮样式" group="HTML设置" hidden="false" id="style" name="样式" required="false" value="btn-success">
+            <dync:render colSpan="1" height="0" multi="false" name="select">
+              <dync:item name="默认" value="btn-default"/>
+              <dync:item name="主要" value="btn-primary"/>
+              <dync:item name="成功" value="btn-success"/>
+              <dync:item name="信息" value="btn-info"/>
+              <dync:item name="警告" value="btn-warning"/>
+              <dync:item name="危险" value="btn-danger"/>
+              <dync:item name="链接" value="btn-link"/>
+              <dync:item name="通用" value="btn-white no-border"/>
+            </dync:render>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="" group="HTML设置" id="iconColor" name="图标颜色" value="dark">
+            <dync:render colSpan="2" height="0" multi="false" name="selectIconColor"/>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+    </form:child>
+    <form:child xsi:type="form:Field" id="btn_edit" name="取消">
+      <form:control type="widget/button">
+        <form:attributes source="widget/button">
+          <dync:attribute default="" desc="按钮图标，Font Awesom 3.2.1中定义的所有图标都可用" group="HTML设置" hidden="false" id="icon" name="图标" required="false" value="fa-times">
+            <dync:render colSpan="1" height="0" multi="false" name="selectIcon"/>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="" desc="按钮事件。&#xA;                $param $event AngularJS的[event](https://docs.angularjs.org/guide/expression#-event-)事件。" group="事件设置" hidden="false" id="click" name="点击事件" required="false" value="btn_edit_click($event)">
+            <dync:render colSpan="1" height="0" multi="false" name="event">
+              <dync:item name="params" value="$event"/>
+            </dync:render>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+    </form:child>
+  </form:child>
+  <form:datasources>
+    <form:datasource xsi:type="form:EntityDataSource" id="entity" name="实体数据源" base="service" sn="dzjc_ruleEngine/v1/SuperviseHuman" data="" entity="entity:com.chinacreator.dzjc_ruleEngine.SuperviseHuman">
+      <form:entityObj pk="supervise_human_id" restResource="true"/>
+    </form:datasource>
+    <form:datasource xsi:type="form:TreeDataSource" id="OrgTree" name="湖南省机构数数据源" base="service" type="url" url="orgTree/v1/getOrgTree"/>
+    <form:datasource xsi:type="form:TreeDataSource" id="resultTree" name="结果树数据源" type="url" url="dzjc_ruleEngine/v1/publicType/superviseResultAll"/>
+    <form:datasource xsi:type="form:TreeDataSource" id="SupervisoryruleTree" name="树型数据源" type="url" url="dzjc_ruleEngine/v1/getSupervisoryruleTree"/>
+  </form:datasources>
+  <form:scripts>
+btn_add_click:function($event){
+	if(!$model.entity.orgId){
+		Messenger.post({type:'error',message:'机构不能为空！'});
+		$(&quot;#orgId&quot;).focus();
+		return;
+	}
+	if(!$model.entity.approveId){
+		Messenger.post({type:'error',message:'事项不能为空！'});
+		$(&quot;#approveId&quot;).focus();
+		return;
+	}
+	if(!$model.entity.humanRuleId){
+		Messenger.post({type:'error',message:'发牌规则不能为空！'});
+		$(&quot;#humanRuleId&quot;).focus();
+		return;
+	}
+	if(!$model.entity.superviseResultNo){
+		Messenger.post({type:'error',message:'发牌级别不能为空！'});
+		$(&quot;#superviseResultNo&quot;).focus();
+		return;
+	}
+	
+	if(!$model.entity.superviseResultNo){
+		Messenger.post({type:'error',message:'发牌规则不能为空！'});
+		$(&quot;#superviseResultNo&quot;).focus();
+		return;
+	}
+	$model.entity.$save(function(){
+		Modal.instance.close();
+		Messenger.post({type:'success',message:'新增成功'});
+	});
+},
+btn_edit_click:function($event){
+	Modal.instance.close();
+},
+
+
+approveId_nodeClick:function(event,treeId,treeNode,clickFlag){
+	if($model.entity.orgId != &quot;&quot; &amp;&amp;$model.entity.orgId != undefined &amp;&amp; $model.entity.orgId != null ){
+		$model.opinion.$post();
+	}else{
+		Messenger.post({type:'error',message:'请先选择机构'});
+	}
+},
+
+orgId_nodeClick:function(event,treeId,treeNode,clickFlag){
+	$http.post(c2.base(&quot;service&quot;)+&quot;dzjc_ruleEngine/v1/GetApproveTree/&quot;+$model.entity.orgId).success(function(data){ 
+		$model.approveTree=data;
+	});
+}</form:scripts>
+</form:Form>

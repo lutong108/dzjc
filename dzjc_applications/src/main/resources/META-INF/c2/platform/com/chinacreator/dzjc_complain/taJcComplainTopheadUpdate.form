@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form:Form xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dync="http://www.chinacreator.com/platform/mvc/ui/dync" xmlns:form="http://www.chinacreator.com/platform/mvc/form" name="图片新闻修改" res="" sn="dzjc_complain/taJcComplainTopheadUpdate" type="form">
+  <form:control type="page/modal">
+    <form:attributes source="page/modal">
+      <dync:attribute default="" group="HTML" id="width" name="页面宽度" value="80%">
+        <dync:render colSpan="2" height="0" multi="false" name="text"/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="" group="HTML" id="title" name="标题" value="图片新闻发布">
+        <dync:render colSpan="2" height="0" multi="false" name="text"/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="" group="事件" id="beforeDataSourceLoad" name="数据源加载前" value="page_beforeDataSourceLoad($params)">
+        <dync:render colSpan="2" height="0" multi="false" name="event">
+          <dync:item name="param" value="$params"/>
+        </dync:render>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="" group="事件" id="onload" name="页面加载完成" value="page_onload()">
+        <dync:render colSpan="2" height="0" multi="false" name="event">
+          <dync:item name="param" value=""/>
+        </dync:render>
+        <dync:children/>
+      </dync:attribute>
+    </form:attributes>
+  </form:control>
+  <form:child xsi:type="form:Group" id="div" name="简单容器(DIV)">
+    <form:control type="container/div">
+      <form:attributes source="container/div"/>
+    </form:control>
+    <form:child xsi:type="form:Field" binding="$model.entity.topTitle" id="topTitle" name="标题 *">
+      <form:control type="widget/text">
+        <form:attributes source="widget/text">
+          <dync:attribute default="6" group="基本设置" id="span" name="占位数" value="12">
+            <dync:render colSpan="1" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="false" group="数据校验" id="required" name="必填项" value="true">
+            <dync:render colSpan="1" height="0" multi="false" name="checkboxAndExpr"/>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+    </form:child>
+    <form:child xsi:type="form:Field" binding="$model.entity.isPublic" id="isPublic" name="是否发布">
+      <form:control type="widget/radio_group">
+        <form:attributes source="widget/radio_group">
+          <dync:attribute default="" group="单选按钮组设置" id="radioOptions" name="选项" value="[&#xD;&#xA;{&quot;id&quot;:&quot;Y&quot;,&quot;name&quot;:&quot;是&quot;},&#xD;&#xA;{&quot;id&quot;:&quot;N&quot;,&quot;name&quot;:&quot;否&quot;}&#xD;&#xA;]">
+            <dync:render colSpan="1" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="" group="单选按钮组设置" id="optionId" name="值属性名" value="id">
+            <dync:render colSpan="1" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="" group="单选按钮组设置" id="optionName" name="显示属性名" value="name">
+            <dync:render colSpan="1" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="" group="单选按钮组设置" id="defaultValue" name="默认值" value="N">
+            <dync:render colSpan="1" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="6" group="基本设置" id="span" name="占位数" value="12">
+            <dync:render colSpan="3" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+    </form:child>
+    <form:child xsi:type="form:Field" binding="$model.entity.topPic" id="topPic" name="选择图片">
+      <form:control type="widget/file_input_iframe">
+        <form:attributes source="widget/file_input_iframe">
+          <dync:attribute default="6" group="布局属性" id="span" name="占位数" value="10">
+            <dync:render colSpan="1" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="" group="数据校验" id="allow" name="允许类型" value="[&quot;jpeg&quot;,&quot;png&quot;,&quot;gif&quot;,&quot;jpg&quot;]">
+            <dync:render colSpan="2" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="true" group="HTML属性" id="autoSubmit" name="自动提交" value="false">
+            <dync:render colSpan="2" height="0" multi="false" name="checkbox"/>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="" group="事件" id="onSuccess" name="上传成功" value="topPic_onSuccess(data)">
+            <dync:render colSpan="2" height="0" multi="false" name="event">
+              <dync:item name="params" value="data"/>
+            </dync:render>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="" group="事件" id="onError" name="上传失败" value="topPic_onError(data)">
+            <dync:render colSpan="2" height="0" multi="false" name="event">
+              <dync:item name="params" value="data"/>
+            </dync:render>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="dbdir" group="HTML属性" id="process" name="上传处理器" value="todbdir2">
+            <dync:render colSpan="1" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+    </form:child>
+    <form:child xsi:type="form:Group" id="div4" name="简单容器(DIV)">
+      <form:control type="container/div">
+        <form:attributes source="container/div">
+          <dync:attribute default="" group="高级自定义" id="style" name="自定义style" value="height:50px;padding-top:1px;display:none">
+            <dync:render colSpan="2" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="12" group="HTML配置" id="span" name="占位数" value="2">
+            <dync:render colSpan="1" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+      <form:child xsi:type="form:Field" id="attachinfo_button" name="上传" customize="true">
+        <form:control type="widget/button">
+          <form:attributes source="widget/button">
+            <dync:attribute default="" group="事件设置" id="click" name="点击事件" value="attachinfo_button_click($event)">
+              <dync:render colSpan="1" height="0" multi="false" name="event">
+                <dync:item name="params" value="$event"/>
+              </dync:render>
+              <dync:children/>
+            </dync:attribute>
+          </form:attributes>
+        </form:control>
+        <form:validation/>
+      </form:child>
+    </form:child>
+    <form:child xsi:type="form:Group" id="picDiv" name="简单容器(DIV)">
+      <form:control type="container/div">
+        <form:attributes source="container/div">
+          <dync:attribute default="" group="高级自定义" id="html" name="自定义HTML" value="picDiv_html">
+            <dync:render colSpan="2" height="0" multi="false" name="html"/>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="" group="高级自定义" id="style" name="自定义style" value="margin-bottom:10px;">
+            <dync:render colSpan="2" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+    </form:child>
+    <form:child xsi:type="form:Field" binding="$model.entity.contentValidity" id="contentValidity" name="内容简介">
+      <form:control type="widget/textarea">
+        <form:attributes source="widget/textarea">
+          <dync:attribute default="3" group="HTML设置" id="rows" name="行高" value="5">
+            <dync:render colSpan="1" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+    </form:child>
+    <form:child xsi:type="form:Group" id="widgetbox" name="内容">
+      <form:control type="container/widgetbox">
+        <form:attributes source="container/widgetbox"/>
+      </form:control>
+      <form:child xsi:type="form:Group" id="widgexbox_toolbar" name="widgexbox_toolbar">
+        <form:control type="container/toolbar_widget">
+          <form:attributes source="container/toolbar_widget"/>
+        </form:control>
+      </form:child>
+      <form:child xsi:type="form:Field" binding="$model.entity.topContent" id="topContent" name="">
+        <form:control type="widget/textarea_ueditor">
+          <form:attributes source="widget/textarea_ueditor"/>
+        </form:control>
+      </form:child>
+    </form:child>
+  </form:child>
+  <form:child xsi:type="form:Group" id="div4" name="简单容器(DIV)">
+    <form:control type="container/div">
+      <form:attributes source="container/div">
+        <dync:attribute default="" group="高级自定义" id="style" name="自定义style" value="text-align:center;height:30px;">
+          <dync:render colSpan="2" height="0" multi="false" name="text"/>
+          <dync:children/>
+        </dync:attribute>
+      </form:attributes>
+    </form:control>
+    <form:child xsi:type="form:Field" id="save_button" name="保存" customize="true">
+      <form:control type="widget/button">
+        <form:attributes source="widget/button">
+          <dync:attribute default="" group="事件设置" id="click" name="点击事件" value="save_button_click($event)">
+            <dync:render colSpan="1" height="0" multi="false" name="event">
+              <dync:item name="params" value="$event"/>
+            </dync:render>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+      <form:validation/>
+    </form:child>
+  </form:child>
+  <form:datasources>
+    <form:datasource xsi:type="form:EntityDataSource" id="entity" name="单实体数据源" base="service" sn="dzjc_complain/v1/taJcComplainTopheadlines" data="$params.topId" entity="entity:com.chinacreator.dzjc_complain.taJcComplainTopheadlines">
+      <form:entityObj pk="top_id" restResource="true"/>
+    </form:datasource>
+  </form:datasources>
+  <form:scripts>//数据源加载前
+page_beforeDataSourceLoad:function($params){
+	$params.states=0;
+},
+
+//图片上传成功调用
+topPic_onSuccess:function(data){
+	$view.topPic.reset();
+	Messenger.post({type:'success',message:'上传成功'});
+},
+
+//图片上传失败调用
+topPic_onError:function(data){
+	Messenger.post({type:'error',message:'上传失败'});
+},
+
+//图片上传
+attachinfo_button_click:function($event){
+
+	if(!$model.entity.topTitle){
+		Messenger.post({type:'error',message:'标题不能为空'});
+		$(&quot;#topTitle&quot;).focus();
+		return;
+	}
+
+	/*if(!$model.entity.contentValidity){
+		Messenger.post({type:'error',message:'简介不能为空'});
+		$(&quot;#contentValidity&quot;).focus();
+		return;
+	}*/
+	
+	if(!$model.entity.topContent){
+		Messenger.post({type:'error',message:'内容不能为空'});
+		$(&quot;#topContent&quot;).focus();
+		return;
+	}
+
+
+	//先保存录入信息
+	$model.entity.$save(function(data){
+		var filePath = $(&quot;#topPic&quot;).find(&quot;input[type=file]&quot;).val();
+		if(filePath != ''){
+			$view.topPic.submit({topId:data.topId});
+		}
+		$params.states=1;
+	});
+},
+
+//保存
+save_button_click:function($event){
+	var content= $view.topContent.getUE().getContentLength(true);
+	//将按钮禁用，防止重复提交
+	$(&quot;#save_button&quot;).attr(&quot;disabled&quot;,true);
+	if(!$model.entity.topTitle){
+		Messenger.post({type:'error',message:'标题不能为空'});
+		$(&quot;#topTitle&quot;).focus();
+		//将按钮恢复
+		$(&quot;#save_button&quot;).removeAttr(&quot;disabled&quot;);
+		return;
+	}
+
+	/*if(!$model.entity.contentValidity){
+		Messenger.post({type:'error',message:'简介不能为空'});
+		$(&quot;#contentValidity&quot;).focus();
+		return;
+	}*/
+	
+	if(!$model.entity.topContent){
+		Messenger.post({type:'error',message:'内容不能为空'});
+		$(&quot;#topContent&quot;).focus();
+		//将按钮恢复
+		$(&quot;#save_button&quot;).removeAttr(&quot;disabled&quot;);
+		return;
+	}
+	if(content>10000){
+		Messenger.error('内容长度已经超出一万字');
+		$(&quot;#save_button&quot;).removeAttr(&quot;disabled&quot;);
+		return false;
+	}
+	
+	if($params.states == 0){
+		$model.entity.$save(function(data){
+			var filePath = $(&quot;#topPic&quot;).find(&quot;input[type=file]&quot;).val();
+			//if($params.flag){
+			if(filePath != ''){
+				$view.topPic.submit({topId:data.topId});
+			}
+			Modal.instance.close();
+			Messenger.post({type:'success',message:'保存成功'});
+		});
+	}else{
+		Modal.instance.close();
+		Messenger.post({type:'success',message:'保存成功'});
+	}
+},
+
+page_onload:function(){
+	$params.flag=false;
+	if(!$model.entity.topPic){
+		$(&quot;#showPic&quot;)[0].src ='dzjc/images/nopicture.jpg';
+	}else{
+		var temp=&quot;data:image/jpeg;base64,&quot;;
+		$(&quot;#showPic&quot;)[0].src=temp+$model.entity.topPic;
+	}
+
+	$(&quot;#topPic&quot;).change(function(e) {
+		var fileSize = 0;   
+		var filetypes =[&quot;.jpg&quot;,&quot;.png&quot;];   
+		var filepath = e.target.value;   
+		var filemaxsize = 1024*2;//2M   
+		if(filepath){   
+			var isnext = false;   
+			var fileend = filepath.substring(filepath.indexOf(&quot;.&quot;));   
+			if(filetypes &amp;&amp; filetypes.length>0){   
+				for(var i =0; i&lt;filetypes.length;i++){   
+					if(filetypes[i]==fileend){   
+						isnext = true;   
+						break;   
+					}   
+				}   
+			}   
+		}else{   
+			return false;   
+		}   
+		if (!e.target.files) {   
+			var filePath = e.target.value;   
+			var fileSystem = new ActiveXObject(&quot;Scripting.FileSystemObject&quot;);   
+			if(!fileSystem.FileExists(filePath)){ 
+				Messenger.post({type:'error',message:'文件不存在'});
+				return false;   
+			}   
+			var file = fileSystem.GetFile (filePath);   
+			fileSize = file.Size;   
+		} else {   
+			fileSize = e.target.files[0].size;   
+		}   
+		  
+		var size = fileSize / 1024;   
+	    for (var i = 0; i &lt; e.target.files.length; i++) {  
+	        var file = e.target.files.item(i);            
+	        var freader = new FileReader();  
+	        $params.flag=true;
+	        freader.readAsDataURL(file);  
+	        freader.onload = function(e) {  
+	          var src = e.target.result;  
+	          $(&quot;#showPic&quot;).attr(&quot;src&quot;,src);  
+	        }  
+	    }  
+    });
+}</form:scripts>
+  <form:htmls>
+&lt;script type=&quot;text/ng-template&quot; id=&quot;picDiv_html&quot;>
+&lt;div style=&quot;margin-left:300px&quot;>
+  &lt;img id=&quot;showPic&quot; src=&quot;dzjc/images/nopicture.jpg&quot; style=&quot;width:400px;height:200px&quot; />
+&lt;/div>
+&lt;/script></form:htmls>
+</form:Form>

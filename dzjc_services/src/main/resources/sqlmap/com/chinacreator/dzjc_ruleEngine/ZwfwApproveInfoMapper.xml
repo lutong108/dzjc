@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"><mapper namespace="com.chinacreator.dzjc_ruleEngine.ZwfwApproveInfoMapper">	
+
+<!-- ElementID:column_sql,Generated=true -->
+<sql id="column_sql">
+		  VA_TA_JC_APPROVE_STATISTICS.approve_code ,
+		  VA_TA_JC_APPROVE_STATISTICS.approve_name ,
+		  VA_TA_JC_APPROVE_STATISTICS.org_name ,
+		  VA_TA_JC_APPROVE_STATISTICS.is_valid ,
+		  VA_TA_JC_APPROVE_STATISTICS.type_code ,
+		  VA_TA_JC_APPROVE_STATISTICS.type_name ,
+		  VA_TA_JC_APPROVE_STATISTICS.org_id ,
+		  VA_TA_JC_APPROVE_STATISTICS.area_code ,
+		  VA_TA_JC_APPROVE_STATISTICS.approve_state 
+</sql>
+
+<!-- ElementID:whereClause_sql, Generated = false -->
+<sql id="whereClause_sql">
+	    <if test="approveCode != null">and VA_TA_JC_APPROVE_STATISTICS.approve_code = #{approveCode}</if>
+	    <if test="approveName != null">and VA_TA_JC_APPROVE_STATISTICS.approve_name = #{approveName}</if>
+	    <if test="orgName != null">and VA_TA_JC_APPROVE_STATISTICS.org_name = #{orgName}</if>
+	    <if test="isValid != null">and VA_TA_JC_APPROVE_STATISTICS.is_valid = #{isValid}</if>
+	    <if test="typeCode != null">and VA_TA_JC_APPROVE_STATISTICS.type_code = #{typeCode}</if>
+	    <if test="typeName != null">and VA_TA_JC_APPROVE_STATISTICS.type_name = #{typeName}</if>
+	    <if test="areaCode != null">and (VA_TA_JC_APPROVE_STATISTICS.area_code LIKE CONCAT(#{areaCode},'%') OR VA_TA_JC_APPROVE_STATISTICS.org_id = #{areaCode})</if>
+	    <if test="orgId != null">and VA_TA_JC_APPROVE_STATISTICS.org_id = #{orgId}</if>
+	    <if test="approveState != null">and VA_TA_JC_APPROVE_STATISTICS.approve_state = #{approveState}</if>
+</sql>
+
+
+<!-- ElementID:ZwfwApproveInfoResult,Generated=true -->
+<resultMap id="ZwfwApproveInfoResult" type="com.chinacreator.dzjc_ruleEngine.ZwfwApproveInfo">
+	<id property="approveCode" column="approve_code"/>
+	<result property="approveName" column="approve_name"/>
+	<result property="orgName" column="org_name"/>
+	<result property="isValid" column="is_valid"/>
+	<result property="typeCode" column="type_code"/>
+	<result property="typeName" column="type_name"/>
+	<result property="orgId" column="org_id"/>
+	<result property="areaCode" column="area_code"/>
+	<result property="approveState" column="approve_state"/>
+</resultMap>
+
+<!-- ElementID:selectByPage,Generated=true -->
+<select id="selectByPage" parameterType="com.chinacreator.dzjc_ruleEngine.ZwfwApproveInfo" resultMap="ZwfwApproveInfoResult">
+	select 
+		<include refid="column_sql"/>
+	    from VA_TA_JC_APPROVE_STATISTICS 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<!-- ElementID:insert,Generated=true -->
+<insert id="insert" parameterType="com.chinacreator.dzjc_ruleEngine.ZwfwApproveInfo">
+	insert into VA_TA_JC_APPROVE_STATISTICS(
+	         <if test="approveCode != null">approve_code</if>
+	         <if test="approveName != null">,approve_name</if>
+	         <if test="orgName != null">,org_name</if>
+	         <if test="isValid != null">,is_valid</if>
+	         <if test="typeCode != null">,type_code</if>
+	         <if test="typeName != null">,type_name</if>
+	         <if test="orgId != null">,org_id</if>
+	         <if test="areaCode != null">,area_code</if>
+	         <if test="approveState != null">,approve_state</if>
+	 	 	 )
+	 values (
+	         <if test="approveCode != null">#{approveCode,jdbcType=VARCHAR}</if>
+	         <if test="approveName != null">,#{approveName,jdbcType=VARCHAR}</if>
+	         <if test="orgName != null">,#{orgName,jdbcType=VARCHAR}</if>
+	         <if test="isValid != null">,#{isValid,jdbcType=VARCHAR}</if>
+	         <if test="typeCode != null">,#{typeCode,jdbcType=VARCHAR}</if>
+	         <if test="typeName != null">,#{typeName,jdbcType=VARCHAR}</if>
+	         <if test="orgId != null">,#{orgId,jdbcType=VARCHAR}</if>
+	         <if test="areaCode != null">,#{areaCode,jdbcType=VARCHAR}</if>
+	         <if test="approveState != null">,#{approveState,jdbcType=VARCHAR}</if>
+	 	 	 )
+</insert>
+<!-- ElementID:count,Generated=true -->
+<select id="count" parameterType="com.chinacreator.dzjc_ruleEngine.ZwfwApproveInfo" resultType="int">
+	select count(*) from VA_TA_JC_APPROVE_STATISTICS 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+<!-- ElementID:update,Generated=true -->
+<update id="update" parameterType="com.chinacreator.dzjc_ruleEngine.ZwfwApproveInfo">
+	update VA_TA_JC_APPROVE_STATISTICS
+<set>
+	<if test="approveName != null">approve_name=#{approveName,jdbcType=VARCHAR},</if>
+	<if test="orgName != null">org_name=#{orgName,jdbcType=VARCHAR},</if>
+	<if test="isValid != null">is_valid=#{isValid,jdbcType=VARCHAR},</if>
+	<if test="typeCode != null">type_code=#{typeCode,jdbcType=VARCHAR},</if>
+	<if test="typeName != null">type_name=#{typeName,jdbcType=VARCHAR},</if>
+	<if test="orgId != null">org_id=#{orgId,jdbcType=VARCHAR},</if>
+	<if test="areaCode != null">area_code=#{areaCode,jdbcType=VARCHAR},</if>
+	<if test="approveState != null">approve_state=#{approveState,jdbcType=VARCHAR}</if>
+</set>
+<where>
+	<choose>
+        <when test="approveCode != null">and approve_code = #{approveCode}</when>
+        <otherwise>and approve_code = </otherwise>
+    </choose>
+</where>
+</update>
+<!-- ElementID:updateNull,Generated=true -->
+<update id="updateNull" parameterType="map">
+	update VA_TA_JC_APPROVE_STATISTICS
+	<set>
+		<trim suffixOverrides=",">
+		    <if test="approveName==null">approve_name = null,</if>
+		    <if test="orgName==null">org_name = null,</if>
+		    <if test="isValid==null">is_valid = null,</if>
+		    <if test="typeCode==null">type_code = null,</if>
+		    <if test="typeName==null">type_name = null,</if>
+		    <if test="orgId==null">org_id = null,</if>
+		    <if test="areaCode==null">area_code = null,</if>
+		    <if test="approveState==null">approve_state = null,</if>
+		</trim>
+	</set>
+	<where>
+		<choose>
+			<when test="approveCode != null">and approve_code = #{approveCode}</when>
+			<otherwise>and approve_code = </otherwise>
+		</choose>
+	</where>
+</update>
+<!-- ElementID:delete,Generated=true -->
+<delete id="delete" parameterType="com.chinacreator.dzjc_ruleEngine.ZwfwApproveInfo">
+    delete from VA_TA_JC_APPROVE_STATISTICS where 1=1 and approve_code = #{approveCode}
+</delete>
+<!-- ElementID:select,Generated=true -->
+<select id="select" parameterType="com.chinacreator.dzjc_ruleEngine.ZwfwApproveInfo" resultMap="ZwfwApproveInfoResult">
+	select 
+		<include refid="column_sql"/>
+	    from VA_TA_JC_APPROVE_STATISTICS 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+<!-- ElementID:insertBatch,Generated=true -->
+<insert id="insertBatch" parameterType="list">
+	insert into VA_TA_JC_APPROVE_STATISTICS (approve_code,approve_name,org_name,is_valid,type_code,type_name,org_id,area_code,approve_state) 
+<foreach collection="list" item="entity" index="index" separator="union all">
+		select 
+		#{entity.approveCode,jdbcType = VARCHAR},
+				#{entity.approveName,jdbcType = VARCHAR},
+				#{entity.orgName,jdbcType = VARCHAR},
+				#{entity.isValid,jdbcType = VARCHAR},
+				#{entity.typeCode,jdbcType = VARCHAR},
+				#{entity.typeName,jdbcType = VARCHAR},
+				#{entity.orgId,jdbcType = VARCHAR},
+				#{entity.areaCode,jdbcType = VARCHAR},
+				#{entity.approveState,jdbcType = VARCHAR}
+		from dual
+</foreach>
+</insert>
+<!-- ElementID:deleteBatch,Generated=true -->
+<delete id="deleteBatch" parameterType="List">
+	delete from VA_TA_JC_APPROVE_STATISTICS where approve_code in
+<trim prefix="(" suffix=")" suffixOverrides=",">
+<foreach collection="list" item="entity" separator=",">
+	<choose>
+		<when test="@com.chinacreator.c2.dao.util.EntityBeanUtil@isEntityObj(entity)">#{entity.approveCode}</when>
+		<otherwise>#{entity}</otherwise>
+	</choose>
+</foreach>
+</trim>
+</delete>
+<!-- ElementID:updateBatch,Generated=true -->
+<update id="updateBatch" parameterType="list">
+	<foreach collection="list" item="entity" open="begin" close=";end;" separator=";">
+			update VA_TA_JC_APPROVE_STATISTICS
+	<set>
+	<if test="entity.approveName != null">approve_name= #{entity.approveName,jdbcType=VARCHAR},</if>
+	<if test="entity.orgName != null">org_name= #{entity.orgName,jdbcType=VARCHAR},</if>
+	<if test="entity.isValid != null">is_valid= #{entity.isValid,jdbcType=VARCHAR},</if>
+	<if test="entity.typeCode != null">type_code= #{entity.typeCode,jdbcType=VARCHAR},</if>
+	<if test="entity.typeName != null">type_name= #{entity.typeName,jdbcType=VARCHAR},</if>
+	<if test="entity.orgId != null">org_id= #{entity.orgId,jdbcType=VARCHAR},</if>
+	<if test="entity.areaCode != null">area_code= #{entity.areaCode,jdbcType=VARCHAR},</if>
+	<if test="entity.approveState != null">approve_state= #{entity.approveState,jdbcType=VARCHAR}</if>
+	</set>
+		<where>
+			<choose>
+				<when test="entity.approveCode != null">and approve_code = #{entity.approveCode}</when>
+				<otherwise>and approve_code = </otherwise>
+			</choose>
+		</where>
+	</foreach>
+</update>
+<!-- ElementID:selectAll,Generated=true -->
+<select id="selectAll" resultMap="ZwfwApproveInfoResult">
+	select 
+		<include refid="column_sql"/>
+	    from VA_TA_JC_APPROVE_STATISTICS 
+</select>
+<!-- ElementID:selectMany,Generated=true -->
+<select id="selectMany" parameterType="list" resultMap="ZwfwApproveInfoResult">
+select 
+	<include refid="column_sql"/> 
+	from VA_TA_JC_APPROVE_STATISTICS 
+	where VA_TA_JC_APPROVE_STATISTICS.approve_code in (
+<foreach collection="list" item="entity" separator="intersect">
+		select 
+		VA_TA_JC_APPROVE_STATISTICS.approve_code
+	    from VA_TA_JC_APPROVE_STATISTICS 
+		 <where>
+	        <if test="entity.approveCode != null">and VA_TA_JC_APPROVE_STATISTICS.approve_code = #{entity.approveCode}</if>
+	        <if test="entity.approveName != null">and VA_TA_JC_APPROVE_STATISTICS.approve_name = #{entity.approveName}</if>
+	        <if test="entity.orgName != null">and VA_TA_JC_APPROVE_STATISTICS.org_name = #{entity.orgName}</if>
+	        <if test="entity.isValid != null">and VA_TA_JC_APPROVE_STATISTICS.is_valid = #{entity.isValid}</if>
+	        <if test="entity.typeCode != null">and VA_TA_JC_APPROVE_STATISTICS.type_code = #{entity.typeCode}</if>
+	        <if test="entity.typeName != null">and VA_TA_JC_APPROVE_STATISTICS.type_name = #{entity.typeName}</if>
+	        <if test="entity.orgId != null">and VA_TA_JC_APPROVE_STATISTICS.org_id = #{entity.orgId}</if>
+	        <if test="entity.areaCode != null">and VA_TA_JC_APPROVE_STATISTICS.area_code = #{entity.areaCode}</if>
+	        <if test="entity.approveState != null">and VA_TA_JC_APPROVE_STATISTICS.approve_state = #{entity.approveState}</if>
+		</where>
+</foreach>
+)
+</select>
+<!-- ElementID:selectUnion,Generated=true -->
+<select id="selectUnion" parameterType="list" resultMap="ZwfwApproveInfoResult">
+select 
+	<include refid="column_sql"/> 
+	from VA_TA_JC_APPROVE_STATISTICS 
+	 INNER JOIN
+<foreach collection="list" item="entity" separator="UNION" open="(" close=")">
+		SELECT 
+			 approve_code
+		FROM VA_TA_JC_APPROVE_STATISTICS 
+			<where>
+	        <if test="entity.approveCode != null">and VA_TA_JC_APPROVE_STATISTICS.approve_code = #{entity.approveCode}</if>
+	        <if test="entity.approveName != null">and VA_TA_JC_APPROVE_STATISTICS.approve_name = #{entity.approveName}</if>
+	        <if test="entity.orgName != null">and VA_TA_JC_APPROVE_STATISTICS.org_name = #{entity.orgName}</if>
+	        <if test="entity.isValid != null">and VA_TA_JC_APPROVE_STATISTICS.is_valid = #{entity.isValid}</if>
+	        <if test="entity.typeCode != null">and VA_TA_JC_APPROVE_STATISTICS.type_code = #{entity.typeCode}</if>
+	        <if test="entity.typeName != null">and VA_TA_JC_APPROVE_STATISTICS.type_name = #{entity.typeName}</if>
+	        <if test="entity.orgId != null">and VA_TA_JC_APPROVE_STATISTICS.org_id = #{entity.orgId}</if>
+	        <if test="entity.areaCode != null">and VA_TA_JC_APPROVE_STATISTICS.area_code = #{entity.areaCode}</if>
+	        <if test="entity.approveState != null">and VA_TA_JC_APPROVE_STATISTICS.approve_state = #{entity.approveState}</if>
+			</where>
+</foreach>
+	c2_temp_table ON VA_TA_JC_APPROVE_STATISTICS.approve_code = c2_temp_table.approve_code
+</select>
+<!-- ElementID:selectByID,Generated=true -->
+<select id="selectByID" parameterType="java.lang.String" resultMap="ZwfwApproveInfoResult">
+	select 
+		<include refid="column_sql"/>
+	    from VA_TA_JC_APPROVE_STATISTICS 
+		 where VA_TA_JC_APPROVE_STATISTICS.approve_code = #{approveCode,jdbcType=VARCHAR}
+</select>
+</mapper>

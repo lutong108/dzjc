@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chinacreator.dzjc_ruleEngine.BussinessComMapper">	
+
+<!-- ElementID:column_sql,Generated=false -->
+<sql id="column_sql">
+	  TA_JC_COMPLAIN_BASEINFO.complain_id ,
+      TA_JC_COMPLAIN_BASEINFO.query_code ,
+      TA_JC_COMPLAIN_BASEINFO.accept_time ,
+      TA_JC_COMPLAIN_BASEINFO.bycomplained_user_org ,
+      TA_JC_COMPLAIN_BASEINFO.bycomplained_user_post ,
+      TA_JC_COMPLAIN_BASEINFO.bycomplained_org ,
+      TA_JC_COMPLAIN_BASEINFO.complain_user_name ,
+      TA_JC_COMPLAIN_BASEINFO.complain_user_mobile ,
+      TA_JC_COMPLAIN_BASEINFO.complain_user_card ,
+      TA_JC_COMPLAIN_BASEINFO.complain_title ,
+      TA_JC_COMPLAIN_BASEINFO.complain_content ,
+      TA_JC_COMPLAIN_BASEINFO.leader_idea ,
+      TA_JC_COMPLAIN_BASEINFO.enregister_time ,
+      TA_JC_COMPLAIN_BASEINFO.state ,
+      TA_JC_DIC_PROBLEM_TYPE.PROBLEM_TYPE_NAME AS PROBLEM_TYPE,
+      TA_JC_COMPLAIN_BASEINFO.problem_small_type ,
+     (select t.dictdata_value from TD_SM_DICTDATA t where t.DICTTYPE_ID=(select d.DICTTYPE_ID from TD_SM_DICTTYPE d where d.DICTTYPE_NAME='满意度') and t.dictdata_name=TA_JC_COMPLAIN_BASEINFO.Is_Satisfied) as is_satisfied,
+      TA_JC_COMPLAIN_BASEINFO.not_satisfied_reason ,
+      TA_JC_COMPLAIN_BASEINFO.lastmodifytime ,
+      TA_JC_COMPLAIN_BASEINFO.is_public ,
+      TA_JC_COMPLAIN_BASEINFO.handle_status ,
+      TA_JC_COMPLAIN_BASEINFO.expire_date ,
+      TA_JC_COMPLAIN_BASEINFO.accept_user_id ,
+      TA_JC_COMPLAIN_BASEINFO.handle_user_id ,
+      TA_JC_COMPLAIN_BASEINFO.complain_user_org ,
+      TA_JC_COMPLAIN_BASEINFO.complain_user_phone ,
+      TA_JC_COMPLAIN_BASEINFO.reply_orgname ,
+      TA_JC_COMPLAIN_BASEINFO.reply_orgid ,
+      TA_JC_COMPLAIN_BASEINFO.reply_time ,
+      TA_JC_COMPLAIN_BASEINFO.reply_user_id ,
+      TA_JC_COMPLAIN_BASEINFO.commitnum ,
+      TA_JC_COMPLAIN_BASEINFO.complain_user_address ,
+      TA_JC_COMPLAIN_BASEINFO.bycomplained_user_address ,
+      TA_JC_COMPLAIN_BASEINFO.bycomplained_user_phone ,
+      (select t.dictdata_value from TD_SM_DICTDATA t where t.DICTTYPE_ID=(select d.DICTTYPE_ID from TD_SM_DICTTYPE d where d.DICTTYPE_NAME='投诉方式') and t.dictdata_name=TA_JC_COMPLAIN_BASEINFO.problem_mode) as problem_mode_name,
+      TA_JC_COMPLAIN_BASEINFO.problem_mode ,
+      TA_JC_COMPLAIN_BASEINFO.mainappeal ,
+      TA_JC_COMPLAIN_BASEINFO.proessstate ,
+      TA_JC_COMPLAIN_BASEINFO.correlationid ,
+      TA_JC_COMPLAIN_BASEINFO.handleis_public ,
+      TA_JC_COMPLAIN_BASEINFO.caseno ,
+      TA_JC_COMPLAIN_BASEINFO.commitment_limit ,
+      TA_JC_COMPLAIN_BASEINFO.issurereceive ,
+      TA_JC_COMPLAIN_BASEINFO.taskid ,
+      TA_JC_COMPLAIN_BASEINFO.is_examine ,
+      TA_JC_COMPLAIN_BASEINFO.is_preaccepsend ,
+      TA_JC_COMPLAIN_BASEINFO.is_acceptsend ,
+      TA_JC_COMPLAIN_BASEINFO.accept_org_id ,
+      TA_JC_COMPLAIN_BASEINFO.islocalsector ,
+      TA_JC_COMPLAIN_BASEINFO.accept_org_name ,
+      TA_JC_COMPLAIN_BASEINFO.accept_org_level ,
+      TA_JC_COMPLAIN_BASEINFO.sure_receive_time ,
+      TA_JC_COMPLAIN_BASEINFO.brachcanshift ,
+      TA_JC_COMPLAIN_BASEINFO.commitment_city_limit ,
+      TA_JC_COMPLAIN_BASEINFO.expire_city_date ,
+      TA_JC_COMPLAIN_BASEINFO.extens_day ,
+      TA_JC_COMPLAIN_BASEINFO.extens_reason 
+</sql>
+
+
+<sql id="column_sqlId">
+	  TA_JC_COMPLAIN_BASEINFO.complain_id ,
+      TA_JC_COMPLAIN_BASEINFO.query_code ,
+      TA_JC_COMPLAIN_BASEINFO.accept_time ,
+      TA_JC_COMPLAIN_BASEINFO.bycomplained_user_org ,
+      TA_JC_COMPLAIN_BASEINFO.bycomplained_user_post ,
+      TA_JC_COMPLAIN_BASEINFO.bycomplained_org ,
+      TA_JC_COMPLAIN_BASEINFO.complain_user_name ,
+      TA_JC_COMPLAIN_BASEINFO.complain_user_mobile ,
+      TA_JC_COMPLAIN_BASEINFO.complain_user_card ,
+      TA_JC_COMPLAIN_BASEINFO.complain_title ,
+      TA_JC_COMPLAIN_BASEINFO.complain_content ,
+      TA_JC_COMPLAIN_BASEINFO.leader_idea ,
+      TA_JC_COMPLAIN_BASEINFO.enregister_time ,
+      TA_JC_COMPLAIN_BASEINFO.state ,
+      TA_JC_DIC_PROBLEM_TYPE.PROBLEM_TYPE_NAME AS PROBLEM_TYPE,
+      TA_JC_COMPLAIN_BASEINFO.problem_small_type ,
+     (select t.dictdata_value from TD_SM_DICTDATA t where t.DICTTYPE_ID=(select d.DICTTYPE_ID from TD_SM_DICTTYPE d where d.DICTTYPE_NAME='满意度') and t.dictdata_name=TA_JC_COMPLAIN_BASEINFO.Is_Satisfied) as is_satisfied,
+     
+      TA_JC_COMPLAIN_BASEINFO.not_satisfied_reason ,
+      TA_JC_COMPLAIN_BASEINFO.lastmodifytime ,
+      TA_JC_COMPLAIN_BASEINFO.is_public ,
+      TA_JC_COMPLAIN_BASEINFO.handle_status ,
+      TA_JC_COMPLAIN_BASEINFO.expire_date ,
+      TA_JC_COMPLAIN_BASEINFO.accept_user_id ,
+      TA_JC_COMPLAIN_BASEINFO.handle_user_id ,
+      TA_JC_COMPLAIN_BASEINFO.complain_user_org ,
+      TA_JC_COMPLAIN_BASEINFO.complain_user_phone ,
+      TA_JC_COMPLAIN_BASEINFO.reply_orgname ,
+      TA_JC_COMPLAIN_BASEINFO.reply_orgid ,
+      TA_JC_COMPLAIN_BASEINFO.reply_time ,
+      TA_JC_COMPLAIN_BASEINFO.reply_user_id ,
+      TA_JC_COMPLAIN_BASEINFO.commitnum ,
+      TA_JC_COMPLAIN_BASEINFO.complain_user_address ,
+      TA_JC_COMPLAIN_BASEINFO.bycomplained_user_address ,
+      TA_JC_COMPLAIN_BASEINFO.bycomplained_user_phone ,
+      (select t.dictdata_value from TD_SM_DICTDATA t where t.DICTTYPE_ID=(select d.DICTTYPE_ID from TD_SM_DICTTYPE d where d.DICTTYPE_NAME='投诉方式') and t.dictdata_name=TA_JC_COMPLAIN_BASEINFO.problem_mode) as problem_mode_name,
+      TA_JC_COMPLAIN_BASEINFO.problem_mode ,
+      TA_JC_COMPLAIN_BASEINFO.mainappeal ,
+      TA_JC_COMPLAIN_BASEINFO.proessstate ,
+      TA_JC_COMPLAIN_BASEINFO.correlationid ,
+      TA_JC_COMPLAIN_BASEINFO.handleis_public ,
+      TA_JC_COMPLAIN_BASEINFO.caseno ,
+      TA_JC_COMPLAIN_BASEINFO.commitment_limit ,
+      TA_JC_COMPLAIN_BASEINFO.issurereceive ,
+      TA_JC_COMPLAIN_BASEINFO.taskid ,
+      TA_JC_COMPLAIN_BASEINFO.is_examine ,
+      TA_JC_COMPLAIN_BASEINFO.is_preaccepsend ,
+      TA_JC_COMPLAIN_BASEINFO.is_acceptsend ,
+      TA_JC_COMPLAIN_BASEINFO.accept_org_id ,
+      TA_JC_COMPLAIN_BASEINFO.islocalsector ,
+      TA_JC_COMPLAIN_BASEINFO.accept_org_name ,
+      TA_JC_COMPLAIN_BASEINFO.accept_org_level ,
+      TA_JC_COMPLAIN_BASEINFO.sure_receive_time ,
+      TA_JC_COMPLAIN_BASEINFO.brachcanshift ,
+      TA_JC_COMPLAIN_BASEINFO.commitment_city_limit ,
+      TA_JC_COMPLAIN_BASEINFO.expire_city_date ,
+      TA_JC_COMPLAIN_BASEINFO.extens_day ,
+      TA_JC_COMPLAIN_BASEINFO.extens_reason 
+</sql>
+
+
+
+<!-- ElementID:whereClause_sql,Generated=false -->
+<sql id="whereClause_sql">
+	    <if test="complainId != null">and TA_JC_COMPLAIN_BASEINFO.complain_id = #{complainId}</if>
+	    <if test="queryCode != null">and TA_JC_COMPLAIN_BASEINFO.query_code = #{queryCode}</if>
+	    <if test="acceptTime != null">and TA_JC_COMPLAIN_BASEINFO.accept_time = #{acceptTime}</if>
+	    <if test="bycomplainedUserOrg != null">and TA_JC_COMPLAIN_BASEINFO.bycomplained_user_org = #{bycomplainedUserOrg}</if>
+	    <if test="bycomplainedUserPost != null">and TA_JC_COMPLAIN_BASEINFO.bycomplained_user_post = #{bycomplainedUserPost}</if>
+	    <if test="bycomplainedOrg != null">and TA_JC_COMPLAIN_BASEINFO.bycomplained_org = #{bycomplainedOrg}</if>
+	    <if test="complainUserName != null">and TA_JC_COMPLAIN_BASEINFO.complain_user_name = #{complainUserName}</if>
+	    <if test="complainUserMobile != null">and TA_JC_COMPLAIN_BASEINFO.complain_user_mobile = #{complainUserMobile}</if>
+	    <if test="complainUserCard != null">and TA_JC_COMPLAIN_BASEINFO.complain_user_card = #{complainUserCard}</if>
+	    <if test="complainTitle != null">and TA_JC_COMPLAIN_BASEINFO.complain_title = #{complainTitle}</if>
+	    <if test="complainContent != null">and TA_JC_COMPLAIN_BASEINFO.complain_content = #{complainContent}</if>
+	    <if test="leaderIdea != null">and TA_JC_COMPLAIN_BASEINFO.leader_idea = #{leaderIdea}</if>
+	    <if test="enregisterTime != null">and TA_JC_COMPLAIN_BASEINFO.enregister_time = #{enregisterTime}</if>
+	    <if test="state != null">and TA_JC_COMPLAIN_BASEINFO.state = #{state}</if>
+	    <if test="problemType != null">and TA_JC_COMPLAIN_BASEINFO.problem_type = #{problemType}</if>
+	    <if test="problemSmallType != null">and TA_JC_COMPLAIN_BASEINFO.problem_small_type = #{problemSmallType}</if>
+	    <if test="isSatisfied != null">and TA_JC_COMPLAIN_BASEINFO.is_satisfied = #{isSatisfied}</if>
+	    <if test="notSatisfiedReason != null">and TA_JC_COMPLAIN_BASEINFO.not_satisfied_reason = #{notSatisfiedReason}</if>
+	    <if test="lastmodifytime != null">and TA_JC_COMPLAIN_BASEINFO.lastmodifytime = #{lastmodifytime}</if>
+	    <if test="isPublic != null">and TA_JC_COMPLAIN_BASEINFO.is_public = #{isPublic}</if>
+	    <if test="handleStatus != null">and TA_JC_COMPLAIN_BASEINFO.handle_status = #{handleStatus}</if>
+	    <if test="expireDate != null">and TA_JC_COMPLAIN_BASEINFO.expire_date = #{expireDate}</if>
+	    <if test="acceptUserId != null">and TA_JC_COMPLAIN_BASEINFO.accept_user_id = #{acceptUserId}</if>
+	    <if test="handleUserId != null">and TA_JC_COMPLAIN_BASEINFO.handle_user_id = #{handleUserId}</if>
+	    <if test="complainUserOrg != null">and TA_JC_COMPLAIN_BASEINFO.complain_user_org = #{complainUserOrg}</if>
+	    <if test="complainUserPhone != null">and TA_JC_COMPLAIN_BASEINFO.complain_user_phone = #{complainUserPhone}</if>
+	    <if test="replyOrgname != null">and TA_JC_COMPLAIN_BASEINFO.reply_orgname = #{replyOrgname}</if>
+	    <if test="replyOrgid != null">and TA_JC_COMPLAIN_BASEINFO.reply_orgid = #{replyOrgid}</if>
+	    <if test="replyTime != null">and TA_JC_COMPLAIN_BASEINFO.reply_time = #{replyTime}</if>
+	    <if test="replyUserId != null">and TA_JC_COMPLAIN_BASEINFO.reply_user_id = #{replyUserId}</if>
+	    <if test="commitnum != null">and TA_JC_COMPLAIN_BASEINFO.commitnum = #{commitnum}</if>
+	    <if test="complainUserAddress != null">and TA_JC_COMPLAIN_BASEINFO.complain_user_address = #{complainUserAddress}</if>
+	    <if test="bycomplainedUserAddress != null">and TA_JC_COMPLAIN_BASEINFO.bycomplained_user_address = #{bycomplainedUserAddress}</if>
+	    <if test="bycomplainedUserPhone != null">and TA_JC_COMPLAIN_BASEINFO.bycomplained_user_phone = #{bycomplainedUserPhone}</if>
+	    <if test="problemMode != null">and TA_JC_COMPLAIN_BASEINFO.problem_mode = #{problemMode}</if>
+	    <if test="mainappeal != null">and TA_JC_COMPLAIN_BASEINFO.mainappeal = #{mainappeal}</if>
+	    <if test="proessstate != null">and TA_JC_COMPLAIN_BASEINFO.proessstate = #{proessstate}</if>
+	    <if test="correlationid != null">and TA_JC_COMPLAIN_BASEINFO.correlationid = #{correlationid}</if>
+	    <if test="handleisPublic != null">and TA_JC_COMPLAIN_BASEINFO.handleis_public = #{handleisPublic}</if>
+	    <if test="caseno != null">and TA_JC_COMPLAIN_BASEINFO.caseno = #{caseno}</if>
+	    <if test="commitmentLimit != null">and TA_JC_COMPLAIN_BASEINFO.commitment_limit = #{commitmentLimit}</if>
+	    <if test="issurereceive != null">and TA_JC_COMPLAIN_BASEINFO.issurereceive = #{issurereceive}</if>
+	    <if test="taskid != null">and TA_JC_COMPLAIN_BASEINFO.taskid = #{taskid}</if>
+	    <if test="isExamine != null">and TA_JC_COMPLAIN_BASEINFO.is_examine = #{isExamine}</if>
+	    <if test="isPreaccepsend != null">and TA_JC_COMPLAIN_BASEINFO.is_preaccepsend = #{isPreaccepsend}</if>
+	    <if test="isAcceptsend != null">and TA_JC_COMPLAIN_BASEINFO.is_acceptsend = #{isAcceptsend}</if>
+	    <if test="acceptOrgId != null">and TA_JC_COMPLAIN_BASEINFO.accept_org_id = #{acceptOrgId}</if>
+	    <if test="islocalsector != null">and TA_JC_COMPLAIN_BASEINFO.islocalsector = #{islocalsector}</if>
+	    <if test="acceptOrgName != null">and TA_JC_COMPLAIN_BASEINFO.accept_org_name = #{acceptOrgName}</if>
+	    <if test="acceptOrgLevel != null">and TA_JC_COMPLAIN_BASEINFO.accept_org_level = #{acceptOrgLevel}</if>
+	    <if test="sureReceiveTime != null">and TA_JC_COMPLAIN_BASEINFO.sure_receive_time = #{sureReceiveTime}</if>
+	    <if test="brachcanshift != null">and TA_JC_COMPLAIN_BASEINFO.brachcanshift = #{brachcanshift}</if>
+	    <if test="commitmentCityLimit != null">and TA_JC_COMPLAIN_BASEINFO.commitment_city_limit = #{commitmentCityLimit}</if>
+	    <if test="expireCityDate != null">and TA_JC_COMPLAIN_BASEINFO.expire_city_date = #{expireCityDate}</if>
+	    <if test="extensDay != null">and TA_JC_COMPLAIN_BASEINFO.extens_day = #{extensDay}</if>
+	    <if test="extensReason != null">and TA_JC_COMPLAIN_BASEINFO.extens_reason = #{extensReason}</if>
+</sql>
+
+
+<!-- ElementID:TaJcComplainBaseinfoResult,Generated=true -->
+<resultMap id="BussinessComResult" type="com.chinacreator.dzjc_ruleEngine.BussinessCom">
+	<id property="complainId" column="complain_id"/>
+	<result property="queryCode" column="query_code"/>
+	<result property="acceptTime" column="accept_time"/>
+	<result property="bycomplainedUserOrg" column="bycomplained_user_org"/>
+	<result property="bycomplainedUserPost" column="bycomplained_user_post"/>
+	<result property="bycomplainedOrg" column="bycomplained_org"/>
+	<result property="complainUserName" column="complain_user_name"/>
+	<result property="complainUserMobile" column="complain_user_mobile"/>
+	<result property="complainUserCard" column="complain_user_card"/>
+	<result property="complainTitle" column="complain_title"/>
+	<result property="complainContent" column="complain_content"/>
+	<result property="leaderIdea" column="leader_idea"/>
+	<result property="enregisterTime" column="enregister_time"/>
+	<result property="state" column="state"/>
+	<result property="problemType" column="problem_type"/>
+	<result property="problemSmallType" column="problem_small_type"/>
+	<result property="isSatisfied" column="is_satisfied"/>
+	<result property="notSatisfiedReason" column="not_satisfied_reason"/>
+	<result property="lastmodifytime" column="lastmodifytime"/>
+	<result property="isPublic" column="is_public"/>
+	<result property="handleStatus" column="handle_status"/>
+	<result property="expireDate" column="expire_date"/>
+	<result property="acceptUserId" column="accept_user_id"/>
+	<result property="handleUserId" column="handle_user_id"/>
+	<result property="complainUserOrg" column="complain_user_org"/>
+	<result property="complainUserPhone" column="complain_user_phone"/>
+	<result property="replyOrgname" column="reply_orgname"/>
+	<result property="replyOrgid" column="reply_orgid"/>
+	<result property="replyTime" column="reply_time"/>
+	<result property="replyUserId" column="reply_user_id"/>
+	<result property="commitnum" column="commitnum"/>
+	<result property="complainUserAddress" column="complain_user_address"/>
+	<result property="bycomplainedUserAddress" column="bycomplained_user_address"/>
+	<result property="bycomplainedUserPhone" column="bycomplained_user_phone"/>
+	<result property="problemMode" column="problem_mode"/>
+	<result property="mainappeal" column="mainappeal"/>
+	<result property="proessstate" column="proessstate"/>
+	<result property="correlationid" column="correlationid"/>
+	<result property="handleisPublic" column="handleis_public"/>
+	<result property="caseno" column="caseno"/>
+	<result property="commitmentLimit" column="commitment_limit"/>
+	<result property="issurereceive" column="issurereceive"/>
+	<result property="taskid" column="taskid"/>
+	<result property="isExamine" column="is_examine"/>
+	<result property="isPreaccepsend" column="is_preaccepsend"/>
+	<result property="isAcceptsend" column="is_acceptsend"/>
+	<result property="acceptOrgId" column="accept_org_id"/>
+	<result property="islocalsector" column="islocalsector"/>
+	<result property="acceptOrgName" column="accept_org_name"/>
+	<result property="acceptOrgLevel" column="accept_org_level"/>
+	<result property="sureReceiveTime" column="sure_receive_time"/>
+	<result property="brachcanshift" column="brachcanshift"/>
+	<result property="commitmentCityLimit" column="commitment_city_limit"/>
+	<result property="expireCityDate" column="expire_city_date"/>
+	<result property="extensDay" column="extens_day"/>
+	<result property="extensReason" column="extens_reason"/>
+	<result property="IsSatisfiedName" column="Is_Satisfied_name"/>
+	<result property="problemModeName" column="problem_mode_name"/>
+</resultMap>
+
+
+
+<!-- ElementID:selectByID,Generated=false -->
+<select id="selectByID" parameterType="java.lang.String" resultMap="BussinessComResult">
+	select 
+		<include refid="column_sqlId"/>
+	    from TA_JC_COMPLAIN_BASEINFO 
+	    left join TA_JC_DIC_PROBLEM_TYPE
+	    ON TA_JC_COMPLAIN_BASEINFO.PROBLEM_TYPE = TA_JC_DIC_PROBLEM_TYPE.PROBLEM_TYPE_ID
+		 where TA_JC_COMPLAIN_BASEINFO.complain_id = #{complainId,jdbcType=VARCHAR}
+</select>
+
+
+</mapper>

@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form:Form xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dync="http://www.chinacreator.com/platform/mvc/ui/dync" xmlns:form="http://www.chinacreator.com/platform/mvc/form" name="帮你办统计" sn="bnb_tongji" type="form">
+  <form:control type="page/normal">
+    <form:attributes source="page/normal">
+      <dync:attribute default="" group="HTML" id="showHead" name="显示标题" value="">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="" group="HTML" id="title" name="标题" value="">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="" group="HTML" id="desc" name="描述" value="">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="false" group="HTML" id="fixedHeight" name="自动高度" value="false">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="false" group="HTML" id="compact" name="紧凑页面" value="false">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="false" group="HTML" id="dirtyCheck" name="脏检查" value="false">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="" group="注入配置" id="angularJsServices" name="注入服务" value="">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="" group="事件" id="beforeDataSourceLoad" name="数据源加载前" value="page_beforeDataSourceLoad($params)">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="" group="事件" id="afterDataSourceLoad" name="数据源加载后" value="">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+    </form:attributes>
+  </form:control>
+  <form:child xsi:type="form:Group" id="div" name="简单容器(DIV)">
+    <form:control type="container/div">
+      <form:attributes source="container/div">
+        <dync:attribute default="" group="高级自定义" id="style" name="自定义style" value="margin-top:15px">
+          <dync:render colSpan="2" height="0" multi="false" name="text"/>
+          <dync:children/>
+        </dync:attribute>
+      </form:attributes>
+    </form:control>
+    <form:child xsi:type="form:Field" binding="$model.list.orderMonth" id="dateTimePicker" name="接单时间" customize="true">
+      <form:control type="widget/date_picker">
+        <form:attributes source="widget/date_picker">
+          <dync:attribute default="6" group="基本设置" id="span" name="控件宽度" value="3">
+            <dync:render colSpan="1" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="75" group="基本设置" id="lableWidth" name="文字宽度" value="95">
+            <dync:render colSpan="1" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="YYYY-MM-DD" group="时间设置" id="format" name="日期格式" value="YYYY-MM">
+            <dync:render colSpan="1" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="" group="时间设置" id="endDate" name="结束日期" value="new Date()">
+            <dync:render colSpan="1" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="true" group="基本设置" id="visible" name="可见状态" value="false">
+            <dync:render colSpan="1" height="0" multi="false" name="checkboxAndExpr"/>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+      <form:validation/>
+    </form:child>
+    <form:child xsi:type="form:Field" binding="$params.year" id="selectSimple" name="年份" customize="true">
+      <form:control type="widget/select_simple">
+        <form:attributes source="widget/select_simple">
+          <dync:attribute default="6" group="基本设置" id="span" name="占位数" value="2">
+            <dync:render colSpan="1" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="75" group="基本设置" id="lableWidth" name="lable宽度" value="40">
+            <dync:render colSpan="1" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="" group="下拉框设置" id="selectOptions" name="选项" value="$params.selectYear">
+            <dync:render colSpan="1" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+      <form:validation/>
+    </form:child>
+    <form:child xsi:type="form:Field" binding="$params.month" id="selectSimple1" name="月份" customize="true">
+      <form:control type="widget/select_simple">
+        <form:attributes source="widget/select_simple">
+          <dync:attribute default="6" group="基本设置" id="span" name="占位数" value="2">
+            <dync:render colSpan="1" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="" group="下拉框设置" id="selectOptions" name="选项" value="[{id:&quot;01&quot;,name:&quot;一月&quot;},{id:&quot;02&quot;,name:&quot;二月&quot;},{id:&quot;03&quot;,name:&quot;三月&quot;},{id:&quot;04&quot;,name:&quot;四月&quot;},{id:&quot;05&quot;,name:&quot;五月&quot;},{id:&quot;06&quot;,name:&quot;六月&quot;},{id:&quot;07&quot;,name:&quot;七月&quot;},{id:&quot;08&quot;,name:&quot;八月&quot;},{id:&quot;09&quot;,name:&quot;九月&quot;},{id:&quot;10&quot;,name:&quot;十月&quot;},{id:&quot;11&quot;,name:&quot;十一月&quot;},{id:&quot;12&quot;,name:&quot;十二月&quot;}]&#xD;&#xA;">
+            <dync:render colSpan="1" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="75" group="基本设置" id="lableWidth" name="lable宽度" value="40">
+            <dync:render colSpan="1" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="" group="事件设置" id="change" name="值变换事件" value="selectSimple1_change()">
+            <dync:render colSpan="2" height="0" multi="false" name="event">
+              <dync:item name="params" value=""/>
+            </dync:render>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+      <form:validation/>
+    </form:child>
+    <form:child xsi:type="form:Group" id="div1" name="简单容器(DIV)">
+      <form:control type="container/div">
+        <form:attributes source="container/div">
+          <dync:attribute default="12" group="HTML配置" id="span" name="占位数" value="4">
+            <dync:render colSpan="1" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+      <form:child xsi:type="form:Field" id="button" name="查询" customize="true">
+        <form:control type="widget/button">
+          <form:attributes source="widget/button">
+            <dync:attribute default="" group="事件设置" id="click" name="点击事件" value="button_click($event)">
+              <dync:render colSpan="1" height="0" multi="false" name="event">
+                <dync:item name="params" value="$event"/>
+              </dync:render>
+              <dync:children/>
+            </dync:attribute>
+          </form:attributes>
+        </form:control>
+        <form:validation/>
+      </form:child>
+      <form:child xsi:type="form:Field" id="button2" name="重置" customize="true">
+        <form:control type="widget/button">
+          <form:attributes source="widget/button">
+            <dync:attribute default="" group="事件设置" id="click" name="点击事件" value="button2_click($event)">
+              <dync:render colSpan="1" height="0" multi="false" name="event">
+                <dync:item name="params" value="$event"/>
+              </dync:render>
+              <dync:children/>
+            </dync:attribute>
+          </form:attributes>
+        </form:control>
+        <form:validation/>
+      </form:child>
+      <form:child xsi:type="form:Field" id="button1" name="导出Excel" customize="true">
+        <form:control type="widget/button">
+          <form:attributes source="widget/button">
+            <dync:attribute default="" group="事件设置" id="click" name="点击事件" value="button1_click($event)">
+              <dync:render colSpan="1" height="0" multi="false" name="event">
+                <dync:item name="params" value="$event"/>
+              </dync:render>
+              <dync:children/>
+            </dync:attribute>
+          </form:attributes>
+        </form:control>
+        <form:validation/>
+      </form:child>
+    </form:child>
+  </form:child>
+  <form:child xsi:type="form:Group" binding="$model.list" id="list" name="列表型数据源">
+    <form:control type="container/table_jqgrid">
+      <form:attributes source="container/table_jqgrid"/>
+    </form:control>
+    <form:child xsi:type="form:Group" id="toolbar_table" name="toolbar_table">
+      <form:control type="container/toolbar_table">
+        <form:attributes source="container/toolbar_table"/>
+      </form:control>
+      <form:child xsi:type="form:Field" id="buttonRefresh" name="刷新">
+        <form:control type="widget/button_a_table">
+          <form:attributes source="widget/button_a_table">
+            <dync:attribute id="clickType" value="refrash">
+              <dync:render/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute id="icon" value="fa-refresh">
+              <dync:render/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute id="iconColor" value="green">
+              <dync:render/>
+              <dync:children/>
+            </dync:attribute>
+          </form:attributes>
+        </form:control>
+      </form:child>
+    </form:child>
+    <form:child xsi:type="form:Field" binding="orderMonth" id="colJqgrid" name="接单月份" customize="true">
+      <form:control type="widget/col_jqgrid">
+        <form:attributes source="widget/col_jqgrid">
+          <dync:attribute default="left" group="基本设置" id="align" name="位置" value="center">
+            <dync:render colSpan="1" height="0" multi="false" name="select">
+              <dync:item name="左" value="left"/>
+              <dync:item name="中" value="center"/>
+              <dync:item name="右" value="right"/>
+            </dync:render>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+      <form:validation/>
+    </form:child>
+    <form:child xsi:type="form:Field" binding="jdzs" id="jdzs" name="接单总数">
+      <form:control type="widget/col_jqgrid">
+        <form:attributes source="widget/col_jqgrid">
+          <dync:attribute default="left" group="基本设置" id="align" name="位置" value="center">
+            <dync:render colSpan="1" height="0" multi="false" name="select">
+              <dync:item name="左" value="left"/>
+              <dync:item name="中" value="center"/>
+              <dync:item name="右" value="right"/>
+            </dync:render>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+    </form:child>
+    <form:child xsi:type="form:Field" binding="bjzs" id="bjzs" name="办结总数">
+      <form:control type="widget/col_jqgrid">
+        <form:attributes source="widget/col_jqgrid">
+          <dync:attribute default="left" group="基本设置" id="align" name="位置" value="center">
+            <dync:render colSpan="1" height="0" multi="false" name="select">
+              <dync:item name="左" value="left"/>
+              <dync:item name="中" value="center"/>
+              <dync:item name="右" value="right"/>
+            </dync:render>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+    </form:child>
+    <form:child xsi:type="form:Field" binding="bjsWgxt" id="bjs_wgxt" name="网格员办件数">
+      <form:control type="widget/col_jqgrid">
+        <form:attributes source="widget/col_jqgrid">
+          <dync:attribute default="left" group="基本设置" id="align" name="位置" value="center">
+            <dync:render colSpan="1" height="0" multi="false" name="select">
+              <dync:item name="左" value="left"/>
+              <dync:item name="中" value="center"/>
+              <dync:item name="右" value="right"/>
+            </dync:render>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+    </form:child>
+    <form:child xsi:type="form:Field" binding="bjsDjxt" id="bjs_djxt" name="党员办件数">
+      <form:control type="widget/col_jqgrid">
+        <form:attributes source="widget/col_jqgrid">
+          <dync:attribute default="left" group="基本设置" id="align" name="位置" value="center">
+            <dync:render colSpan="1" height="0" multi="false" name="select">
+              <dync:item name="左" value="left"/>
+              <dync:item name="中" value="center"/>
+              <dync:item name="右" value="right"/>
+            </dync:render>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+    </form:child>
+    <form:child xsi:type="form:Field" binding="bjsYlsx" id="bjs_ylsx" name="一类事项办件数">
+      <form:control type="widget/col_jqgrid">
+        <form:attributes source="widget/col_jqgrid">
+          <dync:attribute default="left" group="基本设置" id="align" name="位置" value="center">
+            <dync:render colSpan="1" height="0" multi="false" name="select">
+              <dync:item name="左" value="left"/>
+              <dync:item name="中" value="center"/>
+              <dync:item name="右" value="right"/>
+            </dync:render>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+    </form:child>
+    <form:child xsi:type="form:Field" binding="bjsElsx" id="bjs_elsx" name="二类事项办件数">
+      <form:control type="widget/col_jqgrid">
+        <form:attributes source="widget/col_jqgrid">
+          <dync:attribute default="left" group="基本设置" id="align" name="位置" value="center">
+            <dync:render colSpan="1" height="0" multi="false" name="select">
+              <dync:item name="左" value="left"/>
+              <dync:item name="中" value="center"/>
+              <dync:item name="右" value="right"/>
+            </dync:render>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+    </form:child>
+  </form:child>
+  <form:child xsi:type="form:Group" id="div2" name="简单容器(DIV)">
+    <form:control type="container/div">
+      <form:attributes source="container/div"/>
+    </form:control>
+  </form:child>
+  <form:datasources>
+    <form:datasource xsi:type="form:PagingDataSource" id="list" name="列表型数据源" pageSize="10" type="url" url="lanshan/bnbTongJi"/>
+  </form:datasources>
+  <form:scripts>button_click:function($event){
+	var queryParams = new Array();
+	if ($params.year != '' &amp;&amp; $params.year != null) {
+		if ($params.month != '' &amp;&amp; $params.month != null) {
+			var orderMonth = $params.year + '-' + $params.month;
+			queryParams.push({field:&quot;orderMonth&quot;,op:&quot;eq&quot;,data:orderMonth});
+		} else {
+			var orderMonth1 = $params.year + '-01';
+			var orderMonth2 = $params.year + '-12';
+			queryParams.push({field:&quot;orderMonth&quot;,op:&quot;ge&quot;,data:orderMonth1});
+			queryParams.push({field:&quot;orderMonth&quot;,op:&quot;le&quot;,data:orderMonth2});
+		}
+	}
+	if(queryParams.length != 0 ){
+		var filters={groupOp:&quot;AND&quot;,rules:queryParams};
+		$view.list.refresh({filters:filters});
+	}else{
+		$view.list.refresh({filters:filters});
+	}
+},
+
+button2_click:function($event){
+	$view.mainForm.clean();
+	$view.list.refresh({});
+},
+
+button1_click:function($event){
+	var queryParams = new Array();
+	if ($params.year != '' &amp;&amp; $params.year != null) {
+		if ($params.month != '' &amp;&amp; $params.month != null) {
+			var orderMonth = $params.year + '-' + $params.month;
+			queryParams.push({field:&quot;orderMonth&quot;,op:&quot;eq&quot;,data:orderMonth});
+		} else {
+			var orderMonth1 = $params.year + '-01';
+			var orderMonth2 = $params.year + '-12';
+			queryParams.push({field:&quot;orderMonth&quot;,op:&quot;ge&quot;,data:orderMonth1});
+			queryParams.push({field:&quot;orderMonth&quot;,op:&quot;le&quot;,data:orderMonth2});
+		}
+	}
+	if(queryParams.length != 0 ){
+		var filters={groupOp:&quot;AND&quot;,rules:queryParams};
+		$params.cond = {filters:filters}
+	} else {
+		$params.cond = {filters:filters}
+	}
+	$view.list.refresh($params.cond);
+	var cond=JSON.stringify($params.cond);
+	var url = c2.base(&quot;service&quot;)+&quot;LsxExcelExportServlet?type=2&amp;cond=&quot;+encodeURI(cond);
+	window.location.href = url;
+},
+
+page_beforeDataSourceLoad:function($params){
+	//设置可选择年份
+	var selectYear = new Array();
+	var lastYear = new Date().getFullYear();
+	var fromYear = 2018;
+	for (var i=0; i&lt;3; i++) {
+		if ((lastYear - fromYear - i) >= 0) {
+			selectYear.push({id:lastYear-i+'',name:lastYear-i+'年'});
+		}
+	}
+	$params.selectYear = selectYear;
+},
+
+selectSimple1_change:function(){
+	if ($params.year == '' || $params.year == null) {
+		$params.month = null;
+		Messenger.error('请先选择查询年份!');
+	}
+}</form:scripts>
+</form:Form>

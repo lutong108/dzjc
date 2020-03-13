@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chinacreator.dzjc_ruleEngine.SuperviseTempMapper">	
+
+<resultMap id="SuperviseTempResult" type="com.chinacreator.dzjc_ruleEngine.SuperviseTemp">
+	<result property="businessId" column="business_id"/>
+	<result property="businessType" column="business_type"/>
+	<result property="isNeedSupervise" column="is_need_supervise"/>
+	<result property="lastSupervise" column="last_supervise"/>
+</resultMap>
+
+<select id="count" resultType="int">
+	select count(*) from ta_jc_supervise_temp 
+</select>
+
+<delete id="deleteAll" parameterType="com.chinacreator.dzjc_ruleEngine.SuperviseTemp">
+    truncate table ta_jc_supervise_temp  
+</delete>
+
+<delete id="deleteAllConsult" parameterType="com.chinacreator.dzjc_ruleEngine.SuperviseTemp">
+    truncate table ta_jc_supervise_consult_temp  
+</delete>
+
+<insert id="insertBatch" parameterType="list">
+	insert into ta_jc_supervise_temp 
+	(business_id,business_type,is_need_supervise,last_supervise) 
+<foreach collection="list" item="entity" index="index" separator="union all">
+		select 
+				#{entity.businessId,jdbcType = VARCHAR},
+				#{entity.businessType,jdbcType = VARCHAR},
+				#{entity.isNeedSupervise,jdbcType = VARCHAR},
+				#{entity.lastSupervise,jdbcType = VARCHAR}
+		from dual
+</foreach>
+</insert>
+
+<insert id="insertBatchConsult" parameterType="list">
+	insert into ta_jc_supervise_consult_temp 
+	(business_id,business_type,is_need_supervise,last_supervise) 
+<foreach collection="list" item="entity" index="index" separator="union all">
+		select 
+				#{entity.businessId,jdbcType = VARCHAR},
+				#{entity.businessType,jdbcType = VARCHAR},
+				#{entity.isNeedSupervise,jdbcType = VARCHAR},
+				#{entity.lastSupervise,jdbcType = VARCHAR}
+		from dual
+</foreach>
+</insert>
+
+<select id="selectAll" parameterType="java.util.Map" resultMap="SuperviseTempResult">
+	SELECT business_id,business_type,is_need_supervise,last_supervise 
+		FROM(
+　　    			SELECT ROWNUM rn,t1.business_id, t1.business_type, t1.is_need_supervise, t1.last_supervise 
+            	FROM(
+　　           				select business_id, business_type,
+             min(is_need_supervise) as is_need_supervise,max(last_supervise) as last_supervise
+             from ta_jc_supervise_temp group by business_id,business_type 
+             order by business_id asc 
+　　                  )t1 WHERE ROWNUM &lt;= #{endIndex}
+　　  ) WHERE rn &gt; #{startIndex}
+</select>
+
+<select id="selectCount" parameterType="java.util.Map" resultType="int">
+	SELECT count(*) 
+		FROM(
+　　    			SELECT ROWNUM rn,t1.business_id, t1.business_type, t1.is_need_supervise, t1.last_supervise 
+            	FROM(
+　　           				select business_id, business_type,
+             min(is_need_supervise) as is_need_supervise,max(last_supervise) as last_supervise
+             from ta_jc_supervise_temp group by business_id,business_type 
+             order by business_id asc 
+　　                  )t1 WHERE ROWNUM &lt;= #{endIndex}
+　　  ) WHERE rn &gt; #{startIndex}
+</select>
+
+<select id="selectConsultCount" parameterType="java.util.Map" resultType="int">
+	SELECT count(*) 
+		FROM(
+　　    			SELECT ROWNUM rn,t1.business_id, t1.business_type, t1.is_need_supervise, t1.last_supervise 
+            	FROM(
+　　           				select business_id, business_type,
+             min(is_need_supervise) as is_need_supervise,max(last_supervise) as last_supervise
+             from ta_jc_supervise_consult_temp group by business_id,business_type 
+             order by business_id asc 
+　　                  )t1 WHERE ROWNUM &lt;= #{endIndex}
+　　  ) WHERE rn &gt; #{startIndex}
+</select>
+
+<insert id="insertIntoBackTemp" parameterType="java.util.Map">
+	insert into ta_jc_supervise_back_temp 
+	SELECT business_id,business_type,is_need_supervise,last_supervise 
+		FROM(
+　　    			SELECT ROWNUM rn,t1.business_id, t1.business_type, t1.is_need_supervise, t1.last_supervise 
+            	FROM(
+　　           				select business_id, business_type,
+             min(is_need_supervise) as is_need_supervise,max(last_supervise) as last_supervise
+             from ta_jc_supervise_temp group by business_id,business_type 
+             order by business_id asc 
+　　                  )t1 WHERE ROWNUM &lt;= #{endIndex}
+　　  ) WHERE rn &gt; #{startIndex}
+</insert>
+
+<insert id="insertIntoConsultBackTemp" parameterType="java.util.Map">
+	insert into ta_jc_supervise_consult_back_temp 
+	SELECT business_id,business_type,is_need_supervise,last_supervise 
+		FROM(
+　　    			SELECT ROWNUM rn,t1.business_id, t1.business_type, t1.is_need_supervise, t1.last_supervise 
+            	FROM(
+　　           				select business_id, business_type,
+             min(is_need_supervise) as is_need_supervise,max(last_supervise) as last_supervise
+             from ta_jc_supervise_consult_temp group by business_id,business_type 
+             order by business_id asc 
+　　                  )t1 WHERE ROWNUM &lt;= #{endIndex}
+　　  ) WHERE rn &gt; #{startIndex}
+</insert>
+
+<delete id="truncateBackTemp">
+	truncate table ta_jc_supervise_back_temp 
+</delete>
+
+<delete id="truncateConsultBackTemp">
+	truncate table ta_jc_supervise_consult_back_temp 
+</delete>
+
+<select id="selectTempCount" parameterType="java.util.Map" resultType="java.util.Map">
+	select a.business_type as BUSINESSTYPE,count(*) as BUSINESSCOUNT 
+		from ta_jc_supervise_back_temp a 
+		group by a.business_type
+</select>
+
+<select id="selectConsultTempCount" parameterType="java.util.Map" resultType="java.util.Map">
+	select a.business_type as BUSINESSTYPE,count(*) as BUSINESSCOUNT 
+		from ta_jc_supervise_consult_back_temp a 
+		group by a.business_type
+</select>
+
+<update id="mergeIntoInstance">
+	merge into ta_sp_instance a 
+		using (select t.business_id,t.is_need_supervise,t.last_supervise 
+                  from ta_jc_supervise_back_temp t where t.business_type = '1' 
+                  group by t.business_id,t.is_need_supervise,t.last_supervise) b 
+		on (a.instance_id =  b.business_id) 
+		when matched then 
+		update set a.is_need_supervise = b.is_need_supervise,
+					a.last_supervise = b.last_supervise
+</update>
+<update id="mergeIntoComplain">
+	merge into ta_jc_complain_baseinfo a 
+		using (select t.business_id,t.is_need_supervise,t.last_supervise 
+                  from ta_jc_supervise_back_temp t where t.business_type = '2' 
+                  group by t.business_id,t.is_need_supervise,t.last_supervise) b 
+		on (a.complain_id =  b.business_id) 
+		when matched then 
+		update set a.is_need_supervise = b.is_need_supervise,
+					a.last_supervise = b.last_supervise
+</update>
+<update id="mergeIntoConsult">
+	merge into ta_sp_consult a 
+		using (select t.business_id,t.is_need_supervise,t.last_supervise 
+                  from ta_jc_supervise_back_temp t where t.business_type = '3' 
+                  group by t.business_id,t.is_need_supervise,t.last_supervise) b 
+		on (a.consult_id =  b.business_id) 
+		when matched then 
+		update set a.is_need_supervise = b.is_need_supervise,
+					a.last_supervise = b.last_supervise
+</update>
+<update id="mergeIntoConsultNew">
+	merge into ta_sp_consult a 
+		using (select t.business_id,t.is_need_supervise,t.last_supervise 
+                  from ta_jc_supervise_consult_back_temp t where t.business_type = '3' 
+                  group by t.business_id,t.is_need_supervise,t.last_supervise) b 
+		on (a.consult_id =  b.business_id) 
+		when matched then 
+		update set a.is_need_supervise = b.is_need_supervise,
+					a.last_supervise = b.last_supervise
+</update>
+<update id="mergeIntoSuspend">
+	merge into ta_sp_suspend a 
+		using (select t.business_id,t.is_need_supervise,t.last_supervise 
+                  from ta_jc_supervise_back_temp t where t.business_type = '4' 
+                  group by t.business_id,t.is_need_supervise,t.last_supervise) b 
+		on (a.suspend_id =  b.business_id) 
+		when matched then 
+		update set a.is_need_supervise = b.is_need_supervise,
+					a.last_supervise = b.last_supervise
+</update>
+<update id="mergeIntoInternet">
+	merge into ta_sp_instance a 
+		using (select t.business_id,t.is_need_supervise,t.last_supervise 
+                  from ta_jc_supervise_back_temp t where t.business_type = '5' 
+                  group by t.business_id,t.is_need_supervise,t.last_supervise) b 
+		on (a.instance_id =  b.business_id) 
+		when matched then 
+		update set a.is_need_supervise2 = b.is_need_supervise,
+					a.last_supervise2 = b.last_supervise
+</update>
+<update id="mergeIntoDzzz">
+	merge into ta_sp_instance a 
+		using (select t.business_id,t.is_need_supervise,t.last_supervise 
+                  from ta_jc_supervise_back_temp t where t.business_type = '6' 
+                  group by t.business_id,t.is_need_supervise,t.last_supervise) b 
+		on (a.instance_id =  b.business_id) 
+		when matched then 
+		update set a.is_need_supervise3 = b.is_need_supervise,
+					a.last_supervise3 = b.last_supervise
+</update>
+</mapper>

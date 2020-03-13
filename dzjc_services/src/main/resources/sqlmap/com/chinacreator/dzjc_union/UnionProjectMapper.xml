@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"><mapper namespace="com.chinacreator.dzjc_union.UnionProjectMapper">	
+
+<!-- ElementID:column_sql,Generated=true -->
+<sql id="column_sql">
+		  TA_UNION_PROJECT.project_id ,
+		  TA_UNION_PROJECT.template_id ,
+		  TA_UNION_PROJECT.project_name ,
+		  TA_UNION_PROJECT.project_code ,
+		  TA_UNION_PROJECT.construction_unit_id ,
+		  TA_UNION_PROJECT.construction_unit_name ,
+		  TA_UNION_PROJECT.project_content ,
+		  TA_UNION_PROJECT.project_accord ,
+		  TA_UNION_PROJECT.total_investment ,
+		  TA_UNION_PROJECT.capital_construction_investmen ,
+		  TA_UNION_PROJECT.other_investment ,
+		  TA_UNION_PROJECT.source_oneself ,
+		  TA_UNION_PROJECT.source_org ,
+		  TA_UNION_PROJECT.source_superior ,
+		  TA_UNION_PROJECT.source_loan ,
+		  TA_UNION_PROJECT.source_other ,
+		  TA_UNION_PROJECT.plan_starttime ,
+		  TA_UNION_PROJECT.plan_endtime ,
+		  TA_UNION_PROJECT.remark ,
+		  TA_UNION_PROJECT.creater_id ,
+		  TA_UNION_PROJECT.create_man ,
+		  TA_UNION_PROJECT.create_time ,
+		  TA_UNION_PROJECT.update_id ,
+		  TA_UNION_PROJECT.update_time 
+</sql>
+
+<!-- ElementID:whereClause_sql,Generated=true -->
+<sql id="whereClause_sql">
+	    <if test="projectId != null">and TA_UNION_PROJECT.project_id = #{projectId}</if>
+	    <if test="templateId != null">and TA_UNION_PROJECT.template_id = #{templateId}</if>
+	    <if test="projectName != null">and TA_UNION_PROJECT.project_name = #{projectName}</if>
+	    <if test="projectCode != null">and TA_UNION_PROJECT.project_code = #{projectCode}</if>
+	    <if test="constructionUnitId != null">and TA_UNION_PROJECT.construction_unit_id = #{constructionUnitId}</if>
+	    <if test="constructionUnitName != null">and TA_UNION_PROJECT.construction_unit_name = #{constructionUnitName}</if>
+	    <if test="projectContent != null">and TA_UNION_PROJECT.project_content = #{projectContent}</if>
+	    <if test="projectAccord != null">and TA_UNION_PROJECT.project_accord = #{projectAccord}</if>
+	    <if test="totalInvestment != null">and TA_UNION_PROJECT.total_investment = #{totalInvestment}</if>
+	    <if test="capitalConstructionInvestmen != null">and TA_UNION_PROJECT.capital_construction_investmen = #{capitalConstructionInvestmen}</if>
+	    <if test="otherInvestment != null">and TA_UNION_PROJECT.other_investment = #{otherInvestment}</if>
+	    <if test="sourceOneself != null">and TA_UNION_PROJECT.source_oneself = #{sourceOneself}</if>
+	    <if test="sourceOrg != null">and TA_UNION_PROJECT.source_org = #{sourceOrg}</if>
+	    <if test="sourceSuperior != null">and TA_UNION_PROJECT.source_superior = #{sourceSuperior}</if>
+	    <if test="sourceLoan != null">and TA_UNION_PROJECT.source_loan = #{sourceLoan}</if>
+	    <if test="sourceOther != null">and TA_UNION_PROJECT.source_other = #{sourceOther}</if>
+	    <if test="planStarttime != null">and TA_UNION_PROJECT.plan_starttime = #{planStarttime}</if>
+	    <if test="planEndtime != null">and TA_UNION_PROJECT.plan_endtime = #{planEndtime}</if>
+	    <if test="remark != null">and TA_UNION_PROJECT.remark = #{remark}</if>
+	    <if test="createrId != null">and TA_UNION_PROJECT.creater_id = #{createrId}</if>
+	    <if test="createMan != null">and TA_UNION_PROJECT.create_man = #{createMan}</if>
+	    <if test="createTime != null">and TA_UNION_PROJECT.create_time = #{createTime}</if>
+	    <if test="updateId != null">and TA_UNION_PROJECT.update_id = #{updateId}</if>
+	    <if test="updateTime != null">and TA_UNION_PROJECT.update_time = #{updateTime}</if>
+</sql>
+
+
+<!-- ElementID:UnionProjectResult,Generated=true -->
+<resultMap id="UnionProjectResult" type="com.chinacreator.dzjc_union.UnionProject">
+	<id property="projectId" column="project_id"/>
+	<result property="templateId" column="template_id"/>
+	<result property="projectName" column="project_name"/>
+	<result property="projectCode" column="project_code"/>
+	<result property="constructionUnitId" column="construction_unit_id"/>
+	<result property="constructionUnitName" column="construction_unit_name"/>
+	<result property="projectContent" column="project_content"/>
+	<result property="projectAccord" column="project_accord"/>
+	<result property="totalInvestment" column="total_investment"/>
+	<result property="capitalConstructionInvestmen" column="capital_construction_investmen"/>
+	<result property="otherInvestment" column="other_investment"/>
+	<result property="sourceOneself" column="source_oneself"/>
+	<result property="sourceOrg" column="source_org"/>
+	<result property="sourceSuperior" column="source_superior"/>
+	<result property="sourceLoan" column="source_loan"/>
+	<result property="sourceOther" column="source_other"/>
+	<result property="planStarttime" column="plan_starttime"/>
+	<result property="planEndtime" column="plan_endtime"/>
+	<result property="remark" column="remark"/>
+	<result property="createrId" column="creater_id"/>
+	<result property="createMan" column="create_man"/>
+	<result property="createTime" column="create_time"/>
+	<result property="updateId" column="update_id"/>
+	<result property="updateTime" column="update_time"/>
+</resultMap>
+
+
+<!-- ElementID:insert,Generated=true -->
+<insert id="insert" parameterType="com.chinacreator.dzjc_union.UnionProject">
+	insert into TA_UNION_PROJECT(
+	         <if test="projectId != null">project_id</if>
+	         <if test="templateId != null">,template_id</if>
+	         <if test="projectName != null">,project_name</if>
+	         <if test="projectCode != null">,project_code</if>
+	         <if test="constructionUnitId != null">,construction_unit_id</if>
+	         <if test="constructionUnitName != null">,construction_unit_name</if>
+	         <if test="projectContent != null">,project_content</if>
+	         <if test="projectAccord != null">,project_accord</if>
+	         <if test="totalInvestment != null">,total_investment</if>
+	         <if test="capitalConstructionInvestmen != null">,capital_construction_investmen</if>
+	         <if test="otherInvestment != null">,other_investment</if>
+	         <if test="sourceOneself != null">,source_oneself</if>
+	         <if test="sourceOrg != null">,source_org</if>
+	         <if test="sourceSuperior != null">,source_superior</if>
+	         <if test="sourceLoan != null">,source_loan</if>
+	         <if test="sourceOther != null">,source_other</if>
+	         <if test="planStarttime != null">,plan_starttime</if>
+	         <if test="planEndtime != null">,plan_endtime</if>
+	         <if test="remark != null">,remark</if>
+	         <if test="createrId != null">,creater_id</if>
+	         <if test="createMan != null">,create_man</if>
+	         <if test="createTime != null">,create_time</if>
+	         <if test="updateId != null">,update_id</if>
+	         <if test="updateTime != null">,update_time</if>
+	 	 	 )
+	 values (
+	         <if test="projectId != null">#{projectId,jdbcType=VARCHAR}</if>
+	         <if test="templateId != null">,#{templateId,jdbcType=VARCHAR}</if>
+	         <if test="projectName != null">,#{projectName,jdbcType=VARCHAR}</if>
+	         <if test="projectCode != null">,#{projectCode,jdbcType=VARCHAR}</if>
+	         <if test="constructionUnitId != null">,#{constructionUnitId,jdbcType=VARCHAR}</if>
+	         <if test="constructionUnitName != null">,#{constructionUnitName,jdbcType=VARCHAR}</if>
+	         <if test="projectContent != null">,#{projectContent,jdbcType=VARCHAR}</if>
+	         <if test="projectAccord != null">,#{projectAccord,jdbcType=VARCHAR}</if>
+	         <if test="totalInvestment != null">,#{totalInvestment,jdbcType=NUMERIC}</if>
+	         <if test="capitalConstructionInvestmen != null">,#{capitalConstructionInvestmen,jdbcType=NUMERIC}</if>
+	         <if test="otherInvestment != null">,#{otherInvestment,jdbcType=NUMERIC}</if>
+	         <if test="sourceOneself != null">,#{sourceOneself,jdbcType=NUMERIC}</if>
+	         <if test="sourceOrg != null">,#{sourceOrg,jdbcType=NUMERIC}</if>
+	         <if test="sourceSuperior != null">,#{sourceSuperior,jdbcType=NUMERIC}</if>
+	         <if test="sourceLoan != null">,#{sourceLoan,jdbcType=NUMERIC}</if>
+	         <if test="sourceOther != null">,#{sourceOther,jdbcType=NUMERIC}</if>
+	         <if test="planStarttime != null">,#{planStarttime,jdbcType=DATE}</if>
+	         <if test="planEndtime != null">,#{planEndtime,jdbcType=DATE}</if>
+	         <if test="remark != null">,#{remark,jdbcType=VARCHAR}</if>
+	         <if test="createrId != null">,#{createrId,jdbcType=VARCHAR}</if>
+	         <if test="createMan != null">,#{createMan,jdbcType=VARCHAR}</if>
+	         <if test="createTime != null">,#{createTime,jdbcType=DATE}</if>
+	         <if test="updateId != null">,#{updateId,jdbcType=VARCHAR}</if>
+	         <if test="updateTime != null">,#{updateTime,jdbcType=DATE}</if>
+	 	 	 )
+</insert>
+
+<!-- ElementID:count,Generated=true -->
+<select id="count" parameterType="com.chinacreator.dzjc_union.UnionProject" resultType="int">
+	select count(*) from TA_UNION_PROJECT 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<!-- ElementID:update,Generated=true -->
+<update id="update" parameterType="com.chinacreator.dzjc_union.UnionProject">
+	update TA_UNION_PROJECT
+<set>
+	<if test="templateId != null">template_id=#{templateId,jdbcType=VARCHAR},</if>
+	<if test="projectName != null">project_name=#{projectName,jdbcType=VARCHAR},</if>
+	<if test="projectCode != null">project_code=#{projectCode,jdbcType=VARCHAR},</if>
+	<if test="constructionUnitId != null">construction_unit_id=#{constructionUnitId,jdbcType=VARCHAR},</if>
+	<if test="constructionUnitName != null">construction_unit_name=#{constructionUnitName,jdbcType=VARCHAR},</if>
+	<if test="projectContent != null">project_content=#{projectContent,jdbcType=VARCHAR},</if>
+	<if test="projectAccord != null">project_accord=#{projectAccord,jdbcType=VARCHAR},</if>
+	<if test="totalInvestment != null">total_investment=#{totalInvestment,jdbcType=NUMERIC},</if>
+	<if test="capitalConstructionInvestmen != null">capital_construction_investmen=#{capitalConstructionInvestmen,jdbcType=NUMERIC},</if>
+	<if test="otherInvestment != null">other_investment=#{otherInvestment,jdbcType=NUMERIC},</if>
+	<if test="sourceOneself != null">source_oneself=#{sourceOneself,jdbcType=NUMERIC},</if>
+	<if test="sourceOrg != null">source_org=#{sourceOrg,jdbcType=NUMERIC},</if>
+	<if test="sourceSuperior != null">source_superior=#{sourceSuperior,jdbcType=NUMERIC},</if>
+	<if test="sourceLoan != null">source_loan=#{sourceLoan,jdbcType=NUMERIC},</if>
+	<if test="sourceOther != null">source_other=#{sourceOther,jdbcType=NUMERIC},</if>
+	<if test="planStarttime != null">plan_starttime=#{planStarttime,jdbcType=DATE},</if>
+	<if test="planEndtime != null">plan_endtime=#{planEndtime,jdbcType=DATE},</if>
+	<if test="remark != null">remark=#{remark,jdbcType=VARCHAR},</if>
+	<if test="createrId != null">creater_id=#{createrId,jdbcType=VARCHAR},</if>
+	<if test="createMan != null">create_man=#{createMan,jdbcType=VARCHAR},</if>
+	<if test="createTime != null">create_time=#{createTime,jdbcType=DATE},</if>
+	<if test="updateId != null">update_id=#{updateId,jdbcType=VARCHAR},</if>
+	<if test="updateTime != null">update_time=#{updateTime,jdbcType=DATE}</if>
+</set>
+<where>
+	<choose>
+        <when test="projectId != null">and project_id = #{projectId}</when>
+        <otherwise>and project_id = </otherwise>
+    </choose>
+</where>
+</update>
+
+<!-- ElementID:updateNull,Generated=true -->
+<update id="updateNull" parameterType="map">
+	update TA_UNION_PROJECT
+	<set>
+		<trim suffixOverrides=",">
+		    <if test="templateId==null">template_id = null,</if>
+		    <if test="projectName==null">project_name = null,</if>
+		    <if test="projectCode==null">project_code = null,</if>
+		    <if test="constructionUnitId==null">construction_unit_id = null,</if>
+		    <if test="constructionUnitName==null">construction_unit_name = null,</if>
+		    <if test="projectContent==null">project_content = null,</if>
+		    <if test="projectAccord==null">project_accord = null,</if>
+		    <if test="totalInvestment==null">total_investment = null,</if>
+		    <if test="capitalConstructionInvestmen==null">capital_construction_investmen = null,</if>
+		    <if test="otherInvestment==null">other_investment = null,</if>
+		    <if test="sourceOneself==null">source_oneself = null,</if>
+		    <if test="sourceOrg==null">source_org = null,</if>
+		    <if test="sourceSuperior==null">source_superior = null,</if>
+		    <if test="sourceLoan==null">source_loan = null,</if>
+		    <if test="sourceOther==null">source_other = null,</if>
+		    <if test="planStarttime==null">plan_starttime = null,</if>
+		    <if test="planEndtime==null">plan_endtime = null,</if>
+		    <if test="remark==null">remark = null,</if>
+		    <if test="createrId==null">creater_id = null,</if>
+		    <if test="createMan==null">create_man = null,</if>
+		    <if test="createTime==null">create_time = null,</if>
+		    <if test="updateId==null">update_id = null,</if>
+		    <if test="updateTime==null">update_time = null,</if>
+		</trim>
+	</set>
+	<where>
+		<choose>
+			<when test="projectId != null">and project_id = #{projectId}</when>
+			<otherwise>and project_id = </otherwise>
+		</choose>
+	</where>
+</update>
+
+<!-- ElementID:delete,Generated=true -->
+<delete id="delete" parameterType="com.chinacreator.dzjc_union.UnionProject">
+    delete from TA_UNION_PROJECT where 1=1 and project_id = #{projectId}
+</delete>
+
+<!-- ElementID:select,Generated=true -->
+<select id="select" parameterType="com.chinacreator.dzjc_union.UnionProject" resultMap="UnionProjectResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_UNION_PROJECT 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+
+<!-- ElementID:insertBatch,Generated=true -->
+<insert id="insertBatch" parameterType="list">
+	insert into TA_UNION_PROJECT (project_id,template_id,project_name,project_code,construction_unit_id,construction_unit_name,project_content,project_accord,total_investment,capital_construction_investmen,other_investment,source_oneself,source_org,source_superior,source_loan,source_other,plan_starttime,plan_endtime,remark,creater_id,create_man,create_time,update_id,update_time) 
+<foreach collection="list" item="entity" index="index" separator="union all">
+		select 
+		#{entity.projectId,jdbcType = VARCHAR},
+				#{entity.templateId,jdbcType = VARCHAR},
+				#{entity.projectName,jdbcType = VARCHAR},
+				#{entity.projectCode,jdbcType = VARCHAR},
+				#{entity.constructionUnitId,jdbcType = VARCHAR},
+				#{entity.constructionUnitName,jdbcType = VARCHAR},
+				#{entity.projectContent,jdbcType = VARCHAR},
+				#{entity.projectAccord,jdbcType = VARCHAR},
+				#{entity.totalInvestment,jdbcType = NUMERIC},
+				#{entity.capitalConstructionInvestmen,jdbcType = NUMERIC},
+				#{entity.otherInvestment,jdbcType = NUMERIC},
+				#{entity.sourceOneself,jdbcType = NUMERIC},
+				#{entity.sourceOrg,jdbcType = NUMERIC},
+				#{entity.sourceSuperior,jdbcType = NUMERIC},
+				#{entity.sourceLoan,jdbcType = NUMERIC},
+				#{entity.sourceOther,jdbcType = NUMERIC},
+				#{entity.planStarttime,jdbcType = DATE},
+				#{entity.planEndtime,jdbcType = DATE},
+				#{entity.remark,jdbcType = VARCHAR},
+				#{entity.createrId,jdbcType = VARCHAR},
+				#{entity.createMan,jdbcType = VARCHAR},
+				#{entity.createTime,jdbcType = DATE},
+				#{entity.updateId,jdbcType = VARCHAR},
+				#{entity.updateTime,jdbcType = DATE}
+		from dual
+</foreach>
+</insert>
+
+<!-- ElementID:deleteBatch,Generated=true -->
+<delete id="deleteBatch" parameterType="List">
+	delete from TA_UNION_PROJECT where project_id in
+<trim prefix="(" suffix=")" suffixOverrides=",">
+<foreach collection="list" item="entity" separator=",">
+	<choose>
+		<when test="@com.chinacreator.c2.dao.util.EntityBeanUtil@isEntityObj(entity)">#{entity.projectId}</when>
+		<otherwise>#{entity}</otherwise>
+	</choose>
+</foreach>
+</trim>
+</delete>
+
+<!-- ElementID:updateBatch,Generated=true -->
+<update id="updateBatch" parameterType="list">
+	<foreach collection="list" item="entity" open="begin" close=";end;" separator=";">
+			update TA_UNION_PROJECT
+	<set>
+	<if test="entity.templateId != null">template_id= #{entity.templateId,jdbcType=VARCHAR},</if>
+	<if test="entity.projectName != null">project_name= #{entity.projectName,jdbcType=VARCHAR},</if>
+	<if test="entity.projectCode != null">project_code= #{entity.projectCode,jdbcType=VARCHAR},</if>
+	<if test="entity.constructionUnitId != null">construction_unit_id= #{entity.constructionUnitId,jdbcType=VARCHAR},</if>
+	<if test="entity.constructionUnitName != null">construction_unit_name= #{entity.constructionUnitName,jdbcType=VARCHAR},</if>
+	<if test="entity.projectContent != null">project_content= #{entity.projectContent,jdbcType=VARCHAR},</if>
+	<if test="entity.projectAccord != null">project_accord= #{entity.projectAccord,jdbcType=VARCHAR},</if>
+	<if test="entity.totalInvestment != null">total_investment= #{entity.totalInvestment,jdbcType=NUMERIC},</if>
+	<if test="entity.capitalConstructionInvestmen != null">capital_construction_investmen= #{entity.capitalConstructionInvestmen,jdbcType=NUMERIC},</if>
+	<if test="entity.otherInvestment != null">other_investment= #{entity.otherInvestment,jdbcType=NUMERIC},</if>
+	<if test="entity.sourceOneself != null">source_oneself= #{entity.sourceOneself,jdbcType=NUMERIC},</if>
+	<if test="entity.sourceOrg != null">source_org= #{entity.sourceOrg,jdbcType=NUMERIC},</if>
+	<if test="entity.sourceSuperior != null">source_superior= #{entity.sourceSuperior,jdbcType=NUMERIC},</if>
+	<if test="entity.sourceLoan != null">source_loan= #{entity.sourceLoan,jdbcType=NUMERIC},</if>
+	<if test="entity.sourceOther != null">source_other= #{entity.sourceOther,jdbcType=NUMERIC},</if>
+	<if test="entity.planStarttime != null">plan_starttime= #{entity.planStarttime,jdbcType=DATE},</if>
+	<if test="entity.planEndtime != null">plan_endtime= #{entity.planEndtime,jdbcType=DATE},</if>
+	<if test="entity.remark != null">remark= #{entity.remark,jdbcType=VARCHAR},</if>
+	<if test="entity.createrId != null">creater_id= #{entity.createrId,jdbcType=VARCHAR},</if>
+	<if test="entity.createMan != null">create_man= #{entity.createMan,jdbcType=VARCHAR},</if>
+	<if test="entity.createTime != null">create_time= #{entity.createTime,jdbcType=DATE},</if>
+	<if test="entity.updateId != null">update_id= #{entity.updateId,jdbcType=VARCHAR},</if>
+	<if test="entity.updateTime != null">update_time= #{entity.updateTime,jdbcType=DATE}</if>
+	</set>
+		<where>
+			<choose>
+				<when test="entity.projectId != null">and project_id = #{entity.projectId}</when>
+				<otherwise>and project_id = </otherwise>
+			</choose>
+		</where>
+	</foreach>
+</update>
+
+<!-- ElementID:selectAll,Generated=true -->
+<select id="selectAll" resultMap="UnionProjectResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_UNION_PROJECT 
+</select>
+
+<!-- ElementID:selectMany,Generated=true -->
+<select id="selectMany" parameterType="list" resultMap="UnionProjectResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_UNION_PROJECT 
+	where TA_UNION_PROJECT.project_id in (
+<foreach collection="list" item="entity" separator="intersect">
+		select 
+		TA_UNION_PROJECT.project_id
+	    from TA_UNION_PROJECT 
+		 <where>
+	        <if test="entity.projectId != null">and TA_UNION_PROJECT.project_id = #{entity.projectId}</if>
+	        <if test="entity.templateId != null">and TA_UNION_PROJECT.template_id = #{entity.templateId}</if>
+	        <if test="entity.projectName != null">and TA_UNION_PROJECT.project_name = #{entity.projectName}</if>
+	        <if test="entity.projectCode != null">and TA_UNION_PROJECT.project_code = #{entity.projectCode}</if>
+	        <if test="entity.constructionUnitId != null">and TA_UNION_PROJECT.construction_unit_id = #{entity.constructionUnitId}</if>
+	        <if test="entity.constructionUnitName != null">and TA_UNION_PROJECT.construction_unit_name = #{entity.constructionUnitName}</if>
+	        <if test="entity.projectContent != null">and TA_UNION_PROJECT.project_content = #{entity.projectContent}</if>
+	        <if test="entity.projectAccord != null">and TA_UNION_PROJECT.project_accord = #{entity.projectAccord}</if>
+	        <if test="entity.totalInvestment != null">and TA_UNION_PROJECT.total_investment = #{entity.totalInvestment}</if>
+	        <if test="entity.capitalConstructionInvestmen != null">and TA_UNION_PROJECT.capital_construction_investmen = #{entity.capitalConstructionInvestmen}</if>
+	        <if test="entity.otherInvestment != null">and TA_UNION_PROJECT.other_investment = #{entity.otherInvestment}</if>
+	        <if test="entity.sourceOneself != null">and TA_UNION_PROJECT.source_oneself = #{entity.sourceOneself}</if>
+	        <if test="entity.sourceOrg != null">and TA_UNION_PROJECT.source_org = #{entity.sourceOrg}</if>
+	        <if test="entity.sourceSuperior != null">and TA_UNION_PROJECT.source_superior = #{entity.sourceSuperior}</if>
+	        <if test="entity.sourceLoan != null">and TA_UNION_PROJECT.source_loan = #{entity.sourceLoan}</if>
+	        <if test="entity.sourceOther != null">and TA_UNION_PROJECT.source_other = #{entity.sourceOther}</if>
+	        <if test="entity.planStarttime != null">and TA_UNION_PROJECT.plan_starttime = #{entity.planStarttime}</if>
+	        <if test="entity.planEndtime != null">and TA_UNION_PROJECT.plan_endtime = #{entity.planEndtime}</if>
+	        <if test="entity.remark != null">and TA_UNION_PROJECT.remark = #{entity.remark}</if>
+	        <if test="entity.createrId != null">and TA_UNION_PROJECT.creater_id = #{entity.createrId}</if>
+	        <if test="entity.createMan != null">and TA_UNION_PROJECT.create_man = #{entity.createMan}</if>
+	        <if test="entity.createTime != null">and TA_UNION_PROJECT.create_time = #{entity.createTime}</if>
+	        <if test="entity.updateId != null">and TA_UNION_PROJECT.update_id = #{entity.updateId}</if>
+	        <if test="entity.updateTime != null">and TA_UNION_PROJECT.update_time = #{entity.updateTime}</if>
+		</where>
+</foreach>
+)
+</select>
+
+<!-- ElementID:selectUnion,Generated=true -->
+<select id="selectUnion" parameterType="list" resultMap="UnionProjectResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_UNION_PROJECT 
+	 INNER JOIN
+<foreach collection="list" item="entity" separator="UNION" open="(" close=")">
+		SELECT 
+			 project_id
+		FROM TA_UNION_PROJECT 
+			<where>
+	        <if test="entity.projectId != null">and TA_UNION_PROJECT.project_id = #{entity.projectId}</if>
+	        <if test="entity.templateId != null">and TA_UNION_PROJECT.template_id = #{entity.templateId}</if>
+	        <if test="entity.projectName != null">and TA_UNION_PROJECT.project_name = #{entity.projectName}</if>
+	        <if test="entity.projectCode != null">and TA_UNION_PROJECT.project_code = #{entity.projectCode}</if>
+	        <if test="entity.constructionUnitId != null">and TA_UNION_PROJECT.construction_unit_id = #{entity.constructionUnitId}</if>
+	        <if test="entity.constructionUnitName != null">and TA_UNION_PROJECT.construction_unit_name = #{entity.constructionUnitName}</if>
+	        <if test="entity.projectContent != null">and TA_UNION_PROJECT.project_content = #{entity.projectContent}</if>
+	        <if test="entity.projectAccord != null">and TA_UNION_PROJECT.project_accord = #{entity.projectAccord}</if>
+	        <if test="entity.totalInvestment != null">and TA_UNION_PROJECT.total_investment = #{entity.totalInvestment}</if>
+	        <if test="entity.capitalConstructionInvestmen != null">and TA_UNION_PROJECT.capital_construction_investmen = #{entity.capitalConstructionInvestmen}</if>
+	        <if test="entity.otherInvestment != null">and TA_UNION_PROJECT.other_investment = #{entity.otherInvestment}</if>
+	        <if test="entity.sourceOneself != null">and TA_UNION_PROJECT.source_oneself = #{entity.sourceOneself}</if>
+	        <if test="entity.sourceOrg != null">and TA_UNION_PROJECT.source_org = #{entity.sourceOrg}</if>
+	        <if test="entity.sourceSuperior != null">and TA_UNION_PROJECT.source_superior = #{entity.sourceSuperior}</if>
+	        <if test="entity.sourceLoan != null">and TA_UNION_PROJECT.source_loan = #{entity.sourceLoan}</if>
+	        <if test="entity.sourceOther != null">and TA_UNION_PROJECT.source_other = #{entity.sourceOther}</if>
+	        <if test="entity.planStarttime != null">and TA_UNION_PROJECT.plan_starttime = #{entity.planStarttime}</if>
+	        <if test="entity.planEndtime != null">and TA_UNION_PROJECT.plan_endtime = #{entity.planEndtime}</if>
+	        <if test="entity.remark != null">and TA_UNION_PROJECT.remark = #{entity.remark}</if>
+	        <if test="entity.createrId != null">and TA_UNION_PROJECT.creater_id = #{entity.createrId}</if>
+	        <if test="entity.createMan != null">and TA_UNION_PROJECT.create_man = #{entity.createMan}</if>
+	        <if test="entity.createTime != null">and TA_UNION_PROJECT.create_time = #{entity.createTime}</if>
+	        <if test="entity.updateId != null">and TA_UNION_PROJECT.update_id = #{entity.updateId}</if>
+	        <if test="entity.updateTime != null">and TA_UNION_PROJECT.update_time = #{entity.updateTime}</if>
+			</where>
+</foreach>
+	c2_temp_table ON TA_UNION_PROJECT.project_id = c2_temp_table.project_id
+</select>
+
+<!-- ElementID:selectByID,Generated=true -->
+<select id="selectByID" parameterType="java.lang.String" resultMap="UnionProjectResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_UNION_PROJECT 
+		 where TA_UNION_PROJECT.project_id = #{projectId,jdbcType=VARCHAR}
+</select>
+
+<!-- ElementID:selectByPage,Generated=true -->
+<select id="selectByPage" parameterType="com.chinacreator.dzjc_union.UnionProject" resultMap="UnionProjectResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_UNION_PROJECT 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+</mapper>

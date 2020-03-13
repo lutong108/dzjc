@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"><mapper namespace="com.chinacreator.dzjc_tongji.HotInstanceSuperviseMapper">	
+
+<!-- ElementID:column_sql,Generated=false -->
+<sql id="column_sql">
+		  V_SP_INSTANCE_SUPERVISE.supervise_info_id ,
+		  V_SP_INSTANCE_SUPERVISE.instance_id ,
+		  V_SP_INSTANCE_SUPERVISE.approve_id ,
+		  V_SP_INSTANCE_SUPERVISE.org_id ,
+		  V_SP_INSTANCE_SUPERVISE.supervise_result_no ,
+		  V_SP_INSTANCE_SUPERVISE.supervise_result_name ,
+		  V_SP_INSTANCE_SUPERVISE.instance_name ,
+		  V_SP_INSTANCE_SUPERVISE.org_name ,
+		  V_SP_INSTANCE_SUPERVISE.bj_state ,
+		  V_SP_INSTANCE_SUPERVISE.accept_time ,
+		  V_SP_INSTANCE_SUPERVISE.end_time ,
+		  V_SP_INSTANCE_SUPERVISE.supervise_time <!-- ,
+		  V_SP_INSTANCE_SUPERVISE.beginDate ,
+		  V_SP_INSTANCE_SUPERVISE.endDate ,
+		  V_SP_INSTANCE_SUPERVISE.jcBeginDate ,
+		  V_SP_INSTANCE_SUPERVISE.jcEndDate  -->
+</sql>
+
+<!-- ElementID:whereClause_sql,Generated=true -->
+<sql id="whereClause_sql">
+	    <if test="superviseInfoId != null">and V_SP_INSTANCE_SUPERVISE.supervise_info_id = #{superviseInfoId}</if>
+	    <if test="instanceId != null">and V_SP_INSTANCE_SUPERVISE.instance_id = #{instanceId}</if>
+	    <if test="approveId != null">and V_SP_INSTANCE_SUPERVISE.approve_id = #{approveId}</if>
+	    <if test="orgId != null">and V_SP_INSTANCE_SUPERVISE.org_id = #{orgId}</if>
+	    <if test="superviseResultNo != null">and V_SP_INSTANCE_SUPERVISE.supervise_result_no = #{superviseResultNo}</if>
+	    <if test="superviseResultName != null">and V_SP_INSTANCE_SUPERVISE.supervise_result_name = #{superviseResultName}</if>
+	    <if test="instanceName != null">and V_SP_INSTANCE_SUPERVISE.instance_name = #{instanceName}</if>
+	    <if test="orgName != null">and V_SP_INSTANCE_SUPERVISE.org_name = #{orgName}</if>
+	    <if test="bjState != null">and V_SP_INSTANCE_SUPERVISE.bj_state = #{bjState}</if>
+	    <if test="acceptTime != null">and V_SP_INSTANCE_SUPERVISE.accept_time = #{acceptTime}</if>
+	    <if test="endTime != null">and V_SP_INSTANCE_SUPERVISE.end_time = #{endTime}</if>
+	    <if test="superviseTime != null">and V_SP_INSTANCE_SUPERVISE.supervise_time = #{superviseTime}</if>
+	    <if test="beginDate != null">and V_SP_INSTANCE_SUPERVISE.beginDate = #{beginDate}</if>
+	    <if test="endDate != null">and V_SP_INSTANCE_SUPERVISE.endDate = #{endDate}</if>
+	    <if test="jcBeginDate != null">and V_SP_INSTANCE_SUPERVISE.jcBeginDate = #{jcBeginDate}</if>
+	    <if test="jcEndDate != null">and V_SP_INSTANCE_SUPERVISE.jcEndDate = #{jcEndDate}</if>
+</sql>
+
+
+<!-- ElementID:HotInstanceSuperviseResult,Generated=true -->
+<resultMap id="HotInstanceSuperviseResult" type="com.chinacreator.dzjc_tongji.HotInstanceSupervise">
+	<id property="superviseInfoId" column="supervise_info_id"/>
+	<result property="instanceId" column="instance_id"/>
+	<result property="approveId" column="approve_id"/>
+	<result property="orgId" column="org_id"/>
+	<result property="superviseResultNo" column="supervise_result_no"/>
+	<result property="superviseResultName" column="supervise_result_name"/>
+	<result property="instanceName" column="instance_name"/>
+	<result property="orgName" column="org_name"/>
+	<result property="bjState" column="bj_state"/>
+	<result property="acceptTime" column="accept_time"/>
+	<result property="endTime" column="end_time"/>
+	<result property="superviseTime" column="supervise_time"/>
+	<result property="beginDate" column="beginDate"/>
+	<result property="endDate" column="endDate"/>
+	<result property="jcBeginDate" column="jcBeginDate"/>
+	<result property="jcEndDate" column="jcEndDate"/>
+</resultMap>
+
+
+<!-- ElementID:insert,Generated=true -->
+<insert id="insert" parameterType="com.chinacreator.dzjc_tongji.HotInstanceSupervise">
+	insert into V_SP_INSTANCE_SUPERVISE(
+	         <if test="superviseInfoId != null">supervise_info_id</if>
+	         <if test="instanceId != null">,instance_id</if>
+	         <if test="approveId != null">,approve_id</if>
+	         <if test="orgId != null">,org_id</if>
+	         <if test="superviseResultNo != null">,supervise_result_no</if>
+	         <if test="superviseResultName != null">,supervise_result_name</if>
+	         <if test="instanceName != null">,instance_name</if>
+	         <if test="orgName != null">,org_name</if>
+	         <if test="bjState != null">,bj_state</if>
+	         <if test="acceptTime != null">,accept_time</if>
+	         <if test="endTime != null">,end_time</if>
+	         <if test="superviseTime != null">,supervise_time</if>
+	         <if test="beginDate != null">,beginDate</if>
+	         <if test="endDate != null">,endDate</if>
+	         <if test="jcBeginDate != null">,jcBeginDate</if>
+	         <if test="jcEndDate != null">,jcEndDate</if>
+	 	 	 )
+	 values (
+	         <if test="superviseInfoId != null">#{superviseInfoId,jdbcType=VARCHAR}</if>
+	         <if test="instanceId != null">,#{instanceId,jdbcType=VARCHAR}</if>
+	         <if test="approveId != null">,#{approveId,jdbcType=VARCHAR}</if>
+	         <if test="orgId != null">,#{orgId,jdbcType=VARCHAR}</if>
+	         <if test="superviseResultNo != null">,#{superviseResultNo,jdbcType=VARCHAR}</if>
+	         <if test="superviseResultName != null">,#{superviseResultName,jdbcType=VARCHAR}</if>
+	         <if test="instanceName != null">,#{instanceName,jdbcType=VARCHAR}</if>
+	         <if test="orgName != null">,#{orgName,jdbcType=VARCHAR}</if>
+	         <if test="bjState != null">,#{bjState,jdbcType=VARCHAR}</if>
+	         <if test="acceptTime != null">,#{acceptTime,jdbcType=DATE}</if>
+	         <if test="endTime != null">,#{endTime,jdbcType=DATE}</if>
+	         <if test="superviseTime != null">,#{superviseTime,jdbcType=DATE}</if>
+	         <if test="beginDate != null">,#{beginDate,jdbcType=DATE}</if>
+	         <if test="endDate != null">,#{endDate,jdbcType=DATE}</if>
+	         <if test="jcBeginDate != null">,#{jcBeginDate,jdbcType=DATE}</if>
+	         <if test="jcEndDate != null">,#{jcEndDate,jdbcType=DATE}</if>
+	 	 	 )
+</insert>
+
+<!-- ElementID:count,Generated=true -->
+<select id="count" parameterType="com.chinacreator.dzjc_tongji.HotInstanceSupervise" resultType="int">
+	select count(*) from V_SP_INSTANCE_SUPERVISE 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<!-- ElementID:update,Generated=true -->
+<update id="update" parameterType="com.chinacreator.dzjc_tongji.HotInstanceSupervise">
+	update V_SP_INSTANCE_SUPERVISE
+<set>
+	<if test="instanceId != null">instance_id=#{instanceId,jdbcType=VARCHAR},</if>
+	<if test="approveId != null">approve_id=#{approveId,jdbcType=VARCHAR},</if>
+	<if test="orgId != null">org_id=#{orgId,jdbcType=VARCHAR},</if>
+	<if test="superviseResultNo != null">supervise_result_no=#{superviseResultNo,jdbcType=VARCHAR},</if>
+	<if test="superviseResultName != null">supervise_result_name=#{superviseResultName,jdbcType=VARCHAR},</if>
+	<if test="instanceName != null">instance_name=#{instanceName,jdbcType=VARCHAR},</if>
+	<if test="orgName != null">org_name=#{orgName,jdbcType=VARCHAR},</if>
+	<if test="bjState != null">bj_state=#{bjState,jdbcType=VARCHAR},</if>
+	<if test="acceptTime != null">accept_time=#{acceptTime,jdbcType=DATE},</if>
+	<if test="endTime != null">end_time=#{endTime,jdbcType=DATE},</if>
+	<if test="superviseTime != null">supervise_time=#{superviseTime,jdbcType=DATE},</if>
+	<if test="beginDate != null">beginDate=#{beginDate,jdbcType=DATE},</if>
+	<if test="endDate != null">endDate=#{endDate,jdbcType=DATE},</if>
+	<if test="jcBeginDate != null">jcBeginDate=#{jcBeginDate,jdbcType=DATE},</if>
+	<if test="jcEndDate != null">jcEndDate=#{jcEndDate,jdbcType=DATE}</if>
+</set>
+<where>
+	<choose>
+        <when test="superviseInfoId != null">and supervise_info_id = #{superviseInfoId}</when>
+        <otherwise>and supervise_info_id = </otherwise>
+    </choose>
+</where>
+</update>
+
+<!-- ElementID:updateNull,Generated=true -->
+<update id="updateNull" parameterType="map">
+	update V_SP_INSTANCE_SUPERVISE
+	<set>
+		<trim suffixOverrides=",">
+		    <if test="instanceId==null">instance_id = null,</if>
+		    <if test="approveId==null">approve_id = null,</if>
+		    <if test="orgId==null">org_id = null,</if>
+		    <if test="superviseResultNo==null">supervise_result_no = null,</if>
+		    <if test="superviseResultName==null">supervise_result_name = null,</if>
+		    <if test="instanceName==null">instance_name = null,</if>
+		    <if test="orgName==null">org_name = null,</if>
+		    <if test="bjState==null">bj_state = null,</if>
+		    <if test="acceptTime==null">accept_time = null,</if>
+		    <if test="endTime==null">end_time = null,</if>
+		    <if test="superviseTime==null">supervise_time = null,</if>
+		    <if test="beginDate==null">beginDate = null,</if>
+		    <if test="endDate==null">endDate = null,</if>
+		    <if test="jcBeginDate==null">jcBeginDate = null,</if>
+		    <if test="jcEndDate==null">jcEndDate = null,</if>
+		</trim>
+	</set>
+	<where>
+		<choose>
+			<when test="superviseInfoId != null">and supervise_info_id = #{superviseInfoId}</when>
+			<otherwise>and supervise_info_id = </otherwise>
+		</choose>
+	</where>
+</update>
+
+<!-- ElementID:delete,Generated=true -->
+<delete id="delete" parameterType="com.chinacreator.dzjc_tongji.HotInstanceSupervise">
+    delete from V_SP_INSTANCE_SUPERVISE where 1=1 and supervise_info_id = #{superviseInfoId}
+</delete>
+
+<!-- ElementID:select,Generated=true -->
+<select id="select" parameterType="com.chinacreator.dzjc_tongji.HotInstanceSupervise" resultMap="HotInstanceSuperviseResult">
+	select 
+		<include refid="column_sql"/>
+	    from V_SP_INSTANCE_SUPERVISE 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+
+<!-- ElementID:insertBatch,Generated=true -->
+<insert id="insertBatch" parameterType="list">
+	insert into V_SP_INSTANCE_SUPERVISE (supervise_info_id,instance_id,approve_id,org_id,supervise_result_no,supervise_result_name,instance_name,org_name,bj_state,accept_time,end_time,supervise_time,beginDate,endDate,jcBeginDate,jcEndDate) 
+<foreach collection="list" item="entity" index="index" separator="union all">
+		select 
+		#{entity.superviseInfoId,jdbcType = VARCHAR},
+				#{entity.instanceId,jdbcType = VARCHAR},
+				#{entity.approveId,jdbcType = VARCHAR},
+				#{entity.orgId,jdbcType = VARCHAR},
+				#{entity.superviseResultNo,jdbcType = VARCHAR},
+				#{entity.superviseResultName,jdbcType = VARCHAR},
+				#{entity.instanceName,jdbcType = VARCHAR},
+				#{entity.orgName,jdbcType = VARCHAR},
+				#{entity.bjState,jdbcType = VARCHAR},
+				#{entity.acceptTime,jdbcType = DATE},
+				#{entity.endTime,jdbcType = DATE},
+				#{entity.superviseTime,jdbcType = DATE},
+				#{entity.beginDate,jdbcType = DATE},
+				#{entity.endDate,jdbcType = DATE},
+				#{entity.jcBeginDate,jdbcType = DATE},
+				#{entity.jcEndDate,jdbcType = DATE}
+		from dual
+</foreach>
+</insert>
+
+<!-- ElementID:deleteBatch,Generated=true -->
+<delete id="deleteBatch" parameterType="List">
+	delete from V_SP_INSTANCE_SUPERVISE where supervise_info_id in
+<trim prefix="(" suffix=")" suffixOverrides=",">
+<foreach collection="list" item="entity" separator=",">
+	<choose>
+		<when test="@com.chinacreator.c2.dao.util.EntityBeanUtil@isEntityObj(entity)">#{entity.superviseInfoId}</when>
+		<otherwise>#{entity}</otherwise>
+	</choose>
+</foreach>
+</trim>
+</delete>
+
+<!-- ElementID:updateBatch,Generated=true -->
+<update id="updateBatch" parameterType="list">
+	<foreach collection="list" item="entity" open="begin" close=";end;" separator=";">
+			update V_SP_INSTANCE_SUPERVISE
+	<set>
+	<if test="entity.instanceId != null">instance_id= #{entity.instanceId,jdbcType=VARCHAR},</if>
+	<if test="entity.approveId != null">approve_id= #{entity.approveId,jdbcType=VARCHAR},</if>
+	<if test="entity.orgId != null">org_id= #{entity.orgId,jdbcType=VARCHAR},</if>
+	<if test="entity.superviseResultNo != null">supervise_result_no= #{entity.superviseResultNo,jdbcType=VARCHAR},</if>
+	<if test="entity.superviseResultName != null">supervise_result_name= #{entity.superviseResultName,jdbcType=VARCHAR},</if>
+	<if test="entity.instanceName != null">instance_name= #{entity.instanceName,jdbcType=VARCHAR},</if>
+	<if test="entity.orgName != null">org_name= #{entity.orgName,jdbcType=VARCHAR},</if>
+	<if test="entity.bjState != null">bj_state= #{entity.bjState,jdbcType=VARCHAR},</if>
+	<if test="entity.acceptTime != null">accept_time= #{entity.acceptTime,jdbcType=DATE},</if>
+	<if test="entity.endTime != null">end_time= #{entity.endTime,jdbcType=DATE},</if>
+	<if test="entity.superviseTime != null">supervise_time= #{entity.superviseTime,jdbcType=DATE},</if>
+	<if test="entity.beginDate != null">beginDate= #{entity.beginDate,jdbcType=DATE},</if>
+	<if test="entity.endDate != null">endDate= #{entity.endDate,jdbcType=DATE},</if>
+	<if test="entity.jcBeginDate != null">jcBeginDate= #{entity.jcBeginDate,jdbcType=DATE},</if>
+	<if test="entity.jcEndDate != null">jcEndDate= #{entity.jcEndDate,jdbcType=DATE}</if>
+	</set>
+		<where>
+			<choose>
+				<when test="entity.superviseInfoId != null">and supervise_info_id = #{entity.superviseInfoId}</when>
+				<otherwise>and supervise_info_id = </otherwise>
+			</choose>
+		</where>
+	</foreach>
+</update>
+
+<!-- ElementID:selectAll,Generated=true -->
+<select id="selectAll" resultMap="HotInstanceSuperviseResult">
+	select 
+		<include refid="column_sql"/>
+	    from V_SP_INSTANCE_SUPERVISE 
+</select>
+
+<!-- ElementID:selectMany,Generated=true -->
+<select id="selectMany" parameterType="list" resultMap="HotInstanceSuperviseResult">
+select 
+	<include refid="column_sql"/> 
+	from V_SP_INSTANCE_SUPERVISE 
+	where V_SP_INSTANCE_SUPERVISE.supervise_info_id in (
+<foreach collection="list" item="entity" separator="intersect">
+		select 
+		V_SP_INSTANCE_SUPERVISE.supervise_info_id
+	    from V_SP_INSTANCE_SUPERVISE 
+		 <where>
+	        <if test="entity.superviseInfoId != null">and V_SP_INSTANCE_SUPERVISE.supervise_info_id = #{entity.superviseInfoId}</if>
+	        <if test="entity.instanceId != null">and V_SP_INSTANCE_SUPERVISE.instance_id = #{entity.instanceId}</if>
+	        <if test="entity.approveId != null">and V_SP_INSTANCE_SUPERVISE.approve_id = #{entity.approveId}</if>
+	        <if test="entity.orgId != null">and V_SP_INSTANCE_SUPERVISE.org_id = #{entity.orgId}</if>
+	        <if test="entity.superviseResultNo != null">and V_SP_INSTANCE_SUPERVISE.supervise_result_no = #{entity.superviseResultNo}</if>
+	        <if test="entity.superviseResultName != null">and V_SP_INSTANCE_SUPERVISE.supervise_result_name = #{entity.superviseResultName}</if>
+	        <if test="entity.instanceName != null">and V_SP_INSTANCE_SUPERVISE.instance_name = #{entity.instanceName}</if>
+	        <if test="entity.orgName != null">and V_SP_INSTANCE_SUPERVISE.org_name = #{entity.orgName}</if>
+	        <if test="entity.bjState != null">and V_SP_INSTANCE_SUPERVISE.bj_state = #{entity.bjState}</if>
+	        <if test="entity.acceptTime != null">and V_SP_INSTANCE_SUPERVISE.accept_time = #{entity.acceptTime}</if>
+	        <if test="entity.endTime != null">and V_SP_INSTANCE_SUPERVISE.end_time = #{entity.endTime}</if>
+	        <if test="entity.superviseTime != null">and V_SP_INSTANCE_SUPERVISE.supervise_time = #{entity.superviseTime}</if>
+	        <if test="entity.beginDate != null">and V_SP_INSTANCE_SUPERVISE.beginDate = #{entity.beginDate}</if>
+	        <if test="entity.endDate != null">and V_SP_INSTANCE_SUPERVISE.endDate = #{entity.endDate}</if>
+	        <if test="entity.jcBeginDate != null">and V_SP_INSTANCE_SUPERVISE.jcBeginDate = #{entity.jcBeginDate}</if>
+	        <if test="entity.jcEndDate != null">and V_SP_INSTANCE_SUPERVISE.jcEndDate = #{entity.jcEndDate}</if>
+		</where>
+</foreach>
+)
+</select>
+
+<!-- ElementID:selectUnion,Generated=true -->
+<select id="selectUnion" parameterType="list" resultMap="HotInstanceSuperviseResult">
+select 
+	<include refid="column_sql"/> 
+	from V_SP_INSTANCE_SUPERVISE 
+	 INNER JOIN
+<foreach collection="list" item="entity" separator="UNION" open="(" close=")">
+		SELECT 
+			 supervise_info_id
+		FROM V_SP_INSTANCE_SUPERVISE 
+			<where>
+	        <if test="entity.superviseInfoId != null">and V_SP_INSTANCE_SUPERVISE.supervise_info_id = #{entity.superviseInfoId}</if>
+	        <if test="entity.instanceId != null">and V_SP_INSTANCE_SUPERVISE.instance_id = #{entity.instanceId}</if>
+	        <if test="entity.approveId != null">and V_SP_INSTANCE_SUPERVISE.approve_id = #{entity.approveId}</if>
+	        <if test="entity.orgId != null">and V_SP_INSTANCE_SUPERVISE.org_id = #{entity.orgId}</if>
+	        <if test="entity.superviseResultNo != null">and V_SP_INSTANCE_SUPERVISE.supervise_result_no = #{entity.superviseResultNo}</if>
+	        <if test="entity.superviseResultName != null">and V_SP_INSTANCE_SUPERVISE.supervise_result_name = #{entity.superviseResultName}</if>
+	        <if test="entity.instanceName != null">and V_SP_INSTANCE_SUPERVISE.instance_name = #{entity.instanceName}</if>
+	        <if test="entity.orgName != null">and V_SP_INSTANCE_SUPERVISE.org_name = #{entity.orgName}</if>
+	        <if test="entity.bjState != null">and V_SP_INSTANCE_SUPERVISE.bj_state = #{entity.bjState}</if>
+	        <if test="entity.acceptTime != null">and V_SP_INSTANCE_SUPERVISE.accept_time = #{entity.acceptTime}</if>
+	        <if test="entity.endTime != null">and V_SP_INSTANCE_SUPERVISE.end_time = #{entity.endTime}</if>
+	        <if test="entity.superviseTime != null">and V_SP_INSTANCE_SUPERVISE.supervise_time = #{entity.superviseTime}</if>
+	        <if test="entity.beginDate != null">and V_SP_INSTANCE_SUPERVISE.beginDate = #{entity.beginDate}</if>
+	        <if test="entity.endDate != null">and V_SP_INSTANCE_SUPERVISE.endDate = #{entity.endDate}</if>
+	        <if test="entity.jcBeginDate != null">and V_SP_INSTANCE_SUPERVISE.jcBeginDate = #{entity.jcBeginDate}</if>
+	        <if test="entity.jcEndDate != null">and V_SP_INSTANCE_SUPERVISE.jcEndDate = #{entity.jcEndDate}</if>
+			</where>
+</foreach>
+	c2_temp_table ON V_SP_INSTANCE_SUPERVISE.supervise_info_id = c2_temp_table.supervise_info_id
+</select>
+
+<!-- ElementID:selectByID,Generated=true -->
+<select id="selectByID" parameterType="java.lang.String" resultMap="HotInstanceSuperviseResult">
+	select 
+		<include refid="column_sql"/>
+	    from V_SP_INSTANCE_SUPERVISE 
+		 where V_SP_INSTANCE_SUPERVISE.supervise_info_id = #{superviseInfoId,jdbcType=VARCHAR}
+</select>
+
+<!-- ElementID:selectByPage,Generated=true -->
+<select id="selectByPage" parameterType="com.chinacreator.dzjc_tongji.HotInstanceSupervise" resultMap="HotInstanceSuperviseResult">
+	select 
+		<include refid="column_sql"/>
+	    from V_SP_INSTANCE_SUPERVISE 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<select id="selectData" parameterType="com.chinacreator.dzjc_tongji.HotInstanceSupervise" resultMap="HotInstanceSuperviseResult">
+
+with orgCondition as (
+    SELECT id,code FROM V_ORG START WITH ID = #{orgId,jdbcType=VARCHAR} CONNECT BY PRIOR ID = PID 
+)
+ select 
+    <include refid="column_sql"/>
+	    from V_SP_INSTANCE_SUPERVISE 
+   <where>
+		<if test="beginDate != null">
+          and to_char(accept_time,'yyyy-MM-dd') &gt;= #{beginDate,jdbcType=VARCHAR}
+       </if>
+       <if test="endDate != null">
+         and  to_char(accept_time,'yyyy-MM-dd') &lt;= #{endDate,jdbcType=VARCHAR}
+       </if>
+       <if test="jcBeginDate != null">
+          and to_char(supervise_time,'yyyy-MM-dd') &gt;= #{jcBeginDate,jdbcType=VARCHAR}
+	    </if>
+	    <if test="jcEndDate != null">
+	      and  to_char(supervise_time,'yyyy-MM-dd') &lt;= #{jcEndDate,jdbcType=VARCHAR}
+	    </if>
+	     <if test="superviseResultNo != null">
+          and  supervise_result_no = #{superviseResultNo,jdbcType=VARCHAR}
+        </if>
+        <if test="bjState != null">
+          and  bj_state = #{bjState,jdbcType=VARCHAR}
+        </if>
+        <if test="approveId != null">
+          and  approve_id = #{approveId,jdbcType=VARCHAR}
+        </if>
+	</where>
+	order by accept_time desc
+</select>
+
+</mapper>

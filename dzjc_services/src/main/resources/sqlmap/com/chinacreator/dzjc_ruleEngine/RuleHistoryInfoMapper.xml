@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"><mapper namespace="com.chinacreator.dzjc_ruleEngine.RuleHistoryInfoMapper">	
+
+<!-- ElementID:column_sql,Generated=true -->
+<sql id="column_sql">
+		  TA_JC_RULE_HISTORYINFO.his_id ,
+		  TA_JC_RULE_HISTORYINFO.rule_id ,
+		  TA_JC_RULE_HISTORYINFO.rule_name ,
+		  TA_JC_RULE_HISTORYINFO.rule_memo ,
+		  TA_JC_RULE_HISTORYINFO.rule_version ,
+		  TA_JC_RULE_HISTORYINFO.is_valid ,
+		  TA_JC_RULE_HISTORYINFO.is_auto_run ,
+		  TA_JC_RULE_HISTORYINFO.run_priority ,
+		  TA_JC_RULE_HISTORYINFO.rule_type ,
+		  TA_JC_RULE_HISTORYINFO.cc_form_instanceid ,
+		  TA_JC_RULE_HISTORYINFO.jbj_is_monitor 
+</sql>
+
+<!-- ElementID:whereClause_sql,Generated=true -->
+<sql id="whereClause_sql">
+	    <if test="hisId != null">and TA_JC_RULE_HISTORYINFO.his_id = #{hisId}</if>
+	    <if test="ruleId != null">and TA_JC_RULE_HISTORYINFO.rule_id = #{ruleId}</if>
+	    <if test="ruleName != null">and TA_JC_RULE_HISTORYINFO.rule_name = #{ruleName}</if>
+	    <if test="ruleMemo != null">and TA_JC_RULE_HISTORYINFO.rule_memo = #{ruleMemo}</if>
+	    <if test="ruleVersion != null">and TA_JC_RULE_HISTORYINFO.rule_version = #{ruleVersion}</if>
+	    <if test="isValid != null">and TA_JC_RULE_HISTORYINFO.is_valid = #{isValid}</if>
+	    <if test="isAutoRun != null">and TA_JC_RULE_HISTORYINFO.is_auto_run = #{isAutoRun}</if>
+	    <if test="runPriority != null">and TA_JC_RULE_HISTORYINFO.run_priority = #{runPriority}</if>
+	    <if test="ruleType != null">and TA_JC_RULE_HISTORYINFO.rule_type = #{ruleType}</if>
+	    <if test="ccFormInstanceid != null">and TA_JC_RULE_HISTORYINFO.cc_form_instanceid = #{ccFormInstanceid}</if>
+	    <if test="jbjIsMonitor != null">and TA_JC_RULE_HISTORYINFO.jbj_is_monitor = #{jbjIsMonitor}</if>
+</sql>
+
+
+<!-- ElementID:RuleHistoryInfoResult,Generated=true -->
+<resultMap id="RuleHistoryInfoResult" type="com.chinacreator.dzjc_ruleEngine.RuleHistoryInfo">
+	<id property="hisId" column="his_id"/>
+	<result property="ruleId" column="rule_id"/>
+	<result property="ruleName" column="rule_name"/>
+	<result property="ruleMemo" column="rule_memo"/>
+	<result property="ruleVersion" column="rule_version"/>
+	<result property="isValid" column="is_valid"/>
+	<result property="isAutoRun" column="is_auto_run"/>
+	<result property="runPriority" column="run_priority"/>
+	<result property="ruleType" column="rule_type"/>
+	<result property="ccFormInstanceid" column="cc_form_instanceid"/>
+	<result property="jbjIsMonitor" column="jbj_is_monitor"/>
+</resultMap>
+
+
+
+<!-- ElementName:cache,Generated=true -->
+<cache type="C2_Default_Dao_Cache"/>
+
+<!-- ElementID:insert,Generated=false -->
+<insert id="insert" parameterType="com.chinacreator.dzjc_ruleEngine.RuleHistoryInfo">
+	insert into TA_JC_RULE_HISTORYINFO(
+	         <if test="hisId != null">his_id</if>
+	         <if test="ruleId != null">,rule_id</if>
+	         <if test="ruleName != null">,rule_name</if>
+	         <if test="ruleMemo != null">,rule_memo</if>
+	         <if test="ruleVersion != null">,rule_version</if>
+	         <if test="isValid != null">,is_valid</if>
+	         <if test="isAutoRun != null">,is_auto_run</if>
+	         <if test="runPriority != null">,run_priority</if>
+	         <if test="ruleType != null">,rule_type</if>
+	         <if test="ccFormInstanceid != null">,cc_form_instanceid</if>
+	         <if test="jbjIsMonitor != null">,jbj_is_monitor</if>
+	 	 	 )
+	 values (
+	         SEQ_JC_RULE_HISTORYINFO.nextval
+	         <if test="ruleId != null">,#{ruleId,jdbcType=VARCHAR}</if>
+	         <if test="ruleName != null">,#{ruleName,jdbcType=VARCHAR}</if>
+	         <if test="ruleMemo != null">,#{ruleMemo,jdbcType=VARCHAR}</if>
+	         <if test="ruleVersion != null">,#{ruleVersion,jdbcType=VARCHAR}</if>
+	         <if test="isValid != null">,#{isValid,jdbcType=VARCHAR}</if>
+	         <if test="isAutoRun != null">,#{isAutoRun,jdbcType=VARCHAR}</if>
+	         <if test="runPriority != null">,#{runPriority,jdbcType=NUMERIC}</if>
+	         <if test="ruleType != null">,#{ruleType,jdbcType=VARCHAR}</if>
+	         <if test="ccFormInstanceid != null">,#{ccFormInstanceid,jdbcType=VARCHAR}</if>
+	         <if test="jbjIsMonitor != null">,#{jbjIsMonitor,jdbcType=VARCHAR}</if>
+	 	 	 )
+</insert>
+
+<!-- ElementID:count,Generated=true -->
+<select id="count" parameterType="com.chinacreator.dzjc_ruleEngine.RuleHistoryInfo" resultType="int">
+	select count(*) from TA_JC_RULE_HISTORYINFO 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<!-- ElementID:update,Generated=true -->
+<update id="update" parameterType="com.chinacreator.dzjc_ruleEngine.RuleHistoryInfo">
+	update TA_JC_RULE_HISTORYINFO
+<set>
+	<if test="ruleId != null">rule_id=#{ruleId,jdbcType=VARCHAR},</if>
+	<if test="ruleName != null">rule_name=#{ruleName,jdbcType=VARCHAR},</if>
+	<if test="ruleMemo != null">rule_memo=#{ruleMemo,jdbcType=VARCHAR},</if>
+	<if test="ruleVersion != null">rule_version=#{ruleVersion,jdbcType=VARCHAR},</if>
+	<if test="isValid != null">is_valid=#{isValid,jdbcType=VARCHAR},</if>
+	<if test="isAutoRun != null">is_auto_run=#{isAutoRun,jdbcType=VARCHAR},</if>
+	<if test="runPriority != null">run_priority=#{runPriority,jdbcType=VARCHAR},</if>
+	<if test="ruleType != null">rule_type=#{ruleType,jdbcType=VARCHAR},</if>
+	<if test="ccFormInstanceid != null">cc_form_instanceid=#{ccFormInstanceid,jdbcType=VARCHAR},</if>
+	<if test="jbjIsMonitor != null">jbj_is_monitor=#{jbjIsMonitor,jdbcType=VARCHAR}</if>
+</set>
+<where>
+	<choose>
+        <when test="hisId != null">and his_id = #{hisId}</when>
+        <otherwise>and his_id = </otherwise>
+    </choose>
+</where>
+</update>
+
+<!-- ElementID:updateNull,Generated=true -->
+<update id="updateNull" parameterType="map">
+	update TA_JC_RULE_HISTORYINFO
+	<set>
+		<trim suffixOverrides=",">
+		    <if test="ruleId==null">rule_id = null,</if>
+		    <if test="ruleName==null">rule_name = null,</if>
+		    <if test="ruleMemo==null">rule_memo = null,</if>
+		    <if test="ruleVersion==null">rule_version = null,</if>
+		    <if test="isValid==null">is_valid = null,</if>
+		    <if test="isAutoRun==null">is_auto_run = null,</if>
+		    <if test="runPriority==null">run_priority = null,</if>
+		    <if test="ruleType==null">rule_type = null,</if>
+		    <if test="ccFormInstanceid==null">cc_form_instanceid = null,</if>
+		    <if test="jbjIsMonitor==null">jbj_is_monitor = null,</if>
+		</trim>
+	</set>
+	<where>
+		<choose>
+			<when test="hisId != null">and his_id = #{hisId}</when>
+			<otherwise>and his_id = </otherwise>
+		</choose>
+	</where>
+</update>
+
+<!-- ElementID:delete,Generated=true -->
+<delete id="delete" parameterType="com.chinacreator.dzjc_ruleEngine.RuleHistoryInfo">
+    delete from TA_JC_RULE_HISTORYINFO where 1=1 and his_id = #{hisId}
+</delete>
+
+<!-- ElementID:select,Generated=true -->
+<select id="select" parameterType="com.chinacreator.dzjc_ruleEngine.RuleHistoryInfo" resultMap="RuleHistoryInfoResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_RULE_HISTORYINFO 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+
+<!-- ElementID:insertBatch,Generated=true -->
+<insert id="insertBatch" parameterType="list">
+	insert into TA_JC_RULE_HISTORYINFO (his_id,rule_id,rule_name,rule_memo,rule_version,is_valid,is_auto_run,run_priority,rule_type,cc_form_instanceid,jbj_is_monitor) 
+<foreach collection="list" item="entity" index="index" separator="union all">
+		select 
+		#{entity.hisId,jdbcType = VARCHAR},
+				#{entity.ruleId,jdbcType = VARCHAR},
+				#{entity.ruleName,jdbcType = VARCHAR},
+				#{entity.ruleMemo,jdbcType = VARCHAR},
+				#{entity.ruleVersion,jdbcType = VARCHAR},
+				#{entity.isValid,jdbcType = VARCHAR},
+				#{entity.isAutoRun,jdbcType = VARCHAR},
+				#{entity.runPriority,jdbcType = VARCHAR},
+				#{entity.ruleType,jdbcType = VARCHAR},
+				#{entity.ccFormInstanceid,jdbcType = VARCHAR},
+				#{entity.jbjIsMonitor,jdbcType = VARCHAR}
+		from dual
+</foreach>
+</insert>
+
+<!-- ElementID:deleteBatch,Generated=true -->
+<delete id="deleteBatch" parameterType="List">
+	delete from TA_JC_RULE_HISTORYINFO where his_id in
+<trim prefix="(" suffix=")" suffixOverrides=",">
+<foreach collection="list" item="entity" separator=",">
+	<choose>
+		<when test="@com.chinacreator.c2.dao.util.EntityBeanUtil@isEntityObj(entity)">#{entity.hisId}</when>
+		<otherwise>#{entity}</otherwise>
+	</choose>
+</foreach>
+</trim>
+</delete>
+
+<!-- ElementID:updateBatch,Generated=true -->
+<update id="updateBatch" parameterType="list">
+	<foreach collection="list" item="entity" open="begin" close=";end;" separator=";">
+			update TA_JC_RULE_HISTORYINFO
+	<set>
+	<if test="entity.ruleId != null">rule_id= #{entity.ruleId,jdbcType=VARCHAR},</if>
+	<if test="entity.ruleName != null">rule_name= #{entity.ruleName,jdbcType=VARCHAR},</if>
+	<if test="entity.ruleMemo != null">rule_memo= #{entity.ruleMemo,jdbcType=VARCHAR},</if>
+	<if test="entity.ruleVersion != null">rule_version= #{entity.ruleVersion,jdbcType=VARCHAR},</if>
+	<if test="entity.isValid != null">is_valid= #{entity.isValid,jdbcType=VARCHAR},</if>
+	<if test="entity.isAutoRun != null">is_auto_run= #{entity.isAutoRun,jdbcType=VARCHAR},</if>
+	<if test="entity.runPriority != null">run_priority= #{entity.runPriority,jdbcType=VARCHAR},</if>
+	<if test="entity.ruleType != null">rule_type= #{entity.ruleType,jdbcType=VARCHAR},</if>
+	<if test="entity.ccFormInstanceid != null">cc_form_instanceid= #{entity.ccFormInstanceid,jdbcType=VARCHAR},</if>
+	<if test="entity.jbjIsMonitor != null">jbj_is_monitor= #{entity.jbjIsMonitor,jdbcType=VARCHAR}</if>
+	</set>
+		<where>
+			<choose>
+				<when test="entity.hisId != null">and his_id = #{entity.hisId}</when>
+				<otherwise>and his_id = </otherwise>
+			</choose>
+		</where>
+	</foreach>
+</update>
+
+<!-- ElementID:selectAll,Generated=true -->
+<select id="selectAll" resultMap="RuleHistoryInfoResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_RULE_HISTORYINFO 
+</select>
+
+<!-- ElementID:selectMany,Generated=true -->
+<select id="selectMany" parameterType="list" resultMap="RuleHistoryInfoResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_JC_RULE_HISTORYINFO 
+	where TA_JC_RULE_HISTORYINFO.his_id in (
+<foreach collection="list" item="entity" separator="intersect">
+		select 
+		TA_JC_RULE_HISTORYINFO.his_id
+	    from TA_JC_RULE_HISTORYINFO 
+		 <where>
+	        <if test="entity.hisId != null">and TA_JC_RULE_HISTORYINFO.his_id = #{entity.hisId}</if>
+	        <if test="entity.ruleId != null">and TA_JC_RULE_HISTORYINFO.rule_id = #{entity.ruleId}</if>
+	        <if test="entity.ruleName != null">and TA_JC_RULE_HISTORYINFO.rule_name = #{entity.ruleName}</if>
+	        <if test="entity.ruleMemo != null">and TA_JC_RULE_HISTORYINFO.rule_memo = #{entity.ruleMemo}</if>
+	        <if test="entity.ruleVersion != null">and TA_JC_RULE_HISTORYINFO.rule_version = #{entity.ruleVersion}</if>
+	        <if test="entity.isValid != null">and TA_JC_RULE_HISTORYINFO.is_valid = #{entity.isValid}</if>
+	        <if test="entity.isAutoRun != null">and TA_JC_RULE_HISTORYINFO.is_auto_run = #{entity.isAutoRun}</if>
+	        <if test="entity.runPriority != null">and TA_JC_RULE_HISTORYINFO.run_priority = #{entity.runPriority}</if>
+	        <if test="entity.ruleType != null">and TA_JC_RULE_HISTORYINFO.rule_type = #{entity.ruleType}</if>
+	        <if test="entity.ccFormInstanceid != null">and TA_JC_RULE_HISTORYINFO.cc_form_instanceid = #{entity.ccFormInstanceid}</if>
+	        <if test="entity.jbjIsMonitor != null">and TA_JC_RULE_HISTORYINFO.jbj_is_monitor = #{entity.jbjIsMonitor}</if>
+		</where>
+</foreach>
+)
+</select>
+
+<!-- ElementID:selectUnion,Generated=true -->
+<select id="selectUnion" parameterType="list" resultMap="RuleHistoryInfoResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_JC_RULE_HISTORYINFO 
+	 INNER JOIN
+<foreach collection="list" item="entity" separator="UNION" open="(" close=")">
+		SELECT 
+			 his_id
+		FROM TA_JC_RULE_HISTORYINFO 
+			<where>
+	        <if test="entity.hisId != null">and TA_JC_RULE_HISTORYINFO.his_id = #{entity.hisId}</if>
+	        <if test="entity.ruleId != null">and TA_JC_RULE_HISTORYINFO.rule_id = #{entity.ruleId}</if>
+	        <if test="entity.ruleName != null">and TA_JC_RULE_HISTORYINFO.rule_name = #{entity.ruleName}</if>
+	        <if test="entity.ruleMemo != null">and TA_JC_RULE_HISTORYINFO.rule_memo = #{entity.ruleMemo}</if>
+	        <if test="entity.ruleVersion != null">and TA_JC_RULE_HISTORYINFO.rule_version = #{entity.ruleVersion}</if>
+	        <if test="entity.isValid != null">and TA_JC_RULE_HISTORYINFO.is_valid = #{entity.isValid}</if>
+	        <if test="entity.isAutoRun != null">and TA_JC_RULE_HISTORYINFO.is_auto_run = #{entity.isAutoRun}</if>
+	        <if test="entity.runPriority != null">and TA_JC_RULE_HISTORYINFO.run_priority = #{entity.runPriority}</if>
+	        <if test="entity.ruleType != null">and TA_JC_RULE_HISTORYINFO.rule_type = #{entity.ruleType}</if>
+	        <if test="entity.ccFormInstanceid != null">and TA_JC_RULE_HISTORYINFO.cc_form_instanceid = #{entity.ccFormInstanceid}</if>
+	        <if test="entity.jbjIsMonitor != null">and TA_JC_RULE_HISTORYINFO.jbj_is_monitor = #{entity.jbjIsMonitor}</if>
+			</where>
+</foreach>
+	c2_temp_table ON TA_JC_RULE_HISTORYINFO.his_id = c2_temp_table.his_id
+</select>
+
+<!-- ElementID:selectByID,Generated=true -->
+<select id="selectByID" parameterType="java.lang.String" resultMap="RuleHistoryInfoResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_RULE_HISTORYINFO 
+		 where TA_JC_RULE_HISTORYINFO.his_id = #{hisId,jdbcType=VARCHAR}
+</select>
+
+<!-- ElementID:selectByPage,Generated=true -->
+<select id="selectByPage" parameterType="com.chinacreator.dzjc_ruleEngine.RuleHistoryInfo" resultMap="RuleHistoryInfoResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_RULE_HISTORYINFO 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+</mapper>

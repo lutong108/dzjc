@@ -1,0 +1,488 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"><mapper namespace="com.chinacreator.dzjc_Appeal.VAcceptSuperviseMapper">	
+
+<!-- ElementID:column_sql,Generated=true -->
+<sql id="column_sql">
+		  V_ACCEPT_SUPERVISE.title ,
+		  V_ACCEPT_SUPERVISE.org_id ,
+		  V_ACCEPT_SUPERVISE.org_code ,
+		  V_ACCEPT_SUPERVISE.org_name ,
+		  V_ACCEPT_SUPERVISE.supervise_info_id ,
+		  V_ACCEPT_SUPERVISE.business_id ,
+		  V_ACCEPT_SUPERVISE.supervise_type_no ,
+		  V_ACCEPT_SUPERVISE.supervise_type_name ,
+		  V_ACCEPT_SUPERVISE.supervise_result_no ,
+		  V_ACCEPT_SUPERVISE.supervise_result_name ,
+		  V_ACCEPT_SUPERVISE.supervise_time ,
+		  V_ACCEPT_SUPERVISE.su_state ,
+		  V_ACCEPT_SUPERVISE.fp_state ,
+		  V_ACCEPT_SUPERVISE.query_code 
+</sql>
+
+<!-- ElementID:whereClause_sql,Generated=true -->
+<sql id="whereClause_sql">
+	    <if test="title != null">and V_ACCEPT_SUPERVISE.title = #{title}</if>
+	    <if test="orgId != null">and V_ACCEPT_SUPERVISE.org_id = #{orgId}</if>
+	    <if test="orgCode != null">and V_ACCEPT_SUPERVISE.org_code = #{orgCode}</if>
+	    <if test="orgName != null">and V_ACCEPT_SUPERVISE.org_name = #{orgName}</if>
+	    <if test="superviseInfoId != null">and V_ACCEPT_SUPERVISE.supervise_info_id = #{superviseInfoId}</if>
+	    <if test="businessId != null">and V_ACCEPT_SUPERVISE.business_id = #{businessId}</if>
+	    <if test="superviseTypeNo != null">and V_ACCEPT_SUPERVISE.supervise_type_no = #{superviseTypeNo}</if>
+	    <if test="superviseTypeName != null">and V_ACCEPT_SUPERVISE.supervise_type_name = #{superviseTypeName}</if>
+	    <if test="superviseResultNo != null">and V_ACCEPT_SUPERVISE.supervise_result_no = #{superviseResultNo}</if>
+	    <if test="superviseResultName != null">and V_ACCEPT_SUPERVISE.supervise_result_name = #{superviseResultName}</if>
+	    <if test="superviseTime != null">and V_ACCEPT_SUPERVISE.supervise_time = #{superviseTime}</if>
+	    <if test="suState != null">and V_ACCEPT_SUPERVISE.su_state = #{suState}</if>
+	    <if test="fpState != null">and V_ACCEPT_SUPERVISE.fp_state = #{fpState}</if>
+	    <if test="queryCode != null">and V_ACCEPT_SUPERVISE.query_code = #{queryCode}</if>
+</sql>
+
+
+<!-- ElementID:VAcceptSuperviseResult,Generated=true -->
+<resultMap id="VAcceptSuperviseResult" type="com.chinacreator.dzjc_Appeal.VAcceptSupervise">
+	<id property="superviseInfoId" column="supervise_info_id"/>
+	<result property="title" column="title"/>
+	<result property="orgId" column="org_id"/>
+	<result property="orgCode" column="org_code"/>
+	<result property="orgName" column="org_name"/>
+	<result property="businessId" column="business_id"/>
+	<result property="superviseTypeNo" column="supervise_type_no"/>
+	<result property="superviseTypeName" column="supervise_type_name"/>
+	<result property="superviseResultNo" column="supervise_result_no"/>
+	<result property="superviseResultName" column="supervise_result_name"/>
+	<result property="superviseTime" column="supervise_time"/>
+	<result property="suState" column="su_state"/>
+	<result property="fpState" column="fp_state"/>
+	<result property="queryCode" column="query_code"/>
+</resultMap>
+
+
+<!-- 
+
+	办件监察详情Map
+
+ -->
+<resultMap id="VAcceptSuperviseResult2" type="com.chinacreator.dzjc_dealtMatter.SuperviseBJ">
+
+	<result property="title" column="title"/>
+	<result property="org_id" column="org_id"/>
+	<result property="org_code" column="org_code"/>
+	<result property="org_name" column="org_name"/>
+	<result property="supervise_info_id" column="supervise_info_id"/>
+	<result property="business_id" column="business_id"/>
+	<result property="supervise_type_no" column="supervise_type_no"/>
+	<result property="supervise_type_name" column="supervise_type_name"/>
+	<result property="supervise_result_no" column="supervise_result_no"/>
+	<result property="supervise_result_name" column="supervise_result_name"/>
+	<result property="supervise_time" column="supervise_time"/>
+	<result property="su_state" column="su_state"/>
+	<result property="fp_state" column="fp_state"/>
+	<result property="instance_code" column="instance_code"/>
+	<result property="apply_id" column="apply_id"/>
+	<result property="apply_name" column="apply_name"/>
+	<result property="approve_id" column="approve_id"/>
+	<result property="approve_name" column="approve_name"/>
+	<result property="accept_time" column="accept_time"/>
+	<result property="time_limit" column="time_limit"/>
+	<result property="promises_limit" column="promises_limit"/>
+
+</resultMap>
+
+<!-- 
+
+	投诉监察信息Map
+	
+ -->
+<resultMap id="VAcceptSuperviseResult3" type="com.chinacreator.dzjc_dealtMatter.SuperviseTS">
+
+	<result property="complain_id" column="complain_id"/>
+	<result property="complain_user_name" column="complain_user_name"/>
+	<result property="complain_user_org" column="complain_user_org"/>
+	<result property="bycomplained_user_org" column="bycomplained_user_org"/>
+	<result property="bycomplained_org" column="bycomplained_org"/>
+	<result property="complain_title" column="complain_title"/>
+	<result property="problem_type" column="problem_type"/>
+	<result property="complain_content" column="complain_content"/>
+	<result property="mainappeal" column="mainappeal"/>
+	<result property="expire_date" column="expire_date"/>
+	<result property="commitment_limit" column="commitment_limit"/>
+	<result property="supervise_result_name" column="supervise_result_name"/>
+
+</resultMap>
+
+
+<!-- 
+
+	咨询监察信息Map
+	
+ -->
+<resultMap id="VAcceptSuperviseResult4" type="com.chinacreator.dzjc_dealtMatter.SuperviseZX">
+
+	<result property="consult_id" column="consult_id"/>
+	<result property="consult_title" column="consult_title"/>
+	<result property="approve_name" column="approve_name"/>
+	<result property="org_id" column="org_id"/>
+	<result property="org_name" column="org_name"/>
+	<result property="apply_id" column="apply_id"/>
+	<result property="apply_name" column="apply_name"/>
+	<result property="consult_content" column="consult_content"/>
+	<result property="consult_time" column="consult_time"/>
+	<result property="expire_time" column="expire_time"/>
+	<result property="supervise_result_name" column="supervise_result_name"/>
+
+</resultMap>
+
+
+<!-- ElementID:insert,Generated=true -->
+<insert id="insert" parameterType="com.chinacreator.dzjc_Appeal.VAcceptSupervise">
+	insert into V_ACCEPT_SUPERVISE(
+	         <if test="title != null">title</if>
+	         <if test="orgId != null">,org_id</if>
+	         <if test="orgCode != null">,org_code</if>
+	         <if test="orgName != null">,org_name</if>
+	         <if test="superviseInfoId != null">,supervise_info_id</if>
+	         <if test="businessId != null">,business_id</if>
+	         <if test="superviseTypeNo != null">,supervise_type_no</if>
+	         <if test="superviseTypeName != null">,supervise_type_name</if>
+	         <if test="superviseResultNo != null">,supervise_result_no</if>
+	         <if test="superviseResultName != null">,supervise_result_name</if>
+	         <if test="superviseTime != null">,supervise_time</if>
+	         <if test="suState != null">,su_state</if>
+	         <if test="fpState != null">,fp_state</if>
+	         <if test="queryCode != null">,query_code</if>
+	 	 	 )
+	 values (
+	         <if test="title != null">#{title,jdbcType=VARCHAR}</if>
+	         <if test="orgId != null">,#{orgId,jdbcType=VARCHAR}</if>
+	         <if test="orgCode != null">,#{orgCode,jdbcType=VARCHAR}</if>
+	         <if test="orgName != null">,#{orgName,jdbcType=VARCHAR}</if>
+	         <if test="superviseInfoId != null">,#{superviseInfoId,jdbcType=VARCHAR}</if>
+	         <if test="businessId != null">,#{businessId,jdbcType=VARCHAR}</if>
+	         <if test="superviseTypeNo != null">,#{superviseTypeNo,jdbcType=VARCHAR}</if>
+	         <if test="superviseTypeName != null">,#{superviseTypeName,jdbcType=VARCHAR}</if>
+	         <if test="superviseResultNo != null">,#{superviseResultNo,jdbcType=VARCHAR}</if>
+	         <if test="superviseResultName != null">,#{superviseResultName,jdbcType=VARCHAR}</if>
+	         <if test="superviseTime != null">,#{superviseTime,jdbcType=DATE}</if>
+	         <if test="suState != null">,#{suState,jdbcType=VARCHAR}</if>
+	         <if test="fpState != null">,#{fpState,jdbcType=VARCHAR}</if>
+	         <if test="queryCode != null">,#{queryCode,jdbcType=VARCHAR}</if>
+	 	 	 )
+</insert>
+
+<!-- ElementID:count,Generated=true -->
+<select id="count" parameterType="com.chinacreator.dzjc_Appeal.VAcceptSupervise" resultType="int">
+	select count(*) from V_ACCEPT_SUPERVISE 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<!-- ElementID:update,Generated=true -->
+<update id="update" parameterType="com.chinacreator.dzjc_Appeal.VAcceptSupervise">
+	update V_ACCEPT_SUPERVISE
+<set>
+	<if test="title != null">title=#{title,jdbcType=VARCHAR},</if>
+	<if test="orgId != null">org_id=#{orgId,jdbcType=VARCHAR},</if>
+	<if test="orgCode != null">org_code=#{orgCode,jdbcType=VARCHAR},</if>
+	<if test="orgName != null">org_name=#{orgName,jdbcType=VARCHAR},</if>
+	<if test="businessId != null">business_id=#{businessId,jdbcType=VARCHAR},</if>
+	<if test="superviseTypeNo != null">supervise_type_no=#{superviseTypeNo,jdbcType=VARCHAR},</if>
+	<if test="superviseTypeName != null">supervise_type_name=#{superviseTypeName,jdbcType=VARCHAR},</if>
+	<if test="superviseResultNo != null">supervise_result_no=#{superviseResultNo,jdbcType=VARCHAR},</if>
+	<if test="superviseResultName != null">supervise_result_name=#{superviseResultName,jdbcType=VARCHAR},</if>
+	<if test="superviseTime != null">supervise_time=#{superviseTime,jdbcType=DATE},</if>
+	<if test="suState != null">su_state=#{suState,jdbcType=VARCHAR},</if>
+	<if test="fpState != null">fp_state=#{fpState,jdbcType=VARCHAR},</if>
+	<if test="queryCode != null">query_code=#{queryCode,jdbcType=VARCHAR}</if>
+</set>
+<where>
+	<choose>
+        <when test="superviseInfoId != null">and supervise_info_id = #{superviseInfoId}</when>
+        <otherwise>and supervise_info_id = </otherwise>
+    </choose>
+</where>
+</update>
+
+<!-- ElementID:updateNull,Generated=true -->
+<update id="updateNull" parameterType="map">
+	update V_ACCEPT_SUPERVISE
+	<set>
+		<trim suffixOverrides=",">
+		    <if test="title==null">title = null,</if>
+		    <if test="orgId==null">org_id = null,</if>
+		    <if test="orgCode==null">org_code = null,</if>
+		    <if test="orgName==null">org_name = null,</if>
+		    <if test="businessId==null">business_id = null,</if>
+		    <if test="superviseTypeNo==null">supervise_type_no = null,</if>
+		    <if test="superviseTypeName==null">supervise_type_name = null,</if>
+		    <if test="superviseResultNo==null">supervise_result_no = null,</if>
+		    <if test="superviseResultName==null">supervise_result_name = null,</if>
+		    <if test="superviseTime==null">supervise_time = null,</if>
+		    <if test="suState==null">su_state = null,</if>
+		    <if test="fpState==null">fp_state = null,</if>
+		    <if test="queryCode==null">query_code = null,</if>
+		</trim>
+	</set>
+	<where>
+		<choose>
+			<when test="superviseInfoId != null">and supervise_info_id = #{superviseInfoId}</when>
+			<otherwise>and supervise_info_id = </otherwise>
+		</choose>
+	</where>
+</update>
+
+<!-- ElementID:delete,Generated=true -->
+<delete id="delete" parameterType="com.chinacreator.dzjc_Appeal.VAcceptSupervise">
+    delete from V_ACCEPT_SUPERVISE where 1=1 and supervise_info_id = #{superviseInfoId}
+</delete>
+
+<!-- ElementID:select,Generated=true -->
+<select id="select" parameterType="com.chinacreator.dzjc_Appeal.VAcceptSupervise" resultMap="VAcceptSuperviseResult">
+	select 
+		<include refid="column_sql"/>
+	    from V_ACCEPT_SUPERVISE 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+
+<!-- ElementID:insertBatch,Generated=true -->
+<insert id="insertBatch" parameterType="list">
+	insert into V_ACCEPT_SUPERVISE (title,org_id,org_code,org_name,supervise_info_id,business_id,supervise_type_no,supervise_type_name,supervise_result_no,supervise_result_name,supervise_time,su_state,fp_state,query_code) 
+<foreach collection="list" item="entity" index="index" separator="union all">
+		select 
+		#{entity.title,jdbcType = VARCHAR},
+				#{entity.orgId,jdbcType = VARCHAR},
+				#{entity.orgCode,jdbcType = VARCHAR},
+				#{entity.orgName,jdbcType = VARCHAR},
+				#{entity.superviseInfoId,jdbcType = VARCHAR},
+				#{entity.businessId,jdbcType = VARCHAR},
+				#{entity.superviseTypeNo,jdbcType = VARCHAR},
+				#{entity.superviseTypeName,jdbcType = VARCHAR},
+				#{entity.superviseResultNo,jdbcType = VARCHAR},
+				#{entity.superviseResultName,jdbcType = VARCHAR},
+				#{entity.superviseTime,jdbcType = DATE},
+				#{entity.suState,jdbcType = VARCHAR},
+				#{entity.fpState,jdbcType = VARCHAR},
+				#{entity.queryCode,jdbcType = VARCHAR}
+		from dual
+</foreach>
+</insert>
+
+<!-- ElementID:deleteBatch,Generated=true -->
+<delete id="deleteBatch" parameterType="List">
+	delete from V_ACCEPT_SUPERVISE where supervise_info_id in
+<trim prefix="(" suffix=")" suffixOverrides=",">
+<foreach collection="list" item="entity" separator=",">
+	<choose>
+		<when test="@com.chinacreator.c2.dao.util.EntityBeanUtil@isEntityObj(entity)">#{entity.superviseInfoId}</when>
+		<otherwise>#{entity}</otherwise>
+	</choose>
+</foreach>
+</trim>
+</delete>
+
+<!-- ElementID:updateBatch,Generated=true -->
+<update id="updateBatch" parameterType="list">
+	<foreach collection="list" item="entity" open="begin" close=";end;" separator=";">
+			update V_ACCEPT_SUPERVISE
+	<set>
+	<if test="entity.title != null">title= #{entity.title,jdbcType=VARCHAR},</if>
+	<if test="entity.orgId != null">org_id= #{entity.orgId,jdbcType=VARCHAR},</if>
+	<if test="entity.orgCode != null">org_code= #{entity.orgCode,jdbcType=VARCHAR},</if>
+	<if test="entity.orgName != null">org_name= #{entity.orgName,jdbcType=VARCHAR},</if>
+	<if test="entity.businessId != null">business_id= #{entity.businessId,jdbcType=VARCHAR},</if>
+	<if test="entity.superviseTypeNo != null">supervise_type_no= #{entity.superviseTypeNo,jdbcType=VARCHAR},</if>
+	<if test="entity.superviseTypeName != null">supervise_type_name= #{entity.superviseTypeName,jdbcType=VARCHAR},</if>
+	<if test="entity.superviseResultNo != null">supervise_result_no= #{entity.superviseResultNo,jdbcType=VARCHAR},</if>
+	<if test="entity.superviseResultName != null">supervise_result_name= #{entity.superviseResultName,jdbcType=VARCHAR},</if>
+	<if test="entity.superviseTime != null">supervise_time= #{entity.superviseTime,jdbcType=DATE},</if>
+	<if test="entity.suState != null">su_state= #{entity.suState,jdbcType=VARCHAR},</if>
+	<if test="entity.fpState != null">fp_state= #{entity.fpState,jdbcType=VARCHAR},</if>
+	<if test="entity.queryCode != null">query_code= #{entity.queryCode,jdbcType=VARCHAR}</if>
+	</set>
+		<where>
+			<choose>
+				<when test="entity.superviseInfoId != null">and supervise_info_id = #{entity.superviseInfoId}</when>
+				<otherwise>and supervise_info_id = </otherwise>
+			</choose>
+		</where>
+	</foreach>
+</update>
+
+<!-- ElementID:selectAll,Generated=true -->
+<select id="selectAll" resultMap="VAcceptSuperviseResult">
+	select 
+		<include refid="column_sql"/>
+	    from V_ACCEPT_SUPERVISE 
+</select>
+
+<!-- ElementID:selectMany,Generated=true -->
+<select id="selectMany" parameterType="list" resultMap="VAcceptSuperviseResult">
+select 
+	<include refid="column_sql"/> 
+	from V_ACCEPT_SUPERVISE 
+	where V_ACCEPT_SUPERVISE.supervise_info_id in (
+<foreach collection="list" item="entity" separator="intersect">
+		select 
+		V_ACCEPT_SUPERVISE.supervise_info_id
+	    from V_ACCEPT_SUPERVISE 
+		 <where>
+	        <if test="entity.title != null">and V_ACCEPT_SUPERVISE.title = #{entity.title}</if>
+	        <if test="entity.orgId != null">and V_ACCEPT_SUPERVISE.org_id = #{entity.orgId}</if>
+	        <if test="entity.orgCode != null">and V_ACCEPT_SUPERVISE.org_code = #{entity.orgCode}</if>
+	        <if test="entity.orgName != null">and V_ACCEPT_SUPERVISE.org_name = #{entity.orgName}</if>
+	        <if test="entity.superviseInfoId != null">and V_ACCEPT_SUPERVISE.supervise_info_id = #{entity.superviseInfoId}</if>
+	        <if test="entity.businessId != null">and V_ACCEPT_SUPERVISE.business_id = #{entity.businessId}</if>
+	        <if test="entity.superviseTypeNo != null">and V_ACCEPT_SUPERVISE.supervise_type_no = #{entity.superviseTypeNo}</if>
+	        <if test="entity.superviseTypeName != null">and V_ACCEPT_SUPERVISE.supervise_type_name = #{entity.superviseTypeName}</if>
+	        <if test="entity.superviseResultNo != null">and V_ACCEPT_SUPERVISE.supervise_result_no = #{entity.superviseResultNo}</if>
+	        <if test="entity.superviseResultName != null">and V_ACCEPT_SUPERVISE.supervise_result_name = #{entity.superviseResultName}</if>
+	        <if test="entity.superviseTime != null">and V_ACCEPT_SUPERVISE.supervise_time = #{entity.superviseTime}</if>
+	        <if test="entity.suState != null">and V_ACCEPT_SUPERVISE.su_state = #{entity.suState}</if>
+	        <if test="entity.fpState != null">and V_ACCEPT_SUPERVISE.fp_state = #{entity.fpState}</if>
+	        <if test="entity.queryCode != null">and V_ACCEPT_SUPERVISE.query_code = #{entity.queryCode}</if>
+		</where>
+</foreach>
+)
+</select>
+
+<!-- ElementID:selectUnion,Generated=true -->
+<select id="selectUnion" parameterType="list" resultMap="VAcceptSuperviseResult">
+select 
+	<include refid="column_sql"/> 
+	from V_ACCEPT_SUPERVISE 
+	 INNER JOIN
+<foreach collection="list" item="entity" separator="UNION" open="(" close=")">
+		SELECT 
+			 supervise_info_id
+		FROM V_ACCEPT_SUPERVISE 
+			<where>
+	        <if test="entity.title != null">and V_ACCEPT_SUPERVISE.title = #{entity.title}</if>
+	        <if test="entity.orgId != null">and V_ACCEPT_SUPERVISE.org_id = #{entity.orgId}</if>
+	        <if test="entity.orgCode != null">and V_ACCEPT_SUPERVISE.org_code = #{entity.orgCode}</if>
+	        <if test="entity.orgName != null">and V_ACCEPT_SUPERVISE.org_name = #{entity.orgName}</if>
+	        <if test="entity.superviseInfoId != null">and V_ACCEPT_SUPERVISE.supervise_info_id = #{entity.superviseInfoId}</if>
+	        <if test="entity.businessId != null">and V_ACCEPT_SUPERVISE.business_id = #{entity.businessId}</if>
+	        <if test="entity.superviseTypeNo != null">and V_ACCEPT_SUPERVISE.supervise_type_no = #{entity.superviseTypeNo}</if>
+	        <if test="entity.superviseTypeName != null">and V_ACCEPT_SUPERVISE.supervise_type_name = #{entity.superviseTypeName}</if>
+	        <if test="entity.superviseResultNo != null">and V_ACCEPT_SUPERVISE.supervise_result_no = #{entity.superviseResultNo}</if>
+	        <if test="entity.superviseResultName != null">and V_ACCEPT_SUPERVISE.supervise_result_name = #{entity.superviseResultName}</if>
+	        <if test="entity.superviseTime != null">and V_ACCEPT_SUPERVISE.supervise_time = #{entity.superviseTime}</if>
+	        <if test="entity.suState != null">and V_ACCEPT_SUPERVISE.su_state = #{entity.suState}</if>
+	        <if test="entity.fpState != null">and V_ACCEPT_SUPERVISE.fp_state = #{entity.fpState}</if>
+	        <if test="entity.queryCode != null">and V_ACCEPT_SUPERVISE.query_code = #{entity.queryCode}</if>
+			</where>
+</foreach>
+	c2_temp_table ON V_ACCEPT_SUPERVISE.supervise_info_id = c2_temp_table.supervise_info_id
+</select>
+
+<!-- ElementID:selectByID,Generated=true -->
+<select id="selectByID" parameterType="java.lang.String" resultMap="VAcceptSuperviseResult">
+	select 
+		<include refid="column_sql"/>
+	    from V_ACCEPT_SUPERVISE 
+		 where V_ACCEPT_SUPERVISE.supervise_info_id = #{superviseInfoId,jdbcType=VARCHAR}
+</select>
+
+<!-- 
+	办件监察详情 SQL
+ -->
+<select id="selectByID2" parameterType="java.lang.String" resultMap="VAcceptSuperviseResult2">
+		SELECT V1.TITLE,
+		       V1.ORG_ID,
+		       V1.ORG_CODE,
+		       V1.ORG_NAME,
+		       V1.SUPERVISE_INFO_ID,
+		       V1.BUSINESS_ID,
+		       V1.SUPERVISE_TYPE_NO,
+		       V1.SUPERVISE_TYPE_NAME,
+		       V1.SUPERVISE_RESULT_NO,
+		       V1.SUPERVISE_RESULT_NAME,
+		       V1.SUPERVISE_TIME,
+		       V1.SU_STATE,
+		       V1.FP_STATE,
+		       E1.INSTANCE_CODE,
+		       E1.APPLY_ID,
+		       E1.APPLY_NAME,
+		       E1.APPROVE_ID,
+		       E1.APPROVE_NAME,
+		       E1.ACCEPT_TIME,
+		       V2.TIME_LIMIT,<!-- 法定时限 -->
+	       	   V2.PROMISES_LIMIT <!-- 承诺时限 -->
+	    FROM V_ACCEPT_SUPERVISE V1
+		INNER JOIN TA_SP_INSTANCE  E1 ON V1.BUSINESS_ID = E1.INSTANCE_ID
+		INNER JOIN TA_SPXM V2 ON E1.APPROVE_ID = V2.APPROVE_ID
+		WHERE V1.SUPERVISE_TYPE_NO IN ('1011','1014','1016','1017','1018') <!-- 限办件监察 -->
+		<!-- AND E1.INSTANCE_ID = #{businessId,jdbcType=VARCHAR} -->
+		AND V1.SUPERVISE_INFO_ID = #{businessId,jdbcType=VARCHAR}
+		ORDER BY V1.SUPERVISE_TIME DESC
+</select>
+
+
+
+<!-- 
+	投诉监察详情 SQL
+ -->
+<select id="selectByID3" parameterType="java.lang.String" resultMap="VAcceptSuperviseResult3">
+	SELECT F1.COMPLAIN_ID,
+			F1.COMPLAIN_USER_NAME,
+			F1.COMPLAIN_USER_ORG,
+			F1.BYCOMPLAINED_USER_ORG,
+			F1.BYCOMPLAINED_ORG,
+			F1.COMPLAIN_TITLE,
+			F2.PROBLEM_TYPE_NAME AS PROBLEM_TYPE,
+			F1.COMPLAIN_CONTENT,
+			F1.MAINAPPEAL,
+			F1.EXPIRE_DATE,
+			F1.COMMITMENT_LIMIT,
+			V1.SUPERVISE_RESULT_NAME
+	FROM V_ACCEPT_SUPERVISE V1
+	INNER JOIN TA_JC_COMPLAIN_BASEINFO F1 ON V1.BUSINESS_ID = F1.COMPLAIN_ID
+	INNER JOIN TA_JC_DIC_PROBLEM_TYPE F2 ON F1.PROBLEM_TYPE = F2.PROBLEM_TYPE_CODE
+	WHERE V1.SUPERVISE_TYPE_NO IN ('1012')<!-- 限投诉监察 -->
+	<!-- AND F1.COMPLAIN_ID = #{complainId,jdbcType=VARCHAR} -->
+	AND V1.SUPERVISE_INFO_ID = #{complainId,jdbcType=VARCHAR}
+	ORDER BY V1.SUPERVISE_TIME DESC
+</select>
+
+
+
+<!-- 
+	咨询监察详情 SQL
+ -->
+<select id="selectByID4" parameterType="java.lang.String" resultMap="VAcceptSuperviseResult4">
+
+	SELECT C1.CONSULT_ID,
+	       C1.CONSULT_TITLE,
+	       C1.APPROVE_NAME,
+	       C1.ORG_ID,
+	       C1.ORG_NAME,
+	       C1.APPLY_ID,
+	       C1.APPLY_NAME,
+	       C1.CONSULT_CONTENT,
+	       C1.CONSULT_TIME,
+	       C1.EXPIRE_TIME,
+	       V1.SUPERVISE_RESULT_NAME
+	FROM V_ACCEPT_SUPERVISE V1
+	INNER JOIN TA_SP_CONSULT C1 ON V1.BUSINESS_ID = C1.CONSULT_ID
+	WHERE V1.SUPERVISE_TYPE_NO IN ('1013','1015')<!-- 限咨询监察 -->
+	<!-- AND C1.CONSULT_ID = #{consultId,jdbcType=VARCHAR} -->
+	AND V1.SUPERVISE_INFO_ID = #{consultId,jdbcType=VARCHAR}
+	ORDER BY V1.SUPERVISE_TIME DESC
+
+</select>
+
+<!-- ElementID:selectByPage,Generated=false -->
+<select id="selectByPage" parameterType="com.chinacreator.dzjc_Appeal.VAcceptSupervise" resultMap="VAcceptSuperviseResult">
+	select 
+		<include refid="column_sql"/>
+	    from V_ACCEPT_SUPERVISE 
+	    where 1=1
+	    and V_ACCEPT_SUPERVISE.supervise_result_no in('2','3')
+			<if test="orgId != null">AND V_ACCEPT_SUPERVISE.ORG_ID = #{orgId}</if>
+			<if test="businessId != null">AND V_ACCEPT_SUPERVISE.BUSINESS_ID = #{businessId}</if>
+</select>
+
+</mapper>

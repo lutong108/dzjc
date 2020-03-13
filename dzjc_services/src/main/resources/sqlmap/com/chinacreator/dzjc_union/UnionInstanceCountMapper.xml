@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"><mapper namespace="com.chinacreator.dzjc_union.UnionInstanceCountMapper">	
+
+<!-- ElementID:column_sql,Generated=true -->
+<sql id="column_sql">
+		  VA_TA_UNION_INSTANCE_COUNT.org_id ,
+		  VA_TA_UNION_INSTANCE_COUNT.org_name ,
+		  VA_TA_UNION_INSTANCE_COUNT.xzqm ,
+		  VA_TA_UNION_INSTANCE_COUNT.project_count ,
+		  VA_TA_UNION_INSTANCE_COUNT.zancun_count ,
+		  VA_TA_UNION_INSTANCE_COUNT.fenfa_count ,
+		  VA_TA_UNION_INSTANCE_COUNT.shouli_count ,
+		  VA_TA_UNION_INSTANCE_COUNT.banjie_count ,
+		  VA_TA_UNION_INSTANCE_COUNT.yujing_count ,
+		  VA_TA_UNION_INSTANCE_COUNT.huangpai_count ,
+		  VA_TA_UNION_INSTANCE_COUNT.hongpai_count ,
+		  VA_TA_UNION_INSTANCE_COUNT.banjie_rate ,
+		 
+</sql>
+
+<!-- ElementID:whereClause_sql,Generated=true -->
+<sql id="whereClause_sql">
+	    <if test="orgId != null">and VA_TA_UNION_INSTANCE_COUNT.org_id = #{orgId}</if>
+	    <if test="orgName != null">and VA_TA_UNION_INSTANCE_COUNT.org_name = #{orgName}</if>
+	    <if test="xzqm != null">and VA_TA_UNION_INSTANCE_COUNT.xzqm = #{xzqm}</if>
+	    <if test="projectCount != null">and VA_TA_UNION_INSTANCE_COUNT.project_count = #{projectCount}</if>
+	    <if test="zancunCount != null">and VA_TA_UNION_INSTANCE_COUNT.zancun_count = #{zancunCount}</if>
+	    <if test="fenfaCount != null">and VA_TA_UNION_INSTANCE_COUNT.fenfa_count = #{fenfaCount}</if>
+	    <if test="shouliCount != null">and VA_TA_UNION_INSTANCE_COUNT.shouli_count = #{shouliCount}</if>
+	    <if test="banjieCount != null">and VA_TA_UNION_INSTANCE_COUNT.banjie_count = #{banjieCount}</if>
+	    <if test="yujingCount != null">and VA_TA_UNION_INSTANCE_COUNT.yujing_count = #{yujingCount}</if>
+	    <if test="huangpaiCount != null">and VA_TA_UNION_INSTANCE_COUNT.huangpai_count = #{huangpaiCount}</if>
+	    <if test="hongpaiCount != null">and VA_TA_UNION_INSTANCE_COUNT.hongpai_count = #{hongpaiCount}</if>
+	    <if test="banjieRate != null">and VA_TA_UNION_INSTANCE_COUNT.banjie_rate = #{banjieRate}</if>
+	   
+</sql>
+
+
+<!-- ElementID:UnionInstanceCountResult,Generated=true -->
+<resultMap id="UnionInstanceCountResult" type="com.chinacreator.dzjc_union.UnionInstanceCount">
+	<id property="orgId" column="org_id"/>
+	<result property="orgName" column="org_name"/>
+	<result property="xzqm" column="xzqm"/>
+	<result property="projectCount" column="project_count"/>
+	<result property="zancunCount" column="zancun_count"/>
+	<result property="canyuCount" column="canyu_count"/>
+	<result property="fenfaCount" column="fenfa_count"/>
+	<result property="shouliCount" column="shouli_count"/>
+	<result property="banjieCount" column="banjie_count"/>
+	<result property="yujingCount" column="yujing_count"/>
+	<result property="huangpaiCount" column="huangpai_count"/>
+	<result property="hongpaiCount" column="hongpai_count"/>
+	<result property="banjieRate" column="banjie_rate"/>
+	<result property="beginDate" column="begin_date"/>
+	<result property="endDate" column="end_date"/>
+	<result property="endDate" column="end_date"/>
+</resultMap>
+
+
+<!-- ElementID:insert,Generated=true -->
+<insert id="insert" parameterType="com.chinacreator.dzjc_union.UnionInstanceCount">
+	insert into VA_TA_UNION_INSTANCE_COUNT(
+	         <if test="orgId != null">org_id</if>
+	         <if test="orgName != null">,org_name</if>
+	         <if test="xzqm != null">,xzqm</if>
+	         <if test="projectCount != null">,project_count</if>
+	         <if test="zancunCount != null">,zancun_count</if>
+	         <if test="fenfaCount != null">,fenfa_count</if>
+	         <if test="shouliCount != null">,shouli_count</if>
+	         <if test="banjieCount != null">,banjie_count</if>
+	         <if test="yujingCount != null">,yujing_count</if>
+	         <if test="huangpaiCount != null">,huangpai_count</if>
+	         <if test="hongpaiCount != null">,hongpai_count</if>
+	         <if test="banjieRate != null">,banjie_rate</if>
+	         <if test="beginDate != null">,begin_date</if>
+	         <if test="endDate != null">,end_date</if>
+	 	 	 )
+	 values (
+	         <if test="orgId != null">#{orgId,jdbcType=VARCHAR}</if>
+	         <if test="orgName != null">,#{orgName,jdbcType=VARCHAR}</if>
+	         <if test="xzqm != null">,#{xzqm,jdbcType=VARCHAR}</if>
+	         <if test="projectCount != null">,#{projectCount,jdbcType=NUMERIC}</if>
+	         <if test="zancunCount != null">,#{zancunCount,jdbcType=NUMERIC}</if>
+	         <if test="fenfaCount != null">,#{fenfaCount,jdbcType=NUMERIC}</if>
+	         <if test="shouliCount != null">,#{shouliCount,jdbcType=NUMERIC}</if>
+	         <if test="banjieCount != null">,#{banjieCount,jdbcType=NUMERIC}</if>
+	         <if test="yujingCount != null">,#{yujingCount,jdbcType=NUMERIC}</if>
+	         <if test="huangpaiCount != null">,#{huangpaiCount,jdbcType=NUMERIC}</if>
+	         <if test="hongpaiCount != null">,#{hongpaiCount,jdbcType=NUMERIC}</if>
+	         <if test="banjieRate != null">,#{banjieRate,jdbcType=NUMERIC}</if>
+	         <if test="beginDate != null">,#{beginDate,jdbcType=CHAR}</if>
+	         <if test="endDate != null">,#{endDate,jdbcType=CHAR}</if>
+	 	 	 )
+</insert>
+
+<!-- ElementID:count,Generated=true -->
+<select id="count" parameterType="com.chinacreator.dzjc_union.UnionInstanceCount" resultType="int">
+	select count(*) from VA_TA_UNION_INSTANCE_COUNT 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<!-- ElementID:update,Generated=true -->
+<update id="update" parameterType="com.chinacreator.dzjc_union.UnionInstanceCount">
+	update VA_TA_UNION_INSTANCE_COUNT
+<set>
+	<if test="orgName != null">org_name=#{orgName,jdbcType=VARCHAR},</if>
+	<if test="xzqm != null">xzqm=#{xzqm,jdbcType=VARCHAR},</if>
+	<if test="projectCount != null">project_count=#{projectCount,jdbcType=NUMERIC},</if>
+	<if test="zancunCount != null">zancun_count=#{zancunCount,jdbcType=NUMERIC},</if>
+	<if test="fenfaCount != null">fenfa_count=#{fenfaCount,jdbcType=NUMERIC},</if>
+	<if test="shouliCount != null">shouli_count=#{shouliCount,jdbcType=NUMERIC},</if>
+	<if test="banjieCount != null">banjie_count=#{banjieCount,jdbcType=NUMERIC},</if>
+	<if test="yujingCount != null">yujing_count=#{yujingCount,jdbcType=NUMERIC},</if>
+	<if test="huangpaiCount != null">huangpai_count=#{huangpaiCount,jdbcType=NUMERIC},</if>
+	<if test="hongpaiCount != null">hongpai_count=#{hongpaiCount,jdbcType=NUMERIC},</if>
+	<if test="banjieRate != null">banjie_rate=#{banjieRate,jdbcType=NUMERIC},</if>
+	<if test="beginDate != null">begin_date=#{beginDate,jdbcType=CHAR},</if>
+	<if test="endDate != null">end_date=#{endDate,jdbcType=CHAR}</if>
+</set>
+<where>
+	<choose>
+        <when test="orgId != null">and org_id = #{orgId}</when>
+        <otherwise>and org_id = </otherwise>
+    </choose>
+</where>
+</update>
+
+<!-- ElementID:updateNull,Generated=true -->
+<update id="updateNull" parameterType="map">
+	update VA_TA_UNION_INSTANCE_COUNT
+	<set>
+		<trim suffixOverrides=",">
+		    <if test="orgName==null">org_name = null,</if>
+		    <if test="xzqm==null">xzqm = null,</if>
+		    <if test="projectCount==null">project_count = null,</if>
+		    <if test="zancunCount==null">zancun_count = null,</if>
+		    <if test="fenfaCount==null">fenfa_count = null,</if>
+		    <if test="shouliCount==null">shouli_count = null,</if>
+		    <if test="banjieCount==null">banjie_count = null,</if>
+		    <if test="yujingCount==null">yujing_count = null,</if>
+		    <if test="huangpaiCount==null">huangpai_count = null,</if>
+		    <if test="hongpaiCount==null">hongpai_count = null,</if>
+		    <if test="banjieRate==null">banjie_rate = null,</if>
+		    <if test="beginDate==null">begin_date = null,</if>
+		    <if test="endDate==null">end_date = null,</if>
+		</trim>
+	</set>
+	<where>
+		<choose>
+			<when test="orgId != null">and org_id = #{orgId}</when>
+			<otherwise>and org_id = </otherwise>
+		</choose>
+	</where>
+</update>
+
+<!-- ElementID:delete,Generated=true -->
+<delete id="delete" parameterType="com.chinacreator.dzjc_union.UnionInstanceCount">
+    delete from VA_TA_UNION_INSTANCE_COUNT where 1=1 and org_id = #{orgId}
+</delete>
+
+<!-- ElementID:select,Generated=true -->
+<select id="select" parameterType="com.chinacreator.dzjc_union.UnionInstanceCount" resultMap="UnionInstanceCountResult">
+	select 
+		<include refid="column_sql"/>
+	    from VA_TA_UNION_INSTANCE_COUNT 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+
+<!-- ElementID:insertBatch,Generated=true -->
+<insert id="insertBatch" parameterType="list">
+	insert into VA_TA_UNION_INSTANCE_COUNT (org_id,org_name,xzqm,project_count,zancun_count,fenfa_count,shouli_count,banjie_count,yujing_count,huangpai_count,hongpai_count,banjie_rate,begin_date,end_date) 
+<foreach collection="list" item="entity" index="index" separator="union all">
+		select 
+		#{entity.orgId,jdbcType = VARCHAR},
+				#{entity.orgName,jdbcType = VARCHAR},
+				#{entity.xzqm,jdbcType = VARCHAR},
+				#{entity.projectCount,jdbcType = NUMERIC},
+				#{entity.zancunCount,jdbcType = NUMERIC},
+				#{entity.fenfaCount,jdbcType = NUMERIC},
+				#{entity.shouliCount,jdbcType = NUMERIC},
+				#{entity.banjieCount,jdbcType = NUMERIC},
+				#{entity.yujingCount,jdbcType = NUMERIC},
+				#{entity.huangpaiCount,jdbcType = NUMERIC},
+				#{entity.hongpaiCount,jdbcType = NUMERIC},
+				#{entity.banjieRate,jdbcType = NUMERIC},
+				#{entity.beginDate,jdbcType = CHAR},
+				#{entity.endDate,jdbcType = CHAR}
+		from dual
+</foreach>
+</insert>
+
+<!-- ElementID:deleteBatch,Generated=true -->
+<delete id="deleteBatch" parameterType="List">
+	delete from VA_TA_UNION_INSTANCE_COUNT where org_id in
+<trim prefix="(" suffix=")" suffixOverrides=",">
+<foreach collection="list" item="entity" separator=",">
+	<choose>
+		<when test="@com.chinacreator.c2.dao.util.EntityBeanUtil@isEntityObj(entity)">#{entity.orgId}</when>
+		<otherwise>#{entity}</otherwise>
+	</choose>
+</foreach>
+</trim>
+</delete>
+
+<!-- ElementID:updateBatch,Generated=true -->
+<update id="updateBatch" parameterType="list">
+	<foreach collection="list" item="entity" open="begin" close=";end;" separator=";">
+			update VA_TA_UNION_INSTANCE_COUNT
+	<set>
+	<if test="entity.orgName != null">org_name= #{entity.orgName,jdbcType=VARCHAR},</if>
+	<if test="entity.xzqm != null">xzqm= #{entity.xzqm,jdbcType=VARCHAR},</if>
+	<if test="entity.projectCount != null">project_count= #{entity.projectCount,jdbcType=NUMERIC},</if>
+	<if test="entity.zancunCount != null">zancun_count= #{entity.zancunCount,jdbcType=NUMERIC},</if>
+	<if test="entity.fenfaCount != null">fenfa_count= #{entity.fenfaCount,jdbcType=NUMERIC},</if>
+	<if test="entity.shouliCount != null">shouli_count= #{entity.shouliCount,jdbcType=NUMERIC},</if>
+	<if test="entity.banjieCount != null">banjie_count= #{entity.banjieCount,jdbcType=NUMERIC},</if>
+	<if test="entity.yujingCount != null">yujing_count= #{entity.yujingCount,jdbcType=NUMERIC},</if>
+	<if test="entity.huangpaiCount != null">huangpai_count= #{entity.huangpaiCount,jdbcType=NUMERIC},</if>
+	<if test="entity.hongpaiCount != null">hongpai_count= #{entity.hongpaiCount,jdbcType=NUMERIC},</if>
+	<if test="entity.banjieRate != null">banjie_rate= #{entity.banjieRate,jdbcType=NUMERIC},</if>
+	<if test="entity.beginDate != null">begin_date= #{entity.beginDate,jdbcType=CHAR},</if>
+	<if test="entity.endDate != null">end_date= #{entity.endDate,jdbcType=CHAR}</if>
+	</set>
+		<where>
+			<choose>
+				<when test="entity.orgId != null">and org_id = #{entity.orgId}</when>
+				<otherwise>and org_id = </otherwise>
+			</choose>
+		</where>
+	</foreach>
+</update>
+
+<!-- ElementID:selectAll,Generated=true -->
+<select id="selectAll" resultMap="UnionInstanceCountResult">
+	select 
+		<include refid="column_sql"/>
+	    from VA_TA_UNION_INSTANCE_COUNT 
+</select>
+
+<!-- ElementID:selectMany,Generated=true -->
+<select id="selectMany" parameterType="list" resultMap="UnionInstanceCountResult">
+select 
+	<include refid="column_sql"/> 
+	from VA_TA_UNION_INSTANCE_COUNT 
+	where VA_TA_UNION_INSTANCE_COUNT.org_id in (
+<foreach collection="list" item="entity" separator="intersect">
+		select 
+		VA_TA_UNION_INSTANCE_COUNT.org_id
+	    from VA_TA_UNION_INSTANCE_COUNT 
+		 <where>
+	        <if test="entity.orgId != null">and VA_TA_UNION_INSTANCE_COUNT.org_id = #{entity.orgId}</if>
+	        <if test="entity.orgName != null">and VA_TA_UNION_INSTANCE_COUNT.org_name = #{entity.orgName}</if>
+	        <if test="entity.xzqm != null">and VA_TA_UNION_INSTANCE_COUNT.xzqm = #{entity.xzqm}</if>
+	        <if test="entity.projectCount != null">and VA_TA_UNION_INSTANCE_COUNT.project_count = #{entity.projectCount}</if>
+	        <if test="entity.zancunCount != null">and VA_TA_UNION_INSTANCE_COUNT.zancun_count = #{entity.zancunCount}</if>
+	        <if test="entity.fenfaCount != null">and VA_TA_UNION_INSTANCE_COUNT.fenfa_count = #{entity.fenfaCount}</if>
+	        <if test="entity.shouliCount != null">and VA_TA_UNION_INSTANCE_COUNT.shouli_count = #{entity.shouliCount}</if>
+	        <if test="entity.banjieCount != null">and VA_TA_UNION_INSTANCE_COUNT.banjie_count = #{entity.banjieCount}</if>
+	        <if test="entity.yujingCount != null">and VA_TA_UNION_INSTANCE_COUNT.yujing_count = #{entity.yujingCount}</if>
+	        <if test="entity.huangpaiCount != null">and VA_TA_UNION_INSTANCE_COUNT.huangpai_count = #{entity.huangpaiCount}</if>
+	        <if test="entity.hongpaiCount != null">and VA_TA_UNION_INSTANCE_COUNT.hongpai_count = #{entity.hongpaiCount}</if>
+	        <if test="entity.banjieRate != null">and VA_TA_UNION_INSTANCE_COUNT.banjie_rate = #{entity.banjieRate}</if>
+	        <if test="entity.beginDate != null">and VA_TA_UNION_INSTANCE_COUNT.begin_date = #{entity.beginDate}</if>
+	        <if test="entity.endDate != null">and VA_TA_UNION_INSTANCE_COUNT.end_date = #{entity.endDate}</if>
+		</where>
+</foreach>
+)
+</select>
+
+<!-- ElementID:selectUnion,Generated=true -->
+<select id="selectUnion" parameterType="list" resultMap="UnionInstanceCountResult">
+select 
+	<include refid="column_sql"/> 
+	from VA_TA_UNION_INSTANCE_COUNT 
+	 INNER JOIN
+<foreach collection="list" item="entity" separator="UNION" open="(" close=")">
+		SELECT 
+			 org_id
+		FROM VA_TA_UNION_INSTANCE_COUNT 
+			<where>
+	        <if test="entity.orgId != null">and VA_TA_UNION_INSTANCE_COUNT.org_id = #{entity.orgId}</if>
+	        <if test="entity.orgName != null">and VA_TA_UNION_INSTANCE_COUNT.org_name = #{entity.orgName}</if>
+	        <if test="entity.xzqm != null">and VA_TA_UNION_INSTANCE_COUNT.xzqm = #{entity.xzqm}</if>
+	        <if test="entity.projectCount != null">and VA_TA_UNION_INSTANCE_COUNT.project_count = #{entity.projectCount}</if>
+	        <if test="entity.zancunCount != null">and VA_TA_UNION_INSTANCE_COUNT.zancun_count = #{entity.zancunCount}</if>
+	        <if test="entity.fenfaCount != null">and VA_TA_UNION_INSTANCE_COUNT.fenfa_count = #{entity.fenfaCount}</if>
+	        <if test="entity.shouliCount != null">and VA_TA_UNION_INSTANCE_COUNT.shouli_count = #{entity.shouliCount}</if>
+	        <if test="entity.banjieCount != null">and VA_TA_UNION_INSTANCE_COUNT.banjie_count = #{entity.banjieCount}</if>
+	        <if test="entity.yujingCount != null">and VA_TA_UNION_INSTANCE_COUNT.yujing_count = #{entity.yujingCount}</if>
+	        <if test="entity.huangpaiCount != null">and VA_TA_UNION_INSTANCE_COUNT.huangpai_count = #{entity.huangpaiCount}</if>
+	        <if test="entity.hongpaiCount != null">and VA_TA_UNION_INSTANCE_COUNT.hongpai_count = #{entity.hongpaiCount}</if>
+	        <if test="entity.banjieRate != null">and VA_TA_UNION_INSTANCE_COUNT.banjie_rate = #{entity.banjieRate}</if>
+	        <if test="entity.beginDate != null">and VA_TA_UNION_INSTANCE_COUNT.begin_date = #{entity.beginDate}</if>
+	        <if test="entity.endDate != null">and VA_TA_UNION_INSTANCE_COUNT.end_date = #{entity.endDate}</if>
+			</where>
+</foreach>
+	c2_temp_table ON VA_TA_UNION_INSTANCE_COUNT.org_id = c2_temp_table.org_id
+</select>
+
+<!-- ElementID:selectByID,Generated=true -->
+<select id="selectByID" parameterType="java.lang.String" resultMap="UnionInstanceCountResult">
+	select 
+		<include refid="column_sql"/>
+	    from VA_TA_UNION_INSTANCE_COUNT 
+		 where VA_TA_UNION_INSTANCE_COUNT.org_id = #{orgId,jdbcType=VARCHAR}
+</select>
+
+<!-- ElementID:selectByPage,Generated=true -->
+<select id="selectByPage" parameterType="com.chinacreator.dzjc_union.UnionInstanceCount" resultMap="UnionInstanceCountResult">
+	select 
+		<include refid="column_sql"/>
+	    from VA_TA_UNION_INSTANCE_COUNT 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<select id="selectByDate" parameterType="java.util.Map" resultMap="UnionInstanceCountResult">
+   select  allorg.org_id,allorg.org_name,allorg.xzqm,nvl(prjsum.project_count,0)project_count,
+	 nvl(fenfa_count, 0)+nvl(shouli_count, 0) as canyu_count ,nvl(fenfa_count,0) fenfa_count,nvl(shouli_count,0) shouli_count,nvl(banjie_count,0) banjie_count,round(banjie_count/shouli_count,4)*100 banjie_rate,
+	nvl(yujing_count,0) yujing_count,nvl(huangpai_count,0) huangpai_count,nvl(hongpai_count,0) hongpai_count  from
+	(select id org_id,name org_name,xzqm from v_org where xzqm in (select xzqm from v_org where id= #{orgId})  ) allorg
+	inner join
+	(select distinct org_id,org_name from  va_ta_union_instance_supervise )  uorg on allorg.org_id=uorg.org_id
+	left join (select org_id,count(*) project_count from (
+	select distinct org_id,project_id from va_ta_union_instance_supervise where 1=1 
+	<if test="beginDate!=null and beginDate!=''">
+	 and submit_time<![CDATA[>=]]>to_date(#{beginDate},'yyyy-mm-dd')  and  submit_time<![CDATA[<=]]>to_date(#{endDate},'yyyy-mm-dd')  
+	 </if>
+	 )   group by org_id ) prjsum on uorg.org_id=prjsum.org_id
+	left join	(select org_id,count(*) zancun_count from  va_ta_union_instance_supervise where project_state in(20)
+	<if test="beginDate!=null and beginDate!=''">
+	 and submit_time<![CDATA[>=]]>to_date(#{beginDate},'yyyy-mm-dd')  and  submit_time<![CDATA[<=]]>to_date(#{endDate},'yyyy-mm-dd')  
+	 </if>
+	 group by org_id ) unionzancun  on uorg.org_id=unionzancun.org_id
+	left join (select org_id,count(*) fenfa_count from  va_ta_union_instance_supervise where project_state in(21) 
+	<if test="beginDate!=null and beginDate!=''"> 
+	  and submit_time<![CDATA[>=]]>to_date(#{beginDate},'yyyy-mm-dd')  and  submit_time<![CDATA[<=]]>to_date(#{endDate},'yyyy-mm-dd') 
+	</if>
+	 group by org_id ) unionfenfa on uorg.org_id=unionfenfa.org_id
+	left join (select org_id,count(*)  shouli_count from  va_ta_union_instance_supervise where project_state in(1,2,3,4,5,6,7,8) 
+	<if test="beginDate!=null and beginDate!=''">
+	and accept_time<![CDATA[>=]]>to_date(#{beginDate},'yyyy-mm-dd')  and  accept_time<![CDATA[<=]]>to_date(#{endDate},'yyyy-mm-dd') 
+	</if>
+	 group by org_id ) unionshouli on uorg.org_id=unionshouli.org_id
+	left join (select org_id,count(*) banjie_count from  va_ta_union_instance_supervise where project_state in(4,5,6,7,8) 
+	  <if test="beginDate!=null and beginDate!=''">
+	  and end_time<![CDATA[>=]]>to_date(#{beginDate},'yyyy-mm-dd')  and  end_time<![CDATA[<=]]>to_date(#{endDate},'yyyy-mm-dd') 
+	  </if>
+	  group by org_id ) unionbanjie on uorg.org_id=unionbanjie.org_id
+	left join (select org_id,count(*) yujing_count from  va_ta_union_instance_supervise where supervise_result_no='1' 
+	<if test="beginDate!=null and beginDate!=''">
+	and supervise_time<![CDATA[>=]]>to_date(#{beginDate},'yyyy-mm-dd')  and  supervise_time<![CDATA[<=]]>to_date(#{endDate},'yyyy-mm-dd') 
+	</if>
+	group by org_id ) unionyujing on uorg.org_id=unionyujing.org_id
+	left join	(select org_id,count(*) huangpai_count from  va_ta_union_instance_supervise where supervise_result_no='2' 
+	<if test="beginDate!=null and beginDate!=''">
+	and supervise_time<![CDATA[>=]]>to_date(#{beginDate},'yyyy-mm-dd')  and  supervise_time<![CDATA[<=]]>to_date(#{endDate},'yyyy-mm-dd')
+	</if>
+	 group by org_id ) unionhuangpai on uorg.org_id=unionhuangpai.org_id
+	left join (select org_id,count(*) hongpai_count from  va_ta_union_instance_supervise where supervise_result_no='3' 
+	<if test="beginDate!=null and beginDate!=''">
+	   and supervise_time<![CDATA[>=]]>to_date(#{beginDate},'yyyy-mm-dd')  and  supervise_time<![CDATA[<=]]>to_date(#{endDate},'yyyy-mm-dd')
+	</if>
+	 group by org_id ) unionhongpai on uorg.org_id=unionhongpai.org_id
+	 
+</select>
+
+
+
+</mapper>

@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"><mapper namespace="com.chinacreator.dzjc_tongji.SbjGreenDataMapper">	
+
+<!-- ElementID:column_sql,Generated=true -->
+<sql id="column_sql">
+		  V_SBJ_GREENDATA.id ,
+		  V_SBJ_GREENDATA.name ,
+		  V_SBJ_GREENDATA.sbj_num_instance ,
+		  V_SBJ_GREENDATA.sbj_num_counsel ,
+		  V_SBJ_GREENDATA.sbj_num_special 
+</sql>
+
+<!-- ElementID:whereClause_sql,Generated=true -->
+<sql id="whereClause_sql">
+	    <if test="id != null">and V_SBJ_GREENDATA.id = #{id}</if>
+	    <if test="name != null">and V_SBJ_GREENDATA.name = #{name}</if>
+	    <if test="sbjNumInstance != null">and V_SBJ_GREENDATA.sbj_num_instance = #{sbjNumInstance}</if>
+	    <if test="sbjNumCounsel != null">and V_SBJ_GREENDATA.sbj_num_counsel = #{sbjNumCounsel}</if>
+	    <if test="sbjNumSpecial != null">and V_SBJ_GREENDATA.sbj_num_special = #{sbjNumSpecial}</if>
+</sql>
+
+
+<!-- ElementID:SbjGreenDataResult,Generated=true -->
+<resultMap id="SbjGreenDataResult" type="com.chinacreator.dzjc_tongji.SbjGreenData">
+	<id property="id" column="id"/>
+	<result property="name" column="name"/>
+	<result property="sbjNumInstance" column="sbj_num_instance"/>
+	<result property="sbjNumCounsel" column="sbj_num_counsel"/>
+	<result property="sbjNumSpecial" column="sbj_num_special"/>
+</resultMap>
+
+
+<!-- ElementID:insert,Generated=true -->
+<insert id="insert" parameterType="com.chinacreator.dzjc_tongji.SbjGreenData">
+	insert into V_SBJ_GREENDATA(
+	         <if test="id != null">id</if>
+	         <if test="name != null">,name</if>
+	         <if test="sbjNumInstance != null">,sbj_num_instance</if>
+	         <if test="sbjNumCounsel != null">,sbj_num_counsel</if>
+	         <if test="sbjNumSpecial != null">,sbj_num_special</if>
+	 	 	 )
+	 values (
+	         <if test="id != null">#{id,jdbcType=VARCHAR}</if>
+	         <if test="name != null">,#{name,jdbcType=VARCHAR}</if>
+	         <if test="sbjNumInstance != null">,#{sbjNumInstance,jdbcType=VARCHAR}</if>
+	         <if test="sbjNumCounsel != null">,#{sbjNumCounsel,jdbcType=VARCHAR}</if>
+	         <if test="sbjNumSpecial != null">,#{sbjNumSpecial,jdbcType=VARCHAR}</if>
+	 	 	 )
+</insert>
+
+<!-- ElementID:count,Generated=true -->
+<select id="count" parameterType="com.chinacreator.dzjc_tongji.SbjGreenData" resultType="int">
+	select count(*) from V_SBJ_GREENDATA 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<!-- ElementID:update,Generated=true -->
+<update id="update" parameterType="com.chinacreator.dzjc_tongji.SbjGreenData">
+	update V_SBJ_GREENDATA
+<set>
+	<if test="name != null">name=#{name,jdbcType=VARCHAR},</if>
+	<if test="sbjNumInstance != null">sbj_num_instance=#{sbjNumInstance,jdbcType=VARCHAR},</if>
+	<if test="sbjNumCounsel != null">sbj_num_counsel=#{sbjNumCounsel,jdbcType=VARCHAR},</if>
+	<if test="sbjNumSpecial != null">sbj_num_special=#{sbjNumSpecial,jdbcType=VARCHAR}</if>
+</set>
+<where>
+	<choose>
+        <when test="id != null">and id = #{id}</when>
+        <otherwise>and id = </otherwise>
+    </choose>
+</where>
+</update>
+
+<!-- ElementID:updateNull,Generated=true -->
+<update id="updateNull" parameterType="map">
+	update V_SBJ_GREENDATA
+	<set>
+		<trim suffixOverrides=",">
+		    <if test="name==null">name = null,</if>
+		    <if test="sbjNumInstance==null">sbj_num_instance = null,</if>
+		    <if test="sbjNumCounsel==null">sbj_num_counsel = null,</if>
+		    <if test="sbjNumSpecial==null">sbj_num_special = null,</if>
+		</trim>
+	</set>
+	<where>
+		<choose>
+			<when test="id != null">and id = #{id}</when>
+			<otherwise>and id = </otherwise>
+		</choose>
+	</where>
+</update>
+
+<!-- ElementID:delete,Generated=true -->
+<delete id="delete" parameterType="com.chinacreator.dzjc_tongji.SbjGreenData">
+    delete from V_SBJ_GREENDATA where 1=1 and id = #{id}
+</delete>
+
+<!-- ElementID:select,Generated=true -->
+<select id="select" parameterType="com.chinacreator.dzjc_tongji.SbjGreenData" resultMap="SbjGreenDataResult">
+	select 
+		<include refid="column_sql"/>
+	    from V_SBJ_GREENDATA 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+
+<!-- ElementID:insertBatch,Generated=true -->
+<insert id="insertBatch" parameterType="list">
+	insert into V_SBJ_GREENDATA (id,name,sbj_num_instance,sbj_num_counsel,sbj_num_special) 
+<foreach collection="list" item="entity" index="index" separator="union all">
+		select 
+		#{entity.id,jdbcType = VARCHAR},
+				#{entity.name,jdbcType = VARCHAR},
+				#{entity.sbjNumInstance,jdbcType = VARCHAR},
+				#{entity.sbjNumCounsel,jdbcType = VARCHAR},
+				#{entity.sbjNumSpecial,jdbcType = VARCHAR}
+		from dual
+</foreach>
+</insert>
+
+<!-- ElementID:deleteBatch,Generated=true -->
+<delete id="deleteBatch" parameterType="List">
+	delete from V_SBJ_GREENDATA where id in
+<trim prefix="(" suffix=")" suffixOverrides=",">
+<foreach collection="list" item="entity" separator=",">
+	<choose>
+		<when test="@com.chinacreator.c2.dao.util.EntityBeanUtil@isEntityObj(entity)">#{entity.id}</when>
+		<otherwise>#{entity}</otherwise>
+	</choose>
+</foreach>
+</trim>
+</delete>
+
+<!-- ElementID:updateBatch,Generated=true -->
+<update id="updateBatch" parameterType="list">
+	<foreach collection="list" item="entity" open="begin" close=";end;" separator=";">
+			update V_SBJ_GREENDATA
+	<set>
+	<if test="entity.name != null">name= #{entity.name,jdbcType=VARCHAR},</if>
+	<if test="entity.sbjNumInstance != null">sbj_num_instance= #{entity.sbjNumInstance,jdbcType=VARCHAR},</if>
+	<if test="entity.sbjNumCounsel != null">sbj_num_counsel= #{entity.sbjNumCounsel,jdbcType=VARCHAR},</if>
+	<if test="entity.sbjNumSpecial != null">sbj_num_special= #{entity.sbjNumSpecial,jdbcType=VARCHAR}</if>
+	</set>
+		<where>
+			<choose>
+				<when test="entity.id != null">and id = #{entity.id}</when>
+				<otherwise>and id = </otherwise>
+			</choose>
+		</where>
+	</foreach>
+</update>
+
+<!-- ElementID:selectAll,Generated=true -->
+<select id="selectAll" resultMap="SbjGreenDataResult">
+	select 
+		<include refid="column_sql"/>
+	    from V_SBJ_GREENDATA 
+</select>
+
+<!-- ElementID:selectMany,Generated=true -->
+<select id="selectMany" parameterType="list" resultMap="SbjGreenDataResult">
+select 
+	<include refid="column_sql"/> 
+	from V_SBJ_GREENDATA 
+	where V_SBJ_GREENDATA.id in (
+<foreach collection="list" item="entity" separator="intersect">
+		select 
+		V_SBJ_GREENDATA.id
+	    from V_SBJ_GREENDATA 
+		 <where>
+	        <if test="entity.id != null">and V_SBJ_GREENDATA.id = #{entity.id}</if>
+	        <if test="entity.name != null">and V_SBJ_GREENDATA.name = #{entity.name}</if>
+	        <if test="entity.sbjNumInstance != null">and V_SBJ_GREENDATA.sbj_num_instance = #{entity.sbjNumInstance}</if>
+	        <if test="entity.sbjNumCounsel != null">and V_SBJ_GREENDATA.sbj_num_counsel = #{entity.sbjNumCounsel}</if>
+	        <if test="entity.sbjNumSpecial != null">and V_SBJ_GREENDATA.sbj_num_special = #{entity.sbjNumSpecial}</if>
+		</where>
+</foreach>
+)
+</select>
+
+<!-- ElementID:selectUnion,Generated=true -->
+<select id="selectUnion" parameterType="list" resultMap="SbjGreenDataResult">
+select 
+	<include refid="column_sql"/> 
+	from V_SBJ_GREENDATA 
+	 INNER JOIN
+<foreach collection="list" item="entity" separator="UNION" open="(" close=")">
+		SELECT 
+			 id
+		FROM V_SBJ_GREENDATA 
+			<where>
+	        <if test="entity.id != null">and V_SBJ_GREENDATA.id = #{entity.id}</if>
+	        <if test="entity.name != null">and V_SBJ_GREENDATA.name = #{entity.name}</if>
+	        <if test="entity.sbjNumInstance != null">and V_SBJ_GREENDATA.sbj_num_instance = #{entity.sbjNumInstance}</if>
+	        <if test="entity.sbjNumCounsel != null">and V_SBJ_GREENDATA.sbj_num_counsel = #{entity.sbjNumCounsel}</if>
+	        <if test="entity.sbjNumSpecial != null">and V_SBJ_GREENDATA.sbj_num_special = #{entity.sbjNumSpecial}</if>
+			</where>
+</foreach>
+	c2_temp_table ON V_SBJ_GREENDATA.id = c2_temp_table.id
+</select>
+
+<!-- ElementID:selectByID,Generated=true -->
+<select id="selectByID" parameterType="java.lang.String" resultMap="SbjGreenDataResult">
+	select 
+		<include refid="column_sql"/>
+	    from V_SBJ_GREENDATA 
+		 where V_SBJ_GREENDATA.id = #{id,jdbcType=VARCHAR}
+</select>
+
+<!-- ElementID:selectByPage,Generated=true -->
+<select id="selectByPage" parameterType="com.chinacreator.dzjc_tongji.SbjGreenData" resultMap="SbjGreenDataResult">
+	select 
+		<include refid="column_sql"/>
+	    from V_SBJ_GREENDATA 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<select id="selectSbjAllData" parameterType="java.lang.String" resultMap="SbjGreenDataResult">
+select 
+  max(T3.name) AS name,
+  SUM(CASE WHEN T3.supervise_type_no LIKE '%1011%' THEN 1 ELSE 0 END) AS sbj_num_instance,
+  SUM(CASE WHEN T3.supervise_type_no LIKE '%1013%' THEN 1 ELSE 0 END) AS sbj_num_counsel,
+  SUM(CASE WHEN T3.supervise_type_no LIKE '%1016%' THEN 1 ELSE 0 END) AS sbj_num_special 
+from (                           
+    select t2.id,t2.name,t1.supervise_type_no
+      from (                                  
+    SELECT org_id,supervise_result_no,state,supervise_type_no,bj_state,supervise_time FROM (
+                   select 
+                    VA_TA_JC_ALLBUSSINESS_INFO.SUPERVISE_TYPE_NO,
+                    VA_TA_JC_ALLBUSSINESS_INFO.SUPERVISE_RESULT_NO,
+                    VA_TA_JC_ALLBUSSINESS_INFO.STATE,
+                    VA_TA_JC_ALLBUSSINESS_INFO.BJ_STATE as BJ_STATE,
+                    VA_TA_JC_ALLBUSSINESS_INFO.SUPERVISE_TIME,
+                    VA_TA_JC_ALLBUSSINESS_INFO.org_id
+                     from VA_TA_JC_ALLBUSSINESS_INFO
+                     left join TA_JC_DIC_SUPERVISE_TYPE
+                       on VA_TA_JC_ALLBUSSINESS_INFO.SUPERVISE_TYPE_NO =
+                          TA_JC_DIC_SUPERVISE_TYPE.SUPERVISE_TYPE_CODE
+                     LEFT JOIN TA_JC_DIC_SUPERVISE_RESULT
+                       ON VA_TA_JC_ALLBUSSINESS_INFO.SUPERVISE_RESULT_NO =
+                          TA_JC_DIC_SUPERVISE_RESULT.SUPERVISE_RESULT_CODE
+                    where 1 = 1
+                    order by BUSSINESS_TIME      DESC,
+                             SUPERVISE_TIME      DESC,
+                             SUPERVISE_RESULT_NO DESC) 
+     )t1  inner join (select v1.id,v1.NAME,v1.XZQM from V_ORG V1) t2 
+     on t1.org_id = t2.id
+     WHERE 1=1
+     AND SUBSTR(T2.Xzqm, 3, 2)='99'
+     AND t1.supervise_result_no LIKE '%1%' 
+     AND t1.state LIKE '%Y%' 
+     AND bj_state = '在办'   
+ )t3 group by id,name
+</select>
+
+<select id="selectSzAllData"  resultType="map">
+select 
+	nvl(SUM(CASE WHEN (SUBSTR(T2.Xzqm, 3, 2)='01' AND T1.supervise_type_no LIKE '%1011%' ) THEN 1 ELSE 0 END),0) AS cs_num_instance,
+	nvl(SUM(CASE WHEN (SUBSTR(T2.Xzqm, 3, 2)='02' AND T1.supervise_type_no LIKE '%1011%' ) THEN 1 ELSE 0 END),0) AS zz_num_instance,
+	nvl(SUM(CASE WHEN (SUBSTR(T2.Xzqm, 3, 2)='03' AND T1.supervise_type_no LIKE '%1011%' ) THEN 1 ELSE 0 END),0) AS xt_num_instance,
+	nvl(SUM(CASE WHEN (SUBSTR(T2.Xzqm, 3, 2)='04' AND T1.supervise_type_no LIKE '%1011%' ) THEN 1 ELSE 0 END),0) AS hy_num_instance,
+	nvl(SUM(CASE WHEN (SUBSTR(T2.Xzqm, 3, 2)='05' AND T1.supervise_type_no LIKE '%1011%' ) THEN 1 ELSE 0 END),0) AS sy_num_instance,
+	nvl(SUM(CASE WHEN (SUBSTR(T2.Xzqm, 3, 2)='06' AND T1.supervise_type_no LIKE '%1011%' ) THEN 1 ELSE 0 END),0) AS yy_num_instance,
+	nvl(SUM(CASE WHEN (SUBSTR(T2.Xzqm, 3, 2)='07' AND T1.supervise_type_no LIKE '%1011%' ) THEN 1 ELSE 0 END),0) AS cd_num_instance,
+	nvl(SUM(CASE WHEN (SUBSTR(T2.Xzqm, 3, 2)='08' AND T1.supervise_type_no LIKE '%1011%' ) THEN 1 ELSE 0 END),0) AS zjj_num_instance,
+	nvl(SUM(CASE WHEN (SUBSTR(T2.Xzqm, 3, 2)='09' AND T1.supervise_type_no LIKE '%1011%' ) THEN 1 ELSE 0 END),0) AS yiy_num_instance,
+	nvl(SUM(CASE WHEN (SUBSTR(T2.Xzqm, 3, 2)='10' AND T1.supervise_type_no LIKE '%1011%' ) THEN 1 ELSE 0 END),0) AS cz_num_instance,
+	nvl(SUM(CASE WHEN (SUBSTR(T2.Xzqm, 3, 2)='11' AND T1.supervise_type_no LIKE '%1011%' ) THEN 1 ELSE 0 END),0) AS yz_num_instance,
+	nvl(SUM(CASE WHEN (SUBSTR(T2.Xzqm, 3, 2)='12' AND T1.supervise_type_no LIKE '%1011%' ) THEN 1 ELSE 0 END),0) AS hh_num_instance,
+	nvl(SUM(CASE WHEN (SUBSTR(T2.Xzqm, 3, 2)='13' AND T1.supervise_type_no LIKE '%1011%' ) THEN 1 ELSE 0 END),0) AS ld_num_instance,
+	nvl(SUM(CASE WHEN (SUBSTR(T2.Xzqm, 3, 2)='31' AND T1.supervise_type_no LIKE '%1011%' ) THEN 1 ELSE 0 END),0) AS xxz_num_instance,
+	nvl(SUM(CASE WHEN (SUBSTR(T2.Xzqm, 3, 2)='01' AND T1.supervise_type_no LIKE '%1013%' ) THEN 1 ELSE 0 END),0) AS cs_num_counsel,
+	nvl(SUM(CASE WHEN (SUBSTR(T2.Xzqm, 3, 2)='02' AND T1.supervise_type_no LIKE '%1013%' ) THEN 1 ELSE 0 END),0) AS zz_num_counsel,
+	nvl(SUM(CASE WHEN (SUBSTR(T2.Xzqm, 3, 2)='03' AND T1.supervise_type_no LIKE '%1013%' ) THEN 1 ELSE 0 END),0) AS xt_num_counsel,
+	nvl(SUM(CASE WHEN (SUBSTR(T2.Xzqm, 3, 2)='04' AND T1.supervise_type_no LIKE '%1013%' ) THEN 1 ELSE 0 END),0) AS hy_num_counsel,
+	nvl(SUM(CASE WHEN (SUBSTR(T2.Xzqm, 3, 2)='05' AND T1.supervise_type_no LIKE '%1013%' ) THEN 1 ELSE 0 END),0) AS sy_num_counsel,
+	nvl(SUM(CASE WHEN (SUBSTR(T2.Xzqm, 3, 2)='06' AND T1.supervise_type_no LIKE '%1013%' ) THEN 1 ELSE 0 END),0) AS yy_num_counsel,
+	nvl(SUM(CASE WHEN (SUBSTR(T2.Xzqm, 3, 2)='07' AND T1.supervise_type_no LIKE '%1013%' ) THEN 1 ELSE 0 END),0) AS cd_num_counsel,
+	nvl(SUM(CASE WHEN (SUBSTR(T2.Xzqm, 3, 2)='08' AND T1.supervise_type_no LIKE '%1013%' ) THEN 1 ELSE 0 END),0) AS zjj_num_counsel,
+	nvl(SUM(CASE WHEN (SUBSTR(T2.Xzqm, 3, 2)='09' AND T1.supervise_type_no LIKE '%1013%' ) THEN 1 ELSE 0 END),0) AS yiy_num_counsel,
+	nvl(SUM(CASE WHEN (SUBSTR(T2.Xzqm, 3, 2)='10' AND T1.supervise_type_no LIKE '%1013%' ) THEN 1 ELSE 0 END),0) AS cz_num_counsel,
+	nvl(SUM(CASE WHEN (SUBSTR(T2.Xzqm, 3, 2)='11' AND T1.supervise_type_no LIKE '%1013%' ) THEN 1 ELSE 0 END),0) AS yz_num_counsel,
+	nvl(SUM(CASE WHEN (SUBSTR(T2.Xzqm, 3, 2)='12' AND T1.supervise_type_no LIKE '%1013%' ) THEN 1 ELSE 0 END),0) AS hh_num_counsel,
+	nvl(SUM(CASE WHEN (SUBSTR(T2.Xzqm, 3, 2)='13' AND T1.supervise_type_no LIKE '%1013%' ) THEN 1 ELSE 0 END),0) AS ld_num_counsel,
+	nvl(SUM(CASE WHEN (SUBSTR(T2.Xzqm, 3, 2)='31' AND T1.supervise_type_no LIKE '%1013%' ) THEN 1 ELSE 0 END),0) AS xxz_num_counsel,
+	nvl(SUM(CASE WHEN (SUBSTR(T2.Xzqm, 3, 2)='01' AND T1.supervise_type_no LIKE '%1016%' ) THEN 1 ELSE 0 END),0) AS cs_num_special,
+	nvl(SUM(CASE WHEN (SUBSTR(T2.Xzqm, 3, 2)='02' AND T1.supervise_type_no LIKE '%1016%' ) THEN 1 ELSE 0 END),0) AS zz_num_special,
+	nvl(SUM(CASE WHEN (SUBSTR(T2.Xzqm, 3, 2)='03' AND T1.supervise_type_no LIKE '%1016%' ) THEN 1 ELSE 0 END),0) AS xt_num_special,
+	nvl(SUM(CASE WHEN (SUBSTR(T2.Xzqm, 3, 2)='04' AND T1.supervise_type_no LIKE '%1016%' ) THEN 1 ELSE 0 END),0) AS hy_num_special,
+	nvl(SUM(CASE WHEN (SUBSTR(T2.Xzqm, 3, 2)='05' AND T1.supervise_type_no LIKE '%1016%' ) THEN 1 ELSE 0 END),0) AS sy_num_special,
+	nvl(SUM(CASE WHEN (SUBSTR(T2.Xzqm, 3, 2)='06' AND T1.supervise_type_no LIKE '%1016%' ) THEN 1 ELSE 0 END),0) AS yy_num_special,
+	nvl(SUM(CASE WHEN (SUBSTR(T2.Xzqm, 3, 2)='07' AND T1.supervise_type_no LIKE '%1016%' ) THEN 1 ELSE 0 END),0) AS cd_num_special,
+	nvl(SUM(CASE WHEN (SUBSTR(T2.Xzqm, 3, 2)='08' AND T1.supervise_type_no LIKE '%1016%' ) THEN 1 ELSE 0 END),0) AS zjj_num_special,
+	nvl(SUM(CASE WHEN (SUBSTR(T2.Xzqm, 3, 2)='09' AND T1.supervise_type_no LIKE '%1016%' ) THEN 1 ELSE 0 END),0) AS yiy_num_special,
+	nvl(SUM(CASE WHEN (SUBSTR(T2.Xzqm, 3, 2)='10' AND T1.supervise_type_no LIKE '%1016%' ) THEN 1 ELSE 0 END),0) AS cz_num_special,
+	nvl(SUM(CASE WHEN (SUBSTR(T2.Xzqm, 3, 2)='11' AND T1.supervise_type_no LIKE '%1016%' ) THEN 1 ELSE 0 END),0) AS yz_num_special,
+	nvl(SUM(CASE WHEN (SUBSTR(T2.Xzqm, 3, 2)='12' AND T1.supervise_type_no LIKE '%1016%' ) THEN 1 ELSE 0 END),0) AS hh_num_special,
+	nvl(SUM(CASE WHEN (SUBSTR(T2.Xzqm, 3, 2)='13' AND T1.supervise_type_no LIKE '%1016%' ) THEN 1 ELSE 0 END),0) AS ld_num_special,
+	nvl(SUM(CASE WHEN (SUBSTR(T2.Xzqm, 3, 2)='31' AND T1.supervise_type_no LIKE '%1016%' ) THEN 1 ELSE 0 END),0) AS xxz_num_special
+ from (                                  
+SELECT org_id,supervise_result_no,state,supervise_type_no,bj_state,supervise_time FROM (
+               select 
+                VA_TA_JC_ALLBUSSINESS_INFO.SUPERVISE_TYPE_NO,
+                VA_TA_JC_ALLBUSSINESS_INFO.SUPERVISE_RESULT_NO,
+                VA_TA_JC_ALLBUSSINESS_INFO.STATE,
+                VA_TA_JC_ALLBUSSINESS_INFO.BJ_STATE as BJ_STATE,
+                VA_TA_JC_ALLBUSSINESS_INFO.SUPERVISE_TIME,
+                VA_TA_JC_ALLBUSSINESS_INFO.org_id
+                 from VA_TA_JC_ALLBUSSINESS_INFO
+                 left join TA_JC_DIC_SUPERVISE_TYPE
+                   on VA_TA_JC_ALLBUSSINESS_INFO.SUPERVISE_TYPE_NO =
+                      TA_JC_DIC_SUPERVISE_TYPE.SUPERVISE_TYPE_CODE
+                 LEFT JOIN TA_JC_DIC_SUPERVISE_RESULT
+                   ON VA_TA_JC_ALLBUSSINESS_INFO.SUPERVISE_RESULT_NO =
+                      TA_JC_DIC_SUPERVISE_RESULT.SUPERVISE_RESULT_CODE
+                where 1 = 1
+                order by BUSSINESS_TIME      DESC,
+                         SUPERVISE_TIME      DESC,
+                         SUPERVISE_RESULT_NO DESC) 
+ )t1  inner join (select v1.id,v1.XZQM from V_ORG V1) t2 
+ on t1.org_id = t2.id
+ WHERE 1=1
+ AND t1.supervise_result_no LIKE '%1%' 
+ AND t1.state LIKE '%Y%' 
+ AND bj_state = '在办'
+</select>
+
+</mapper>

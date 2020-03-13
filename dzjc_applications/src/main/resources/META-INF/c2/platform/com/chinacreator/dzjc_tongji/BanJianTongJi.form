@@ -1,0 +1,903 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form:Form xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dync="http://www.chinacreator.com/platform/mvc/ui/dync" xmlns:form="http://www.chinacreator.com/platform/mvc/form" name="行政效能监管统计" sn="dzjc_tongji/BanJianTongJi" type="form">
+  <form:control type="page/normal">
+    <form:attributes source="page/normal">
+      <dync:attribute default="" group="HTML" id="showHead" name="显示标题" value="">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="" group="HTML" id="title" name="标题" value="">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="" group="HTML" id="desc" name="描述" value="">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="false" group="HTML" id="fixedHeight" name="自动高度" value="false">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="false" group="HTML" id="compact" name="紧凑页面" value="false">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="false" group="HTML" id="dirtyCheck" name="脏检查" value="false">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="" group="注入配置" id="angularJsServices" name="注入服务" value="">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="" group="事件" id="onload" name="页面加载完成" value="">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="" group="事件" id="beforeDataSourceLoad" name="数据源加载前" value="page_beforeDataSourceLoad($params)">
+        <dync:render colSpan="2" height="0" multi="false" name="event">
+          <dync:item name="param" value="$params"/>
+        </dync:render>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="" group="事件" id="afterDataSourceLoad" name="数据源加载后" value="page_afterDataSourceLoad()">
+        <dync:render colSpan="2" height="0" multi="false" name="event">
+          <dync:item name="param" value=""/>
+        </dync:render>
+        <dync:children/>
+      </dync:attribute>
+    </form:attributes>
+  </form:control>
+  <form:child xsi:type="form:Group" id="div" name="简单容器(DIV)">
+    <form:control type="container/div">
+      <form:attributes source="container/div">
+        <dync:attribute default="" group="高级自定义" id="style" name="自定义style" value="height:10px;">
+          <dync:render colSpan="2" height="0" multi="false" name="text"/>
+          <dync:children/>
+        </dync:attribute>
+      </form:attributes>
+    </form:control>
+  </form:child>
+  <form:child xsi:type="form:Group" id="banjiantongji_div1" name="简单容器(DIV)">
+    <form:control type="container/div">
+      <form:attributes source="container/div"/>
+    </form:control>
+    <form:child xsi:type="form:Group" id="div3" name="简单容器(DIV)">
+      <form:control type="container/div">
+        <form:attributes source="container/div"/>
+      </form:control>
+      <form:child xsi:type="form:Field" binding="" id="dateTimeRangePicker" name="日期范围" customize="true">
+        <form:control type="widget/date_time_range_picker">
+          <form:attributes source="widget/date_time_range_picker">
+            <dync:attribute default="" group="时间设置" id="startBind" name="开始时间数据绑定" value="$params.beginDate">
+              <dync:render colSpan="1" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="" group="时间设置" id="endBind" name="结束时间数据绑定" value="$params.endDate">
+              <dync:render colSpan="1" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+          </form:attributes>
+        </form:control>
+        <form:validation/>
+      </form:child>
+      <form:child xsi:type="form:Group" id="div2" name="简单容器(DIV)">
+        <form:control type="container/div">
+          <form:attributes source="container/div">
+            <dync:attribute default="0" group="HTML配置" id="offset" name="偏移" value="">
+              <dync:render colSpan="1" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="12" group="HTML配置" id="span" name="占位数" value="6">
+              <dync:render colSpan="1" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+          </form:attributes>
+        </form:control>
+        <form:child xsi:type="form:Field" id="button" name="查询" customize="true">
+          <form:control type="widget/button">
+            <form:attributes source="widget/button">
+              <dync:attribute default="" group="事件设置" id="click" name="点击事件" value="button_click($event)">
+                <dync:render colSpan="1" height="0" multi="false" name="event">
+                  <dync:item name="params" value="$event"/>
+                </dync:render>
+                <dync:children/>
+              </dync:attribute>
+            </form:attributes>
+          </form:control>
+          <form:validation/>
+        </form:child>
+        <form:child xsi:type="form:Field" id="button1" name="重置" customize="true">
+          <form:control type="widget/button">
+            <form:attributes source="widget/button">
+              <dync:attribute default="" group="事件设置" id="click" name="点击事件" value="button1_click($event)">
+                <dync:render colSpan="1" height="0" multi="false" name="event">
+                  <dync:item name="params" value="$event"/>
+                </dync:render>
+                <dync:children/>
+              </dync:attribute>
+            </form:attributes>
+          </form:control>
+          <form:validation/>
+        </form:child>
+        <form:child xsi:type="form:Field" id="button2" name="Excel导出" customize="true">
+          <form:control type="widget/button">
+            <form:attributes source="widget/button">
+              <dync:attribute default="" group="事件设置" id="click" name="点击事件" value="button2_click($event)">
+                <dync:render colSpan="1" height="0" multi="false" name="event">
+                  <dync:item name="params" value="$event"/>
+                </dync:render>
+                <dync:children/>
+              </dync:attribute>
+            </form:attributes>
+          </form:control>
+          <form:validation/>
+        </form:child>
+        <form:child xsi:type="form:Field" id="button3" name="Word导出" customize="true">
+          <form:control type="widget/button">
+            <form:attributes source="widget/button">
+              <dync:attribute default="" group="事件设置" id="click" name="点击事件" value="button3_click($event)">
+                <dync:render colSpan="1" height="0" multi="false" name="event">
+                  <dync:item name="params" value="$event"/>
+                </dync:render>
+                <dync:children/>
+              </dync:attribute>
+            </form:attributes>
+          </form:control>
+          <form:validation/>
+        </form:child>
+      </form:child>
+    </form:child>
+  </form:child>
+  <form:child xsi:type="form:Group" id="div4" name="简单容器(DIV)">
+    <form:control type="container/div">
+      <form:attributes source="container/div"/>
+    </form:control>
+  </form:child>
+  <form:child xsi:type="form:Group" id="banjiantongji_div2" name="简单容器(DIV)">
+    <form:control type="container/div">
+      <form:attributes source="container/div">
+        <dync:attribute default="" group="高级自定义" id="html" name="自定义HTML" value="banjiantongji_div2_html">
+          <dync:render colSpan="2" height="0" multi="false" name="html"/>
+          <dync:children/>
+        </dync:attribute>
+      </form:attributes>
+    </form:control>
+  </form:child>
+  <form:child xsi:type="form:Group" id="banjiantongji_div3" name="简单容器(DIV)">
+    <form:control type="container/div">
+      <form:attributes source="container/div"/>
+    </form:control>
+    <form:child xsi:type="form:Group" binding="$model.list" id="list" name="列表型数据源">
+      <form:control type="container/table_jqgrid">
+        <form:attributes source="container/table_jqgrid">
+          <dync:attribute default="true" group="工具栏" id="topToolbar" name="顶部工具栏" value="false">
+            <dync:render colSpan="1" height="0" multi="false" name="checkbox"/>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="true" group="表格设置" id="multiselect" name="多选" value="false">
+            <dync:render colSpan="1" height="0" multi="false" name="checkbox"/>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="true" group="基本配置" id="shrinkToFit" name="强制铺满" value="false">
+            <dync:render colSpan="1" height="0" multi="false" name="checkbox"/>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="" group="加载事件" id="afterInit" name="初始化表格控件之后" value="list_afterInit(events)">
+            <dync:render colSpan="1" height="0" multi="false" name="event"/>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="" group="加载后事件" id="ondblClickRow" name="双击行" value="list_ondblClickRow(rowid,iRow,iCol,e)">
+            <dync:render colSpan="1" height="0" multi="false" name="event">
+              <dync:item name="param" value="rowid,iRow,iCol,e"/>
+            </dync:render>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="" group="表格设置" id="paramData" name="初始化参数" value="{beginDate:$params.beginDate,endDate:$params.endDate}">
+            <dync:render colSpan="1" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="" group="排序" id="sortorder" name="排序方式" value="desc">
+            <dync:render colSpan="1" height="0" multi="false" name="select">
+              <dync:item name="空" value=""/>
+              <dync:item name="正序" value="asc"/>
+              <dync:item name="倒序" value="desc"/>
+            </dync:render>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="10" group="表格设置" id="pageSize" name="页面大小" value="30">
+            <dync:render colSpan="1" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+      <form:child xsi:type="form:Field" binding="areaOrgName" id="grid_areaOrgName" name="行政区域" customize="true">
+        <form:control type="widget/col_jqgrid">
+          <form:attributes source="widget/col_jqgrid">
+            <dync:attribute default="false" group="基本设置" id="title" name="鼠标悬浮显示" value="true">
+              <dync:render colSpan="1" height="0" multi="false" name="checkbox"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="" group="格式设置" id="customFormatter" name="自定义格式" value="grid_areaOrgName_customFormatter(cellvalue,options,rowObject,dictValueExpression)">
+              <dync:render colSpan="2" height="0" multi="false" name="event">
+                <dync:item name="param" value="cellvalue,options,rowObject,dictValueExpression"/>
+              </dync:render>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="left" group="基本设置" id="align" name="位置" value="center">
+              <dync:render colSpan="1" height="0" multi="false" name="select">
+                <dync:item name="左" value="left"/>
+                <dync:item name="中" value="center"/>
+                <dync:item name="右" value="right"/>
+              </dync:render>
+              <dync:children/>
+            </dync:attribute>
+          </form:attributes>
+        </form:control>
+        <form:validation/>
+      </form:child>
+      <form:child xsi:type="form:Field" binding="acceptNum" id="acceptNum" name="收件数(件)" customize="true">
+        <form:control type="widget/col_jqgrid">
+          <form:attributes source="widget/col_jqgrid">
+            <dync:attribute default="150" group="基本设置" id="width" name="宽度" value="100">
+              <dync:render colSpan="1" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="false" group="表格设置" id="sortable" name="排序" value="true">
+              <dync:render colSpan="1" height="0" multi="false" name="checkbox"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="left" group="基本设置" id="align" name="位置" value="center">
+              <dync:render colSpan="1" height="0" multi="false" name="select">
+                <dync:item name="左" value="left"/>
+                <dync:item name="中" value="center"/>
+                <dync:item name="右" value="right"/>
+              </dync:render>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="" group="表格设置" id="groupHeadName" name="表头分组" value="办件业务">
+              <dync:render colSpan="1" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+          </form:attributes>
+        </form:control>
+        <form:validation/>
+      </form:child>
+      <form:child xsi:type="form:Field" binding="finishNum" id="finishNum" name="办结数(件)" customize="true">
+        <form:control type="widget/col_jqgrid">
+          <form:attributes source="widget/col_jqgrid">
+            <dync:attribute default="150" group="基本设置" id="width" name="宽度" value="100">
+              <dync:render colSpan="1" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="false" group="表格设置" id="sortable" name="排序" value="true">
+              <dync:render colSpan="1" height="0" multi="false" name="checkbox"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="left" group="基本设置" id="align" name="位置" value="center">
+              <dync:render colSpan="1" height="0" multi="false" name="select">
+                <dync:item name="左" value="left"/>
+                <dync:item name="中" value="center"/>
+                <dync:item name="右" value="right"/>
+              </dync:render>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="" group="表格设置" id="groupHeadName" name="表头分组" value="办件业务">
+              <dync:render colSpan="1" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+          </form:attributes>
+        </form:control>
+        <form:validation/>
+      </form:child>
+      <form:child xsi:type="form:Field" binding="banJieLvFloat" id="banJieLvFloat" name="办结率(%)" customize="true">
+        <form:control type="widget/col_jqgrid">
+          <form:attributes source="widget/col_jqgrid">
+            <dync:attribute default="150" group="基本设置" id="width" name="宽度" value="100">
+              <dync:render colSpan="1" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="left" group="基本设置" id="align" name="位置" value="center">
+              <dync:render colSpan="1" height="0" multi="false" name="select">
+                <dync:item name="左" value="left"/>
+                <dync:item name="中" value="center"/>
+                <dync:item name="右" value="right"/>
+              </dync:render>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="" group="表格设置" id="groupHeadName" name="表头分组" value="办件业务">
+              <dync:render colSpan="1" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+          </form:attributes>
+        </form:control>
+        <form:validation/>
+      </form:child>
+      <form:child xsi:type="form:Field" binding="legalAccelerationRate" id="legalAccelerationRate" name="法定提速率(%)" customize="true">
+        <form:control type="widget/col_jqgrid">
+          <form:attributes source="widget/col_jqgrid">
+            <dync:attribute default="150" group="基本设置" id="width" name="宽度" value="100">
+              <dync:render colSpan="1" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="left" group="基本设置" id="align" name="位置" value="center">
+              <dync:render colSpan="1" height="0" multi="false" name="select">
+                <dync:item name="左" value="left"/>
+                <dync:item name="中" value="center"/>
+                <dync:item name="右" value="right"/>
+              </dync:render>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="" group="表格设置" id="groupHeadName" name="表头分组" value="办件业务">
+              <dync:render colSpan="1" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+          </form:attributes>
+        </form:control>
+        <form:validation/>
+      </form:child>
+      <form:child xsi:type="form:Group" id="toolbar_table" name="toolbar_table">
+        <form:control type="container/toolbar_table">
+          <form:attributes source="container/toolbar_table"/>
+        </form:control>
+      </form:child>
+      <form:child xsi:type="form:Field" binding="promiseAccelerationRate" id="promiseAccelerationRate" name="承诺提速率(%)" customize="true">
+        <form:control type="widget/col_jqgrid">
+          <form:attributes source="widget/col_jqgrid">
+            <dync:attribute default="150" group="基本设置" id="width" name="宽度" value="100">
+              <dync:render colSpan="1" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="left" group="基本设置" id="align" name="位置" value="center">
+              <dync:render colSpan="1" height="0" multi="false" name="select">
+                <dync:item name="左" value="left"/>
+                <dync:item name="中" value="center"/>
+                <dync:item name="右" value="right"/>
+              </dync:render>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="" group="表格设置" id="groupHeadName" name="表头分组" value="办件业务">
+              <dync:render colSpan="1" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+          </form:attributes>
+        </form:control>
+        <form:validation/>
+      </form:child>
+      <form:child xsi:type="form:Field" binding="instanceSuperviseYelloNum" id="instanceSuperviseYelloNum" name="办件黄牌数(张)" customize="true">
+        <form:control type="widget/col_jqgrid">
+          <form:attributes source="widget/col_jqgrid">
+            <dync:attribute default="150" group="基本设置" id="width" name="宽度" value="120">
+              <dync:render colSpan="1" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="false" group="表格设置" id="sortable" name="排序" value="true">
+              <dync:render colSpan="1" height="0" multi="false" name="checkbox"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="left" group="基本设置" id="align" name="位置" value="center">
+              <dync:render colSpan="1" height="0" multi="false" name="select">
+                <dync:item name="左" value="left"/>
+                <dync:item name="中" value="center"/>
+                <dync:item name="右" value="right"/>
+              </dync:render>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="" group="表格设置" id="groupHeadName" name="表头分组" value="办件业务">
+              <dync:render colSpan="1" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+          </form:attributes>
+        </form:control>
+        <form:validation/>
+      </form:child>
+      <form:child xsi:type="form:Field" binding="instanceSuperviseRedNum" id="instanceSuperviseRedNum" name="办件红牌数(张)" customize="true">
+        <form:control type="widget/col_jqgrid">
+          <form:attributes source="widget/col_jqgrid">
+            <dync:attribute default="150" group="基本设置" id="width" name="宽度" value="120">
+              <dync:render colSpan="1" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="false" group="表格设置" id="sortable" name="排序" value="true">
+              <dync:render colSpan="1" height="0" multi="false" name="checkbox"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="left" group="基本设置" id="align" name="位置" value="center">
+              <dync:render colSpan="1" height="0" multi="false" name="select">
+                <dync:item name="左" value="left"/>
+                <dync:item name="中" value="center"/>
+                <dync:item name="右" value="right"/>
+              </dync:render>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="" group="表格设置" id="groupHeadName" name="表头分组" value="办件业务">
+              <dync:render colSpan="1" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+          </form:attributes>
+        </form:control>
+        <form:validation/>
+      </form:child>
+      <form:child xsi:type="form:Field" binding="consultNum" id="consultNum" name="咨询数(件)" customize="true">
+        <form:control type="widget/col_jqgrid">
+          <form:attributes source="widget/col_jqgrid">
+            <dync:attribute default="150" group="基本设置" id="width" name="宽度" value="100">
+              <dync:render colSpan="1" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="false" group="表格设置" id="sortable" name="排序" value="true">
+              <dync:render colSpan="1" height="0" multi="false" name="checkbox"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="left" group="基本设置" id="align" name="位置" value="center">
+              <dync:render colSpan="1" height="0" multi="false" name="select">
+                <dync:item name="左" value="left"/>
+                <dync:item name="中" value="center"/>
+                <dync:item name="右" value="right"/>
+              </dync:render>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="" group="表格设置" id="groupHeadName" name="表头分组" value="咨询业务">
+              <dync:render colSpan="1" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+          </form:attributes>
+        </form:control>
+        <form:validation/>
+      </form:child>
+      <form:child xsi:type="form:Field" binding="consultReplayNum" id="consultReplayNum" name="咨询回复数(件)" customize="true">
+        <form:control type="widget/col_jqgrid">
+          <form:attributes source="widget/col_jqgrid">
+            <dync:attribute default="150" group="基本设置" id="width" name="宽度" value="120">
+              <dync:render colSpan="1" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="false" group="表格设置" id="sortable" name="排序" value="true">
+              <dync:render colSpan="1" height="0" multi="false" name="checkbox"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="left" group="基本设置" id="align" name="位置" value="center">
+              <dync:render colSpan="1" height="0" multi="false" name="select">
+                <dync:item name="左" value="left"/>
+                <dync:item name="中" value="center"/>
+                <dync:item name="右" value="right"/>
+              </dync:render>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="" group="表格设置" id="groupHeadName" name="表头分组" value="咨询业务">
+              <dync:render colSpan="1" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+          </form:attributes>
+        </form:control>
+        <form:validation/>
+      </form:child>
+      <form:child xsi:type="form:Field" binding="consultSuperviseYelloNum" id="consultSuperviseYelloNum" name="咨询黄牌数(张)" customize="true">
+        <form:control type="widget/col_jqgrid">
+          <form:attributes source="widget/col_jqgrid">
+            <dync:attribute default="150" group="基本设置" id="width" name="宽度" value="120">
+              <dync:render colSpan="1" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="false" group="表格设置" id="sortable" name="排序" value="true">
+              <dync:render colSpan="1" height="0" multi="false" name="checkbox"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="left" group="基本设置" id="align" name="位置" value="center">
+              <dync:render colSpan="1" height="0" multi="false" name="select">
+                <dync:item name="左" value="left"/>
+                <dync:item name="中" value="center"/>
+                <dync:item name="右" value="right"/>
+              </dync:render>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="" group="表格设置" id="groupHeadName" name="表头分组" value="咨询业务">
+              <dync:render colSpan="1" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+          </form:attributes>
+        </form:control>
+        <form:validation/>
+      </form:child>
+      <form:child xsi:type="form:Field" binding="consultSuperviseRedNum" id="consultSuperviseRedNum" name="咨询红牌数(张)" customize="true">
+        <form:control type="widget/col_jqgrid">
+          <form:attributes source="widget/col_jqgrid">
+            <dync:attribute default="150" group="基本设置" id="width" name="宽度" value="120">
+              <dync:render colSpan="1" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="false" group="表格设置" id="sortable" name="排序" value="true">
+              <dync:render colSpan="1" height="0" multi="false" name="checkbox"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="left" group="基本设置" id="align" name="位置" value="center">
+              <dync:render colSpan="1" height="0" multi="false" name="select">
+                <dync:item name="左" value="left"/>
+                <dync:item name="中" value="center"/>
+                <dync:item name="右" value="right"/>
+              </dync:render>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="" group="表格设置" id="groupHeadName" name="表头分组" value="咨询业务">
+              <dync:render colSpan="1" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+          </form:attributes>
+        </form:control>
+        <form:validation/>
+      </form:child>
+      <form:child xsi:type="form:Field" binding="comNum" id="comNum" name="投诉数(件)" customize="true">
+        <form:control type="widget/col_jqgrid">
+          <form:attributes source="widget/col_jqgrid">
+            <dync:attribute default="150" group="基本设置" id="width" name="宽度" value="100">
+              <dync:render colSpan="1" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="false" group="表格设置" id="sortable" name="排序" value="true">
+              <dync:render colSpan="1" height="0" multi="false" name="checkbox"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="left" group="基本设置" id="align" name="位置" value="center">
+              <dync:render colSpan="1" height="0" multi="false" name="select">
+                <dync:item name="左" value="left"/>
+                <dync:item name="中" value="center"/>
+                <dync:item name="右" value="right"/>
+              </dync:render>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="" group="表格设置" id="groupHeadName" name="表头分组" value="投诉业务">
+              <dync:render colSpan="1" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="" group="基本设置" id="classes" name="样式" value="tousuyewu_table_td_css">
+              <dync:render colSpan="1" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+          </form:attributes>
+        </form:control>
+        <form:validation/>
+      </form:child>
+      <form:child xsi:type="form:Field" binding="complainReplyNum" id="complainReplyNum" name="投诉回复数(件)" customize="true">
+        <form:control type="widget/col_jqgrid">
+          <form:attributes source="widget/col_jqgrid">
+            <dync:attribute default="150" group="基本设置" id="width" name="宽度" value="120">
+              <dync:render colSpan="1" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="false" group="表格设置" id="sortable" name="排序" value="true">
+              <dync:render colSpan="1" height="0" multi="false" name="checkbox"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="left" group="基本设置" id="align" name="位置" value="center">
+              <dync:render colSpan="1" height="0" multi="false" name="select">
+                <dync:item name="左" value="left"/>
+                <dync:item name="中" value="center"/>
+                <dync:item name="右" value="right"/>
+              </dync:render>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="" group="表格设置" id="groupHeadName" name="表头分组" value="投诉业务">
+              <dync:render colSpan="1" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="" group="基本设置" id="classes" name="样式" value="tousuyewu_table_td_css">
+              <dync:render colSpan="1" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+          </form:attributes>
+        </form:control>
+        <form:validation/>
+      </form:child>
+      <form:child xsi:type="form:Field" binding="complainSuperviseYelloNum" id="complainSuperviseYelloNum" name="投诉黄牌数(张)" customize="true">
+        <form:control type="widget/col_jqgrid">
+          <form:attributes source="widget/col_jqgrid">
+            <dync:attribute default="150" group="基本设置" id="width" name="宽度" value="120">
+              <dync:render colSpan="1" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="false" group="表格设置" id="sortable" name="排序" value="true">
+              <dync:render colSpan="1" height="0" multi="false" name="checkbox"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="left" group="基本设置" id="align" name="位置" value="center">
+              <dync:render colSpan="1" height="0" multi="false" name="select">
+                <dync:item name="左" value="left"/>
+                <dync:item name="中" value="center"/>
+                <dync:item name="右" value="right"/>
+              </dync:render>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="" group="表格设置" id="groupHeadName" name="表头分组" value="投诉业务">
+              <dync:render colSpan="1" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="" group="基本设置" id="classes" name="样式" value="tousuyewu_table_td_css">
+              <dync:render colSpan="1" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+          </form:attributes>
+        </form:control>
+        <form:validation/>
+      </form:child>
+      <form:child xsi:type="form:Field" binding="complainSuperviseRedNum" id="complainSuperviseRedNum" name="投诉红牌数(张)" customize="true">
+        <form:control type="widget/col_jqgrid">
+          <form:attributes source="widget/col_jqgrid">
+            <dync:attribute default="150" group="基本设置" id="width" name="宽度" value="120">
+              <dync:render colSpan="1" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="false" group="表格设置" id="sortable" name="排序" value="true">
+              <dync:render colSpan="1" height="0" multi="false" name="checkbox"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="left" group="基本设置" id="align" name="位置" value="center">
+              <dync:render colSpan="1" height="0" multi="false" name="select">
+                <dync:item name="左" value="left"/>
+                <dync:item name="中" value="center"/>
+                <dync:item name="右" value="right"/>
+              </dync:render>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="" group="表格设置" id="groupHeadName" name="表头分组" value="投诉业务">
+              <dync:render colSpan="1" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="" group="基本设置" id="classes" name="样式" value="tousuyewu_table_td_css">
+              <dync:render colSpan="1" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+          </form:attributes>
+        </form:control>
+        <form:validation/>
+      </form:child>
+      <form:child xsi:type="form:Field" binding="orgId" id="colJqgrid" name="机构id" customize="true">
+        <form:control type="widget/col_jqgrid">
+          <form:attributes source="widget/col_jqgrid">
+            <dync:attribute default="false" group="表格设置" id="hidden" name="隐藏列" value="true">
+              <dync:render colSpan="1" height="0" multi="false" name="checkbox"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="false" group="表格设置" id="key" name="主键列" value="true">
+              <dync:render colSpan="1" height="0" multi="false" name="checkbox"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="left" group="基本设置" id="align" name="位置" value="center">
+              <dync:render colSpan="1" height="0" multi="false" name="select">
+                <dync:item name="左" value="left"/>
+                <dync:item name="中" value="center"/>
+                <dync:item name="右" value="right"/>
+              </dync:render>
+              <dync:children/>
+            </dync:attribute>
+          </form:attributes>
+        </form:control>
+        <form:validation/>
+      </form:child>
+      <form:child xsi:type="form:Field" binding="orgLevelInt" id="colJqgrid1" name="级别" customize="true">
+        <form:control type="widget/col_jqgrid">
+          <form:attributes source="widget/col_jqgrid">
+            <dync:attribute default="false" group="表格设置" id="hidden" name="隐藏列" value="true">
+              <dync:render colSpan="1" height="0" multi="false" name="checkbox"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="left" group="基本设置" id="align" name="位置" value="center">
+              <dync:render colSpan="1" height="0" multi="false" name="select">
+                <dync:item name="左" value="left"/>
+                <dync:item name="中" value="center"/>
+                <dync:item name="右" value="right"/>
+              </dync:render>
+              <dync:children/>
+            </dync:attribute>
+          </form:attributes>
+        </form:control>
+        <form:validation/>
+      </form:child>
+      <form:child xsi:type="form:Field" binding="areaOrgCode" id="areaOrgCode" name="机构areaOrgCode" customize="true">
+        <form:control type="widget/col_jqgrid">
+          <form:attributes source="widget/col_jqgrid">
+            <dync:attribute default="false" group="表格设置" id="hidden" name="隐藏列" value="true">
+              <dync:render colSpan="1" height="0" multi="false" name="checkbox"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="left" group="基本设置" id="align" name="位置" value="center">
+              <dync:render colSpan="1" height="0" multi="false" name="select">
+                <dync:item name="左" value="left"/>
+                <dync:item name="中" value="center"/>
+                <dync:item name="右" value="right"/>
+              </dync:render>
+              <dync:children/>
+            </dync:attribute>
+          </form:attributes>
+        </form:control>
+        <form:validation/>
+      </form:child>
+    </form:child>
+  </form:child>
+  <form:child xsi:type="form:Group" id="div1" name="简单容器(DIV)">
+    <form:control type="container/div">
+      <form:attributes source="container/div">
+        <dync:attribute default="" group="高级自定义" id="html" name="自定义HTML" value="div1_html">
+          <dync:render colSpan="2" height="0" multi="false" name="html"/>
+          <dync:children/>
+        </dync:attribute>
+      </form:attributes>
+    </form:control>
+  </form:child>
+  <form:datasources>
+    <form:datasource xsi:type="form:PagingDataSource" id="list" name="列表型数据源" base="service" pageSize="10" type="url" url="dzjc_tongji/v1/getBanJianTongJiList"/>
+  </form:datasources>
+  <form:scripts>
+//初始化表格控件之后
+list_afterInit:function(events){
+	$view.list.setFrozenColumns('grid_areaOrgName');
+},
+//双击行
+list_ondblClickRow:function(rowid,iRow,iCol,e){
+	//1,非长沙市用户登录，双击&quot;多规合一&quot;数据，不处理
+	if($params.isChangShaShiData &amp;&amp; rowid != null &amp;&amp; rowid.substring(0,6) == &quot;DuoGui&quot;){
+		return;
+	}
+	
+	//2,双击事件的执行代码
+	var recoed = $view.list.getSingleSelectData();
+	var orgLevel = $view.list.getSingleSelectData().orgLevelInt;
+	if(orgLevel==2||orgLevel==3){
+		$params.orgId = $view.list.getSingleSelectData().orgId;
+		functions.loadData();
+	}else{
+		//Messenger.error(&quot;该数据无法操作&quot;);
+	}
+},
+//重置
+button1_click:function($event){
+    $view.list.setGridParam({sortname:&quot;&quot;}, false);
+    
+	functions.initDateTimeRangePicker();
+	setTimeout(function(){
+		functions.initDateTimeRangePicker();functions.loadData();
+	},500);
+},
+//初始化控件
+initDateTimeRangePicker:function(){
+	$params.orgId='';
+	var date_ = new Date();  
+    date_.setDate(1); 
+	$params.beginDate=date_;
+    var currentMonth=date_.getMonth();
+    var nextMonth=++currentMonth;
+ 	var nextMonthFirstDay=new Date(date_.getFullYear(),nextMonth,1);
+ 	var t=new Date(); 
+ 	t.setTime(nextMonthFirstDay-1000*60*60*24); 
+ 	$params.endDate=t; 
+},
+//加载数据
+loadData:function(){
+	var beginDate = $view.dateTimeRangePicker.getStartDatetimeObj().getValue();
+	var endDate = $view.dateTimeRangePicker.getEndDatetimeObj().getValue();
+	$view.list.refresh({orgId:$params.orgId,beginDate:beginDate,endDate:endDate});
+},
+//数据源加载前
+page_beforeDataSourceLoad:function($params){
+	functions.initDateTimeRangePicker();
+	
+	//&quot;多规合一&quot;参数
+	$params.duoGuiOrgMap;
+	$http.post(c2.base(&quot;service&quot;)+&quot;dzjc_tongji/v1/getSystemAreaCode&quot;).success(function(result){
+		if(result.success){	
+			var SYSTEM_AREACODE_VALUE = result.SYSTEM_AREACODE_VALUE;
+			var SYSTEM_DUOGUI_AREACODE_VALUE = result.SYSTEM_DUOGUI_AREACODE_VALUE;
+			//只有SYSTEM_AREACODE_VALUE为长沙市时展示相关操作
+			if(IsNotSpace(SYSTEM_AREACODE_VALUE) &amp;&amp; SYSTEM_DUOGUI_AREACODE_VALUE == SYSTEM_AREACODE_VALUE){
+				$params.isChangShaShiData = true;
+				
+				//将具有&quot;多规合一&quot;数据的机构查出
+				$.ajax({
+					&quot;url&quot; : c2.base(&quot;service&quot;)+&quot;dzjc_tongji/v1/getDuoGuiOrg&quot;,
+					&quot;type&quot; : &quot;get&quot;,
+					&quot;dataType&quot;: &quot;json&quot;,
+					&quot;success&quot; : function(data){
+						$params.duoGuiOrgMap = data;
+					},
+					&quot;error&quot;:function(data){
+						Messenger.error({type:'error',message:'多规合一机构查询失败！'});
+					}
+				});
+			}else{
+				$params.isChangShaShiData = false;
+			}
+		}else{
+			Messenger.error({type:'error',message:'多规合一参数SYSTEM_AREACODE_VALUE获取失败'});
+		}
+	});
+},
+//查询事件
+button_click:function($event){
+	functions.loadData();
+},
+//Excel导出
+button2_click:function($event){
+	Modal.openConfirm({message:&quot;是否导出所有数据！&quot;},function(data){
+	//导出调用查询方法
+	functions.button_click();
+	var beginDateLong = new Date($view.dateTimeRangePicker.getStartDatetimeObj().getValue()).getTime();
+	var endDateLong = new Date($view.dateTimeRangePicker.getEndDatetimeObj().getValue()).getTime();
+	var url = c2.base(&quot;service&quot;)+&quot;JCSumSuperviseInfoAllServlet?type=12&amp;beginDate=&quot;+beginDateLong+&quot;&amp;endDate=&quot;+endDateLong+&quot;&amp;org_id=&quot;+$params.orgId;
+			window.location.href =url;
+	});
+},
+//word导出
+button3_click:function($event){
+	Modal.openConfirm({message:&quot;是否导出所有数据！&quot;},function(data){
+	//导出调用查询方法
+	functions.button_click();
+	var beginDateLong = new Date($view.dateTimeRangePicker.getStartDatetimeObj().getValue()).getTime();
+	var endDateLong = new Date($view.dateTimeRangePicker.getEndDatetimeObj().getValue()).getTime();
+	var url = c2.base(&quot;service&quot;)+&quot;JCSumSuperviseInfoAllServlet?type=11&amp;beginDate=&quot;+beginDateLong+&quot;&amp;endDate=&quot;+endDateLong+&quot;&amp;org_id=&quot;+$params.orgId;
+			window.location.href =url;
+	});
+},
+
+dateTimeRangePicker_startOnChange:function(date,oldDate){
+	$params.beginDate = date;
+},
+
+dateTimeRangePicker_endOnChange:function(date,oldDate){
+	$params.endDate = date;
+},
+
+page_afterDataSourceLoad:function(){
+},
+
+//点击可展示&quot;多规合一&quot;数据
+grid_areaOrgName_customFormatter:function(cellvalue,options,rowObject,dictValueExpression){
+		
+	//1,定义所需数据
+	var html = &quot;&quot;;
+	var rowid = rowObject.orgId;
+	var orgLevel = rowObject.orgLevelInt;
+	var areaOrgCode = rowObject.areaOrgCode;
+	//2,向点击行之后插入&quot;多规合一&quot;数据(非长沙市用户登录，无此功能)
+	//countryCode及orgLevel符合要求，为长沙市直下机构，才存在多规数据
+	if(rowid != null &amp;&amp; areaOrgCode != null &amp;&amp; orgLevel != null 
+			&amp;&amp; $params.isChangShaShiData &amp;&amp; orgLevel == '5' &amp;&amp; areaOrgCode.substring(0,12) == '430101000000' ){
+		html = &quot;&lt;font style='cursor: pointer;' ng-click='functions.duoGuiParams(rowObject);'>&quot;+cellvalue+&quot;&lt;/font> &quot;;
+
+	}else{
+		html = cellvalue
+	}
+	return html;
+},
+duoGuiParams:function(rowObject){
+	
+	//0,判断该机构是否有&quot;多规合一&quot;数据
+	if($params.duoGuiOrgMap[rowObject.orgId] == null){
+		return;
+	}
+	//1,当前表格的id
+	var tableId = 'list';
+	//2,是否是&quot;多规合一&quot;数据(1,是;0:不是)
+	var isInvestmentSupervision = &quot;1&quot;;
+	var beginDate = new Date($params.beginDate).getTime();
+	var endDate = new Date($params.endDate).getTime();
+	var baseUrl = c2.base(&quot;service&quot;)+&quot;dzjc_tongji/v1/getByBanJianTongJiOrg&quot;;
+	var rowid = rowObject.orgId;
+	//3,插入&quot;多规合一&quot;数据
+	insertDuoGuiRow(tableId,rowid,beginDate,endDate,isInvestmentSupervision,baseUrl);
+}</form:scripts>
+  <form:htmls>
+&lt;script type=&quot;text/ng-template&quot; id=&quot;banjiantongji_div2_html&quot;>
+&lt;center>&lt;h3 ng-model='breadcrumbArray'>{{breadcrumbArray[1]}}&lt;/h3>&lt;/center>&lt;br/>
+&lt;/script>
+&lt;script type=&quot;text/ng-template&quot; id=&quot;div1_html&quot;>
+	&lt;h6 class=&quot;hhh1&quot;>温馨提示：&lt;/h6>
+	&lt;h6 class=&quot;hhh2&quot;>
+		法定提速率 = (所有办件法定时限总和 - 所有办件所用时长) / 所有办件法定时限总和（所有办件所用时长：所有办件受理到办结时长；所有办件法定时限总和：包含法定时限和特别程序时限）&lt;br/>
+	&lt;/h6>
+	&lt;h6 class=&quot;hhh2&quot;>
+		承诺提速率 = (所有办件承诺时限总和 - 所有办件所用时长) / 所有办件承诺时限总和（所有办件所用时长：所有办件受理到办结时长；所有办件承诺时限总和：包含承诺时限和特别程序时限）
+	&lt;/h6>
+	&lt;h6 class=&quot;hhh2&quot;>
+		如果办结率>100%，则上一时间段收到办件在查询时间段内进行办结，导致办结数>收件数。
+	&lt;/h6>
+&lt;/script></form:htmls>
+</form:Form>

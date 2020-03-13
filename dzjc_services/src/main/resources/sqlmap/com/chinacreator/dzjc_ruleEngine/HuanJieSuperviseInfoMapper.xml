@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"><mapper namespace="com.chinacreator.dzjc_ruleEngine.HuanJieSuperviseInfoMapper">	
+
+<!-- ElementID:column_sql,Generated=true -->
+<sql id="column_sql">
+		  TA_JC_HUANJIE_SUPERVISE_INFO.supervise_info_id ,
+		  TA_JC_HUANJIE_SUPERVISE_INFO.business_id ,
+		  TA_JC_HUANJIE_SUPERVISE_INFO.receive_org_name ,
+		  TA_JC_HUANJIE_SUPERVISE_INFO.supervise_type_no ,
+		  TA_JC_HUANJIE_SUPERVISE_INFO.supervise_result_no ,
+		  TA_JC_HUANJIE_SUPERVISE_INFO.supervise_time ,
+		  TA_JC_HUANJIE_SUPERVISE_INFO.supervise_descript ,
+		  TA_JC_HUANJIE_SUPERVISE_INFO.supervise_gist ,
+		  TA_JC_HUANJIE_SUPERVISE_INFO.warning_content ,
+		  TA_JC_HUANJIE_SUPERVISE_INFO.opinion_id ,
+		  TA_JC_HUANJIE_SUPERVISE_INFO.rule_id ,
+		  TA_JC_HUANJIE_SUPERVISE_INFO.feedback_endtime ,
+		  TA_JC_HUANJIE_SUPERVISE_INFO.state ,
+		  TA_JC_HUANJIE_SUPERVISE_INFO.last_updatetime ,
+		  TA_JC_HUANJIE_SUPERVISE_INFO.rule_version ,
+		  TA_JC_HUANJIE_SUPERVISE_INFO.org_id ,
+		  TA_JC_HUANJIE_SUPERVISE_INFO.revocation_reason ,
+		  TA_JC_HUANJIE_SUPERVISE_INFO.start_time ,
+		  TA_JC_HUANJIE_SUPERVISE_INFO.end_time ,
+		  TA_JC_HUANJIE_SUPERVISE_INFO.status ,
+		  TA_JC_HUANJIE_SUPERVISE_INFO.promise_limit ,
+		  TA_JC_HUANJIE_SUPERVISE_INFO.out_days ,
+		  TA_JC_HUANJIE_SUPERVISE_INFO.batch_id ,
+		  TA_JC_HUANJIE_SUPERVISE_INFO.tbcx_times 
+</sql>
+
+<!-- ElementID:whereClause_sql,Generated=true -->
+<sql id="whereClause_sql">
+	    <if test="superviseInfoId != null">and TA_JC_HUANJIE_SUPERVISE_INFO.supervise_info_id = #{superviseInfoId}</if>
+	    <if test="businessId != null">and TA_JC_HUANJIE_SUPERVISE_INFO.business_id = #{businessId}</if>
+	    <if test="receiveOrgName != null">and TA_JC_HUANJIE_SUPERVISE_INFO.receive_org_name = #{receiveOrgName}</if>
+	    <if test="superviseTypeNo != null">and TA_JC_HUANJIE_SUPERVISE_INFO.supervise_type_no = #{superviseTypeNo}</if>
+	    <if test="superviseResultNo != null">and TA_JC_HUANJIE_SUPERVISE_INFO.supervise_result_no = #{superviseResultNo}</if>
+	    <if test="superviseTime != null">and TA_JC_HUANJIE_SUPERVISE_INFO.supervise_time = #{superviseTime}</if>
+	    <if test="superviseDescript != null">and TA_JC_HUANJIE_SUPERVISE_INFO.supervise_descript = #{superviseDescript}</if>
+	    <if test="superviseGist != null">and TA_JC_HUANJIE_SUPERVISE_INFO.supervise_gist = #{superviseGist}</if>
+	    <if test="warningContent != null">and TA_JC_HUANJIE_SUPERVISE_INFO.warning_content = #{warningContent}</if>
+	    <if test="opinionId != null">and TA_JC_HUANJIE_SUPERVISE_INFO.opinion_id = #{opinionId}</if>
+	    <if test="ruleId != null">and TA_JC_HUANJIE_SUPERVISE_INFO.rule_id = #{ruleId}</if>
+	    <if test="feedbackEndtime != null">and TA_JC_HUANJIE_SUPERVISE_INFO.feedback_endtime = #{feedbackEndtime}</if>
+	    <if test="state != null">and TA_JC_HUANJIE_SUPERVISE_INFO.state = #{state}</if>
+	    <if test="lastUpdatetime != null">and TA_JC_HUANJIE_SUPERVISE_INFO.last_updatetime = #{lastUpdatetime}</if>
+	    <if test="ruleVersion != null">and TA_JC_HUANJIE_SUPERVISE_INFO.rule_version = #{ruleVersion}</if>
+	    <if test="orgId != null">and TA_JC_HUANJIE_SUPERVISE_INFO.org_id = #{orgId}</if>
+	    <if test="revocationReason != null">and TA_JC_HUANJIE_SUPERVISE_INFO.revocation_reason = #{revocationReason}</if>
+	    <if test="startTime != null">and TA_JC_HUANJIE_SUPERVISE_INFO.start_time = #{startTime}</if>
+	    <if test="endTime != null">and TA_JC_HUANJIE_SUPERVISE_INFO.end_time = #{endTime}</if>
+	    <if test="status != null">and TA_JC_HUANJIE_SUPERVISE_INFO.status = #{status}</if>
+	    <if test="promiseLimit != null">and TA_JC_HUANJIE_SUPERVISE_INFO.promise_limit = #{promiseLimit}</if>
+	    <if test="outDays != null">and TA_JC_HUANJIE_SUPERVISE_INFO.out_days = #{outDays}</if>
+	    <if test="batchId != null">and TA_JC_HUANJIE_SUPERVISE_INFO.batch_id = #{batchId}</if>
+	    <if test="tbcxTimes != null">and TA_JC_HUANJIE_SUPERVISE_INFO.tbcx_times = #{tbcxTimes}</if>
+</sql>
+
+
+<!-- ElementID:HuanJieSuperviseInfoResult,Generated=true -->
+<resultMap id="HuanJieSuperviseInfoResult" type="com.chinacreator.dzjc_ruleEngine.HuanJieSuperviseInfo">
+	<id property="superviseInfoId" column="supervise_info_id"/>
+	<result property="businessId" column="business_id"/>
+	<result property="receiveOrgName" column="receive_org_name"/>
+	<result property="superviseTypeNo" column="supervise_type_no"/>
+	<result property="superviseResultNo" column="supervise_result_no"/>
+	<result property="superviseTime" column="supervise_time"/>
+	<result property="superviseDescript" column="supervise_descript"/>
+	<result property="superviseGist" column="supervise_gist"/>
+	<result property="warningContent" column="warning_content"/>
+	<result property="opinionId" column="opinion_id"/>
+	<result property="ruleId" column="rule_id"/>
+	<result property="feedbackEndtime" column="feedback_endtime"/>
+	<result property="state" column="state"/>
+	<result property="lastUpdatetime" column="last_updatetime"/>
+	<result property="ruleVersion" column="rule_version"/>
+	<result property="orgId" column="org_id"/>
+	<result property="revocationReason" column="revocation_reason"/>
+	<result property="startTime" column="start_time"/>
+	<result property="endTime" column="end_time"/>
+	<result property="status" column="status"/>
+	<result property="promiseLimit" column="promise_limit"/>
+	<result property="outDays" column="out_days"/>
+	<result property="batchId" column="batch_id"/>
+	<result property="tbcxTimes" column="tbcx_times"/>
+</resultMap>
+
+
+<!-- ElementID:insert,Generated=false -->
+
+<!-- ElementID:count,Generated=true -->
+<select id="count" parameterType="com.chinacreator.dzjc_ruleEngine.HuanJieSuperviseInfo" resultType="int">
+	select count(*) from TA_JC_HUANJIE_SUPERVISE_INFO 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<!-- ElementID:update,Generated=false -->
+
+<!-- ElementID:updateNull,Generated=false -->
+
+<!-- ElementID:delete,Generated=false -->
+
+<!-- ElementID:select,Generated=false -->
+
+<!-- ElementID:insertBatch,Generated=true -->
+<insert id="insertBatch" parameterType="list">
+	insert into TA_JC_HUANJIE_SUPERVISE_INFO 
+	(supervise_info_id,business_id,receive_org_name,supervise_type_no,
+	supervise_result_no,supervise_time,supervise_descript,supervise_gist,
+	warning_content,opinion_id,rule_id,feedback_endtime,state,
+	rule_version,org_id,revocation_reason,start_time,end_time,status,
+	promise_limit,out_days,batch_id,tbcx_times) 
+<foreach collection="list" item="entity" index="index" separator="union all">
+		select 
+			#{entity.superviseInfoId,jdbcType = VARCHAR},
+			#{entity.businessId,jdbcType = VARCHAR},
+			#{entity.receiveOrgName,jdbcType = VARCHAR},
+			#{entity.superviseTypeNo,jdbcType = VARCHAR},
+			#{entity.superviseResultNo,jdbcType = VARCHAR},
+			<if test="entity.superviseTime != null">to_date(#{entity.superviseTime,jdbcType=VARCHAR},'yyyy-mm-dd hh24:mi:ss'),</if>
+       		<if test="entity.superviseTime == null">null,</if>
+			#{entity.superviseDescript,jdbcType = VARCHAR},
+			#{entity.superviseGist,jdbcType = VARCHAR},
+			#{entity.warningContent,jdbcType = VARCHAR},
+			#{entity.opinionId,jdbcType = VARCHAR},
+			#{entity.ruleId,jdbcType = VARCHAR},
+			<if test="entity.feedbackEndtime != null">to_date(#{entity.feedbackEndtime,jdbcType=VARCHAR},'yyyy-mm-dd hh24:mi:ss'),</if>
+       		<if test="entity.feedbackEndtime == null">null,</if>
+			#{entity.state,jdbcType = VARCHAR},
+			<!-- #{entity.lastUpdatetime,jdbcType = DATE}, -->
+			#{entity.ruleVersion,jdbcType = VARCHAR},
+			#{entity.orgId,jdbcType = VARCHAR},
+			#{entity.revocationReason,jdbcType = VARCHAR},
+			#{entity.startTime,jdbcType = DATE},
+			#{entity.endTime,jdbcType = DATE},
+			#{entity.status,jdbcType = VARCHAR},
+			#{entity.promiseLimit,jdbcType = NUMERIC},
+			#{entity.outDays,jdbcType = VARCHAR},
+			#{entity.batchId,jdbcType = VARCHAR},
+			#{entity.tbcxTimes,jdbcType = VARCHAR}
+		from dual
+</foreach>
+</insert>
+
+<!-- ElementID:deleteBatch,Generated=false -->
+
+<!-- ElementID:updateBatch,Generated=false -->
+
+<!-- ElementID:selectAll,Generated=false -->
+
+<!-- ElementID:selectMany,Generated=false -->
+
+<!-- ElementID:selectUnion,Generated=false -->
+
+<!-- ElementID:selectByID,Generated=true -->
+<select id="selectByID" parameterType="java.lang.String" resultMap="HuanJieSuperviseInfoResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_HUANJIE_SUPERVISE_INFO 
+		 where TA_JC_HUANJIE_SUPERVISE_INFO.supervise_info_id = #{superviseInfoId,jdbcType=VARCHAR}
+</select>
+
+<!-- ElementID:selectByPage,Generated=true -->
+<select id="selectByPage" parameterType="com.chinacreator.dzjc_ruleEngine.HuanJieSuperviseInfo" resultMap="HuanJieSuperviseInfoResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_HUANJIE_SUPERVISE_INFO 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<update id="batchUpdateStatus">
+	update ta_jc_huanjie_supervise_info a 
+       set a.status = '1' 
+       where a.supervise_info_id in 
+             (select b.supervise_info_id from ta_jc_huanjie_supervise_info b 
+                     left join ta_sp_result_opinion c on c.opinion_id = b.opinion_id 
+                     where c.org_id = b.org_id 
+                     and b.status = '2' 
+                     and c.link_flag = '1')
+</update>
+
+<delete id="batchDeleteStatus">
+	delete from ta_jc_huanjie_supervise_info a 
+       where a.supervise_info_id in 
+             (select b.supervise_info_id from ta_jc_huanjie_supervise_info b 
+                     left join ta_sp_result_opinion c on c.opinion_id = b.opinion_id 
+                     where c.org_id &lt;&gt; b.org_id 
+                     and b.status = '2' 
+                     and c.link_flag = '1')
+</delete>
+
+</mapper>

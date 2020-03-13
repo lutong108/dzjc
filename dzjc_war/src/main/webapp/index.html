@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en" id="ng-app" ng-app="app">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta charset="utf-8" />
+<title>政务服务</title>
+<meta name="description" content="overview &amp; stats" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+<!-- bootstrap & fontawesome -->
+<link rel="stylesheet" href="assets/css/c2-all.css" />
+<link rel="stylesheet" type="text/css" href="css/navigator.css">
+<link rel="stylesheet" type="text/css" href="css/dzjc.css?ver=1">
+<script src="js/jquery-1.10.1.min.js" type="text/javascript" ></script>
+<script src="layer/layer.js" type="text/javascript" ></script>
+<script src="assets/js/public.js" type="text/javascript" ></script>
+</head>
+
+<body class="no-skin" ng-controller="AppController" onload="init()">
+<!-- 页面没有加载完成前显示的遮罩 -->
+<div id="indexloading"></div>
+<!-- C2组件指令模板容器 -->
+<div id="directives" ng-include="'ui/dir/directives.html'"></div>
+<!-- #section:basics/navbar.layout -->
+<div id="navbar" class="navbar navbar-default">
+  <div class="dtop">
+   <!--  <div class="m-msg">
+      <span class="ico-txt">01 综合窗口</span>
+      <span>等待人数：<em>30</em></span>
+      <span>当前办理：<em>A0001</em></span>
+    </div>
+    <div class="m-msg m-tools">
+      <a href="#"><span class="ico-txt"><i class="icon-a1"></i>呼叫下一位</span></a>
+      <a href="#"><span class="ico-txt"><i class="icon-a2"></i>重呼</span></a>
+      <a href="#"><span class="ico-txt"><i class="icon-a3"></i>暂停</span></a>
+      <a href="#"><span class="ico-txt"><i class="icon-a4"></i>转移</span></a>
+      <a href="#"><span class="ico-txt"><i class="icon-a5"></i>评价</span></a>
+    </div> -->
+    
+    <div class="m-msg m-tools2">
+    <a href="javascript:void(0)" id="sjjc" style="display: none"><span ng-click="functions.showsjjc()"  class="ico-txt">三级监管</span></a>
+      <a href="javascript:void(0)"><span onclick="downConponent()" class="ico-txt">控件下载</span></a>
+      <a href="javascript:void(0)" ><span class="ico-txt"><i class="icon-a1"></i>{{subject.realname}}</span></a>
+      <!-- <a href="#/f/indexPage?flag=1" class="ico-txt"><i class="icon-a4"></i>首页</span></a> -->
+      <a href="javascript:void(0)"><span onclick="modifyPassword()" class="ico-txt">修改密码</span></a>
+      <a href="#"><span class="ico-txt" ng-click="logout()"><i class="icon-a3"></i>退出</span></a>
+      
+      
+    </div>
+    <div style="clear:both"></div>
+  </div>
+  <!--导航图标菜单-->
+  <div class="indextop m-call">
+    <div class="m-server" id="picScroll-left">
+      <div class="bd">
+        <ul class="picList">
+          <li ng-repeat="app in allApps"><a ng-href="{{app.url}}" target="{{app.target}}" title="{{app.name}}"><img ng-src="{{app.icon}}" width="60" height="46"/><p>{{app.name}}</p></a></li>
+        </ul>
+      </div>
+      <!-- 不显示顶部其他应用，2019-07-29注释掉，对应js代码在app-controller.js中 -->
+      <!-- <div class="hd">
+        <a class="next"></a>
+        <a class="prev"></a>
+      </div> -->
+    </div>
+    </div>
+  <!--导航图标菜单 /-->
+</div>
+<!-- /section:basics/navbar.layout -->
+<div class="main-container" id="main-container"> 
+  <script type="text/javascript">
+	try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+  </script> 
+  
+  <!-- #section:basics/sidebar -->
+  <div id="sidebar" class="sidebar responsive"> 
+    <script type="text/javascript">
+		try{ace.settings.check('sidebar' , 'fixed')}catch(e){}
+	</script>
+    <!-- #section:basics/sidebar.layout.minimize -->
+    <div class="sidebar-toggle" id="sidebar-collapse" style="text-align:left;text-indent:7px;">
+    	<span id="systemname" style="color: white; font-size: 20px;display:inline-block;">{{currentMenuTitle}}</span> 
+    	<i class="ace-icon" style="width:36px;" data-icon1="" data-icon2=""></i> 
+    </div>
+    
+    <!-- /section:basics/sidebar.layout.minimize --> 
+    <ul class="nav nav-list">
+      <li ng-class="{open:menu.open}" ng-repeat="menu in menus" ng-click="menuClick($event,menu)">
+        <a ng-href="{{menu.url}}"  target="{{menu.target}}"  class="dropdown-toggle">
+          <i class="menu-icon fa {{menu.icon}}"></i>
+          <span class="menu-text">{{menu.name}}</span>
+          <b ng-show="menu.items" class="arrow fa fa-angle-down"></b>
+        </a>
+        <b class="arrow"></b>
+        <ul class="submenu" ng-show="menu.items" id="{{menu.name}}ul">
+          <li class="" ng-repeat="ms in menu.items" ng-click="menuClick($event,menu,ms)">
+            <a ng-href="{{ms.url}}" target="{{ms.target}}">
+              <i class="menu-icon fa {{ms.icon}}"></i> {{ms.name}} </a>
+            <b class="arrow"></b>
+          </li>
+        </ul>
+      </li>
+    </ul>
+    
+    <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog" style="width:900px;">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close"  aria-hidden="true" onclick="previewClosed()">
+					&times;
+				</button>
+				<h4 class="modal-title" id="myModalLabel1" style="padding-top: 8px;">
+					标题内容
+				</h4>
+			</div>
+			<div id="divcontent1" class="modal-body" >
+				<div>
+					<a  href="CLodop_Setup_for_Win32NT.exe"><img alt="物料封存单打印控件下载" src="images/wlfc.png"></a><br/>
+				</div>
+				<div style="margin-top: 5px">
+					<a  href="KGB-iWebOffice2015/KGBrowser_1.0.0.66_20170502.msi"><img alt="文书重打打印控件下载" src="images/wscd.png"></a>
+				</div>
+			</div>
+			<div class="modal-footer" style="height: 55px;">
+				<button type="button" class="btn btn-default" style="height: 40px;" onclick="previewClosed()">关闭</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal -->
+</div>
+
+ <div class="modal fade" id="myModalPwd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog" style="width:900px;">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close"  aria-hidden="true" onclick="passwordClosed()">
+					&times;
+				</button>
+				<h4 class="modal-title" id="myModalLabelPwd" style="padding-top: 8px;">
+					标题内容
+				</h4>
+			</div>
+			<div id="divcontent1" class="modal-body" >	
+	    <label class="control-label al-control-label" style="width:75px;" ng-class='{"required-label":false}'>旧密码</label>
+        <div style="margin-left: 85px;">
+    	        <input c2-input id=oldpassword name=oldpassword ng-model=applicant.oldpassword class="form-control c2Input" type="password" 
+    	        ng-required='false' ng-trim='true' maxlength='15'/>
+    	</div>
+    		<br/>
+	    <label class="control-label al-control-label" style="width:75px;" ng-class='{"required-label":false}'>新密码</label>
+        <div style="margin-left: 85px;">
+    	        <input c2-input id=newpassword name=newpassword ng-model=applicant.newpassword class="form-control c2Input" type="password" 
+    	        placeholder="密码要求小写字母、大写字母、数字、特殊符号的两种及以上八位字符" ng-required='false' ng-trim='true' maxlength='15'/>
+    	</div>
+    	<br/>
+	    <label class="control-label al-control-label" style="width:75px;" ng-class='{"required-label":false}'>重复新密码</label>
+        <div style="margin-left: 85px;">
+    	        <input c2-input id=renewpassword name=renewpassword ng-model=applicant.renewpassword class="form-control c2Input" type="password" 
+    	        placeholder="密码要求小写字母、大写字母、数字、特殊符号的两种及以上八位字符" ng-required='false' ng-trim='true' maxlength='15'/>
+    	</div>
+		
+			</div>
+			<div class="modal-footer" style="height: 55px;">
+				<button type="button" class="btn btn-default" style="height: 40px;" onclick="passwordMod()">修改</button>
+				<button type="button" class="btn btn-default" style="height: 40px;" onclick="passwordClosed()">关闭</button>
+			</div>
+			
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal -->
+</div>
+
+    <!-- /.nav-list -->
+    <script type="text/javascript">
+		try{ace.settings.check('sidebar' , 'collapsed')}catch(e){}
+		function init(){
+			$.ajax({
+		        url:c2.base("service")+"dzjc_todoStatistics/v1/todoStatisticsList/selectRole",
+		        type:"GET",
+		        async: false,
+		        dataType:"JSON",
+		        success:function(data){
+		          if(data=="1"){
+		        	  $("#sjjc").css("display","inline");
+		          }
+		        }
+		   });
+		}
+		function downConponent(){
+			$("#myModal1").show();
+	    	$("#myModalLabel1").text("打印控件下载");
+			$('#myModal1').modal({backdrop:'static'}); 
+		}
+		//修改密码
+		function modifyPassword(){
+			$("#myModalPwd").show();
+			$("#myModalPwd input").val("");
+	    	$("#myModalLabelPwd").text("修改密码");
+			$('#myModalPwd').modal({backdrop:'static'}); 
+		}
+		
+		//判断浏览器是否为IE
+		function isIE() {
+			if ( !!window.ActiveXObject || "ActiveXObject" in window) {
+			  return true;
+			} else {
+			  return false;
+			}
+		}
+		function previewClosed(){
+	    	$("#myModal1").hide();
+	    }
+		
+		
+		
+		function passwordClosed(){
+	    	$("#myModalPwd").hide();
+	    }
+		//修改密码
+	    function passwordMod(){
+	    	var oldpasswords = $("#oldpassword").val();
+	    	var newpassword = $("#newpassword").val();
+	    	var renewpasswords = $("#renewpassword").val();
+		
+		if(oldpasswords == null || oldpasswords == ''){
+			alert("请输入旧密码！");
+			return;
+		}
+		if(newpassword == null || newpassword == ''){
+			alert("请输入新密码！");
+			return;
+		}
+		if(oldpasswords == newpassword){
+			alert("新密码不得与旧密码一致！");
+			return;
+		}
+		var userId = c2.subject.id;//机构树初始参数用户ID
+		var oldpasswordEncode = encodeURIComponent(oldpasswords);
+		var newpasswordEncode = encodeURIComponent(newpassword);
+		 $.ajax({
+			  url:"proxy/sso/v1/userpwd/"+userId+"/password?password="+oldpasswordEncode,
+			  type: "get",	
+			  success: function(data){
+				  if(data == true){
+				    	if(newpassword == renewpasswords){
+				    		$.ajax({
+				    		    url : "proxy/sso/v1/userpwd/"+userId+"?newpassword="+newpasswordEncode+"&oldpassword="+oldpasswordEncode,
+				    		    //url : "proxy/sso/v1/userpwd/"+userId+"?password="+renewpasswords,
+				    		    type: "put",
+				    		    success : function(data) {
+				    		    	alert("修改成功");
+					    			$("#myModalPwd").hide();
+				    		    },
+				    		    error: function(XMLHttpRequest, textStatus, errorThrown) {
+				    		    	var jsonResponse = XMLHttpRequest.responseJSON;
+				    		    	 if(null != jsonResponse) {
+				    		    	   alert(jsonResponse.errorMessage);
+				    		    	} else {
+				    		    	   alert("密码修改失败！");
+				    		    	} 
+				    		    }
+				    		});
+				    	}else{
+				    		alert("重复密码不一致！");
+				    	}
+				    }else{
+				    	alert("旧密码错误，请重新输入！");
+				    }
+			  },
+			  error: function(XMLHttpRequest, textStatus, errorThrown) {
+				  alert("网络通信失败！");
+			  }
+		});  
+	    }
+	</script> 
+  </div>
+  
+  <!-- /section:basics/sidebar -->
+  <div class="main-content"> 
+    <!-- #section:basics/content.breadcrumbs -->
+    <div class="breadcrumbs" id="breadcrumbs"> 
+      <script type="text/javascript">
+		try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+	  </script>
+      <ul class="breadcrumb">  
+        <li> <i class="ace-icon fa fa-home home-icon"></i> <a href="#/f/indexPage?flag=1" ng-click="functions.clickIndex()">首页</a> </li>
+        <li ng-repeat="crumb in breadcrumbArray">{{crumb}}</li>
+      </ul>
+      <!-- /.breadcrumb --> 
+      <!-- /section:basics/content.searchbox --> 
+    </div>
+    
+    <!-- /section:basics/content.breadcrumbs -->
+    <div class="page-content" ng-view autoscroll> 主体内容 </div>
+    <!-- /.page-content --> 
+  </div>
+  <!-- /.main-content --> 
+  
+</div>
+<!-- /.main-container --> 
+
+<!-- jquery v1.11.1 -->
+<script src="assets/jquery.min.js"></script>
+<!--导航图片左右滚动 插件-->
+<script src="js/jquery.SuperSlide.2.1.1.js"></script>
+<!-- 标准js库 -->
+<script src="assets/js/c2-all.js"></script>
+<!-- 自定义公用js -->
+<script src="assets/js/public.js?version=20181204"></script>
+<!-- 首页控制器  -->
+<script src="js/app-controllers.js?v=20180917"></script>
+<!-- 组件指令集合 -->
+<script src="js/directives.js"></script>
+<!-- 国际化配置 -->
+<script src="i18n/zh-cn.js"></script>
+
+<!-- 主要是在页面加载完成后移除遮罩，配合<div id="indexloading"></div>使用 -->
+<div c2-load-finished on-finished="loadFinished()"></div>
+</body>
+</html>

@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"><mapper namespace="com.chinacreator.dzjc_log.LogAuditMapper">	
+
+<!-- ElementID:column_sql,Generated=false -->
+<sql id="column_sql">
+		  TA_JC_LOG_AUDIT.log_id ,
+		  TA_JC_LOG_AUDIT.sys_name ,
+		  TA_JC_LOG_AUDIT.module_name ,
+		  TA_JC_LOG_AUDIT.method_name ,
+		  TA_JC_LOG_AUDIT.op_type ,
+		  TA_JC_LOG_AUDIT.op_time ,
+		  TA_JC_LOG_AUDIT.op_content ,
+		  TA_JC_LOG_AUDIT.user_id ,
+		  TA_JC_LOG_AUDIT.user_name ,
+		  TA_JC_LOG_AUDIT.business_key ,
+		  TA_JC_LOG_AUDIT.remark <!-- ,
+		  TA_JC_LOG_AUDIT.beginDate ,
+		  TA_JC_LOG_AUDIT.endDate  -->
+</sql>
+
+<!-- ElementID:whereClause_sql,Generated=true -->
+<sql id="whereClause_sql">
+	    <if test="logId != null">and TA_JC_LOG_AUDIT.log_id = #{logId}</if>
+	    <if test="sysName != null">and TA_JC_LOG_AUDIT.sys_name = #{sysName}</if>
+	    <if test="moduleName != null">and TA_JC_LOG_AUDIT.module_name = #{moduleName}</if>
+	    <if test="methodName != null">and TA_JC_LOG_AUDIT.method_name = #{methodName}</if>
+	    <if test="opType != null">and TA_JC_LOG_AUDIT.op_type = #{opType}</if>
+	    <if test="opTime != null">and TA_JC_LOG_AUDIT.op_time = #{opTime}</if>
+	    <if test="opContent != null">and TA_JC_LOG_AUDIT.op_content = #{opContent}</if>
+	    <if test="userId != null">and TA_JC_LOG_AUDIT.user_id = #{userId}</if>
+	    <if test="userName != null">and TA_JC_LOG_AUDIT.user_name = #{userName}</if>
+	    <if test="businessKey != null">and TA_JC_LOG_AUDIT.business_key = #{businessKey}</if>
+	    <if test="remark != null">and TA_JC_LOG_AUDIT.remark = #{remark}</if>
+	    <if test="beginDate != null">and TA_JC_LOG_AUDIT.beginDate = #{beginDate}</if>
+	    <if test="endDate != null">and TA_JC_LOG_AUDIT.endDate = #{endDate}</if>
+</sql>
+
+
+<!-- ElementID:LogAuditResult,Generated=true -->
+<resultMap id="LogAuditResult" type="com.chinacreator.dzjc_log.LogAudit">
+	<id property="logId" column="log_id"/>
+	<result property="sysName" column="sys_name"/>
+	<result property="moduleName" column="module_name"/>
+	<result property="methodName" column="method_name"/>
+	<result property="opType" column="op_type"/>
+	<result property="opTime" column="op_time"/>
+	<result property="opContent" column="op_content"/>
+	<result property="userId" column="user_id"/>
+	<result property="userName" column="user_name"/>
+	<result property="businessKey" column="business_key"/>
+	<result property="remark" column="remark"/>
+	<result property="beginDate" column="beginDate"/>
+	<result property="endDate" column="endDate"/>
+</resultMap>
+
+
+<!-- ElementID:insert,Generated=true -->
+<insert id="insert" parameterType="com.chinacreator.dzjc_log.LogAudit">
+	insert into TA_JC_LOG_AUDIT(
+	         <if test="logId != null">log_id</if>
+	         <if test="sysName != null">,sys_name</if>
+	         <if test="moduleName != null">,module_name</if>
+	         <if test="methodName != null">,method_name</if>
+	         <if test="opType != null">,op_type</if>
+	         <if test="opTime != null">,op_time</if>
+	         <if test="opContent != null">,op_content</if>
+	         <if test="userId != null">,user_id</if>
+	         <if test="userName != null">,user_name</if>
+	         <if test="businessKey != null">,business_key</if>
+	         <if test="remark != null">,remark</if>
+	         <if test="beginDate != null">,beginDate</if>
+	         <if test="endDate != null">,endDate</if>
+	 	 	 )
+	 values (
+	         <if test="logId != null">#{logId,jdbcType=VARCHAR}</if>
+	         <if test="sysName != null">,#{sysName,jdbcType=VARCHAR}</if>
+	         <if test="moduleName != null">,#{moduleName,jdbcType=VARCHAR}</if>
+	         <if test="methodName != null">,#{methodName,jdbcType=VARCHAR}</if>
+	         <if test="opType != null">,#{opType,jdbcType=VARCHAR}</if>
+	         <if test="opTime != null">,#{opTime,jdbcType=DATE}</if>
+	         <if test="opContent != null">,#{opContent,jdbcType=VARCHAR}</if>
+	         <if test="userId != null">,#{userId,jdbcType=VARCHAR}</if>
+	         <if test="userName != null">,#{userName,jdbcType=VARCHAR}</if>
+	         <if test="businessKey != null">,#{businessKey,jdbcType=VARCHAR}</if>
+	         <if test="remark != null">,#{remark,jdbcType=VARCHAR}</if>
+	         <if test="beginDate != null">,#{beginDate,jdbcType=DATE}</if>
+	         <if test="endDate != null">,#{endDate,jdbcType=DATE}</if>
+	 	 	 )
+</insert>
+
+<!-- ElementID:count,Generated=true -->
+<select id="count" parameterType="com.chinacreator.dzjc_log.LogAudit" resultType="int">
+	select count(*) from TA_JC_LOG_AUDIT 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<!-- ElementID:update,Generated=true -->
+<update id="update" parameterType="com.chinacreator.dzjc_log.LogAudit">
+	update TA_JC_LOG_AUDIT
+<set>
+	<if test="sysName != null">sys_name=#{sysName,jdbcType=VARCHAR},</if>
+	<if test="moduleName != null">module_name=#{moduleName,jdbcType=VARCHAR},</if>
+	<if test="methodName != null">method_name=#{methodName,jdbcType=VARCHAR},</if>
+	<if test="opType != null">op_type=#{opType,jdbcType=VARCHAR},</if>
+	<if test="opTime != null">op_time=#{opTime,jdbcType=DATE},</if>
+	<if test="opContent != null">op_content=#{opContent,jdbcType=VARCHAR},</if>
+	<if test="userId != null">user_id=#{userId,jdbcType=VARCHAR},</if>
+	<if test="userName != null">user_name=#{userName,jdbcType=VARCHAR},</if>
+	<if test="businessKey != null">business_key=#{businessKey,jdbcType=VARCHAR},</if>
+	<if test="remark != null">remark=#{remark,jdbcType=VARCHAR},</if>
+	<if test="beginDate != null">beginDate=#{beginDate,jdbcType=DATE},</if>
+	<if test="endDate != null">endDate=#{endDate,jdbcType=DATE}</if>
+</set>
+<where>
+	<choose>
+        <when test="logId != null">and log_id = #{logId}</when>
+        <otherwise>and log_id = </otherwise>
+    </choose>
+</where>
+</update>
+
+<!-- ElementID:updateNull,Generated=true -->
+<update id="updateNull" parameterType="map">
+	update TA_JC_LOG_AUDIT
+	<set>
+		<trim suffixOverrides=",">
+		    <if test="sysName==null">sys_name = null,</if>
+		    <if test="moduleName==null">module_name = null,</if>
+		    <if test="methodName==null">method_name = null,</if>
+		    <if test="opType==null">op_type = null,</if>
+		    <if test="opTime==null">op_time = null,</if>
+		    <if test="opContent==null">op_content = null,</if>
+		    <if test="userId==null">user_id = null,</if>
+		    <if test="userName==null">user_name = null,</if>
+		    <if test="businessKey==null">business_key = null,</if>
+		    <if test="remark==null">remark = null,</if>
+		    <if test="beginDate==null">beginDate = null,</if>
+		    <if test="endDate==null">endDate = null,</if>
+		</trim>
+	</set>
+	<where>
+		<choose>
+			<when test="logId != null">and log_id = #{logId}</when>
+			<otherwise>and log_id = </otherwise>
+		</choose>
+	</where>
+</update>
+
+<!-- ElementID:delete,Generated=true -->
+<delete id="delete" parameterType="com.chinacreator.dzjc_log.LogAudit">
+    delete from TA_JC_LOG_AUDIT where 1=1 and log_id = #{logId}
+</delete>
+
+<!-- ElementID:select,Generated=true -->
+<select id="select" parameterType="com.chinacreator.dzjc_log.LogAudit" resultMap="LogAuditResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_LOG_AUDIT 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+
+<!-- ElementID:insertBatch,Generated=true -->
+<insert id="insertBatch" parameterType="list">
+	insert into TA_JC_LOG_AUDIT (log_id,sys_name,module_name,method_name,op_type,op_time,op_content,user_id,user_name,business_key,remark,beginDate,endDate) 
+<foreach collection="list" item="entity" index="index" separator="union all">
+		select 
+		#{entity.logId,jdbcType = VARCHAR},
+				#{entity.sysName,jdbcType = VARCHAR},
+				#{entity.moduleName,jdbcType = VARCHAR},
+				#{entity.methodName,jdbcType = VARCHAR},
+				#{entity.opType,jdbcType = VARCHAR},
+				#{entity.opTime,jdbcType = DATE},
+				#{entity.opContent,jdbcType = VARCHAR},
+				#{entity.userId,jdbcType = VARCHAR},
+				#{entity.userName,jdbcType = VARCHAR},
+				#{entity.businessKey,jdbcType = VARCHAR},
+				#{entity.remark,jdbcType = VARCHAR},
+				#{entity.beginDate,jdbcType = DATE},
+				#{entity.endDate,jdbcType = DATE}
+		from dual
+</foreach>
+</insert>
+
+<!-- ElementID:deleteBatch,Generated=true -->
+<delete id="deleteBatch" parameterType="List">
+	delete from TA_JC_LOG_AUDIT where log_id in
+<trim prefix="(" suffix=")" suffixOverrides=",">
+<foreach collection="list" item="entity" separator=",">
+	<choose>
+		<when test="@com.chinacreator.c2.dao.util.EntityBeanUtil@isEntityObj(entity)">#{entity.logId}</when>
+		<otherwise>#{entity}</otherwise>
+	</choose>
+</foreach>
+</trim>
+</delete>
+
+<!-- ElementID:updateBatch,Generated=true -->
+<update id="updateBatch" parameterType="list">
+	<foreach collection="list" item="entity" open="begin" close=";end;" separator=";">
+			update TA_JC_LOG_AUDIT
+	<set>
+	<if test="entity.sysName != null">sys_name= #{entity.sysName,jdbcType=VARCHAR},</if>
+	<if test="entity.moduleName != null">module_name= #{entity.moduleName,jdbcType=VARCHAR},</if>
+	<if test="entity.methodName != null">method_name= #{entity.methodName,jdbcType=VARCHAR},</if>
+	<if test="entity.opType != null">op_type= #{entity.opType,jdbcType=VARCHAR},</if>
+	<if test="entity.opTime != null">op_time= #{entity.opTime,jdbcType=DATE},</if>
+	<if test="entity.opContent != null">op_content= #{entity.opContent,jdbcType=VARCHAR},</if>
+	<if test="entity.userId != null">user_id= #{entity.userId,jdbcType=VARCHAR},</if>
+	<if test="entity.userName != null">user_name= #{entity.userName,jdbcType=VARCHAR},</if>
+	<if test="entity.businessKey != null">business_key= #{entity.businessKey,jdbcType=VARCHAR},</if>
+	<if test="entity.remark != null">remark= #{entity.remark,jdbcType=VARCHAR},</if>
+	<if test="entity.beginDate != null">beginDate= #{entity.beginDate,jdbcType=DATE},</if>
+	<if test="entity.endDate != null">endDate= #{entity.endDate,jdbcType=DATE}</if>
+	</set>
+		<where>
+			<choose>
+				<when test="entity.logId != null">and log_id = #{entity.logId}</when>
+				<otherwise>and log_id = </otherwise>
+			</choose>
+		</where>
+	</foreach>
+</update>
+
+<!-- ElementID:selectAll,Generated=true -->
+<select id="selectAll" resultMap="LogAuditResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_LOG_AUDIT 
+</select>
+
+<!-- ElementID:selectMany,Generated=true -->
+<select id="selectMany" parameterType="list" resultMap="LogAuditResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_JC_LOG_AUDIT 
+	where TA_JC_LOG_AUDIT.log_id in (
+<foreach collection="list" item="entity" separator="intersect">
+		select 
+		TA_JC_LOG_AUDIT.log_id
+	    from TA_JC_LOG_AUDIT 
+		 <where>
+	        <if test="entity.logId != null">and TA_JC_LOG_AUDIT.log_id = #{entity.logId}</if>
+	        <if test="entity.sysName != null">and TA_JC_LOG_AUDIT.sys_name = #{entity.sysName}</if>
+	        <if test="entity.moduleName != null">and TA_JC_LOG_AUDIT.module_name = #{entity.moduleName}</if>
+	        <if test="entity.methodName != null">and TA_JC_LOG_AUDIT.method_name = #{entity.methodName}</if>
+	        <if test="entity.opType != null">and TA_JC_LOG_AUDIT.op_type = #{entity.opType}</if>
+	        <if test="entity.opTime != null">and TA_JC_LOG_AUDIT.op_time = #{entity.opTime}</if>
+	        <if test="entity.opContent != null">and TA_JC_LOG_AUDIT.op_content = #{entity.opContent}</if>
+	        <if test="entity.userId != null">and TA_JC_LOG_AUDIT.user_id = #{entity.userId}</if>
+	        <if test="entity.userName != null">and TA_JC_LOG_AUDIT.user_name = #{entity.userName}</if>
+	        <if test="entity.businessKey != null">and TA_JC_LOG_AUDIT.business_key = #{entity.businessKey}</if>
+	        <if test="entity.remark != null">and TA_JC_LOG_AUDIT.remark = #{entity.remark}</if>
+	        <if test="entity.beginDate != null">and TA_JC_LOG_AUDIT.beginDate = #{entity.beginDate}</if>
+	        <if test="entity.endDate != null">and TA_JC_LOG_AUDIT.endDate = #{entity.endDate}</if>
+		</where>
+</foreach>
+)
+</select>
+
+<!-- ElementID:selectUnion,Generated=true -->
+<select id="selectUnion" parameterType="list" resultMap="LogAuditResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_JC_LOG_AUDIT 
+	 INNER JOIN
+<foreach collection="list" item="entity" separator="UNION" open="(" close=")">
+		SELECT 
+			 log_id
+		FROM TA_JC_LOG_AUDIT 
+			<where>
+	        <if test="entity.logId != null">and TA_JC_LOG_AUDIT.log_id = #{entity.logId}</if>
+	        <if test="entity.sysName != null">and TA_JC_LOG_AUDIT.sys_name = #{entity.sysName}</if>
+	        <if test="entity.moduleName != null">and TA_JC_LOG_AUDIT.module_name = #{entity.moduleName}</if>
+	        <if test="entity.methodName != null">and TA_JC_LOG_AUDIT.method_name = #{entity.methodName}</if>
+	        <if test="entity.opType != null">and TA_JC_LOG_AUDIT.op_type = #{entity.opType}</if>
+	        <if test="entity.opTime != null">and TA_JC_LOG_AUDIT.op_time = #{entity.opTime}</if>
+	        <if test="entity.opContent != null">and TA_JC_LOG_AUDIT.op_content = #{entity.opContent}</if>
+	        <if test="entity.userId != null">and TA_JC_LOG_AUDIT.user_id = #{entity.userId}</if>
+	        <if test="entity.userName != null">and TA_JC_LOG_AUDIT.user_name = #{entity.userName}</if>
+	        <if test="entity.businessKey != null">and TA_JC_LOG_AUDIT.business_key = #{entity.businessKey}</if>
+	        <if test="entity.remark != null">and TA_JC_LOG_AUDIT.remark = #{entity.remark}</if>
+	        <if test="entity.beginDate != null">and TA_JC_LOG_AUDIT.beginDate = #{entity.beginDate}</if>
+	        <if test="entity.endDate != null">and TA_JC_LOG_AUDIT.endDate = #{entity.endDate}</if>
+			</where>
+</foreach>
+	c2_temp_table ON TA_JC_LOG_AUDIT.log_id = c2_temp_table.log_id
+</select>
+
+<!-- ElementID:selectByID,Generated=true -->
+<select id="selectByID" parameterType="java.lang.String" resultMap="LogAuditResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_LOG_AUDIT 
+		 where TA_JC_LOG_AUDIT.log_id = #{logId,jdbcType=VARCHAR}
+</select>
+
+<!-- ElementID:selectByPage,Generated=true -->
+<select id="selectByPage" parameterType="com.chinacreator.dzjc_log.LogAudit" resultMap="LogAuditResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_LOG_AUDIT 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<select id="selectData" parameterType="com.chinacreator.dzjc_log.LogAudit" resultMap="LogAuditResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_LOG_AUDIT
+		 <where>
+		   <if test="userName != null">
+	          and TA_JC_LOG_AUDIT.user_name like #{userName,jdbcType=VARCHAR}
+	       </if>
+	       <if test="opType != null">
+	          and TA_JC_LOG_AUDIT.op_type = #{opType,jdbcType=VARCHAR}
+	       </if>
+	       <if test="beginDate != null">
+	          and TA_JC_LOG_AUDIT.op_time &gt;= to_date(#{beginDate,jdbcType=VARCHAR})
+	       </if>
+	       <if test="endDate != null">
+	          and TA_JC_LOG_AUDIT.op_time &lt;= to_date(#{endDate,jdbcType=VARCHAR})+1
+	       </if>
+       </where>
+</select>
+
+</mapper>

@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"><mapper namespace="com.chinacreator.lanshan.IsHelpStatisticsMapper">	
+
+<!-- ElementID:column_sql,Generated=true -->
+<sql id="column_sql">
+		  V_BJTJ.order_id ,
+		  V_BJTJ.bjbh ,
+		  V_BJTJ.apply_name ,
+		  V_BJTJ.apply_phone ,
+		  V_BJTJ.approve_name ,
+		  V_BJTJ.username ,
+		  V_BJTJ.order_phone ,
+		  V_BJTJ.order_time ,
+		  V_BJTJ.end_time ,
+		  V_BJTJ.systemtype ,
+		  V_BJTJ.status ,
+		  V_BJTJ.sxlx ,
+		  V_BJTJ.tdyy 
+</sql>
+
+<!-- ElementID:whereClause_sql,Generated=true -->
+<sql id="whereClause_sql">
+	    <if test="orderId != null">and V_BJTJ.order_id = #{orderId}</if>
+	    <if test="bjbh != null">and V_BJTJ.bjbh = #{bjbh}</if>
+	    <if test="applyName != null">and V_BJTJ.apply_name = #{applyName}</if>
+	    <if test="applyPhone != null">and V_BJTJ.apply_phone = #{applyPhone}</if>
+	    <if test="approveName != null">and V_BJTJ.approve_name = #{approveName}</if>
+	    <if test="username != null">and V_BJTJ.username = #{username}</if>
+	    <if test="orderPhone != null">and V_BJTJ.order_phone = #{orderPhone}</if>
+	    <if test="orderTime != null">and V_BJTJ.order_time = #{orderTime}</if>
+	    <if test="endTime != null">and V_BJTJ.end_time = #{endTime}</if>
+	    <if test="systemtype != null">and V_BJTJ.systemtype = #{systemtype}</if>
+	    <if test="status != null">and V_BJTJ.status = #{status}</if>
+	    <if test="sxlx != null">and V_BJTJ.sxlx = #{sxlx}</if>
+	    <if test="tdyy != null">and V_BJTJ.tdyy = #{tdyy}</if>
+</sql>
+
+
+<!-- ElementID:IsHelpStatisticsResult,Generated=true -->
+<resultMap id="IsHelpStatisticsResult" type="com.chinacreator.lanshan.IsHelpStatistics">
+	<id property="orderId" column="order_id"/>
+	<result property="bjbh" column="bjbh"/>
+	<result property="applyName" column="apply_name"/>
+	<result property="applyPhone" column="apply_phone"/>
+	<result property="approveName" column="approve_name"/>
+	<result property="username" column="username"/>
+	<result property="orderPhone" column="order_phone"/>
+	<result property="orderTime" column="order_time"/>
+	<result property="endTime" column="end_time"/>
+	<result property="systemtype" column="systemtype"/>
+	<result property="status" column="status"/>
+	<result property="sxlx" column="sxlx"/>
+	<result property="tdyy" column="tdyy"/>
+</resultMap>
+
+
+<!-- ElementID:insert,Generated=true -->
+<insert id="insert" parameterType="com.chinacreator.lanshan.IsHelpStatistics">
+	insert into V_BJTJ(
+	         <if test="orderId != null">order_id</if>
+	         <if test="bjbh != null">,bjbh</if>
+	         <if test="applyName != null">,apply_name</if>
+	         <if test="applyPhone != null">,apply_phone</if>
+	         <if test="approveName != null">,approve_name</if>
+	         <if test="username != null">,username</if>
+	         <if test="orderPhone != null">,order_phone</if>
+	         <if test="orderTime != null">,order_time</if>
+	         <if test="endTime != null">,end_time</if>
+	         <if test="systemtype != null">,systemtype</if>
+	         <if test="status != null">,status</if>
+	         <if test="sxlx != null">,sxlx</if>
+	         <if test="tdyy != null">,tdyy</if>
+	 	 	 )
+	 values (
+	         <if test="orderId != null">#{orderId,jdbcType=VARCHAR}</if>
+	         <if test="bjbh != null">,#{bjbh,jdbcType=VARCHAR}</if>
+	         <if test="applyName != null">,#{applyName,jdbcType=VARCHAR}</if>
+	         <if test="applyPhone != null">,#{applyPhone,jdbcType=VARCHAR}</if>
+	         <if test="approveName != null">,#{approveName,jdbcType=VARCHAR}</if>
+	         <if test="username != null">,#{username,jdbcType=VARCHAR}</if>
+	         <if test="orderPhone != null">,#{orderPhone,jdbcType=VARCHAR}</if>
+	         <if test="orderTime != null">,#{orderTime,jdbcType=DATE}</if>
+	         <if test="endTime != null">,#{endTime,jdbcType=DATE}</if>
+	         <if test="systemtype != null">,#{systemtype,jdbcType=CHAR}</if>
+	         <if test="status != null">,#{status,jdbcType=CHAR}</if>
+	         <if test="sxlx != null">,#{sxlx,jdbcType=CHAR}</if>
+	         <if test="tdyy != null">,#{tdyy,jdbcType=VARCHAR}</if>
+	 	 	 )
+</insert>
+
+<!-- ElementID:count,Generated=true -->
+<select id="count" parameterType="com.chinacreator.lanshan.IsHelpStatistics" resultType="int">
+	select count(*) from V_BJTJ 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<!-- ElementID:update,Generated=true -->
+<update id="update" parameterType="com.chinacreator.lanshan.IsHelpStatistics">
+	update V_BJTJ
+<set>
+	<if test="bjbh != null">bjbh=#{bjbh,jdbcType=VARCHAR},</if>
+	<if test="applyName != null">apply_name=#{applyName,jdbcType=VARCHAR},</if>
+	<if test="applyPhone != null">apply_phone=#{applyPhone,jdbcType=VARCHAR},</if>
+	<if test="approveName != null">approve_name=#{approveName,jdbcType=VARCHAR},</if>
+	<if test="username != null">username=#{username,jdbcType=VARCHAR},</if>
+	<if test="orderPhone != null">order_phone=#{orderPhone,jdbcType=VARCHAR},</if>
+	<if test="orderTime != null">order_time=#{orderTime,jdbcType=DATE},</if>
+	<if test="endTime != null">end_time=#{endTime,jdbcType=DATE},</if>
+	<if test="systemtype != null">systemtype=#{systemtype,jdbcType=CHAR},</if>
+	<if test="status != null">status=#{status,jdbcType=CHAR},</if>
+	<if test="sxlx != null">sxlx=#{sxlx,jdbcType=CHAR},</if>
+	<if test="tdyy != null">tdyy=#{tdyy,jdbcType=VARCHAR}</if>
+</set>
+<where>
+	<choose>
+        <when test="orderId != null">and order_id = #{orderId}</when>
+        <otherwise>and order_id = </otherwise>
+    </choose>
+</where>
+</update>
+
+<!-- ElementID:updateNull,Generated=true -->
+<update id="updateNull" parameterType="map">
+	update V_BJTJ
+	<set>
+		<trim suffixOverrides=",">
+		    <if test="bjbh==null">bjbh = null,</if>
+		    <if test="applyName==null">apply_name = null,</if>
+		    <if test="applyPhone==null">apply_phone = null,</if>
+		    <if test="approveName==null">approve_name = null,</if>
+		    <if test="username==null">username = null,</if>
+		    <if test="orderPhone==null">order_phone = null,</if>
+		    <if test="orderTime==null">order_time = null,</if>
+		    <if test="endTime==null">end_time = null,</if>
+		    <if test="systemtype==null">systemtype = null,</if>
+		    <if test="status==null">status = null,</if>
+		    <if test="sxlx==null">sxlx = null,</if>
+		    <if test="tdyy==null">tdyy = null,</if>
+		</trim>
+	</set>
+	<where>
+		<choose>
+			<when test="orderId != null">and order_id = #{orderId}</when>
+			<otherwise>and order_id = </otherwise>
+		</choose>
+	</where>
+</update>
+
+<!-- ElementID:delete,Generated=true -->
+<delete id="delete" parameterType="com.chinacreator.lanshan.IsHelpStatistics">
+    delete from V_BJTJ where 1=1 and order_id = #{orderId}
+</delete>
+
+<!-- ElementID:select,Generated=true -->
+<select id="select" parameterType="com.chinacreator.lanshan.IsHelpStatistics" resultMap="IsHelpStatisticsResult">
+	select 
+		<include refid="column_sql"/>
+	    from V_BJTJ 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+
+<!-- ElementID:insertBatch,Generated=true -->
+<insert id="insertBatch" parameterType="list">
+	insert into V_BJTJ (order_id,bjbh,apply_name,apply_phone,approve_name,username,order_phone,order_time,end_time,systemtype,status,sxlx,tdyy) 
+<foreach collection="list" item="entity" index="index" separator="union all">
+		select 
+		#{entity.orderId,jdbcType = VARCHAR},
+				#{entity.bjbh,jdbcType = VARCHAR},
+				#{entity.applyName,jdbcType = VARCHAR},
+				#{entity.applyPhone,jdbcType = VARCHAR},
+				#{entity.approveName,jdbcType = VARCHAR},
+				#{entity.username,jdbcType = VARCHAR},
+				#{entity.orderPhone,jdbcType = VARCHAR},
+				#{entity.orderTime,jdbcType = DATE},
+				#{entity.endTime,jdbcType = DATE},
+				#{entity.systemtype,jdbcType = CHAR},
+				#{entity.status,jdbcType = CHAR},
+				#{entity.sxlx,jdbcType = CHAR},
+				#{entity.tdyy,jdbcType = VARCHAR}
+		from dual
+</foreach>
+</insert>
+
+<!-- ElementID:deleteBatch,Generated=true -->
+<delete id="deleteBatch" parameterType="List">
+	delete from V_BJTJ where order_id in
+<trim prefix="(" suffix=")" suffixOverrides=",">
+<foreach collection="list" item="entity" separator=",">
+	<choose>
+		<when test="@com.chinacreator.c2.dao.util.EntityBeanUtil@isEntityObj(entity)">#{entity.orderId}</when>
+		<otherwise>#{entity}</otherwise>
+	</choose>
+</foreach>
+</trim>
+</delete>
+
+<!-- ElementID:updateBatch,Generated=true -->
+<update id="updateBatch" parameterType="list">
+	<foreach collection="list" item="entity" open="begin" close=";end;" separator=";">
+			update V_BJTJ
+	<set>
+	<if test="entity.bjbh != null">bjbh= #{entity.bjbh,jdbcType=VARCHAR},</if>
+	<if test="entity.applyName != null">apply_name= #{entity.applyName,jdbcType=VARCHAR},</if>
+	<if test="entity.applyPhone != null">apply_phone= #{entity.applyPhone,jdbcType=VARCHAR},</if>
+	<if test="entity.approveName != null">approve_name= #{entity.approveName,jdbcType=VARCHAR},</if>
+	<if test="entity.username != null">username= #{entity.username,jdbcType=VARCHAR},</if>
+	<if test="entity.orderPhone != null">order_phone= #{entity.orderPhone,jdbcType=VARCHAR},</if>
+	<if test="entity.orderTime != null">order_time= #{entity.orderTime,jdbcType=DATE},</if>
+	<if test="entity.endTime != null">end_time= #{entity.endTime,jdbcType=DATE},</if>
+	<if test="entity.systemtype != null">systemtype= #{entity.systemtype,jdbcType=CHAR},</if>
+	<if test="entity.status != null">status= #{entity.status,jdbcType=CHAR},</if>
+	<if test="entity.sxlx != null">sxlx= #{entity.sxlx,jdbcType=CHAR},</if>
+	<if test="entity.tdyy != null">tdyy= #{entity.tdyy,jdbcType=VARCHAR}</if>
+	</set>
+		<where>
+			<choose>
+				<when test="entity.orderId != null">and order_id = #{entity.orderId}</when>
+				<otherwise>and order_id = </otherwise>
+			</choose>
+		</where>
+	</foreach>
+</update>
+
+<!-- ElementID:selectAll,Generated=true -->
+<select id="selectAll" resultMap="IsHelpStatisticsResult">
+	select 
+		<include refid="column_sql"/>
+	    from V_BJTJ 
+</select>
+
+<!-- ElementID:selectMany,Generated=true -->
+<select id="selectMany" parameterType="list" resultMap="IsHelpStatisticsResult">
+select 
+	<include refid="column_sql"/> 
+	from V_BJTJ 
+	where V_BJTJ.order_id in (
+<foreach collection="list" item="entity" separator="intersect">
+		select 
+		V_BJTJ.order_id
+	    from V_BJTJ 
+		 <where>
+	        <if test="entity.orderId != null">and V_BJTJ.order_id = #{entity.orderId}</if>
+	        <if test="entity.bjbh != null">and V_BJTJ.bjbh = #{entity.bjbh}</if>
+	        <if test="entity.applyName != null">and V_BJTJ.apply_name = #{entity.applyName}</if>
+	        <if test="entity.applyPhone != null">and V_BJTJ.apply_phone = #{entity.applyPhone}</if>
+	        <if test="entity.approveName != null">and V_BJTJ.approve_name = #{entity.approveName}</if>
+	        <if test="entity.username != null">and V_BJTJ.username = #{entity.username}</if>
+	        <if test="entity.orderPhone != null">and V_BJTJ.order_phone = #{entity.orderPhone}</if>
+	        <if test="entity.orderTime != null">and V_BJTJ.order_time = #{entity.orderTime}</if>
+	        <if test="entity.endTime != null">and V_BJTJ.end_time = #{entity.endTime}</if>
+	        <if test="entity.systemtype != null">and V_BJTJ.systemtype = #{entity.systemtype}</if>
+	        <if test="entity.status != null">and V_BJTJ.status = #{entity.status}</if>
+	        <if test="entity.sxlx != null">and V_BJTJ.sxlx = #{entity.sxlx}</if>
+	        <if test="entity.tdyy != null">and V_BJTJ.tdyy = #{entity.tdyy}</if>
+		</where>
+</foreach>
+)
+</select>
+
+<!-- ElementID:selectUnion,Generated=true -->
+<select id="selectUnion" parameterType="list" resultMap="IsHelpStatisticsResult">
+select 
+	<include refid="column_sql"/> 
+	from V_BJTJ 
+	 INNER JOIN
+<foreach collection="list" item="entity" separator="UNION" open="(" close=")">
+		SELECT 
+			 order_id
+		FROM V_BJTJ 
+			<where>
+	        <if test="entity.orderId != null">and V_BJTJ.order_id = #{entity.orderId}</if>
+	        <if test="entity.bjbh != null">and V_BJTJ.bjbh = #{entity.bjbh}</if>
+	        <if test="entity.applyName != null">and V_BJTJ.apply_name = #{entity.applyName}</if>
+	        <if test="entity.applyPhone != null">and V_BJTJ.apply_phone = #{entity.applyPhone}</if>
+	        <if test="entity.approveName != null">and V_BJTJ.approve_name = #{entity.approveName}</if>
+	        <if test="entity.username != null">and V_BJTJ.username = #{entity.username}</if>
+	        <if test="entity.orderPhone != null">and V_BJTJ.order_phone = #{entity.orderPhone}</if>
+	        <if test="entity.orderTime != null">and V_BJTJ.order_time = #{entity.orderTime}</if>
+	        <if test="entity.endTime != null">and V_BJTJ.end_time = #{entity.endTime}</if>
+	        <if test="entity.systemtype != null">and V_BJTJ.systemtype = #{entity.systemtype}</if>
+	        <if test="entity.status != null">and V_BJTJ.status = #{entity.status}</if>
+	        <if test="entity.sxlx != null">and V_BJTJ.sxlx = #{entity.sxlx}</if>
+	        <if test="entity.tdyy != null">and V_BJTJ.tdyy = #{entity.tdyy}</if>
+			</where>
+</foreach>
+	c2_temp_table ON V_BJTJ.order_id = c2_temp_table.order_id
+</select>
+
+<!-- ElementID:selectByID,Generated=true -->
+<select id="selectByID" parameterType="java.lang.String" resultMap="IsHelpStatisticsResult">
+	select 
+		<include refid="column_sql"/>
+	    from V_BJTJ 
+		 where V_BJTJ.order_id = #{orderId,jdbcType=VARCHAR}
+</select>
+
+<!-- ElementID:selectByPage,Generated=true -->
+<select id="selectByPage" parameterType="java.util.Map" resultMap="IsHelpStatisticsResult">
+	select 
+	   V.APPLY_NAME,
+       V.APPLY_PHONE,
+       V.APPROVE_NAME,
+       V.USERNAME,
+       V.ORDER_PHONE,
+       V.ORDER_TIME,
+       V.END_TIME,
+       V.SYSTEMTYPE,
+       V.STATUS,
+       V.SXLX，
+       V.TDYY
+	    from V_BJTJ V
+		 <where>
+			  1=1
+			  <if test="username != null">AND V.USERNAME LIKE #{username}</if>
+			  <if test="systemtype != null">AND V.SYSTEMTYPE = #{systemtype}</if>
+			  <if test="status != null">AND V.STATUS = #{status}</if>
+			  <if test="sxlx != null">AND V.SXLX = #{sxlx}</if>
+			  <if test="beginTime != null">AND V.ORDER_TIME &gt;= #{beginTime}</if>
+			  <if test="endTime != null">AND trunc(V.ORDER_TIME,'dd') &lt;= #{endTime}</if>
+			  <if test="completed_beginTime != null">AND V.END_TIME &gt;= #{completed_beginTime}</if>
+			  <if test="completed_endTime != null">AND trunc(V.END_TIME,'dd') &lt;= #{completed_endTime}</if>
+		</where>
+</select>
+
+<select id="selectExpExcel" parameterType="java.util.Map" resultMap="IsHelpStatisticsResult">
+SELECT V.APPLY_NAME,
+       V.APPLY_PHONE,
+       V.APPROVE_NAME,
+       V.USERNAME,
+       V.ORDER_PHONE,
+       V.ORDER_TIME,
+       V.END_TIME,
+       CASE
+         WHEN V.SYSTEMTYPE = '0' THEN
+          '网格系统'
+         WHEN V.SYSTEMTYPE = '1' THEN
+          '党建系统'
+         ELSE
+          NULL
+       END SYSTEMTYPE,
+       CASE
+         WHEN V.STATUS = '0' THEN
+          '待接单'
+         WHEN V.STATUS = '1' THEN
+          '已接单'
+         WHEN V.STATUS = '2' THEN
+          '已取消'
+         WHEN V.STATUS = '3' THEN
+          '已取消'
+         WHEN V.STATUS = '4' THEN
+          '已办结'
+         ELSE
+          '待接单'
+       END STATUS,
+       CASE
+         WHEN LENGTH(V.BJBH) = 22 THEN
+          '二类事项'
+         ELSE
+          '一类事项'
+       END SXLX，
+       V.TDYY
+  FROM V_BJTJ V
+  <where>
+	  1=1
+	  <if test="username != null">AND V.USERNAME LIKE #{username}</if>
+	  <if test="systemtype != null">AND V.SYSTEMTYPE = #{systemtype}</if>
+	  <if test="status != null">AND V.STATUS = #{status}</if>
+	  <if test="sxlx != null">AND V.SXLX = #{sxlx}</if>
+	  <if test="beginTime != null">AND V.ORDER_TIME &gt;= #{beginTime}</if>
+	  <if test="endTime != null">AND trunc(V.ORDER_TIME,'dd') &lt;= #{endTime}</if>
+	  <if test="completed_beginTime != null">AND V.END_TIME &gt;= #{completed_beginTime}</if>
+	  <if test="completed_endTime != null">AND trunc(V.END_TIME,'dd') &lt;= #{completed_endTime}</if>
+  </where>
+</select>
+
+</mapper>

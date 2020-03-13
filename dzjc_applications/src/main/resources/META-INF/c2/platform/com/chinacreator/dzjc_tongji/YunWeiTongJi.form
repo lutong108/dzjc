@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form:Form xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dync="http://www.chinacreator.com/platform/mvc/ui/dync" xmlns:form="http://www.chinacreator.com/platform/mvc/form" name="运维分析报表" sn="dzjc_tongji/YunWeiTongJi" type="form">
+  <form:control type="page/normal">
+    <form:attributes source="page/normal">
+      <dync:attribute default="" group="HTML" id="showHead" name="显示标题" value="">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="" group="HTML" id="title" name="标题" value="">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="" group="HTML" id="desc" name="描述" value="">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="false" group="HTML" id="fixedHeight" name="自动高度" value="false">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="false" group="HTML" id="compact" name="紧凑页面" value="false">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="false" group="HTML" id="dirtyCheck" name="脏检查" value="false">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="" group="注入配置" id="angularJsServices" name="注入服务" value="">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="" group="事件" id="beforeDataSourceLoad" name="数据源加载前" value="">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="" group="事件" id="afterDataSourceLoad" name="数据源加载后" value="page_afterDataSourceLoad()">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="" group="事件" id="onload" name="页面加载完成" value="">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+    </form:attributes>
+  </form:control>
+  <form:child xsi:type="form:Group" id="fp_div_title1" name="简单容器(DIV)">
+    <form:control type="container/div">
+      <form:attributes source="container/div">
+        <dync:attribute default="" group="高级自定义" id="html" name="自定义HTML" value="fp_div_title1_html">
+          <dync:render colSpan="2" height="0" multi="false" name="html"/>
+          <dync:children/>
+        </dync:attribute>
+      </form:attributes>
+    </form:control>
+  </form:child>
+  <form:datasources>
+    <form:datasource xsi:type="form:PagingDataSource" id="fptj_list" name="列表型数据源" base="service" pageSize="10" type="url" url="dzjc_tongji/v1/getBanJianTongJiList"/>
+    <form:datasource xsi:type="form:LogicDataSource" id="service" name="服务数据源" type="url" url="dzjc_complain/v1/problemType/getProblemType"/>
+  </form:datasources>
+  <form:scripts>
+page_afterDataSourceLoad:function(){
+	$.ajax({
+			&quot;url&quot; : c2.base(&quot;service&quot;)+&quot;dzjc_tongji/v1/getSbjGreenData&quot;,
+			&quot;type&quot; : &quot;post&quot;,
+			&quot;dataType&quot;: &quot;json&quot;,
+			&quot;async&quot; : false,
+			&quot;success&quot; : function(data){
+				getDate();
+				if(data!=null &amp;&amp; data.length>0){
+					var sbjContent = &quot;&quot;;
+					for(var i=0;i&lt;data.length;i++){
+						var name = data[i].name;
+						var sbjNumInstance = data[i].sbjNumInstance;
+						var sbjNumCounsel = data[i].sbjNumCounsel;
+						var sbjNumSpecial = data[i].sbjNumSpecial;
+						sbjContent=sbjContent+&quot;&lt;P style='text-indent:2em;'>&quot;+name+&quot;：办件时限预警&quot;+sbjNumInstance+&quot;条，特别程序预警&quot;+sbjNumSpecial+&quot;条，咨询预警&quot;+sbjNumCounsel+&quot;条；&lt;/br>&lt;/p>&quot;;
+					}
+					$('#sbj').html(sbjContent);
+				}
+			},
+			&quot;error&quot;:function(data){
+				Messenger.post({type:'error',message:'获取省本级预警数据失败'});
+			}
+		});
+		
+	$.ajax({
+			&quot;url&quot; : c2.base(&quot;service&quot;)+&quot;dzjc_tongji/v1/getSzGreenData&quot;,
+			&quot;type&quot; : &quot;post&quot;,
+			&quot;dataType&quot;: &quot;json&quot;,
+			&quot;async&quot; : false,
+			&quot;success&quot; : function(data){
+				getDate();
+				if(data!=null){
+					var szContent = &quot;&quot;+
+					&quot;&lt;P style='text-indent:2em;'>长沙市：办件时限预警&quot;+data.CS_NUM_INSTANCE+&quot;条，特别程序预警&quot;+data.CS_NUM_SPECIAL+&quot;条，咨询预警&quot;+data.CS_NUM_COUNSEL+&quot;条；&lt;/br>&lt;/p>&quot;+
+					&quot;&lt;P style='text-indent:2em;'>株洲市：办件时限预警&quot;+data.ZZ_NUM_INSTANCE+&quot;条，特别程序预警&quot;+data.ZZ_NUM_SPECIAL+&quot;条，咨询预警&quot;+data.ZZ_NUM_COUNSEL+&quot;条；&lt;/br>&lt;/p>&quot;+
+					&quot;&lt;P style='text-indent:2em;'>湘潭市：办件时限预警&quot;+data.XT_NUM_INSTANCE+&quot;条，特别程序预警&quot;+data.XT_NUM_SPECIAL+&quot;条，咨询预警&quot;+data.XT_NUM_COUNSEL+&quot;条；&lt;/br>&lt;/p>&quot;+
+					&quot;&lt;P style='text-indent:2em;'>衡阳市：办件时限预警&quot;+data.HY_NUM_INSTANCE+&quot;条，特别程序预警&quot;+data.HY_NUM_SPECIAL+&quot;条，咨询预警&quot;+data.HY_NUM_COUNSEL+&quot;条；&lt;/br>&lt;/p>&quot;+
+					&quot;&lt;P style='text-indent:2em;'>邵阳市：办件时限预警&quot;+data.SY_NUM_INSTANCE+&quot;条，特别程序预警&quot;+data.SY_NUM_SPECIAL+&quot;条，咨询预警&quot;+data.SY_NUM_COUNSEL+&quot;条；&lt;/br>&lt;/p>&quot;+
+					&quot;&lt;P style='text-indent:2em;'>岳阳市：办件时限预警&quot;+data.YY_NUM_INSTANCE+&quot;条，特别程序预警&quot;+data.YY_NUM_SPECIAL+&quot;条，咨询预警&quot;+data.YY_NUM_COUNSEL+&quot;条；&lt;/br>&lt;/p>&quot;+
+					&quot;&lt;P style='text-indent:2em;'>常德市：办件时限预警&quot;+data.CD_NUM_INSTANCE+&quot;条，特别程序预警&quot;+data.CD_NUM_SPECIAL+&quot;条，咨询预警&quot;+data.CD_NUM_COUNSEL+&quot;条；&lt;/br>&lt;/p>&quot;+
+					&quot;&lt;P style='text-indent:2em;'>张家界市：办件时限预警&quot;+data.ZJJ_NUM_INSTANCE+&quot;条，特别程序预警&quot;+data.ZJJ_NUM_SPECIAL+&quot;条，咨询预警&quot;+data.ZJJ_NUM_COUNSEL+&quot;条；&lt;/br>&lt;/p>&quot;+
+					&quot;&lt;P style='text-indent:2em;'>益阳市：办件时限预警&quot;+data.YIY_NUM_INSTANCE+&quot;条，特别程序预警&quot;+data.YIY_NUM_SPECIAL+&quot;条，咨询预警&quot;+data.YIY_NUM_COUNSEL+&quot;条；&lt;/br>&lt;/p>&quot;+
+					&quot;&lt;P style='text-indent:2em;'>郴州市：办件时限预警&quot;+data.CZ_NUM_INSTANCE+&quot;条，特别程序预警&quot;+data.CZ_NUM_SPECIAL+&quot;条，咨询预警&quot;+data.CZ_NUM_COUNSEL+&quot;条；&lt;/br>&lt;/p>&quot;+
+					&quot;&lt;P style='text-indent:2em;'>永州市：办件时限预警&quot;+data.YZ_NUM_INSTANCE+&quot;条，特别程序预警&quot;+data.YZ_NUM_SPECIAL+&quot;条，咨询预警&quot;+data.YZ_NUM_COUNSEL+&quot;条；&lt;/br>&lt;/p>&quot;+
+					&quot;&lt;P style='text-indent:2em;'>怀化市：办件时限预警&quot;+data.HH_NUM_INSTANCE+&quot;条，特别程序预警&quot;+data.HH_NUM_SPECIAL+&quot;条，咨询预警&quot;+data.HH_NUM_COUNSEL+&quot;条；&lt;/br>&lt;/p>&quot;+
+					&quot;&lt;P style='text-indent:2em;'>娄底市：办件时限预警&quot;+data.LD_NUM_INSTANCE+&quot;条，特别程序预警&quot;+data.LD_NUM_SPECIAL+&quot;条，咨询预警&quot;+data.LD_NUM_COUNSEL+&quot;条；&lt;/br>&lt;/p>&quot;+
+					&quot;&lt;P style='text-indent:2em;'>湘西州：办件时限预警&quot;+data.XXZ_NUM_INSTANCE+&quot;条，特别程序预警&quot;+data.XXZ_NUM_SPECIAL+&quot;条，咨询预警&quot;+data.XXZ_NUM_COUNSEL+&quot;条；&lt;/br>&lt;/p>&quot;;
+					$('#sz').html(szContent);		
+				}
+			},
+			&quot;error&quot;:function(data){
+				Messenger.post({type:'error',message:'获取市州预警数据失败'});
+			}
+		});
+		
+	function getDate(){
+			var myDate = new Date;
+			var year = myDate.getFullYear(); //获取当前年
+			var mon = myDate.getMonth() + 1; //获取当前月
+			var date = myDate.getDate(); //获取当前日
+			$('.today').html(year+&quot;年&quot;+mon+&quot;月&quot;+date+&quot;日&quot;);
+		}
+}</form:scripts>
+  <form:htmls>
+&lt;script type=&quot;text/ng-template&quot; id=&quot;fp_div_title1_html&quot;>
+&lt;div>
+&lt;h3>省直部门预警情况&lt;/h3>
+&lt;P style=&quot;text-indent:2em;&quot;>温馨提示：各位领导，根据办件（咨询）时限要求，行政效能电子监管系统在该办件承诺时限（咨询回复时限）到期前2个工作日时发出预警提醒，以下为&lt;font class=&quot;today&quot;>&lt;/font>在系统中产生在办预警，请及时对该办件（咨询）做出办结，避免贵单位在办理过程中产生红黄牌：&lt;/br>&lt;/p>
+&lt;div id=&quot;sbj&quot;>&lt;/div>
+&lt;P style=&quot;text-indent:2em;&quot;>详情请用贵单位账号登录行政效能监管系统进行查看。同时请贵单位督促有关业务处室按期办结。&lt;/p>
+&lt;h3>市州预警情况&lt;/h3>
+&lt;P style=&quot;text-indent:2em;&quot;>温馨提示：各位领导，根据办件（咨询）时限要求，行政效能电子监管系统在该办件承诺时限（咨询回复时限）到期前2个工作日时发出预警提醒，以下为&lt;font class=&quot;today&quot;>&lt;/font>在系统中产生在办预警，请及时对该办件（咨询）做出办结，避免贵单位在办理过程中产生红黄牌：&lt;/br>&lt;/p>
+&lt;div id=&quot;sz&quot;>&lt;/div>
+&lt;P style=&quot;text-indent:2em;&quot;>详情请用贵单位账号登录行政效能监管系统进行查看。同时请贵单位督促有关业务处室按期办结。&lt;/p>
+&lt;/div>
+&lt;/script></form:htmls>
+</form:Form>

@@ -1,0 +1,2768 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chinacreator.dzjc_ruleEngine.JCSumSuperviseInfoAllMapper">
+
+
+<resultMap id="jCSumSuperviseInfoAllMapper" type="com.chinacreator.dzjc_ruleEngine.JCSumSuperviseInfoAll" >
+		<result property="ORG_ID" column="ORG_ID" />
+		<result property="area_name" column="AREA_NAME" />
+		<result property="area_code" column="AREA_CODE" />
+		<result property="yjs" column="YJS" />
+		<result property="yellow" column="YELLOW" />
+		<result property="red" column="RED" />
+		<result property="cancel_yellow_num" column="CANCEL_YELLOW_NUM" />
+		<result property="cancel_red_num" column="CANCEL_RED_NUM" />
+		<result property="sls" column="SLS" />
+		<result property="bjs" column="BJS" />
+		<result property="zcbjs" column="ZCBJS" />
+		<result property="thbjs" column="THBJS" />
+		<result property="zfbjs" column="ZFBJS" />
+		<result property="scbjs" column="SCBJS" />
+		<result property="bjl" column="BJL" />
+		<result property="ljsls" column="LJSLS" />
+		<result property="ljbjs" column="LJBJS" />
+		<result property="bysls" column="BYSLS" />
+		<result property="complain_num" column="COMPLAIN_NUM" />
+		<result property="complain_reply_num" column="COMPLAIN_REPLY_NUM" />
+		<result property="consult_num" column="CONSULT_NUM" />
+		<result property="consult_replay_num" column="CONSULT_REPLAY_NUM" />
+		<result property="instance_yjs" column="instance_yjs" />
+		<result property="instance_yellow" column="instance_yellow" />
+		<result property="instance_red" column="instance_red" />
+		<result property="instance_cancel_yellow_num" column="instance_cancel_yellow_num" />
+		<result property="instance_cancel_red_num" column="instance_cancel_red_num" />
+		<result property="complain_yjs" column="complain_yjs" />
+		<result property="complain_yellow" column="complain_yellow" />
+		<result property="complain_red" column="complain_red" />
+		<result property="complain_cancel_yellow_num" column="complain_cancel_yellow_num" />
+		<result property="complain_cancel_red_num" column="complain_cancel_red_num" />
+		<result property="consult_yjs" column="consult_yjs" />
+		<result property="consult_yellow" column="consult_yellow" />
+		<result property="consult_red" column="consult_red" />
+		<result property="consult_cancel_yellow_num" column="consult_cancel_yellow_num" />
+		<result property="consult_cancel_red_num" column="consult_cancel_red_num" />
+		<result property="special_supervise_green_num" column="special_supervise_green_num" />
+		<result property="special_supervise_yellow_num" column="special_supervise_yellow_num" />
+		<result property="special_supervise_red_num" column="special_supervise_red_num" />
+		
+</resultMap>
+
+
+<select id="selectJCSumSuperviseInfoAllByprovince" resultMap="jCSumSuperviseInfoAllMapper" parameterType="com.chinacreator.dzjc_ruleEngine.JCSumSuperviseInfoAll">
+
+select a.AREA_NAME area_name, a.area_code area_code,  
+             nvl(t.yjs, 0) yjs,  
+             nvl(t.yellow, 0) yellow,  
+             nvl(t.red, 0) red,  
+             nvl(t.cancel_yellow_num, 0) cancel_yellow_num,  
+             nvl(t.cancel_red_num, 0) cancel_red_num  
+        from v_ta_dic_area a  
+        left join (select o.CITY_CODE,  
+                          sum(ssi.supervise_green_num) as yjs,  
+                          sum(ssi.supervise_yello_num) as yellow,  
+                          sum(ssi.supervise_red_num) as red,  
+                          sum(ssi.cancel_yellow_num) as cancel_yellow_num,  
+                          sum(ssi.cancel_red_num) as cancel_red_num  
+                     from ta_jc_sum_supervise_info ssi, v_td_sm_organization1 o  
+                    where ssi.org_id = o.ORG_ID  
+                      <if test="start_time != null">and  ssi.now_date &gt;= #{start_time}</if>
+		   		   	  <if test="end_time != null">and  ssi.now_date &lt;= #{end_time}</if> 
+                      and ssi.province_code = '430000000000'  
+                      and ssi.city_code != '000000000000'  
+                    group by o.CITY_CODE
+                    ) t on a.AREA_CODE = t.city_code  
+       where a.parent_code = '430000000000'  
+       <choose>
+	 		<when test="sortCol != null">
+	 			order by ${sortCol} desc
+	 		</when>
+	 		<otherwise>
+	 			order by  a.ORDER_NUM
+	 		</otherwise>
+	 	</choose>
+</select>
+
+
+<select id="selectJCSumSuperviseInfoAllByCity" resultMap="jCSumSuperviseInfoAllMapper" parameterType="com.chinacreator.dzjc_ruleEngine.JCSumSuperviseInfoAll">
+
+select a.AREA_NAME area_name, 
+      a.area_code area_code, 
+      nvl(t.yjs, 0) yjs, 
+      nvl(t.yellow, 0) yellow, 
+      nvl(t.red, 0) red, 
+      nvl(t.cancel_yellow_num, 0) cancel_yellow_num, 
+      nvl(t.cancel_red_num, 0) cancel_red_num 
+   from v_ta_dic_area a 
+      left join (
+      select o.County_CODE, 
+      sum(ssi.supervise_green_num) as yjs, 
+      sum(ssi.supervise_yello_num) as yellow, 
+      sum(ssi.supervise_red_num) as red, 
+      sum(ssi.cancel_yellow_num) as cancel_yellow_num, 
+      sum(ssi.cancel_red_num) as cancel_red_num 
+   from ta_jc_sum_supervise_info ssi, v_td_sm_organization1 o 
+      where ssi.org_id = o.ORG_ID 
+      <if test="start_time != null">and  ssi.now_date &gt;= #{start_time}</if>
+	  <if test="end_time != null">and  ssi.now_date &lt;= #{end_time}</if> 
+      and ssi.city_code = #{ORG_ID,jdbcType=VARCHAR} 
+      and ssi.county_code != '000000000000' 
+      group by o.County_CODE
+      ) t on a.AREA_CODE = t.County_CODE 
+      where a.parent_code = #{ORG_ID,jdbcType=VARCHAR} 
+      <choose>
+	 		<when test="sortCol != null">
+	 			order by ${sortCol} desc
+	 		</when>
+	 		<otherwise>
+	 			order by a.ORDER_NUM
+	 		</otherwise>
+	 	</choose>
+</select>
+
+
+
+<select id="selectJCSumSuperviseInfoAll" resultMap="jCSumSuperviseInfoAllMapper" parameterType="com.chinacreator.dzjc_ruleEngine.JCSumSuperviseInfoAll">
+WITH
+	TEMP AS(
+	     SELECT * FROM V_ORG V
+	    where 1=1
+	     	<if test="ORG_ID != null">
+	     		and V.CODE LIKE CONCAT(#{ORG_ID},'%') OR
+	     		V.ID = #{ORG_ID,jdbcType=VARCHAR}
+	     	</if>
+	    
+	),
+	TEMP2 AS(
+		select o.ORG_ID,
+		   o.ORG_NAME area_name,
+	       nvl(t.yjs, 0) yjs,
+	       nvl(t.yellow, 0) yellow,
+	       nvl(t.red, 0) red,
+	       nvl(t.cancel_yellow_num, 0) cancel_yellow_num,
+	       nvl(t.cancel_red_num, 0) cancel_red_num
+	  from V_TD_SM_ORGANIZATION1 o
+	  left join (select ssi.org_id,
+	                    sum(ssi.supervise_green_num) as yjs,
+	                    sum(ssi.supervise_yello_num) as yellow,
+	                    sum(ssi.supervise_red_num) as red,
+	                    sum(ssi.cancel_yellow_num) as cancel_yellow_num,
+	                    sum(ssi.cancel_red_num) as cancel_red_num                    
+	               from ta_JC_sum_supervise_info ssi
+	              where 1=1
+	               <if test="start_time != null">and  ssi.now_date &gt;= #{start_time}</if>
+		   		   <if test="end_time != null">and  ssi.now_date &lt;= #{end_time}</if> 
+	              group by ssi.org_id) t
+	    on o.ORG_ID = t.org_id
+	     INNER JOIN TEMP 
+		ON o.org_id = TEMP.ID
+		order by o.ORDER_NUM
+	)
+ select * from TEMP2 
+</select>
+	
+	
+	
+<select id="selectJCSumSuperviseInfo" resultMap="jCSumSuperviseInfoAllMapper" parameterType="com.chinacreator.dzjc_ruleEngine.JCSumSuperviseInfoAll">
+
+WITH
+	TEMP AS(
+	     SELECT * FROM V_ORG V
+	    where 1=1
+	     	<if test="ORG_ID != null">
+	     		and V.CODE LIKE CONCAT(#{ORG_ID},'%') OR
+	     		V.ID = #{ORG_ID,jdbcType=VARCHAR}
+	     	</if>
+	    
+	),
+	TEMP2 AS(
+	select 
+		o.ORG_NAME area_name,
+        o.ORG_ID,
+        nvl(aa.sls, '0') sls,
+        nvl(aa.zcbjs, '0') zcbjs,
+        nvl(aa.thbjs, '0') thbjs,
+        nvl(aa.zfbjs, '0') zfbjs,
+        nvl(aa.scbjs, '0') scbjs,
+        nvl(aa.bjs, '0') bjs,
+        nvl(aa.ljsls, '0') ljsls,
+        nvl(aa.ljbjs, '0') ljbjs,
+        nvl(aa.bysls, '0') bysls,
+        nvl(aa.yjs, '0') yjs,
+        nvl(aa.yellow, '0') yellow,
+        nvl(aa.red, '0') red,
+        nvl(aa.complain_num, '0') complain_num,
+        nvl(aa.complain_reply_num, '0') complain_reply_num,
+        nvl(aa.consult_num, '0') consult_num,
+        nvl(aa.consult_replay_num, '0') consult_replay_num,
+        nvl(aa.cancel_yellow_num, '0') cancel_yellow_num,
+        nvl(aa.cancel_red_num, '0') cancel_red_num,
+        
+        nvl(aa.instance_yjs,'0') as instance_yjs,
+		nvl(aa.instance_yellow,'0') as instance_yellow,
+		nvl(aa.instance_red,'0') as instance_red,
+		nvl(aa.instance_cancel_yellow_num,'0') as instance_cancel_yellow_num,
+		nvl(aa.instance_cancel_red_num,'0') as instance_cancel_red_num,
+		nvl(aa.complain_yjs,'0') as complain_yjs,
+		nvl(aa.complain_yellow,'0') as complain_yellow,
+		nvl(aa.complain_red,'0') as complain_red,
+		nvl(aa.complain_cancel_yellow_num,'0') as complain_cancel_yellow_num,
+		nvl(aa.complain_cancel_red_num,'0') as complain_cancel_red_num,
+		nvl(aa.consult_yjs,'0') as consult_yjs,
+		nvl(aa.consult_yellow,'0') as consult_yellow,
+		nvl(aa.consult_red,'0') as consult_red,
+		nvl(aa.consult_cancel_yellow_num,'0') as consult_cancel_yellow_num,
+		nvl(aa.consult_cancel_red_num,'0') as consult_cancel_red_num,
+		
+		nvl(aa.special_supervise_green_num,'0') as special_supervise_green_num,
+        nvl(aa.special_supervise_yellow_num,'0') as special_supervise_yellow_num,
+        nvl(aa.special_supervise_red_num,'0') as special_supervise_red_num
+   from V_TD_SM_ORGANIZATION1 o
+   left join (select s.ORG_SHOW_NAME,
+                     sum(s.sls) sls,
+                     sum(s.zcbjs) zcbjs,
+                     sum(s.thbjs) thbjs,
+                     sum(s.zfbjs) zfbjs,
+                     sum(s.scbjs) scbjs,
+                     sum(s.bjs) bjs,
+                     sum(s.ljsls) ljsls,
+                     sum(s.ljbjs) ljbjs,
+                     sum(s.bysls) bysls,
+                     sum(s.yjs) yjs,
+                     sum(s.yellow) yellow,
+                     sum(s.red) red,
+                     sum(s.complain_num) as complain_num,
+                     sum(s.complain_reply_num) as complain_reply_num,
+                     sum(s.consult_num) as consult_num,
+                     sum(s.consult_replay_num) as consult_replay_num,
+                     sum(s.cancel_yellow_num) as cancel_yellow_num,
+                     sum(s.cancel_red_num) as cancel_red_num,
+                     
+                     sum(s.instance_yjs) as instance_yjs,
+					 sum(s.instance_yellow) as instance_yellow,
+					 sum(s.instance_red) as instance_red,
+					 sum(s.instance_cancel_yellow_num) as instance_cancel_yellow_num,
+					 sum(s.instance_cancel_red_num) as instance_cancel_red_num,
+					 sum(s.complain_yjs) as complain_yjs,
+					 sum(s.complain_yellow) as complain_yellow,
+					 sum(s.complain_red) as complain_red,
+					 sum(s.complain_cancel_yellow_num) as complain_cancel_yellow_num,
+					 sum(s.complain_cancel_red_num) as complain_cancel_red_num,
+					 sum(s.consult_yjs) as consult_yjs,
+					 sum(s.consult_yellow) as consult_yellow,
+					 sum(s.consult_red) as consult_red,
+					 sum(s.consult_cancel_yellow_num) as consult_cancel_yellow_num,
+					 sum(s.consult_cancel_red_num) as consult_cancel_red_num,
+					 
+					 sum(s.special_supervise_green_num) as special_supervise_green_num,
+                     sum(s.special_supervise_yellow_num) as special_supervise_yellow_num,
+                     sum(s.special_supervise_red_num) as special_supervise_red_num
+                from (select o.ORG_ID,
+                             o.ORG_CODE,
+                             o.ORG_NAME as ORG_SHOW_NAME,
+                             o.PROVINCE_CODE,
+                             o.CITY_CODE,
+                             o.County_CODE,
+                             o.STREET_CODE,
+                             o.ORG_LEVEL,
+                             a.sls,
+                             a.zcbjs,
+                             a.thbjs,
+                             a.zfbjs,
+                             a.scbjs,
+                             a.bjs,
+                             a.ljsls,
+                             a.ljbjs,
+                             a.bysls,
+                             a.yjs,
+                             a.yellow,
+                             a.red,
+                             a.complain_num,
+                             a.complain_reply_num,
+                             a.consult_num,
+                             a.consult_replay_num,
+                             a.cancel_yellow_num,
+                             a.cancel_red_num,
+                             
+                        	 a.instance_yjs,
+						     a.instance_yellow,
+						     a.instance_red,
+						     a.instance_cancel_yellow_num,
+						     a.instance_cancel_red_num,
+						     a.complain_yjs,
+						     a.complain_yellow,
+						     a.complain_red,
+						     a.complain_cancel_yellow_num,
+						     a.complain_cancel_red_num,
+						     a.consult_yjs,
+						     a.consult_yellow,
+						     a.consult_red,
+						     a.consult_cancel_yellow_num,
+						     a.consult_cancel_red_num,
+						     
+						     a.special_supervise_green_num,
+                             a.special_supervise_yellow_num,
+                             a.special_supervise_red_num
+                        from V_TD_SM_ORGANIZATION1 o,
+                             (select t.org_id,
+                                     sum(sls) sls,
+                                     sum(zcbjs) zcbjs,
+                                     sum(thbjs) thbjs,
+                                     sum(zfbjs) zfbjs,
+                                     sum(scbjs) scbjs,
+                                     sum(bjs) bjs,
+                                     sum(ljsls) ljsls,
+                                     sum(ljbjs) ljbjs,
+                                     sum(bysls) bysls,
+                                     sum(yjs) yjs,
+                                     sum(yellow) yellow,
+                                     sum(red) red,
+                                     sum(complain_num) as complain_num,
+                                     sum(complain_reply_num) as complain_reply_num,
+                                     sum(consult_num) as consult_num,
+                                     sum(consult_replay_num) as consult_replay_num,
+                                     sum(cancel_yellow_num) as cancel_yellow_num,
+                                     sum(cancel_red_num) as cancel_red_num,
+                                     
+                                     sum(instance_yjs) as instance_yjs,
+						             sum(instance_yellow) as instance_yellow,
+						             sum(instance_red) as instance_red,
+						             sum(instance_cancel_yellow_num) as instance_cancel_yellow_num,
+						             sum(instance_cancel_red_num) as instance_cancel_red_num,
+						             sum(complain_yjs) as complain_yjs,
+						             sum(complain_yellow) as complain_yellow,
+						             sum(complain_red) as complain_red,
+						             sum(complain_cancel_yellow_num) as complain_cancel_yellow_num,
+						             sum(complain_cancel_red_num) as complain_cancel_red_num,
+						             sum(consult_yjs) as consult_yjs,
+						             sum(consult_yellow) as consult_yellow,
+						             sum(consult_red) as consult_red,
+						             sum(consult_cancel_yellow_num) as consult_cancel_yellow_num,
+						             sum(consult_cancel_red_num) as consult_cancel_red_num,
+						             
+						             sum(special_supervise_green_num) as special_supervise_green_num,
+                                     sum(special_supervise_yellow_num) as special_supervise_yellow_num,
+                                     sum(special_supervise_red_num) as special_supervise_red_num
+                                from (
+                                     
+                                     select ssi.org_id org_id,
+                                             sum(ssi.accept_num) sls,
+                                             sum(ssi.normal_finish_num) as zcbjs,
+                                             sum(ssi.unthreadfinish_num) as thbjs,
+                                             sum(ssi.throw_finish_num) as zfbjs,
+                                             0 as scbjs,
+                                             sum(ssi.finish_num) as bjs,
+                                             0 as ljsls,
+                                             0 as ljbjs,
+                                             0 as bysls,
+                                             sum(ssi.supervise_green_num) as yjs,
+                                             sum(ssi.supervise_yello_num) as yellow,
+                                             sum(ssi.supervise_red_num) as red,
+                                             sum(ssi.complain_num) as complain_num,
+                                             sum(ssi.complain_reply_num) as complain_reply_num,
+                                             sum(ssi.consult_num) as consult_num,
+                                             sum(ssi.consult_replay_num) as consult_replay_num,
+                                             sum(ssi.CANCEL_YELLOW_NUM) as cancel_yellow_num,
+                                             sum(ssi.CANCEL_RED_NUM) as cancel_red_num,
+                                             
+                                             sum(ssi.INSTANCE_SUPERVISE_GREEN_NUM) as instance_yjs,
+						                     sum(ssi.INSTANCE_SUPERVISE_YELLO_NUM) as instance_yellow,
+						                     sum(ssi.INSTANCE_SUPERVISE_RED_NUM) as instance_red,
+						                     sum(ssi.INSTANCE_CANCEL_YELLOW_NUM) as instance_cancel_yellow_num,
+						                     sum(ssi.INSTANCE_CANCEL_RED_NUM) as instance_cancel_red_num,
+						                     sum(ssi.COMPLAIN_SUPERVISE_GREEN_NUM) as complain_yjs,
+						                     sum(ssi.COMPLAIN_SUPERVISE_YELLO_NUM) as complain_yellow,
+						                     sum(ssi.COMPLAIN_SUPERVISE_RED_NUM) as complain_red,
+						                     sum(ssi.COMPLAIN_CANCEL_YELLOW_NUM) as complain_cancel_yellow_num,
+						                     sum(ssi.COMPLAIN_CANCEL_RED_NUM) as complain_cancel_red_num,
+						                     sum(ssi.CONSULT_SUPERVISE_GREEN_NUM) as consult_yjs,
+						                     sum(ssi.CONSULT_SUPERVISE_YELLO_NUM) as consult_yellow,
+						                     sum(ssi.CONSULT_SUPERVISE_RED_NUM) as consult_red,
+						                     sum(ssi.CONSULT_CANCEL_YELLOW_NUM) as consult_cancel_yellow_num,
+						                     sum(ssi.CONSULT_CANCEL_RED_NUM) as consult_cancel_red_num,
+						                     
+						                     sum(ssi.special_supervise_green_num) as special_supervise_green_num,
+                                             sum(ssi.special_supervise_yellow_num) as special_supervise_yellow_num,
+                                             sum(ssi.special_supervise_red_num) as special_supervise_red_num
+                                        from ta_JC_sum_supervise_info ssi
+                                       where 1=1
+                                        <if test="start_time != null">and  ssi.now_date &gt;= #{start_time}</if>
+		   		   						<if test="end_time != null">and  ssi.now_date &lt;= #{end_time}</if>      
+                                       group by ssi.org_id
+                                       
+                                      union all
+                                      
+                                      select bj.org_id ,
+                                             0 sls,
+                                             0 as zcbjs,
+                                             0 as thbjs,
+                                             0 as zfbjs,
+                                             count(bj.instance_id) as scbjs,
+                                             0 as bjs,
+                                             0 as ljsls,
+                                             0 as ljbjs,
+                                             0 as bysls,
+                                             0 as yjs,
+                                             0 as yellow,
+                                             0 as red,
+                                             0 as complain_num,
+                                             0 as complain_reply_num,
+                                             0 as consult_num,
+                                             0 as consult_replay_num,
+                                             0 as cancel_yellow_num,
+                                             0 as cancel_red_num,
+                                             0 as instance_yjs,
+						                     0 as instance_yellow,
+						                     0 as instance_red,
+						                     0 as instance_cancel_yellow_num,
+						                     0 as instance_cancel_red_num,
+						                     0 as complain_yjs,
+						                     0 as complain_yellow,
+						                     0 as complain_red,
+						                     0 as complain_cancel_yellow_num,
+						                     0 as complain_cancel_red_num,
+						                     0 as consult_yjs,
+						                     0 as consult_yellow,
+						                     0 as consult_red,
+						                     0 as consult_cancel_yellow_num,
+						                     0 as consult_cancel_red_num,
+						                     
+						                     0 as special_supervise_green_num,
+                                             0 as special_supervise_yellow_num,
+                                             0 as special_supervise_red_num
+                                        from TA_SP_INSTANCE bj
+                                       where bj.project_state = '7'
+                                       <if test="start_time != null">
+                                       		and bj.accept_time between
+                                             to_date(#{start_time},'yyyy-mm-dd') and
+                                             to_date(#{end_time}, 'yyyy-mm-dd')
+                                       </if>
+                                       group by bj.org_id
+                                       
+                                      union all
+                                      
+                                      select org_id,
+                                             0 sls,
+                                             0 as zcbjs,
+                                             0 as thbjs,
+                                             0 as zfbjs,
+                                             0 as scbjs,
+                                             0 as bjs,
+                                             sum(ACCEPT_NUM) as ljsls,
+                                             sum(FINISH_NUM) as ljbjs,
+                                             0 as bysls,
+                                             0 as yjs,
+                                             0 as yellow,
+                                             0 as red,
+                                             0 as complain_num,
+                                             0 as complain_reply_num,
+                                             0 as consult_num,
+                                             0 as consult_replay_num,
+                                             0 as cancel_yellow_num,
+                                             0 as cancel_red_num,
+                                             0 as instance_yjs,
+						                     0 as instance_yellow,
+						                     0 as instance_red,
+						                     0 as instance_cancel_yellow_num,
+						                     0 as instance_cancel_red_num,
+						                     0 as complain_yjs,
+						                     0 as complain_yellow,
+						                     0 as complain_red,
+						                     0 as complain_cancel_yellow_num,
+						                     0 as complain_cancel_red_num,
+						                     0 as consult_yjs,
+						                     0 as consult_yellow,
+						                     0 as consult_red,
+						                     0 as consult_cancel_yellow_num,
+						                     0 as consult_cancel_red_num,
+						                     
+						                     0 as special_supervise_green_num,
+                                             0 as special_supervise_yellow_num,
+                                             0 as special_supervise_red_num
+                                        from TA_JC_SUM_SUPERVISE_INFO
+                                       where ACCEPT_NOW_DATE is not null
+                                       group by ORG_ID
+                                       
+                                      union all
+                                      
+                                      select sl.org_id,
+                                             0 sls,
+                                             0 as zcbjs,
+                                             0 as thbjs,
+                                             0 as zfbjs,
+                                             0 as scbjs,
+                                             0 as bjs,
+                                             0 as ljsls,
+                                             0 as ljbjs,
+                                             count(sl.instance_id) as bysls,
+                                             0 as yjs,
+                                             0 as yellow,
+                                             0 as red,
+                                             0 as complain_num,
+                                             0 as complain_reply_num,
+                                             0 as consult_num,
+                                             0 as consult_replay_num,
+                                             0 as cancel_yellow_num,
+                                             0 as cancel_red_num,
+                                             0 as instance_yjs,
+						                     0 as instance_yellow,
+						                     0 as instance_red,
+						                     0 as instance_cancel_yellow_num,
+						                     0 as instance_cancel_red_num,
+						                     0 as complain_yjs,
+						                     0 as complain_yellow,
+						                     0 as complain_red,
+						                     0 as complain_cancel_yellow_num,
+						                     0 as complain_cancel_red_num,
+						                     0 as consult_yjs,
+						                     0 as consult_yellow,
+						                     0 as consult_red,
+						                     0 as consult_cancel_yellow_num,
+						                     0 as consult_cancel_red_num,
+						                     
+						                     0 as special_supervise_green_num,
+                                             0 as special_supervise_yellow_num,
+                                             0 as special_supervise_red_num
+                                        from TA_SP_INSTANCE sl
+                                       where sl.project_state = '2'
+                                       <if test="start_time != null" >
+                                       		and sl.Accept_Time between
+                                             to_date(#{start_time},'yyyy-mm-dd') and
+                                             to_date(#{end_time}, 'yyyy-mm-dd')
+                                       </if>
+                                       group by sl.org_id
+                                       ) t
+                               group by t.org_id) a
+                       where o.ORG_ID = a.org_id) s
+               where 1=1
+                <if test="area_code != null"> and  s.org_id = #{area_code}</if> 
+               group by s.ORG_SHOW_NAME) aa
+     on o.ORG_NAME = aa.ORG_SHOW_NAME
+  
+	     INNER JOIN TEMP 
+		ON o.org_id = TEMP.ID
+	)
+ select * from TEMP2 
+ where 1=1
+ <if test="area_code != null">and  TEMP2.org_id = #{area_code}</if> 
+ order by TEMP2.sls desc
+</select>	
+
+
+<select id="selectJCSumSuperviseInfoByCity" resultMap="jCSumSuperviseInfoAllMapper" parameterType="com.chinacreator.dzjc_ruleEngine.JCSumSuperviseInfoAll">
+  select 
+        o.AREA_NAME area_name,
+        o.AREA_CODE area_code,
+        nvl(aa.sls, '0') sls,
+        nvl(aa.zcbjs, '0') zcbjs,
+        nvl(aa.thbjs, '0') thbjs,
+        nvl(aa.zfbjs, '0') zfbjs,
+        nvl(aa.scbjs, '0') scbjs,
+        nvl(aa.bjs, '0') bjs,
+        nvl(aa.ljsls, '0') ljsls,
+        nvl(aa.ljbjs, '0') ljbjs,
+        nvl(aa.bysls, '0') bysls,
+        nvl(aa.yjs, '0') yjs,
+        nvl(aa.yellow, '0') yellow,
+        nvl(aa.red, '0') red,
+        nvl(aa.complain_num, '0') complain_num,
+        nvl(aa.complain_reply_num, '0') complain_reply_num,
+        nvl(aa.consult_num, '0') consult_num,
+        nvl(aa.consult_replay_num, '0') consult_replay_num,
+        nvl(aa.cancel_yellow_num, '0') cancel_yellow_num,
+        nvl(aa.cancel_red_num, '0') cancel_red_num,
+        nvl(aa.instance_yjs,'0') as instance_yjs,
+        nvl(aa.instance_yellow,'0') as instance_yellow,
+        nvl(aa.instance_red,'0') as instance_red,
+        nvl(aa.instance_cancel_yellow_num,'0') as instance_cancel_yellow_num,
+        nvl(aa.instance_cancel_red_num,'0') as instance_cancel_red_num,
+        nvl(aa.complain_yjs,'0') as complain_yjs,
+        nvl(aa.complain_yellow,'0') as complain_yellow,
+        nvl(aa.complain_red,'0') as complain_red,
+        nvl(aa.complain_cancel_yellow_num,'0') as complain_cancel_yellow_num,
+        nvl(aa.complain_cancel_red_num,'0') as complain_cancel_red_num,
+        nvl(aa.consult_yjs,'0') as consult_yjs,
+        nvl(aa.consult_yellow,'0') as consult_yellow,
+        nvl(aa.consult_red,'0') as consult_red,
+        nvl(aa.consult_cancel_yellow_num,'0') as consult_cancel_yellow_num,
+        nvl(aa.consult_cancel_red_num,'0') as consult_cancel_red_num,
+        
+        nvl(aa.special_supervise_green_num,'0') as special_supervise_green_num,
+        nvl(aa.special_supervise_yellow_num,'0') as special_supervise_yellow_num,
+        nvl(aa.special_supervise_red_num,'0') as special_supervise_red_num
+   from v_ta_dic_area o
+   left join (
+              select s.County_CODE,
+                     sum(s.sls) sls,
+                     sum(s.zcbjs) zcbjs,
+                     sum(s.thbjs) thbjs,
+                     sum(s.zfbjs) zfbjs,
+                     sum(s.scbjs) scbjs,
+                     sum(s.bjs) bjs,
+                     sum(s.ljsls) ljsls,
+                     sum(s.ljbjs) ljbjs,
+                     sum(s.bysls) bysls,
+                     sum(s.yjs) yjs,
+                     sum(s.yellow) yellow,
+                     sum(s.red) red,
+                     sum(s.complain_num) as complain_num,
+                     sum(s.complain_reply_num) as complain_reply_num,
+                     sum(s.consult_num) as consult_num,
+                     sum(s.consult_replay_num) as consult_replay_num,
+                     sum(s.cancel_yellow_num) as cancel_yellow_num,
+                     sum(s.cancel_red_num) as cancel_red_num,
+                     sum(s.instance_yjs) as instance_yjs,
+                     sum(s.instance_yellow) as instance_yellow,
+                     sum(s.instance_red) as instance_red,
+                     sum(s.instance_cancel_yellow_num) as instance_cancel_yellow_num,
+                     sum(s.instance_cancel_red_num) as instance_cancel_red_num,
+                     sum(s.complain_yjs) as complain_yjs,
+                     sum(s.complain_yellow) as complain_yellow,
+                     sum(s.complain_red) as complain_red,
+                     sum(s.complain_cancel_yellow_num) as complain_cancel_yellow_num,
+                     sum(s.complain_cancel_red_num) as complain_cancel_red_num,
+                     sum(s.consult_yjs) as consult_yjs,
+                     sum(s.consult_yellow) as consult_yellow,
+                     sum(s.consult_red) as consult_red,
+                     sum(s.consult_cancel_yellow_num) as consult_cancel_yellow_num,
+                     sum(s.consult_cancel_red_num) as consult_cancel_red_num,
+                     
+                     sum(s.special_supervise_green_num) as special_supervise_green_num,
+                     sum(s.special_supervise_yellow_num) as special_supervise_yellow_num,
+                     sum(s.special_supervise_red_num) as special_supervise_red_num
+                          from (
+                              select  o.ORG_ID,
+                                       o.ORG_CODE,
+                                       o.ORG_NAME as ORG_SHOW_NAME,
+                                       o.PROVINCE_CODE,
+                                       o.CITY_CODE,
+                                       o.County_CODE,
+                                       o.STREET_CODE,
+                                       o.ORG_LEVEL,
+                                       a.sls,
+                                       a.zcbjs,
+                                       a.thbjs,
+                                       a.zfbjs,
+                                       a.scbjs,
+                                       a.bjs,
+                                       a.ljsls,
+                                       a.ljbjs,
+                                       a.bysls,
+                                       a.yjs,
+                                       a.yellow,
+                                       a.red,
+                                       a.complain_num,
+                                       a.complain_reply_num,
+                                       a.consult_num,
+                                       a.consult_replay_num,
+                                       a.cancel_yellow_num,
+                                       a.cancel_red_num, 
+                                       a.instance_yjs,
+                                       a.instance_yellow,
+                                       a.instance_red,
+                                       a.instance_cancel_yellow_num,
+                                       a.instance_cancel_red_num,
+                                       a.complain_yjs,
+                                       a.complain_yellow,
+                                       a.complain_red,
+                                       a.complain_cancel_yellow_num,
+                                       a.complain_cancel_red_num,
+                                       a.consult_yjs,
+                                       a.consult_yellow,
+                                       a.consult_red,
+                                       a.consult_cancel_yellow_num,
+                                       a.consult_cancel_red_num,
+                                       
+                                       a.special_supervise_green_num,
+                                       a.special_supervise_yellow_num,
+                                       a.special_supervise_red_num
+                                from V_TD_SM_ORGANIZATION1 o,
+                                (select t.org_id,
+                                     sum(sls) sls,
+                                     sum(zcbjs) zcbjs,
+                                     sum(thbjs) thbjs,
+                                     sum(zfbjs) zfbjs,
+                                     sum(scbjs) scbjs,
+                                     sum(bjs) bjs,
+                                     sum(ljsls) ljsls,
+                                     sum(ljbjs) ljbjs,
+                                     sum(bysls) bysls,
+                                     sum(yjs) yjs,
+                                     sum(yellow) yellow,
+                                     sum(red) red,
+                                     sum(complain_num) as complain_num,
+                                     sum(complain_reply_num) as complain_reply_num,
+                                     sum(consult_num) as consult_num,
+                                     sum(consult_replay_num) as consult_replay_num,
+                                     sum(cancel_yellow_num) as cancel_yellow_num,
+                                     sum(cancel_red_num) as cancel_red_num,
+                                     sum(instance_yjs) as instance_yjs,
+                                     sum(instance_yellow) as instance_yellow,
+                                     sum(instance_red) as instance_red,
+                                     sum(instance_cancel_yellow_num) as instance_cancel_yellow_num,
+                                     sum(instance_cancel_red_num) as instance_cancel_red_num,
+                                     sum(complain_yjs) as complain_yjs,
+                                     sum(complain_yellow) as complain_yellow,
+                                     sum(complain_red) as complain_red,
+                                     sum(complain_cancel_yellow_num) as complain_cancel_yellow_num,
+                                     sum(complain_cancel_red_num) as complain_cancel_red_num,
+                                     sum(consult_yjs) as consult_yjs,
+                                     sum(consult_yellow) as consult_yellow,
+                                     sum(consult_red) as consult_red,
+                                     sum(consult_cancel_yellow_num) as consult_cancel_yellow_num,
+                                     sum(consult_cancel_red_num) as consult_cancel_red_num,
+                                     
+                                     sum(special_supervise_green_num) as special_supervise_green_num,
+                                     sum(special_supervise_yellow_num) as special_supervise_yellow_num,
+                                     sum(special_supervise_red_num) as special_supervise_red_num
+                                from (
+                                     select ssi.org_id org_id,
+                                             sum(ssi.accept_num) sls,
+                                             sum(ssi.normal_finish_num) as zcbjs,
+                                             sum(ssi.unthreadfinish_num) as thbjs,
+                                             sum(ssi.throw_finish_num) as zfbjs,
+                                             0 as scbjs,
+                                             sum(ssi.finish_num) as bjs,
+                                             0 as ljsls,
+                                             0 as ljbjs,
+                                             0 as bysls,
+                                             sum(ssi.supervise_green_num) as yjs,
+                                             sum(ssi.supervise_yello_num) as yellow,
+                                             sum(ssi.supervise_red_num) as red,
+                                             sum(ssi.complain_num) as complain_num,
+                                             sum(ssi.complain_reply_num) as complain_reply_num,
+                                             sum(ssi.consult_num) as consult_num,
+                                             sum(ssi.consult_replay_num) as consult_replay_num,
+                                             sum(ssi.CANCEL_YELLOW_NUM) as cancel_yellow_num,
+                                             sum(ssi.CANCEL_RED_NUM) as cancel_red_num,
+                                             sum(ssi.INSTANCE_SUPERVISE_GREEN_NUM) as instance_yjs,
+                                             sum(ssi.INSTANCE_SUPERVISE_YELLO_NUM) as instance_yellow,
+                                             sum(ssi.INSTANCE_SUPERVISE_RED_NUM) as instance_red,
+                                             sum(ssi.INSTANCE_CANCEL_YELLOW_NUM) as instance_cancel_yellow_num,
+                                             sum(ssi.INSTANCE_CANCEL_RED_NUM) as instance_cancel_red_num,
+                                             sum(ssi.COMPLAIN_SUPERVISE_GREEN_NUM) as complain_yjs,
+                                             sum(ssi.COMPLAIN_SUPERVISE_YELLO_NUM) as complain_yellow,
+                                             sum(ssi.COMPLAIN_SUPERVISE_RED_NUM) as complain_red,
+                                             sum(ssi.COMPLAIN_CANCEL_YELLOW_NUM) as complain_cancel_yellow_num,
+                                             sum(ssi.COMPLAIN_CANCEL_RED_NUM) as complain_cancel_red_num,
+                                             sum(ssi.CONSULT_SUPERVISE_GREEN_NUM) as consult_yjs,
+                                             sum(ssi.CONSULT_SUPERVISE_YELLO_NUM) as consult_yellow,
+                                             sum(ssi.CONSULT_SUPERVISE_RED_NUM) as consult_red,
+                                             sum(ssi.CONSULT_CANCEL_YELLOW_NUM) as consult_cancel_yellow_num,
+                                             sum(ssi.CONSULT_CANCEL_RED_NUM) as consult_cancel_red_num,
+                                             
+                                             sum(ssi.special_supervise_green_num) as special_supervise_green_num,
+                                             sum(ssi.special_supervise_yellow_num) as special_supervise_yellow_num,
+                                             sum(ssi.special_supervise_red_num) as special_supervise_red_num
+                                        from ta_JC_sum_supervise_info ssi
+                                       where 1=1
+                                        <if test="start_time != null">and  ssi.now_date &gt;= #{start_time}</if>
+		   		   						<if test="end_time != null">and  ssi.now_date &lt;= #{end_time}</if>  
+                                        and  ssi.county_code !='000000000000'    
+                                       group by ssi.org_id
+                                       
+                                      union all
+                                      select bj.org_id org_id ,
+                                             0 sls,
+                                             0 as zcbjs,
+                                             0 as thbjs,
+                                             0 as zfbjs,
+                                             count(bj.instance_id) as scbjs,
+                                             0 as bjs,
+                                             0 as ljsls,
+                                             0 as ljbjs,
+                                             0 as bysls,
+                                             0 as yjs,
+                                             0 as yellow,
+                                             0 as red,
+                                             0 as complain_num,
+                                             0 as complain_reply_num,
+                                             0 as consult_num,
+                                             0 as consult_replay_num,
+                                             0 as cancel_yellow_num,
+                                             0 as cancel_red_num,
+                                             0 as instance_yjs,
+                                             0 as instance_yellow,
+                                             0 as instance_red,
+                                             0 as instance_cancel_yellow_num,
+                                             0 as instance_cancel_red_num,
+                                             0 as complain_yjs,
+                                             0 as complain_yellow,
+                                             0 as complain_red,
+                                             0 as complain_cancel_yellow_num,
+                                             0 as complain_cancel_red_num,
+                                             0 as consult_yjs,
+                                             0 as consult_yellow,
+                                             0 as consult_red,
+                                             0 as consult_cancel_yellow_num,
+                                             0 as consult_cancel_red_num,
+                                             
+                                             0 as special_supervise_green_num,
+                                             0 as special_supervise_yellow_num,
+                                             0 as special_supervise_red_num
+                                        from TA_SP_INSTANCE bj
+                                       where bj.project_state = '7'
+	                                       	<if test="start_time != null">
+	                                       		and bj.accept_time between
+	                                             to_date(#{start_time},'yyyy-mm-dd') and
+	                                             to_date(#{end_time}, 'yyyy-mm-dd')
+	                                       </if>
+                                       group by bj.org_id
+                                       
+                                      union all
+                                      select TA_JC_SUM_SUPERVISE_INFO.org_id org_id,
+                                             0 sls,
+                                             0 as zcbjs,
+                                             0 as thbjs,
+                                             0 as zfbjs,
+                                             0 as scbjs,
+                                             0 as bjs,
+                                             sum(ACCEPT_NUM) as ljsls,
+                                             sum(FINISH_NUM) as ljbjs,
+                                             0 as bysls,
+                                             0 as yjs,
+                                             0 as yellow,
+                                             0 as red,
+                                             0 as complain_num,
+                                             0 as complain_reply_num,
+                                             0 as consult_num,
+                                             0 as consult_replay_num,
+                                             0 as cancel_yellow_num,
+                                             0 as cancel_red_num,
+                                             0 as instance_yjs,
+                                             0 as instance_yellow,
+                                             0 as instance_red,
+                                             0 as instance_cancel_yellow_num,
+                                             0 as instance_cancel_red_num,
+                                             0 as complain_yjs,
+                                             0 as complain_yellow,
+                                             0 as complain_red,
+                                             0 as complain_cancel_yellow_num,
+                                             0 as complain_cancel_red_num,
+                                             0 as consult_yjs,
+                                             0 as consult_yellow,
+                                             0 as consult_red,
+                                             0 as consult_cancel_yellow_num,
+                                             0 as consult_cancel_red_num,
+                                             
+                                             0 as special_supervise_green_num,
+                                             0 as special_supervise_yellow_num,
+                                             0 as special_supervise_red_num
+                                        from TA_JC_SUM_SUPERVISE_INFO
+                                       where ACCEPT_NOW_DATE is not null
+                                       group by TA_JC_SUM_SUPERVISE_INFO.org_id
+                                       
+                                      union all
+                                      select sl.org_id org_id,
+                                             0 sls,
+                                             0 as zcbjs,
+                                             0 as thbjs,
+                                             0 as zfbjs,
+                                             0 as scbjs,
+                                             0 as bjs,
+                                             0 as ljsls,
+                                             0 as ljbjs,
+                                             count(sl.instance_id) as bysls,
+                                             0 as yjs,
+                                             0 as yellow,
+                                             0 as red,
+                                             0 as complain_num,
+                                             0 as complain_reply_num,
+                                             0 as consult_num,
+                                             0 as consult_replay_num,
+                                             0 as cancel_yellow_num,
+                                             0 as cancel_red_num,
+                                             0 as instance_yjs,
+                                             0 as instance_yellow,
+                                             0 as instance_red,
+                                             0 as instance_cancel_yellow_num,
+                                             0 as instance_cancel_red_num,
+                                             0 as complain_yjs,
+                                             0 as complain_yellow,
+                                             0 as complain_red,
+                                             0 as complain_cancel_yellow_num,
+                                             0 as complain_cancel_red_num,
+                                             0 as consult_yjs,
+                                             0 as consult_yellow,
+                                             0 as consult_red,
+                                             0 as consult_cancel_yellow_num,
+                                             0 as consult_cancel_red_num,
+                                             
+                                             0 as special_supervise_green_num,
+                                             0 as special_supervise_yellow_num,
+                                             0 as special_supervise_red_num
+                                        from TA_SP_INSTANCE sl
+                                             where sl.project_state = '2'
+                                             <if test="start_time != null" >
+	                                       		 and sl.Accept_Time between
+	                                             to_date(#{start_time},'yyyy-mm-dd') and
+	                                             to_date(#{end_time}, 'yyyy-mm-dd')
+                                      		 </if>
+                                             group by sl.org_id
+                                       ) t
+                               group by t.org_id
+                               ) a
+                      where o.ORG_ID = a.org_id                                          
+                       ) s
+               where s.CITY_CODE = #{ORG_ID,jdbcType=VARCHAR}
+               and s.County_CODE != '000000000000'
+               group by s.County_CODE
+               ) aa
+    on o.AREA_CODE = aa.County_CODE
+    where o.parent_code =#{ORG_ID,jdbcType=VARCHAR}
+    order by o.ORDER_NUM
+
+</select>
+	
+<select id="selectJCSumSuperviseInfoByArea" resultMap="jCSumSuperviseInfoAllMapper" parameterType="com.chinacreator.dzjc_ruleEngine.JCSumSuperviseInfoAll">
+
+  select 
+        v.ORG_NAME area_name,
+        v.ORG_ID,
+        nvl(aa.sls, '0') sls,
+        nvl(aa.zcbjs, '0') zcbjs,
+        nvl(aa.thbjs, '0') thbjs,
+        nvl(aa.zfbjs, '0') zfbjs,
+        nvl(aa.scbjs, '0') scbjs,
+        nvl(aa.bjs, '0') bjs,
+        nvl(aa.ljsls, '0') ljsls,
+        nvl(aa.ljbjs, '0') ljbjs,
+        nvl(aa.bysls, '0') bysls,
+        nvl(aa.yjs, '0') yjs,
+        nvl(aa.yellow, '0') yellow,
+        nvl(aa.red, '0') red,
+        nvl(aa.complain_num, '0') complain_num,
+        nvl(aa.complain_reply_num, '0') complain_reply_num,
+        nvl(aa.consult_num, '0') consult_num,
+        nvl(aa.consult_replay_num, '0') consult_replay_num,
+        nvl(aa.cancel_yellow_num, '0') cancel_yellow_num,
+        nvl(aa.cancel_red_num, '0') cancel_red_num,
+        
+        nvl(aa.instance_yjs,'0') as instance_yjs,
+        nvl(aa.instance_yellow,'0') as instance_yellow,
+        nvl(aa.instance_red,'0') as instance_red,
+        nvl(aa.instance_cancel_yellow_num,'0') as instance_cancel_yellow_num,
+        nvl(aa.instance_cancel_red_num,'0') as instance_cancel_red_num,
+        nvl(aa.complain_yjs,'0') as complain_yjs,
+        nvl(aa.complain_yellow,'0') as complain_yellow,
+        nvl(aa.complain_red,'0') as complain_red,
+        nvl(aa.complain_cancel_yellow_num,'0') as complain_cancel_yellow_num,
+        nvl(aa.complain_cancel_red_num,'0') as complain_cancel_red_num,
+        nvl(aa.consult_yjs,'0') as consult_yjs,
+        nvl(aa.consult_yellow,'0') as consult_yellow,
+        nvl(aa.consult_red,'0') as consult_red,
+        nvl(aa.consult_cancel_yellow_num,'0') as consult_cancel_yellow_num,
+        nvl(aa.consult_cancel_red_num,'0') as consult_cancel_red_num,
+        
+        nvl(aa.special_supervise_green_num,'0') as special_supervise_green_num,
+        nvl(aa.special_supervise_yellow_num,'0') as special_supervise_yellow_num,
+        nvl(aa.special_supervise_red_num,'0') as special_supervise_red_num
+   from V_TD_SM_ORGANIZATION1 v
+   left join (select s.org_id,
+                     sum(s.sls) sls,
+                     sum(s.zcbjs) zcbjs,
+                     sum(s.thbjs) thbjs,
+                     sum(s.zfbjs) zfbjs,
+                     sum(s.scbjs) scbjs,
+                     sum(s.bjs) bjs,
+                     sum(s.ljsls) ljsls,
+                     sum(s.ljbjs) ljbjs,
+                     sum(s.bysls) bysls,
+                     sum(s.yjs) yjs,
+                     sum(s.yellow) yellow,
+                     sum(s.red) red,
+                     sum(s.complain_num) as complain_num,
+                     sum(s.complain_reply_num) as complain_reply_num,
+                     sum(s.consult_num) as consult_num,
+                     sum(s.consult_replay_num) as consult_replay_num,
+                     sum(s.cancel_yellow_num) as cancel_yellow_num,
+                     sum(s.cancel_red_num) as cancel_red_num,
+                     
+                     sum(s.instance_yjs) as instance_yjs,
+                     sum(s.instance_yellow) as instance_yellow,
+                     sum(s.instance_red) as instance_red,
+                     sum(s.instance_cancel_yellow_num) as instance_cancel_yellow_num,
+                     sum(s.instance_cancel_red_num) as instance_cancel_red_num,
+                     sum(s.complain_yjs) as complain_yjs,
+                     sum(s.complain_yellow) as complain_yellow,
+                     sum(s.complain_red) as complain_red,
+                     sum(s.complain_cancel_yellow_num) as complain_cancel_yellow_num,
+                     sum(s.complain_cancel_red_num) as complain_cancel_red_num,
+                     sum(s.consult_yjs) as consult_yjs,
+                     sum(s.consult_yellow) as consult_yellow,
+                     sum(s.consult_red) as consult_red,
+                     sum(s.consult_cancel_yellow_num) as consult_cancel_yellow_num,
+                     sum(s.consult_cancel_red_num) as consult_cancel_red_num,
+                     
+                     sum(s.special_supervise_green_num) as special_supervise_green_num,
+                     sum(s.special_supervise_yellow_num) as special_supervise_yellow_num,
+                     sum(s.special_supervise_red_num) as special_supervise_red_num
+                from (select o.ORG_ID,
+                             o.ORG_CODE,
+                             o.ORG_NAME as ORG_SHOW_NAME,
+                             o.PROVINCE_CODE,
+                             o.CITY_CODE,
+                             o.County_CODE,
+                             o.STREET_CODE,
+                             o.ORG_LEVEL,
+                             a.sls,
+                             a.zcbjs,
+                             a.thbjs,
+                             a.zfbjs,
+                             a.scbjs,
+                             a.bjs,
+                             a.ljsls,
+                             a.ljbjs,
+                             a.bysls,
+                             a.yjs,
+                             a.yellow,
+                             a.red,
+                             a.complain_num,
+                             a.complain_reply_num,
+                             a.consult_num,
+                             a.consult_replay_num,
+                             a.cancel_yellow_num,
+                             a.cancel_red_num,
+                             
+                             a.instance_yjs,
+                             a.instance_yellow,
+                             a.instance_red,
+                             a.instance_cancel_yellow_num,
+                             a.instance_cancel_red_num,
+                             a.complain_yjs,
+                             a.complain_yellow,
+                             a.complain_red,
+                             a.complain_cancel_yellow_num,
+                             a.complain_cancel_red_num,
+                             a.consult_yjs,
+                             a.consult_yellow,
+                             a.consult_red,
+                             a.consult_cancel_yellow_num,
+                             a.consult_cancel_red_num,
+                             
+                             a.special_supervise_green_num,
+                             a.special_supervise_yellow_num,
+                             a.special_supervise_red_num
+                        from V_TD_SM_ORGANIZATION1 o,
+                             (select t.org_id,
+                                     sum(sls) sls,
+                                     sum(zcbjs) zcbjs,
+                                     sum(thbjs) thbjs,
+                                     sum(zfbjs) zfbjs,
+                                     sum(scbjs) scbjs,
+                                     sum(bjs) bjs,
+                                     sum(ljsls) ljsls,
+                                     sum(ljbjs) ljbjs,
+                                     sum(bysls) bysls,
+                                     sum(yjs) yjs,
+                                     sum(yellow) yellow,
+                                     sum(red) red,
+                                     sum(complain_num) as complain_num,
+                                     sum(complain_reply_num) as complain_reply_num,
+                                     sum(consult_num) as consult_num,
+                                     sum(consult_replay_num) as consult_replay_num,
+                                     sum(cancel_yellow_num) as cancel_yellow_num,
+                                     sum(cancel_red_num) as cancel_red_num,
+                                     
+                                     sum(instance_yjs) as instance_yjs,
+                                     sum(instance_yellow) as instance_yellow,
+                                     sum(instance_red) as instance_red,
+                                     sum(instance_cancel_yellow_num) as instance_cancel_yellow_num,
+                                     sum(instance_cancel_red_num) as instance_cancel_red_num,
+                                     sum(complain_yjs) as complain_yjs,
+                                     sum(complain_yellow) as complain_yellow,
+                                     sum(complain_red) as complain_red,
+                                     sum(complain_cancel_yellow_num) as complain_cancel_yellow_num,
+                                     sum(complain_cancel_red_num) as complain_cancel_red_num,
+                                     sum(consult_yjs) as consult_yjs,
+                                     sum(consult_yellow) as consult_yellow,
+                                     sum(consult_red) as consult_red,
+                                     sum(consult_cancel_yellow_num) as consult_cancel_yellow_num,
+                                     sum(consult_cancel_red_num) as consult_cancel_red_num,
+                                     
+                                     sum(special_supervise_green_num) as special_supervise_green_num,
+                                     sum(special_supervise_yellow_num) as special_supervise_yellow_num,
+                                     sum(special_supervise_red_num) as special_supervise_red_num
+                                from (
+                                     
+                                     select ssi.org_id org_id,
+                                             sum(ssi.accept_num) sls,
+                                             sum(ssi.normal_finish_num) as zcbjs,
+                                             sum(ssi.unthreadfinish_num) as thbjs,
+                                             sum(ssi.throw_finish_num) as zfbjs,
+                                             0 as scbjs,
+                                             sum(ssi.finish_num) as bjs,
+                                             0 as ljsls,
+                                             0 as ljbjs,
+                                             0 as bysls,
+                                             sum(ssi.supervise_green_num) as yjs,
+                                             sum(ssi.supervise_yello_num) as yellow,
+                                             sum(ssi.supervise_red_num) as red,
+                                             sum(ssi.complain_num) as complain_num,
+                                             sum(ssi.complain_reply_num) as complain_reply_num,
+                                             sum(ssi.consult_num) as consult_num,
+                                             sum(ssi.consult_replay_num) as consult_replay_num,
+                                             sum(ssi.CANCEL_YELLOW_NUM) as cancel_yellow_num,
+                                             sum(ssi.CANCEL_RED_NUM) as cancel_red_num,
+                                             
+                                             sum(ssi.INSTANCE_SUPERVISE_GREEN_NUM) as instance_yjs,
+                                             sum(ssi.INSTANCE_SUPERVISE_YELLO_NUM) as instance_yellow,
+                                             sum(ssi.INSTANCE_SUPERVISE_RED_NUM) as instance_red,
+                                             sum(ssi.INSTANCE_CANCEL_YELLOW_NUM) as instance_cancel_yellow_num,
+                                             sum(ssi.INSTANCE_CANCEL_RED_NUM) as instance_cancel_red_num,
+                                             sum(ssi.COMPLAIN_SUPERVISE_GREEN_NUM) as complain_yjs,
+                                             sum(ssi.COMPLAIN_SUPERVISE_YELLO_NUM) as complain_yellow,
+                                             sum(ssi.COMPLAIN_SUPERVISE_RED_NUM) as complain_red,
+                                             sum(ssi.COMPLAIN_CANCEL_YELLOW_NUM) as complain_cancel_yellow_num,
+                                             sum(ssi.COMPLAIN_CANCEL_RED_NUM) as complain_cancel_red_num,
+                                             sum(ssi.CONSULT_SUPERVISE_GREEN_NUM) as consult_yjs,
+                                             sum(ssi.CONSULT_SUPERVISE_YELLO_NUM) as consult_yellow,
+                                             sum(ssi.CONSULT_SUPERVISE_RED_NUM) as consult_red,
+                                             sum(ssi.CONSULT_CANCEL_YELLOW_NUM) as consult_cancel_yellow_num,
+                                             sum(ssi.CONSULT_CANCEL_RED_NUM) as consult_cancel_red_num,
+                                             
+                                             sum(ssi.special_supervise_green_num) as special_supervise_green_num,
+                                             sum(ssi.special_supervise_yellow_num) as special_supervise_yellow_num,
+                                             sum(ssi.special_supervise_red_num) as special_supervise_red_num
+                                        from ta_JC_sum_supervise_info ssi
+                                       where 1=1
+                                        <if test="start_time != null">and  ssi.now_date &gt;= #{start_time}</if>
+                                        <if test="end_time != null">and  ssi.now_date &lt;= #{end_time}</if>      
+                                       group by ssi.org_id
+                                       
+                                      union all
+                                      
+                                      select bj.org_id ,
+                                             0 sls,
+                                             0 as zcbjs,
+                                             0 as thbjs,
+                                             0 as zfbjs,
+                                             count(bj.instance_id) as scbjs,
+                                             0 as bjs,
+                                             0 as ljsls,
+                                             0 as ljbjs,
+                                             0 as bysls,
+                                             0 as yjs,
+                                             0 as yellow,
+                                             0 as red,
+                                             0 as complain_num,
+                                             0 as complain_reply_num,
+                                             0 as consult_num,
+                                             0 as consult_replay_num,
+                                             0 as cancel_yellow_num,
+                                             0 as cancel_red_num,
+                                             0 as instance_yjs,
+                                             0 as instance_yellow,
+                                             0 as instance_red,
+                                             0 as instance_cancel_yellow_num,
+                                             0 as instance_cancel_red_num,
+                                             0 as complain_yjs,
+                                             0 as complain_yellow,
+                                             0 as complain_red,
+                                             0 as complain_cancel_yellow_num,
+                                             0 as complain_cancel_red_num,
+                                             0 as consult_yjs,
+                                             0 as consult_yellow,
+                                             0 as consult_red,
+                                             0 as consult_cancel_yellow_num,
+                                             0 as consult_cancel_red_num,
+                                             
+                                             0 as special_supervise_green_num,
+                                             0 as special_supervise_yellow_num,
+                                             0 as special_supervise_red_num
+                                        from TA_SP_INSTANCE bj
+                                       where bj.project_state = '7'
+                                       <if test="start_time != null">
+                                           and bj.accept_time between
+                                             to_date(#{start_time},'yyyy-mm-dd') and
+                                             to_date(#{end_time}, 'yyyy-mm-dd')
+                                       </if>
+                                       group by bj.org_id
+                                       
+                                      union all
+                                      
+                                      select org_id,
+                                             0 sls,
+                                             0 as zcbjs,
+                                             0 as thbjs,
+                                             0 as zfbjs,
+                                             0 as scbjs,
+                                             0 as bjs,
+                                             sum(ACCEPT_NUM) as ljsls,
+                                             sum(FINISH_NUM) as ljbjs,
+                                             0 as bysls,
+                                             0 as yjs,
+                                             0 as yellow,
+                                             0 as red,
+                                             0 as complain_num,
+                                             0 as complain_reply_num,
+                                             0 as consult_num,
+                                             0 as consult_replay_num,
+                                             0 as cancel_yellow_num,
+                                             0 as cancel_red_num,
+                                             0 as instance_yjs,
+                                             0 as instance_yellow,
+                                             0 as instance_red,
+                                             0 as instance_cancel_yellow_num,
+                                             0 as instance_cancel_red_num,
+                                             0 as complain_yjs,
+                                             0 as complain_yellow,
+                                             0 as complain_red,
+                                             0 as complain_cancel_yellow_num,
+                                             0 as complain_cancel_red_num,
+                                             0 as consult_yjs,
+                                             0 as consult_yellow,
+                                             0 as consult_red,
+                                             0 as consult_cancel_yellow_num,
+                                             0 as consult_cancel_red_num,
+                                             
+                                             0 as special_supervise_green_num,
+                                             0 as special_supervise_yellow_num,
+                                             0 as special_supervise_red_num
+                                        from TA_JC_SUM_SUPERVISE_INFO
+                                       where ACCEPT_NOW_DATE is not null
+                                       group by ORG_ID
+                                       
+                                      union all
+                                      
+                                      select sl.org_id,
+                                             0 sls,
+                                             0 as zcbjs,
+                                             0 as thbjs,
+                                             0 as zfbjs,
+                                             0 as scbjs,
+                                             0 as bjs,
+                                             0 as ljsls,
+                                             0 as ljbjs,
+                                             count(sl.instance_id) as bysls,
+                                             0 as yjs,
+                                             0 as yellow,
+                                             0 as red,
+                                             0 as complain_num,
+                                             0 as complain_reply_num,
+                                             0 as consult_num,
+                                             0 as consult_replay_num,
+                                             0 as cancel_yellow_num,
+                                             0 as cancel_red_num,
+                                             0 as instance_yjs,
+                                             0 as instance_yellow,
+                                             0 as instance_red,
+                                             0 as instance_cancel_yellow_num,
+                                             0 as instance_cancel_red_num,
+                                             0 as complain_yjs,
+                                             0 as complain_yellow,
+                                             0 as complain_red,
+                                             0 as complain_cancel_yellow_num,
+                                             0 as complain_cancel_red_num,
+                                             0 as consult_yjs,
+                                             0 as consult_yellow,
+                                             0 as consult_red,
+                                             0 as consult_cancel_yellow_num,
+                                             0 as consult_cancel_red_num,
+                                             
+                                             0 as special_supervise_green_num,
+                                             0 as special_supervise_yellow_num,
+                                             0 as special_supervise_red_num
+                                        from TA_SP_INSTANCE sl
+                                       where sl.project_state = '2'
+                                       <if test="start_time != null" >
+                                           and sl.Accept_Time between
+                                             to_date(#{start_time},'yyyy-mm-dd') and
+                                            to_date(#{end_time}, 'yyyy-mm-dd')
+                                       </if>
+                                       group by sl.org_id
+                                       ) t
+                               group by t.org_id) a
+                       where o.ORG_ID = a.org_id
+                        and o.COUNTY_CODE =#{ORG_ID,jdbcType=VARCHAR}
+                       ) s
+                where 1=1
+             
+               group by s.ORG_ID) aa
+     on v.ORG_ID = aa.ORG_ID
+     
+      where 1=1
+         
+         and v.County_CODE =#{ORG_ID,jdbcType=VARCHAR}
+         and v.STREET_CODE !='000000000000'
+          and (substr(v.ORG_CODE, 13) != '000000000000' or v.ORG_NAME='区本级')    
+  		<choose>
+	 		<when test="sortCol != null">
+	 			order by ${sortCol} desc
+	 		</when>
+	 		<otherwise>
+	 			order by v.ORDER_NUM  
+	 		</otherwise>
+	 	</choose>
+ 
+
+</select>
+
+
+
+<select id="selectJCSumSuperviseInfoByprovince" resultMap="jCSumSuperviseInfoAllMapper" parameterType="com.chinacreator.dzjc_ruleEngine.JCSumSuperviseInfoAll">
+  select 
+        o.AREA_NAME area_name,
+        o.AREA_CODE area_code,
+        nvl(aa.sls, '0') sls,
+        nvl(aa.zcbjs, '0') zcbjs,
+        nvl(aa.thbjs, '0') thbjs,
+        nvl(aa.zfbjs, '0') zfbjs,
+        nvl(aa.scbjs, '0') scbjs,
+        nvl(aa.bjs, '0') bjs,
+        nvl(aa.ljsls, '0') ljsls,
+        nvl(aa.ljbjs, '0') ljbjs,
+        nvl(aa.bysls, '0') bysls,
+        nvl(aa.yjs, '0') yjs,
+        nvl(aa.yellow, '0') yellow,
+        nvl(aa.red, '0') red,
+        nvl(aa.complain_num, '0') complain_num,
+        nvl(aa.complain_reply_num, '0') complain_reply_num,
+        nvl(aa.consult_num, '0') consult_num,
+        nvl(aa.consult_replay_num, '0') consult_replay_num,
+        nvl(aa.cancel_yellow_num, '0') cancel_yellow_num,
+        nvl(aa.cancel_red_num, '0') cancel_red_num,
+        nvl(aa.instance_yjs,'0') as instance_yjs,
+        nvl(aa.instance_yellow,'0') as instance_yellow,
+        nvl(aa.instance_red,'0') as instance_red,
+        nvl(aa.instance_cancel_yellow_num,'0') as instance_cancel_yellow_num,
+        nvl(aa.instance_cancel_red_num,'0') as instance_cancel_red_num,
+        nvl(aa.complain_yjs,'0') as complain_yjs,
+        nvl(aa.complain_yellow,'0') as complain_yellow,
+        nvl(aa.complain_red,'0') as complain_red,
+        nvl(aa.complain_cancel_yellow_num,'0') as complain_cancel_yellow_num,
+        nvl(aa.complain_cancel_red_num,'0') as complain_cancel_red_num,
+        nvl(aa.consult_yjs,'0') as consult_yjs,
+        nvl(aa.consult_yellow,'0') as consult_yellow,
+        nvl(aa.consult_red,'0') as consult_red,
+        nvl(aa.consult_cancel_yellow_num,'0') as consult_cancel_yellow_num,
+        nvl(aa.consult_cancel_red_num,'0') as consult_cancel_red_num,
+        nvl(aa.special_supervise_green_num,'0') as special_supervise_green_num,
+        nvl(aa.special_supervise_yellow_num,'0') as special_supervise_yellow_num,
+        nvl(aa.special_supervise_red_num,'0') as special_supervise_red_num
+   from v_ta_dic_area o
+   left join (
+              select s.CITY_CODE,
+                     sum(s.sls) sls,
+                     sum(s.zcbjs) zcbjs,
+                     sum(s.thbjs) thbjs,
+                     sum(s.zfbjs) zfbjs,
+                     sum(s.scbjs) scbjs,
+                     sum(s.bjs) bjs,
+                     sum(s.ljsls) ljsls,
+                     sum(s.ljbjs) ljbjs,
+                     sum(s.bysls) bysls,
+                     sum(s.yjs) yjs,
+                     sum(s.yellow) yellow,
+                     sum(s.red) red,
+                     sum(s.complain_num) as complain_num,
+                     sum(s.complain_reply_num) as complain_reply_num,
+                     sum(s.consult_num) as consult_num,
+                     sum(s.consult_replay_num) as consult_replay_num,
+                     sum(s.cancel_yellow_num) as cancel_yellow_num,
+                     sum(s.cancel_red_num) as cancel_red_num,
+                     sum(s.instance_yjs) as instance_yjs,
+                     sum(s.instance_yellow) as instance_yellow,
+                     sum(s.instance_red) as instance_red,
+                     sum(s.instance_cancel_yellow_num) as instance_cancel_yellow_num,
+                     sum(s.instance_cancel_red_num) as instance_cancel_red_num,
+                     sum(s.complain_yjs) as complain_yjs,
+                     sum(s.complain_yellow) as complain_yellow,
+                     sum(s.complain_red) as complain_red,
+                     sum(s.complain_cancel_yellow_num) as complain_cancel_yellow_num,
+                     sum(s.complain_cancel_red_num) as complain_cancel_red_num,
+                     sum(s.consult_yjs) as consult_yjs,
+                     sum(s.consult_yellow) as consult_yellow,
+                     sum(s.consult_red) as consult_red,
+                     sum(s.consult_cancel_yellow_num) as consult_cancel_yellow_num,
+                     sum(s.consult_cancel_red_num) as consult_cancel_red_num,
+                     sum(s.special_supervise_green_num) as special_supervise_green_num,
+                     sum(s.special_supervise_yellow_num) as special_supervise_yellow_num,
+                     sum(s.special_supervise_red_num) as special_supervise_red_num
+                          from (
+                              select  o.ORG_ID,
+                                       o.ORG_CODE,
+                                       o.ORG_NAME as ORG_SHOW_NAME,
+                                       o.PROVINCE_CODE,
+                                       o.CITY_CODE,
+                                       o.County_CODE,
+                                       o.STREET_CODE,
+                                       o.ORG_LEVEL,
+                                       a.sls,
+                                       a.zcbjs,
+                                       a.thbjs,
+                                       a.zfbjs,
+                                       a.scbjs,
+                                       a.bjs,
+                                       a.ljsls,
+                                       a.ljbjs,
+                                       a.bysls,
+                                       a.yjs,
+                                       a.yellow,
+                                       a.red,
+                                       a.complain_num,
+                                       a.complain_reply_num,
+                                       a.consult_num,
+                                       a.consult_replay_num,
+                                       a.cancel_yellow_num,
+                                       a.cancel_red_num, 
+                                       a.instance_yjs,
+                                       a.instance_yellow,
+                                       a.instance_red,
+                                       a.instance_cancel_yellow_num,
+                                       a.instance_cancel_red_num,
+                                       a.complain_yjs,
+                                       a.complain_yellow,
+                                       a.complain_red,
+                                       a.complain_cancel_yellow_num,
+                                       a.complain_cancel_red_num,
+                                       a.consult_yjs,
+                                       a.consult_yellow,
+                                       a.consult_red,
+                                       a.consult_cancel_yellow_num,
+                                       a.consult_cancel_red_num,
+                                       a.special_supervise_green_num,
+                                       a.special_supervise_yellow_num,
+                                       a.special_supervise_red_num
+                                from V_TD_SM_ORGANIZATION1 o,
+                                (select t.org_id,
+                                     sum(sls) sls,
+                                     sum(zcbjs) zcbjs,
+                                     sum(thbjs) thbjs,
+                                     sum(zfbjs) zfbjs,
+                                     sum(scbjs) scbjs,
+                                     sum(bjs) bjs,
+                                     sum(ljsls) ljsls,
+                                     sum(ljbjs) ljbjs,
+                                     sum(bysls) bysls,
+                                     sum(yjs) yjs,
+                                     sum(yellow) yellow,
+                                     sum(red) red,
+                                     sum(complain_num) as complain_num,
+                                     sum(complain_reply_num) as complain_reply_num,
+                                     sum(consult_num) as consult_num,
+                                     sum(consult_replay_num) as consult_replay_num,
+                                     sum(cancel_yellow_num) as cancel_yellow_num,
+                                     sum(cancel_red_num) as cancel_red_num,
+                                     sum(instance_yjs) as instance_yjs,
+                                     sum(instance_yellow) as instance_yellow,
+                                     sum(instance_red) as instance_red,
+                                     sum(instance_cancel_yellow_num) as instance_cancel_yellow_num,
+                                     sum(instance_cancel_red_num) as instance_cancel_red_num,
+                                     sum(complain_yjs) as complain_yjs,
+                                     sum(complain_yellow) as complain_yellow,
+                                     sum(complain_red) as complain_red,
+                                     sum(complain_cancel_yellow_num) as complain_cancel_yellow_num,
+                                     sum(complain_cancel_red_num) as complain_cancel_red_num,
+                                     sum(consult_yjs) as consult_yjs,
+                                     sum(consult_yellow) as consult_yellow,
+                                     sum(consult_red) as consult_red,
+                                     sum(consult_cancel_yellow_num) as consult_cancel_yellow_num,
+                                     sum(consult_cancel_red_num) as consult_cancel_red_num,
+                                     sum(special_supervise_green_num) as special_supervise_green_num,
+                                     sum(special_supervise_yellow_num) as special_supervise_yellow_num,
+                                     sum(special_supervise_red_num) as special_supervise_red_num
+                                from (
+                                     select ssi.org_id org_id,
+                                             sum(ssi.accept_num) sls,
+                                             sum(ssi.normal_finish_num) as zcbjs,
+                                             sum(ssi.unthreadfinish_num) as thbjs,
+                                             sum(ssi.throw_finish_num) as zfbjs,
+                                             0 as scbjs,
+                                             sum(ssi.finish_num) as bjs,
+                                             0 as ljsls,
+                                             0 as ljbjs,
+                                             0 as bysls,
+                                             sum(ssi.supervise_green_num) as yjs,
+                                             sum(ssi.supervise_yello_num) as yellow,
+                                             sum(ssi.supervise_red_num) as red,
+                                             sum(ssi.complain_num) as complain_num,
+                                             sum(ssi.complain_reply_num) as complain_reply_num,
+                                             sum(ssi.consult_num) as consult_num,
+                                             sum(ssi.consult_replay_num) as consult_replay_num,
+                                             sum(ssi.CANCEL_YELLOW_NUM) as cancel_yellow_num,
+                                             sum(ssi.CANCEL_RED_NUM) as cancel_red_num,
+                                             sum(ssi.INSTANCE_SUPERVISE_GREEN_NUM) as instance_yjs,
+                                             sum(ssi.INSTANCE_SUPERVISE_YELLO_NUM) as instance_yellow,
+                                             sum(ssi.INSTANCE_SUPERVISE_RED_NUM) as instance_red,
+                                             sum(ssi.INSTANCE_CANCEL_YELLOW_NUM) as instance_cancel_yellow_num,
+                                             sum(ssi.INSTANCE_CANCEL_RED_NUM) as instance_cancel_red_num,
+                                             sum(ssi.COMPLAIN_SUPERVISE_GREEN_NUM) as complain_yjs,
+                                             sum(ssi.COMPLAIN_SUPERVISE_YELLO_NUM) as complain_yellow,
+                                             sum(ssi.COMPLAIN_SUPERVISE_RED_NUM) as complain_red,
+                                             sum(ssi.COMPLAIN_CANCEL_YELLOW_NUM) as complain_cancel_yellow_num,
+                                             sum(ssi.COMPLAIN_CANCEL_RED_NUM) as complain_cancel_red_num,
+                                             sum(ssi.CONSULT_SUPERVISE_GREEN_NUM) as consult_yjs,
+                                             sum(ssi.CONSULT_SUPERVISE_YELLO_NUM) as consult_yellow,
+                                             sum(ssi.CONSULT_SUPERVISE_RED_NUM) as consult_red,
+                                             sum(ssi.CONSULT_CANCEL_YELLOW_NUM) as consult_cancel_yellow_num,
+                                             sum(ssi.CONSULT_CANCEL_RED_NUM) as consult_cancel_red_num,
+                                             sum(ssi.special_supervise_green_num) as special_supervise_green_num,
+                                             sum(ssi.special_supervise_yellow_num) as special_supervise_yellow_num,
+                                             sum(ssi.special_supervise_red_num) as special_supervise_red_num
+                                        from ta_JC_sum_supervise_info ssi
+                                       where 1=1
+                                       <if test="start_time != null">and  ssi.now_date &gt;= #{start_time}</if>
+                                        <if test="end_time != null">and  ssi.now_date &lt;= #{end_time}</if> 
+                                            
+                                       group by ssi.org_id
+                                       
+                                      union all
+                                      
+                                      select bj.org_id org_id ,
+                                             0 sls,
+                                             0 as zcbjs,
+                                             0 as thbjs,
+                                             0 as zfbjs,
+                                             count(bj.instance_id) as scbjs,
+                                             0 as bjs,
+                                             0 as ljsls,
+                                             0 as ljbjs,
+                                             0 as bysls,
+                                             0 as yjs,
+                                             0 as yellow,
+                                             0 as red,
+                                             0 as complain_num,
+                                             0 as complain_reply_num,
+                                             0 as consult_num,
+                                             0 as consult_replay_num,
+                                             0 as cancel_yellow_num,
+                                             0 as cancel_red_num,
+                                             0 as instance_yjs,
+                                             0 as instance_yellow,
+                                             0 as instance_red,
+                                             0 as instance_cancel_yellow_num,
+                                             0 as instance_cancel_red_num,
+                                             0 as complain_yjs,
+                                             0 as complain_yellow,
+                                             0 as complain_red,
+                                             0 as complain_cancel_yellow_num,
+                                             0 as complain_cancel_red_num,
+                                             0 as consult_yjs,
+                                             0 as consult_yellow,
+                                             0 as consult_red,
+                                             0 as consult_cancel_yellow_num,
+                                             0 as consult_cancel_red_num,
+                                             0 as special_supervise_green_num,
+                                             0 as special_supervise_yellow_num,
+                                             0 as special_supervise_red_num
+                                        from TA_SP_INSTANCE bj
+                                       where bj.project_state = '7'
+                                      <if test="start_time != null">
+                                           and bj.accept_time between
+                                             to_date(#{start_time},'yyyy-mm-dd') and
+                                             to_date(#{end_time}, 'yyyy-mm-dd')
+                                       </if>
+                                      
+                                       group by bj.org_id
+                                       
+                                      union all
+                                      
+                                      select TA_JC_SUM_SUPERVISE_INFO.org_id org_id,
+                                             0 sls,
+                                             0 as zcbjs,
+                                             0 as thbjs,
+                                             0 as zfbjs,
+                                             0 as scbjs,
+                                             0 as bjs,
+                                             sum(ACCEPT_NUM) as ljsls,
+                                             sum(FINISH_NUM) as ljbjs,
+                                             0 as bysls,
+                                             0 as yjs,
+                                             0 as yellow,
+                                             0 as red,
+                                             0 as complain_num,
+                                             0 as complain_reply_num,
+                                             0 as consult_num,
+                                             0 as consult_replay_num,
+                                             0 as cancel_yellow_num,
+                                             0 as cancel_red_num,
+                                             0 as instance_yjs,
+                                             0 as instance_yellow,
+                                             0 as instance_red,
+                                             0 as instance_cancel_yellow_num,
+                                             0 as instance_cancel_red_num,
+                                             0 as complain_yjs,
+                                             0 as complain_yellow,
+                                             0 as complain_red,
+                                             0 as complain_cancel_yellow_num,
+                                             0 as complain_cancel_red_num,
+                                             0 as consult_yjs,
+                                             0 as consult_yellow,
+                                             0 as consult_red,
+                                             0 as consult_cancel_yellow_num,
+                                             0 as consult_cancel_red_num,
+                                             0 as special_supervise_green_num,
+                                             0 as special_supervise_yellow_num,
+                                             0 as special_supervise_red_num
+                                        from TA_JC_SUM_SUPERVISE_INFO
+                                       where ACCEPT_NOW_DATE is not null
+                                       group by TA_JC_SUM_SUPERVISE_INFO.org_id
+                                       
+                                      union all
+                                      
+                                      select sl.org_id org_id,
+                                             0 sls,
+                                             0 as zcbjs,
+                                             0 as thbjs,
+                                             0 as zfbjs,
+                                             0 as scbjs,
+                                             0 as bjs,
+                                             0 as ljsls,
+                                             0 as ljbjs,
+                                             count(sl.instance_id) as bysls,
+                                             0 as yjs,
+                                             0 as yellow,
+                                             0 as red,
+                                             0 as complain_num,
+                                             0 as complain_reply_num,
+                                             0 as consult_num,
+                                             0 as consult_replay_num,
+                                             0 as cancel_yellow_num,
+                                             0 as cancel_red_num,
+                                             0 as instance_yjs,
+                                             0 as instance_yellow,
+                                             0 as instance_red,
+                                             0 as instance_cancel_yellow_num,
+                                             0 as instance_cancel_red_num,
+                                             0 as complain_yjs,
+                                             0 as complain_yellow,
+                                             0 as complain_red,
+                                             0 as complain_cancel_yellow_num,
+                                             0 as complain_cancel_red_num,
+                                             0 as consult_yjs,
+                                             0 as consult_yellow,
+                                             0 as consult_red,
+                                             0 as consult_cancel_yellow_num,
+                                             0 as consult_cancel_red_num,
+                                             0 as special_supervise_green_num,
+                                             0 as special_supervise_yellow_num,
+                                             0 as special_supervise_red_num
+                                        from TA_SP_INSTANCE sl
+                                             where sl.project_state = '2'
+                                             <if test="start_time != null" >
+                                             and sl.end_time between
+                                               to_date(#{start_time},'yyyy-mm-dd') and
+                                               to_date(#{end_time}, 'yyyy-mm-dd')
+                                            </if>
+                                             group by sl.org_id
+                                       ) t
+                               group by t.org_id
+                               ) a
+                       where o.ORG_ID = a.org_id
+                       ) s
+               where s.PROVINCE_CODE ='430000000000'
+               and s.CITY_CODE != '000000000000'
+               group by s.CITY_CODE
+               ) aa
+     on o.AREA_CODE = aa.CITY_CODE
+     where o.parent_code ='430000000000'
+      order by o.ORDER_NUM
+</select>	
+
+
+<select id="selectJCSumSuperviseInfoByArea1" resultMap="jCSumSuperviseInfoAllMapper" parameterType="com.chinacreator.dzjc_ruleEngine.JCSumSuperviseInfoAll">
+
+  select  o.ORG_NAME area_name,
+                    nvl(aa.sls,'0') sls,
+                    nvl(aa.zcbjs,'0') zcbjs,
+                    nvl(aa.thbjs,'0') thbjs,
+                    nvl(aa.zfbjs,'0') zfbjs,
+                    nvl(aa.scbjs,'0') scbjs,
+                    nvl(aa.bjs,'0') bjs,
+                    nvl(aa.ljsls,'0') ljsls,
+                    nvl(aa.ljbjs,'0') ljbjs,
+                    nvl(aa.bysls,'0') bysls,
+                    nvl(aa.yjs,'0') yjs,
+                    nvl(aa.yellow,'0') yellow,
+                    nvl(aa.red,'0') red,
+                    nvl(aa.complain_num,'0') complain_num,
+                    nvl(aa.complain_reply_num,'0') complain_reply_num,
+                    nvl(aa.consult_num,'0') consult_num,
+                    nvl(aa.consult_replay_num,'0') consult_replay_num,
+                    nvl(aa.cancel_yellow_num,'0') cancel_yellow_num,
+                    nvl(aa.cancel_red_num,'0') cancel_red_num,
+                     nvl(aa.instance_yjs,'0') as instance_yjs,
+                    nvl(aa.instance_yellow,'0') as instance_yellow,
+                    nvl(aa.instance_red,'0') as instance_red,
+                    nvl(aa.instance_cancel_yellow_num,'0') as instance_cancel_yellow_num,
+                    nvl(aa.instance_cancel_red_num,'0') as instance_cancel_red_num,
+                    nvl(aa.complain_yjs,'0') as complain_yjs,
+                    nvl(aa.complain_yellow,'0') as complain_yellow,
+                    nvl(aa.complain_red,'0') as complain_red,
+                    nvl(aa.complain_cancel_yellow_num,'0') as complain_cancel_yellow_num,
+                    nvl(aa.complain_cancel_red_num,'0') as complain_cancel_red_num,
+                    nvl(aa.consult_yjs,'0') as consult_yjs,
+                    nvl(aa.consult_yellow,'0') as consult_yellow,
+                    nvl(aa.consult_red,'0') as consult_red,
+                    nvl(aa.consult_cancel_yellow_num,'0') as consult_cancel_yellow_num,
+                    nvl(aa.consult_cancel_red_num,'0') as consult_cancel_red_num,
+                    
+                    nvl(aa.special_supervise_green_num,'0') as special_supervise_green_num,
+			        nvl(aa.special_supervise_yellow_num,'0') as special_supervise_yellow_num,
+			        nvl(aa.special_supervise_red_num,'0') as special_supervise_red_num
+                from v_td_sm_organization1 o
+                left join (select s.ORG_SHOW_NAME,
+                                  sum(s.sls) sls,
+                                  sum(s.zcbjs) zcbjs,
+                                  sum(s.thbjs) thbjs,
+                                  sum(s.zfbjs) zfbjs,
+                                  sum(s.scbjs) scbjs,
+                                  sum(s.bjs) bjs,
+                                  sum(s.ljsls) ljsls,
+                                  sum(s.ljbjs) ljbjs,
+                                  sum(s.bysls) bysls,
+                                  sum(s.yjs) yjs,
+                                  sum(s.yellow) yellow,
+                                  sum(s.red) red,
+                                  sum(s.complain_num) as complain_num,
+                                  sum(s.complain_reply_num) as complain_reply_num,
+                                  sum(s.consult_num) as consult_num,
+                                  sum(s.consult_replay_num) as consult_replay_num,
+                                  sum(s.cancel_yellow_num) as cancel_yellow_num,
+                                  sum(s.cancel_red_num) as cancel_red_num,
+                                  sum(s.instance_yjs) as instance_yjs,
+                                   sum(s.instance_yellow) as instance_yellow,
+                                   sum(s.instance_red) as instance_red,
+                                   sum(s.instance_cancel_yellow_num) as instance_cancel_yellow_num,
+                                   sum(s.instance_cancel_red_num) as instance_cancel_red_num,
+                                   sum(s.complain_yjs) as complain_yjs,
+                                   sum(s.complain_yellow) as complain_yellow,
+                                   sum(s.complain_red) as complain_red,
+                                   sum(s.complain_cancel_yellow_num) as complain_cancel_yellow_num,
+                                   sum(s.complain_cancel_red_num) as complain_cancel_red_num,
+                                   sum(s.consult_yjs) as consult_yjs,
+                                   sum(s.consult_yellow) as consult_yellow,
+                                   sum(s.consult_red) as consult_red,
+                                   sum(s.consult_cancel_yellow_num) as consult_cancel_yellow_num,
+                                   sum(s.consult_cancel_red_num) as consult_cancel_red_num,
+                                   
+                                   sum(s.special_supervise_green_num) as special_supervise_green_num,
+				                   sum(s.special_supervise_yellow_num) as special_supervise_yellow_num,
+				                   sum(s.special_supervise_red_num) as special_supervise_red_num	
+                             from ( 
+                              select o.ORG_ID,
+                             o.ORG_CODE,
+                             o.ORG_NAME as ORG_SHOW_NAME,
+                             o.PROVINCE_CODE,
+                             o.CITY_CODE,
+                             o.County_CODE,
+                             o.STREET_CODE,
+                             o.ORG_LEVEL,
+                             a.sls,
+                             a.zcbjs,
+                             a.thbjs,
+                             a.zfbjs,
+                             a.scbjs,
+                             a.bjs,
+                             a.ljsls,
+                             a.ljbjs,
+                             a.bysls,
+                             a.yjs,
+                             a.yellow,
+                             a.red,
+                             a.complain_num,
+                             a.complain_reply_num,
+                             a.consult_num,
+                             a.consult_replay_num,
+                             a.cancel_yellow_num,
+                             a.cancel_red_num,
+                             
+                             a.instance_yjs,
+                             a.instance_yellow,
+                             a.instance_red,
+                             a.instance_cancel_yellow_num,
+                             a.instance_cancel_red_num,
+                             a.complain_yjs,
+                             a.complain_yellow,
+                             a.complain_red,
+                             a.complain_cancel_yellow_num,
+                             a.complain_cancel_red_num,
+                             a.consult_yjs,
+                             a.consult_yellow,
+                             a.consult_red,
+                             a.consult_cancel_yellow_num,
+                             a.consult_cancel_red_num,
+                             
+                             a.special_supervise_green_num,
+                             a.special_supervise_yellow_num,
+                             a.special_supervise_red_num
+                        from V_TD_SM_ORGANIZATION1 o,
+                             (select t.org_id,
+                                     sum(sls) sls,
+                                     sum(zcbjs) zcbjs,
+                                     sum(thbjs) thbjs,
+                                     sum(zfbjs) zfbjs,
+                                     sum(scbjs) scbjs,
+                                     sum(bjs) bjs,
+                                     sum(ljsls) ljsls,
+                                     sum(ljbjs) ljbjs,
+                                     sum(bysls) bysls,
+                                     sum(yjs) yjs,
+                                     sum(yellow) yellow,
+                                     sum(red) red,
+                                     sum(complain_num) as complain_num,
+                                     sum(complain_reply_num) as complain_reply_num,
+                                     sum(consult_num) as consult_num,
+                                     sum(consult_replay_num) as consult_replay_num,
+                                     sum(cancel_yellow_num) as cancel_yellow_num,
+                                     sum(cancel_red_num) as cancel_red_num,
+                                     
+                                     sum(instance_yjs) as instance_yjs,
+                                     sum(instance_yellow) as instance_yellow,
+                                     sum(instance_red) as instance_red,
+                                     sum(instance_cancel_yellow_num) as instance_cancel_yellow_num,
+                                     sum(instance_cancel_red_num) as instance_cancel_red_num,
+                                     sum(complain_yjs) as complain_yjs,
+                                     sum(complain_yellow) as complain_yellow,
+                                     sum(complain_red) as complain_red,
+                                     sum(complain_cancel_yellow_num) as complain_cancel_yellow_num,
+                                     sum(complain_cancel_red_num) as complain_cancel_red_num,
+                                     sum(consult_yjs) as consult_yjs,
+                                     sum(consult_yellow) as consult_yellow,
+                                     sum(consult_red) as consult_red,
+                                     sum(consult_cancel_yellow_num) as consult_cancel_yellow_num,
+                                     sum(consult_cancel_red_num) as consult_cancel_red_num,
+                                     
+                                     sum(special_supervise_green_num) as special_supervise_green_num,
+                                     sum(special_supervise_yellow_num) as special_supervise_yellow_num,
+                                     sum(special_supervise_red_num) as special_supervise_red_num
+                                from (
+                                     
+                                     select ssi.org_id org_id,
+                                             sum(ssi.accept_num) sls,
+                                             sum(ssi.normal_finish_num) as zcbjs,
+                                             sum(ssi.unthreadfinish_num) as thbjs,
+                                             sum(ssi.throw_finish_num) as zfbjs,
+                                             0 as scbjs,
+                                             sum(ssi.finish_num) as bjs,
+                                             0 as ljsls,
+                                             0 as ljbjs,
+                                             0 as bysls,
+                                             sum(ssi.supervise_green_num) as yjs,
+                                             sum(ssi.supervise_yello_num) as yellow,
+                                             sum(ssi.supervise_red_num) as red,
+                                             sum(ssi.complain_num) as complain_num,
+                                             sum(ssi.complain_reply_num) as complain_reply_num,
+                                             sum(ssi.consult_num) as consult_num,
+                                             sum(ssi.consult_replay_num) as consult_replay_num,
+                                             sum(ssi.CANCEL_YELLOW_NUM) as cancel_yellow_num,
+                                             sum(ssi.CANCEL_RED_NUM) as cancel_red_num,
+                                             
+                                             sum(ssi.INSTANCE_SUPERVISE_GREEN_NUM) as instance_yjs,
+                                             sum(ssi.INSTANCE_SUPERVISE_YELLO_NUM) as instance_yellow,
+                                             sum(ssi.INSTANCE_SUPERVISE_RED_NUM) as instance_red,
+                                             sum(ssi.INSTANCE_CANCEL_YELLOW_NUM) as instance_cancel_yellow_num,
+                                             sum(ssi.INSTANCE_CANCEL_RED_NUM) as instance_cancel_red_num,
+                                             sum(ssi.COMPLAIN_SUPERVISE_GREEN_NUM) as complain_yjs,
+                                             sum(ssi.COMPLAIN_SUPERVISE_YELLO_NUM) as complain_yellow,
+                                             sum(ssi.COMPLAIN_SUPERVISE_RED_NUM) as complain_red,
+                                             sum(ssi.COMPLAIN_CANCEL_YELLOW_NUM) as complain_cancel_yellow_num,
+                                             sum(ssi.COMPLAIN_CANCEL_RED_NUM) as complain_cancel_red_num,
+                                             sum(ssi.CONSULT_SUPERVISE_GREEN_NUM) as consult_yjs,
+                                             sum(ssi.CONSULT_SUPERVISE_YELLO_NUM) as consult_yellow,
+                                             sum(ssi.CONSULT_SUPERVISE_RED_NUM) as consult_red,
+                                             sum(ssi.CONSULT_CANCEL_YELLOW_NUM) as consult_cancel_yellow_num,
+                                             sum(ssi.CONSULT_CANCEL_RED_NUM) as consult_cancel_red_num,
+                                             
+                                             sum(ssi.special_supervise_green_num) as special_supervise_green_num,
+                                             sum(ssi.special_supervise_yellow_num) as special_supervise_yellow_num,
+                                             sum(ssi.special_supervise_red_num) as special_supervise_red_num
+                                        from ta_JC_sum_supervise_info ssi
+                                       where 1=1
+                                        <if test="start_time != null">and  ssi.now_date &gt;= #{start_time}</if>
+                                        <if test="end_time != null">and  ssi.now_date &lt;= #{end_time}</if>      
+                                       group by ssi.org_id
+                                       
+                                      union all
+                                      
+                                      select bj.org_id ,
+                                             0 sls,
+                                             0 as zcbjs,
+                                             0 as thbjs,
+                                             0 as zfbjs,
+                                             count(bj.instance_id) as scbjs,
+                                             0 as bjs,
+                                             0 as ljsls,
+                                             0 as ljbjs,
+                                             0 as bysls,
+                                             0 as yjs,
+                                             0 as yellow,
+                                             0 as red,
+                                             0 as complain_num,
+                                             0 as complain_reply_num,
+                                             0 as consult_num,
+                                             0 as consult_replay_num,
+                                             0 as cancel_yellow_num,
+                                             0 as cancel_red_num,
+                                             0 as instance_yjs,
+                                             0 as instance_yellow,
+                                             0 as instance_red,
+                                             0 as instance_cancel_yellow_num,
+                                             0 as instance_cancel_red_num,
+                                             0 as complain_yjs,
+                                             0 as complain_yellow,
+                                             0 as complain_red,
+                                             0 as complain_cancel_yellow_num,
+                                             0 as complain_cancel_red_num,
+                                             0 as consult_yjs,
+                                             0 as consult_yellow,
+                                             0 as consult_red,
+                                             0 as consult_cancel_yellow_num,
+                                             0 as consult_cancel_red_num,
+                                             
+                                             0 as special_supervise_green_num,
+                                             0 as special_supervise_yellow_num,
+                                             0 as special_supervise_red_num
+                                        from TA_SP_INSTANCE bj
+                                       where bj.project_state = '7'
+                                      <if test="start_time != null">
+                                           and bj.accept_time between
+                                             to_date(#{start_time},'yyyy-mm-dd') and
+                                             to_date(#{end_time}, 'yyyy-mm-dd')
+                                       </if>
+                                       group by bj.org_id
+                                       
+                                      union all
+                                      
+                                      select org_id,
+                                             0 sls,
+                                             0 as zcbjs,
+                                             0 as thbjs,
+                                             0 as zfbjs,
+                                             0 as scbjs,
+                                             0 as bjs,
+                                             sum(ACCEPT_NUM) as ljsls,
+                                             sum(FINISH_NUM) as ljbjs,
+                                             0 as bysls,
+                                             0 as yjs,
+                                             0 as yellow,
+                                             0 as red,
+                                             0 as complain_num,
+                                             0 as complain_reply_num,
+                                             0 as consult_num,
+                                             0 as consult_replay_num,
+                                             0 as cancel_yellow_num,
+                                             0 as cancel_red_num,
+                                             0 as instance_yjs,
+                                             0 as instance_yellow,
+                                             0 as instance_red,
+                                             0 as instance_cancel_yellow_num,
+                                             0 as instance_cancel_red_num,
+                                             0 as complain_yjs,
+                                             0 as complain_yellow,
+                                             0 as complain_red,
+                                             0 as complain_cancel_yellow_num,
+                                             0 as complain_cancel_red_num,
+                                             0 as consult_yjs,
+                                             0 as consult_yellow,
+                                             0 as consult_red,
+                                             0 as consult_cancel_yellow_num,
+                                             0 as consult_cancel_red_num,
+                                             
+                                             0 as special_supervise_green_num,
+                                             0 as special_supervise_yellow_num,
+                                             0 as special_supervise_red_num
+                                        from TA_JC_SUM_SUPERVISE_INFO
+                                       where ACCEPT_NOW_DATE is not null
+                                       group by ORG_ID
+                                       
+                                      union all
+                                      
+                                      select sl.org_id,
+                                             0 sls,
+                                             0 as zcbjs,
+                                             0 as thbjs,
+                                             0 as zfbjs,
+                                             0 as scbjs,
+                                             0 as bjs,
+                                             0 as ljsls,
+                                             0 as ljbjs,
+                                             count(sl.instance_id) as bysls,
+                                             0 as yjs,
+                                             0 as yellow,
+                                             0 as red,
+                                             0 as complain_num,
+                                             0 as complain_reply_num,
+                                             0 as consult_num,
+                                             0 as consult_replay_num,
+                                             0 as cancel_yellow_num,
+                                             0 as cancel_red_num,
+                                             0 as instance_yjs,
+                                             0 as instance_yellow,
+                                             0 as instance_red,
+                                             0 as instance_cancel_yellow_num,
+                                             0 as instance_cancel_red_num,
+                                             0 as complain_yjs,
+                                             0 as complain_yellow,
+                                             0 as complain_red,
+                                             0 as complain_cancel_yellow_num,
+                                             0 as complain_cancel_red_num,
+                                             0 as consult_yjs,
+                                             0 as consult_yellow,
+                                             0 as consult_red,
+                                             0 as consult_cancel_yellow_num,
+                                             0 as consult_cancel_red_num,
+                                             
+                                             0 as special_supervise_green_num,
+                                             0 as special_supervise_yellow_num,
+                                             0 as special_supervise_red_num
+                                        from TA_SP_INSTANCE sl
+                                       where sl.project_state = '2'
+                                       <if test="start_time != null" >
+                                           and sl.Accept_Time between
+                                             to_date(#{start_time},'yyyy-mm-dd') and
+                                            to_date(#{end_time}, 'yyyy-mm-dd')
+                                       </if>
+                                       group by sl.org_id
+                                       ) t
+                               group by t.org_id) a
+                      
+                       where o.ORG_ID = a.org_id ) s
+                       where s.County_CODE = #{ORG_ID,jdbcType=VARCHAR}
+                       group by s.ORG_SHOW_NAME) aa
+                       on o.ORG_NAME = aa.ORG_SHOW_NAME
+                      where o.County_CODE = #{ORG_ID,jdbcType=VARCHAR}
+                       and o.ORG_LEVEL = '5' 
+                        and substr(o.ORG_CODE,22)='000'     
+                       <choose>
+					 		<when test="sortCol != null">
+					 			order by ${sortCol} desc
+					 		</when>
+					 		<otherwise>
+					 			 order by o.ORDER_NUM
+					 		</otherwise>
+					 	</choose>
+ 
+
+</select>
+
+
+
+<select id="selectJCSumSuperviseInfoByArea2" resultMap="jCSumSuperviseInfoAllMapper" parameterType="com.chinacreator.dzjc_ruleEngine.JCSumSuperviseInfoAll">
+
+  select  da.AREA_NAME area_name,da.AREA_CODE area_code,
+                    nvl(aa.sls,'0') sls,
+                    nvl(aa.zcbjs,'0') zcbjs,
+                    nvl(aa.thbjs,'0') thbjs,
+                    nvl(aa.zfbjs,'0') zfbjs,
+                    nvl(aa.scbjs,'0') scbjs,
+                    nvl(aa.bjs,'0') bjs,
+                    nvl(aa.ljsls,'0') ljsls,
+                    nvl(aa.ljbjs,'0') ljbjs,
+                    nvl(aa.bysls,'0') bysls,
+                    nvl(aa.yjs,'0') yjs,
+                    nvl(aa.yellow,'0') yellow,
+                    nvl(aa.red,'0') red,
+                    nvl(aa.complain_num,'0') complain_num,
+                    nvl(aa.complain_reply_num,'0') complain_reply_num,
+                    nvl(aa.consult_num,'0') consult_num,
+                    nvl(aa.consult_replay_num,'0') consult_replay_num,
+                    nvl(aa.cancel_yellow_num,'0') cancel_yellow_num,
+                    nvl(aa.cancel_red_num,'0') cancel_red_num,
+                    nvl(aa.instance_yjs,'0') as instance_yjs,
+                    nvl(aa.instance_yellow,'0') as instance_yellow,
+                    nvl(aa.instance_red,'0') as instance_red,
+                    nvl(aa.instance_cancel_yellow_num,'0') as instance_cancel_yellow_num,
+                    nvl(aa.instance_cancel_red_num,'0') as instance_cancel_red_num,
+                    nvl(aa.complain_yjs,'0') as complain_yjs,
+                    nvl(aa.complain_yellow,'0') as complain_yellow,
+                    nvl(aa.complain_red,'0') as complain_red,
+                    nvl(aa.complain_cancel_yellow_num,'0') as complain_cancel_yellow_num,
+                    nvl(aa.complain_cancel_red_num,'0') as complain_cancel_red_num,
+                    nvl(aa.consult_yjs,'0') as consult_yjs,
+                    nvl(aa.consult_yellow,'0') as consult_yellow,
+                    nvl(aa.consult_red,'0') as consult_red,
+                    nvl(aa.consult_cancel_yellow_num,'0') as consult_cancel_yellow_num,
+                    nvl(aa.consult_cancel_red_num,'0') as consult_cancel_red_num
+                from ta_dic_area da 
+                left join (select s.STREET_CODE,
+                                  sum(s.sls) sls,
+                                  sum(s.zcbjs) zcbjs,
+                                  sum(s.thbjs) thbjs,
+                                  sum(s.zfbjs) zfbjs,
+                                  sum(s.scbjs) scbjs,
+                                  sum(s.bjs) bjs,
+                                  sum(s.ljsls) ljsls,
+                                  sum(s.ljbjs) ljbjs,
+                                  sum(s.bysls) bysls,
+                                  sum(s.yjs) yjs,
+                                  sum(s.yellow) yellow,
+                                  sum(s.red) red,
+                                  sum(s.complain_num) as complain_num,
+                                  sum(s.complain_reply_num) as complain_reply_num,
+                                  sum(s.consult_num) as consult_num,
+                                  sum(s.consult_replay_num) as consult_replay_num,
+                                  sum(s.cancel_yellow_num) as cancel_yellow_num,
+                                  sum(s.cancel_red_num) as cancel_red_num,
+                                  sum(s.instance_yjs) as instance_yjs,
+                                   sum(s.instance_yellow) as instance_yellow,
+                                   sum(s.instance_red) as instance_red,
+                                   sum(s.instance_cancel_yellow_num) as instance_cancel_yellow_num,
+                                   sum(s.instance_cancel_red_num) as instance_cancel_red_num,
+                                   sum(s.complain_yjs) as complain_yjs,
+                                   sum(s.complain_yellow) as complain_yellow,
+                                   sum(s.complain_red) as complain_red,
+                                   sum(s.complain_cancel_yellow_num) as complain_cancel_yellow_num,
+                                   sum(s.complain_cancel_red_num) as complain_cancel_red_num,
+                                   sum(s.consult_yjs) as consult_yjs,
+                                   sum(s.consult_yellow) as consult_yellow,
+                                   sum(s.consult_red) as consult_red,
+                                   sum(s.consult_cancel_yellow_num) as consult_cancel_yellow_num,
+                                   sum(s.consult_cancel_red_num) as consult_cancel_red_num	
+                             from ( 
+                              select o.ORG_ID,
+                             o.ORG_CODE,
+                             o.ORG_NAME as ORG_SHOW_NAME,
+                             o.PROVINCE_CODE,
+                             o.CITY_CODE,
+                             o.County_CODE,
+                             o.STREET_CODE,
+                             o.ORG_LEVEL,
+                             a.sls,
+                             a.zcbjs,
+                             a.thbjs,
+                             a.zfbjs,
+                             a.scbjs,
+                             a.bjs,
+                             a.ljsls,
+                             a.ljbjs,
+                             a.bysls,
+                             a.yjs,
+                             a.yellow,
+                             a.red,
+                             a.complain_num,
+                             a.complain_reply_num,
+                             a.consult_num,
+                             a.consult_replay_num,
+                             a.cancel_yellow_num,
+                             a.cancel_red_num,
+                             
+                             a.instance_yjs,
+                             a.instance_yellow,
+                             a.instance_red,
+                             a.instance_cancel_yellow_num,
+                             a.instance_cancel_red_num,
+                             a.complain_yjs,
+                             a.complain_yellow,
+                             a.complain_red,
+                             a.complain_cancel_yellow_num,
+                             a.complain_cancel_red_num,
+                             a.consult_yjs,
+                             a.consult_yellow,
+                             a.consult_red,
+                             a.consult_cancel_yellow_num,
+                             a.consult_cancel_red_num
+                        from V_TD_SM_ORGANIZATION1 o,
+                             (select t.org_id,
+                                     sum(sls) sls,
+                                     sum(zcbjs) zcbjs,
+                                     sum(thbjs) thbjs,
+                                     sum(zfbjs) zfbjs,
+                                     sum(scbjs) scbjs,
+                                     sum(bjs) bjs,
+                                     sum(ljsls) ljsls,
+                                     sum(ljbjs) ljbjs,
+                                     sum(bysls) bysls,
+                                     sum(yjs) yjs,
+                                     sum(yellow) yellow,
+                                     sum(red) red,
+                                     sum(complain_num) as complain_num,
+                                     sum(complain_reply_num) as complain_reply_num,
+                                     sum(consult_num) as consult_num,
+                                     sum(consult_replay_num) as consult_replay_num,
+                                     sum(cancel_yellow_num) as cancel_yellow_num,
+                                     sum(cancel_red_num) as cancel_red_num,
+                                     
+                                     sum(instance_yjs) as instance_yjs,
+                                     sum(instance_yellow) as instance_yellow,
+                                     sum(instance_red) as instance_red,
+                                     sum(instance_cancel_yellow_num) as instance_cancel_yellow_num,
+                                     sum(instance_cancel_red_num) as instance_cancel_red_num,
+                                     sum(complain_yjs) as complain_yjs,
+                                     sum(complain_yellow) as complain_yellow,
+                                     sum(complain_red) as complain_red,
+                                     sum(complain_cancel_yellow_num) as complain_cancel_yellow_num,
+                                     sum(complain_cancel_red_num) as complain_cancel_red_num,
+                                     sum(consult_yjs) as consult_yjs,
+                                     sum(consult_yellow) as consult_yellow,
+                                     sum(consult_red) as consult_red,
+                                     sum(consult_cancel_yellow_num) as consult_cancel_yellow_num,
+                                     sum(consult_cancel_red_num) as consult_cancel_red_num
+                                from (
+                                     
+                                     select ssi.org_id org_id,
+                                             sum(ssi.accept_num) sls,
+                                             sum(ssi.normal_finish_num) as zcbjs,
+                                             sum(ssi.unthreadfinish_num) as thbjs,
+                                             sum(ssi.throw_finish_num) as zfbjs,
+                                             0 as scbjs,
+                                             sum(ssi.finish_num) as bjs,
+                                             0 as ljsls,
+                                             0 as ljbjs,
+                                             0 as bysls,
+                                             sum(ssi.supervise_green_num) as yjs,
+                                             sum(ssi.supervise_yello_num) as yellow,
+                                             sum(ssi.supervise_red_num) as red,
+                                             sum(ssi.complain_num) as complain_num,
+                                             sum(ssi.complain_reply_num) as complain_reply_num,
+                                             sum(ssi.consult_num) as consult_num,
+                                             sum(ssi.consult_replay_num) as consult_replay_num,
+                                             sum(ssi.CANCEL_YELLOW_NUM) as cancel_yellow_num,
+                                             sum(ssi.CANCEL_RED_NUM) as cancel_red_num,
+                                             
+                                             sum(ssi.INSTANCE_SUPERVISE_GREEN_NUM) as instance_yjs,
+                                             sum(ssi.INSTANCE_SUPERVISE_YELLO_NUM) as instance_yellow,
+                                             sum(ssi.INSTANCE_SUPERVISE_RED_NUM) as instance_red,
+                                             sum(ssi.INSTANCE_CANCEL_YELLOW_NUM) as instance_cancel_yellow_num,
+                                             sum(ssi.INSTANCE_CANCEL_RED_NUM) as instance_cancel_red_num,
+                                             sum(ssi.COMPLAIN_SUPERVISE_GREEN_NUM) as complain_yjs,
+                                             sum(ssi.COMPLAIN_SUPERVISE_YELLO_NUM) as complain_yellow,
+                                             sum(ssi.COMPLAIN_SUPERVISE_RED_NUM) as complain_red,
+                                             sum(ssi.COMPLAIN_CANCEL_YELLOW_NUM) as complain_cancel_yellow_num,
+                                             sum(ssi.COMPLAIN_CANCEL_RED_NUM) as complain_cancel_red_num,
+                                             sum(ssi.CONSULT_SUPERVISE_GREEN_NUM) as consult_yjs,
+                                             sum(ssi.CONSULT_SUPERVISE_YELLO_NUM) as consult_yellow,
+                                             sum(ssi.CONSULT_SUPERVISE_RED_NUM) as consult_red,
+                                             sum(ssi.CONSULT_CANCEL_YELLOW_NUM) as consult_cancel_yellow_num,
+                                             sum(ssi.CONSULT_CANCEL_RED_NUM) as consult_cancel_red_num
+                                        from ta_JC_sum_supervise_info ssi
+                                       where 1=1
+                                       <if test="start_time != null">and  ssi.now_date &gt;= #{start_time}</if>
+                                       <if test="end_time != null">and  ssi.now_date &lt;= #{end_time}</if>      
+                                       group by ssi.org_id
+                                       
+                                      union all
+                                      
+                                      select bj.org_id ,
+                                             0 sls,
+                                             0 as zcbjs,
+                                             0 as thbjs,
+                                             0 as zfbjs,
+                                             count(bj.instance_id) as scbjs,
+                                             0 as bjs,
+                                             0 as ljsls,
+                                             0 as ljbjs,
+                                             0 as bysls,
+                                             0 as yjs,
+                                             0 as yellow,
+                                             0 as red,
+                                             0 as complain_num,
+                                             0 as complain_reply_num,
+                                             0 as consult_num,
+                                             0 as consult_replay_num,
+                                             0 as cancel_yellow_num,
+                                             0 as cancel_red_num,
+                                             0 as instance_yjs,
+                                             0 as instance_yellow,
+                                             0 as instance_red,
+                                             0 as instance_cancel_yellow_num,
+                                             0 as instance_cancel_red_num,
+                                             0 as complain_yjs,
+                                             0 as complain_yellow,
+                                             0 as complain_red,
+                                             0 as complain_cancel_yellow_num,
+                                             0 as complain_cancel_red_num,
+                                             0 as consult_yjs,
+                                             0 as consult_yellow,
+                                             0 as consult_red,
+                                             0 as consult_cancel_yellow_num,
+                                             0 as consult_cancel_red_num
+                                        from TA_SP_INSTANCE bj
+                                       where bj.project_state = '7'
+                                       <if test="start_time != null">
+                                           and bj.accept_time between
+                                             to_date(#{start_time},'yyyy-mm-dd') and
+                                             to_date(#{end_time}, 'yyyy-mm-dd')
+                                       </if>
+                                       group by bj.org_id
+                                       
+                                      union all
+                                      
+                                      select org_id,
+                                             0 sls,
+                                             0 as zcbjs,
+                                             0 as thbjs,
+                                             0 as zfbjs,
+                                             0 as scbjs,
+                                             0 as bjs,
+                                             sum(ACCEPT_NUM) as ljsls,
+                                             sum(FINISH_NUM) as ljbjs,
+                                             0 as bysls,
+                                             0 as yjs,
+                                             0 as yellow,
+                                             0 as red,
+                                             0 as complain_num,
+                                             0 as complain_reply_num,
+                                             0 as consult_num,
+                                             0 as consult_replay_num,
+                                             0 as cancel_yellow_num,
+                                             0 as cancel_red_num,
+                                             0 as instance_yjs,
+                                             0 as instance_yellow,
+                                             0 as instance_red,
+                                             0 as instance_cancel_yellow_num,
+                                             0 as instance_cancel_red_num,
+                                             0 as complain_yjs,
+                                             0 as complain_yellow,
+                                             0 as complain_red,
+                                             0 as complain_cancel_yellow_num,
+                                             0 as complain_cancel_red_num,
+                                             0 as consult_yjs,
+                                             0 as consult_yellow,
+                                             0 as consult_red,
+                                             0 as consult_cancel_yellow_num,
+                                             0 as consult_cancel_red_num
+                                        from TA_JC_SUM_SUPERVISE_INFO
+                                       where ACCEPT_NOW_DATE is not null
+                                       group by ORG_ID
+                                       
+                                      union all
+                                      
+                                      select sl.org_id,
+                                             0 sls,
+                                             0 as zcbjs,
+                                             0 as thbjs,
+                                             0 as zfbjs,
+                                             0 as scbjs,
+                                             0 as bjs,
+                                             0 as ljsls,
+                                             0 as ljbjs,
+                                             count(sl.instance_id) as bysls,
+                                             0 as yjs,
+                                             0 as yellow,
+                                             0 as red,
+                                             0 as complain_num,
+                                             0 as complain_reply_num,
+                                             0 as consult_num,
+                                             0 as consult_replay_num,
+                                             0 as cancel_yellow_num,
+                                             0 as cancel_red_num,
+                                             0 as instance_yjs,
+                                             0 as instance_yellow,
+                                             0 as instance_red,
+                                             0 as instance_cancel_yellow_num,
+                                             0 as instance_cancel_red_num,
+                                             0 as complain_yjs,
+                                             0 as complain_yellow,
+                                             0 as complain_red,
+                                             0 as complain_cancel_yellow_num,
+                                             0 as complain_cancel_red_num,
+                                             0 as consult_yjs,
+                                             0 as consult_yellow,
+                                             0 as consult_red,
+                                             0 as consult_cancel_yellow_num,
+                                             0 as consult_cancel_red_num
+                                        from TA_SP_INSTANCE sl
+                                       where sl.project_state = '2'
+                                       <if test="start_time != null" >
+                                           and sl.Accept_Time between
+                                             to_date(#{start_time},'yyyy-mm-dd') and
+                                            to_date(#{end_time}, 'yyyy-mm-dd')
+                                       </if>
+                                       group by sl.org_id
+                                       ) t
+                               group by t.org_id) a
+                       where o.ORG_ID = a.org_id
+                        )s
+                        
+                       where s.County_CODE =#{ORG_ID,jdbcType=VARCHAR}
+                       and s.STREET_CODE != '000000000000'
+			                       group by s.STREET_CODE) aa on da.AREA_CODE = aa.STREET_CODE
+			 where da.parent_code = #{ORG_ID,jdbcType=VARCHAR}
+       order by da.AREA_CODE  
+  
+ 
+
+</select>
+
+
+<select id="selectJCSumSuperviseInfoByArea3" resultMap="jCSumSuperviseInfoAllMapper" parameterType="com.chinacreator.dzjc_ruleEngine.JCSumSuperviseInfoAll">
+
+  select  o.ORG_NAME area_name,
+                    nvl(aa.sls,'0') sls,
+                    nvl(aa.zcbjs,'0') zcbjs,
+                    nvl(aa.thbjs,'0') thbjs,
+                    nvl(aa.zfbjs,'0') zfbjs,
+                    nvl(aa.scbjs,'0') scbjs,
+                    nvl(aa.bjs,'0') bjs,
+                    nvl(aa.ljsls,'0') ljsls,
+                    nvl(aa.ljbjs,'0') ljbjs,
+                    nvl(aa.bysls,'0') bysls,
+                    nvl(aa.yjs,'0') yjs,
+                    nvl(aa.yellow,'0') yellow,
+                    nvl(aa.red,'0') red,
+                    nvl(aa.complain_num,'0') complain_num,
+                    nvl(aa.complain_reply_num,'0') complain_reply_num,
+                    nvl(aa.consult_num,'0') consult_num,
+                    nvl(aa.consult_replay_num,'0') consult_replay_num,
+                    nvl(aa.cancel_yellow_num,'0') cancel_yellow_num,
+                    nvl(aa.cancel_red_num,'0') cancel_red_num,
+                     nvl(aa.instance_yjs,'0') as instance_yjs,
+                    nvl(aa.instance_yellow,'0') as instance_yellow,
+                    nvl(aa.instance_red,'0') as instance_red,
+                    nvl(aa.instance_cancel_yellow_num,'0') as instance_cancel_yellow_num,
+                    nvl(aa.instance_cancel_red_num,'0') as instance_cancel_red_num,
+                    nvl(aa.complain_yjs,'0') as complain_yjs,
+                    nvl(aa.complain_yellow,'0') as complain_yellow,
+                    nvl(aa.complain_red,'0') as complain_red,
+                    nvl(aa.complain_cancel_yellow_num,'0') as complain_cancel_yellow_num,
+                    nvl(aa.complain_cancel_red_num,'0') as complain_cancel_red_num,
+                    nvl(aa.consult_yjs,'0') as consult_yjs,
+                    nvl(aa.consult_yellow,'0') as consult_yellow,
+                    nvl(aa.consult_red,'0') as consult_red,
+                    nvl(aa.consult_cancel_yellow_num,'0') as consult_cancel_yellow_num,
+                    nvl(aa.consult_cancel_red_num,'0') as consult_cancel_red_num,
+                    
+                    nvl(aa.special_supervise_green_num,'0') as special_supervise_green_num,
+			        nvl(aa.special_supervise_yellow_num,'0') as special_supervise_yellow_num,
+			        nvl(aa.special_supervise_red_num,'0') as special_supervise_red_num
+                from v_td_sm_organization1 o
+                left join (select s.ORG_SHOW_NAME,
+                                  sum(s.sls) sls,
+                                  sum(s.zcbjs) zcbjs,
+                                  sum(s.thbjs) thbjs,
+                                  sum(s.zfbjs) zfbjs,
+                                  sum(s.scbjs) scbjs,
+                                  sum(s.bjs) bjs,
+                                  sum(s.ljsls) ljsls,
+                                  sum(s.ljbjs) ljbjs,
+                                  sum(s.bysls) bysls,
+                                  sum(s.yjs) yjs,
+                                  sum(s.yellow) yellow,
+                                  sum(s.red) red,
+                                  sum(s.complain_num) as complain_num,
+                                  sum(s.complain_reply_num) as complain_reply_num,
+                                  sum(s.consult_num) as consult_num,
+                                  sum(s.consult_replay_num) as consult_replay_num,
+                                  sum(s.cancel_yellow_num) as cancel_yellow_num,
+                                  sum(s.cancel_red_num) as cancel_red_num,
+                                  sum(s.instance_yjs) as instance_yjs,
+                                   sum(s.instance_yellow) as instance_yellow,
+                                   sum(s.instance_red) as instance_red,
+                                   sum(s.instance_cancel_yellow_num) as instance_cancel_yellow_num,
+                                   sum(s.instance_cancel_red_num) as instance_cancel_red_num,
+                                   sum(s.complain_yjs) as complain_yjs,
+                                   sum(s.complain_yellow) as complain_yellow,
+                                   sum(s.complain_red) as complain_red,
+                                   sum(s.complain_cancel_yellow_num) as complain_cancel_yellow_num,
+                                   sum(s.complain_cancel_red_num) as complain_cancel_red_num,
+                                   sum(s.consult_yjs) as consult_yjs,
+                                   sum(s.consult_yellow) as consult_yellow,
+                                   sum(s.consult_red) as consult_red,
+                                   sum(s.consult_cancel_yellow_num) as consult_cancel_yellow_num,
+                                   sum(s.consult_cancel_red_num) as consult_cancel_red_num,
+                                   
+                                   sum(s.special_supervise_green_num) as special_supervise_green_num,
+				                   sum(s.special_supervise_yellow_num) as special_supervise_yellow_num,
+				                   sum(s.special_supervise_red_num) as special_supervise_red_num	
+                             from ( 
+                              select o.ORG_ID,
+                             o.ORG_CODE,
+                             o.ORG_NAME as ORG_SHOW_NAME,
+                             o.PROVINCE_CODE,
+                             o.CITY_CODE,
+                             o.County_CODE,
+                             o.STREET_CODE,
+                             o.ORG_LEVEL,
+                             a.sls,
+                             a.zcbjs,
+                             a.thbjs,
+                             a.zfbjs,
+                             a.scbjs,
+                             a.bjs,
+                             a.ljsls,
+                             a.ljbjs,
+                             a.bysls,
+                             a.yjs,
+                             a.yellow,
+                             a.red,
+                             a.complain_num,
+                             a.complain_reply_num,
+                             a.consult_num,
+                             a.consult_replay_num,
+                             a.cancel_yellow_num,
+                             a.cancel_red_num,
+                             
+                             a.instance_yjs,
+                             a.instance_yellow,
+                             a.instance_red,
+                             a.instance_cancel_yellow_num,
+                             a.instance_cancel_red_num,
+                             a.complain_yjs,
+                             a.complain_yellow,
+                             a.complain_red,
+                             a.complain_cancel_yellow_num,
+                             a.complain_cancel_red_num,
+                             a.consult_yjs,
+                             a.consult_yellow,
+                             a.consult_red,
+                             a.consult_cancel_yellow_num,
+                             a.consult_cancel_red_num,
+                             
+                             a.special_supervise_green_num,
+                             a.special_supervise_yellow_num,
+                             a.special_supervise_red_num
+                        from V_TD_SM_ORGANIZATION1 o,
+                             (select t.org_id,
+                                     sum(sls) sls,
+                                     sum(zcbjs) zcbjs,
+                                     sum(thbjs) thbjs,
+                                     sum(zfbjs) zfbjs,
+                                     sum(scbjs) scbjs,
+                                     sum(bjs) bjs,
+                                     sum(ljsls) ljsls,
+                                     sum(ljbjs) ljbjs,
+                                     sum(bysls) bysls,
+                                     sum(yjs) yjs,
+                                     sum(yellow) yellow,
+                                     sum(red) red,
+                                     sum(complain_num) as complain_num,
+                                     sum(complain_reply_num) as complain_reply_num,
+                                     sum(consult_num) as consult_num,
+                                     sum(consult_replay_num) as consult_replay_num,
+                                     sum(cancel_yellow_num) as cancel_yellow_num,
+                                     sum(cancel_red_num) as cancel_red_num,
+                                     
+                                     sum(instance_yjs) as instance_yjs,
+                                     sum(instance_yellow) as instance_yellow,
+                                     sum(instance_red) as instance_red,
+                                     sum(instance_cancel_yellow_num) as instance_cancel_yellow_num,
+                                     sum(instance_cancel_red_num) as instance_cancel_red_num,
+                                     sum(complain_yjs) as complain_yjs,
+                                     sum(complain_yellow) as complain_yellow,
+                                     sum(complain_red) as complain_red,
+                                     sum(complain_cancel_yellow_num) as complain_cancel_yellow_num,
+                                     sum(complain_cancel_red_num) as complain_cancel_red_num,
+                                     sum(consult_yjs) as consult_yjs,
+                                     sum(consult_yellow) as consult_yellow,
+                                     sum(consult_red) as consult_red,
+                                     sum(consult_cancel_yellow_num) as consult_cancel_yellow_num,
+                                     sum(consult_cancel_red_num) as consult_cancel_red_num,
+                                     
+                                     sum(special_supervise_green_num) as special_supervise_green_num,
+                                     sum(special_supervise_yellow_num) as special_supervise_yellow_num,
+                                     sum(special_supervise_red_num) as special_supervise_red_num
+                                from (
+                                     
+                                     select ssi.org_id org_id,
+                                             sum(ssi.accept_num) sls,
+                                             sum(ssi.normal_finish_num) as zcbjs,
+                                             sum(ssi.unthreadfinish_num) as thbjs,
+                                             sum(ssi.throw_finish_num) as zfbjs,
+                                             0 as scbjs,
+                                             sum(ssi.finish_num) as bjs,
+                                             0 as ljsls,
+                                             0 as ljbjs,
+                                             0 as bysls,
+                                             sum(ssi.supervise_green_num) as yjs,
+                                             sum(ssi.supervise_yello_num) as yellow,
+                                             sum(ssi.supervise_red_num) as red,
+                                             sum(ssi.complain_num) as complain_num,
+                                             sum(ssi.complain_reply_num) as complain_reply_num,
+                                             sum(ssi.consult_num) as consult_num,
+                                             sum(ssi.consult_replay_num) as consult_replay_num,
+                                             sum(ssi.CANCEL_YELLOW_NUM) as cancel_yellow_num,
+                                             sum(ssi.CANCEL_RED_NUM) as cancel_red_num,
+                                             
+                                             sum(ssi.INSTANCE_SUPERVISE_GREEN_NUM) as instance_yjs,
+                                             sum(ssi.INSTANCE_SUPERVISE_YELLO_NUM) as instance_yellow,
+                                             sum(ssi.INSTANCE_SUPERVISE_RED_NUM) as instance_red,
+                                             sum(ssi.INSTANCE_CANCEL_YELLOW_NUM) as instance_cancel_yellow_num,
+                                             sum(ssi.INSTANCE_CANCEL_RED_NUM) as instance_cancel_red_num,
+                                             sum(ssi.COMPLAIN_SUPERVISE_GREEN_NUM) as complain_yjs,
+                                             sum(ssi.COMPLAIN_SUPERVISE_YELLO_NUM) as complain_yellow,
+                                             sum(ssi.COMPLAIN_SUPERVISE_RED_NUM) as complain_red,
+                                             sum(ssi.COMPLAIN_CANCEL_YELLOW_NUM) as complain_cancel_yellow_num,
+                                             sum(ssi.COMPLAIN_CANCEL_RED_NUM) as complain_cancel_red_num,
+                                             sum(ssi.CONSULT_SUPERVISE_GREEN_NUM) as consult_yjs,
+                                             sum(ssi.CONSULT_SUPERVISE_YELLO_NUM) as consult_yellow,
+                                             sum(ssi.CONSULT_SUPERVISE_RED_NUM) as consult_red,
+                                             sum(ssi.CONSULT_CANCEL_YELLOW_NUM) as consult_cancel_yellow_num,
+                                             sum(ssi.CONSULT_CANCEL_RED_NUM) as consult_cancel_red_num,
+                                             
+                                             sum(ssi.special_supervise_green_num) as special_supervise_green_num,
+                                             sum(ssi.special_supervise_yellow_num) as special_supervise_yellow_num,
+                                             sum(ssi.special_supervise_red_num) as special_supervise_red_num
+                                        from ta_JC_sum_supervise_info ssi
+                                       where 1=1
+                                        <if test="start_time != null">and  ssi.now_date &gt;= #{start_time}</if>
+                                        <if test="end_time != null">and  ssi.now_date &lt;= #{end_time}</if>      
+                                       group by ssi.org_id
+                                       
+                                      union all
+                                      
+                                      select bj.org_id ,
+                                             0 sls,
+                                             0 as zcbjs,
+                                             0 as thbjs,
+                                             0 as zfbjs,
+                                             count(bj.instance_id) as scbjs,
+                                             0 as bjs,
+                                             0 as ljsls,
+                                             0 as ljbjs,
+                                             0 as bysls,
+                                             0 as yjs,
+                                             0 as yellow,
+                                             0 as red,
+                                             0 as complain_num,
+                                             0 as complain_reply_num,
+                                             0 as consult_num,
+                                             0 as consult_replay_num,
+                                             0 as cancel_yellow_num,
+                                             0 as cancel_red_num,
+                                             0 as instance_yjs,
+                                             0 as instance_yellow,
+                                             0 as instance_red,
+                                             0 as instance_cancel_yellow_num,
+                                             0 as instance_cancel_red_num,
+                                             0 as complain_yjs,
+                                             0 as complain_yellow,
+                                             0 as complain_red,
+                                             0 as complain_cancel_yellow_num,
+                                             0 as complain_cancel_red_num,
+                                             0 as consult_yjs,
+                                             0 as consult_yellow,
+                                             0 as consult_red,
+                                             0 as consult_cancel_yellow_num,
+                                             0 as consult_cancel_red_num,
+                                             
+                                             0 as special_supervise_green_num,
+                                             0 as special_supervise_yellow_num,
+                                             0 as special_supervise_red_num
+                                        from TA_SP_INSTANCE bj
+                                       where bj.project_state = '7'
+                                      <if test="start_time != null">
+                                           and bj.accept_time between
+                                             to_date(#{start_time},'yyyy-mm-dd') and
+                                             to_date(#{end_time}, 'yyyy-mm-dd')
+                                       </if>
+                                       group by bj.org_id
+                                       
+                                      union all
+                                      
+                                      select org_id,
+                                             0 sls,
+                                             0 as zcbjs,
+                                             0 as thbjs,
+                                             0 as zfbjs,
+                                             0 as scbjs,
+                                             0 as bjs,
+                                             sum(ACCEPT_NUM) as ljsls,
+                                             sum(FINISH_NUM) as ljbjs,
+                                             0 as bysls,
+                                             0 as yjs,
+                                             0 as yellow,
+                                             0 as red,
+                                             0 as complain_num,
+                                             0 as complain_reply_num,
+                                             0 as consult_num,
+                                             0 as consult_replay_num,
+                                             0 as cancel_yellow_num,
+                                             0 as cancel_red_num,
+                                             0 as instance_yjs,
+                                             0 as instance_yellow,
+                                             0 as instance_red,
+                                             0 as instance_cancel_yellow_num,
+                                             0 as instance_cancel_red_num,
+                                             0 as complain_yjs,
+                                             0 as complain_yellow,
+                                             0 as complain_red,
+                                             0 as complain_cancel_yellow_num,
+                                             0 as complain_cancel_red_num,
+                                             0 as consult_yjs,
+                                             0 as consult_yellow,
+                                             0 as consult_red,
+                                             0 as consult_cancel_yellow_num,
+                                             0 as consult_cancel_red_num,
+                                             
+                                             0 as special_supervise_green_num,
+                                             0 as special_supervise_yellow_num,
+                                             0 as special_supervise_red_num
+                                        from TA_JC_SUM_SUPERVISE_INFO
+                                       where ACCEPT_NOW_DATE is not null
+                                       group by ORG_ID
+                                       
+                                      union all
+                                      
+                                      select sl.org_id,
+                                             0 sls,
+                                             0 as zcbjs,
+                                             0 as thbjs,
+                                             0 as zfbjs,
+                                             0 as scbjs,
+                                             0 as bjs,
+                                             0 as ljsls,
+                                             0 as ljbjs,
+                                             count(sl.instance_id) as bysls,
+                                             0 as yjs,
+                                             0 as yellow,
+                                             0 as red,
+                                             0 as complain_num,
+                                             0 as complain_reply_num,
+                                             0 as consult_num,
+                                             0 as consult_replay_num,
+                                             0 as cancel_yellow_num,
+                                             0 as cancel_red_num,
+                                             0 as instance_yjs,
+                                             0 as instance_yellow,
+                                             0 as instance_red,
+                                             0 as instance_cancel_yellow_num,
+                                             0 as instance_cancel_red_num,
+                                             0 as complain_yjs,
+                                             0 as complain_yellow,
+                                             0 as complain_red,
+                                             0 as complain_cancel_yellow_num,
+                                             0 as complain_cancel_red_num,
+                                             0 as consult_yjs,
+                                             0 as consult_yellow,
+                                             0 as consult_red,
+                                             0 as consult_cancel_yellow_num,
+                                             0 as consult_cancel_red_num,
+                                             
+                                             0 as special_supervise_green_num,
+                                             0 as special_supervise_yellow_num,
+                                             0 as special_supervise_red_num
+                                        from TA_SP_INSTANCE sl
+                                       where sl.project_state = '2'
+                                       <if test="start_time != null" >
+                                           and sl.Accept_Time between
+                                             to_date(#{start_time},'yyyy-mm-dd') and
+                                            to_date(#{end_time}, 'yyyy-mm-dd')
+                                       </if>
+                                       group by sl.org_id
+                                       ) t
+                               group by t.org_id) a
+                      
+                      
+                      	 where o.ORG_ID = a.org_id ) s                      
+                         where s.CITY_CODE = #{ORG_ID,jdbcType=VARCHAR}
+                         group by s.ORG_SHOW_NAME) aa 
+                         on o.ORG_NAME = aa.ORG_SHOW_NAME
+                         where o.CITY_CODE =#{ORG_ID,jdbcType=VARCHAR} 
+                         and o.ORG_LEVEL !='2'    
+                         and substr(o.ORG_CODE,22)='000'  
+                         <choose>
+					 		<when test="sortCol != null">
+					 			order by ${sortCol} desc
+					 		</when>
+					 		<otherwise>
+					 			 order by o.ORDER_NUM
+					 		</otherwise>
+					 	</choose>
+
+</select>
+
+<select id="INSERTTAJCCOUNTSUPERVISEINFO" statementType="CALLABLE" >  
+    <![CDATA[ 
+    {call PROC_INSERT_TA_JC_COUNT_SUPERVISE_INFO()} 
+      ]]>  
+</select> 
+
+
+<select id="INSERTTAJCSUMSUPERVISEINFO" statementType="CALLABLE" >  
+    <![CDATA[ 
+    {call PROC_INSERT_ta_JC_sum_supervise_info()} 
+      ]]>  
+</select> 
+
+</mapper>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity:Entity xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cdata="http://www.chinacreator.com/platform/mvc/cdata" xmlns:docket="http://www.chinacreator.com/platform/mvc/docket" xmlns:entity="http://www.chinacreator.com/platform/mvc/entity" dbType="Oracle" sn="dzjc_performance/v1/evalpointList">
+  <docket:name>绩效考核统计详情</docket:name>
+  <docket:desc> </docket:desc>
+  <docket:primaryKey>
+    <docket:pkAttribute attribute="id" docketId="entity:com.chinacreator.dzjc_performance.EvalPointList" type="UUID"/>
+  </docket:primaryKey>
+  <docket:attributes>
+    <docket:attribute code="id" length="64" name="主键ID" nullable="false" type="string64">
+      <docket:valueRange xsi:type="cdata:AllValueRange"/>
+    </docket:attribute>
+    <docket:attribute code="point_name" length="64" name="指标名称" nullable="true" type="string64">
+      <docket:valueRange xsi:type="cdata:AllValueRange"/>
+    </docket:attribute>
+    <docket:attribute code="point_score" length="10" name="指标得分" nullable="true" type="int">
+      <docket:valueRange xsi:type="cdata:AllValueRange"/>
+    </docket:attribute>
+    <docket:attribute code="subtraction" length="10" name="本次扣分" nullable="true" type="int">
+      <docket:valueRange xsi:type="cdata:AllValueRange"/>
+    </docket:attribute>
+    <docket:attribute code="reasonsforbonus" length="2000" name="加分原因" nullable="true" type="string2000">
+      <docket:valueRange xsi:type="cdata:AllValueRange"/>
+    </docket:attribute>
+    <docket:attribute code="deduct_reasons" length="2000" name="扣分原因" nullable="true" type="string2000">
+      <docket:valueRange xsi:type="cdata:AllValueRange"/>
+    </docket:attribute>
+  </docket:attributes>
+  <docket:subDokcets/>
+  <docket:events/>
+  <docket:table ds="acceptdata" table="TA_JC_EVAL_POINT_VALUE_HIS"/>
+  <docket:cache>false</docket:cache>
+  <docket:sequenceName>TA_JC_EVAL_POINT_VALUE_HIS_SEQ</docket:sequenceName>
+  <docket:restResource>true</docket:restResource>
+  <entity:datas/>
+  <entity:views/>
+</entity:Entity>

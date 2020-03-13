@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"><mapper namespace="com.chinacreator.dzjc_tongji.V_TD_SM_ORGANIZATION1Mapper">	
+
+<!-- ElementID:column_sql,Generated=true -->
+<sql id="column_sql">
+		  V_TD_SM_ORGANIZATION1.org_id ,
+		  V_TD_SM_ORGANIZATION1.org_code ,
+		  V_TD_SM_ORGANIZATION1.org_name ,
+		  V_TD_SM_ORGANIZATION1.order_num ,
+		  V_TD_SM_ORGANIZATION1.province_code ,
+		  V_TD_SM_ORGANIZATION1.city_code ,
+		  V_TD_SM_ORGANIZATION1.county_code ,
+		  V_TD_SM_ORGANIZATION1.street_code ,
+		  V_TD_SM_ORGANIZATION1.village_code ,
+		  V_TD_SM_ORGANIZATION1.org_level ,
+		  V_TD_SM_ORGANIZATION1.org_this_level 
+</sql>
+
+<!-- ElementID:whereClause_sql,Generated=true -->
+<sql id="whereClause_sql">
+	    <if test="orgId != null">and V_TD_SM_ORGANIZATION1.org_id = #{orgId}</if>
+	    <if test="orgCode != null">and V_TD_SM_ORGANIZATION1.org_code = #{orgCode}</if>
+	    <if test="orgName != null">and V_TD_SM_ORGANIZATION1.org_name = #{orgName}</if>
+	    <if test="orderNum != null">and V_TD_SM_ORGANIZATION1.order_num = #{orderNum}</if>
+	    <if test="provinceCode != null">and V_TD_SM_ORGANIZATION1.province_code = #{provinceCode}</if>
+	    <if test="cityCode != null">and V_TD_SM_ORGANIZATION1.city_code = #{cityCode}</if>
+	    <if test="countyCode != null">and V_TD_SM_ORGANIZATION1.county_code = #{countyCode}</if>
+	    <if test="streetCode != null">and V_TD_SM_ORGANIZATION1.street_code = #{streetCode}</if>
+	    <if test="villageCode != null">and V_TD_SM_ORGANIZATION1.village_code = #{villageCode}</if>
+	    <if test="orgLevel != null">and V_TD_SM_ORGANIZATION1.org_level = #{orgLevel}</if>
+	    <if test="orgThisLevel != null">and V_TD_SM_ORGANIZATION1.org_this_level = #{orgThisLevel}</if>
+</sql>
+
+
+<!-- ElementID:V_TD_SM_ORGANIZATION1Result,Generated=true -->
+<resultMap id="V_TD_SM_ORGANIZATION1Result" type="com.chinacreator.dzjc_tongji.V_TD_SM_ORGANIZATION1">
+	<id property="orgId" column="org_id"/>
+	<result property="orgCode" column="org_code"/>
+	<result property="orgName" column="org_name"/>
+	<result property="orderNum" column="order_num"/>
+	<result property="provinceCode" column="province_code"/>
+	<result property="cityCode" column="city_code"/>
+	<result property="countyCode" column="county_code"/>
+	<result property="streetCode" column="street_code"/>
+	<result property="villageCode" column="village_code"/>
+	<result property="orgLevel" column="org_level"/>
+	<result property="orgThisLevel" column="org_this_level"/>
+</resultMap>
+
+
+<!-- ElementID:insert,Generated=true -->
+<insert id="insert" parameterType="com.chinacreator.dzjc_tongji.V_TD_SM_ORGANIZATION1">
+	insert into V_TD_SM_ORGANIZATION1(
+	         <if test="orgId != null">org_id</if>
+	         <if test="orgCode != null">,org_code</if>
+	         <if test="orgName != null">,org_name</if>
+	         <if test="orderNum != null">,order_num</if>
+	         <if test="provinceCode != null">,province_code</if>
+	         <if test="cityCode != null">,city_code</if>
+	         <if test="countyCode != null">,county_code</if>
+	         <if test="streetCode != null">,street_code</if>
+	         <if test="villageCode != null">,village_code</if>
+	         <if test="orgLevel != null">,org_level</if>
+	         <if test="orgThisLevel != null">,org_this_level</if>
+	 	 	 )
+	 values (
+	         <if test="orgId != null">#{orgId,jdbcType=VARCHAR}</if>
+	         <if test="orgCode != null">,#{orgCode,jdbcType=VARCHAR}</if>
+	         <if test="orgName != null">,#{orgName,jdbcType=VARCHAR}</if>
+	         <if test="orderNum != null">,#{orderNum,jdbcType=NUMERIC}</if>
+	         <if test="provinceCode != null">,#{provinceCode,jdbcType=VARCHAR}</if>
+	         <if test="cityCode != null">,#{cityCode,jdbcType=VARCHAR}</if>
+	         <if test="countyCode != null">,#{countyCode,jdbcType=VARCHAR}</if>
+	         <if test="streetCode != null">,#{streetCode,jdbcType=VARCHAR}</if>
+	         <if test="villageCode != null">,#{villageCode,jdbcType=VARCHAR}</if>
+	         <if test="orgLevel != null">,#{orgLevel,jdbcType=VARCHAR}</if>
+	         <if test="orgThisLevel != null">,#{orgThisLevel,jdbcType=VARCHAR}</if>
+	 	 	 )
+</insert>
+
+<!-- ElementID:count,Generated=true -->
+<select id="count" parameterType="com.chinacreator.dzjc_tongji.V_TD_SM_ORGANIZATION1" resultType="int">
+	select count(*) from V_TD_SM_ORGANIZATION1 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<!-- ElementID:update,Generated=true -->
+<update id="update" parameterType="com.chinacreator.dzjc_tongji.V_TD_SM_ORGANIZATION1">
+	update V_TD_SM_ORGANIZATION1
+<set>
+	<if test="orgCode != null">org_code=#{orgCode,jdbcType=VARCHAR},</if>
+	<if test="orgName != null">org_name=#{orgName,jdbcType=VARCHAR},</if>
+	<if test="orderNum != null">order_num=#{orderNum,jdbcType=NUMERIC},</if>
+	<if test="provinceCode != null">province_code=#{provinceCode,jdbcType=VARCHAR},</if>
+	<if test="cityCode != null">city_code=#{cityCode,jdbcType=VARCHAR},</if>
+	<if test="countyCode != null">county_code=#{countyCode,jdbcType=VARCHAR},</if>
+	<if test="streetCode != null">street_code=#{streetCode,jdbcType=VARCHAR},</if>
+	<if test="villageCode != null">village_code=#{villageCode,jdbcType=VARCHAR},</if>
+	<if test="orgLevel != null">org_level=#{orgLevel,jdbcType=VARCHAR},</if>
+	<if test="orgThisLevel != null">org_this_level=#{orgThisLevel,jdbcType=VARCHAR}</if>
+</set>
+<where>
+	<choose>
+        <when test="orgId != null">and org_id = #{orgId}</when>
+        <otherwise>and org_id = </otherwise>
+    </choose>
+</where>
+</update>
+
+<!-- ElementID:updateNull,Generated=true -->
+<update id="updateNull" parameterType="map">
+	update V_TD_SM_ORGANIZATION1
+	<set>
+		<trim suffixOverrides=",">
+		    <if test="orgCode==null">org_code = null,</if>
+		    <if test="orgName==null">org_name = null,</if>
+		    <if test="orderNum==null">order_num = null,</if>
+		    <if test="provinceCode==null">province_code = null,</if>
+		    <if test="cityCode==null">city_code = null,</if>
+		    <if test="countyCode==null">county_code = null,</if>
+		    <if test="streetCode==null">street_code = null,</if>
+		    <if test="villageCode==null">village_code = null,</if>
+		    <if test="orgLevel==null">org_level = null,</if>
+		    <if test="orgThisLevel==null">org_this_level = null,</if>
+		</trim>
+	</set>
+	<where>
+		<choose>
+			<when test="orgId != null">and org_id = #{orgId}</when>
+			<otherwise>and org_id = </otherwise>
+		</choose>
+	</where>
+</update>
+
+<!-- ElementID:delete,Generated=true -->
+<delete id="delete" parameterType="com.chinacreator.dzjc_tongji.V_TD_SM_ORGANIZATION1">
+    delete from V_TD_SM_ORGANIZATION1 where 1=1 and org_id = #{orgId}
+</delete>
+
+<!-- ElementID:select,Generated=true -->
+<select id="select" parameterType="com.chinacreator.dzjc_tongji.V_TD_SM_ORGANIZATION1" resultMap="V_TD_SM_ORGANIZATION1Result">
+	select 
+		<include refid="column_sql"/>
+	    from V_TD_SM_ORGANIZATION1 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+
+<!-- ElementID:insertBatch,Generated=true -->
+<insert id="insertBatch" parameterType="list">
+	insert into V_TD_SM_ORGANIZATION1 (org_id,org_code,org_name,order_num,province_code,city_code,county_code,street_code,village_code,org_level,org_this_level) 
+<foreach collection="list" item="entity" index="index" separator="union all">
+		select 
+		#{entity.orgId,jdbcType = VARCHAR},
+				#{entity.orgCode,jdbcType = VARCHAR},
+				#{entity.orgName,jdbcType = VARCHAR},
+				#{entity.orderNum,jdbcType = NUMERIC},
+				#{entity.provinceCode,jdbcType = VARCHAR},
+				#{entity.cityCode,jdbcType = VARCHAR},
+				#{entity.countyCode,jdbcType = VARCHAR},
+				#{entity.streetCode,jdbcType = VARCHAR},
+				#{entity.villageCode,jdbcType = VARCHAR},
+				#{entity.orgLevel,jdbcType = VARCHAR},
+				#{entity.orgThisLevel,jdbcType = VARCHAR}
+		from dual
+</foreach>
+</insert>
+
+<!-- ElementID:deleteBatch,Generated=true -->
+<delete id="deleteBatch" parameterType="List">
+	delete from V_TD_SM_ORGANIZATION1 where org_id in
+<trim prefix="(" suffix=")" suffixOverrides=",">
+<foreach collection="list" item="entity" separator=",">
+	<choose>
+		<when test="@com.chinacreator.c2.dao.util.EntityBeanUtil@isEntityObj(entity)">#{entity.orgId}</when>
+		<otherwise>#{entity}</otherwise>
+	</choose>
+</foreach>
+</trim>
+</delete>
+
+<!-- ElementID:updateBatch,Generated=true -->
+<update id="updateBatch" parameterType="list">
+	<foreach collection="list" item="entity" open="begin" close=";end;" separator=";">
+			update V_TD_SM_ORGANIZATION1
+	<set>
+	<if test="entity.orgCode != null">org_code= #{entity.orgCode,jdbcType=VARCHAR},</if>
+	<if test="entity.orgName != null">org_name= #{entity.orgName,jdbcType=VARCHAR},</if>
+	<if test="entity.orderNum != null">order_num= #{entity.orderNum,jdbcType=NUMERIC},</if>
+	<if test="entity.provinceCode != null">province_code= #{entity.provinceCode,jdbcType=VARCHAR},</if>
+	<if test="entity.cityCode != null">city_code= #{entity.cityCode,jdbcType=VARCHAR},</if>
+	<if test="entity.countyCode != null">county_code= #{entity.countyCode,jdbcType=VARCHAR},</if>
+	<if test="entity.streetCode != null">street_code= #{entity.streetCode,jdbcType=VARCHAR},</if>
+	<if test="entity.villageCode != null">village_code= #{entity.villageCode,jdbcType=VARCHAR},</if>
+	<if test="entity.orgLevel != null">org_level= #{entity.orgLevel,jdbcType=VARCHAR},</if>
+	<if test="entity.orgThisLevel != null">org_this_level= #{entity.orgThisLevel,jdbcType=VARCHAR}</if>
+	</set>
+		<where>
+			<choose>
+				<when test="entity.orgId != null">and org_id = #{entity.orgId}</when>
+				<otherwise>and org_id = </otherwise>
+			</choose>
+		</where>
+	</foreach>
+</update>
+
+<!-- ElementID:selectAll,Generated=true -->
+<select id="selectAll" resultMap="V_TD_SM_ORGANIZATION1Result">
+	select 
+		<include refid="column_sql"/>
+	    from V_TD_SM_ORGANIZATION1 
+</select>
+
+<!-- ElementID:selectMany,Generated=true -->
+<select id="selectMany" parameterType="list" resultMap="V_TD_SM_ORGANIZATION1Result">
+select 
+	<include refid="column_sql"/> 
+	from V_TD_SM_ORGANIZATION1 
+	where V_TD_SM_ORGANIZATION1.org_id in (
+<foreach collection="list" item="entity" separator="intersect">
+		select 
+		V_TD_SM_ORGANIZATION1.org_id
+	    from V_TD_SM_ORGANIZATION1 
+		 <where>
+	        <if test="entity.orgId != null">and V_TD_SM_ORGANIZATION1.org_id = #{entity.orgId}</if>
+	        <if test="entity.orgCode != null">and V_TD_SM_ORGANIZATION1.org_code = #{entity.orgCode}</if>
+	        <if test="entity.orgName != null">and V_TD_SM_ORGANIZATION1.org_name = #{entity.orgName}</if>
+	        <if test="entity.orderNum != null">and V_TD_SM_ORGANIZATION1.order_num = #{entity.orderNum}</if>
+	        <if test="entity.provinceCode != null">and V_TD_SM_ORGANIZATION1.province_code = #{entity.provinceCode}</if>
+	        <if test="entity.cityCode != null">and V_TD_SM_ORGANIZATION1.city_code = #{entity.cityCode}</if>
+	        <if test="entity.countyCode != null">and V_TD_SM_ORGANIZATION1.county_code = #{entity.countyCode}</if>
+	        <if test="entity.streetCode != null">and V_TD_SM_ORGANIZATION1.street_code = #{entity.streetCode}</if>
+	        <if test="entity.villageCode != null">and V_TD_SM_ORGANIZATION1.village_code = #{entity.villageCode}</if>
+	        <if test="entity.orgLevel != null">and V_TD_SM_ORGANIZATION1.org_level = #{entity.orgLevel}</if>
+	        <if test="entity.orgThisLevel != null">and V_TD_SM_ORGANIZATION1.org_this_level = #{entity.orgThisLevel}</if>
+		</where>
+</foreach>
+)
+</select>
+
+<!-- ElementID:selectUnion,Generated=true -->
+<select id="selectUnion" parameterType="list" resultMap="V_TD_SM_ORGANIZATION1Result">
+select 
+	<include refid="column_sql"/> 
+	from V_TD_SM_ORGANIZATION1 
+	 INNER JOIN
+<foreach collection="list" item="entity" separator="UNION" open="(" close=")">
+		SELECT 
+			 org_id
+		FROM V_TD_SM_ORGANIZATION1 
+			<where>
+	        <if test="entity.orgId != null">and V_TD_SM_ORGANIZATION1.org_id = #{entity.orgId}</if>
+	        <if test="entity.orgCode != null">and V_TD_SM_ORGANIZATION1.org_code = #{entity.orgCode}</if>
+	        <if test="entity.orgName != null">and V_TD_SM_ORGANIZATION1.org_name = #{entity.orgName}</if>
+	        <if test="entity.orderNum != null">and V_TD_SM_ORGANIZATION1.order_num = #{entity.orderNum}</if>
+	        <if test="entity.provinceCode != null">and V_TD_SM_ORGANIZATION1.province_code = #{entity.provinceCode}</if>
+	        <if test="entity.cityCode != null">and V_TD_SM_ORGANIZATION1.city_code = #{entity.cityCode}</if>
+	        <if test="entity.countyCode != null">and V_TD_SM_ORGANIZATION1.county_code = #{entity.countyCode}</if>
+	        <if test="entity.streetCode != null">and V_TD_SM_ORGANIZATION1.street_code = #{entity.streetCode}</if>
+	        <if test="entity.villageCode != null">and V_TD_SM_ORGANIZATION1.village_code = #{entity.villageCode}</if>
+	        <if test="entity.orgLevel != null">and V_TD_SM_ORGANIZATION1.org_level = #{entity.orgLevel}</if>
+	        <if test="entity.orgThisLevel != null">and V_TD_SM_ORGANIZATION1.org_this_level = #{entity.orgThisLevel}</if>
+			</where>
+</foreach>
+	c2_temp_table ON V_TD_SM_ORGANIZATION1.org_id = c2_temp_table.org_id
+</select>
+
+<!-- ElementID:selectByID,Generated=true -->
+<select id="selectByID" parameterType="java.lang.String" resultMap="V_TD_SM_ORGANIZATION1Result">
+	select 
+		<include refid="column_sql"/>
+	    from V_TD_SM_ORGANIZATION1 
+		 where V_TD_SM_ORGANIZATION1.org_id = #{orgId,jdbcType=VARCHAR}
+</select>
+
+<!-- ElementID:selectByPage,Generated=true -->
+<select id="selectByPage" parameterType="com.chinacreator.dzjc_tongji.V_TD_SM_ORGANIZATION1" resultMap="V_TD_SM_ORGANIZATION1Result">
+	select 
+		<include refid="column_sql"/>
+	    from V_TD_SM_ORGANIZATION1 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<select id="getOrgInfo" parameterType="list" resultMap="V_TD_SM_ORGANIZATION1Result">
+	select 
+		<include refid="column_sql"/>
+			from V_TD_SM_ORGANIZATION1 where org_id in
+		<foreach collection="list" index="index" item="orgId" open="(" separator="," close=")">
+			#{orgId}
+		</foreach> 
+</select>
+
+</mapper>

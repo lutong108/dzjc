@@ -1,0 +1,47 @@
+body{
+	margin: 0;
+	font-size: 14px;
+}
+ul,li,dl,dt,dd{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+img{
+	border: none;
+}
+p,h1,h2,h3,h4,h5,h6{
+	margin: 0;
+	padding: 0;
+}
+h1,h2,h3,h4,h5,h6,i,em,b{
+	font-weight: normal;
+	font-style: normal;
+}
+a{
+	text-decoration: none;
+}
+input,select,textarea{
+	outline: none;
+	padding-top: 0;
+	padding-bottom: 0;
+	font-family: "microsoft yahei";
+}
+table{
+	border-collapse: collapse;
+}
+.clearfix:before,
+.clearfix:after {
+    display: table;
+    content: " ";
+}
+.clearfix:after {
+    clear: both;
+}
+.clearfix{
+    *zoom: 1;
+}
+.wrap{
+	width: 1200px;
+	margin: 0 auto;
+}

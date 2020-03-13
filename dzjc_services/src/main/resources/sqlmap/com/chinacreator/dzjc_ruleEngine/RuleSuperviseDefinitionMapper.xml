@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"><mapper namespace="com.chinacreator.dzjc_ruleEngine.RuleSuperviseDefinitionMapper">	
+
+<!-- ElementID:column_sql,Generated=true -->
+<sql id="column_sql">
+		  TA_JC_RULE_SUPERVISE_DEFINITION.supervise_def_id ,
+		  TA_JC_RULE_SUPERVISE_DEFINITION.exp_id ,
+		  TA_JC_RULE_SUPERVISE_DEFINITION.supervise_level_code ,
+		  TA_JC_RULE_SUPERVISE_DEFINITION.supervise_type_code ,
+		  TA_JC_RULE_SUPERVISE_DEFINITION.sendcard_type ,
+		  TA_JC_RULE_SUPERVISE_DEFINITION.msg_template_id ,
+		  TA_JC_RULE_SUPERVISE_DEFINITION.area_code ,
+		  TA_JC_RULE_SUPERVISE_DEFINITION.cc_form_instanceid 
+</sql>
+
+<!-- ElementID:whereClause_sql,Generated=true -->
+<sql id="whereClause_sql">
+	    <if test="superviseDefId != null">and TA_JC_RULE_SUPERVISE_DEFINITION.supervise_def_id = #{superviseDefId}</if>
+	    <if test="expId != null">and TA_JC_RULE_SUPERVISE_DEFINITION.exp_id = #{expId}</if>
+	    <if test="superviseLevelCode != null">and TA_JC_RULE_SUPERVISE_DEFINITION.supervise_level_code = #{superviseLevelCode}</if>
+	    <if test="superviseTypeCode != null">and TA_JC_RULE_SUPERVISE_DEFINITION.supervise_type_code = #{superviseTypeCode}</if>
+	    <if test="sendcardType != null">and TA_JC_RULE_SUPERVISE_DEFINITION.sendcard_type = #{sendcardType}</if>
+	    <if test="msgTemplateId != null">and TA_JC_RULE_SUPERVISE_DEFINITION.msg_template_id = #{msgTemplateId}</if>
+	    <if test="areaCode != null">and TA_JC_RULE_SUPERVISE_DEFINITION.area_code = #{areaCode}</if>
+	    <if test="ccFormInstanceid != null">and TA_JC_RULE_SUPERVISE_DEFINITION.cc_form_instanceid = #{ccFormInstanceid}</if>
+</sql>
+
+
+<!-- ElementID:RuleSuperviseDefinitionResult,Generated=true -->
+<resultMap id="RuleSuperviseDefinitionResult" type="com.chinacreator.dzjc_ruleEngine.RuleSuperviseDefinition">
+	<id property="superviseDefId" column="supervise_def_id"/>
+	<result property="expId" column="exp_id"/>
+	<result property="superviseLevelCode" column="supervise_level_code"/>
+	<result property="superviseTypeCode" column="supervise_type_code"/>
+	<result property="sendcardType" column="sendcard_type"/>
+	<result property="msgTemplateId" column="msg_template_id"/>
+	<result property="areaCode" column="area_code"/>
+	<result property="ccFormInstanceid" column="cc_form_instanceid"/>
+</resultMap>
+
+
+
+<!-- ElementName:cache,Generated=true -->
+<cache type="C2_Default_Dao_Cache"/>
+
+<!-- ElementID:insert,Generated=false -->
+<insert id="insert" parameterType="com.chinacreator.dzjc_ruleEngine.RuleSuperviseDefinition">
+	insert into TA_JC_RULE_SUPERVISE_DEFINITION(
+	         <if test="superviseDefId != null">supervise_def_id</if>
+	         <if test="expId != null">,exp_id</if>
+	         <if test="superviseLevelCode != null">,supervise_level_code</if>
+	         <if test="superviseTypeCode != null">,supervise_type_code</if>
+	         <if test="sendcardType != null">,sendcard_type</if>
+	         <if test="msgTemplateId != null">,msg_template_id</if>
+	         <if test="areaCode != null">,area_code</if>
+	         <if test="ccFormInstanceid != null">,cc_form_instanceid</if>
+	 	 	 )
+	 values (
+	         SEQ_JC_RULE_SUPERVISE_DEFINITION.nextval
+	         <if test="expId != null">,#{expId,jdbcType=VARCHAR}</if>
+	         <if test="superviseLevelCode != null">,#{superviseLevelCode,jdbcType=VARCHAR}</if>
+	         <if test="superviseTypeCode != null">,#{superviseTypeCode,jdbcType=VARCHAR}</if>
+	         <if test="sendcardType != null">,#{sendcardType,jdbcType=VARCHAR}</if>
+	         <if test="msgTemplateId != null">,#{msgTemplateId,jdbcType=VARCHAR}</if>
+	         <if test="areaCode != null">,#{areaCode,jdbcType=VARCHAR}</if>
+	         <if test="ccFormInstanceid != null">,#{ccFormInstanceid,jdbcType=VARCHAR}</if>
+	 	 	 )
+</insert>
+
+<!-- ElementID:count,Generated=true -->
+<select id="count" parameterType="com.chinacreator.dzjc_ruleEngine.RuleSuperviseDefinition" resultType="int">
+	select count(*) from TA_JC_RULE_SUPERVISE_DEFINITION 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<!-- ElementID:update,Generated=true -->
+<update id="update" parameterType="com.chinacreator.dzjc_ruleEngine.RuleSuperviseDefinition">
+	update TA_JC_RULE_SUPERVISE_DEFINITION
+<set>
+	<if test="expId != null">exp_id=#{expId,jdbcType=VARCHAR},</if>
+	<if test="superviseLevelCode != null">supervise_level_code=#{superviseLevelCode,jdbcType=VARCHAR},</if>
+	<if test="superviseTypeCode != null">supervise_type_code=#{superviseTypeCode,jdbcType=VARCHAR},</if>
+	<if test="sendcardType != null">sendcard_type=#{sendcardType,jdbcType=VARCHAR},</if>
+	<if test="msgTemplateId != null">msg_template_id=#{msgTemplateId,jdbcType=VARCHAR},</if>
+	<if test="areaCode != null">area_code=#{areaCode,jdbcType=VARCHAR},</if>
+	<if test="ccFormInstanceid != null">cc_form_instanceid=#{ccFormInstanceid,jdbcType=VARCHAR}</if>
+</set>
+<where>
+	<choose>
+        <when test="superviseDefId != null">and supervise_def_id = #{superviseDefId}</when>
+        <otherwise>and supervise_def_id = </otherwise>
+    </choose>
+</where>
+</update>
+
+<!-- ElementID:updateNull,Generated=true -->
+<update id="updateNull" parameterType="map">
+	update TA_JC_RULE_SUPERVISE_DEFINITION
+	<set>
+		<trim suffixOverrides=",">
+		    <if test="expId==null">exp_id = null,</if>
+		    <if test="superviseLevelCode==null">supervise_level_code = null,</if>
+		    <if test="superviseTypeCode==null">supervise_type_code = null,</if>
+		    <if test="sendcardType==null">sendcard_type = null,</if>
+		    <if test="msgTemplateId==null">msg_template_id = null,</if>
+		    <if test="areaCode==null">area_code = null,</if>
+		    <if test="ccFormInstanceid==null">cc_form_instanceid = null,</if>
+		</trim>
+	</set>
+	<where>
+		<choose>
+			<when test="superviseDefId != null">and supervise_def_id = #{superviseDefId}</when>
+			<otherwise>and supervise_def_id = </otherwise>
+		</choose>
+	</where>
+</update>
+
+<!-- ElementID:delete,Generated=true -->
+<delete id="delete" parameterType="com.chinacreator.dzjc_ruleEngine.RuleSuperviseDefinition">
+    delete from TA_JC_RULE_SUPERVISE_DEFINITION where 1=1 and supervise_def_id = #{superviseDefId}
+</delete>
+
+<!-- ElementID:select,Generated=true -->
+<select id="select" parameterType="com.chinacreator.dzjc_ruleEngine.RuleSuperviseDefinition" resultMap="RuleSuperviseDefinitionResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_RULE_SUPERVISE_DEFINITION 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+
+<!-- ElementID:insertBatch,Generated=true -->
+<insert id="insertBatch" parameterType="list">
+	insert into TA_JC_RULE_SUPERVISE_DEFINITION (supervise_def_id,exp_id,supervise_level_code,supervise_type_code,sendcard_type,msg_template_id,area_code,cc_form_instanceid) 
+<foreach collection="list" item="entity" index="index" separator="union all">
+		select 
+		#{entity.superviseDefId,jdbcType = VARCHAR},
+				#{entity.expId,jdbcType = VARCHAR},
+				#{entity.superviseLevelCode,jdbcType = VARCHAR},
+				#{entity.superviseTypeCode,jdbcType = VARCHAR},
+				#{entity.sendcardType,jdbcType = VARCHAR},
+				#{entity.msgTemplateId,jdbcType = VARCHAR},
+				#{entity.areaCode,jdbcType = VARCHAR},
+				#{entity.ccFormInstanceid,jdbcType = VARCHAR}
+		from dual
+</foreach>
+</insert>
+
+<!-- ElementID:deleteBatch,Generated=true -->
+<delete id="deleteBatch" parameterType="List">
+	delete from TA_JC_RULE_SUPERVISE_DEFINITION where supervise_def_id in
+<trim prefix="(" suffix=")" suffixOverrides=",">
+<foreach collection="list" item="entity" separator=",">
+	<choose>
+		<when test="@com.chinacreator.c2.dao.util.EntityBeanUtil@isEntityObj(entity)">#{entity.superviseDefId}</when>
+		<otherwise>#{entity}</otherwise>
+	</choose>
+</foreach>
+</trim>
+</delete>
+
+<!-- ElementID:updateBatch,Generated=true -->
+<update id="updateBatch" parameterType="list">
+	<foreach collection="list" item="entity" open="begin" close=";end;" separator=";">
+			update TA_JC_RULE_SUPERVISE_DEFINITION
+	<set>
+	<if test="entity.expId != null">exp_id= #{entity.expId,jdbcType=VARCHAR},</if>
+	<if test="entity.superviseLevelCode != null">supervise_level_code= #{entity.superviseLevelCode,jdbcType=VARCHAR},</if>
+	<if test="entity.superviseTypeCode != null">supervise_type_code= #{entity.superviseTypeCode,jdbcType=VARCHAR},</if>
+	<if test="entity.sendcardType != null">sendcard_type= #{entity.sendcardType,jdbcType=VARCHAR},</if>
+	<if test="entity.msgTemplateId != null">msg_template_id= #{entity.msgTemplateId,jdbcType=VARCHAR},</if>
+	<if test="entity.areaCode != null">area_code= #{entity.areaCode,jdbcType=VARCHAR},</if>
+	<if test="entity.ccFormInstanceid != null">cc_form_instanceid= #{entity.ccFormInstanceid,jdbcType=VARCHAR}</if>
+	</set>
+		<where>
+			<choose>
+				<when test="entity.superviseDefId != null">and supervise_def_id = #{entity.superviseDefId}</when>
+				<otherwise>and supervise_def_id = </otherwise>
+			</choose>
+		</where>
+	</foreach>
+</update>
+
+<!-- ElementID:selectAll,Generated=true -->
+<select id="selectAll" resultMap="RuleSuperviseDefinitionResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_RULE_SUPERVISE_DEFINITION 
+</select>
+
+<!-- ElementID:selectMany,Generated=true -->
+<select id="selectMany" parameterType="list" resultMap="RuleSuperviseDefinitionResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_JC_RULE_SUPERVISE_DEFINITION 
+	where TA_JC_RULE_SUPERVISE_DEFINITION.supervise_def_id in (
+<foreach collection="list" item="entity" separator="intersect">
+		select 
+		TA_JC_RULE_SUPERVISE_DEFINITION.supervise_def_id
+	    from TA_JC_RULE_SUPERVISE_DEFINITION 
+		 <where>
+	        <if test="entity.superviseDefId != null">and TA_JC_RULE_SUPERVISE_DEFINITION.supervise_def_id = #{entity.superviseDefId}</if>
+	        <if test="entity.expId != null">and TA_JC_RULE_SUPERVISE_DEFINITION.exp_id = #{entity.expId}</if>
+	        <if test="entity.superviseLevelCode != null">and TA_JC_RULE_SUPERVISE_DEFINITION.supervise_level_code = #{entity.superviseLevelCode}</if>
+	        <if test="entity.superviseTypeCode != null">and TA_JC_RULE_SUPERVISE_DEFINITION.supervise_type_code = #{entity.superviseTypeCode}</if>
+	        <if test="entity.sendcardType != null">and TA_JC_RULE_SUPERVISE_DEFINITION.sendcard_type = #{entity.sendcardType}</if>
+	        <if test="entity.msgTemplateId != null">and TA_JC_RULE_SUPERVISE_DEFINITION.msg_template_id = #{entity.msgTemplateId}</if>
+	        <if test="entity.areaCode != null">and TA_JC_RULE_SUPERVISE_DEFINITION.area_code = #{entity.areaCode}</if>
+	        <if test="entity.ccFormInstanceid != null">and TA_JC_RULE_SUPERVISE_DEFINITION.cc_form_instanceid = #{entity.ccFormInstanceid}</if>
+		</where>
+</foreach>
+)
+</select>
+
+<!-- ElementID:selectUnion,Generated=true -->
+<select id="selectUnion" parameterType="list" resultMap="RuleSuperviseDefinitionResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_JC_RULE_SUPERVISE_DEFINITION 
+	 INNER JOIN
+<foreach collection="list" item="entity" separator="UNION" open="(" close=")">
+		SELECT 
+			 supervise_def_id
+		FROM TA_JC_RULE_SUPERVISE_DEFINITION 
+			<where>
+	        <if test="entity.superviseDefId != null">and TA_JC_RULE_SUPERVISE_DEFINITION.supervise_def_id = #{entity.superviseDefId}</if>
+	        <if test="entity.expId != null">and TA_JC_RULE_SUPERVISE_DEFINITION.exp_id = #{entity.expId}</if>
+	        <if test="entity.superviseLevelCode != null">and TA_JC_RULE_SUPERVISE_DEFINITION.supervise_level_code = #{entity.superviseLevelCode}</if>
+	        <if test="entity.superviseTypeCode != null">and TA_JC_RULE_SUPERVISE_DEFINITION.supervise_type_code = #{entity.superviseTypeCode}</if>
+	        <if test="entity.sendcardType != null">and TA_JC_RULE_SUPERVISE_DEFINITION.sendcard_type = #{entity.sendcardType}</if>
+	        <if test="entity.msgTemplateId != null">and TA_JC_RULE_SUPERVISE_DEFINITION.msg_template_id = #{entity.msgTemplateId}</if>
+	        <if test="entity.areaCode != null">and TA_JC_RULE_SUPERVISE_DEFINITION.area_code = #{entity.areaCode}</if>
+	        <if test="entity.ccFormInstanceid != null">and TA_JC_RULE_SUPERVISE_DEFINITION.cc_form_instanceid = #{entity.ccFormInstanceid}</if>
+			</where>
+</foreach>
+	c2_temp_table ON TA_JC_RULE_SUPERVISE_DEFINITION.supervise_def_id = c2_temp_table.supervise_def_id
+</select>
+
+<!-- ElementID:selectByID,Generated=true -->
+<select id="selectByID" parameterType="java.lang.String" resultMap="RuleSuperviseDefinitionResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_RULE_SUPERVISE_DEFINITION 
+		 where TA_JC_RULE_SUPERVISE_DEFINITION.supervise_def_id = #{superviseDefId,jdbcType=VARCHAR}
+</select>
+
+<!-- ElementID:selectByPage,Generated=true -->
+<select id="selectByPage" parameterType="com.chinacreator.dzjc_ruleEngine.RuleSuperviseDefinition" resultMap="RuleSuperviseDefinitionResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_RULE_SUPERVISE_DEFINITION 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+
+
+<delete id="deleteByRuleId" parameterType="java.lang.String">
+    delete from TA_JC_RULE_SUPERVISE_DEFINITION  where exp_id in 
+	(
+	select exp_id from TA_JC_RULE_EXPINFO a 
+	where a.rule_id = #{ruleId,jdbcType=VARCHAR}
+	and a.rule_version = 
+	  (
+	  select max(RULE_VERSION) from TA_JC_RULE_EXPINFO b
+	  where b.rule_id= #{ruleId,jdbcType=VARCHAR}
+	  )
+	)
+</delete>
+
+
+
+<select id="selectByRuleId" parameterType="com.chinacreator.dzjc_ruleEngine.RuleExpInfo" resultMap="RuleSuperviseDefinitionResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_RULE_SUPERVISE_DEFINITION 
+	    where 1=1
+		and TA_JC_RULE_SUPERVISE_DEFINITION.exp_id=
+		(
+		  select TA_JC_RULE_EXPINFO.exp_id from TA_JC_RULE_EXPINFO  
+		  where 1=1
+		  and TA_JC_RULE_EXPINFO.rule_id= #{ruleId}
+		  and TA_JC_RULE_EXPINFO.Exp_Seq= #{expSeq}
+		  and TA_JC_RULE_EXPINFO.rule_version =
+		  (
+		      select ta_JC_rule_baseinfo.rule_version from ta_JC_rule_baseinfo 
+		      where 1=1
+		      and ta_JC_rule_baseinfo.rule_id= #{ruleId}
+		  )
+		)
+</select>
+
+</mapper>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form:Form xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dync="http://www.chinacreator.com/platform/mvc/ui/dync" xmlns:form="http://www.chinacreator.com/platform/mvc/form" name="附加预览" sn="dzjc_performance/OpenView" type="form">
+  <form:control type="page/modal">
+    <form:attributes source="page/modal">
+      <dync:attribute default="" group="事件" id="onload" name="页面加载完成" value="page_onload()">
+        <dync:render colSpan="2" height="0" multi="false" name="event">
+          <dync:item name="param" value=""/>
+        </dync:render>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="" group="HTML" id="width" name="页面宽度" value="1000px;">
+        <dync:render colSpan="2" height="0" multi="false" name="text"/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="" group="HTML" id="title" name="标题" value="附件预览">
+        <dync:render colSpan="2" height="0" multi="false" name="text"/>
+        <dync:children/>
+      </dync:attribute>
+    </form:attributes>
+  </form:control>
+  <form:child xsi:type="form:Group" id="div" name="简单容器(DIV)">
+    <form:control type="container/div">
+      <form:attributes source="container/div">
+        <dync:attribute default="" group="高级自定义" id="html" name="自定义HTML" value="div_html">
+          <dync:render colSpan="2" height="0" multi="false" name="html"/>
+          <dync:children/>
+        </dync:attribute>
+      </form:attributes>
+    </form:control>
+  </form:child>
+  <form:datasources/>
+  <form:scripts>
+
+page_onload:function(){
+	debugger;
+	var  localhost= $params.path;
+	localhost=localhost.replace(/\//g,&quot;_&quot;);
+	
+	$(&quot;#MyView ul&quot;).append(&quot;&lt;li> &lt;img style=' width:970px; margin-bottom: 10px; margin-top: 10px;' src='&quot;+c2.base(&quot;service&quot;)+&quot;dzjc_performance/v1/Enclosure/OpenView/&quot;+localhost+&quot;'/> &lt;/li>&quot;);
+}</form:scripts>
+  <form:htmls>
+&lt;script type=&quot;text/ng-template&quot; id=&quot;div_html&quot;>
+&lt;div id=&quot;MyView&quot;>
+	&lt;span style=&quot;font-size: 30px; margin-left: 315px;color: red;&quot; >目前只支持图片格式预览&lt;/span>
+	&lt;ul>
+	
+	&lt;/ul>
+
+ &lt;/div>
+&lt;/script></form:htmls>
+</form:Form>

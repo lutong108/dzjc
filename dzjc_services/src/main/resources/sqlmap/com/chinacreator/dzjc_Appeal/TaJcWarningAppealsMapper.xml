@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"><mapper namespace="com.chinacreator.dzjc_Appeal.TaJcWarningAppealsMapper">	
+
+<!-- ElementID:column_sql,Generated=true -->
+<sql id="column_sql">
+		  TA_JC_WARNING_APPEAL.id ,
+		  TA_JC_WARNING_APPEAL.supervise_info_id ,
+		  TA_JC_WARNING_APPEAL.appeal_orgname ,
+		  TA_JC_WARNING_APPEAL.appeal_time ,
+		  TA_JC_WARNING_APPEAL.appeal_content ,
+		  TA_JC_WARNING_APPEAL.appeal_user_name ,
+		  TA_JC_WARNING_APPEAL.process_result ,
+		  TA_JC_WARNING_APPEAL.cc_form_instanceid ,
+		  TA_JC_WARNING_APPEAL.area_code ,
+		  TA_JC_WARNING_APPEAL.max_process_id ,
+		  TA_JC_WARNING_APPEAL.appeal_orgid ,
+		  TA_JC_WARNING_APPEAL.pici ,
+		  TA_JC_WARNING_APPEAL.reply_org_id ,
+		  TA_JC_WARNING_APPEAL.reply_org_name ,
+		  TA_JC_WARNING_APPEAL.reply_user_id ,
+		  TA_JC_WARNING_APPEAL.reply_user_name ,
+		  TA_JC_WARNING_APPEAL.reply_content ,
+		  TA_JC_WARNING_APPEAL.reply_time 
+</sql>
+
+<!-- ElementID:whereClause_sql,Generated=true -->
+<sql id="whereClause_sql">
+	    <if test="id != null">and TA_JC_WARNING_APPEAL.id = #{id}</if>
+	    <if test="superviseInfoId != null">and TA_JC_WARNING_APPEAL.supervise_info_id = #{superviseInfoId}</if>
+	    <if test="appealOrgname != null">and TA_JC_WARNING_APPEAL.appeal_orgname = #{appealOrgname}</if>
+	    <if test="appealTime != null">and TA_JC_WARNING_APPEAL.appeal_time = #{appealTime}</if>
+	    <if test="appealContent != null">and TA_JC_WARNING_APPEAL.appeal_content = #{appealContent}</if>
+	    <if test="appealUserName != null">and TA_JC_WARNING_APPEAL.appeal_user_name = #{appealUserName}</if>
+	    <if test="processResult != null">and TA_JC_WARNING_APPEAL.process_result = #{processResult}</if>
+	    <if test="ccFormInstanceid != null">and TA_JC_WARNING_APPEAL.cc_form_instanceid = #{ccFormInstanceid}</if>
+	    <if test="areaCode != null">and TA_JC_WARNING_APPEAL.area_code = #{areaCode}</if>
+	    <if test="maxProcessId != null">and TA_JC_WARNING_APPEAL.max_process_id = #{maxProcessId}</if>
+	    <if test="appealOrgid != null">and TA_JC_WARNING_APPEAL.appeal_orgid = #{appealOrgid}</if>
+	    <if test="pici != null">and TA_JC_WARNING_APPEAL.pici = #{pici}</if>
+	    <if test="replyOrgId != null">and TA_JC_WARNING_APPEAL.reply_org_id = #{replyOrgId}</if>
+	    <if test="replyOrgName != null">and TA_JC_WARNING_APPEAL.reply_org_name = #{replyOrgName}</if>
+	    <if test="replyUserId != null">and TA_JC_WARNING_APPEAL.reply_user_id = #{replyUserId}</if>
+	    <if test="replyUserName != null">and TA_JC_WARNING_APPEAL.reply_user_name = #{replyUserName}</if>
+	    <if test="replyContent != null">and TA_JC_WARNING_APPEAL.reply_content = #{replyContent}</if>
+	    <if test="replyTime != null">and TA_JC_WARNING_APPEAL.reply_time = #{replyTime}</if>
+</sql>
+
+
+<!-- ElementID:TaJcWarningAppealsResult,Generated=true -->
+<resultMap id="TaJcWarningAppealsResult" type="com.chinacreator.dzjc_Appeal.TaJcWarningAppeals">
+	<id property="id" column="id"/>
+	<result property="superviseInfoId" column="supervise_info_id"/>
+	<result property="appealOrgname" column="appeal_orgname"/>
+	<result property="appealTime" column="appeal_time"/>
+	<result property="appealContent" column="appeal_content"/>
+	<result property="appealUserName" column="appeal_user_name"/>
+	<result property="processResult" column="process_result"/>
+	<result property="ccFormInstanceid" column="cc_form_instanceid"/>
+	<result property="areaCode" column="area_code"/>
+	<result property="maxProcessId" column="max_process_id"/>
+	<result property="appealOrgid" column="appeal_orgid"/>
+	<result property="pici" column="pici"/>
+	<result property="replyOrgId" column="reply_org_id"/>
+	<result property="replyOrgName" column="reply_org_name"/>
+	<result property="replyUserId" column="reply_user_id"/>
+	<result property="replyUserName" column="reply_user_name"/>
+	<result property="replyContent" column="reply_content"/>
+	<result property="replyTime" column="reply_time"/>
+</resultMap>
+
+
+<!-- ElementID:insert,Generated=true -->
+<insert id="insert" parameterType="com.chinacreator.dzjc_Appeal.TaJcWarningAppeals">
+	insert into TA_JC_WARNING_APPEAL(
+	         <if test="id != null">id</if>
+	         <if test="superviseInfoId != null">,supervise_info_id</if>
+	         <if test="appealOrgname != null">,appeal_orgname</if>
+	         <if test="appealTime != null">,appeal_time</if>
+	         <if test="appealContent != null">,appeal_content</if>
+	         <if test="appealUserName != null">,appeal_user_name</if>
+	         <if test="processResult != null">,process_result</if>
+	         <if test="ccFormInstanceid != null">,cc_form_instanceid</if>
+	         <if test="areaCode != null">,area_code</if>
+	         <if test="maxProcessId != null">,max_process_id</if>
+	         <if test="appealOrgid != null">,appeal_orgid</if>
+	         <if test="pici != null">,pici</if>
+	         <if test="replyOrgId != null">,reply_org_id</if>
+	         <if test="replyOrgName != null">,reply_org_name</if>
+	         <if test="replyUserId != null">,reply_user_id</if>
+	         <if test="replyUserName != null">,reply_user_name</if>
+	         <if test="replyContent != null">,reply_content</if>
+	         <if test="replyTime != null">,reply_time</if>
+	 	 	 )
+	 values (
+	         <if test="id != null">#{id,jdbcType=VARCHAR}</if>
+	         <if test="superviseInfoId != null">,#{superviseInfoId,jdbcType=VARCHAR}</if>
+	         <if test="appealOrgname != null">,#{appealOrgname,jdbcType=VARCHAR}</if>
+	         <if test="appealTime != null">,#{appealTime,jdbcType=DATE}</if>
+	         <if test="appealContent != null">,#{appealContent,jdbcType=VARCHAR}</if>
+	         <if test="appealUserName != null">,#{appealUserName,jdbcType=VARCHAR}</if>
+	         <if test="processResult != null">,#{processResult,jdbcType=VARCHAR}</if>
+	         <if test="ccFormInstanceid != null">,#{ccFormInstanceid,jdbcType=VARCHAR}</if>
+	         <if test="areaCode != null">,#{areaCode,jdbcType=VARCHAR}</if>
+	         <if test="maxProcessId != null">,#{maxProcessId,jdbcType=VARCHAR}</if>
+	         <if test="appealOrgid != null">,#{appealOrgid,jdbcType=VARCHAR}</if>
+	         <if test="pici != null">,#{pici,jdbcType=VARCHAR}</if>
+	         <if test="replyOrgId != null">,#{replyOrgId,jdbcType=VARCHAR}</if>
+	         <if test="replyOrgName != null">,#{replyOrgName,jdbcType=VARCHAR}</if>
+	         <if test="replyUserId != null">,#{replyUserId,jdbcType=VARCHAR}</if>
+	         <if test="replyUserName != null">,#{replyUserName,jdbcType=VARCHAR}</if>
+	         <if test="replyContent != null">,#{replyContent,jdbcType=VARCHAR}</if>
+	         <if test="replyTime != null">,#{replyTime,jdbcType=DATE}</if>
+	 	 	 )
+</insert>
+
+<!-- ElementID:count,Generated=true -->
+<select id="count" parameterType="com.chinacreator.dzjc_Appeal.TaJcWarningAppeals" resultType="int">
+	select count(*) from TA_JC_WARNING_APPEAL 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<!-- ElementID:update,Generated=true -->
+<update id="update" parameterType="com.chinacreator.dzjc_Appeal.TaJcWarningAppeals">
+	update TA_JC_WARNING_APPEAL
+<set>
+	<if test="superviseInfoId != null">supervise_info_id=#{superviseInfoId,jdbcType=VARCHAR},</if>
+	<if test="appealOrgname != null">appeal_orgname=#{appealOrgname,jdbcType=VARCHAR},</if>
+	<if test="appealTime != null">appeal_time=#{appealTime,jdbcType=DATE},</if>
+	<if test="appealContent != null">appeal_content=#{appealContent,jdbcType=VARCHAR},</if>
+	<if test="appealUserName != null">appeal_user_name=#{appealUserName,jdbcType=VARCHAR},</if>
+	<if test="processResult != null">process_result=#{processResult,jdbcType=VARCHAR},</if>
+	<if test="ccFormInstanceid != null">cc_form_instanceid=#{ccFormInstanceid,jdbcType=VARCHAR},</if>
+	<if test="areaCode != null">area_code=#{areaCode,jdbcType=VARCHAR},</if>
+	<if test="maxProcessId != null">max_process_id=#{maxProcessId,jdbcType=VARCHAR},</if>
+	<if test="appealOrgid != null">appeal_orgid=#{appealOrgid,jdbcType=VARCHAR},</if>
+	<if test="pici != null">pici=#{pici,jdbcType=VARCHAR},</if>
+	<if test="replyOrgId != null">reply_org_id=#{replyOrgId,jdbcType=VARCHAR},</if>
+	<if test="replyOrgName != null">reply_org_name=#{replyOrgName,jdbcType=VARCHAR},</if>
+	<if test="replyUserId != null">reply_user_id=#{replyUserId,jdbcType=VARCHAR},</if>
+	<if test="replyUserName != null">reply_user_name=#{replyUserName,jdbcType=VARCHAR},</if>
+	<if test="replyContent != null">reply_content=#{replyContent,jdbcType=VARCHAR},</if>
+	<if test="replyTime != null">reply_time=#{replyTime,jdbcType=DATE}</if>
+</set>
+<where>
+	<choose>
+        <when test="id != null">and id = #{id}</when>
+        <otherwise>and id = </otherwise>
+    </choose>
+</where>
+</update>
+
+<!-- ElementID:updateNull,Generated=true -->
+<update id="updateNull" parameterType="map">
+	update TA_JC_WARNING_APPEAL
+	<set>
+		<trim suffixOverrides=",">
+		    <if test="superviseInfoId==null">supervise_info_id = null,</if>
+		    <if test="appealOrgname==null">appeal_orgname = null,</if>
+		    <if test="appealTime==null">appeal_time = null,</if>
+		    <if test="appealContent==null">appeal_content = null,</if>
+		    <if test="appealUserName==null">appeal_user_name = null,</if>
+		    <if test="processResult==null">process_result = null,</if>
+		    <if test="ccFormInstanceid==null">cc_form_instanceid = null,</if>
+		    <if test="areaCode==null">area_code = null,</if>
+		    <if test="maxProcessId==null">max_process_id = null,</if>
+		    <if test="appealOrgid==null">appeal_orgid = null,</if>
+		    <if test="pici==null">pici = null,</if>
+		    <if test="replyOrgId==null">reply_org_id = null,</if>
+		    <if test="replyOrgName==null">reply_org_name = null,</if>
+		    <if test="replyUserId==null">reply_user_id = null,</if>
+		    <if test="replyUserName==null">reply_user_name = null,</if>
+		    <if test="replyContent==null">reply_content = null,</if>
+		    <if test="replyTime==null">reply_time = null,</if>
+		</trim>
+	</set>
+	<where>
+		<choose>
+			<when test="id != null">and id = #{id}</when>
+			<otherwise>and id = </otherwise>
+		</choose>
+	</where>
+</update>
+
+<!-- ElementID:delete,Generated=true -->
+<delete id="delete" parameterType="com.chinacreator.dzjc_Appeal.TaJcWarningAppeals">
+    delete from TA_JC_WARNING_APPEAL where 1=1 and id = #{id}
+</delete>
+
+<!-- ElementID:select,Generated=true -->
+<select id="select" parameterType="com.chinacreator.dzjc_Appeal.TaJcWarningAppeals" resultMap="TaJcWarningAppealsResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_WARNING_APPEAL 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+
+<!-- ElementID:insertBatch,Generated=true -->
+<insert id="insertBatch" parameterType="list">
+	insert into TA_JC_WARNING_APPEAL (id,supervise_info_id,appeal_orgname,appeal_time,appeal_content,appeal_user_name,process_result,cc_form_instanceid,area_code,max_process_id,appeal_orgid,pici,reply_org_id,reply_org_name,reply_user_id,reply_user_name,reply_content,reply_time) 
+<foreach collection="list" item="entity" index="index" separator="union all">
+		select 
+		#{entity.id,jdbcType = VARCHAR},
+				#{entity.superviseInfoId,jdbcType = VARCHAR},
+				#{entity.appealOrgname,jdbcType = VARCHAR},
+				#{entity.appealTime,jdbcType = DATE},
+				#{entity.appealContent,jdbcType = VARCHAR},
+				#{entity.appealUserName,jdbcType = VARCHAR},
+				#{entity.processResult,jdbcType = VARCHAR},
+				#{entity.ccFormInstanceid,jdbcType = VARCHAR},
+				#{entity.areaCode,jdbcType = VARCHAR},
+				#{entity.maxProcessId,jdbcType = VARCHAR},
+				#{entity.appealOrgid,jdbcType = VARCHAR},
+				#{entity.pici,jdbcType = VARCHAR},
+				#{entity.replyOrgId,jdbcType = VARCHAR},
+				#{entity.replyOrgName,jdbcType = VARCHAR},
+				#{entity.replyUserId,jdbcType = VARCHAR},
+				#{entity.replyUserName,jdbcType = VARCHAR},
+				#{entity.replyContent,jdbcType = VARCHAR},
+				#{entity.replyTime,jdbcType = DATE}
+		from dual
+</foreach>
+</insert>
+
+<!-- ElementID:deleteBatch,Generated=true -->
+<delete id="deleteBatch" parameterType="List">
+	delete from TA_JC_WARNING_APPEAL where id in
+<trim prefix="(" suffix=")" suffixOverrides=",">
+<foreach collection="list" item="entity" separator=",">
+	<choose>
+		<when test="@com.chinacreator.c2.dao.util.EntityBeanUtil@isEntityObj(entity)">#{entity.id}</when>
+		<otherwise>#{entity}</otherwise>
+	</choose>
+</foreach>
+</trim>
+</delete>
+
+<!-- ElementID:updateBatch,Generated=true -->
+<update id="updateBatch" parameterType="list">
+	<foreach collection="list" item="entity" open="begin" close=";end;" separator=";">
+			update TA_JC_WARNING_APPEAL
+	<set>
+	<if test="entity.superviseInfoId != null">supervise_info_id= #{entity.superviseInfoId,jdbcType=VARCHAR},</if>
+	<if test="entity.appealOrgname != null">appeal_orgname= #{entity.appealOrgname,jdbcType=VARCHAR},</if>
+	<if test="entity.appealTime != null">appeal_time= #{entity.appealTime,jdbcType=DATE},</if>
+	<if test="entity.appealContent != null">appeal_content= #{entity.appealContent,jdbcType=VARCHAR},</if>
+	<if test="entity.appealUserName != null">appeal_user_name= #{entity.appealUserName,jdbcType=VARCHAR},</if>
+	<if test="entity.processResult != null">process_result= #{entity.processResult,jdbcType=VARCHAR},</if>
+	<if test="entity.ccFormInstanceid != null">cc_form_instanceid= #{entity.ccFormInstanceid,jdbcType=VARCHAR},</if>
+	<if test="entity.areaCode != null">area_code= #{entity.areaCode,jdbcType=VARCHAR},</if>
+	<if test="entity.maxProcessId != null">max_process_id= #{entity.maxProcessId,jdbcType=VARCHAR},</if>
+	<if test="entity.appealOrgid != null">appeal_orgid= #{entity.appealOrgid,jdbcType=VARCHAR},</if>
+	<if test="entity.pici != null">pici= #{entity.pici,jdbcType=VARCHAR},</if>
+	<if test="entity.replyOrgId != null">reply_org_id= #{entity.replyOrgId,jdbcType=VARCHAR},</if>
+	<if test="entity.replyOrgName != null">reply_org_name= #{entity.replyOrgName,jdbcType=VARCHAR},</if>
+	<if test="entity.replyUserId != null">reply_user_id= #{entity.replyUserId,jdbcType=VARCHAR},</if>
+	<if test="entity.replyUserName != null">reply_user_name= #{entity.replyUserName,jdbcType=VARCHAR},</if>
+	<if test="entity.replyContent != null">reply_content= #{entity.replyContent,jdbcType=VARCHAR},</if>
+	<if test="entity.replyTime != null">reply_time= #{entity.replyTime,jdbcType=DATE}</if>
+	</set>
+		<where>
+			<choose>
+				<when test="entity.id != null">and id = #{entity.id}</when>
+				<otherwise>and id = </otherwise>
+			</choose>
+		</where>
+	</foreach>
+</update>
+
+<!-- ElementID:selectAll,Generated=true -->
+<select id="selectAll" resultMap="TaJcWarningAppealsResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_WARNING_APPEAL 
+</select>
+
+<!-- ElementID:selectMany,Generated=true -->
+<select id="selectMany" parameterType="list" resultMap="TaJcWarningAppealsResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_JC_WARNING_APPEAL 
+	where TA_JC_WARNING_APPEAL.id in (
+<foreach collection="list" item="entity" separator="intersect">
+		select 
+		TA_JC_WARNING_APPEAL.id
+	    from TA_JC_WARNING_APPEAL 
+		 <where>
+	        <if test="entity.id != null">and TA_JC_WARNING_APPEAL.id = #{entity.id}</if>
+	        <if test="entity.superviseInfoId != null">and TA_JC_WARNING_APPEAL.supervise_info_id = #{entity.superviseInfoId}</if>
+	        <if test="entity.appealOrgname != null">and TA_JC_WARNING_APPEAL.appeal_orgname = #{entity.appealOrgname}</if>
+	        <if test="entity.appealTime != null">and TA_JC_WARNING_APPEAL.appeal_time = #{entity.appealTime}</if>
+	        <if test="entity.appealContent != null">and TA_JC_WARNING_APPEAL.appeal_content = #{entity.appealContent}</if>
+	        <if test="entity.appealUserName != null">and TA_JC_WARNING_APPEAL.appeal_user_name = #{entity.appealUserName}</if>
+	        <if test="entity.processResult != null">and TA_JC_WARNING_APPEAL.process_result = #{entity.processResult}</if>
+	        <if test="entity.ccFormInstanceid != null">and TA_JC_WARNING_APPEAL.cc_form_instanceid = #{entity.ccFormInstanceid}</if>
+	        <if test="entity.areaCode != null">and TA_JC_WARNING_APPEAL.area_code = #{entity.areaCode}</if>
+	        <if test="entity.maxProcessId != null">and TA_JC_WARNING_APPEAL.max_process_id = #{entity.maxProcessId}</if>
+	        <if test="entity.appealOrgid != null">and TA_JC_WARNING_APPEAL.appeal_orgid = #{entity.appealOrgid}</if>
+	        <if test="entity.pici != null">and TA_JC_WARNING_APPEAL.pici = #{entity.pici}</if>
+	        <if test="entity.replyOrgId != null">and TA_JC_WARNING_APPEAL.reply_org_id = #{entity.replyOrgId}</if>
+	        <if test="entity.replyOrgName != null">and TA_JC_WARNING_APPEAL.reply_org_name = #{entity.replyOrgName}</if>
+	        <if test="entity.replyUserId != null">and TA_JC_WARNING_APPEAL.reply_user_id = #{entity.replyUserId}</if>
+	        <if test="entity.replyUserName != null">and TA_JC_WARNING_APPEAL.reply_user_name = #{entity.replyUserName}</if>
+	        <if test="entity.replyContent != null">and TA_JC_WARNING_APPEAL.reply_content = #{entity.replyContent}</if>
+	        <if test="entity.replyTime != null">and TA_JC_WARNING_APPEAL.reply_time = #{entity.replyTime}</if>
+		</where>
+</foreach>
+)
+</select>
+
+<!-- ElementID:selectUnion,Generated=true -->
+<select id="selectUnion" parameterType="list" resultMap="TaJcWarningAppealsResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_JC_WARNING_APPEAL 
+	 INNER JOIN
+<foreach collection="list" item="entity" separator="UNION" open="(" close=")">
+		SELECT 
+			 id
+		FROM TA_JC_WARNING_APPEAL 
+			<where>
+	        <if test="entity.id != null">and TA_JC_WARNING_APPEAL.id = #{entity.id}</if>
+	        <if test="entity.superviseInfoId != null">and TA_JC_WARNING_APPEAL.supervise_info_id = #{entity.superviseInfoId}</if>
+	        <if test="entity.appealOrgname != null">and TA_JC_WARNING_APPEAL.appeal_orgname = #{entity.appealOrgname}</if>
+	        <if test="entity.appealTime != null">and TA_JC_WARNING_APPEAL.appeal_time = #{entity.appealTime}</if>
+	        <if test="entity.appealContent != null">and TA_JC_WARNING_APPEAL.appeal_content = #{entity.appealContent}</if>
+	        <if test="entity.appealUserName != null">and TA_JC_WARNING_APPEAL.appeal_user_name = #{entity.appealUserName}</if>
+	        <if test="entity.processResult != null">and TA_JC_WARNING_APPEAL.process_result = #{entity.processResult}</if>
+	        <if test="entity.ccFormInstanceid != null">and TA_JC_WARNING_APPEAL.cc_form_instanceid = #{entity.ccFormInstanceid}</if>
+	        <if test="entity.areaCode != null">and TA_JC_WARNING_APPEAL.area_code = #{entity.areaCode}</if>
+	        <if test="entity.maxProcessId != null">and TA_JC_WARNING_APPEAL.max_process_id = #{entity.maxProcessId}</if>
+	        <if test="entity.appealOrgid != null">and TA_JC_WARNING_APPEAL.appeal_orgid = #{entity.appealOrgid}</if>
+	        <if test="entity.pici != null">and TA_JC_WARNING_APPEAL.pici = #{entity.pici}</if>
+	        <if test="entity.replyOrgId != null">and TA_JC_WARNING_APPEAL.reply_org_id = #{entity.replyOrgId}</if>
+	        <if test="entity.replyOrgName != null">and TA_JC_WARNING_APPEAL.reply_org_name = #{entity.replyOrgName}</if>
+	        <if test="entity.replyUserId != null">and TA_JC_WARNING_APPEAL.reply_user_id = #{entity.replyUserId}</if>
+	        <if test="entity.replyUserName != null">and TA_JC_WARNING_APPEAL.reply_user_name = #{entity.replyUserName}</if>
+	        <if test="entity.replyContent != null">and TA_JC_WARNING_APPEAL.reply_content = #{entity.replyContent}</if>
+	        <if test="entity.replyTime != null">and TA_JC_WARNING_APPEAL.reply_time = #{entity.replyTime}</if>
+			</where>
+</foreach>
+	c2_temp_table ON TA_JC_WARNING_APPEAL.id = c2_temp_table.id
+</select>
+
+<!-- ElementID:selectByID,Generated=true -->
+<select id="selectByID" parameterType="java.lang.String" resultMap="TaJcWarningAppealsResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_WARNING_APPEAL 
+		 where TA_JC_WARNING_APPEAL.id = #{id,jdbcType=VARCHAR}
+</select>
+
+<!-- ElementID:selectByPage,Generated=true -->
+<select id="selectByPage" parameterType="com.chinacreator.dzjc_Appeal.TaJcWarningAppeals" resultMap="TaJcWarningAppealsResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_WARNING_APPEAL 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+</mapper>

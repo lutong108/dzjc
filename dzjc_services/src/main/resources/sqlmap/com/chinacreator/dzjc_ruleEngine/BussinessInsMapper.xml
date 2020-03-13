@@ -1,0 +1,564 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"><mapper namespace="com.chinacreator.dzjc_ruleEngine.BussinessInsMapper">
+
+<sql id="column_sql">
+		  TA_SP_INSTANCE.instance_id ,
+		  TA_SP_INSTANCE.instance_code ,
+		  TA_SP_INSTANCE.approve_code ,
+		  TA_SP_INSTANCE.instance_name ,
+		  TA_SP_INSTANCE.instance_py ,
+		  TA_SP_INSTANCE.accept_name ,
+		  TA_SP_INSTANCE.accept_time ,
+		  TA_SP_INSTANCE.end_name ,
+		  TA_SP_INSTANCE.end_time ,
+		  TA_SP_INSTANCE.time_use ,
+		  TA_SP_INSTANCE.apply_id ,
+		  TA_SP_INSTANCE.apply_type ,
+		  TA_SP_INSTANCE.apply_name ,
+		  TA_SP_INSTANCE.org_id ,
+		  TA_SP_INSTANCE.area_code ,
+		  TA_SP_INSTANCE.project_state ,
+		  TA_SP_INSTANCE.queue_code ,
+		  TA_SP_INSTANCE.query_code ,
+		  TA_SP_INSTANCE.notaccept_reason ,
+		  TA_SP_INSTANCE.correction_time ,
+		  TA_SP_INSTANCE.approve_id ,
+		  TA_SP_INSTANCE.instance_source ,
+		  TA_SP_INSTANCE.submit_time ,
+		  TA_SP_INSTANCE.remark ,
+		  TA_SP_INSTANCE.pre_reason ,
+		  TA_SP_INSTANCE.approve_name ,
+		  TA_SP_INSTANCE.accept_id ,
+		  TA_SP_INSTANCE.end_id ,
+		  TA_SP_INSTANCE.org_name ,
+		  TA_SP_INSTANCE.cur_tache ,
+		  TA_SP_INSTANCE.is_sendresult ,
+		  TA_SP_INSTANCE.rz_apply_id ,
+		  TA_SP_INSTANCE.process_instanceid ,
+		  TA_SP_INSTANCE.process_definitionid ,
+		  ta_spxm.PROMISES_LIMIT,
+		  ta_spxm.TIME_LIMIT,
+		  TA_SP_INSTANCE.etl_time
+</sql>
+
+<!-- ElementID:InstanceInfoResult,Generated=false -->
+<resultMap id="BussinessInsResult" type="com.chinacreator.dzjc_ruleEngine.BussinessIns">
+	<id property="instanceId" column="instance_id"/>
+	<result property="instanceCode" column="instance_code"/>
+	<result property="approveCode" column="approve_code"/>
+	<result property="instanceName" column="instance_name"/>
+	<result property="instancePy" column="instance_py"/>
+	<result property="acceptName" column="accept_name"/>
+	<result property="acceptTime" column="accept_time"/>
+	<result property="endName" column="end_name"/>
+	<result property="endTime" column="end_time"/>
+	<result property="timeUse" column="time_use"/>
+	<result property="applyId" column="apply_id"/>
+	<result property="applyType" column="apply_type"/>
+	<result property="applyName" column="apply_name"/>
+	<result property="orgId" column="org_id"/>
+	<result property="areaCode" column="area_code"/>
+	<result property="projectState" column="project_state"/>
+	<result property="queueCode" column="queue_code"/>
+	<result property="queryCode" column="query_code"/>
+	<result property="notacceptReason" column="notaccept_reason"/>
+	<result property="correctionTime" column="correction_time"/>
+	<result property="approveId" column="approve_id"/>
+	<result property="instanceSource" column="instance_source"/>
+	<result property="submitTime" column="submit_time"/>
+	<result property="remark" column="remark"/>
+	<result property="preReason" column="pre_reason"/>
+	<result property="approveName" column="approve_name"/>
+	<result property="acceptId" column="accept_id"/>
+	<result property="endId" column="end_id"/>
+	<result property="orgName" column="org_name"/>
+	<result property="curTache" column="cur_tache"/>
+	<result property="isSendresult" column="is_sendresult"/>
+	<result property="rzApplyId" column="rz_apply_id"/>
+	<result property="processInstanceid" column="process_instanceid"/>
+	<result property="processDefinitionid" column="process_definitionid"/>
+	<result property="timeLimit" column="time_limit"/>
+	<result property="promisesLimit" column="promises_limit"/>
+</resultMap>
+
+
+<!-- ElementID:selectByID,Generated=false -->
+<select id="selectByID" parameterType="java.lang.String" resultMap="BussinessInsResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_SP_INSTANCE 
+	    left join ta_spxm
+		on TA_SP_INSTANCE.Approve_Id = ta_spxm.approve_id
+		where TA_SP_INSTANCE.instance_id = #{instanceId,jdbcType=VARCHAR}
+</select>
+
+
+
+<!-- ElementID:whereClause_sql,Generated=true -->
+<sql id="whereClause_sql">
+	    <if test="instanceId != null">and TA_SP_INSTANCE.instance_id = #{instanceId}</if>
+	    <if test="instanceCode != null">and TA_SP_INSTANCE.instance_code = #{instanceCode}</if>
+	    <if test="approveCode != null">and TA_SP_INSTANCE.approve_code = #{approveCode}</if>
+	    <if test="instanceName != null">and TA_SP_INSTANCE.instance_name = #{instanceName}</if>
+	    <if test="instancePy != null">and TA_SP_INSTANCE.instance_py = #{instancePy}</if>
+	    <if test="acceptName != null">and TA_SP_INSTANCE.accept_name = #{acceptName}</if>
+	    <if test="acceptTime != null">and TA_SP_INSTANCE.accept_time = #{acceptTime}</if>
+	    <if test="endName != null">and TA_SP_INSTANCE.end_name = #{endName}</if>
+	    <if test="endTime != null">and TA_SP_INSTANCE.end_time = #{endTime}</if>
+	    <if test="timeUse != null">and TA_SP_INSTANCE.time_use = #{timeUse}</if>
+	    <if test="applyId != null">and TA_SP_INSTANCE.apply_id = #{applyId}</if>
+	    <if test="applyType != null">and TA_SP_INSTANCE.apply_type = #{applyType}</if>
+	    <if test="applyName != null">and TA_SP_INSTANCE.apply_name = #{applyName}</if>
+	    <if test="orgId != null">and TA_SP_INSTANCE.org_id = #{orgId}</if>
+	    <if test="areaCode != null">and TA_SP_INSTANCE.area_code = #{areaCode}</if>
+	    <if test="projectState != null">and TA_SP_INSTANCE.project_state = #{projectState}</if>
+	    <if test="queueCode != null">and TA_SP_INSTANCE.queue_code = #{queueCode}</if>
+	    <if test="queryCode != null">and TA_SP_INSTANCE.query_code = #{queryCode}</if>
+	    <if test="notacceptReason != null">and TA_SP_INSTANCE.notaccept_reason = #{notacceptReason}</if>
+	    <if test="correctionTime != null">and TA_SP_INSTANCE.correction_time = #{correctionTime}</if>
+	    <if test="approveId != null">and TA_SP_INSTANCE.approve_id = #{approveId}</if>
+	    <if test="instanceSource != null">and TA_SP_INSTANCE.instance_source = #{instanceSource}</if>
+	    <if test="submitTime != null">and TA_SP_INSTANCE.submit_time = #{submitTime}</if>
+	    <if test="remark != null">and TA_SP_INSTANCE.remark = #{remark}</if>
+	    <if test="preReason != null">and TA_SP_INSTANCE.pre_reason = #{preReason}</if>
+	    <if test="approveName != null">and TA_SP_INSTANCE.approve_name = #{approveName}</if>
+	    <if test="acceptId != null">and TA_SP_INSTANCE.accept_id = #{acceptId}</if>
+	    <if test="endId != null">and TA_SP_INSTANCE.end_id = #{endId}</if>
+	    <if test="orgName != null">and TA_SP_INSTANCE.org_name = #{orgName}</if>
+	    <if test="curTache != null">and TA_SP_INSTANCE.cur_tache = #{curTache}</if>
+	    <if test="isSendresult != null">and TA_SP_INSTANCE.is_sendresult = #{isSendresult}</if>
+	    <if test="rzApplyId != null">and TA_SP_INSTANCE.rz_apply_id = #{rzApplyId}</if>
+	    <if test="processInstanceid != null">and TA_SP_INSTANCE.process_instanceid = #{processInstanceid}</if>
+	    <if test="processDefinitionid != null">and TA_SP_INSTANCE.process_definitionid = #{processDefinitionid}</if>
+	    <if test="timeLimit != null">and TA_SP_INSTANCE.time_limit = #{timeLimit}</if>
+	    <if test="promisesLimit != null">and TA_SP_INSTANCE.promises_limit = #{promisesLimit}</if>
+	    <if test="etlTime != null">and TA_SP_INSTANCE.etl_time = #{etlTime}</if>
+</sql>
+
+
+<!-- ElementID:insert,Generated=true -->
+<insert id="insert" parameterType="com.chinacreator.dzjc_ruleEngine.BussinessIns">
+	insert into TA_SP_INSTANCE(
+	         <if test="instanceId != null">instance_id</if>
+	         <if test="instanceCode != null">,instance_code</if>
+	         <if test="approveCode != null">,approve_code</if>
+	         <if test="instanceName != null">,instance_name</if>
+	         <if test="instancePy != null">,instance_py</if>
+	         <if test="acceptName != null">,accept_name</if>
+	         <if test="acceptTime != null">,accept_time</if>
+	         <if test="endName != null">,end_name</if>
+	         <if test="endTime != null">,end_time</if>
+	         <if test="timeUse != null">,time_use</if>
+	         <if test="applyId != null">,apply_id</if>
+	         <if test="applyType != null">,apply_type</if>
+	         <if test="applyName != null">,apply_name</if>
+	         <if test="orgId != null">,org_id</if>
+	         <if test="areaCode != null">,area_code</if>
+	         <if test="projectState != null">,project_state</if>
+	         <if test="queueCode != null">,queue_code</if>
+	         <if test="queryCode != null">,query_code</if>
+	         <if test="notacceptReason != null">,notaccept_reason</if>
+	         <if test="correctionTime != null">,correction_time</if>
+	         <if test="approveId != null">,approve_id</if>
+	         <if test="instanceSource != null">,instance_source</if>
+	         <if test="submitTime != null">,submit_time</if>
+	         <if test="remark != null">,remark</if>
+	         <if test="preReason != null">,pre_reason</if>
+	         <if test="approveName != null">,approve_name</if>
+	         <if test="acceptId != null">,accept_id</if>
+	         <if test="endId != null">,end_id</if>
+	         <if test="orgName != null">,org_name</if>
+	         <if test="curTache != null">,cur_tache</if>
+	         <if test="isSendresult != null">,is_sendresult</if>
+	         <if test="rzApplyId != null">,rz_apply_id</if>
+	         <if test="processInstanceid != null">,process_instanceid</if>
+	         <if test="processDefinitionid != null">,process_definitionid</if>
+	         <if test="timeLimit != null">,time_limit</if>
+	         <if test="promisesLimit != null">,promises_limit</if>
+	         <if test="etlTime != null">,etl_time</if>
+	 	 	 )
+	 values (
+	         <if test="instanceId != null">#{instanceId,jdbcType=VARCHAR}</if>
+	         <if test="instanceCode != null">,#{instanceCode,jdbcType=VARCHAR}</if>
+	         <if test="approveCode != null">,#{approveCode,jdbcType=VARCHAR}</if>
+	         <if test="instanceName != null">,#{instanceName,jdbcType=VARCHAR}</if>
+	         <if test="instancePy != null">,#{instancePy,jdbcType=VARCHAR}</if>
+	         <if test="acceptName != null">,#{acceptName,jdbcType=VARCHAR}</if>
+	         <if test="acceptTime != null">,#{acceptTime,jdbcType=DATE}</if>
+	         <if test="endName != null">,#{endName,jdbcType=VARCHAR}</if>
+	         <if test="endTime != null">,#{endTime,jdbcType=DATE}</if>
+	         <if test="timeUse != null">,#{timeUse,jdbcType=VARCHAR}</if>
+	         <if test="applyId != null">,#{applyId,jdbcType=VARCHAR}</if>
+	         <if test="applyType != null">,#{applyType,jdbcType=VARCHAR}</if>
+	         <if test="applyName != null">,#{applyName,jdbcType=VARCHAR}</if>
+	         <if test="orgId != null">,#{orgId,jdbcType=VARCHAR}</if>
+	         <if test="areaCode != null">,#{areaCode,jdbcType=VARCHAR}</if>
+	         <if test="projectState != null">,#{projectState,jdbcType=VARCHAR}</if>
+	         <if test="queueCode != null">,#{queueCode,jdbcType=VARCHAR}</if>
+	         <if test="queryCode != null">,#{queryCode,jdbcType=VARCHAR}</if>
+	         <if test="notacceptReason != null">,#{notacceptReason,jdbcType=VARCHAR}</if>
+	         <if test="correctionTime != null">,#{correctionTime,jdbcType=DATE}</if>
+	         <if test="approveId != null">,#{approveId,jdbcType=VARCHAR}</if>
+	         <if test="instanceSource != null">,#{instanceSource,jdbcType=VARCHAR}</if>
+	         <if test="submitTime != null">,#{submitTime,jdbcType=DATE}</if>
+	         <if test="remark != null">,#{remark,jdbcType=VARCHAR}</if>
+	         <if test="preReason != null">,#{preReason,jdbcType=VARCHAR}</if>
+	         <if test="approveName != null">,#{approveName,jdbcType=VARCHAR}</if>
+	         <if test="acceptId != null">,#{acceptId,jdbcType=VARCHAR}</if>
+	         <if test="endId != null">,#{endId,jdbcType=VARCHAR}</if>
+	         <if test="orgName != null">,#{orgName,jdbcType=VARCHAR}</if>
+	         <if test="curTache != null">,#{curTache,jdbcType=VARCHAR}</if>
+	         <if test="isSendresult != null">,#{isSendresult,jdbcType=VARCHAR}</if>
+	         <if test="rzApplyId != null">,#{rzApplyId,jdbcType=VARCHAR}</if>
+	         <if test="processInstanceid != null">,#{processInstanceid,jdbcType=VARCHAR}</if>
+	         <if test="processDefinitionid != null">,#{processDefinitionid,jdbcType=VARCHAR}</if>
+	         <if test="timeLimit != null">,#{timeLimit,jdbcType=VARCHAR}</if>
+	         <if test="promisesLimit != null">,#{promisesLimit,jdbcType=VARCHAR}</if>
+	         <if test="etlTime != null">,#{etlTime,jdbcType=DATE}</if>
+	 	 	 )
+</insert>
+<!-- ElementID:count,Generated=true -->
+<select id="count" parameterType="com.chinacreator.dzjc_ruleEngine.BussinessIns" resultType="int">
+	select count(*) from TA_SP_INSTANCE 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+<!-- ElementID:update,Generated=true -->
+<update id="update" parameterType="com.chinacreator.dzjc_ruleEngine.BussinessIns">
+	update TA_SP_INSTANCE
+<set>
+	<if test="instanceCode != null">instance_code=#{instanceCode,jdbcType=VARCHAR},</if>
+	<if test="approveCode != null">approve_code=#{approveCode,jdbcType=VARCHAR},</if>
+	<if test="instanceName != null">instance_name=#{instanceName,jdbcType=VARCHAR},</if>
+	<if test="instancePy != null">instance_py=#{instancePy,jdbcType=VARCHAR},</if>
+	<if test="acceptName != null">accept_name=#{acceptName,jdbcType=VARCHAR},</if>
+	<if test="acceptTime != null">accept_time=#{acceptTime,jdbcType=DATE},</if>
+	<if test="endName != null">end_name=#{endName,jdbcType=VARCHAR},</if>
+	<if test="endTime != null">end_time=#{endTime,jdbcType=DATE},</if>
+	<if test="timeUse != null">time_use=#{timeUse,jdbcType=VARCHAR},</if>
+	<if test="applyId != null">apply_id=#{applyId,jdbcType=VARCHAR},</if>
+	<if test="applyType != null">apply_type=#{applyType,jdbcType=VARCHAR},</if>
+	<if test="applyName != null">apply_name=#{applyName,jdbcType=VARCHAR},</if>
+	<if test="orgId != null">org_id=#{orgId,jdbcType=VARCHAR},</if>
+	<if test="areaCode != null">area_code=#{areaCode,jdbcType=VARCHAR},</if>
+	<if test="projectState != null">project_state=#{projectState,jdbcType=VARCHAR},</if>
+	<if test="queueCode != null">queue_code=#{queueCode,jdbcType=VARCHAR},</if>
+	<if test="queryCode != null">query_code=#{queryCode,jdbcType=VARCHAR},</if>
+	<if test="notacceptReason != null">notaccept_reason=#{notacceptReason,jdbcType=VARCHAR},</if>
+	<if test="correctionTime != null">correction_time=#{correctionTime,jdbcType=DATE},</if>
+	<if test="approveId != null">approve_id=#{approveId,jdbcType=VARCHAR},</if>
+	<if test="instanceSource != null">instance_source=#{instanceSource,jdbcType=VARCHAR},</if>
+	<if test="submitTime != null">submit_time=#{submitTime,jdbcType=DATE},</if>
+	<if test="remark != null">remark=#{remark,jdbcType=VARCHAR},</if>
+	<if test="preReason != null">pre_reason=#{preReason,jdbcType=VARCHAR},</if>
+	<if test="approveName != null">approve_name=#{approveName,jdbcType=VARCHAR},</if>
+	<if test="acceptId != null">accept_id=#{acceptId,jdbcType=VARCHAR},</if>
+	<if test="endId != null">end_id=#{endId,jdbcType=VARCHAR},</if>
+	<if test="orgName != null">org_name=#{orgName,jdbcType=VARCHAR},</if>
+	<if test="curTache != null">cur_tache=#{curTache,jdbcType=VARCHAR},</if>
+	<if test="isSendresult != null">is_sendresult=#{isSendresult,jdbcType=VARCHAR},</if>
+	<if test="rzApplyId != null">rz_apply_id=#{rzApplyId,jdbcType=VARCHAR},</if>
+	<if test="processInstanceid != null">process_instanceid=#{processInstanceid,jdbcType=VARCHAR},</if>
+	<if test="processDefinitionid != null">process_definitionid=#{processDefinitionid,jdbcType=VARCHAR},</if>
+	<if test="timeLimit != null">time_limit=#{timeLimit,jdbcType=VARCHAR},</if>
+	<if test="promisesLimit != null">promises_limit=#{promisesLimit,jdbcType=VARCHAR},</if>
+	<if test="etlTime != null">etl_time=#{etlTime,jdbcType=DATE}</if>
+</set>
+<where>
+	<choose>
+        <when test="instanceId != null">and instance_id = #{instanceId}</when>
+        <otherwise>and instance_id = </otherwise>
+    </choose>
+</where>
+</update>
+<!-- ElementID:updateNull,Generated=true -->
+<update id="updateNull" parameterType="map">
+	update TA_SP_INSTANCE
+	<set>
+		<trim suffixOverrides=",">
+		    <if test="instanceCode==null">instance_code = null,</if>
+		    <if test="approveCode==null">approve_code = null,</if>
+		    <if test="instanceName==null">instance_name = null,</if>
+		    <if test="instancePy==null">instance_py = null,</if>
+		    <if test="acceptName==null">accept_name = null,</if>
+		    <if test="acceptTime==null">accept_time = null,</if>
+		    <if test="endName==null">end_name = null,</if>
+		    <if test="endTime==null">end_time = null,</if>
+		    <if test="timeUse==null">time_use = null,</if>
+		    <if test="applyId==null">apply_id = null,</if>
+		    <if test="applyType==null">apply_type = null,</if>
+		    <if test="applyName==null">apply_name = null,</if>
+		    <if test="orgId==null">org_id = null,</if>
+		    <if test="areaCode==null">area_code = null,</if>
+		    <if test="projectState==null">project_state = null,</if>
+		    <if test="queueCode==null">queue_code = null,</if>
+		    <if test="queryCode==null">query_code = null,</if>
+		    <if test="notacceptReason==null">notaccept_reason = null,</if>
+		    <if test="correctionTime==null">correction_time = null,</if>
+		    <if test="approveId==null">approve_id = null,</if>
+		    <if test="instanceSource==null">instance_source = null,</if>
+		    <if test="submitTime==null">submit_time = null,</if>
+		    <if test="remark==null">remark = null,</if>
+		    <if test="preReason==null">pre_reason = null,</if>
+		    <if test="approveName==null">approve_name = null,</if>
+		    <if test="acceptId==null">accept_id = null,</if>
+		    <if test="endId==null">end_id = null,</if>
+		    <if test="orgName==null">org_name = null,</if>
+		    <if test="curTache==null">cur_tache = null,</if>
+		    <if test="isSendresult==null">is_sendresult = null,</if>
+		    <if test="rzApplyId==null">rz_apply_id = null,</if>
+		    <if test="processInstanceid==null">process_instanceid = null,</if>
+		    <if test="processDefinitionid==null">process_definitionid = null,</if>
+		    <if test="timeLimit==null">time_limit = null,</if>
+		    <if test="promisesLimit==null">promises_limit = null,</if>
+		    <if test="etlTime==null">etl_time = null,</if>
+		</trim>
+	</set>
+	<where>
+		<choose>
+			<when test="instanceId != null">and instance_id = #{instanceId}</when>
+			<otherwise>and instance_id = </otherwise>
+		</choose>
+	</where>
+</update>
+<!-- ElementID:delete,Generated=true -->
+<delete id="delete" parameterType="com.chinacreator.dzjc_ruleEngine.BussinessIns">
+    delete from TA_SP_INSTANCE where 1=1 and instance_id = #{instanceId}
+</delete>
+<!-- ElementID:select,Generated=true -->
+<select id="select" parameterType="com.chinacreator.dzjc_ruleEngine.BussinessIns" resultMap="BussinessInsResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_SP_INSTANCE 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+<!-- ElementID:insertBatch,Generated=true -->
+<insert id="insertBatch" parameterType="list">
+	insert into TA_SP_INSTANCE (instance_id,instance_code,approve_code,instance_name,instance_py,accept_name,accept_time,end_name,end_time,time_use,apply_id,apply_type,apply_name,org_id,area_code,project_state,queue_code,query_code,notaccept_reason,correction_time,approve_id,instance_source,submit_time,remark,pre_reason,approve_name,accept_id,end_id,org_name,cur_tache,is_sendresult,rz_apply_id,process_instanceid,process_definitionid,time_limit,promises_limit,etl_time) 
+<foreach collection="list" item="entity" index="index" separator="union all">
+		select 
+		#{entity.instanceId,jdbcType = VARCHAR},
+				#{entity.instanceCode,jdbcType = VARCHAR},
+				#{entity.approveCode,jdbcType = VARCHAR},
+				#{entity.instanceName,jdbcType = VARCHAR},
+				#{entity.instancePy,jdbcType = VARCHAR},
+				#{entity.acceptName,jdbcType = VARCHAR},
+				#{entity.acceptTime,jdbcType = DATE},
+				#{entity.endName,jdbcType = VARCHAR},
+				#{entity.endTime,jdbcType = DATE},
+				#{entity.timeUse,jdbcType = VARCHAR},
+				#{entity.applyId,jdbcType = VARCHAR},
+				#{entity.applyType,jdbcType = VARCHAR},
+				#{entity.applyName,jdbcType = VARCHAR},
+				#{entity.orgId,jdbcType = VARCHAR},
+				#{entity.areaCode,jdbcType = VARCHAR},
+				#{entity.projectState,jdbcType = VARCHAR},
+				#{entity.queueCode,jdbcType = VARCHAR},
+				#{entity.queryCode,jdbcType = VARCHAR},
+				#{entity.notacceptReason,jdbcType = VARCHAR},
+				#{entity.correctionTime,jdbcType = DATE},
+				#{entity.approveId,jdbcType = VARCHAR},
+				#{entity.instanceSource,jdbcType = VARCHAR},
+				#{entity.submitTime,jdbcType = DATE},
+				#{entity.remark,jdbcType = VARCHAR},
+				#{entity.preReason,jdbcType = VARCHAR},
+				#{entity.approveName,jdbcType = VARCHAR},
+				#{entity.acceptId,jdbcType = VARCHAR},
+				#{entity.endId,jdbcType = VARCHAR},
+				#{entity.orgName,jdbcType = VARCHAR},
+				#{entity.curTache,jdbcType = VARCHAR},
+				#{entity.isSendresult,jdbcType = VARCHAR},
+				#{entity.rzApplyId,jdbcType = VARCHAR},
+				#{entity.processInstanceid,jdbcType = VARCHAR},
+				#{entity.processDefinitionid,jdbcType = VARCHAR},
+				#{entity.timeLimit,jdbcType = VARCHAR},
+				#{entity.promisesLimit,jdbcType = VARCHAR},
+				#{entity.etlTime,jdbcType = DATE}
+		from dual
+</foreach>
+</insert>
+<!-- ElementID:deleteBatch,Generated=true -->
+<delete id="deleteBatch" parameterType="List">
+	delete from TA_SP_INSTANCE where instance_id in
+<trim prefix="(" suffix=")" suffixOverrides=",">
+<foreach collection="list" item="entity" separator=",">
+	<choose>
+		<when test="@com.chinacreator.c2.dao.util.EntityBeanUtil@isEntityObj(entity)">#{entity.instanceId}</when>
+		<otherwise>#{entity}</otherwise>
+	</choose>
+</foreach>
+</trim>
+</delete>
+<!-- ElementID:selectAll,Generated=true -->
+<select id="selectAll" resultMap="BussinessInsResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_SP_INSTANCE 
+</select>
+<!-- ElementID:selectUnion,Generated=true -->
+<select id="selectUnion" parameterType="list" resultMap="BussinessInsResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_SP_INSTANCE 
+	 INNER JOIN
+<foreach collection="list" item="entity" separator="UNION" open="(" close=")">
+		SELECT 
+			 instance_id
+		FROM TA_SP_INSTANCE 
+			<where>
+	        <if test="entity.instanceId != null">and TA_SP_INSTANCE.instance_id = #{entity.instanceId}</if>
+	        <if test="entity.instanceCode != null">and TA_SP_INSTANCE.instance_code = #{entity.instanceCode}</if>
+	        <if test="entity.approveCode != null">and TA_SP_INSTANCE.approve_code = #{entity.approveCode}</if>
+	        <if test="entity.instanceName != null">and TA_SP_INSTANCE.instance_name = #{entity.instanceName}</if>
+	        <if test="entity.instancePy != null">and TA_SP_INSTANCE.instance_py = #{entity.instancePy}</if>
+	        <if test="entity.acceptName != null">and TA_SP_INSTANCE.accept_name = #{entity.acceptName}</if>
+	        <if test="entity.acceptTime != null">and TA_SP_INSTANCE.accept_time = #{entity.acceptTime}</if>
+	        <if test="entity.endName != null">and TA_SP_INSTANCE.end_name = #{entity.endName}</if>
+	        <if test="entity.endTime != null">and TA_SP_INSTANCE.end_time = #{entity.endTime}</if>
+	        <if test="entity.timeUse != null">and TA_SP_INSTANCE.time_use = #{entity.timeUse}</if>
+	        <if test="entity.applyId != null">and TA_SP_INSTANCE.apply_id = #{entity.applyId}</if>
+	        <if test="entity.applyType != null">and TA_SP_INSTANCE.apply_type = #{entity.applyType}</if>
+	        <if test="entity.applyName != null">and TA_SP_INSTANCE.apply_name = #{entity.applyName}</if>
+	        <if test="entity.orgId != null">and TA_SP_INSTANCE.org_id = #{entity.orgId}</if>
+	        <if test="entity.areaCode != null">and TA_SP_INSTANCE.area_code = #{entity.areaCode}</if>
+	        <if test="entity.projectState != null">and TA_SP_INSTANCE.project_state = #{entity.projectState}</if>
+	        <if test="entity.queueCode != null">and TA_SP_INSTANCE.queue_code = #{entity.queueCode}</if>
+	        <if test="entity.queryCode != null">and TA_SP_INSTANCE.query_code = #{entity.queryCode}</if>
+	        <if test="entity.notacceptReason != null">and TA_SP_INSTANCE.notaccept_reason = #{entity.notacceptReason}</if>
+	        <if test="entity.correctionTime != null">and TA_SP_INSTANCE.correction_time = #{entity.correctionTime}</if>
+	        <if test="entity.approveId != null">and TA_SP_INSTANCE.approve_id = #{entity.approveId}</if>
+	        <if test="entity.instanceSource != null">and TA_SP_INSTANCE.instance_source = #{entity.instanceSource}</if>
+	        <if test="entity.submitTime != null">and TA_SP_INSTANCE.submit_time = #{entity.submitTime}</if>
+	        <if test="entity.remark != null">and TA_SP_INSTANCE.remark = #{entity.remark}</if>
+	        <if test="entity.preReason != null">and TA_SP_INSTANCE.pre_reason = #{entity.preReason}</if>
+	        <if test="entity.approveName != null">and TA_SP_INSTANCE.approve_name = #{entity.approveName}</if>
+	        <if test="entity.acceptId != null">and TA_SP_INSTANCE.accept_id = #{entity.acceptId}</if>
+	        <if test="entity.endId != null">and TA_SP_INSTANCE.end_id = #{entity.endId}</if>
+	        <if test="entity.orgName != null">and TA_SP_INSTANCE.org_name = #{entity.orgName}</if>
+	        <if test="entity.curTache != null">and TA_SP_INSTANCE.cur_tache = #{entity.curTache}</if>
+	        <if test="entity.isSendresult != null">and TA_SP_INSTANCE.is_sendresult = #{entity.isSendresult}</if>
+	        <if test="entity.rzApplyId != null">and TA_SP_INSTANCE.rz_apply_id = #{entity.rzApplyId}</if>
+	        <if test="entity.processInstanceid != null">and TA_SP_INSTANCE.process_instanceid = #{entity.processInstanceid}</if>
+	        <if test="entity.processDefinitionid != null">and TA_SP_INSTANCE.process_definitionid = #{entity.processDefinitionid}</if>
+	        <if test="entity.timeLimit != null">and TA_SP_INSTANCE.time_limit = #{entity.timeLimit}</if>
+	        <if test="entity.promisesLimit != null">and TA_SP_INSTANCE.promises_limit = #{entity.promisesLimit}</if>
+	        <if test="entity.etlTime != null">and TA_SP_INSTANCE.etl_time = #{entity.etlTime}</if>
+			</where>
+</foreach>
+	c2_temp_table ON TA_SP_INSTANCE.instance_id = c2_temp_table.instance_id
+</select>
+<!-- ElementID:selectByPage,Generated=true -->
+<select id="selectByPage" parameterType="com.chinacreator.dzjc_ruleEngine.BussinessIns" resultMap="BussinessInsResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_SP_INSTANCE 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+<!-- ElementID:selectMany,Generated=true -->
+<select id="selectMany" parameterType="list" resultMap="BussinessInsResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_SP_INSTANCE 
+	where TA_SP_INSTANCE.instance_id in (
+<foreach collection="list" item="entity" separator="intersect">
+		select 
+		TA_SP_INSTANCE.instance_id
+	    from TA_SP_INSTANCE 
+		 <where>
+	        <if test="entity.instanceId != null">and TA_SP_INSTANCE.instance_id = #{entity.instanceId}</if>
+	        <if test="entity.instanceCode != null">and TA_SP_INSTANCE.instance_code = #{entity.instanceCode}</if>
+	        <if test="entity.approveCode != null">and TA_SP_INSTANCE.approve_code = #{entity.approveCode}</if>
+	        <if test="entity.instanceName != null">and TA_SP_INSTANCE.instance_name = #{entity.instanceName}</if>
+	        <if test="entity.instancePy != null">and TA_SP_INSTANCE.instance_py = #{entity.instancePy}</if>
+	        <if test="entity.acceptName != null">and TA_SP_INSTANCE.accept_name = #{entity.acceptName}</if>
+	        <if test="entity.acceptTime != null">and TA_SP_INSTANCE.accept_time = #{entity.acceptTime}</if>
+	        <if test="entity.endName != null">and TA_SP_INSTANCE.end_name = #{entity.endName}</if>
+	        <if test="entity.endTime != null">and TA_SP_INSTANCE.end_time = #{entity.endTime}</if>
+	        <if test="entity.timeUse != null">and TA_SP_INSTANCE.time_use = #{entity.timeUse}</if>
+	        <if test="entity.applyId != null">and TA_SP_INSTANCE.apply_id = #{entity.applyId}</if>
+	        <if test="entity.applyType != null">and TA_SP_INSTANCE.apply_type = #{entity.applyType}</if>
+	        <if test="entity.applyName != null">and TA_SP_INSTANCE.apply_name = #{entity.applyName}</if>
+	        <if test="entity.orgId != null">and TA_SP_INSTANCE.org_id = #{entity.orgId}</if>
+	        <if test="entity.areaCode != null">and TA_SP_INSTANCE.area_code = #{entity.areaCode}</if>
+	        <if test="entity.projectState != null">and TA_SP_INSTANCE.project_state = #{entity.projectState}</if>
+	        <if test="entity.queueCode != null">and TA_SP_INSTANCE.queue_code = #{entity.queueCode}</if>
+	        <if test="entity.queryCode != null">and TA_SP_INSTANCE.query_code = #{entity.queryCode}</if>
+	        <if test="entity.notacceptReason != null">and TA_SP_INSTANCE.notaccept_reason = #{entity.notacceptReason}</if>
+	        <if test="entity.correctionTime != null">and TA_SP_INSTANCE.correction_time = #{entity.correctionTime}</if>
+	        <if test="entity.approveId != null">and TA_SP_INSTANCE.approve_id = #{entity.approveId}</if>
+	        <if test="entity.instanceSource != null">and TA_SP_INSTANCE.instance_source = #{entity.instanceSource}</if>
+	        <if test="entity.submitTime != null">and TA_SP_INSTANCE.submit_time = #{entity.submitTime}</if>
+	        <if test="entity.remark != null">and TA_SP_INSTANCE.remark = #{entity.remark}</if>
+	        <if test="entity.preReason != null">and TA_SP_INSTANCE.pre_reason = #{entity.preReason}</if>
+	        <if test="entity.approveName != null">and TA_SP_INSTANCE.approve_name = #{entity.approveName}</if>
+	        <if test="entity.acceptId != null">and TA_SP_INSTANCE.accept_id = #{entity.acceptId}</if>
+	        <if test="entity.endId != null">and TA_SP_INSTANCE.end_id = #{entity.endId}</if>
+	        <if test="entity.orgName != null">and TA_SP_INSTANCE.org_name = #{entity.orgName}</if>
+	        <if test="entity.curTache != null">and TA_SP_INSTANCE.cur_tache = #{entity.curTache}</if>
+	        <if test="entity.isSendresult != null">and TA_SP_INSTANCE.is_sendresult = #{entity.isSendresult}</if>
+	        <if test="entity.rzApplyId != null">and TA_SP_INSTANCE.rz_apply_id = #{entity.rzApplyId}</if>
+	        <if test="entity.processInstanceid != null">and TA_SP_INSTANCE.process_instanceid = #{entity.processInstanceid}</if>
+	        <if test="entity.processDefinitionid != null">and TA_SP_INSTANCE.process_definitionid = #{entity.processDefinitionid}</if>
+	        <if test="entity.timeLimit != null">and TA_SP_INSTANCE.time_limit = #{entity.timeLimit}</if>
+	        <if test="entity.promisesLimit != null">and TA_SP_INSTANCE.promises_limit = #{entity.promisesLimit}</if>
+	        <if test="entity.etlTime != null">and TA_SP_INSTANCE.etl_time = #{entity.etlTime}</if>
+		</where>
+</foreach>
+)
+</select>
+<!-- ElementID:updateBatch,Generated=true -->
+<update id="updateBatch" parameterType="list">
+	<foreach collection="list" item="entity" open="begin" close=";end;" separator=";">
+			update TA_SP_INSTANCE
+	<set>
+	<if test="entity.instanceCode != null">instance_code= #{entity.instanceCode,jdbcType=VARCHAR},</if>
+	<if test="entity.approveCode != null">approve_code= #{entity.approveCode,jdbcType=VARCHAR},</if>
+	<if test="entity.instanceName != null">instance_name= #{entity.instanceName,jdbcType=VARCHAR},</if>
+	<if test="entity.instancePy != null">instance_py= #{entity.instancePy,jdbcType=VARCHAR},</if>
+	<if test="entity.acceptName != null">accept_name= #{entity.acceptName,jdbcType=VARCHAR},</if>
+	<if test="entity.acceptTime != null">accept_time= #{entity.acceptTime,jdbcType=DATE},</if>
+	<if test="entity.endName != null">end_name= #{entity.endName,jdbcType=VARCHAR},</if>
+	<if test="entity.endTime != null">end_time= #{entity.endTime,jdbcType=DATE},</if>
+	<if test="entity.timeUse != null">time_use= #{entity.timeUse,jdbcType=VARCHAR},</if>
+	<if test="entity.applyId != null">apply_id= #{entity.applyId,jdbcType=VARCHAR},</if>
+	<if test="entity.applyType != null">apply_type= #{entity.applyType,jdbcType=VARCHAR},</if>
+	<if test="entity.applyName != null">apply_name= #{entity.applyName,jdbcType=VARCHAR},</if>
+	<if test="entity.orgId != null">org_id= #{entity.orgId,jdbcType=VARCHAR},</if>
+	<if test="entity.areaCode != null">area_code= #{entity.areaCode,jdbcType=VARCHAR},</if>
+	<if test="entity.projectState != null">project_state= #{entity.projectState,jdbcType=VARCHAR},</if>
+	<if test="entity.queueCode != null">queue_code= #{entity.queueCode,jdbcType=VARCHAR},</if>
+	<if test="entity.queryCode != null">query_code= #{entity.queryCode,jdbcType=VARCHAR},</if>
+	<if test="entity.notacceptReason != null">notaccept_reason= #{entity.notacceptReason,jdbcType=VARCHAR},</if>
+	<if test="entity.correctionTime != null">correction_time= #{entity.correctionTime,jdbcType=DATE},</if>
+	<if test="entity.approveId != null">approve_id= #{entity.approveId,jdbcType=VARCHAR},</if>
+	<if test="entity.instanceSource != null">instance_source= #{entity.instanceSource,jdbcType=VARCHAR},</if>
+	<if test="entity.submitTime != null">submit_time= #{entity.submitTime,jdbcType=DATE},</if>
+	<if test="entity.remark != null">remark= #{entity.remark,jdbcType=VARCHAR},</if>
+	<if test="entity.preReason != null">pre_reason= #{entity.preReason,jdbcType=VARCHAR},</if>
+	<if test="entity.approveName != null">approve_name= #{entity.approveName,jdbcType=VARCHAR},</if>
+	<if test="entity.acceptId != null">accept_id= #{entity.acceptId,jdbcType=VARCHAR},</if>
+	<if test="entity.endId != null">end_id= #{entity.endId,jdbcType=VARCHAR},</if>
+	<if test="entity.orgName != null">org_name= #{entity.orgName,jdbcType=VARCHAR},</if>
+	<if test="entity.curTache != null">cur_tache= #{entity.curTache,jdbcType=VARCHAR},</if>
+	<if test="entity.isSendresult != null">is_sendresult= #{entity.isSendresult,jdbcType=VARCHAR},</if>
+	<if test="entity.rzApplyId != null">rz_apply_id= #{entity.rzApplyId,jdbcType=VARCHAR},</if>
+	<if test="entity.processInstanceid != null">process_instanceid= #{entity.processInstanceid,jdbcType=VARCHAR},</if>
+	<if test="entity.processDefinitionid != null">process_definitionid= #{entity.processDefinitionid,jdbcType=VARCHAR},</if>
+	<if test="entity.timeLimit != null">time_limit= #{entity.timeLimit,jdbcType=VARCHAR},</if>
+	<if test="entity.promisesLimit != null">promises_limit= #{entity.promisesLimit,jdbcType=VARCHAR},</if>
+	<if test="entity.etlTime != null">etl_time= #{entity.etlTime,jdbcType=DATE}</if>
+	</set>
+		<where>
+			<choose>
+				<when test="entity.instanceId != null">and instance_id = #{entity.instanceId}</when>
+				<otherwise>and instance_id = </otherwise>
+			</choose>
+		</where>
+	</foreach>
+</update>
+</mapper>

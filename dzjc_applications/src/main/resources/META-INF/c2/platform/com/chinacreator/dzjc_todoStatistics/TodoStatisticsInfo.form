@@ -1,0 +1,767 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form:Form xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dync="http://www.chinacreator.com/platform/mvc/ui/dync" xmlns:form="http://www.chinacreator.com/platform/mvc/form" name="" res="" sn="dzjc_todoStatistics/TodoStatisticsInfo" type="form">
+  <form:control type="page/normal">
+    <form:attributes source="page/normal">
+      <dync:attribute default="" group="HTML" id="showHead" name="显示标题" value="">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="" group="HTML" id="title" name="标题" value="">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="" group="HTML" id="desc" name="描述" value="">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="false" group="HTML" id="fixedHeight" name="自动高度" value="false">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="false" group="HTML" id="compact" name="紧凑页面" value="false">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="false" group="HTML" id="dirtyCheck" name="脏检查" value="false">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="" group="注入配置" id="angularJsServices" name="注入服务" value="">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="" group="事件" id="beforeDataSourceLoad" name="数据源加载前" value="page_beforeDataSourceLoad($params)">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="" group="事件" id="afterDataSourceLoad" name="数据源加载后" value="page_afterDataSourceLoad()">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+    </form:attributes>
+  </form:control>
+  <form:child xsi:type="form:Group" id="div5" name="简单容器(DIV)">
+    <form:control type="container/div">
+      <form:attributes source="container/div">
+        <dync:attribute default="" group="高级自定义" id="style" name="自定义style" value="height:10px;">
+          <dync:render colSpan="2" height="0" multi="false" name="text"/>
+          <dync:children/>
+        </dync:attribute>
+      </form:attributes>
+    </form:control>
+  </form:child>
+  <form:child xsi:type="form:Group" id="div" name="">
+    <form:control type="container/div">
+      <form:attributes source="container/div"/>
+    </form:control>
+    <form:child xsi:type="form:Field" binding="$params.selectType" id="selectSimple" name="" customize="true">
+      <form:control type="widget/select_simple">
+        <form:attributes source="widget/select_simple">
+          <dync:attribute default="" group="下拉框设置" id="selectOptions" name="选项" value="[{&quot;id&quot;:&quot;0&quot;,&quot;name&quot;:&quot;按月查询&quot;},{&quot;id&quot;:&quot;1&quot;,&quot;name&quot;:&quot;按时间段查询&quot;}]">
+            <dync:render colSpan="1" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="6" group="基本设置" id="span" name="占位数" value="3">
+            <dync:render colSpan="1" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="75" group="基本设置" id="lableWidth" name="lable宽度" value="20">
+            <dync:render colSpan="1" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="" group="事件设置" id="change" name="值变换事件" value="selectSimple_change()">
+            <dync:render colSpan="2" height="0" multi="false" name="event">
+              <dync:item name="params" value=""/>
+            </dync:render>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+      <form:validation/>
+    </form:child>
+    <form:child xsi:type="form:Group" id="div1" name="简单容器(DIV)">
+      <form:control type="container/div">
+        <form:attributes source="container/div">
+          <dync:attribute default="12" group="HTML配置" id="span" name="占位数" value="8">
+            <dync:render colSpan="1" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="" group="高级自定义" id="html" name="自定义HTML" value="div1_html">
+            <dync:render colSpan="2" height="0" multi="false" name="html"/>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+    </form:child>
+    <form:child xsi:type="form:Group" id="div3" name="简单容器(DIV)">
+      <form:control type="container/div">
+        <form:attributes source="container/div">
+          <dync:attribute default="12" group="HTML配置" id="span" name="占位数" value="8">
+            <dync:render colSpan="1" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+      <form:child xsi:type="form:Field" id="dateTimeRangePicker" name="日期范围" customize="true">
+        <form:control type="widget/date_time_range_picker">
+          <form:attributes source="widget/date_time_range_picker">
+            <dync:attribute default="" group="时间设置" id="startBind" name="开始时间数据绑定" value="$params.startDate">
+              <dync:render colSpan="1" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="" group="时间设置" id="endBind" name="结束时间数据绑定" value="$params.endDate">
+              <dync:render colSpan="1" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="6" group="基本设置" id="span" name="空间宽度" value="7">
+              <dync:render colSpan="1" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+          </form:attributes>
+        </form:control>
+        <form:validation/>
+      </form:child>
+    </form:child>
+  </form:child>
+  <form:child xsi:type="form:Group" id="div4" name="简单容器(DIV)">
+    <form:control type="container/div">
+      <form:attributes source="container/div"/>
+    </form:control>
+    <form:child xsi:type="form:Group" id="div6" name="简单容器(DIV)">
+      <form:control type="container/div">
+        <form:attributes source="container/div">
+          <dync:attribute default="12" group="HTML配置" id="span" name="占位数" value="7">
+            <dync:render colSpan="1" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="0" group="HTML配置" id="offset" name="偏移" value="4">
+            <dync:render colSpan="1" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+      <form:child xsi:type="form:Field" id="button" name="查询" customize="true">
+        <form:control type="widget/button">
+          <form:attributes source="widget/button">
+            <dync:attribute default="" group="事件设置" id="click" name="点击事件" value="button_click($event)">
+              <dync:render colSpan="1" height="0" multi="false" name="event">
+                <dync:item name="params" value="$event"/>
+              </dync:render>
+              <dync:children/>
+            </dync:attribute>
+          </form:attributes>
+        </form:control>
+        <form:validation/>
+      </form:child>
+      <form:child xsi:type="form:Field" id="clean_button6" name="重置">
+        <form:control type="widget/button">
+          <form:attributes source="widget/button">
+            <dync:attribute id="clean_button" value="普通按钮">
+              <dync:render/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="" group="事件设置" id="click" name="点击事件" value="clean_button5_click($event)">
+              <dync:render colSpan="1" height="0" multi="false" name="event">
+                <dync:item name="params" value="$event"/>
+              </dync:render>
+              <dync:children/>
+            </dync:attribute>
+          </form:attributes>
+        </form:control>
+      </form:child>
+      <form:child xsi:type="form:Field" id="button1" name="Excel导出" customize="true">
+        <form:control type="widget/button">
+          <form:attributes source="widget/button">
+            <dync:attribute default="" group="事件设置" id="click" name="点击事件" value="button1_click($event)">
+              <dync:render colSpan="1" height="0" multi="false" name="event">
+                <dync:item name="params" value="$event"/>
+              </dync:render>
+              <dync:children/>
+            </dync:attribute>
+          </form:attributes>
+        </form:control>
+        <form:validation/>
+      </form:child>
+      <form:child xsi:type="form:Field" id="button2" name="word导出" customize="true">
+        <form:control type="widget/button">
+          <form:attributes source="widget/button">
+            <dync:attribute default="" group="事件设置" id="click" name="点击事件" value="button2_click($event)">
+              <dync:render colSpan="1" height="0" multi="false" name="event">
+                <dync:item name="params" value="$event"/>
+              </dync:render>
+              <dync:children/>
+            </dync:attribute>
+          </form:attributes>
+        </form:control>
+        <form:validation/>
+      </form:child>
+    </form:child>
+  </form:child>
+  <form:child xsi:type="form:Group" id="div2" name="简单容器(DIV)">
+    <form:control type="container/div">
+      <form:attributes source="container/div">
+        <dync:attribute default="" group="高级自定义" id="html" name="自定义HTML" value="div2_html">
+          <dync:render colSpan="2" height="0" multi="false" name="html"/>
+          <dync:children/>
+        </dync:attribute>
+      </form:attributes>
+    </form:control>
+  </form:child>
+  <form:datasources>
+    <form:datasource xsi:type="form:TreeDataSource" id="orgTree" name="树型数据源" type="url" url="dzjc_ruleEngine/v1/GetOrgTree"/>
+  </form:datasources>
+  <form:scripts>
+
+selectSimple_change:function(){
+	if($params.selectType==0){
+		$params.yearShow=true;
+		$params.timeShow=false;
+		$params.startDate=&quot;&quot;;
+		$params.endDate=&quot;&quot;;
+		document.getElementById('div3').style.display=&quot;none&quot;;
+	}else{
+		$params.yearShow=false;	
+		$params.timeShow=true;
+		$params.startDate=&quot;&quot;;
+		$params.endDate=&quot;&quot;;
+		document.getElementById('div3').style.display=&quot;inline&quot;;
+	}
+},
+
+page_beforeDataSourceLoad:function($params){
+	//默认值
+	$params.selectType='0';
+	$params.yearShow=true;
+	$params.timeShow=false;
+	$params.showArea=true;
+	$params.showUnitName=false;
+	$http.get(c2.base(&quot;service&quot;)+&quot;dzjc_todoStatistics/v1/tdSmDictData/todoStatistics_yeaer&quot;).success(function(result){
+		if(result.success){
+			var myDate = new Date();
+			var yearValue=myDate.getFullYear();
+			$params.todoStatisticsYears=result.data;
+			angular.forEach(result.data,function(item){
+				if(item.dictdataValue==yearValue){
+					$params.todoStatisticsYear=item;
+				}
+			});
+			$params.todoStatisticsMonth=myDate.getMonth()+1;
+		}else{
+			Messenger.error(result.message);
+		}
+	});
+	/*$http.post(c2.base(&quot;service&quot;)+&quot;dzjc_todoStatistics/v1/getOrgCode&quot;).success(function(result){*/
+	//此处暂用“分类事项办件情况”的权限校验
+	$http.post(c2.base(&quot;service&quot;)+&quot;dzjc_ruleEngine/v1/shiXiangBanJianStatistics/getOrgCode&quot;).success(function(result){
+		if(result.success){
+			$params.parentCode=result.parentCode;
+			$params.viewFlag=result.viewFlag;
+		}else{
+			Messenger.error(result.message);
+		}
+	});
+},
+
+button_click:function($event){
+	var param={};
+	if($params.startDate!=null &amp;&amp; $params.startDate!=undefined &amp;&amp;$params.startDate!=&quot;&quot;){
+		param={
+			&quot;selectType&quot;:&quot;1&quot;,
+			&quot;startDate&quot;:$params.startDate,
+			&quot;endDate&quot;:$params.endDate,
+			&quot;parentCode&quot;:$params.parentCode,
+			&quot;viewFlag&quot;:$params.oldviewFlag
+		}
+	}else{
+		param={
+			&quot;selectType&quot;:&quot;0&quot;,
+			&quot;year&quot;:$params.todoStatisticsYear.dictdataValue,
+			&quot;month&quot;:$params.todoStatisticsMonth,
+			&quot;parentCode&quot;:$params.parentCode,
+			&quot;viewFlag&quot;:$params.oldviewFlag
+		}	
+	}
+	var url;
+	if($params.parentCode==&quot;439900000000&quot;){
+		url=&quot;dzjc_todoStatistics/v1/getLevelStatisticsList&quot;;
+		$params.showArea=false;
+		$params.showUnitName=true;
+		$params.expExcelUrl=&quot;dzjc_todoStatistics/v1/expExcel?queryCondition=&quot;+encodeURIComponent(JSON.stringify(param))+&quot;&amp;expType=LevelStatisticsList&quot;;
+		$params.expwordlUrl=&quot;dzjc_todoStatistics/v1/expExcel?queryCondition=&quot;+encodeURIComponent(JSON.stringify(param))+&quot;&amp;expType=LevelStatisticsList&amp;wordtype=wordtype&quot;;
+	}else if($params.parentCode!=&quot;439900000000&quot; &amp;&amp; $params.oldviewFlag==&quot;city&quot; &amp;&amp; $params.parentCode!=&quot;430000000000&quot;){
+		url=&quot;dzjc_todoStatistics/v1/getCityLevelStatisticsList&quot;;
+		$params.expExcelUrl=&quot;dzjc_todoStatistics/v1/expExcel?queryCondition=&quot;+encodeURIComponent(JSON.stringify(param))+&quot;&amp;expType=CityLevelStatisticsList&quot;;
+		$params.expwordlUrl=&quot;dzjc_todoStatistics/v1/expExcel?queryCondition=&quot;+encodeURIComponent(JSON.stringify(param))+&quot;&amp;expType=CityLevelStatisticsList&amp;wordtype=wordtype&quot;;
+	}else if($params.parentCode!=&quot;439900000000&quot; &amp;&amp; $params.oldviewFlag==&quot;area&quot;){
+		url=&quot;dzjc_todoStatistics/v1/getCityAreaStatisticsList&quot;;
+		$params.showArea=false;
+		$params.showUnitName=true;
+		$params.expExcelUrl=&quot;dzjc_todoStatistics/v1/expExcel?queryCondition=&quot;+encodeURIComponent(JSON.stringify(param))+&quot;&amp;expType=CityAreaStatisticsList&quot;;
+		$params.expwordlUrl=&quot;dzjc_todoStatistics/v1/expExcel?queryCondition=&quot;+encodeURIComponent(JSON.stringify(param))+&quot;&amp;expType=CityAreaStatisticsList&amp;wordtype=wordtype&quot;;
+	}else if($params.parentCode==&quot;430000000000&quot;){
+		url=&quot;dzjc_todoStatistics/v1/getTodoStatisticsList&quot;;
+		$params.showUnitName=false;
+		$params.showArea=true;
+		$params.expExcelUrl=&quot;dzjc_todoStatistics/v1/expExcel?queryCondition=&quot;+encodeURIComponent(JSON.stringify(param))+&quot;&amp;expType=TodoStatisticsList&quot;;
+		$params.expwordlUrl=&quot;dzjc_todoStatistics/v1/expExcel?queryCondition=&quot;+encodeURIComponent(JSON.stringify(param))+&quot;&amp;expType=TodoStatisticsList&amp;wordtype=wordtype&quot;;	
+	}else if($params.oldviewFlag==&quot;org&quot;){
+		url=&quot;dzjc_todoStatistics/v1/getCityOrgStatisticsList&quot;;
+		$params.showArea=false;
+		$params.showUnitName=true;
+		$params.expExcelUrl=&quot;dzjc_todoStatistics/v1/expExcel?queryCondition=&quot;+encodeURIComponent(JSON.stringify(param))+&quot;&amp;expType=CityOrgStatisticsList&quot;;
+		$params.expwordlUrl=&quot;dzjc_todoStatistics/v1/expExcel?queryCondition=&quot;+encodeURIComponent(JSON.stringify(param))+&quot;&amp;expType=CityOrgStatisticsList&amp;wordtype=wordtype&quot;;
+	}
+	$http.post(c2.base(&quot;service&quot;)+url,param).success(function(result){
+		if(result.success){	
+			$params.todoStatisticsList=result.list;
+			$params.accCollection=result.accCollection;
+			$params.accWork=result.accWork;
+			$params.accRed=result.accRed;
+			$params.accYellow=result.accYellow;
+			$params.accComplaint=result.accComplaint;
+			$params.accComplaintReply=result.accComplaintReply;
+			$params.accConsult=result.accConsult;
+			$params.accConsultReply=result.accConsultReply;
+			$params.viewFlag=result.viewFlag;
+		}else{
+			Messenger.error(result.message);
+		}
+	});
+},
+
+changeAreaCode:function(item){
+	var param={};
+	if($params.startDate!=null &amp;&amp; $params.startDate!=undefined &amp;&amp;$params.startDate!=&quot;&quot;){
+		param={
+			&quot;selectType&quot;:&quot;1&quot;,
+			&quot;startDate&quot;:$params.startDate,
+			&quot;endDate&quot;:$params.endDate,
+			&quot;parentCode&quot;:item.areaCode,
+			&quot;viewFlag&quot;:$params.viewFlag
+		}
+	}else{
+		param={
+		&quot;selectType&quot;:&quot;0&quot;,
+		&quot;year&quot;:$params.todoStatisticsYear.dictdataValue,
+		&quot;month&quot;:$params.todoStatisticsMonth,
+		&quot;parentCode&quot;:item.areaCode,
+		&quot;viewFlag&quot;:$params.viewFlag};	
+	}
+	var url;
+	if(item.areaCode==&quot;439900000000&quot;){
+		url=&quot;dzjc_todoStatistics/v1/getLevelStatisticsList&quot;;
+		$params.showArea=false;
+		$params.showUnitName=true;
+		$params.expExcelUrl=&quot;dzjc_todoStatistics/v1/expExcel?queryCondition=&quot;+encodeURIComponent(JSON.stringify(param))+&quot;&amp;expType=LevelStatisticsList&quot;;
+		$params.expwordlUrl=&quot;dzjc_todoStatistics/v1/expExcel?queryCondition=&quot;+encodeURIComponent(JSON.stringify(param))+&quot;&amp;expType=LevelStatisticsList&amp;wordtype=wordtype&quot;;
+	}else if(item.areaCode!=&quot;439900000000&quot; &amp;&amp; $params.viewFlag==&quot;city&quot; &amp;&amp; item.parentCode!=&quot;430000000000&quot;){
+		url=&quot;dzjc_todoStatistics/v1/getCityLevelStatisticsList&quot;;
+		$params.expExcelUrl=&quot;dzjc_todoStatistics/v1/expExcel?queryCondition=&quot;+encodeURIComponent(JSON.stringify(param))+&quot;&amp;expType=CityLevelStatisticsList&quot;;
+		$params.expwordlUrl=&quot;dzjc_todoStatistics/v1/expExcel?queryCondition=&quot;+encodeURIComponent(JSON.stringify(param))+&quot;&amp;expType=CityLevelStatisticsList&amp;wordtype=wordtype&quot;;
+	}else if(item.areaCode!=&quot;439900000000&quot; &amp;&amp; $params.viewFlag==&quot;area&quot;){
+		url=&quot;dzjc_todoStatistics/v1/getCityAreaStatisticsList&quot;;
+		$params.showArea=false;
+		$params.showUnitName=true;
+		$params.expExcelUrl=&quot;dzjc_todoStatistics/v1/expExcel?queryCondition=&quot;+encodeURIComponent(JSON.stringify(param))+&quot;&amp;expType=CityAreaStatisticsList&quot;;
+		$params.expwordlUrl=&quot;dzjc_todoStatistics/v1/expExcel?queryCondition=&quot;+encodeURIComponent(JSON.stringify(param))+&quot;&amp;expType=CityAreaStatisticsList&amp;wordtype=wordtype&quot;;		
+	}else if(item.areaCode==&quot;430000000000&quot;){
+		url=&quot;dzjc_todoStatistics/v1/getTodoStatisticsList&quot;;
+		$params.showUnitName=false;
+		$params.showArea=true;
+		$params.expExcelUrl=&quot;dzjc_todoStatistics/v1/expExcel?queryCondition=&quot;+encodeURIComponent(JSON.stringify(param))+&quot;&amp;expType=TodoStatisticsList&quot;;	
+		$params.expwordlUrl=&quot;dzjc_todoStatistics/v1/expExcel?queryCondition=&quot;+encodeURIComponent(JSON.stringify(param))+&quot;&amp;expType=TodoStatisticsList&amp;wordtype=wordtype&quot;;	
+		
+	}else if($params.viewFlag==&quot;org&quot;){
+		url=&quot;dzjc_todoStatistics/v1/getCityOrgStatisticsList&quot;;
+		$params.showArea=false;
+		$params.showUnitName=true;
+		$params.expExcelUrl=&quot;dzjc_todoStatistics/v1/expExcel?queryCondition=&quot;+encodeURIComponent(JSON.stringify(param))+&quot;&amp;expType=CityOrgStatisticsList&quot;;
+		$params.expwordlUrl=&quot;dzjc_todoStatistics/v1/expExcel?queryCondition=&quot;+encodeURIComponent(JSON.stringify(param))+&quot;&amp;expType=CityOrgStatisticsList&amp;wordtype=wordtype&quot;;
+	}
+	$http.post(c2.base(&quot;service&quot;)+url,param).success(function(result){
+		if(result.success){	
+			$params.todoStatisticsList=result.list;
+			$params.accCollection=result.accCollection;
+			$params.accWork=result.accWork;
+			$params.accRed=result.accRed;
+			$params.accYellow=result.accYellow;
+			$params.accComplaint=result.accComplaint;
+			$params.accComplaintReply=result.accComplaintReply;
+			$params.accConsult=result.accConsult;
+			$params.accConsultReply=result.accConsultReply;
+			
+			$params.oldviewFlag =$params.viewFlag;
+			$params.viewFlag=result.viewFlag;
+			$params.oldparentCode=$params.parentCode;
+			$params.parentCode=result.parentCode;
+		}else{
+			Messenger.error(result.message);
+		}
+	});
+},
+
+button1_click:function($event){
+	window.open($params.expExcelUrl);
+},
+
+page_afterDataSourceLoad:function(){
+	document.getElementById('div3').style.display=&quot;none&quot;;
+	setTimeout(function(){
+		 functions.button_click1();
+		 functions.button_click2();
+	}, 1000); 
+},
+
+button_click1:function($event){
+	var param={};
+	if($params.startDate!=null &amp;&amp; $params.startDate!=undefined &amp;&amp;$params.startDate!=&quot;&quot;){
+		param={
+			&quot;selectType&quot;:&quot;1&quot;,
+			&quot;startDate&quot;:$params.startDate,
+			&quot;endDate&quot;:$params.endDate,
+			&quot;parentCode&quot;:$params.parentCode,
+			&quot;viewFlag&quot;:$params.viewFlag
+		}
+	}else{
+		param={
+			&quot;selectType&quot;:&quot;0&quot;,
+			&quot;year&quot;:$params.todoStatisticsYear.dictdataValue,
+			&quot;month&quot;:$params.todoStatisticsMonth,
+			&quot;parentCode&quot;:$params.parentCode,
+			&quot;viewFlag&quot;:$params.viewFlag
+		}	
+	}
+	var url;
+	if($params.parentCode==&quot;439900000000&quot;){
+		url=&quot;dzjc_todoStatistics/v1/getLevelStatisticsList&quot;;
+		$params.showArea=false;
+		$params.showUnitName=true;
+		$params.expExcelUrl=&quot;dzjc_todoStatistics/v1/expExcel?queryCondition=&quot;+encodeURIComponent(JSON.stringify(param))+&quot;&amp;expType=LevelStatisticsList&quot;;
+	}else if($params.parentCode!=&quot;439900000000&quot; &amp;&amp; $params.viewFlag==&quot;city&quot; &amp;&amp; $params.parentCode!=&quot;430000000000&quot;){
+		url=&quot;dzjc_todoStatistics/v1/getCityLevelStatisticsList&quot;;
+		$params.expExcelUrl=&quot;dzjc_todoStatistics/v1/expExcel?queryCondition=&quot;+encodeURIComponent(JSON.stringify(param))+&quot;&amp;expType=CityLevelStatisticsList&quot;;
+	}else if($params.parentCode!=&quot;439900000000&quot; &amp;&amp; $params.viewFlag==&quot;area&quot;){
+		url=&quot;dzjc_todoStatistics/v1/getCityAreaStatisticsList&quot;;
+		$params.showArea=false;
+		$params.showUnitName=true;
+		$params.expExcelUrl=&quot;dzjc_todoStatistics/v1/expExcel?queryCondition=&quot;+encodeURIComponent(JSON.stringify(param))+&quot;&amp;expType=CityAreaStatisticsList&quot;;
+	}else if($params.parentCode==&quot;430000000000&quot;){
+		url=&quot;dzjc_todoStatistics/v1/getTodoStatisticsList&quot;;
+		$params.showUnitName=false;
+		$params.showArea=true;
+		$params.expExcelUrl=&quot;dzjc_todoStatistics/v1/expExcel?queryCondition=&quot;+encodeURIComponent(JSON.stringify(param))+&quot;&amp;expType=TodoStatisticsList&quot;;
+	}else if($params.viewFlag==&quot;org&quot;){
+		url=&quot;dzjc_todoStatistics/v1/getCityOrgStatisticsList&quot;;
+		$params.showArea=false;
+		$params.showUnitName=true;
+		$params.expExcelUrl=&quot;dzjc_todoStatistics/v1/expExcel?queryCondition=&quot;+encodeURIComponent(JSON.stringify(param))+&quot;&amp;expType=CityOrgStatisticsList&quot;;
+	}
+	$http.post(c2.base(&quot;service&quot;)+url,param).success(function(result){
+		if(result.success){	
+			$params.todoStatisticsList=result.list;
+			$params.accCollection=result.accCollection;
+			$params.accWork=result.accWork;
+			$params.accRed=result.accRed;
+			$params.accYellow=result.accYellow;
+			$params.accComplaint=result.accComplaint;
+			$params.accComplaintReply=result.accComplaintReply;
+			$params.accConsult=result.accConsult;
+			$params.accConsultReply=result.accConsultReply;
+			
+			$params.oldviewFlagOld =$params.viewFlag;
+			$params.oldviewFlag =$params.viewFlag;
+			$params.viewFlag=result.viewFlag;
+			$params.oldparentCodeOld=$params.parentCode;
+			$params.oldparentCode=$params.parentCode;
+			$params.parentCode=result.parentCode;
+			
+		}else{
+			Messenger.error(result.message);
+		}
+	});
+},
+button_click2:function($event){
+	var param={};
+	if($params.startDate!=null &amp;&amp; $params.startDate!=undefined &amp;&amp;$params.startDate!=&quot;&quot;){
+		param={
+			&quot;selectType&quot;:&quot;1&quot;,
+			&quot;startDate&quot;:$params.startDate,
+			&quot;endDate&quot;:$params.endDate,
+			&quot;parentCode&quot;:$params.parentCode,
+			&quot;viewFlag&quot;:$params.viewFlag
+		}
+	}else{
+		param={
+			&quot;selectType&quot;:&quot;0&quot;,
+			&quot;year&quot;:$params.todoStatisticsYear.dictdataValue,
+			&quot;month&quot;:$params.todoStatisticsMonth,
+			&quot;parentCode&quot;:$params.parentCode,
+			&quot;viewFlag&quot;:$params.viewFlag
+		}	
+	}
+	var url;
+	if($params.parentCode==&quot;439900000000&quot;){
+		url=&quot;dzjc_todoStatistics/v1/getLevelStatisticsList&quot;;
+		$params.showArea=false;
+		$params.showUnitName=true;
+		$params.expwordlUrl=&quot;dzjc_todoStatistics/v1/expExcel?queryCondition=&quot;+encodeURIComponent(JSON.stringify(param))+&quot;&amp;expType=LevelStatisticsList&amp;wordtype=wordtype&quot;;
+	}else if($params.parentCode!=&quot;439900000000&quot; &amp;&amp; $params.viewFlag==&quot;city&quot; &amp;&amp; $params.parentCode!=&quot;430000000000&quot;){
+		url=&quot;dzjc_todoStatistics/v1/getCityLevelStatisticsList&quot;;
+		$params.expwordlUrl=&quot;dzjc_todoStatistics/v1/expExcel?queryCondition=&quot;+encodeURIComponent(JSON.stringify(param))+&quot;&amp;expType=CityLevelStatisticsList&amp;wordtype=wordtype&quot;;
+	}else if($params.parentCode!=&quot;439900000000&quot; &amp;&amp; $params.viewFlag==&quot;area&quot;){
+		url=&quot;dzjc_todoStatistics/v1/getCityAreaStatisticsList&quot;;
+		$params.showArea=false;
+		$params.showUnitName=true;
+		$params.expwordlUrl=&quot;dzjc_todoStatistics/v1/expExcel?queryCondition=&quot;+encodeURIComponent(JSON.stringify(param))+&quot;&amp;expType=CityAreaStatisticsList&amp;wordtype=wordtype&quot;;
+	}else if($params.parentCode==&quot;430000000000&quot;){
+		url=&quot;dzjc_todoStatistics/v1/getTodoStatisticsList&quot;;
+		$params.showUnitName=false;
+		$params.showArea=true;
+		$params.expwordlUrl=&quot;dzjc_todoStatistics/v1/expExcel?queryCondition=&quot;+encodeURIComponent(JSON.stringify(param))+&quot;&amp;expType=TodoStatisticsList&amp;wordtype=wordtype&quot;;
+	}else if($params.viewFlag==&quot;org&quot;){
+		url=&quot;dzjc_todoStatistics/v1/getCityOrgStatisticsList&quot;;
+		$params.showArea=false;
+		$params.showUnitName=true;
+		$params.expwordlUrl=&quot;dzjc_todoStatistics/v1/expExcel?queryCondition=&quot;+encodeURIComponent(JSON.stringify(param))+&quot;&amp;expType=CityOrgStatisticsList&amp;wordtype=wordtype&quot;;
+	}
+	$http.post(c2.base(&quot;service&quot;)+url,param).success(function(result){
+		if(result.success){	
+			$params.todoStatisticsList=result.list;
+			$params.accCollection=result.accCollection;
+			$params.accWork=result.accWork;
+			$params.accRed=result.accRed;
+			$params.accYellow=result.accYellow;
+			$params.accComplaint=result.accComplaint;
+			$params.accComplaintReply=result.accComplaintReply;
+			$params.accConsult=result.accConsult;
+			$params.accConsultReply=result.accConsultReply;
+			
+			$params.oldviewFlagOld =$params.viewFlag;
+			$params.oldviewFlag =$params.viewFlag;
+			$params.viewFlag=result.viewFlag;
+			$params.oldparentCodeOld=$params.parentCode;
+			$params.oldparentCode=$params.parentCode;
+			$params.parentCode=result.parentCode;
+			
+		}else{
+			Messenger.error(result.message);
+		}
+	});
+},
+
+clean_button5_click:function($event){
+	document.getElementById('div3').style.display=&quot;none&quot;;
+	
+	functions.page_beforeDataSourceLoad($params);
+	
+	$params.oldparentCode=$params.oldparentCodeOld;
+	$params.parentCode=$params.oldparentCodeOld;
+	$params.oldviewFlag=$params.oldviewFlagOld;
+	$params.viewFlag=$params.oldviewFlagOld;
+	
+	 setTimeout(function(){
+	 functions.button_click1();
+	 
+	 }, 300) 
+},
+//鼠标穿过可排序列展示“小手”样式
+/*sortStyle:function(){
+	this.style.cursor='hand';
+},*/
+//对指定列排序
+sort:function(sortCol){
+	//1,保存sortCol
+	$params.sortCol = sortCol;
+	//2,调用查询按钮的方法保证查询条件不变,另增加参数sortCol
+	var param={};
+	if($params.startDate!=null &amp;&amp; $params.startDate!=undefined &amp;&amp;$params.startDate!=&quot;&quot;){
+		param={
+			&quot;selectType&quot;:&quot;1&quot;,
+			&quot;startDate&quot;:$params.startDate,
+			&quot;endDate&quot;:$params.endDate,
+			&quot;parentCode&quot;:$params.parentCode,
+			&quot;viewFlag&quot;:$params.oldviewFlag,
+			&quot;sortCol&quot;:$params.sortCol
+		}
+	}else{
+		param={
+			&quot;selectType&quot;:&quot;0&quot;,
+			&quot;year&quot;:$params.todoStatisticsYear.dictdataValue,
+			&quot;month&quot;:$params.todoStatisticsMonth,
+			&quot;parentCode&quot;:$params.parentCode,
+			&quot;viewFlag&quot;:$params.oldviewFlag,
+			&quot;sortCol&quot;:$params.sortCol
+		}
+	}
+	var url;
+	if($params.parentCode==&quot;439900000000&quot;){
+		url=&quot;dzjc_todoStatistics/v1/getLevelStatisticsList&quot;;
+		$params.showArea=false;
+		$params.showUnitName=true;
+		$params.expExcelUrl=&quot;dzjc_todoStatistics/v1/expExcel?queryCondition=&quot;+encodeURIComponent(JSON.stringify(param))+&quot;&amp;expType=LevelStatisticsList&quot;;
+	}else if($params.parentCode!=&quot;439900000000&quot; &amp;&amp; $params.oldviewFlag==&quot;city&quot; &amp;&amp; $params.parentCode!=&quot;430000000000&quot;){
+		url=&quot;dzjc_todoStatistics/v1/getCityLevelStatisticsList&quot;;
+		$params.expExcelUrl=&quot;dzjc_todoStatistics/v1/expExcel?queryCondition=&quot;+encodeURIComponent(JSON.stringify(param))+&quot;&amp;expType=CityLevelStatisticsList&quot;;
+	}else if($params.parentCode!=&quot;439900000000&quot; &amp;&amp; $params.oldviewFlag==&quot;area&quot;){
+		url=&quot;dzjc_todoStatistics/v1/getCityAreaStatisticsList&quot;;
+		$params.showArea=false;
+		$params.showUnitName=true;
+		$params.expExcelUrl=&quot;dzjc_todoStatistics/v1/expExcel?queryCondition=&quot;+encodeURIComponent(JSON.stringify(param))+&quot;&amp;expType=CityAreaStatisticsList&quot;;
+	}else if($params.parentCode==&quot;430000000000&quot;){
+		url=&quot;dzjc_todoStatistics/v1/getTodoStatisticsList&quot;;
+		$params.showUnitName=false;
+		$params.showArea=true;
+		$params.expExcelUrl=&quot;dzjc_todoStatistics/v1/expExcel?queryCondition=&quot;+encodeURIComponent(JSON.stringify(param))+&quot;&amp;expType=TodoStatisticsList&quot;;
+	}else if($params.oldviewFlag==&quot;org&quot;){
+		url=&quot;dzjc_todoStatistics/v1/getCityOrgStatisticsList&quot;;
+		$params.showArea=false;
+		$params.showUnitName=true;
+		$params.expExcelUrl=&quot;dzjc_todoStatistics/v1/expExcel?queryCondition=&quot;+encodeURIComponent(JSON.stringify(param))+&quot;&amp;expType=CityOrgStatisticsList&quot;;
+	}
+	$http.post(c2.base(&quot;service&quot;)+url,param).success(function(result){
+		if(result.success){	
+			$params.todoStatisticsList=result.list;
+			$params.accCollection=result.accCollection;
+			$params.accWork=result.accWork;
+			$params.accRed=result.accRed;
+			$params.accYellow=result.accYellow;
+			$params.accComplaint=result.accComplaint;
+			$params.accComplaintReply=result.accComplaintReply;
+			$params.accConsult=result.accConsult;
+			$params.accConsultReply=result.accConsultReply;
+			$params.viewFlag=result.viewFlag;
+		}else{
+			Messenger.error(result.message);
+		}
+	});
+},
+
+button2_click:function($event){
+	if($params.todoStatisticsList==null){
+	
+		Messenger.error(&quot;表格数据为空，无法导出!&quot;);
+	}else{
+		window.open($params.expwordlUrl);
+	}
+	
+	
+}</form:scripts>
+  <form:htmls>&lt;style>
+	td{
+		font-weight:bold;
+		text-align: center;
+		height:30px;
+	}
+	th{
+		font-weight:normal;
+		text-align: center;
+		height:25px;
+	}
+	.contentTable{
+	border-collapse:collapse;
+	background:#ffffff;
+	padding:0px;
+	color: #000000;
+	margin: 0px;
+	border: 1px solid #C1C1C1; 
+	font-size: 13px;
+	width:100%;
+	}
+	.header {
+	font-weight: bold;
+	background-color: #ccdff2;
+	text-align: center;
+	}
+	.sort{
+		cursor:pointer;
+	}
+&lt;/style>
+
+&lt;script type=&quot;text/ng-template&quot; id=&quot;div1_html&quot;>
+&lt;div ng-if=&quot;$params.yearShow&quot;>
+	&lt;select class=&quot;form-group col-sm-3&quot; ng-model=&quot;$params.todoStatisticsYear&quot; ng-options=&quot;x.dictdataName for x in $params.todoStatisticsYears&quot;>
+	&lt;/select>
+	&lt;select name=&quot;select2&quot; class=&quot;form-group col-sm-3&quot; ng-model=&quot;$params.todoStatisticsMonth&quot; >
+		&lt;option value=&quot;&quot;>月份&lt;/option>
+		&lt;option value=&quot;1&quot;>1月&lt;/option>
+		&lt;option value=&quot;2&quot;>2月&lt;/option>
+		&lt;option value=&quot;3&quot;>3月&lt;/option>
+		&lt;option value=&quot;4&quot;>4月&lt;/option>
+		&lt;option value=&quot;5&quot;>5月&lt;/option>
+		&lt;option value=&quot;6&quot;>6月&lt;/option>
+		&lt;option value=&quot;7&quot;>7月&lt;/option>
+		&lt;option value=&quot;8&quot;>8月&lt;/option>
+		&lt;option value=&quot;9&quot;>9月&lt;/option>
+		&lt;option value=&quot;10&quot;>10月&lt;/option>
+		&lt;option value=&quot;11&quot;>11月&lt;/option>
+		&lt;option value=&quot;12&quot;>12月&lt;/option>
+	&lt;/select> 
+&lt;/div>
+
+	
+&lt;/script>
+&lt;script type=&quot;text/ng-template&quot; id=&quot;div2_html&quot;>
+	&lt;center>&lt;h3>政务服务办件情况&lt;/h3>&lt;/center>&lt;br/>
+
+&lt;table border=&quot;1&quot; style=&quot;width:100%;&quot;>
+
+	&lt;tr>
+		&lt;td  class=&quot;header&quot; ng-if=&quot;$params.showArea&quot;>行政区域&lt;/td>
+		&lt;td  class=&quot;header&quot; ng-if=&quot;$params.showUnitName&quot;>单位名称&lt;/td>
+		&lt;td class=&quot;header sort&quot; ng-click=&quot;functions.sort('sj')&quot; ng-mouseover=&quot;functions.sortStyle()&quot;>收件数(件)&lt;/td>
+		&lt;td class=&quot;header sort&quot; ng-click=&quot;functions.sort('bj')&quot; ng-mouseover=&quot;functions.sortStyle()&quot;>办结数(件)&lt;/td>
+		&lt;td class=&quot;header&quot;>办结率(%)&lt;/td>
+		&lt;td class=&quot;header&quot;>提速率(%)&lt;/td>
+		&lt;td class=&quot;header sort&quot; ng-click=&quot;functions.sort('bjyellow')&quot; ng-mouseover=&quot;functions.sortStyle()&quot;>办件黄牌数(张)&lt;/td>
+		&lt;td class=&quot;header sort&quot; ng-click=&quot;functions.sort('bjred')&quot; ng-mouseover=&quot;functions.sortStyle()&quot;>办件红牌数(张)&lt;/td>
+		&lt;td class=&quot;header sort&quot; ng-click=&quot;functions.sort('cnyellow')&quot; ng-mouseover=&quot;functions.sortStyle()&quot;>投诉黄牌数(张)&lt;/td>
+		&lt;td class=&quot;header sort&quot; ng-click=&quot;functions.sort('cnred')&quot; ng-mouseover=&quot;functions.sortStyle()&quot;>投诉红牌数(张)&lt;/td>
+		&lt;td class=&quot;header sort&quot; ng-click=&quot;functions.sort('csyellow')&quot; ng-mouseover=&quot;functions.sortStyle()&quot;>咨询黄牌数(张)&lt;/td>
+		&lt;td class=&quot;header sort&quot; ng-click=&quot;functions.sort('csred')&quot; ng-mouseover=&quot;functions.sortStyle()&quot;>咨询红牌数(张)&lt;/td>
+		&lt;td class=&quot;header sort&quot; ng-click=&quot;functions.sort('cn')&quot; ng-mouseover=&quot;functions.sortStyle()&quot;>投诉数(件)&lt;/td>
+		&lt;td class=&quot;header sort&quot; ng-click=&quot;functions.sort('crn')&quot; ng-mouseover=&quot;functions.sortStyle()&quot;>投诉回复数(件)&lt;/td>
+		&lt;td class=&quot;header sort&quot; ng-click=&quot;functions.sort('csn')&quot; ng-mouseover=&quot;functions.sortStyle()&quot;>咨询数(件)&lt;/td>
+		&lt;td class=&quot;header sort&quot; ng-click=&quot;functions.sort('csrn')&quot; ng-mouseover=&quot;functions.sortStyle()&quot;>咨询回复数(件)&lt;/td>
+	&lt;/tr>
+
+&lt;tbody ng-repeat=&quot;todo in $params.todoStatisticsList&quot;>
+	&lt;tr  ng-if=&quot;todo.areaName!='合计'&quot;>
+		&lt;th  style=&quot;width:83px;&quot; ng-if=&quot;$params.showArea&quot;>&lt;a ng-click=&quot;functions.changeAreaCode(todo)&quot;>{{todo.areaName}}&lt;/a> &lt;/th>
+		&lt;th  style=&quot;width:83px;&quot; ng-if=&quot;$params.showUnitName&quot;>{{todo.areaName}}&lt;/th>
+		&lt;th ng-bind=&quot;todo.sj&quot;>&lt;/th>
+		&lt;th ng-bind=&quot;todo.bj&quot;>&lt;/th>
+		&lt;th ng-bind=&quot;todo.bjPercent&quot;>&lt;/th>
+		&lt;th ng-bind=&quot;todo.tsPercent&quot;>&lt;/th>
+		&lt;th ng-bind=&quot;todo.bjyellow&quot;>&lt;/th>
+		&lt;th ng-bind=&quot;todo.bjred&quot;>&lt;/th>
+		&lt;th ng-bind=&quot;todo.cnyellow&quot;>&lt;/th>
+		&lt;th ng-bind=&quot;todo.cnred&quot;>&lt;/th>
+		&lt;th ng-bind=&quot;todo.csyellow&quot;>&lt;/th>
+		&lt;th ng-bind=&quot;todo.csred&quot;>&lt;/th>
+		&lt;th ng-bind=&quot;todo.cn&quot;>&lt;/th>
+		&lt;th ng-bind=&quot;todo.crn&quot;>&lt;/th>
+		&lt;th ng-bind=&quot;todo.csn&quot;>&lt;/th>
+		&lt;th ng-bind=&quot;todo.csrn&quot;>&lt;/th>
+	&lt;/tr>
+	&lt;tr ng-if=&quot;todo.areaName=='合计'&quot; style=&quot;color:red;&quot;>
+		&lt;th >{{todo.areaName}}&lt;/th>
+		&lt;th ng-bind=&quot;todo.sj&quot;>&lt;/th>
+		&lt;th ng-bind=&quot;todo.bj&quot;>&lt;/th>
+		&lt;th ng-bind=&quot;todo.bjPercent&quot;>&lt;/th>
+		&lt;th ng-bind=&quot;todo.tsPercent&quot;>&lt;/th>
+		&lt;th ng-bind=&quot;todo.bjyellow&quot;>&lt;/th>
+		&lt;th ng-bind=&quot;todo.bjred&quot;>&lt;/th>
+		&lt;th ng-bind=&quot;todo.cnyellow&quot;>&lt;/th>
+		&lt;th ng-bind=&quot;todo.cnred&quot;>&lt;/th>
+		&lt;th ng-bind=&quot;todo.csyellow&quot;>&lt;/th>
+		&lt;th ng-bind=&quot;todo.csred&quot;>&lt;/th>
+		&lt;th ng-bind=&quot;todo.cn&quot;>&lt;/th>
+		&lt;th ng-bind=&quot;todo.crn&quot;>&lt;/th>
+		&lt;th ng-bind=&quot;todo.csn&quot;>&lt;/th>
+		&lt;th ng-bind=&quot;todo.csrn&quot;>&lt;/th>
+	&lt;/tr>
+&lt;/tbody>
+
+&lt;/table>
+&lt;/script></form:htmls>
+</form:Form>

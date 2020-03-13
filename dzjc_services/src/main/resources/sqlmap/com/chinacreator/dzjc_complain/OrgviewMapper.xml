@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"><mapper namespace="com.chinacreator.dzjc_complain.OrgviewMapper">  
+<!-- ElementID:column_sql,Generated=true -->
+<sql id="column_sql">
+		  V_ORG.id ,
+		  V_ORG.name ,
+		  V_ORG.code ,
+		  V_ORG.pid ,
+		  V_ORG.sn 
+</sql>
+
+<!-- ElementID:whereClause_sql,Generated=true -->
+<sql id="whereClause_sql">
+	    <if test="id != null">and V_ORG.id = #{id}</if>
+	    <if test="name != null">and V_ORG.name = #{name}</if>
+	    <if test="code != null">and V_ORG.code = #{code}</if>
+	    <if test="pid != null">and V_ORG.pid = #{pid}</if>
+	    <if test="sn != null">and V_ORG.sn = #{sn}</if>
+</sql>
+
+
+<!-- ElementID:OrgviewResult,Generated=true -->
+<resultMap id="OrgviewResult" type="com.chinacreator.dzjc_complain.Orgview">
+	<id property="id" column="id"/>
+	<result property="name" column="name"/>
+	<result property="code" column="code"/>
+	<result property="pid" column="pid"/>
+	<result property="sn" column="sn"/>
+</resultMap>
+
+
+<!-- ElementID:insert,Generated=true -->
+<insert id="insert" parameterType="com.chinacreator.dzjc_complain.Orgview">
+	insert into V_ORG(
+	         <if test="id != null">id</if>
+	         <if test="name != null">,name</if>
+	         <if test="code != null">,code</if>
+	         <if test="pid != null">,pid</if>
+	         <if test="sn != null">,sn</if>
+	 	 	 )
+	 values (
+	         <if test="id != null">#{id,jdbcType=VARCHAR}</if>
+	         <if test="name != null">,#{name,jdbcType=VARCHAR}</if>
+	         <if test="code != null">,#{code,jdbcType=VARCHAR}</if>
+	         <if test="pid != null">,#{pid,jdbcType=VARCHAR}</if>
+	         <if test="sn != null">,#{sn,jdbcType=NUMERIC}</if>
+	 	 	 )
+</insert>
+
+<!-- ElementID:count,Generated=true -->
+<select id="count" parameterType="com.chinacreator.dzjc_complain.Orgview" resultType="int">
+	select count(*) from V_ORG 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<!-- ElementID:update,Generated=true -->
+<update id="update" parameterType="com.chinacreator.dzjc_complain.Orgview">
+	update V_ORG
+<set>
+	<if test="name != null">name=#{name,jdbcType=VARCHAR},</if>
+	<if test="code != null">code=#{code,jdbcType=VARCHAR},</if>
+	<if test="pid != null">pid=#{pid,jdbcType=VARCHAR},</if>
+	<if test="sn != null">sn=#{sn,jdbcType=NUMERIC}</if>
+</set>
+<where>
+	<choose>
+        <when test="id != null">and id = #{id}</when>
+        <otherwise>and id = </otherwise>
+    </choose>
+</where>
+</update>
+
+<!-- ElementID:updateNull,Generated=true -->
+<update id="updateNull" parameterType="map">
+	update V_ORG
+	<set>
+		<trim suffixOverrides=",">
+		    <if test="name==null">name = null,</if>
+		    <if test="code==null">code = null,</if>
+		    <if test="pid==null">pid = null,</if>
+		    <if test="sn==null">sn = null,</if>
+		</trim>
+	</set>
+	<where>
+		<choose>
+			<when test="id != null">and id = #{id}</when>
+			<otherwise>and id = </otherwise>
+		</choose>
+	</where>
+</update>
+
+<!-- ElementID:delete,Generated=true -->
+<delete id="delete" parameterType="com.chinacreator.dzjc_complain.Orgview">
+    delete from V_ORG where 1=1 and id = #{id}
+</delete>
+
+<!-- ElementID:select,Generated=true -->
+<select id="select" parameterType="com.chinacreator.dzjc_complain.Orgview" resultMap="OrgviewResult">
+	select 
+		<include refid="column_sql"/>
+	    from V_ORG 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+
+<!-- ElementID:insertBatch,Generated=true -->
+<insert id="insertBatch" parameterType="list">
+	insert into V_ORG (id,name,code,pid,sn) 
+<foreach collection="list" item="entity" index="index" separator="union all">
+		select 
+		#{entity.id,jdbcType = VARCHAR},
+				#{entity.name,jdbcType = VARCHAR},
+				#{entity.code,jdbcType = VARCHAR},
+				#{entity.pid,jdbcType = VARCHAR},
+				#{entity.sn,jdbcType = NUMERIC}
+		from dual
+</foreach>
+</insert>
+
+<!-- ElementID:deleteBatch,Generated=true -->
+<delete id="deleteBatch" parameterType="List">
+	delete from V_ORG where id in
+<trim prefix="(" suffix=")" suffixOverrides=",">
+<foreach collection="list" item="entity" separator=",">
+	<choose>
+		<when test="@com.chinacreator.c2.dao.util.EntityBeanUtil@isEntityObj(entity)">#{entity.id}</when>
+		<otherwise>#{entity}</otherwise>
+	</choose>
+</foreach>
+</trim>
+</delete>
+
+<!-- ElementID:updateBatch,Generated=true -->
+<update id="updateBatch" parameterType="list">
+	<foreach collection="list" item="entity" open="begin" close=";end;" separator=";">
+			update V_ORG
+	<set>
+	<if test="entity.name != null">name= #{entity.name,jdbcType=VARCHAR},</if>
+	<if test="entity.code != null">code= #{entity.code,jdbcType=VARCHAR},</if>
+	<if test="entity.pid != null">pid= #{entity.pid,jdbcType=VARCHAR},</if>
+	<if test="entity.sn != null">sn= #{entity.sn,jdbcType=NUMERIC}</if>
+	</set>
+		<where>
+			<choose>
+				<when test="entity.id != null">and id = #{entity.id}</when>
+				<otherwise>and id = </otherwise>
+			</choose>
+		</where>
+	</foreach>
+</update>
+
+<!-- ElementID:selectAll,Generated=true -->
+<select id="selectAll" resultMap="OrgviewResult">
+	select 
+		<include refid="column_sql"/>
+	    from V_ORG 
+</select>
+
+<!-- ElementID:selectMany,Generated=true -->
+<select id="selectMany" parameterType="list" resultMap="OrgviewResult">
+select 
+	<include refid="column_sql"/> 
+	from V_ORG 
+	where V_ORG.id in (
+<foreach collection="list" item="entity" separator="intersect">
+		select 
+		V_ORG.id
+	    from V_ORG 
+		 <where>
+	        <if test="entity.id != null">and V_ORG.id = #{entity.id}</if>
+	        <if test="entity.name != null">and V_ORG.name = #{entity.name}</if>
+	        <if test="entity.code != null">and V_ORG.code = #{entity.code}</if>
+	        <if test="entity.pid != null">and V_ORG.pid = #{entity.pid}</if>
+	        <if test="entity.sn != null">and V_ORG.sn = #{entity.sn}</if>
+		</where>
+</foreach>
+)
+</select>
+
+<!-- ElementID:selectUnion,Generated=true -->
+<select id="selectUnion" parameterType="list" resultMap="OrgviewResult">
+select 
+	<include refid="column_sql"/> 
+	from V_ORG 
+	 INNER JOIN
+<foreach collection="list" item="entity" separator="UNION" open="(" close=")">
+		SELECT 
+			 id
+		FROM V_ORG 
+			<where>
+	        <if test="entity.id != null">and V_ORG.id = #{entity.id}</if>
+	        <if test="entity.name != null">and V_ORG.name = #{entity.name}</if>
+	        <if test="entity.code != null">and V_ORG.code = #{entity.code}</if>
+	        <if test="entity.pid != null">and V_ORG.pid = #{entity.pid}</if>
+	        <if test="entity.sn != null">and V_ORG.sn = #{entity.sn}</if>
+			</where>
+</foreach>
+	c2_temp_table ON V_ORG.id = c2_temp_table.id
+</select>
+
+<!-- ElementID:selectByID,Generated=true -->
+<select id="selectByID" parameterType="java.lang.String" resultMap="OrgviewResult">
+	select 
+		<include refid="column_sql"/>
+	    from V_ORG 
+		 where V_ORG.id = #{id,jdbcType=VARCHAR}
+</select>
+
+<!-- ElementID:selectByPage,Generated=true -->
+<select id="selectByPage" parameterType="com.chinacreator.dzjc_complain.Orgview" resultMap="OrgviewResult">
+	select 
+		<include refid="column_sql"/>
+	    from V_ORG 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+
+<!-- 查询全湖南省树形信息 -->
+<select id="selectOrgByHuNan" resultMap="OrgviewResult">
+  SELECT * FROM V_ORG V  
+  WHERE ID &lt;&gt; '1' 
+  AND CODE LIKE '43%' 
+  <!--AND LEVEL &lt; 5  &lt;等同于 小于号 -->
+  START WITH V.ID='1' 
+  CONNECT BY V.PID = PRIOR V.ID
+</select>
+
+<!-- 查询全湖南省除去指定机构下的其他所有机构 -->
+<select id="selectOrgByHuNan2" parameterType="java.lang.String" resultMap="OrgviewResult">
+  WITH
+  HUNAN AS(
+    SELECT * FROM V_ORG V  
+    WHERE CODE LIKE '43%'
+    START WITH V.ID='1' CONNECT BY V.PID = PRIOR V.ID
+  ),
+  PC AS(
+    SELECT * FROM V_ORG V  
+    WHERE CODE LIKE '43%'
+    START WITH V.ID=#{orgId,jdbcType=VARCHAR} CONNECT BY V.PID = PRIOR V.ID
+  )
+  SELECT * FROM HUNAN
+  WHERE NOT EXISTS (SELECT 1 FROM PC WHERE PC.ID = HUNAN.ID)
+  AND ID &lt;&gt; '1'
+</select>
+
+
+<!-- 查询某机构及其所有父级 -->
+<select id="selectOrgAndPi" parameterType="java.lang.String" resultMap="OrgviewResult">
+  SELECT * FROM V_ORG G 
+  START WITH G.ID=#{org_id,jdbcType=VARCHAR}
+  CONNECT BY G.ID = PRIOR G.PID
+  ORDER BY LEVEL DESC
+</select>
+
+<!-- 查询某机构及其上级-->
+<select id="selectOrgAndPi2" parameterType="java.lang.String" resultMap="OrgviewResult">
+  SELECT G2.* FROM V_ORG G1 
+  INNER JOIN V_ORG G2 ON G1.PID = G2.ID AND G1.ID=#{orgId,jdbcType=VARCHAR}
+</select>
+
+
+<!-- 根据code查询所有机构 -->
+<select id="selectOrgByCode" parameterType="java.lang.String" resultMap="OrgviewResult" fetchSize="2000">
+ SELECT * FROM V_ORG
+  <![CDATA[WHERE id <> '1']]>
+ AND (trim(CODE) LIKE CONCAT(#{code},'%') OR ID = #{code})
+ START WITH pID = '1' CONNECT BY PID = PRIOR ID
+ order by sn asc
+</select>
+<!-- 根据机构ID递归查询所有机构 -->
+<select id="selectChildrenOrgInfo" parameterType="java.lang.String" resultMap="OrgviewResult" fetchSize="1000">
+	select *
+	from V_ORG
+	START WITH ID=#{orgId} CONNECT BY PID = PRIOR ID
+	order by sn asc
+</select>
+<select id="selectChildrenOrg" parameterType="java.lang.String" resultType="java.lang.String">
+  select id from V_ORG 
+  START WITH ID=#{orgId} CONNECT BY PID = PRIOR ID
+</select>
+
+<select id="tsAcceptOrg" parameterType="java.lang.String" resultMap="OrgviewResult" fetchSize="1000">
+	select * from (
+	 SELECT o.*,level as jc FROM V_ORG o
+	 <![CDATA[where id<> '1' and pid <> '4' ]]>
+	 <!-- AND (trim(CODE) LIKE CONCAT(#{code},'%') OR ID = #{code}) -->
+	 START WITH o.pID = '1' CONNECT BY o.PID = PRIOR o.ID
+	 ) temp
+	 <![CDATA[ where temp.jc <=2]]>
+	 order by sn asc
+</select>
+
+<select id="findYhbOrgId" parameterType="java.lang.String" resultMap="OrgviewResult">
+	select * from v_org 
+	where name like '%优化办%' and ( pid = #{orgId} or id = #{orgId})
+</select>
+
+<select id="findYhbOrgIdByAreaCode" parameterType="java.lang.String" resultMap="OrgviewResult">
+	select * from v_org 
+	where name like '%优化办%' and (code like CONCAT(#{areaCode},'%') or id = #{areaCode})
+</select>
+
+<!-- 查询省直，市直，区县直属单位 -->
+<select id="findOrgByCode" parameterType="java.lang.String" resultMap="OrgviewResult">
+	select a.id,a.name,a.code,a.pid from v_org a where a.code = #{orgCode}
+</select>
+
+<!-- 查询下一级结构树 -->
+<select id="findSonOrg" parameterType="java.util.Map" resultMap="OrgviewResult">
+	select a.id,a.name,a.code,a.pid from v_org a where a.code like CONCAT(CONCAT(#{startWith},'%'),#{endWith})
+</select>
+
+<!-- 查询市级优化办用户 -->
+<select id="findSonYhbUser1" parameterType="java.util.Map" resultType="java.util.Map">
+	select a.id,a.name,c.id as orgId 
+		from v_org_user a 
+       	inner join v_org b on b.id = a.org_id 
+       	inner join v_org c on concat(substr(b.code,0,4),'00000000000000000000') = c.code 
+       	where b.name like '%优化办%' 
+       	and substr(b.code,5,2) = '01'
+</select>
+
+<!-- 根据当前用户机构编码前缀，查询市下面的区县优化办用户 -->
+<select id="findSonYhbUser2" parameterType="java.util.Map" resultType="java.util.Map">
+	select a.id,a.name,c.id as orgId 
+		from v_org_user a 
+       	inner join v_org b on b.id = a.org_id 
+       	inner join v_org c on concat(substr(b.code,0,6),'000000000000000000') = c.code 
+       	where b.name like '%优化办%' 
+       	and substr(b.code,0,4) = #{startWith} 
+       	and b.code &lt;&gt; #{orgCode}
+</select>
+
+<!-- 查询所有前3级机构，没有本级 -->
+<select id="selectOrgTreeByLeave3NoBenJi" resultMap="OrgviewResult" fetchSize="1000">
+  SELECT * FROM V_ORG
+  where 1=1
+  <!-- and code like '%000000000000000000' -->
+   and code LIKE CONCAT(#{code},'%000000000000000000') 
+   order by sn asc
+</select>
+
+<!-- 根据code查询所有机构，排除掉所有本级 -->
+<select id="selectOrgByCodeNoBenJi" parameterType="java.util.Map" resultMap="OrgviewResult" fetchSize="1000">
+	SELECT * FROM V_ORG a 
+ 	WHERE 1=1 
+ 	<!-- <if test="id != null and id != ''">
+	 	and id &lt;&gt; #{id}
+ 	</if> -->
+ 	and (trim(a.CODE) LIKE CONCAT(#{code},'%') OR a.ID = #{code}) 
+ 	<!-- 去掉省本级 -->
+ 	and substr(a.code,3,2) &lt;&gt; '99' 
+ 	<!-- 去掉市本级 -->
+ 	and substr(a.code,5,2) not in ('01','99') 
+ 	<!-- 去掉县本级 -->
+ 	and substr(a.code,7,3) &lt;&gt; '999' 
+ 	<!-- 去掉镇本级 -->
+ 	and substr(a.code,10,3) &lt;&gt; '999' 
+ 	<choose>
+ 		<when test="id != null and id != ''">
+ 			START WITH a.id = #{id} 
+ 		</when>
+ 		<otherwise>
+ 			START WITH a.id = '1'  
+ 		</otherwise>
+ 	</choose>
+ 	CONNECT BY a.PID = PRIOR a.ID 
+ 	order by a.sn asc
+</select>
+</mapper>

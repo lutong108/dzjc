@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"><mapper namespace="com.chinacreator.dzjc_ruleEngine.SupervisoryrulesMapper">	
+
+<!-- ElementID:column_sql,Generated=true -->
+<sql id="column_sql">
+		  TA_JC_SUPERVISORY_RULES.supervisory_rules_id ,
+		  TA_JC_SUPERVISORY_RULES.supervisory_rules_name 
+</sql>
+
+<!-- ElementID:whereClause_sql,Generated=true -->
+<sql id="whereClause_sql">
+	    <if test="supervisoryRulesId != null">and TA_JC_SUPERVISORY_RULES.supervisory_rules_id = #{supervisoryRulesId}</if>
+	    <if test="supervisoryRulesName != null">and TA_JC_SUPERVISORY_RULES.supervisory_rules_name = #{supervisoryRulesName}</if>
+</sql>
+
+
+<!-- ElementID:SupervisoryrulesResult,Generated=true -->
+<resultMap id="SupervisoryrulesResult" type="com.chinacreator.dzjc_ruleEngine.Supervisoryrules">
+	<id property="supervisoryRulesId" column="supervisory_rules_id"/>
+	<result property="supervisoryRulesName" column="supervisory_rules_name"/>
+</resultMap>
+
+
+<!-- ElementID:insert,Generated=true -->
+<insert id="insert" parameterType="com.chinacreator.dzjc_ruleEngine.Supervisoryrules">
+	insert into TA_JC_SUPERVISORY_RULES(
+	         <if test="supervisoryRulesId != null">supervisory_rules_id</if>
+	         <if test="supervisoryRulesName != null">,supervisory_rules_name</if>
+	 	 	 )
+	 values (
+	         <if test="supervisoryRulesId != null">#{supervisoryRulesId,jdbcType=VARCHAR}</if>
+	         <if test="supervisoryRulesName != null">,#{supervisoryRulesName,jdbcType=VARCHAR}</if>
+	 	 	 )
+</insert>
+
+<!-- ElementID:count,Generated=true -->
+<select id="count" parameterType="com.chinacreator.dzjc_ruleEngine.Supervisoryrules" resultType="int">
+	select count(*) from TA_JC_SUPERVISORY_RULES 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<!-- ElementID:update,Generated=true -->
+<update id="update" parameterType="com.chinacreator.dzjc_ruleEngine.Supervisoryrules">
+	update TA_JC_SUPERVISORY_RULES
+<set>
+	<if test="supervisoryRulesName != null">supervisory_rules_name=#{supervisoryRulesName,jdbcType=VARCHAR}</if>
+</set>
+<where>
+	<choose>
+        <when test="supervisoryRulesId != null">and supervisory_rules_id = #{supervisoryRulesId}</when>
+        <otherwise>and supervisory_rules_id = </otherwise>
+    </choose>
+</where>
+</update>
+
+<!-- ElementID:updateNull,Generated=true -->
+<update id="updateNull" parameterType="map">
+	update TA_JC_SUPERVISORY_RULES
+	<set>
+		<trim suffixOverrides=",">
+		    <if test="supervisoryRulesName==null">supervisory_rules_name = null,</if>
+		</trim>
+	</set>
+	<where>
+		<choose>
+			<when test="supervisoryRulesId != null">and supervisory_rules_id = #{supervisoryRulesId}</when>
+			<otherwise>and supervisory_rules_id = </otherwise>
+		</choose>
+	</where>
+</update>
+
+<!-- ElementID:delete,Generated=true -->
+<delete id="delete" parameterType="com.chinacreator.dzjc_ruleEngine.Supervisoryrules">
+    delete from TA_JC_SUPERVISORY_RULES where 1=1 and supervisory_rules_id = #{supervisoryRulesId}
+</delete>
+
+<!-- ElementID:select,Generated=true -->
+<select id="select" parameterType="com.chinacreator.dzjc_ruleEngine.Supervisoryrules" resultMap="SupervisoryrulesResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_SUPERVISORY_RULES 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<!-- ElementID:select,Generated=false -->
+<select id="selectTree" parameterType="com.chinacreator.dzjc_ruleEngine.Supervisoryrules" resultMap="SupervisoryrulesResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_SUPERVISORY_RULES 
+		
+</select>
+
+
+<!-- ElementID:insertBatch,Generated=true -->
+<insert id="insertBatch" parameterType="list">
+	insert into TA_JC_SUPERVISORY_RULES (supervisory_rules_id,supervisory_rules_name) 
+<foreach collection="list" item="entity" index="index" separator="union all">
+		select 
+		#{entity.supervisoryRulesId,jdbcType = VARCHAR},
+				#{entity.supervisoryRulesName,jdbcType = VARCHAR}
+		from dual
+</foreach>
+</insert>
+
+<!-- ElementID:deleteBatch,Generated=true -->
+<delete id="deleteBatch" parameterType="List">
+	delete from TA_JC_SUPERVISORY_RULES where supervisory_rules_id in
+<trim prefix="(" suffix=")" suffixOverrides=",">
+<foreach collection="list" item="entity" separator=",">
+	<choose>
+		<when test="@com.chinacreator.c2.dao.util.EntityBeanUtil@isEntityObj(entity)">#{entity.supervisoryRulesId}</when>
+		<otherwise>#{entity}</otherwise>
+	</choose>
+</foreach>
+</trim>
+</delete>
+
+<!-- ElementID:updateBatch,Generated=true -->
+<update id="updateBatch" parameterType="list">
+	<foreach collection="list" item="entity" open="begin" close=";end;" separator=";">
+			update TA_JC_SUPERVISORY_RULES
+	<set>
+	<if test="entity.supervisoryRulesName != null">supervisory_rules_name= #{entity.supervisoryRulesName,jdbcType=VARCHAR}</if>
+	</set>
+		<where>
+			<choose>
+				<when test="entity.supervisoryRulesId != null">and supervisory_rules_id = #{entity.supervisoryRulesId}</when>
+				<otherwise>and supervisory_rules_id = </otherwise>
+			</choose>
+		</where>
+	</foreach>
+</update>
+
+<!-- ElementID:selectAll,Generated=true -->
+<select id="selectAll" resultMap="SupervisoryrulesResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_SUPERVISORY_RULES 
+</select>
+
+<!-- ElementID:selectMany,Generated=true -->
+<select id="selectMany" parameterType="list" resultMap="SupervisoryrulesResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_JC_SUPERVISORY_RULES 
+	where TA_JC_SUPERVISORY_RULES.supervisory_rules_id in (
+<foreach collection="list" item="entity" separator="intersect">
+		select 
+		TA_JC_SUPERVISORY_RULES.supervisory_rules_id
+	    from TA_JC_SUPERVISORY_RULES 
+		 <where>
+	        <if test="entity.supervisoryRulesId != null">and TA_JC_SUPERVISORY_RULES.supervisory_rules_id = #{entity.supervisoryRulesId}</if>
+	        <if test="entity.supervisoryRulesName != null">and TA_JC_SUPERVISORY_RULES.supervisory_rules_name = #{entity.supervisoryRulesName}</if>
+		</where>
+</foreach>
+)
+</select>
+
+<!-- ElementID:selectUnion,Generated=true -->
+<select id="selectUnion" parameterType="list" resultMap="SupervisoryrulesResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_JC_SUPERVISORY_RULES 
+	 INNER JOIN
+<foreach collection="list" item="entity" separator="UNION" open="(" close=")">
+		SELECT 
+			 supervisory_rules_id
+		FROM TA_JC_SUPERVISORY_RULES 
+			<where>
+	        <if test="entity.supervisoryRulesId != null">and TA_JC_SUPERVISORY_RULES.supervisory_rules_id = #{entity.supervisoryRulesId}</if>
+	        <if test="entity.supervisoryRulesName != null">and TA_JC_SUPERVISORY_RULES.supervisory_rules_name = #{entity.supervisoryRulesName}</if>
+			</where>
+</foreach>
+	c2_temp_table ON TA_JC_SUPERVISORY_RULES.supervisory_rules_id = c2_temp_table.supervisory_rules_id
+</select>
+
+<!-- ElementID:selectByID,Generated=true -->
+<select id="selectByID" parameterType="java.lang.String" resultMap="SupervisoryrulesResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_SUPERVISORY_RULES 
+		 where TA_JC_SUPERVISORY_RULES.supervisory_rules_id = #{supervisoryRulesId,jdbcType=VARCHAR}
+</select>
+
+<!-- ElementID:selectByPage,Generated=true -->
+<select id="selectByPage" parameterType="com.chinacreator.dzjc_ruleEngine.Supervisoryrules" resultMap="SupervisoryrulesResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_SUPERVISORY_RULES 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+</mapper>

@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"><mapper namespace="com.chinacreator.dzjc_tongji.StatisticalSumCacheMapper">	
+
+<!-- ElementID:column_sql,Generated=true -->
+<sql id="column_sql">
+		  TA_JC_STATISTICAL_SUM_CACHE.supervise_id ,
+		  TA_JC_STATISTICAL_SUM_CACHE.statistical_type ,
+		  TA_JC_STATISTICAL_SUM_CACHE.business_id ,
+		  TA_JC_STATISTICAL_SUM_CACHE.current_time ,
+		  TA_JC_STATISTICAL_SUM_CACHE.statistical_time ,
+		  TA_JC_STATISTICAL_SUM_CACHE.business_status ,
+		  TA_JC_STATISTICAL_SUM_CACHE.business_type ,
+		  TA_JC_STATISTICAL_SUM_CACHE.org_id ,
+		  TA_JC_STATISTICAL_SUM_CACHE.data_source ,
+		  TA_JC_STATISTICAL_SUM_CACHE.is_statistical 
+</sql>
+
+<!-- ElementID:whereClause_sql,Generated=true -->
+<sql id="whereClause_sql">
+	    <if test="superviseId != null">and TA_JC_STATISTICAL_SUM_CACHE.supervise_id = #{superviseId}</if>
+	    <if test="statisticalType != null">and TA_JC_STATISTICAL_SUM_CACHE.statistical_type = #{statisticalType}</if>
+	    <if test="businessId != null">and TA_JC_STATISTICAL_SUM_CACHE.business_id = #{businessId}</if>
+	    <if test="currentTime != null">and TA_JC_STATISTICAL_SUM_CACHE.current_time = #{currentTime}</if>
+	    <if test="statisticalTime != null">and TA_JC_STATISTICAL_SUM_CACHE.statistical_time = #{statisticalTime}</if>
+	    <if test="businessStatus != null">and TA_JC_STATISTICAL_SUM_CACHE.business_status = #{businessStatus}</if>
+	    <if test="businessType != null">and TA_JC_STATISTICAL_SUM_CACHE.business_type = #{businessType}</if>
+	    <if test="orgId != null">and TA_JC_STATISTICAL_SUM_CACHE.org_id = #{orgId}</if>
+	    <if test="dataSource != null">and TA_JC_STATISTICAL_SUM_CACHE.data_source = #{dataSource}</if>
+	    <if test="isStatistical != null">and TA_JC_STATISTICAL_SUM_CACHE.is_statistical = #{isStatistical}</if>
+</sql>
+
+<!-- ElementID:StatisticalSumCacheResult,Generated=true -->
+<resultMap id="StatisticalSumCacheResult" type="com.chinacreator.dzjc_tongji.StatisticalSumCache">
+	<id property="superviseId" column="supervise_id"/>
+	<result property="statisticalType" column="statistical_type"/>
+	<result property="businessId" column="business_id"/>
+	<result property="currentTime" column="current_time"/>
+	<result property="statisticalTime" column="statistical_time"/>
+	<result property="businessStatus" column="business_status"/>
+	<result property="businessType" column="business_type"/>
+	<result property="orgId" column="org_id"/>
+	<result property="dataSource" column="data_source"/>
+	<result property="isStatistical" column="is_statistical"/>
+</resultMap>
+<!-- ================================== 自定义sql begin =========================================== -->
+<select id="getOrgIdWithDate" resultType="java.lang.String">
+with temp1 as
+ (select t.record_id as id from ta_jc_sum_supervise_info t),
+temp as
+ (select distinct (t.org_id || '#' ||
+                  to_char(t.statistical_time, 'yyyy-mm-dd')) as id
+    from TA_JC_STATISTICAL_SUM_CACHE t
+   group by t.org_id, to_char(t.statistical_time, 'yyyy-mm-dd'))
+select temp.*
+  from temp
+  left join temp1
+    on temp.id = temp1.id
+ where temp1.id is null
+</select>
+
+<select id="getMaxCardsList" parameterType="java.util.HashMap" resultMap="StatisticalSumCacheResult">
+select temp1.*
+  from (select temp.*, rownum rn
+          from (select t.business_id,
+                       t.org_id,
+                       t.data_source,
+                       t.statistical_type,
+                       t.business_status,
+                       to_char(max(t.statistical_time), 'yyyy-mm-dd') statistical_time,
+                       max(t.business_type)
+                  from TA_JC_STATISTICAL_SUM_CACHE t
+                 where t.is_statistical is null
+                   and t.data_source != '1016'
+                 group by t.business_id,
+                          t.org_id,
+                          t.data_source,
+                          t.statistical_type,
+                          t.business_status
+                having max(t.business_type) = #{type}
+                union all
+                select t.business_id,
+                       t.org_id,
+                       t.data_source,
+                       t.statistical_type,
+                       t.business_status,
+                       to_char(t.statistical_time, 'yyyy-mm-dd') statistical_time,
+                       t.business_type
+                  from TA_JC_STATISTICAL_SUM_CACHE t
+                 where t.is_statistical is null
+                   and t.data_source = '1016'
+                   and t.business_type = #{type}
+                   <choose>
+                   <when test="type == '2'.toString()">
+		           and t.supervise_id  not in (select o1.supervise_id
+		              from (select *
+		                  from TA_JC_STATISTICAL_SUM_CACHE o
+		                 where o.data_source = '1016'
+		                   and o.business_type = '2') o1
+		         inner join (select *
+		                      from TA_JC_STATISTICAL_SUM_CACHE oo
+		                     where oo.data_source = '1016'
+		                       and oo.business_type = '3') o2
+		            on o1.business_id = o2.business_id
+		           and o1.data_source = o2.data_source
+		           and o1.org_id = o2.org_id)
+                   </when>
+                   <when test="type == '1'.toString()">
+                   and t.supervise_id not in (select o1.supervise_id
+	                  from (select *
+	                          from TA_JC_STATISTICAL_SUM_CACHE o
+	                         where o.data_source = '1016'
+	                           and o.business_type = '1') o1
+	                 inner join (select *
+	                              from TA_JC_STATISTICAL_SUM_CACHE oo
+	                             where oo.data_source = '1016'
+	                               and oo.business_type = '2') o2
+	                    on o1.business_id = o2.business_id
+	                   and o1.data_source = o2.data_source
+	                   and o1.org_id = o2.org_id
+	                 inner join (select *
+	                              from TA_JC_STATISTICAL_SUM_CACHE oo
+	                             where oo.data_source = '1016'
+	                               and oo.business_type = '3') o3
+	                    on o1.business_id = o3.business_id
+	                   and o1.data_source = o3.data_source
+	                   and o1.org_id = o3.org_id)
+                   </when>
+                   </choose>
+                   ) temp
+         where rownum &lt;= #{endIndex}) temp1
+ where temp1.rn &gt; #{startIndex}
+ order by case temp1.business_status
+            when 'Y' then
+             1
+            else
+             2
+          end
+</select>
+
+<select id="getGreenCardIds" parameterType="list" resultType="java.lang.String">
+<foreach collection="list" item="entity" separator="union all">
+		select 
+		TA_JC_STATISTICAL_SUM_CACHE.supervise_id
+	    from TA_JC_STATISTICAL_SUM_CACHE 
+		 <where>
+	        <if test="entity.statisticalType != null">and TA_JC_STATISTICAL_SUM_CACHE.statistical_type = #{entity.statisticalType}</if>
+	        <if test="entity.businessId != null">and TA_JC_STATISTICAL_SUM_CACHE.business_id = #{entity.businessId}</if>
+	        <if test="entity.businessStatus != null">and TA_JC_STATISTICAL_SUM_CACHE.business_status = #{entity.businessStatus}</if>
+	        <if test="entity.businessType != null">and TA_JC_STATISTICAL_SUM_CACHE.business_type = #{entity.businessType}</if>
+	        <if test="entity.orgId != null">and TA_JC_STATISTICAL_SUM_CACHE.org_id = #{entity.orgId}</if>
+	        <if test="entity.dataSource != null">and TA_JC_STATISTICAL_SUM_CACHE.data_source = #{entity.dataSource}</if>
+		</where>
+</foreach>
+</select>
+
+<select id="getYellowWithRedCardIds" parameterType="list" resultMap="StatisticalSumCacheResult">
+with temp as(
+ select 
+    t.supervise_id,t.business_id,t.business_type,t.org_id,t.data_source,to_char(t.statistical_time,'yyyy-mm-dd')statistical_time,t.is_statistical
+      from TA_JC_STATISTICAL_SUM_CACHE t order by t.business_type desc
+)
+<foreach collection="list" item="entity" separator="union all">
+		select temp.* from temp
+		 <where>
+	        <if test="entity.businessId != null">temp.business_id = #{entity.businessId}</if>
+	        <if test="entity.orgId != null">and temp.org_id = #{entity.orgId}</if>
+	        <if test="entity.dataSource != null">and temp.data_source = #{entity.dataSource}</if>
+		</where>
+</foreach>
+</select>
+
+<update id="updateCardsStatus" parameterType="list">
+update TA_JC_STATISTICAL_SUM_CACHE t 
+<set>
+	t.is_statistical = 'Y'
+</set>
+<where>
+	t.supervise_id in (
+	<foreach collection="list" item="entity" separator=",">
+		#{entity}
+	</foreach>
+	)
+</where>
+</update>
+<!-- ================================== 自定义sql end =========================================== -->
+<!-- ElementID:insert,Generated=true -->
+<insert id="insert" parameterType="com.chinacreator.dzjc_tongji.StatisticalSumCache">
+	insert into TA_JC_STATISTICAL_SUM_CACHE(
+	         <if test="superviseId != null">supervise_id</if>
+	         <if test="statisticalType != null">,statistical_type</if>
+	         <if test="businessId != null">,business_id</if>
+	         <if test="currentTime != null">,current_time</if>
+	         <if test="statisticalTime != null">,statistical_time</if>
+	         <if test="businessStatus != null">,business_status</if>
+	         <if test="businessType != null">,business_type</if>
+	         <if test="orgId != null">,org_id</if>
+	         <if test="dataSource != null">,data_source</if>
+	         <if test="isStatistical != null">,is_statistical</if>
+	 	 	 )
+	 values (
+	         <if test="superviseId != null">#{superviseId,jdbcType=VARCHAR}</if>
+	         <if test="statisticalType != null">,#{statisticalType,jdbcType=VARCHAR}</if>
+	         <if test="businessId != null">,#{businessId,jdbcType=VARCHAR}</if>
+	         <if test="currentTime != null">,#{currentTime,jdbcType=DATE}</if>
+	         <if test="statisticalTime != null">,#{statisticalTime,jdbcType=DATE}</if>
+	         <if test="businessStatus != null">,#{businessStatus,jdbcType=VARCHAR}</if>
+	         <if test="businessType != null">,#{businessType,jdbcType=VARCHAR}</if>
+	         <if test="orgId != null">,#{orgId,jdbcType=VARCHAR}</if>
+	         <if test="dataSource != null">,#{dataSource,jdbcType=VARCHAR}</if>
+	         <if test="isStatistical != null">,#{isStatistical,jdbcType=VARCHAR}</if>
+	 	 	 )
+</insert>
+<!-- ElementID:count,Generated=true -->
+<select id="count" parameterType="com.chinacreator.dzjc_tongji.StatisticalSumCache" resultType="int">
+	select count(*) from TA_JC_STATISTICAL_SUM_CACHE 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+<!-- ElementID:update,Generated=true -->
+<update id="update" parameterType="com.chinacreator.dzjc_tongji.StatisticalSumCache">
+	update TA_JC_STATISTICAL_SUM_CACHE
+<set>
+	<if test="statisticalType != null">statistical_type=#{statisticalType,jdbcType=VARCHAR},</if>
+	<if test="businessId != null">business_id=#{businessId,jdbcType=VARCHAR},</if>
+	<if test="currentTime != null">current_time=#{currentTime,jdbcType=DATE},</if>
+	<if test="statisticalTime != null">statistical_time=#{statisticalTime,jdbcType=DATE},</if>
+	<if test="businessStatus != null">business_status=#{businessStatus,jdbcType=VARCHAR},</if>
+	<if test="businessType != null">business_type=#{businessType,jdbcType=VARCHAR},</if>
+	<if test="orgId != null">org_id=#{orgId,jdbcType=VARCHAR},</if>
+	<if test="dataSource != null">data_source=#{dataSource,jdbcType=VARCHAR},</if>
+	<if test="isStatistical != null">is_statistical=#{isStatistical,jdbcType=VARCHAR}</if>
+</set>
+<where>
+	<choose>
+        <when test="superviseId != null">and supervise_id = #{superviseId}</when>
+        <otherwise>and supervise_id = </otherwise>
+    </choose>
+</where>
+</update>
+<!-- ElementID:updateNull,Generated=true -->
+<update id="updateNull" parameterType="map">
+	update TA_JC_STATISTICAL_SUM_CACHE
+	<set>
+		<trim suffixOverrides=",">
+		    <if test="statisticalType==null">statistical_type = null,</if>
+		    <if test="businessId==null">business_id = null,</if>
+		    <if test="currentTime==null">current_time = null,</if>
+		    <if test="statisticalTime==null">statistical_time = null,</if>
+		    <if test="businessStatus==null">business_status = null,</if>
+		    <if test="businessType==null">business_type = null,</if>
+		    <if test="orgId==null">org_id = null,</if>
+		    <if test="dataSource==null">data_source = null,</if>
+		    <if test="isStatistical==null">is_statistical = null,</if>
+		</trim>
+	</set>
+	<where>
+		<choose>
+			<when test="superviseId != null">and supervise_id = #{superviseId}</when>
+			<otherwise>and supervise_id = </otherwise>
+		</choose>
+	</where>
+</update>
+<!-- ElementID:delete,Generated=true -->
+<delete id="delete" parameterType="com.chinacreator.dzjc_tongji.StatisticalSumCache">
+    delete from TA_JC_STATISTICAL_SUM_CACHE where 1=1 and supervise_id = #{superviseId}
+</delete>
+<!-- ElementID:select,Generated=true -->
+<select id="select" parameterType="com.chinacreator.dzjc_tongji.StatisticalSumCache" resultMap="StatisticalSumCacheResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_STATISTICAL_SUM_CACHE 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+<!-- ElementID:insertBatch,Generated=false -->
+<insert id="insertBatch" parameterType="list">
+	insert into TA_JC_STATISTICAL_SUM_CACHE (statistical_type,business_id,supervise_id,statistical_time,business_status,business_type,org_id,data_source,is_statistical) 
+<foreach collection="list" item="entity" index="index" separator="union all">
+		select 
+				#{entity.statisticalType,jdbcType = VARCHAR},
+				#{entity.businessId,jdbcType = VARCHAR},
+				#{entity.superviseId,jdbcType = VARCHAR},
+				#{entity.statisticalTime,jdbcType = DATE},
+				#{entity.businessStatus,jdbcType = VARCHAR},
+				#{entity.businessType,jdbcType = VARCHAR},
+				#{entity.orgId,jdbcType = VARCHAR},
+				#{entity.dataSource,jdbcType = VARCHAR},
+				#{entity.isStatistical,jdbcType = VARCHAR}
+		from dual
+</foreach>
+</insert>
+<!-- ElementID:deleteBatch,Generated=true -->
+<delete id="deleteBatch" parameterType="List">
+	delete from TA_JC_STATISTICAL_SUM_CACHE where supervise_id in
+<trim prefix="(" suffix=")" suffixOverrides=",">
+<foreach collection="list" item="entity" separator=",">
+	<choose>
+		<when test="@com.chinacreator.c2.dao.util.EntityBeanUtil@isEntityObj(entity)">#{entity.superviseId}</when>
+		<otherwise>#{entity}</otherwise>
+	</choose>
+</foreach>
+</trim>
+</delete>
+<!-- ElementID:updateBatch,Generated=true -->
+<update id="updateBatch" parameterType="list">
+	<foreach collection="list" item="entity" open="begin" close=";end;" separator=";">
+			update TA_JC_STATISTICAL_SUM_CACHE
+	<set>
+	<if test="entity.statisticalType != null">statistical_type= #{entity.statisticalType,jdbcType=VARCHAR},</if>
+	<if test="entity.businessId != null">business_id= #{entity.businessId,jdbcType=VARCHAR},</if>
+	<if test="entity.currentTime != null">current_time= #{entity.currentTime,jdbcType=DATE},</if>
+	<if test="entity.statisticalTime != null">statistical_time= #{entity.statisticalTime,jdbcType=DATE},</if>
+	<if test="entity.businessStatus != null">business_status= #{entity.businessStatus,jdbcType=VARCHAR},</if>
+	<if test="entity.businessType != null">business_type= #{entity.businessType,jdbcType=VARCHAR},</if>
+	<if test="entity.orgId != null">org_id= #{entity.orgId,jdbcType=VARCHAR},</if>
+	<if test="entity.dataSource != null">data_source= #{entity.dataSource,jdbcType=VARCHAR},</if>
+	<if test="entity.isStatistical != null">is_statistical= #{entity.isStatistical,jdbcType=VARCHAR}</if>
+	</set>
+		<where>
+			<choose>
+				<when test="entity.superviseId != null">and supervise_id = #{entity.superviseId}</when>
+				<otherwise>and supervise_id = </otherwise>
+			</choose>
+		</where>
+	</foreach>
+</update>
+<!-- ElementID:selectAll,Generated=true -->
+<select id="selectAll" resultMap="StatisticalSumCacheResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_STATISTICAL_SUM_CACHE 
+</select>
+<!-- ElementID:selectMany,Generated=true -->
+<select id="selectMany" parameterType="list" resultMap="StatisticalSumCacheResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_JC_STATISTICAL_SUM_CACHE 
+	where TA_JC_STATISTICAL_SUM_CACHE.supervise_id in (
+<foreach collection="list" item="entity" separator="intersect">
+		select 
+		TA_JC_STATISTICAL_SUM_CACHE.supervise_id
+	    from TA_JC_STATISTICAL_SUM_CACHE 
+		 <where>
+	        <if test="entity.superviseId != null">and TA_JC_STATISTICAL_SUM_CACHE.supervise_id = #{entity.superviseId}</if>
+	        <if test="entity.statisticalType != null">and TA_JC_STATISTICAL_SUM_CACHE.statistical_type = #{entity.statisticalType}</if>
+	        <if test="entity.businessId != null">and TA_JC_STATISTICAL_SUM_CACHE.business_id = #{entity.businessId}</if>
+	        <if test="entity.currentTime != null">and TA_JC_STATISTICAL_SUM_CACHE.current_time = #{entity.currentTime}</if>
+	        <if test="entity.statisticalTime != null">and TA_JC_STATISTICAL_SUM_CACHE.statistical_time = #{entity.statisticalTime}</if>
+	        <if test="entity.businessStatus != null">and TA_JC_STATISTICAL_SUM_CACHE.business_status = #{entity.businessStatus}</if>
+	        <if test="entity.businessType != null">and TA_JC_STATISTICAL_SUM_CACHE.business_type = #{entity.businessType}</if>
+	        <if test="entity.orgId != null">and TA_JC_STATISTICAL_SUM_CACHE.org_id = #{entity.orgId}</if>
+	        <if test="entity.dataSource != null">and TA_JC_STATISTICAL_SUM_CACHE.data_source = #{entity.dataSource}</if>
+	        <if test="entity.isStatistical != null">and TA_JC_STATISTICAL_SUM_CACHE.is_statistical = #{entity.isStatistical}</if>
+		</where>
+</foreach>
+)
+</select>
+<!-- ElementID:selectUnion,Generated=true -->
+<select id="selectUnion" parameterType="list" resultMap="StatisticalSumCacheResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_JC_STATISTICAL_SUM_CACHE 
+	 INNER JOIN
+<foreach collection="list" item="entity" separator="UNION" open="(" close=")">
+		SELECT 
+			 supervise_id
+		FROM TA_JC_STATISTICAL_SUM_CACHE 
+			<where>
+	        <if test="entity.superviseId != null">and TA_JC_STATISTICAL_SUM_CACHE.supervise_id = #{entity.superviseId}</if>
+	        <if test="entity.statisticalType != null">and TA_JC_STATISTICAL_SUM_CACHE.statistical_type = #{entity.statisticalType}</if>
+	        <if test="entity.businessId != null">and TA_JC_STATISTICAL_SUM_CACHE.business_id = #{entity.businessId}</if>
+	        <if test="entity.currentTime != null">and TA_JC_STATISTICAL_SUM_CACHE.current_time = #{entity.currentTime}</if>
+	        <if test="entity.statisticalTime != null">and TA_JC_STATISTICAL_SUM_CACHE.statistical_time = #{entity.statisticalTime}</if>
+	        <if test="entity.businessStatus != null">and TA_JC_STATISTICAL_SUM_CACHE.business_status = #{entity.businessStatus}</if>
+	        <if test="entity.businessType != null">and TA_JC_STATISTICAL_SUM_CACHE.business_type = #{entity.businessType}</if>
+	        <if test="entity.orgId != null">and TA_JC_STATISTICAL_SUM_CACHE.org_id = #{entity.orgId}</if>
+	        <if test="entity.dataSource != null">and TA_JC_STATISTICAL_SUM_CACHE.data_source = #{entity.dataSource}</if>
+	        <if test="entity.isStatistical != null">and TA_JC_STATISTICAL_SUM_CACHE.is_statistical = #{entity.isStatistical}</if>
+			</where>
+</foreach>
+	c2_temp_table ON TA_JC_STATISTICAL_SUM_CACHE.supervise_id = c2_temp_table.supervise_id
+</select>
+<!-- ElementID:selectByID,Generated=true -->
+<select id="selectByID" parameterType="java.lang.String" resultMap="StatisticalSumCacheResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_STATISTICAL_SUM_CACHE 
+		 where TA_JC_STATISTICAL_SUM_CACHE.supervise_id = #{superviseId,jdbcType=VARCHAR}
+</select>
+<!-- ElementID:selectByPage,Generated=true -->
+<select id="selectByPage" parameterType="com.chinacreator.dzjc_tongji.StatisticalSumCache" resultMap="StatisticalSumCacheResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_STATISTICAL_SUM_CACHE 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+</mapper>

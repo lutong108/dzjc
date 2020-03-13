@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"><mapper namespace="com.chinacreator.dzjc_performance.EvalTableMapper">	
+
+<!-- ElementID:column_sql,Generated=true -->
+<sql id="column_sql">
+		  TA_JC_EVAL_TABLE.table_id ,
+		  TA_JC_EVAL_TABLE.table_name ,
+		  TA_JC_EVAL_TABLE.table_formula ,
+		  TA_JC_EVAL_TABLE.remark ,
+		  TA_JC_EVAL_TABLE.area_code ,
+		  TA_JC_EVAL_TABLE.order_no ,
+		  TA_JC_EVAL_TABLE.is_used ,
+		  TA_JC_EVAL_TABLE.cc_form_instanceid ,
+		  TA_JC_EVAL_TABLE.is_public ,
+		  TA_JC_EVAL_TABLE.org_id ,
+		  TA_JC_EVAL_TABLE.version ,
+		  TA_JC_EVAL_TABLE.eval_object_type ,
+		  TA_JC_EVAL_TABLE.is_valid 
+</sql>
+
+<!-- ElementID:whereClause_sql,Generated=true -->
+<sql id="whereClause_sql">
+	    <if test="tableId != null">and TA_JC_EVAL_TABLE.table_id = #{tableId}</if>
+	    <if test="tableName != null">and TA_JC_EVAL_TABLE.table_name = #{tableName}</if>
+	    <if test="tableFormula != null">and TA_JC_EVAL_TABLE.table_formula = #{tableFormula}</if>
+	    <if test="remark != null">and TA_JC_EVAL_TABLE.remark = #{remark}</if>
+	    <if test="areaCode != null">and TA_JC_EVAL_TABLE.area_code = #{areaCode}</if>
+	    <if test="orderNo != null">and TA_JC_EVAL_TABLE.order_no = #{orderNo}</if>
+	    <if test="isUsed != null">and TA_JC_EVAL_TABLE.is_used = #{isUsed}</if>
+	    <if test="ccFormInstanceid != null">and TA_JC_EVAL_TABLE.cc_form_instanceid = #{ccFormInstanceid}</if>
+	    <if test="isPublic != null">and TA_JC_EVAL_TABLE.is_public = #{isPublic}</if>
+	    <if test="orgId != null">and TA_JC_EVAL_TABLE.org_id = #{orgId}</if>
+	    <if test="version != null">and TA_JC_EVAL_TABLE.version = #{version}</if>
+	    <if test="evalObjectType != null">and TA_JC_EVAL_TABLE.eval_object_type = #{evalObjectType}</if>
+	    <if test="isValid != null">and TA_JC_EVAL_TABLE.is_valid = #{isValid}</if>
+</sql>
+
+
+<!-- ElementID:EvalTableResult,Generated=true -->
+<resultMap id="EvalTableResult" type="com.chinacreator.dzjc_performance.EvalTable">
+	<id property="tableId" column="table_id"/>
+	<result property="tableName" column="table_name"/>
+	<result property="tableFormula" column="table_formula"/>
+	<result property="remark" column="remark"/>
+	<result property="areaCode" column="area_code"/>
+	<result property="orderNo" column="order_no"/>
+	<result property="isUsed" column="is_used"/>
+	<result property="ccFormInstanceid" column="cc_form_instanceid"/>
+	<result property="isPublic" column="is_public"/>
+	<result property="orgId" column="org_id"/>
+	<result property="version" column="version"/>
+	<result property="evalObjectType" column="eval_object_type"/>
+	<result property="isValid" column="is_valid"/>
+</resultMap>
+
+<!-- Generated=false -->
+<resultMap id="EvalTableResult2" type="com.chinacreator.dzjc_performance.EvalTableExp">
+    <id property="tableId" column="table_id"/>
+    <result property="tableName" column="table_name"/>
+    <result property="tableFormula" column="table_formula"/>
+    <result property="remark" column="remark"/>
+    <result property="areaCode" column="area_code"/>
+    <result property="orderNo" column="order_no"/>
+    <result property="isUsed" column="is_used"/>
+    <result property="ccFormInstanceid" column="cc_form_instanceid"/>
+    <result property="isPublic" column="is_public"/>
+    <result property="orgId" column="org_id"/>
+    <result property="version" column="version"/>
+    <result property="areaName" column="area_name"/>
+    <result property="evalObjectType" column="eval_object_type"/>
+    <result property="isValid" column="is_valid"/>
+</resultMap>
+
+
+<!-- ElementID:insert,Generated=true -->
+<insert id="insert" parameterType="com.chinacreator.dzjc_performance.EvalTable">
+	insert into TA_JC_EVAL_TABLE(
+	         <if test="tableId != null">table_id</if>
+	         <if test="tableName != null">,table_name</if>
+	         <if test="tableFormula != null">,table_formula</if>
+	         <if test="remark != null">,remark</if>
+	         <if test="areaCode != null">,area_code</if>
+	         <if test="orderNo != null">,order_no</if>
+	         <if test="isUsed != null">,is_used</if>
+	         <if test="ccFormInstanceid != null">,cc_form_instanceid</if>
+	         <if test="isPublic != null">,is_public</if>
+	         <if test="orgId != null">,org_id</if>
+	         <if test="version != null">,version</if>
+	         <if test="evalObjectType != null">,eval_object_type</if>
+	         <if test="isValid != null">,is_valid</if>
+	 	 	 )
+	 values (
+	         <if test="tableId != null">#{tableId,jdbcType=VARCHAR}</if>
+	         <if test="tableName != null">,#{tableName,jdbcType=VARCHAR}</if>
+	         <if test="tableFormula != null">,#{tableFormula,jdbcType=VARCHAR}</if>
+	         <if test="remark != null">,#{remark,jdbcType=VARCHAR}</if>
+	         <if test="areaCode != null">,#{areaCode,jdbcType=VARCHAR}</if>
+	         <if test="orderNo != null">,#{orderNo,jdbcType=NUMERIC}</if>
+	         <if test="isUsed != null">,#{isUsed,jdbcType=CHAR}</if>
+	         <if test="ccFormInstanceid != null">,#{ccFormInstanceid,jdbcType=VARCHAR}</if>
+	         <if test="isPublic != null">,#{isPublic,jdbcType=CHAR}</if>
+	         <if test="orgId != null">,#{orgId,jdbcType=VARCHAR}</if>
+	         <if test="version != null">,#{version,jdbcType=VARCHAR}</if>
+	         <if test="evalObjectType != null">,#{evalObjectType,jdbcType=CHAR}</if>
+	         <if test="isValid != null">,#{isValid,jdbcType=CHAR}</if>
+	 	 	 )
+</insert>
+
+<!-- ElementID:count,Generated=true -->
+<select id="count" parameterType="com.chinacreator.dzjc_performance.EvalTable" resultType="int">
+	select count(*) from TA_JC_EVAL_TABLE 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<!-- ElementID:update,Generated=true -->
+<update id="update" parameterType="com.chinacreator.dzjc_performance.EvalTable">
+	update TA_JC_EVAL_TABLE
+<set>
+	<if test="tableName != null">table_name=#{tableName,jdbcType=VARCHAR},</if>
+	<if test="tableFormula != null">table_formula=#{tableFormula,jdbcType=VARCHAR},</if>
+	<if test="remark != null">remark=#{remark,jdbcType=VARCHAR},</if>
+	<if test="areaCode != null">area_code=#{areaCode,jdbcType=VARCHAR},</if>
+	<if test="orderNo != null">order_no=#{orderNo,jdbcType=NUMERIC},</if>
+	<if test="isUsed != null">is_used=#{isUsed,jdbcType=CHAR},</if>
+	<if test="ccFormInstanceid != null">cc_form_instanceid=#{ccFormInstanceid,jdbcType=VARCHAR},</if>
+	<if test="isPublic != null">is_public=#{isPublic,jdbcType=CHAR},</if>
+	<if test="orgId != null">org_id=#{orgId,jdbcType=VARCHAR},</if>
+	<if test="version != null">version=#{version,jdbcType=VARCHAR},</if>
+	<if test="evalObjectType != null">eval_object_type=#{evalObjectType,jdbcType=CHAR},</if>
+	<if test="isValid != null">is_valid=#{isValid,jdbcType=CHAR}</if>
+</set>
+<where>
+	<choose>
+        <when test="tableId != null">and table_id = #{tableId}</when>
+        <otherwise>and table_id = </otherwise>
+    </choose>
+</where>
+</update>
+
+<!-- ElementID:updateNull,Generated=true -->
+<update id="updateNull" parameterType="map">
+	update TA_JC_EVAL_TABLE
+	<set>
+		<trim suffixOverrides=",">
+		    <if test="tableName==null">table_name = null,</if>
+		    <if test="tableFormula==null">table_formula = null,</if>
+		    <if test="remark==null">remark = null,</if>
+		    <if test="areaCode==null">area_code = null,</if>
+		    <if test="orderNo==null">order_no = null,</if>
+		    <if test="isUsed==null">is_used = null,</if>
+		    <if test="ccFormInstanceid==null">cc_form_instanceid = null,</if>
+		    <if test="isPublic==null">is_public = null,</if>
+		    <if test="orgId==null">org_id = null,</if>
+		    <if test="version==null">version = null,</if>
+		    <if test="evalObjectType==null">eval_object_type = null,</if>
+		    <if test="isValid==null">is_valid = null,</if>
+		</trim>
+	</set>
+	<where>
+		<choose>
+			<when test="tableId != null">and table_id = #{tableId}</when>
+			<otherwise>and table_id = </otherwise>
+		</choose>
+	</where>
+</update>
+
+<!-- ElementID:delete,Generated=true -->
+<delete id="delete" parameterType="com.chinacreator.dzjc_performance.EvalTable">
+    delete from TA_JC_EVAL_TABLE where 1=1 and table_id = #{tableId}
+</delete>
+
+<!-- ElementID:select,Generated=true -->
+<select id="select" parameterType="com.chinacreator.dzjc_performance.EvalTable" resultMap="EvalTableResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_EVAL_TABLE 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+
+<!-- ElementID:insertBatch,Generated=true -->
+<insert id="insertBatch" parameterType="list">
+	insert into TA_JC_EVAL_TABLE (table_id,table_name,table_formula,remark,area_code,order_no,is_used,cc_form_instanceid,is_public,org_id,version,eval_object_type,is_valid) 
+<foreach collection="list" item="entity" index="index" separator="union all">
+		select 
+		#{entity.tableId,jdbcType = VARCHAR},
+				#{entity.tableName,jdbcType = VARCHAR},
+				#{entity.tableFormula,jdbcType = VARCHAR},
+				#{entity.remark,jdbcType = VARCHAR},
+				#{entity.areaCode,jdbcType = VARCHAR},
+				#{entity.orderNo,jdbcType = NUMERIC},
+				#{entity.isUsed,jdbcType = CHAR},
+				#{entity.ccFormInstanceid,jdbcType = VARCHAR},
+				#{entity.isPublic,jdbcType = CHAR},
+				#{entity.orgId,jdbcType = VARCHAR},
+				#{entity.version,jdbcType = VARCHAR},
+				#{entity.evalObjectType,jdbcType = CHAR},
+				#{entity.isValid,jdbcType = CHAR}
+		from dual
+</foreach>
+</insert>
+
+<!-- ElementID:deleteBatch,Generated=true -->
+<delete id="deleteBatch" parameterType="List">
+	delete from TA_JC_EVAL_TABLE where table_id in
+<trim prefix="(" suffix=")" suffixOverrides=",">
+<foreach collection="list" item="entity" separator=",">
+	<choose>
+		<when test="@com.chinacreator.c2.dao.util.EntityBeanUtil@isEntityObj(entity)">#{entity.tableId}</when>
+		<otherwise>#{entity}</otherwise>
+	</choose>
+</foreach>
+</trim>
+</delete>
+
+<!-- ElementID:updateBatch,Generated=true -->
+
+
+<!-- ElementID:selectAll,Generated=true -->
+<select id="selectAll" resultMap="EvalTableResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_EVAL_TABLE 
+</select>
+
+<!-- ElementID:selectMany,Generated=true -->
+<select id="selectMany" parameterType="list" resultMap="EvalTableResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_JC_EVAL_TABLE 
+	where TA_JC_EVAL_TABLE.table_id in (
+<foreach collection="list" item="entity" separator="intersect">
+		select 
+		TA_JC_EVAL_TABLE.table_id
+	    from TA_JC_EVAL_TABLE 
+		 <where>
+	        <if test="entity.tableId != null">and TA_JC_EVAL_TABLE.table_id = #{entity.tableId}</if>
+	        <if test="entity.tableName != null">and TA_JC_EVAL_TABLE.table_name = #{entity.tableName}</if>
+	        <if test="entity.tableFormula != null">and TA_JC_EVAL_TABLE.table_formula = #{entity.tableFormula}</if>
+	        <if test="entity.remark != null">and TA_JC_EVAL_TABLE.remark = #{entity.remark}</if>
+	        <if test="entity.areaCode != null">and TA_JC_EVAL_TABLE.area_code = #{entity.areaCode}</if>
+	        <if test="entity.orderNo != null">and TA_JC_EVAL_TABLE.order_no = #{entity.orderNo}</if>
+	        <if test="entity.isUsed != null">and TA_JC_EVAL_TABLE.is_used = #{entity.isUsed}</if>
+	        <if test="entity.ccFormInstanceid != null">and TA_JC_EVAL_TABLE.cc_form_instanceid = #{entity.ccFormInstanceid}</if>
+	        <if test="entity.isPublic != null">and TA_JC_EVAL_TABLE.is_public = #{entity.isPublic}</if>
+	        <if test="entity.orgId != null">and TA_JC_EVAL_TABLE.org_id = #{entity.orgId}</if>
+	        <if test="entity.version != null">and TA_JC_EVAL_TABLE.version = #{entity.version}</if>
+	        <if test="entity.evalObjectType != null">and TA_JC_EVAL_TABLE.eval_object_type = #{entity.evalObjectType}</if>
+	        <if test="entity.isValid != null">and TA_JC_EVAL_TABLE.is_valid = #{entity.isValid}</if>
+		</where>
+</foreach>
+)
+</select>
+
+<!-- ElementID:selectUnion,Generated=true -->
+<select id="selectUnion" parameterType="list" resultMap="EvalTableResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_JC_EVAL_TABLE 
+	 INNER JOIN
+<foreach collection="list" item="entity" separator="UNION" open="(" close=")">
+		SELECT 
+			 table_id
+		FROM TA_JC_EVAL_TABLE 
+			<where>
+	        <if test="entity.tableId != null">and TA_JC_EVAL_TABLE.table_id = #{entity.tableId}</if>
+	        <if test="entity.tableName != null">and TA_JC_EVAL_TABLE.table_name = #{entity.tableName}</if>
+	        <if test="entity.tableFormula != null">and TA_JC_EVAL_TABLE.table_formula = #{entity.tableFormula}</if>
+	        <if test="entity.remark != null">and TA_JC_EVAL_TABLE.remark = #{entity.remark}</if>
+	        <if test="entity.areaCode != null">and TA_JC_EVAL_TABLE.area_code = #{entity.areaCode}</if>
+	        <if test="entity.orderNo != null">and TA_JC_EVAL_TABLE.order_no = #{entity.orderNo}</if>
+	        <if test="entity.isUsed != null">and TA_JC_EVAL_TABLE.is_used = #{entity.isUsed}</if>
+	        <if test="entity.ccFormInstanceid != null">and TA_JC_EVAL_TABLE.cc_form_instanceid = #{entity.ccFormInstanceid}</if>
+	        <if test="entity.isPublic != null">and TA_JC_EVAL_TABLE.is_public = #{entity.isPublic}</if>
+	        <if test="entity.orgId != null">and TA_JC_EVAL_TABLE.org_id = #{entity.orgId}</if>
+	        <if test="entity.version != null">and TA_JC_EVAL_TABLE.version = #{entity.version}</if>
+	        <if test="entity.evalObjectType != null">and TA_JC_EVAL_TABLE.eval_object_type = #{entity.evalObjectType}</if>
+	        <if test="entity.isValid != null">and TA_JC_EVAL_TABLE.is_valid = #{entity.isValid}</if>
+			</where>
+</foreach>
+	c2_temp_table ON TA_JC_EVAL_TABLE.table_id = c2_temp_table.table_id
+</select>
+
+<!-- ElementID:selectByID,Generated=true -->
+<select id="selectByID" parameterType="java.lang.String" resultMap="EvalTableResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_EVAL_TABLE 
+		 where TA_JC_EVAL_TABLE.table_id = #{tableId,jdbcType=VARCHAR}
+</select>
+
+<!-- ElementID:selectByPage,Generated=true -->
+<select id="selectByPage" parameterType="com.chinacreator.dzjc_performance.EvalTable" resultMap="EvalTableResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_EVAL_TABLE 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<!-- Generated=false -->
+<select id="selectByPage2" parameterType="com.chinacreator.dzjc_performance.EvalTableExp" resultMap="EvalTableResult2">
+  select TABLE_ID,
+       TABLE_NAME,
+       decode( IS_VALID, 'Y', '是', '否') IS_VALID,
+       t.area_code,
+       t.area_name,
+       order_no,
+       version,
+       EVAL_OBJECT_TYPE
+  from TA_JC_EVAL_TABLE A
+  left join ta_jc_dic_area t
+    on trim(t.area_code) = trim(A.area_code)
+ where 1 = 1
+ order by order_no
+</select>
+
+<!-- Generated=false -->
+<select id="selectByAreaCode" parameterType="java.lang.String" resultMap="EvalTableResult">
+  select 
+        <include refid="column_sql"/>
+        from TA_JC_EVAL_TABLE 
+        <where>
+            <if test="_parameter!= null">and TA_JC_EVAL_TABLE.area_code = #{areaCode,jdbcType=VARCHAR}</if>
+        </where>
+</select>
+
+<!-- Generated=false -->
+<select id="selectByAreaCode2" parameterType="com.chinacreator.dzjc_performance.EvalTable" resultMap="EvalTableResult">
+  select 
+        <include refid="column_sql"/>
+        from TA_JC_EVAL_TABLE 
+        <where>
+            <if test="areaCode!= null">and TA_JC_EVAL_TABLE.area_code like concat(#{areaCode},'%')</if>
+            <if test="evalObjectType!=null">and TA_JC_EVAL_TABLE.eval_object_type = #{evalObjectType}</if>
+        </where>
+</select>
+
+<update id="updateBatch" parameterType="list">
+	<foreach collection="list" item="entity" open="begin" close=";end;" separator=";">
+			update TA_JC_EVAL_TABLE
+	<set>
+	<if test="entity.tableName != null">table_name= #{entity.tableName,jdbcType=VARCHAR},</if>
+	<if test="entity.tableFormula != null">table_formula= #{entity.tableFormula,jdbcType=VARCHAR},</if>
+	<if test="entity.remark != null">remark= #{entity.remark,jdbcType=VARCHAR},</if>
+	<if test="entity.areaCode != null">area_code= #{entity.areaCode,jdbcType=VARCHAR},</if>
+	<if test="entity.orderNo != null">order_no= #{entity.orderNo,jdbcType=NUMERIC},</if>
+	<if test="entity.isUsed != null">is_used= #{entity.isUsed,jdbcType=CHAR},</if>
+	<if test="entity.ccFormInstanceid != null">cc_form_instanceid= #{entity.ccFormInstanceid,jdbcType=VARCHAR},</if>
+	<if test="entity.isPublic != null">is_public= #{entity.isPublic,jdbcType=CHAR},</if>
+	<if test="entity.orgId != null">org_id= #{entity.orgId,jdbcType=VARCHAR},</if>
+	<if test="entity.version != null">version= #{entity.version,jdbcType=VARCHAR},</if>
+	<if test="entity.evalObjectType != null">eval_object_type= #{entity.evalObjectType,jdbcType=CHAR},</if>
+	<if test="entity.isValid != null">is_valid= #{entity.isValid,jdbcType=CHAR}</if>
+	</set>
+		<where>
+			<choose>
+				<when test="entity.tableId != null">and table_id = #{entity.tableId}</when>
+				<otherwise>and table_id = </otherwise>
+			</choose>
+		</where>
+	</foreach>
+</update>
+</mapper>

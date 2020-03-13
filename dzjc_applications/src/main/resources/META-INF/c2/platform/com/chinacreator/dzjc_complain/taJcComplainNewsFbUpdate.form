@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form:Form xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dync="http://www.chinacreator.com/platform/mvc/ui/dync" xmlns:form="http://www.chinacreator.com/platform/mvc/form" name="新闻发布修改" res="" sn="dzjc_complain/taJcComplainNewsFbUpdate" type="form">
+  <form:control type="page/modal">
+    <form:attributes source="page/modal">
+      <dync:attribute default="" group="HTML" id="width" name="页面宽度" value="80%">
+        <dync:render colSpan="2" height="0" multi="false" name="text"/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="" group="HTML" id="title" name="标题" value="信息发布">
+        <dync:render colSpan="2" height="0" multi="false" name="text"/>
+        <dync:children/>
+      </dync:attribute>
+    </form:attributes>
+  </form:control>
+  <form:child xsi:type="form:Group" id="entity" name="单实体数据源">
+    <form:control type="container/div">
+      <form:attributes source="container/div"/>
+    </form:control>
+    <form:child xsi:type="form:Group" id="widgexbox_toolbar" name="widgexbox_toolbar">
+      <form:control type="container/toolbar_widget">
+        <form:attributes source="container/toolbar_widget"/>
+      </form:control>
+    </form:child>
+    <form:child xsi:type="form:Field" binding="$model.entity.lawsTitle" id="lawsTitle" name="标题 *">
+      <form:control type="widget/text">
+        <form:attributes source="widget/text">
+          <dync:attribute default="6" group="基本设置" id="span" name="占位数" value="12">
+            <dync:render colSpan="1" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="false" group="数据校验" id="required" name="必填项" value="true">
+            <dync:render colSpan="1" height="0" multi="false" name="checkboxAndExpr"/>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+    </form:child>
+    <form:child xsi:type="form:Field" binding="$model.entity.shortTitle" id="shortTitle" name="副标题">
+      <form:control type="widget/text">
+        <form:attributes source="widget/text">
+          <dync:attribute default="6" group="基本设置" id="span" name="占位数" value="12">
+            <dync:render colSpan="1" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+    </form:child>
+    <form:child xsi:type="form:Field" binding="$model.entity.columnCode" id="columnCode" name="栏目类别">
+      <form:control type="widget/select_simple">
+        <form:attributes source="widget/select_simple">
+          <dync:attribute default="" group="下拉框设置" id="selectOptions" name="选项" value="[&#xD;&#xA;{&quot;id&quot;:&quot;1&quot;,&quot;name&quot;:&quot;政策法规&quot;},&#xD;&#xA;{&quot;id&quot;:&quot;2&quot;,&quot;name&quot;:&quot;案例通报&quot;},&#xD;&#xA;{&quot;id&quot;:&quot;3&quot;,&quot;name&quot;:&quot;联系我们&quot;},&#xD;&#xA;{&quot;id&quot;:&quot;4&quot;,&quot;name&quot;:&quot;投诉举报条款&quot;}&#xD;&#xA;]">
+            <dync:render colSpan="1" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="" group="下拉框设置" id="nullValue" name="空值选项名" value="---请选择---">
+            <dync:render colSpan="1" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+    </form:child>
+    <form:child xsi:type="form:Field" binding="$model.entity.isPublic" id="isPublic" name="是否公开">
+      <form:control type="widget/radio_group">
+        <form:attributes source="widget/radio_group">
+          <dync:attribute default="" group="单选按钮组设置" id="radioOptions" name="选项" value="[&#xD;&#xA;{&quot;id&quot;:&quot;Y&quot;,&quot;name&quot;:&quot;是&quot;},&#xD;&#xA;{&quot;id&quot;:&quot;N&quot;,&quot;name&quot;:&quot;否&quot;}&#xD;&#xA;]">
+            <dync:render colSpan="1" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="" group="单选按钮组设置" id="optionId" name="值属性名" value="id">
+            <dync:render colSpan="1" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="" group="单选按钮组设置" id="optionName" name="显示属性名" value="name">
+            <dync:render colSpan="1" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="" group="单选按钮组设置" id="defaultValue" name="默认值" value="N">
+            <dync:render colSpan="1" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+    </form:child>
+    <form:child xsi:type="form:Field" binding="$model.entity.contentValidity" id="contentValidity" name="内容简介">
+      <form:control type="widget/textarea">
+        <form:attributes source="widget/textarea">
+          <dync:attribute default="3" group="HTML设置" id="rows" name="行高" value="5">
+            <dync:render colSpan="1" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+    </form:child>
+    <form:child xsi:type="form:Group" id="widgetbox" name="内容">
+      <form:control type="container/widgetbox">
+        <form:attributes source="container/widgetbox"/>
+      </form:control>
+      <form:child xsi:type="form:Group" id="widgexbox_toolbar" name="widgexbox_toolbar">
+        <form:control type="container/toolbar_widget">
+          <form:attributes source="container/toolbar_widget"/>
+        </form:control>
+      </form:child>
+      <form:child xsi:type="form:Field" binding="$model.entity.lawsContent" id="lawsContent" name="">
+        <form:control type="widget/textarea_ueditor">
+          <form:attributes source="widget/textarea_ueditor"/>
+        </form:control>
+      </form:child>
+    </form:child>
+  </form:child>
+  <form:child xsi:type="form:Group" id="div4" name="简单容器(DIV)">
+    <form:control type="container/div">
+      <form:attributes source="container/div">
+        <dync:attribute default="" group="高级自定义" id="style" name="自定义style" value="text-align:center;height:30px;">
+          <dync:render colSpan="2" height="0" multi="false" name="text"/>
+          <dync:children/>
+        </dync:attribute>
+      </form:attributes>
+    </form:control>
+    <form:child xsi:type="form:Field" id="save_button" name="保存" customize="true">
+      <form:control type="widget/button">
+        <form:attributes source="widget/button">
+          <dync:attribute default="" group="事件设置" id="click" name="点击事件" value="save_button_click($event)">
+            <dync:render colSpan="1" height="0" multi="false" name="event">
+              <dync:item name="params" value="$event"/>
+            </dync:render>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+      <form:validation/>
+    </form:child>
+  </form:child>
+  <form:datasources>
+    <form:datasource xsi:type="form:EntityDataSource" id="entity" name="单实体数据源" base="service" sn="dzjc_complain/v1/taJcComplainLawsreg" data="$params.lawsId" entity="entity:com.chinacreator.dzjc_complain.taJcComplainLawsreg">
+      <form:entityObj pk="laws_id" restResource="true"/>
+    </form:datasource>
+  </form:datasources>
+  <form:scripts>
+//保存
+save_button_click:function($event){
+	var content= $view.lawsContent.getUE().getContentLength(true);
+	//将按钮禁用，防止重复提交
+	$(&quot;#save_button&quot;).attr(&quot;disabled&quot;,true);
+	if(!$model.entity.lawsTitle){
+		Messenger.post({type:'error',message:'标题不能为空'});
+		$(&quot;#lawsTitle&quot;).focus();
+		//将按钮恢复
+		$(&quot;#save_button&quot;).removeAttr(&quot;disabled&quot;);
+		return;
+	}
+
+	if(!$model.entity.lawsContent){
+		Messenger.post({type:'error',message:'内容不能为空'});
+		$(&quot;#lawsContent&quot;).focus();
+		//将按钮恢复
+		$(&quot;#save_button&quot;).removeAttr(&quot;disabled&quot;);
+		return;
+	}
+	if(content>10000){
+		Messenger.error('内容长度已经超出一万字');
+		$(&quot;#save_button&quot;).removeAttr(&quot;disabled&quot;);
+		return false;
+	}
+
+	$model.entity.$save(function(){
+		Modal.instance.close();
+		Messenger.post({type:'success',message:'保存成功'});
+	});
+}</form:scripts>
+</form:Form>

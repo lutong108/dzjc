@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"><mapper namespace="com.chinacreator.dzjc_performance.EvalInstanceMapper">	
+
+<!-- ElementID:column_sql,Generated=true -->
+<sql id="column_sql">
+		  TA_JC_EVAL_INSTANCE.id ,
+		  TA_JC_EVAL_INSTANCE.table_id ,
+		  TA_JC_EVAL_INSTANCE.table_name ,
+		  TA_JC_EVAL_INSTANCE.org_id ,
+		  TA_JC_EVAL_INSTANCE.org_name ,
+		  TA_JC_EVAL_INSTANCE.eval_object_type ,
+		  TA_JC_EVAL_INSTANCE.eval_start_time ,
+		  TA_JC_EVAL_INSTANCE.eval_end_time ,
+		  TA_JC_EVAL_INSTANCE.is_used ,
+		  TA_JC_EVAL_INSTANCE.order_no ,
+		  TA_JC_EVAL_INSTANCE.remark ,
+		  TA_JC_EVAL_INSTANCE.area_code ,
+		  TA_JC_EVAL_INSTANCE.is_valid ,
+		  TA_JC_EVAL_INSTANCE.eval_object_ids ,
+		  TA_JC_EVAL_INSTANCE.eval_time 
+</sql>
+
+<!-- ElementID:whereClause_sql,Generated=true -->
+<sql id="whereClause_sql">
+	    <if test="id != null">and TA_JC_EVAL_INSTANCE.id = #{id}</if>
+	    <if test="tableId != null">and TA_JC_EVAL_INSTANCE.table_id = #{tableId}</if>
+	    <if test="tableName != null">and TA_JC_EVAL_INSTANCE.table_name = #{tableName}</if>
+	    <if test="orgId != null">and TA_JC_EVAL_INSTANCE.org_id = #{orgId}</if>
+	    <if test="orgName != null">and TA_JC_EVAL_INSTANCE.org_name = #{orgName}</if>
+	    <if test="evalObjectType != null">and TA_JC_EVAL_INSTANCE.eval_object_type = #{evalObjectType}</if>
+	    <if test="evalStartTime != null">and TA_JC_EVAL_INSTANCE.eval_start_time = #{evalStartTime}</if>
+	    <if test="evalEndTime != null">and TA_JC_EVAL_INSTANCE.eval_end_time = #{evalEndTime}</if>
+	    <if test="isUsed != null">and TA_JC_EVAL_INSTANCE.is_used = #{isUsed}</if>
+	    <if test="orderNo != null">and TA_JC_EVAL_INSTANCE.order_no = #{orderNo}</if>
+	    <if test="remark != null">and TA_JC_EVAL_INSTANCE.remark = #{remark}</if>
+	    <if test="areaCode != null">and TA_JC_EVAL_INSTANCE.area_code like concat(#{areaCode},'%')</if>
+	    <if test="isValid != null">and TA_JC_EVAL_INSTANCE.is_valid = #{isValid}</if>
+	    <if test="evalObjectIds != null">and TA_JC_EVAL_INSTANCE.eval_object_ids = #{evalObjectIds}</if>
+	    <if test="evalTime != null">and TA_JC_EVAL_INSTANCE.eval_time = #{evalTime}</if>
+</sql>
+
+
+<!-- ElementID:EvalInstanceResult,Generated=true -->
+<resultMap id="EvalInstanceResult" type="com.chinacreator.dzjc_performance.EvalInstance">
+	<id property="id" column="id"/>
+	<result property="tableId" column="table_id"/>
+	<result property="tableName" column="table_name"/>
+	<result property="orgId" column="org_id"/>
+	<result property="orgName" column="org_name"/>
+	<result property="evalObjectType" column="eval_object_type"/>
+	<result property="evalStartTime" column="eval_start_time"/>
+	<result property="evalEndTime" column="eval_end_time"/>
+	<result property="isUsed" column="is_used"/>
+	<result property="orderNo" column="order_no"/>
+	<result property="remark" column="remark"/>
+	<result property="areaCode" column="area_code"/>
+	<result property="isValid" column="is_valid"/>
+	<result property="evalObjectIds" column="eval_object_ids"/>
+	<result property="evalTime" column="eval_time"/>
+</resultMap>
+
+
+<!-- ElementID:insert,Generated=true -->
+<insert id="insert" parameterType="com.chinacreator.dzjc_performance.EvalInstance">
+	insert into TA_JC_EVAL_INSTANCE(
+	         <if test="id != null">id</if>
+	         <if test="tableId != null">,table_id</if>
+	         <if test="tableName != null">,table_name</if>
+	         <if test="orgId != null">,org_id</if>
+	         <if test="orgName != null">,org_name</if>
+	         <if test="evalObjectType != null">,eval_object_type</if>
+	         <if test="evalStartTime != null">,eval_start_time</if>
+	         <if test="evalEndTime != null">,eval_end_time</if>
+	         <if test="isUsed != null">,is_used</if>
+	         <if test="orderNo != null">,order_no</if>
+	         <if test="remark != null">,remark</if>
+	         <if test="areaCode != null">,area_code</if>
+	         <if test="isValid != null">,is_valid</if>
+	         <if test="evalObjectIds != null">,eval_object_ids</if>
+	         <if test="evalTime != null">,eval_time</if>
+	 	 	 )
+	 values (
+	         <if test="id != null">#{id,jdbcType=VARCHAR}</if>
+	         <if test="tableId != null">,#{tableId,jdbcType=VARCHAR}</if>
+	         <if test="tableName != null">,#{tableName,jdbcType=VARCHAR}</if>
+	         <if test="orgId != null">,#{orgId,jdbcType=VARCHAR}</if>
+	         <if test="orgName != null">,#{orgName,jdbcType=VARCHAR}</if>
+	         <if test="evalObjectType != null">,#{evalObjectType,jdbcType=VARCHAR}</if>
+	         <if test="evalStartTime != null">,#{evalStartTime,jdbcType=DATE}</if>
+	         <if test="evalEndTime != null">,#{evalEndTime,jdbcType=DATE}</if>
+	         <if test="isUsed != null">,#{isUsed,jdbcType=VARCHAR}</if>
+	         <if test="orderNo != null">,#{orderNo,jdbcType=NUMERIC}</if>
+	         <if test="remark != null">,#{remark,jdbcType=VARCHAR}</if>
+	         <if test="areaCode != null">,#{areaCode,jdbcType=VARCHAR}</if>
+	         <if test="isValid != null">,#{isValid,jdbcType=VARCHAR}</if>
+	         <if test="evalObjectIds != null">,#{evalObjectIds,jdbcType=VARCHAR}</if>
+	         <if test="evalTime != null">,#{evalTime,jdbcType=DATE}</if>
+	 	 	 )
+</insert>
+
+<!-- ElementID:count,Generated=true -->
+<select id="count" parameterType="com.chinacreator.dzjc_performance.EvalInstance" resultType="int">
+	select count(*) from TA_JC_EVAL_INSTANCE 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<!-- ElementID:update,Generated=true -->
+<update id="update" parameterType="com.chinacreator.dzjc_performance.EvalInstance">
+	update TA_JC_EVAL_INSTANCE
+<set>
+	<if test="tableId != null">table_id=#{tableId,jdbcType=VARCHAR},</if>
+	<if test="tableName != null">table_name=#{tableName,jdbcType=VARCHAR},</if>
+	<if test="orgId != null">org_id=#{orgId,jdbcType=VARCHAR},</if>
+	<if test="orgName != null">org_name=#{orgName,jdbcType=VARCHAR},</if>
+	<if test="evalObjectType != null">eval_object_type=#{evalObjectType,jdbcType=VARCHAR},</if>
+	<if test="evalStartTime != null">eval_start_time=#{evalStartTime,jdbcType=DATE},</if>
+	<if test="evalEndTime != null">eval_end_time=#{evalEndTime,jdbcType=DATE},</if>
+	<if test="isUsed != null">is_used=#{isUsed,jdbcType=VARCHAR},</if>
+	<if test="orderNo != null">order_no=#{orderNo,jdbcType=NUMERIC},</if>
+	<if test="remark != null">remark=#{remark,jdbcType=VARCHAR},</if>
+	<if test="areaCode != null">area_code=#{areaCode,jdbcType=VARCHAR},</if>
+	<if test="isValid != null">is_valid=#{isValid,jdbcType=VARCHAR},</if>
+	<if test="evalObjectIds != null">eval_object_ids=#{evalObjectIds,jdbcType=VARCHAR},</if>
+	<if test="evalTime != null">eval_time=#{evalTime,jdbcType=DATE}</if>
+</set>
+<where>
+	<choose>
+        <when test="id != null">and id = #{id}</when>
+        <otherwise>and id = </otherwise>
+    </choose>
+</where>
+</update>
+
+<!-- ElementID:updateNull,Generated=true -->
+<update id="updateNull" parameterType="map">
+	update TA_JC_EVAL_INSTANCE
+	<set>
+		<trim suffixOverrides=",">
+		    <if test="tableId==null">table_id = null,</if>
+		    <if test="tableName==null">table_name = null,</if>
+		    <if test="orgId==null">org_id = null,</if>
+		    <if test="orgName==null">org_name = null,</if>
+		    <if test="evalObjectType==null">eval_object_type = null,</if>
+		    <if test="evalStartTime==null">eval_start_time = null,</if>
+		    <if test="evalEndTime==null">eval_end_time = null,</if>
+		    <if test="isUsed==null">is_used = null,</if>
+		    <if test="orderNo==null">order_no = null,</if>
+		    <if test="remark==null">remark = null,</if>
+		    <if test="areaCode==null">area_code = null,</if>
+		    <if test="isValid==null">is_valid = null,</if>
+		    <if test="evalObjectIds==null">eval_object_ids = null,</if>
+		    <if test="evalTime==null">eval_time = null,</if>
+		</trim>
+	</set>
+	<where>
+		<choose>
+			<when test="id != null">and id = #{id}</when>
+			<otherwise>and id = </otherwise>
+		</choose>
+	</where>
+</update>
+
+<!-- ElementID:delete,Generated=true -->
+<delete id="delete" parameterType="com.chinacreator.dzjc_performance.EvalInstance">
+    delete from TA_JC_EVAL_INSTANCE where 1=1 and id = #{id}
+</delete>
+
+<!-- ElementID:select,Generated=true -->
+<select id="select" parameterType="com.chinacreator.dzjc_performance.EvalInstance" resultMap="EvalInstanceResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_EVAL_INSTANCE 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+
+<!-- ElementID:insertBatch,Generated=true -->
+<insert id="insertBatch" parameterType="list">
+	insert into TA_JC_EVAL_INSTANCE (id,table_id,table_name,org_id,org_name,eval_object_type,eval_start_time,eval_end_time,is_used,order_no,remark,area_code,is_valid,eval_object_ids,eval_time) 
+<foreach collection="list" item="entity" index="index" separator="union all">
+		select 
+		#{entity.id,jdbcType = VARCHAR},
+				#{entity.tableId,jdbcType = VARCHAR},
+				#{entity.tableName,jdbcType = VARCHAR},
+				#{entity.orgId,jdbcType = VARCHAR},
+				#{entity.orgName,jdbcType = VARCHAR},
+				#{entity.evalObjectType,jdbcType = VARCHAR},
+				#{entity.evalStartTime,jdbcType = DATE},
+				#{entity.evalEndTime,jdbcType = DATE},
+				#{entity.isUsed,jdbcType = VARCHAR},
+				#{entity.orderNo,jdbcType = NUMERIC},
+				#{entity.remark,jdbcType = VARCHAR},
+				#{entity.areaCode,jdbcType = VARCHAR},
+				#{entity.isValid,jdbcType = VARCHAR},
+				#{entity.evalObjectIds,jdbcType = VARCHAR},
+				#{entity.evalTime,jdbcType = DATE}
+		from dual
+</foreach>
+</insert>
+
+<!-- ElementID:deleteBatch,Generated=true -->
+<delete id="deleteBatch" parameterType="List">
+	delete from TA_JC_EVAL_INSTANCE where id in
+<trim prefix="(" suffix=")" suffixOverrides=",">
+<foreach collection="list" item="entity" separator=",">
+	<choose>
+		<when test="@com.chinacreator.c2.dao.util.EntityBeanUtil@isEntityObj(entity)">#{entity.id}</when>
+		<otherwise>#{entity}</otherwise>
+	</choose>
+</foreach>
+</trim>
+</delete>
+
+<!-- ElementID:updateBatch,Generated=true -->
+<update id="updateBatch" parameterType="list">
+	<foreach collection="list" item="entity" open="begin" close=";end;" separator=";">
+			update TA_JC_EVAL_INSTANCE
+	<set>
+	<if test="entity.tableId != null">table_id= #{entity.tableId,jdbcType=VARCHAR},</if>
+	<if test="entity.tableName != null">table_name= #{entity.tableName,jdbcType=VARCHAR},</if>
+	<if test="entity.orgId != null">org_id= #{entity.orgId,jdbcType=VARCHAR},</if>
+	<if test="entity.orgName != null">org_name= #{entity.orgName,jdbcType=VARCHAR},</if>
+	<if test="entity.evalObjectType != null">eval_object_type= #{entity.evalObjectType,jdbcType=VARCHAR},</if>
+	<if test="entity.evalStartTime != null">eval_start_time= #{entity.evalStartTime,jdbcType=DATE},</if>
+	<if test="entity.evalEndTime != null">eval_end_time= #{entity.evalEndTime,jdbcType=DATE},</if>
+	<if test="entity.isUsed != null">is_used= #{entity.isUsed,jdbcType=VARCHAR},</if>
+	<if test="entity.orderNo != null">order_no= #{entity.orderNo,jdbcType=NUMERIC},</if>
+	<if test="entity.remark != null">remark= #{entity.remark,jdbcType=VARCHAR},</if>
+	<if test="entity.areaCode != null">area_code= #{entity.areaCode,jdbcType=VARCHAR},</if>
+	<if test="entity.isValid != null">is_valid= #{entity.isValid,jdbcType=VARCHAR},</if>
+	<if test="entity.evalObjectIds != null">eval_object_ids= #{entity.evalObjectIds,jdbcType=VARCHAR},</if>
+	<if test="entity.evalTime != null">eval_time= #{entity.evalTime,jdbcType=DATE}</if>
+	</set>
+		<where>
+			<choose>
+				<when test="entity.id != null">and id = #{entity.id}</when>
+				<otherwise>and id = </otherwise>
+			</choose>
+		</where>
+	</foreach>
+</update>
+
+<!-- ElementID:selectAll,Generated=true -->
+<select id="selectAll" resultMap="EvalInstanceResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_EVAL_INSTANCE 
+</select>
+
+<!-- ElementID:selectMany,Generated=true -->
+<select id="selectMany" parameterType="list" resultMap="EvalInstanceResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_JC_EVAL_INSTANCE 
+	where TA_JC_EVAL_INSTANCE.id in (
+<foreach collection="list" item="entity" separator="intersect">
+		select 
+		TA_JC_EVAL_INSTANCE.id
+	    from TA_JC_EVAL_INSTANCE 
+		 <where>
+	        <if test="entity.id != null">and TA_JC_EVAL_INSTANCE.id = #{entity.id}</if>
+	        <if test="entity.tableId != null">and TA_JC_EVAL_INSTANCE.table_id = #{entity.tableId}</if>
+	        <if test="entity.tableName != null">and TA_JC_EVAL_INSTANCE.table_name = #{entity.tableName}</if>
+	        <if test="entity.orgId != null">and TA_JC_EVAL_INSTANCE.org_id = #{entity.orgId}</if>
+	        <if test="entity.orgName != null">and TA_JC_EVAL_INSTANCE.org_name = #{entity.orgName}</if>
+	        <if test="entity.evalObjectType != null">and TA_JC_EVAL_INSTANCE.eval_object_type = #{entity.evalObjectType}</if>
+	        <if test="entity.evalStartTime != null">and TA_JC_EVAL_INSTANCE.eval_start_time = #{entity.evalStartTime}</if>
+	        <if test="entity.evalEndTime != null">and TA_JC_EVAL_INSTANCE.eval_end_time = #{entity.evalEndTime}</if>
+	        <if test="entity.isUsed != null">and TA_JC_EVAL_INSTANCE.is_used = #{entity.isUsed}</if>
+	        <if test="entity.orderNo != null">and TA_JC_EVAL_INSTANCE.order_no = #{entity.orderNo}</if>
+	        <if test="entity.remark != null">and TA_JC_EVAL_INSTANCE.remark = #{entity.remark}</if>
+	        <if test="entity.areaCode != null">and TA_JC_EVAL_INSTANCE.area_code = #{entity.areaCode}</if>
+	        <if test="entity.isValid != null">and TA_JC_EVAL_INSTANCE.is_valid = #{entity.isValid}</if>
+	        <if test="entity.evalObjectIds != null">and TA_JC_EVAL_INSTANCE.eval_object_ids = #{entity.evalObjectIds}</if>
+	        <if test="entity.evalTime != null">and TA_JC_EVAL_INSTANCE.eval_time = #{entity.evalTime}</if>
+		</where>
+</foreach>
+)
+</select>
+
+<!-- ElementID:selectUnion,Generated=true -->
+<select id="selectUnion" parameterType="list" resultMap="EvalInstanceResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_JC_EVAL_INSTANCE 
+	 INNER JOIN
+<foreach collection="list" item="entity" separator="UNION" open="(" close=")">
+		SELECT 
+			 id
+		FROM TA_JC_EVAL_INSTANCE 
+			<where>
+	        <if test="entity.id != null">and TA_JC_EVAL_INSTANCE.id = #{entity.id}</if>
+	        <if test="entity.tableId != null">and TA_JC_EVAL_INSTANCE.table_id = #{entity.tableId}</if>
+	        <if test="entity.tableName != null">and TA_JC_EVAL_INSTANCE.table_name = #{entity.tableName}</if>
+	        <if test="entity.orgId != null">and TA_JC_EVAL_INSTANCE.org_id = #{entity.orgId}</if>
+	        <if test="entity.orgName != null">and TA_JC_EVAL_INSTANCE.org_name = #{entity.orgName}</if>
+	        <if test="entity.evalObjectType != null">and TA_JC_EVAL_INSTANCE.eval_object_type = #{entity.evalObjectType}</if>
+	        <if test="entity.evalStartTime != null">and TA_JC_EVAL_INSTANCE.eval_start_time = #{entity.evalStartTime}</if>
+	        <if test="entity.evalEndTime != null">and TA_JC_EVAL_INSTANCE.eval_end_time = #{entity.evalEndTime}</if>
+	        <if test="entity.isUsed != null">and TA_JC_EVAL_INSTANCE.is_used = #{entity.isUsed}</if>
+	        <if test="entity.orderNo != null">and TA_JC_EVAL_INSTANCE.order_no = #{entity.orderNo}</if>
+	        <if test="entity.remark != null">and TA_JC_EVAL_INSTANCE.remark = #{entity.remark}</if>
+	        <if test="entity.areaCode != null">and TA_JC_EVAL_INSTANCE.area_code = #{entity.areaCode}</if>
+	        <if test="entity.isValid != null">and TA_JC_EVAL_INSTANCE.is_valid = #{entity.isValid}</if>
+	        <if test="entity.evalObjectIds != null">and TA_JC_EVAL_INSTANCE.eval_object_ids = #{entity.evalObjectIds}</if>
+	        <if test="entity.evalTime != null">and TA_JC_EVAL_INSTANCE.eval_time = #{entity.evalTime}</if>
+			</where>
+</foreach>
+	c2_temp_table ON TA_JC_EVAL_INSTANCE.id = c2_temp_table.id
+</select>
+
+<!-- ElementID:selectByID,Generated=true -->
+<select id="selectByID" parameterType="java.lang.String" resultMap="EvalInstanceResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_EVAL_INSTANCE 
+		 where TA_JC_EVAL_INSTANCE.id = #{id,jdbcType=VARCHAR}
+</select>
+
+<!-- ElementID:selectByPage,Generated=true -->
+<select id="selectByPage" parameterType="com.chinacreator.dzjc_performance.EvalInstance" resultMap="EvalInstanceResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_EVAL_INSTANCE 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+		order by  TA_JC_EVAL_INSTANCE.order_no
+</select>
+
+<select id="selectByList" parameterType="com.chinacreator.dzjc_performance.EvalInstance" resultMap="EvalInstanceResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_EVAL_INSTANCE 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<sql id="column_sql_list">
+		
+		  TA_JC_EVAL_OBJECT.object_name as remark 
+		 
+</sql>
+
+<select id="select_List" parameterType="com.chinacreator.dzjc_performance.EvalInstance" resultMap="EvalInstanceResult">
+	select 
+		<include refid="column_sql_list"/>
+	    from TA_JC_EVAL_INSTANCE  
+	    LEFT JOIN TA_JC_EVAL_OBJECT
+    ON TA_JC_EVAL_INSTANCE.EVAL_OBJECT_IDS = TA_JC_EVAL_OBJECT.OBJECT_ID
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+</mapper>

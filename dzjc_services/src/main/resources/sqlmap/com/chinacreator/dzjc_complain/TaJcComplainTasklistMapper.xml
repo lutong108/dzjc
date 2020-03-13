@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"><mapper namespace="com.chinacreator.dzjc_complain.TaJcComplainTasklistMapper">	
+
+<!-- ElementID:column_sql,Generated=true -->
+<sql id="column_sql">
+		  TA_JC_COMPLAIN_TASKLIST.task_id ,
+		  TA_JC_COMPLAIN_TASKLIST.complain_id ,
+		  TA_JC_COMPLAIN_TASKLIST.tache_name ,
+		  TA_JC_COMPLAIN_TASKLIST.handle_user_id ,
+		  TA_JC_COMPLAIN_TASKLIST.handle_user_name ,
+		  TA_JC_COMPLAIN_TASKLIST.handle_org_id ,
+		  TA_JC_COMPLAIN_TASKLIST.handle_org_name ,
+		  TA_JC_COMPLAIN_TASKLIST.handle_time ,
+		  TA_JC_COMPLAIN_TASKLIST.handle_idea ,
+		  TA_JC_COMPLAIN_TASKLIST.reply_idea 
+</sql>
+
+<!-- ElementID:whereClause_sql,Generated=true -->
+<sql id="whereClause_sql">
+	    <if test="taskId != null">and TA_JC_COMPLAIN_TASKLIST.task_id = #{taskId}</if>
+	    <if test="complainId != null">and TA_JC_COMPLAIN_TASKLIST.complain_id = #{complainId}</if>
+	    <if test="tacheName != null">and TA_JC_COMPLAIN_TASKLIST.tache_name = #{tacheName}</if>
+	    <if test="handleUserId != null">and TA_JC_COMPLAIN_TASKLIST.handle_user_id = #{handleUserId}</if>
+	    <if test="handleUserName != null">and TA_JC_COMPLAIN_TASKLIST.handle_user_name = #{handleUserName}</if>
+	    <if test="handleOrgId != null">and TA_JC_COMPLAIN_TASKLIST.handle_org_id = #{handleOrgId}</if>
+	    <if test="handleOrgName != null">and TA_JC_COMPLAIN_TASKLIST.handle_org_name = #{handleOrgName}</if>
+	    <if test="handleTime != null">and TA_JC_COMPLAIN_TASKLIST.handle_time = #{handleTime}</if>
+	    <if test="handleIdea != null">and TA_JC_COMPLAIN_TASKLIST.handle_idea = #{handleIdea}</if>
+	    <if test="replyIdea != null">and TA_JC_COMPLAIN_TASKLIST.reply_idea = #{replyIdea}</if>
+</sql>
+
+
+<!-- ElementID:TaJcComplainTasklistResult,Generated=true -->
+<resultMap id="TaJcComplainTasklistResult" type="com.chinacreator.dzjc_complain.TaJcComplainTasklist">
+	<id property="taskId" column="task_id"/>
+	<result property="complainId" column="complain_id"/>
+	<result property="tacheName" column="tache_name"/>
+	<result property="handleUserId" column="handle_user_id"/>
+	<result property="handleUserName" column="handle_user_name"/>
+	<result property="handleOrgId" column="handle_org_id"/>
+	<result property="handleOrgName" column="handle_org_name"/>
+	<result property="handleTime" column="handle_time"/>
+	<result property="handleIdea" column="handle_idea"/>
+	<result property="replyIdea" column="reply_idea"/>
+</resultMap>
+
+
+
+
+
+
+<!-- ElementID:insert,Generated=true -->
+<insert id="insert" parameterType="com.chinacreator.dzjc_complain.TaJcComplainTasklist">
+	insert into TA_JC_COMPLAIN_TASKLIST(
+	         <if test="taskId != null">task_id</if>
+	         <if test="complainId != null">,complain_id</if>
+	         <if test="tacheName != null">,tache_name</if>
+	         <if test="handleUserId != null">,handle_user_id</if>
+	         <if test="handleUserName != null">,handle_user_name</if>
+	         <if test="handleOrgId != null">,handle_org_id</if>
+	         <if test="handleOrgName != null">,handle_org_name</if>
+	         <if test="handleTime != null">,handle_time</if>
+	         <if test="handleIdea != null">,handle_idea</if>
+	         <if test="replyIdea != null">,reply_idea</if>
+	 	 	 )
+	 values (
+	         <if test="taskId != null">#{taskId,jdbcType=VARCHAR}</if>
+	         <if test="complainId != null">,#{complainId,jdbcType=VARCHAR}</if>
+	         <if test="tacheName != null">,#{tacheName,jdbcType=VARCHAR}</if>
+	         <if test="handleUserId != null">,#{handleUserId,jdbcType=VARCHAR}</if>
+	         <if test="handleUserName != null">,#{handleUserName,jdbcType=VARCHAR}</if>
+	         <if test="handleOrgId != null">,#{handleOrgId,jdbcType=VARCHAR}</if>
+	         <if test="handleOrgName != null">,#{handleOrgName,jdbcType=VARCHAR}</if>
+	         <if test="handleTime != null">,#{handleTime,jdbcType=DATE}</if>
+	         <if test="handleIdea != null">,#{handleIdea,jdbcType=VARCHAR}</if>
+	         <if test="replyIdea != null">,#{replyIdea,jdbcType=VARCHAR}</if>
+	 	 	 )
+</insert>
+
+<!-- ElementID:count,Generated=true -->
+<select id="count" parameterType="com.chinacreator.dzjc_complain.TaJcComplainTasklist" resultType="int">
+	select count(*) from TA_JC_COMPLAIN_TASKLIST 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<!-- ElementID:update,Generated=true -->
+<update id="update" parameterType="com.chinacreator.dzjc_complain.TaJcComplainTasklist">
+	update TA_JC_COMPLAIN_TASKLIST
+<set>
+	<if test="complainId != null">complain_id=#{complainId,jdbcType=VARCHAR},</if>
+	<if test="tacheName != null">tache_name=#{tacheName,jdbcType=VARCHAR},</if>
+	<if test="handleUserId != null">handle_user_id=#{handleUserId,jdbcType=VARCHAR},</if>
+	<if test="handleUserName != null">handle_user_name=#{handleUserName,jdbcType=VARCHAR},</if>
+	<if test="handleOrgId != null">handle_org_id=#{handleOrgId,jdbcType=VARCHAR},</if>
+	<if test="handleOrgName != null">handle_org_name=#{handleOrgName,jdbcType=VARCHAR},</if>
+	<if test="handleTime != null">handle_time=#{handleTime,jdbcType=DATE},</if>
+	<if test="handleIdea != null">handle_idea=#{handleIdea,jdbcType=VARCHAR},</if>
+	<if test="replyIdea != null">reply_idea=#{replyIdea,jdbcType=VARCHAR}</if>
+</set>
+<where>
+	<choose>
+        <when test="taskId != null">and task_id = #{taskId}</when>
+        <otherwise>and task_id = </otherwise>
+    </choose>
+</where>
+</update>
+
+<!-- ElementID:updateNull,Generated=true -->
+<update id="updateNull" parameterType="map">
+	update TA_JC_COMPLAIN_TASKLIST
+	<set>
+		<trim suffixOverrides=",">
+		    <if test="complainId==null">complain_id = null,</if>
+		    <if test="tacheName==null">tache_name = null,</if>
+		    <if test="handleUserId==null">handle_user_id = null,</if>
+		    <if test="handleUserName==null">handle_user_name = null,</if>
+		    <if test="handleOrgId==null">handle_org_id = null,</if>
+		    <if test="handleOrgName==null">handle_org_name = null,</if>
+		    <if test="handleTime==null">handle_time = null,</if>
+		    <if test="handleIdea==null">handle_idea = null,</if>
+		    <if test="replyIdea==null">reply_idea = null,</if>
+		</trim>
+	</set>
+	<where>
+		<choose>
+			<when test="taskId != null">and task_id = #{taskId}</when>
+			<otherwise>and task_id = </otherwise>
+		</choose>
+	</where>
+</update>
+
+<!-- ElementID:delete,Generated=true -->
+<delete id="delete" parameterType="com.chinacreator.dzjc_complain.TaJcComplainTasklist">
+    delete from TA_JC_COMPLAIN_TASKLIST where 1=1 and task_id = #{taskId}
+</delete>
+
+<!-- ElementID:select,Generated=true -->
+<select id="select" parameterType="com.chinacreator.dzjc_complain.TaJcComplainTasklist" resultMap="TaJcComplainTasklistResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_COMPLAIN_TASKLIST 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+	order by 
+			handle_time desc
+</select>
+
+
+<!-- ElementID:insertBatch,Generated=true -->
+<insert id="insertBatch" parameterType="list">
+	insert into TA_JC_COMPLAIN_TASKLIST (task_id,complain_id,tache_name,handle_user_id,handle_user_name,handle_org_id,handle_org_name,handle_time,handle_idea,reply_idea) 
+<foreach collection="list" item="entity" index="index" separator="union all">
+		select 
+		#{entity.taskId,jdbcType = VARCHAR},
+				#{entity.complainId,jdbcType = VARCHAR},
+				#{entity.tacheName,jdbcType = VARCHAR},
+				#{entity.handleUserId,jdbcType = VARCHAR},
+				#{entity.handleUserName,jdbcType = VARCHAR},
+				#{entity.handleOrgId,jdbcType = VARCHAR},
+				#{entity.handleOrgName,jdbcType = VARCHAR},
+				#{entity.handleTime,jdbcType = DATE},
+				#{entity.handleIdea,jdbcType = VARCHAR},
+				#{entity.replyIdea,jdbcType = VARCHAR}
+		from dual
+</foreach>
+</insert>
+
+<!-- ElementID:deleteBatch,Generated=true -->
+<delete id="deleteBatch" parameterType="List">
+	delete from TA_JC_COMPLAIN_TASKLIST where task_id in
+<trim prefix="(" suffix=")" suffixOverrides=",">
+<foreach collection="list" item="entity" separator=",">
+	<choose>
+		<when test="@com.chinacreator.c2.dao.util.EntityBeanUtil@isEntityObj(entity)">#{entity.taskId}</when>
+		<otherwise>#{entity}</otherwise>
+	</choose>
+</foreach>
+</trim>
+</delete>
+
+<!-- ElementID:updateBatch,Generated=true -->
+<update id="updateBatch" parameterType="list">
+	<foreach collection="list" item="entity" open="begin" close=";end;" separator=";">
+			update TA_JC_COMPLAIN_TASKLIST
+	<set>
+	<if test="entity.complainId != null">complain_id= #{entity.complainId,jdbcType=VARCHAR},</if>
+	<if test="entity.tacheName != null">tache_name= #{entity.tacheName,jdbcType=VARCHAR},</if>
+	<if test="entity.handleUserId != null">handle_user_id= #{entity.handleUserId,jdbcType=VARCHAR},</if>
+	<if test="entity.handleUserName != null">handle_user_name= #{entity.handleUserName,jdbcType=VARCHAR},</if>
+	<if test="entity.handleOrgId != null">handle_org_id= #{entity.handleOrgId,jdbcType=VARCHAR},</if>
+	<if test="entity.handleOrgName != null">handle_org_name= #{entity.handleOrgName,jdbcType=VARCHAR},</if>
+	<if test="entity.handleTime != null">handle_time= #{entity.handleTime,jdbcType=DATE},</if>
+	<if test="entity.handleIdea != null">handle_idea= #{entity.handleIdea,jdbcType=VARCHAR},</if>
+	<if test="entity.replyIdea != null">reply_idea= #{entity.replyIdea,jdbcType=VARCHAR}</if>
+	</set>
+		<where>
+			<choose>
+				<when test="entity.taskId != null">and task_id = #{entity.taskId}</when>
+				<otherwise>and task_id = </otherwise>
+			</choose>
+		</where>
+	</foreach>
+</update>
+
+<!-- ElementID:selectAll,Generated=true -->
+<select id="selectAll" resultMap="TaJcComplainTasklistResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_COMPLAIN_TASKLIST 
+</select>
+
+<!-- ElementID:selectMany,Generated=true -->
+<select id="selectMany" parameterType="list" resultMap="TaJcComplainTasklistResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_JC_COMPLAIN_TASKLIST 
+	where TA_JC_COMPLAIN_TASKLIST.task_id in (
+<foreach collection="list" item="entity" separator="intersect">
+		select 
+		TA_JC_COMPLAIN_TASKLIST.task_id
+	    from TA_JC_COMPLAIN_TASKLIST 
+		 <where>
+	        <if test="entity.taskId != null">and TA_JC_COMPLAIN_TASKLIST.task_id = #{entity.taskId}</if>
+	        <if test="entity.complainId != null">and TA_JC_COMPLAIN_TASKLIST.complain_id = #{entity.complainId}</if>
+	        <if test="entity.tacheName != null">and TA_JC_COMPLAIN_TASKLIST.tache_name = #{entity.tacheName}</if>
+	        <if test="entity.handleUserId != null">and TA_JC_COMPLAIN_TASKLIST.handle_user_id = #{entity.handleUserId}</if>
+	        <if test="entity.handleUserName != null">and TA_JC_COMPLAIN_TASKLIST.handle_user_name = #{entity.handleUserName}</if>
+	        <if test="entity.handleOrgId != null">and TA_JC_COMPLAIN_TASKLIST.handle_org_id = #{entity.handleOrgId}</if>
+	        <if test="entity.handleOrgName != null">and TA_JC_COMPLAIN_TASKLIST.handle_org_name = #{entity.handleOrgName}</if>
+	        <if test="entity.handleTime != null">and TA_JC_COMPLAIN_TASKLIST.handle_time = #{entity.handleTime}</if>
+	        <if test="entity.handleIdea != null">and TA_JC_COMPLAIN_TASKLIST.handle_idea = #{entity.handleIdea}</if>
+	        <if test="entity.replyIdea != null">and TA_JC_COMPLAIN_TASKLIST.reply_idea = #{entity.replyIdea}</if>
+		</where>
+</foreach>
+)
+</select>
+
+<!-- ElementID:selectUnion,Generated=true -->
+<select id="selectUnion" parameterType="list" resultMap="TaJcComplainTasklistResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_JC_COMPLAIN_TASKLIST 
+	 INNER JOIN
+<foreach collection="list" item="entity" separator="UNION" open="(" close=")">
+		SELECT 
+			 task_id
+		FROM TA_JC_COMPLAIN_TASKLIST 
+			<where>
+	        <if test="entity.taskId != null">and TA_JC_COMPLAIN_TASKLIST.task_id = #{entity.taskId}</if>
+	        <if test="entity.complainId != null">and TA_JC_COMPLAIN_TASKLIST.complain_id = #{entity.complainId}</if>
+	        <if test="entity.tacheName != null">and TA_JC_COMPLAIN_TASKLIST.tache_name = #{entity.tacheName}</if>
+	        <if test="entity.handleUserId != null">and TA_JC_COMPLAIN_TASKLIST.handle_user_id = #{entity.handleUserId}</if>
+	        <if test="entity.handleUserName != null">and TA_JC_COMPLAIN_TASKLIST.handle_user_name = #{entity.handleUserName}</if>
+	        <if test="entity.handleOrgId != null">and TA_JC_COMPLAIN_TASKLIST.handle_org_id = #{entity.handleOrgId}</if>
+	        <if test="entity.handleOrgName != null">and TA_JC_COMPLAIN_TASKLIST.handle_org_name = #{entity.handleOrgName}</if>
+	        <if test="entity.handleTime != null">and TA_JC_COMPLAIN_TASKLIST.handle_time = #{entity.handleTime}</if>
+	        <if test="entity.handleIdea != null">and TA_JC_COMPLAIN_TASKLIST.handle_idea = #{entity.handleIdea}</if>
+	        <if test="entity.replyIdea != null">and TA_JC_COMPLAIN_TASKLIST.reply_idea = #{entity.replyIdea}</if>
+			</where>
+</foreach>
+	c2_temp_table ON TA_JC_COMPLAIN_TASKLIST.task_id = c2_temp_table.task_id
+</select>
+
+<!-- ElementID:selectByID,Generated=true -->
+<select id="selectByID" parameterType="java.lang.String" resultMap="TaJcComplainTasklistResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_COMPLAIN_TASKLIST 
+		 where TA_JC_COMPLAIN_TASKLIST.task_id = #{taskId,jdbcType=VARCHAR}
+</select>
+
+<!-- ElementID:selectByPage,Generated=true -->
+<select id="selectByPage" parameterType="com.chinacreator.dzjc_complain.TaJcComplainTasklist" resultMap="TaJcComplainTasklistResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_COMPLAIN_TASKLIST 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+	order by 
+			handle_time desc
+</select>
+
+<select id="selectByTacheName" parameterType="com.chinacreator.dzjc_complain.TaJcComplainTasklist" resultMap="TaJcComplainTasklistResult">
+	select a.task_id ,a.handle_user_id  
+		from TA_JC_COMPLAIN_TASKLIST a 
+		where 1=1 
+		<if test="complainId != null">and a.complain_id = #{complainId}</if>
+	    <if test="tacheName != null">and a.tache_name like CONCAT('%',#{tacheName})</if>
+</select>
+
+</mapper>

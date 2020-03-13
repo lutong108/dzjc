@@ -1,0 +1,432 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"><mapper namespace="com.chinacreator.dzjc_ruleEngine.SuperviseTimeLogMapper">	
+
+<!-- ElementID:column_sql,Generated=true -->
+<sql id="column_sql">
+		  TA_JC_SUPERVISE_TIME_LOG.supervise_time_id ,
+		  TA_JC_SUPERVISE_TIME_LOG.batch_id ,
+		  TA_JC_SUPERVISE_TIME_LOG.supervise_start_time ,
+		  TA_JC_SUPERVISE_TIME_LOG.start_business_qty ,
+		  TA_JC_SUPERVISE_TIME_LOG.supervise_end_time ,
+		  TA_JC_SUPERVISE_TIME_LOG.end_business_qty ,
+		  TA_JC_SUPERVISE_TIME_LOG.supervise_total_times ,
+		  TA_JC_SUPERVISE_TIME_LOG.supervise_business_qty ,
+		  TA_JC_SUPERVISE_TIME_LOG.blue_qty ,
+		  TA_JC_SUPERVISE_TIME_LOG.yellow_qty ,
+		  TA_JC_SUPERVISE_TIME_LOG.red_qty ,
+		  TA_JC_SUPERVISE_TIME_LOG.supervise_total_qty ,
+		  TA_JC_SUPERVISE_TIME_LOG.query_start_time ,
+		  TA_JC_SUPERVISE_TIME_LOG.query_end_time ,
+		  TA_JC_SUPERVISE_TIME_LOG.query_total_times ,
+		  TA_JC_SUPERVISE_TIME_LOG.thread_start_time ,
+		  TA_JC_SUPERVISE_TIME_LOG.thread_end_time ,
+		  TA_JC_SUPERVISE_TIME_LOG.thread_total_times ,
+		  TA_JC_SUPERVISE_TIME_LOG.write_start_time ,
+		  TA_JC_SUPERVISE_TIME_LOG.write_end_time ,
+		  TA_JC_SUPERVISE_TIME_LOG.write_total_times 
+</sql>
+
+<!-- ElementID:whereClause_sql,Generated=true -->
+<sql id="whereClause_sql">
+	    <if test="superviseTimeId != null">and TA_JC_SUPERVISE_TIME_LOG.supervise_time_id = #{superviseTimeId}</if>
+	    <if test="batchId != null">and TA_JC_SUPERVISE_TIME_LOG.batch_id = #{batchId}</if>
+	    <if test="superviseStartTime != null">and TA_JC_SUPERVISE_TIME_LOG.supervise_start_time = #{superviseStartTime}</if>
+	    <if test="startBusinessQty != null">and TA_JC_SUPERVISE_TIME_LOG.start_business_qty = #{startBusinessQty}</if>
+	    <if test="superviseEndTime != null">and TA_JC_SUPERVISE_TIME_LOG.supervise_end_time = #{superviseEndTime}</if>
+	    <if test="endBusinessQty != null">and TA_JC_SUPERVISE_TIME_LOG.end_business_qty = #{endBusinessQty}</if>
+	    <if test="superviseTotalTimes != null">and TA_JC_SUPERVISE_TIME_LOG.supervise_total_times = #{superviseTotalTimes}</if>
+	    <if test="superviseBusinessQty != null">and TA_JC_SUPERVISE_TIME_LOG.supervise_business_qty = #{superviseBusinessQty}</if>
+	    <if test="blueQty != null">and TA_JC_SUPERVISE_TIME_LOG.blue_qty = #{blueQty}</if>
+	    <if test="yellowQty != null">and TA_JC_SUPERVISE_TIME_LOG.yellow_qty = #{yellowQty}</if>
+	    <if test="redQty != null">and TA_JC_SUPERVISE_TIME_LOG.red_qty = #{redQty}</if>
+	    <if test="superviseTotalQty != null">and TA_JC_SUPERVISE_TIME_LOG.supervise_total_qty = #{superviseTotalQty}</if>
+	    <if test="queryStartTime != null">and TA_JC_SUPERVISE_TIME_LOG.query_start_time = #{queryStartTime}</if>
+	    <if test="queryEndTime != null">and TA_JC_SUPERVISE_TIME_LOG.query_end_time = #{queryEndTime}</if>
+	    <if test="queryTotalTimes != null">and TA_JC_SUPERVISE_TIME_LOG.query_total_times = #{queryTotalTimes}</if>
+	    <if test="threadStartTime != null">and TA_JC_SUPERVISE_TIME_LOG.thread_start_time = #{threadStartTime}</if>
+	    <if test="threadEndTime != null">and TA_JC_SUPERVISE_TIME_LOG.thread_end_time = #{threadEndTime}</if>
+	    <if test="threadTotalTimes != null">and TA_JC_SUPERVISE_TIME_LOG.thread_total_times = #{threadTotalTimes}</if>
+	    <if test="writeStartTime != null">and TA_JC_SUPERVISE_TIME_LOG.write_start_time = #{writeStartTime}</if>
+	    <if test="writeEndTime != null">and TA_JC_SUPERVISE_TIME_LOG.write_end_time = #{writeEndTime}</if>
+	    <if test="writeTotalTimes != null">and TA_JC_SUPERVISE_TIME_LOG.write_total_times = #{writeTotalTimes}</if>
+</sql>
+
+
+<!-- ElementID:SuperviseTimeLogResult,Generated=true -->
+<resultMap id="SuperviseTimeLogResult" type="com.chinacreator.dzjc_ruleEngine.SuperviseTimeLog">
+	<id property="superviseTimeId" column="supervise_time_id"/>
+	<result property="batchId" column="batch_id"/>
+	<result property="superviseStartTime" column="supervise_start_time"/>
+	<result property="startBusinessQty" column="start_business_qty"/>
+	<result property="superviseEndTime" column="supervise_end_time"/>
+	<result property="endBusinessQty" column="end_business_qty"/>
+	<result property="superviseTotalTimes" column="supervise_total_times"/>
+	<result property="superviseBusinessQty" column="supervise_business_qty"/>
+	<result property="blueQty" column="blue_qty"/>
+	<result property="yellowQty" column="yellow_qty"/>
+	<result property="redQty" column="red_qty"/>
+	<result property="superviseTotalQty" column="supervise_total_qty"/>
+	<result property="queryStartTime" column="query_start_time"/>
+	<result property="queryEndTime" column="query_end_time"/>
+	<result property="queryTotalTimes" column="query_total_times"/>
+	<result property="threadStartTime" column="thread_start_time"/>
+	<result property="threadEndTime" column="thread_end_time"/>
+	<result property="threadTotalTimes" column="thread_total_times"/>
+	<result property="writeStartTime" column="write_start_time"/>
+	<result property="writeEndTime" column="write_end_time"/>
+	<result property="writeTotalTimes" column="write_total_times"/>
+</resultMap>
+
+
+<!-- ElementID:insert,Generated=true -->
+<insert id="insert" parameterType="com.chinacreator.dzjc_ruleEngine.SuperviseTimeLog">
+	insert into TA_JC_SUPERVISE_TIME_LOG(
+	         <if test="superviseTimeId != null">supervise_time_id</if>
+	         <if test="batchId != null">,batch_id</if>
+	         <if test="superviseStartTime != null">,supervise_start_time</if>
+	         <if test="startBusinessQty != null">,start_business_qty</if>
+	         <if test="superviseEndTime != null">,supervise_end_time</if>
+	         <if test="endBusinessQty != null">,end_business_qty</if>
+	         <if test="superviseTotalTimes != null">,supervise_total_times</if>
+	         <if test="superviseBusinessQty != null">,supervise_business_qty</if>
+	         <if test="blueQty != null">,blue_qty</if>
+	         <if test="yellowQty != null">,yellow_qty</if>
+	         <if test="redQty != null">,red_qty</if>
+	         <if test="superviseTotalQty != null">,supervise_total_qty</if>
+	         <if test="queryStartTime != null">,query_start_time</if>
+	         <if test="queryEndTime != null">,query_end_time</if>
+	         <if test="queryTotalTimes != null">,query_total_times</if>
+	         <if test="threadStartTime != null">,thread_start_time</if>
+	         <if test="threadEndTime != null">,thread_end_time</if>
+	         <if test="threadTotalTimes != null">,thread_total_times</if>
+	         <if test="writeStartTime != null">,write_start_time</if>
+	         <if test="writeEndTime != null">,write_end_time</if>
+	         <if test="writeTotalTimes != null">,write_total_times</if>
+	 	 	 )
+	 values (
+	         <if test="superviseTimeId != null">#{superviseTimeId,jdbcType=VARCHAR}</if>
+	         <if test="batchId != null">,#{batchId,jdbcType=VARCHAR}</if>
+	         <if test="superviseStartTime != null">,#{superviseStartTime,jdbcType=DATE}</if>
+	         <if test="startBusinessQty != null">,#{startBusinessQty,jdbcType=NUMERIC}</if>
+	         <if test="superviseEndTime != null">,#{superviseEndTime,jdbcType=DATE}</if>
+	         <if test="endBusinessQty != null">,#{endBusinessQty,jdbcType=NUMERIC}</if>
+	         <if test="superviseTotalTimes != null">,#{superviseTotalTimes,jdbcType=NUMERIC}</if>
+	         <if test="superviseBusinessQty != null">,#{superviseBusinessQty,jdbcType=NUMERIC}</if>
+	         <if test="blueQty != null">,#{blueQty,jdbcType=NUMERIC}</if>
+	         <if test="yellowQty != null">,#{yellowQty,jdbcType=NUMERIC}</if>
+	         <if test="redQty != null">,#{redQty,jdbcType=NUMERIC}</if>
+	         <if test="superviseTotalQty != null">,#{superviseTotalQty,jdbcType=NUMERIC}</if>
+	         <if test="queryStartTime != null">,#{queryStartTime,jdbcType=DATE}</if>
+	         <if test="queryEndTime != null">,#{queryEndTime,jdbcType=DATE}</if>
+	         <if test="queryTotalTimes != null">,#{queryTotalTimes,jdbcType=NUMERIC}</if>
+	         <if test="threadStartTime != null">,#{threadStartTime,jdbcType=DATE}</if>
+	         <if test="threadEndTime != null">,#{threadEndTime,jdbcType=DATE}</if>
+	         <if test="threadTotalTimes != null">,#{threadTotalTimes,jdbcType=NUMERIC}</if>
+	         <if test="writeStartTime != null">,#{writeStartTime,jdbcType=DATE}</if>
+	         <if test="writeEndTime != null">,#{writeEndTime,jdbcType=DATE}</if>
+	         <if test="writeTotalTimes != null">,#{writeTotalTimes,jdbcType=NUMERIC}</if>
+	 	 	 )
+</insert>
+
+<!-- ElementID:count,Generated=true -->
+<select id="count" parameterType="com.chinacreator.dzjc_ruleEngine.SuperviseTimeLog" resultType="int">
+	select count(*) from TA_JC_SUPERVISE_TIME_LOG 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<!-- ElementID:update,Generated=true -->
+<update id="update" parameterType="com.chinacreator.dzjc_ruleEngine.SuperviseTimeLog">
+	update TA_JC_SUPERVISE_TIME_LOG
+<set>
+	<if test="batchId != null">batch_id=#{batchId,jdbcType=VARCHAR},</if>
+	<if test="superviseStartTime != null">supervise_start_time=#{superviseStartTime,jdbcType=DATE},</if>
+	<if test="startBusinessQty != null">start_business_qty=#{startBusinessQty,jdbcType=NUMERIC},</if>
+	<if test="superviseEndTime != null">supervise_end_time=#{superviseEndTime,jdbcType=DATE},</if>
+	<if test="endBusinessQty != null">end_business_qty=#{endBusinessQty,jdbcType=NUMERIC},</if>
+	<if test="superviseTotalTimes != null">supervise_total_times=#{superviseTotalTimes,jdbcType=NUMERIC},</if>
+	<if test="superviseBusinessQty != null">supervise_business_qty=#{superviseBusinessQty,jdbcType=NUMERIC},</if>
+	<if test="blueQty != null">blue_qty=#{blueQty,jdbcType=NUMERIC},</if>
+	<if test="yellowQty != null">yellow_qty=#{yellowQty,jdbcType=NUMERIC},</if>
+	<if test="redQty != null">red_qty=#{redQty,jdbcType=NUMERIC},</if>
+	<if test="superviseTotalQty != null">supervise_total_qty=#{superviseTotalQty,jdbcType=NUMERIC},</if>
+	<if test="queryStartTime != null">query_start_time=#{queryStartTime,jdbcType=DATE},</if>
+	<if test="queryEndTime != null">query_end_time=#{queryEndTime,jdbcType=DATE},</if>
+	<if test="queryTotalTimes != null">query_total_times=#{queryTotalTimes,jdbcType=NUMERIC},</if>
+	<if test="threadStartTime != null">thread_start_time=#{threadStartTime,jdbcType=DATE},</if>
+	<if test="threadEndTime != null">thread_end_time=#{threadEndTime,jdbcType=DATE},</if>
+	<if test="threadTotalTimes != null">thread_total_times=#{threadTotalTimes,jdbcType=NUMERIC},</if>
+	<if test="writeStartTime != null">write_start_time=#{writeStartTime,jdbcType=DATE},</if>
+	<if test="writeEndTime != null">write_end_time=#{writeEndTime,jdbcType=DATE},</if>
+	<if test="writeTotalTimes != null">write_total_times=#{writeTotalTimes,jdbcType=NUMERIC}</if>
+</set>
+<where>
+	<choose>
+        <when test="superviseTimeId != null">and supervise_time_id = #{superviseTimeId}</when>
+        <otherwise>and supervise_time_id = </otherwise>
+    </choose>
+</where>
+</update>
+
+<update id="updateByBatchId" parameterType="com.chinacreator.dzjc_ruleEngine.SuperviseTimeLog">
+	update TA_JC_SUPERVISE_TIME_LOG
+<set>
+	<if test="superviseStartTime != null">supervise_start_time=#{superviseStartTime,jdbcType=DATE},</if>
+	<if test="startBusinessQty != null">start_business_qty=#{startBusinessQty,jdbcType=NUMERIC},</if>
+	<if test="superviseEndTime != null">supervise_end_time=#{superviseEndTime,jdbcType=DATE},</if>
+	<if test="endBusinessQty != null">end_business_qty=#{endBusinessQty,jdbcType=NUMERIC},</if>
+	<if test="superviseTotalTimes != null">supervise_total_times=#{superviseTotalTimes,jdbcType=NUMERIC},</if>
+	<if test="superviseBusinessQty != null">supervise_business_qty=#{superviseBusinessQty,jdbcType=NUMERIC},</if>
+	<if test="blueQty != null">blue_qty=#{blueQty,jdbcType=NUMERIC},</if>
+	<if test="yellowQty != null">yellow_qty=#{yellowQty,jdbcType=NUMERIC},</if>
+	<if test="redQty != null">red_qty=#{redQty,jdbcType=NUMERIC},</if>
+	<if test="superviseTotalQty != null">supervise_total_qty=#{superviseTotalQty,jdbcType=NUMERIC},</if>
+	<if test="queryStartTime != null">query_start_time=#{queryStartTime,jdbcType=DATE},</if>
+	<if test="queryEndTime != null">query_end_time=#{queryEndTime,jdbcType=DATE},</if>
+	<if test="queryTotalTimes != null">query_total_times=#{queryTotalTimes,jdbcType=NUMERIC},</if>
+	<if test="threadStartTime != null">thread_start_time=#{threadStartTime,jdbcType=DATE},</if>
+	<if test="threadEndTime != null">thread_end_time=#{threadEndTime,jdbcType=DATE},</if>
+	<if test="threadTotalTimes != null">thread_total_times=#{threadTotalTimes,jdbcType=NUMERIC},</if>
+	<if test="writeStartTime != null">write_start_time=#{writeStartTime,jdbcType=DATE},</if>
+	<if test="writeEndTime != null">write_end_time=#{writeEndTime,jdbcType=DATE},</if>
+	<if test="writeTotalTimes != null">write_total_times=#{writeTotalTimes,jdbcType=NUMERIC}</if>
+</set>
+<where>
+	<choose>
+        <when test="batchId != null">and batch_id = #{batchId}</when>
+        <otherwise>and batch_id = </otherwise>
+    </choose>
+</where>
+</update>
+
+<!-- ElementID:updateNull,Generated=true -->
+<update id="updateNull" parameterType="map">
+	update TA_JC_SUPERVISE_TIME_LOG
+	<set>
+		<trim suffixOverrides=",">
+		    <if test="batchId==null">batch_id = null,</if>
+		    <if test="superviseStartTime==null">supervise_start_time = null,</if>
+		    <if test="startBusinessQty==null">start_business_qty = null,</if>
+		    <if test="superviseEndTime==null">supervise_end_time = null,</if>
+		    <if test="endBusinessQty==null">end_business_qty = null,</if>
+		    <if test="superviseTotalTimes==null">supervise_total_times = null,</if>
+		    <if test="superviseBusinessQty==null">supervise_business_qty = null,</if>
+		    <if test="blueQty==null">blue_qty = null,</if>
+		    <if test="yellowQty==null">yellow_qty = null,</if>
+		    <if test="redQty==null">red_qty = null,</if>
+		    <if test="superviseTotalQty==null">supervise_total_qty = null,</if>
+		    <if test="queryStartTime==null">query_start_time = null,</if>
+		    <if test="queryEndTime==null">query_end_time = null,</if>
+		    <if test="queryTotalTimes==null">query_total_times = null,</if>
+		    <if test="threadStartTime==null">thread_start_time = null,</if>
+		    <if test="threadEndTime==null">thread_end_time = null,</if>
+		    <if test="threadTotalTimes==null">thread_total_times = null,</if>
+		    <if test="writeStartTime==null">write_start_time = null,</if>
+		    <if test="writeEndTime==null">write_end_time = null,</if>
+		    <if test="writeTotalTimes==null">write_total_times = null,</if>
+		</trim>
+	</set>
+	<where>
+		<choose>
+			<when test="superviseTimeId != null">and supervise_time_id = #{superviseTimeId}</when>
+			<otherwise>and supervise_time_id = </otherwise>
+		</choose>
+	</where>
+</update>
+
+<!-- ElementID:delete,Generated=true -->
+<delete id="delete" parameterType="com.chinacreator.dzjc_ruleEngine.SuperviseTimeLog">
+    delete from TA_JC_SUPERVISE_TIME_LOG where 1=1 and supervise_time_id = #{superviseTimeId}
+</delete>
+
+<!-- ElementID:select,Generated=true -->
+<select id="select" parameterType="com.chinacreator.dzjc_ruleEngine.SuperviseTimeLog" resultMap="SuperviseTimeLogResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_SUPERVISE_TIME_LOG 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+
+<!-- ElementID:insertBatch,Generated=true -->
+<insert id="insertBatch" parameterType="list">
+	insert into TA_JC_SUPERVISE_TIME_LOG (supervise_time_id,batch_id,supervise_start_time,start_business_qty,supervise_end_time,end_business_qty,supervise_total_times,supervise_business_qty,blue_qty,yellow_qty,red_qty,supervise_total_qty,query_start_time,query_end_time,query_total_times,thread_start_time,thread_end_time,thread_total_times,write_start_time,write_end_time,write_total_times) 
+<foreach collection="list" item="entity" index="index" separator="union all">
+		select 
+		#{entity.superviseTimeId,jdbcType = VARCHAR},
+				#{entity.batchId,jdbcType = VARCHAR},
+				#{entity.superviseStartTime,jdbcType = DATE},
+				#{entity.startBusinessQty,jdbcType = NUMERIC},
+				#{entity.superviseEndTime,jdbcType = DATE},
+				#{entity.endBusinessQty,jdbcType = NUMERIC},
+				#{entity.superviseTotalTimes,jdbcType = NUMERIC},
+				#{entity.superviseBusinessQty,jdbcType = NUMERIC},
+				#{entity.blueQty,jdbcType = NUMERIC},
+				#{entity.yellowQty,jdbcType = NUMERIC},
+				#{entity.redQty,jdbcType = NUMERIC},
+				#{entity.superviseTotalQty,jdbcType = NUMERIC},
+				#{entity.queryStartTime,jdbcType = DATE},
+				#{entity.queryEndTime,jdbcType = DATE},
+				#{entity.queryTotalTimes,jdbcType = NUMERIC},
+				#{entity.threadStartTime,jdbcType = DATE},
+				#{entity.threadEndTime,jdbcType = DATE},
+				#{entity.threadTotalTimes,jdbcType = NUMERIC},
+				#{entity.writeStartTime,jdbcType = DATE},
+				#{entity.writeEndTime,jdbcType = DATE},
+				#{entity.writeTotalTimes,jdbcType = NUMERIC}
+		from dual
+</foreach>
+</insert>
+
+<!-- ElementID:deleteBatch,Generated=true -->
+<delete id="deleteBatch" parameterType="List">
+	delete from TA_JC_SUPERVISE_TIME_LOG where supervise_time_id in
+<trim prefix="(" suffix=")" suffixOverrides=",">
+<foreach collection="list" item="entity" separator=",">
+	<choose>
+		<when test="@com.chinacreator.c2.dao.util.EntityBeanUtil@isEntityObj(entity)">#{entity.superviseTimeId}</when>
+		<otherwise>#{entity}</otherwise>
+	</choose>
+</foreach>
+</trim>
+</delete>
+
+<!-- ElementID:updateBatch,Generated=true -->
+<update id="updateBatch" parameterType="list">
+	<foreach collection="list" item="entity" open="begin" close=";end;" separator=";">
+			update TA_JC_SUPERVISE_TIME_LOG
+	<set>
+	<if test="entity.batchId != null">batch_id= #{entity.batchId,jdbcType=VARCHAR},</if>
+	<if test="entity.superviseStartTime != null">supervise_start_time= #{entity.superviseStartTime,jdbcType=DATE},</if>
+	<if test="entity.startBusinessQty != null">start_business_qty= #{entity.startBusinessQty,jdbcType=NUMERIC},</if>
+	<if test="entity.superviseEndTime != null">supervise_end_time= #{entity.superviseEndTime,jdbcType=DATE},</if>
+	<if test="entity.endBusinessQty != null">end_business_qty= #{entity.endBusinessQty,jdbcType=NUMERIC},</if>
+	<if test="entity.superviseTotalTimes != null">supervise_total_times= #{entity.superviseTotalTimes,jdbcType=NUMERIC},</if>
+	<if test="entity.superviseBusinessQty != null">supervise_business_qty= #{entity.superviseBusinessQty,jdbcType=NUMERIC},</if>
+	<if test="entity.blueQty != null">blue_qty= #{entity.blueQty,jdbcType=NUMERIC},</if>
+	<if test="entity.yellowQty != null">yellow_qty= #{entity.yellowQty,jdbcType=NUMERIC},</if>
+	<if test="entity.redQty != null">red_qty= #{entity.redQty,jdbcType=NUMERIC},</if>
+	<if test="entity.superviseTotalQty != null">supervise_total_qty= #{entity.superviseTotalQty,jdbcType=NUMERIC},</if>
+	<if test="entity.queryStartTime != null">query_start_time= #{entity.queryStartTime,jdbcType=DATE},</if>
+	<if test="entity.queryEndTime != null">query_end_time= #{entity.queryEndTime,jdbcType=DATE},</if>
+	<if test="entity.queryTotalTimes != null">query_total_times= #{entity.queryTotalTimes,jdbcType=NUMERIC},</if>
+	<if test="entity.threadStartTime != null">thread_start_time= #{entity.threadStartTime,jdbcType=DATE},</if>
+	<if test="entity.threadEndTime != null">thread_end_time= #{entity.threadEndTime,jdbcType=DATE},</if>
+	<if test="entity.threadTotalTimes != null">thread_total_times= #{entity.threadTotalTimes,jdbcType=NUMERIC},</if>
+	<if test="entity.writeStartTime != null">write_start_time= #{entity.writeStartTime,jdbcType=DATE},</if>
+	<if test="entity.writeEndTime != null">write_end_time= #{entity.writeEndTime,jdbcType=DATE},</if>
+	<if test="entity.writeTotalTimes != null">write_total_times= #{entity.writeTotalTimes,jdbcType=NUMERIC}</if>
+	</set>
+		<where>
+			<choose>
+				<when test="entity.superviseTimeId != null">and supervise_time_id = #{entity.superviseTimeId}</when>
+				<otherwise>and supervise_time_id = </otherwise>
+			</choose>
+		</where>
+	</foreach>
+</update>
+
+<!-- ElementID:selectAll,Generated=true -->
+<select id="selectAll" resultMap="SuperviseTimeLogResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_SUPERVISE_TIME_LOG 
+</select>
+
+<!-- ElementID:selectMany,Generated=true -->
+<select id="selectMany" parameterType="list" resultMap="SuperviseTimeLogResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_JC_SUPERVISE_TIME_LOG 
+	where TA_JC_SUPERVISE_TIME_LOG.supervise_time_id in (
+<foreach collection="list" item="entity" separator="intersect">
+		select 
+		TA_JC_SUPERVISE_TIME_LOG.supervise_time_id
+	    from TA_JC_SUPERVISE_TIME_LOG 
+		 <where>
+	        <if test="entity.superviseTimeId != null">and TA_JC_SUPERVISE_TIME_LOG.supervise_time_id = #{entity.superviseTimeId}</if>
+	        <if test="entity.batchId != null">and TA_JC_SUPERVISE_TIME_LOG.batch_id = #{entity.batchId}</if>
+	        <if test="entity.superviseStartTime != null">and TA_JC_SUPERVISE_TIME_LOG.supervise_start_time = #{entity.superviseStartTime}</if>
+	        <if test="entity.startBusinessQty != null">and TA_JC_SUPERVISE_TIME_LOG.start_business_qty = #{entity.startBusinessQty}</if>
+	        <if test="entity.superviseEndTime != null">and TA_JC_SUPERVISE_TIME_LOG.supervise_end_time = #{entity.superviseEndTime}</if>
+	        <if test="entity.endBusinessQty != null">and TA_JC_SUPERVISE_TIME_LOG.end_business_qty = #{entity.endBusinessQty}</if>
+	        <if test="entity.superviseTotalTimes != null">and TA_JC_SUPERVISE_TIME_LOG.supervise_total_times = #{entity.superviseTotalTimes}</if>
+	        <if test="entity.superviseBusinessQty != null">and TA_JC_SUPERVISE_TIME_LOG.supervise_business_qty = #{entity.superviseBusinessQty}</if>
+	        <if test="entity.blueQty != null">and TA_JC_SUPERVISE_TIME_LOG.blue_qty = #{entity.blueQty}</if>
+	        <if test="entity.yellowQty != null">and TA_JC_SUPERVISE_TIME_LOG.yellow_qty = #{entity.yellowQty}</if>
+	        <if test="entity.redQty != null">and TA_JC_SUPERVISE_TIME_LOG.red_qty = #{entity.redQty}</if>
+	        <if test="entity.superviseTotalQty != null">and TA_JC_SUPERVISE_TIME_LOG.supervise_total_qty = #{entity.superviseTotalQty}</if>
+	        <if test="entity.queryStartTime != null">and TA_JC_SUPERVISE_TIME_LOG.query_start_time = #{entity.queryStartTime}</if>
+	        <if test="entity.queryEndTime != null">and TA_JC_SUPERVISE_TIME_LOG.query_end_time = #{entity.queryEndTime}</if>
+	        <if test="entity.queryTotalTimes != null">and TA_JC_SUPERVISE_TIME_LOG.query_total_times = #{entity.queryTotalTimes}</if>
+	        <if test="entity.threadStartTime != null">and TA_JC_SUPERVISE_TIME_LOG.thread_start_time = #{entity.threadStartTime}</if>
+	        <if test="entity.threadEndTime != null">and TA_JC_SUPERVISE_TIME_LOG.thread_end_time = #{entity.threadEndTime}</if>
+	        <if test="entity.threadTotalTimes != null">and TA_JC_SUPERVISE_TIME_LOG.thread_total_times = #{entity.threadTotalTimes}</if>
+	        <if test="entity.writeStartTime != null">and TA_JC_SUPERVISE_TIME_LOG.write_start_time = #{entity.writeStartTime}</if>
+	        <if test="entity.writeEndTime != null">and TA_JC_SUPERVISE_TIME_LOG.write_end_time = #{entity.writeEndTime}</if>
+	        <if test="entity.writeTotalTimes != null">and TA_JC_SUPERVISE_TIME_LOG.write_total_times = #{entity.writeTotalTimes}</if>
+		</where>
+</foreach>
+)
+</select>
+
+<!-- ElementID:selectUnion,Generated=true -->
+<select id="selectUnion" parameterType="list" resultMap="SuperviseTimeLogResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_JC_SUPERVISE_TIME_LOG 
+	 INNER JOIN
+<foreach collection="list" item="entity" separator="UNION" open="(" close=")">
+		SELECT 
+			 supervise_time_id
+		FROM TA_JC_SUPERVISE_TIME_LOG 
+			<where>
+	        <if test="entity.superviseTimeId != null">and TA_JC_SUPERVISE_TIME_LOG.supervise_time_id = #{entity.superviseTimeId}</if>
+	        <if test="entity.batchId != null">and TA_JC_SUPERVISE_TIME_LOG.batch_id = #{entity.batchId}</if>
+	        <if test="entity.superviseStartTime != null">and TA_JC_SUPERVISE_TIME_LOG.supervise_start_time = #{entity.superviseStartTime}</if>
+	        <if test="entity.startBusinessQty != null">and TA_JC_SUPERVISE_TIME_LOG.start_business_qty = #{entity.startBusinessQty}</if>
+	        <if test="entity.superviseEndTime != null">and TA_JC_SUPERVISE_TIME_LOG.supervise_end_time = #{entity.superviseEndTime}</if>
+	        <if test="entity.endBusinessQty != null">and TA_JC_SUPERVISE_TIME_LOG.end_business_qty = #{entity.endBusinessQty}</if>
+	        <if test="entity.superviseTotalTimes != null">and TA_JC_SUPERVISE_TIME_LOG.supervise_total_times = #{entity.superviseTotalTimes}</if>
+	        <if test="entity.superviseBusinessQty != null">and TA_JC_SUPERVISE_TIME_LOG.supervise_business_qty = #{entity.superviseBusinessQty}</if>
+	        <if test="entity.blueQty != null">and TA_JC_SUPERVISE_TIME_LOG.blue_qty = #{entity.blueQty}</if>
+	        <if test="entity.yellowQty != null">and TA_JC_SUPERVISE_TIME_LOG.yellow_qty = #{entity.yellowQty}</if>
+	        <if test="entity.redQty != null">and TA_JC_SUPERVISE_TIME_LOG.red_qty = #{entity.redQty}</if>
+	        <if test="entity.superviseTotalQty != null">and TA_JC_SUPERVISE_TIME_LOG.supervise_total_qty = #{entity.superviseTotalQty}</if>
+	        <if test="entity.queryStartTime != null">and TA_JC_SUPERVISE_TIME_LOG.query_start_time = #{entity.queryStartTime}</if>
+	        <if test="entity.queryEndTime != null">and TA_JC_SUPERVISE_TIME_LOG.query_end_time = #{entity.queryEndTime}</if>
+	        <if test="entity.queryTotalTimes != null">and TA_JC_SUPERVISE_TIME_LOG.query_total_times = #{entity.queryTotalTimes}</if>
+	        <if test="entity.threadStartTime != null">and TA_JC_SUPERVISE_TIME_LOG.thread_start_time = #{entity.threadStartTime}</if>
+	        <if test="entity.threadEndTime != null">and TA_JC_SUPERVISE_TIME_LOG.thread_end_time = #{entity.threadEndTime}</if>
+	        <if test="entity.threadTotalTimes != null">and TA_JC_SUPERVISE_TIME_LOG.thread_total_times = #{entity.threadTotalTimes}</if>
+	        <if test="entity.writeStartTime != null">and TA_JC_SUPERVISE_TIME_LOG.write_start_time = #{entity.writeStartTime}</if>
+	        <if test="entity.writeEndTime != null">and TA_JC_SUPERVISE_TIME_LOG.write_end_time = #{entity.writeEndTime}</if>
+	        <if test="entity.writeTotalTimes != null">and TA_JC_SUPERVISE_TIME_LOG.write_total_times = #{entity.writeTotalTimes}</if>
+			</where>
+</foreach>
+	c2_temp_table ON TA_JC_SUPERVISE_TIME_LOG.supervise_time_id = c2_temp_table.supervise_time_id
+</select>
+
+<!-- ElementID:selectByID,Generated=true -->
+<select id="selectByID" parameterType="java.lang.String" resultMap="SuperviseTimeLogResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_SUPERVISE_TIME_LOG 
+		 where TA_JC_SUPERVISE_TIME_LOG.supervise_time_id = #{superviseTimeId,jdbcType=VARCHAR}
+</select>
+
+<!-- ElementID:selectByPage,Generated=true -->
+<select id="selectByPage" parameterType="com.chinacreator.dzjc_ruleEngine.SuperviseTimeLog" resultMap="SuperviseTimeLogResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_SUPERVISE_TIME_LOG 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+		order by TA_JC_SUPERVISE_TIME_LOG.supervise_start_time desc 
+</select>
+
+</mapper>

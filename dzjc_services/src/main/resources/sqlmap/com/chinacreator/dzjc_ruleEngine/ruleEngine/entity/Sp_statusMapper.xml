@@ -1,0 +1,415 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"><mapper namespace="com.chinacreator.dzjc_ruleEngine.ruleEngine.entity.Sp_statusMapper">	
+
+<!-- ElementID:column_sql,Generated=false -->
+<sql id="column_sql">
+		  TA_JC_SP_STATUS.id ,
+		  TA_JC_SP_STATUS.function_name ,
+		  TA_JC_SP_STATUS.supervise_areacode ,
+		  TA_JC_SP_STATUS.supervise_areaname ,
+		  TA_JC_SP_STATUS.supervise_time ,
+		  TA_JC_SP_STATUS.status ,
+		  TA_JC_SP_STATUS.exception ,
+		  TA_JC_SP_STATUS.type ,
+		  TA_JC_SP_STATUS.process_qty ,
+		  TA_JC_SP_STATUS.batch_id ,
+		  TA_JC_SP_STATUS.supervise_start_time ,
+		  TA_JC_SP_STATUS.supervise_end_time ,
+		  TA_JC_SP_STATUS.supervise_use_times   
+</sql>
+
+<!-- ElementID:whereClause_sql,Generated=false -->
+<sql id="whereClause_sql">
+	    <if test="id != null">and TA_JC_SP_STATUS.id = #{id}</if>
+	    <if test="functionName != null">and TA_JC_SP_STATUS.function_name = #{functionName}</if>
+	    <if test="superviseAreacode != null">and TA_JC_SP_STATUS.supervise_areacode = #{superviseAreacode}</if>
+	    <if test="superviseAreaname != null">and TA_JC_SP_STATUS.supervise_areaname = #{superviseAreaname}</if>
+	    <if test="superviseTime != null">and TA_JC_SP_STATUS.supervise_time = #{superviseTime}</if>
+	    <if test="status != null">and TA_JC_SP_STATUS.status = #{status}</if>
+	    <if test="exception != null">and TA_JC_SP_STATUS.exception = #{exception}</if>
+	    <if test="type != null">and TA_JC_SP_STATUS.type = #{type}</if>
+	    <if test="processQty != null">and TA_JC_SP_STATUS.process_qty = #{processQty}</if>
+	    <if test="batchId != null">and TA_JC_SP_STATUS.batch_id = #{batchId}</if>
+</sql>
+
+
+<!-- ElementID:Sp_statusResult,Generated=false -->
+<resultMap id="Sp_statusResult" type="com.chinacreator.dzjc_ruleEngine.ruleEngine.entity.Sp_status">
+	<id property="id" column="id"/>
+	<result property="functionName" column="function_name"/>
+	<result property="superviseAreacode" column="supervise_areacode"/>
+	<result property="superviseAreaname" column="supervise_areaname"/>
+	<result property="superviseTime" column="supervise_time"/>
+	<result property="status" column="status"/>
+	<result property="exception" column="exception"/>
+	<result property="type" column="type"/>
+	<result property="processQty" column="process_qty"/>
+	<result property="batchId" column="batch_id"/>
+	<result property="superviseStartTime" column="supervise_start_time"/>
+	<result property="superviseEndTime" column="supervise_end_time"/>
+	<result property="superviseUseTimes" column="supervise_use_times"/>
+	
+	<result property="superviseTotal" column="supervise_total"/>
+	<result property="queryCount" column="query_count"/>
+	<result property="queryTotal" column="query_total"/>
+	<result property="runCount" column="run_count"/>
+	<result property="successTotal" column="success_total"/>
+	<result property="failTotal" column="fail_total"/>
+	<result property="endTime" column="end_time"/>
+	<result property="useTime" column="use_time"/>
+</resultMap>
+
+<!-- ElementName:cache,Generated=true 
+<cache type="C2_Default_Dao_Cache"/>-->
+
+<!-- 新增结果 -->
+<insert id="insert" parameterType="com.chinacreator.dzjc_ruleEngine.ruleEngine.entity.Sp_status">
+	insert into TA_JC_SP_STATUS(
+	         id
+	         ,function_name
+	         ,supervise_areacode
+	         ,supervise_areaname
+	         ,supervise_time
+	         ,status
+	         ,exception
+	         ,process_qty
+	         ,type
+	         ,batch_id
+	         ,supervise_start_time
+	         ,supervise_end_time
+	         ,supervise_use_times
+	 	 	 )
+	 values (
+	         sys_guid()
+	         ,#{functionName,jdbcType=VARCHAR}
+	         ,#{superviseAreacode,jdbcType=VARCHAR}
+	         ,#{superviseAreaname,jdbcType=VARCHAR}
+	         ,sysdate
+	         ,#{status,jdbcType=VARCHAR}
+	         ,#{exception,jdbcType=VARCHAR}
+	         ,#{processQty,jdbcType=DOUBLE}
+	         ,#{type,jdbcType=VARCHAR}
+	         ,#{batchId,jdbcType=VARCHAR}
+	         ,#{superviseStartTime,jdbcType = DATE}
+	         ,#{superviseEndTime,jdbcType = DATE}
+	         ,#{superviseUseTimes,jdbcType = NUMERIC}
+	 	 	 )
+</insert>
+
+<!-- ElementID:count,Generated=true -->
+<select id="count" parameterType="com.chinacreator.dzjc_ruleEngine.ruleEngine.entity.Sp_status" resultType="int">
+	select count(*) from TA_JC_SP_STATUS 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<!-- ElementID:update,Generated=false -->
+<update id="update" parameterType="com.chinacreator.dzjc_ruleEngine.ruleEngine.entity.Sp_status">
+	update TA_JC_SP_STATUS
+<set>
+	<if test="functionName != null">function_name=#{functionName,jdbcType=VARCHAR},</if>
+	<if test="superviseAreacode != null">supervise_areacode=#{superviseAreacode,jdbcType=VARCHAR},</if>
+	<if test="superviseAreaname != null">supervise_areaname=#{superviseAreaname,jdbcType=VARCHAR},</if>
+	<if test="superviseTime != null">supervise_time=#{superviseTime,jdbcType=DATE},</if>
+	<if test="status != null">status=#{status,jdbcType=VARCHAR},</if>
+	<if test="exception != null">exception=#{exception,jdbcType=VARCHAR},</if>
+	<if test="type != null">type=#{type,jdbcType=VARCHAR},</if>
+	<if test="processQty != null">process_qty=#{processQty,jdbcType=NUMERIC},</if>
+	<if test="batchId != null">batch_id=#{batchId,jdbcType=VARCHAR}</if>
+</set>
+<where>
+	<choose>
+        <when test="id != null">and id = #{id}</when>
+        <otherwise>and id = </otherwise>
+    </choose>
+</where>
+</update>
+
+<!-- ElementID:updateNull,Generated=false -->
+<update id="updateNull" parameterType="map">
+	update TA_JC_SP_STATUS
+	<set>
+		<trim suffixOverrides=",">
+		    <if test="functionName==null">function_name = null,</if>
+		    <if test="superviseAreacode==null">supervise_areacode = null,</if>
+		    <if test="superviseAreaname==null">supervise_areaname = null,</if>
+		    <if test="superviseTime==null">supervise_time = null,</if>
+		    <if test="status==null">status = null,</if>
+		    <if test="exception==null">exception = null,</if>
+		    <if test="type==null">type = null,</if>
+		    <if test="processQty==null">process_qty = null,</if>
+		    <if test="batchId==null">batch_id = null,</if>
+		</trim>
+	</set>
+	<where>
+		<choose>
+			<when test="id != null">and id = #{id}</when>
+			<otherwise>and id = </otherwise>
+		</choose>
+	</where>
+</update>
+
+<!-- ElementID:delete,Generated=true -->
+<delete id="delete" parameterType="com.chinacreator.dzjc_ruleEngine.ruleEngine.entity.Sp_status">
+    delete from TA_JC_SP_STATUS where 1=1 and id = #{id}
+</delete>
+
+<!-- ElementID:select,Generated=true -->
+<select id="select" parameterType="com.chinacreator.dzjc_ruleEngine.ruleEngine.entity.Sp_status" resultMap="Sp_statusResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_SP_STATUS 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+
+<!-- ElementID:insertBatch,Generated=false -->
+<insert id="insertBatch" parameterType="list">
+	insert into TA_JC_SP_STATUS 
+	(id,function_name,supervise_areacode,supervise_areaname,supervise_time,status,
+	exception,type,process_qty,batch_id,
+	supervise_start_time,supervise_end_time,supervise_use_times) 
+<foreach collection="list" item="entity" index="index" separator="union all">
+		select 
+		#{entity.id,jdbcType = VARCHAR},
+				#{entity.functionName,jdbcType = VARCHAR},
+				#{entity.superviseAreacode,jdbcType = VARCHAR},
+				#{entity.superviseAreaname,jdbcType = VARCHAR},
+				#{entity.superviseTime,jdbcType = DATE},
+				#{entity.status,jdbcType = VARCHAR},
+				#{entity.exception,jdbcType = VARCHAR},
+				#{entity.type,jdbcType = VARCHAR},
+				#{entity.processQty,jdbcType = NUMERIC},
+				#{entity.batchId,jdbcType = VARCHAR},
+				#{entity.superviseStartTime,jdbcType = DATE},
+				#{entity.superviseEndTime,jdbcType = DATE},
+				#{entity.superviseUseTimes,jdbcType = NUMERIC}
+		from dual
+</foreach>
+</insert>
+
+<!-- ElementID:deleteBatch,Generated=true -->
+<delete id="deleteBatch" parameterType="List">
+	delete from TA_JC_SP_STATUS where id in
+<trim prefix="(" suffix=")" suffixOverrides=",">
+<foreach collection="list" item="entity" separator=",">
+	<choose>
+		<when test="@com.chinacreator.c2.dao.util.EntityBeanUtil@isEntityObj(entity)">#{entity.id}</when>
+		<otherwise>#{entity}</otherwise>
+	</choose>
+</foreach>
+</trim>
+</delete>
+
+<!-- ElementID:updateBatch,Generated=false -->
+<update id="updateBatch" parameterType="list">
+	<foreach collection="list" item="entity" open="begin" close=";end;" separator=";">
+			update TA_JC_SP_STATUS
+	<set>
+	<if test="entity.functionName != null">function_name= #{entity.functionName,jdbcType=VARCHAR},</if>
+	<if test="entity.superviseAreacode != null">supervise_areacode= #{entity.superviseAreacode,jdbcType=VARCHAR},</if>
+	<if test="entity.superviseAreaname != null">supervise_areaname= #{entity.superviseAreaname,jdbcType=VARCHAR},</if>
+	<if test="entity.superviseTime != null">supervise_time= #{entity.superviseTime,jdbcType=DATE},</if>
+	<if test="entity.status != null">status= #{entity.status,jdbcType=VARCHAR},</if>
+	<if test="entity.exception != null">exception= #{entity.exception,jdbcType=VARCHAR},</if>
+	<if test="entity.type != null">type= #{entity.type,jdbcType=VARCHAR},</if>
+	<if test="entity.processQty != null">process_qty= #{entity.processQty,jdbcType=NUMERIC},</if>
+	<if test="entity.batchId != null">batch_id= #{entity.batchId,jdbcType=VARCHAR}</if>
+	</set>
+		<where>
+			<choose>
+				<when test="entity.id != null">and id = #{entity.id}</when>
+				<otherwise>and id = </otherwise>
+			</choose>
+		</where>
+	</foreach>
+</update>
+
+<!-- ElementID:selectAll,Generated=true -->
+<select id="selectAll" resultMap="Sp_statusResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_SP_STATUS 
+</select>
+
+<!-- ElementID:selectMany,Generated=false -->
+<select id="selectMany" parameterType="list" resultMap="Sp_statusResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_JC_SP_STATUS 
+	where TA_JC_SP_STATUS.id in (
+<foreach collection="list" item="entity" separator="intersect">
+		select 
+		TA_JC_SP_STATUS.id
+	    from TA_JC_SP_STATUS 
+		 <where>
+	        <if test="entity.id != null">and TA_JC_SP_STATUS.id = #{entity.id}</if>
+	        <if test="entity.functionName != null">and TA_JC_SP_STATUS.function_name = #{entity.functionName}</if>
+	        <if test="entity.superviseAreacode != null">and TA_JC_SP_STATUS.supervise_areacode = #{entity.superviseAreacode}</if>
+	        <if test="entity.superviseAreaname != null">and TA_JC_SP_STATUS.supervise_areaname = #{entity.superviseAreaname}</if>
+	        <if test="entity.superviseTime != null">and TA_JC_SP_STATUS.supervise_time = #{entity.superviseTime}</if>
+	        <if test="entity.status != null">and TA_JC_SP_STATUS.status = #{entity.status}</if>
+	        <if test="entity.exception != null">and TA_JC_SP_STATUS.exception = #{entity.exception}</if>
+	        <if test="entity.type != null">and TA_JC_SP_STATUS.type = #{entity.type}</if>
+	        <if test="entity.processQty != null">and TA_JC_SP_STATUS.process_qty = #{entity.processQty}</if>
+	        <if test="entity.batchId != null">and TA_JC_SP_STATUS.batch_id = #{entity.batchId}</if>
+		</where>
+</foreach>
+)
+</select>
+
+<!-- ElementID:selectUnion,Generated=false -->
+<select id="selectUnion" parameterType="list" resultMap="Sp_statusResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_JC_SP_STATUS 
+	 INNER JOIN
+<foreach collection="list" item="entity" separator="UNION" open="(" close=")">
+		SELECT 
+			 id
+		FROM TA_JC_SP_STATUS 
+			<where>
+	        <if test="entity.id != null">and TA_JC_SP_STATUS.id = #{entity.id}</if>
+	        <if test="entity.functionName != null">and TA_JC_SP_STATUS.function_name = #{entity.functionName}</if>
+	        <if test="entity.superviseAreacode != null">and TA_JC_SP_STATUS.supervise_areacode = #{entity.superviseAreacode}</if>
+	        <if test="entity.superviseAreaname != null">and TA_JC_SP_STATUS.supervise_areaname = #{entity.superviseAreaname}</if>
+	        <if test="entity.superviseTime != null">and TA_JC_SP_STATUS.supervise_time = #{entity.superviseTime}</if>
+	        <if test="entity.status != null">and TA_JC_SP_STATUS.status = #{entity.status}</if>
+	        <if test="entity.exception != null">and TA_JC_SP_STATUS.exception = #{entity.exception}</if>
+	        <if test="entity.type != null">and TA_JC_SP_STATUS.type = #{entity.type}</if>
+	        <if test="entity.processQty != null">and TA_JC_SP_STATUS.process_qty = #{entity.processQty}</if>
+	        <if test="entity.batchId != null">and TA_JC_SP_STATUS.batch_id = #{entity.batchId}</if>
+			</where>
+</foreach>
+	c2_temp_table ON TA_JC_SP_STATUS.id = c2_temp_table.id
+</select>
+
+<!-- ElementID:selectByID,Generated=true -->
+<select id="selectByID" parameterType="java.lang.String" resultMap="Sp_statusResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_SP_STATUS 
+		 where TA_JC_SP_STATUS.id = #{id,jdbcType=VARCHAR}
+</select>
+
+<!-- ElementID:selectByPage,Generated=false -->
+<select id="selectByPage" parameterType="com.chinacreator.dzjc_ruleEngine.ruleEngine.entity.Sp_status" resultMap="Sp_statusResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_SP_STATUS 
+		 <where>
+			TA_JC_SP_STATUS.type is not null 
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<!-- ElementID:selectByID,Generated=false -->
+<select id="getByID" parameterType="java.lang.String" resultMap="Sp_statusResult">
+	select t1.batch_id,t1.supervise_time,t1.supervise_total,
+       nvl(t3.run_count,0) as run_count,nvl(t3.fail_total,0) as fail_total  
+       from 
+    (select a.batch_id,a.supervise_time,a.process_qty as supervise_total 
+        from ta_jc_sp_status a 
+        where a.type = '1' 
+        and a.batch_id is not null)t1 
+        left join 
+    (select c.batch_id,count(c.id) as run_count,
+           sum(case when c.status = 'N' then c.process_qty else 0 end) as fail_total 
+           from ta_jc_sp_status c 
+           where c.type = '3' 
+           and c.batch_id is not null group by c.batch_id)t3 
+         on t3.batch_id = t1.batch_id 
+       	where t1.batch_id = #{batchId,jdbcType=VARCHAR}
+</select>
+
+<select id="selectExceptionList" parameterType="java.lang.String" resultMap="Sp_statusResult">
+	select t.id,t.function_name,t.supervise_time,t.process_qty,t.exception 
+       from ta_jc_sp_status t 
+       where t.batch_id = #{batchId,jdbcType=VARCHAR} 
+       and t.status = 'N'
+</select>
+
+<!-- ElementID:selectByPage,Generated=false -->
+<select id="selectListByPage" parameterType="com.chinacreator.dzjc_ruleEngine.ruleEngine.entity.Sp_status" resultMap="Sp_statusResult">
+	select t1.batch_id,t1.supervise_time,t1.supervise_total,
+       nvl(t3.run_count,0) as run_count,nvl(t3.fail_total,0) as fail_total  
+       from 
+    (select a.batch_id,a.supervise_time,a.process_qty as supervise_total 
+        from ta_jc_sp_status a 
+        where a.type = '1' 
+        and a.batch_id is not null)t1 
+        left join 
+    (select c.batch_id,count(c.id) as run_count,
+           sum(case when c.status = 'N' then c.process_qty else 0 end) as fail_total 
+           from ta_jc_sp_status c 
+           where c.type = '3' 
+           and c.batch_id is not null group by c.batch_id)t3 
+         on t3.batch_id = t1.batch_id 
+       	order by t1.supervise_time desc
+	<!-- select t1.batch_id,t1.supervise_time,t1.supervise_total,
+       t2.query_count,t2.query_total,
+       t3.run_count,t3.success_total,t3.fail_total,
+       t3.end_time,ROUND(TO_NUMBER(t3.end_time - t1.supervise_time) * 24 * 60) as use_time   
+       from 
+    (select a.batch_id,a.supervise_time,a.process_qty as supervise_total 
+        from ta_jc_sp_status a 
+        where a.type = '1' 
+        and a.batch_id is not null)t1 
+        inner join 
+    (select b.batch_id,count(b.id) as query_count,sum(b.process_qty) as query_total 
+           from ta_jc_sp_status b 
+           where b.type = '2' 
+           and b.batch_id is not null group by b.batch_id) t2 
+         on t2.batch_id = t1.batch_id 
+         inner join 
+    (select c.batch_id,count(c.id) as run_count,
+           sum(case when c.status = 'Y' then c.process_qty else 0 end) as success_total,
+           sum(case when c.status = 'N' then c.process_qty else 0 end) as fail_total,
+           max(c.supervise_time) as end_time   
+           from ta_jc_sp_status c 
+           where c.type = '3' 
+           and c.batch_id is not null group by c.batch_id)t3 
+         on t3.batch_id = t1.batch_id 
+       	order by t1.supervise_time desc -->
+</select>
+
+<select id="selectTotal" resultMap="Sp_statusResult">
+	select batch_id,process_qty from (
+     select batch_id,process_qty from ta_jc_sp_status where type = '1' order by supervise_time desc )
+     where rownum = 1
+</select>
+
+<select id="selectHuanJieTotal" resultMap="Sp_statusResult">
+	select batch_id,process_qty from (
+     select batch_id,process_qty from ta_jc_sp_status where type = '11' order by supervise_time desc )
+     where rownum = 1
+</select>
+
+
+<select id="selectSum" parameterType="com.chinacreator.dzjc_ruleEngine.ruleEngine.entity.Sp_status" resultType="int">
+	select nvl(sum(process_qty),0) from ta_jc_sp_status 
+		where type = #{type} and batch_id = #{batchId}
+</select>
+
+<select id="selectListByType" parameterType="com.chinacreator.dzjc_ruleEngine.ruleEngine.entity.Sp_status" resultMap="Sp_statusResult">
+	select a.id,a.supervise_start_time,a.supervise_end_time,a.function_name,a.status,a.exception,a.process_qty,a.supervise_use_times,a.batch_id,a.type 
+       from ta_jc_sp_status a 
+       <where>
+       	<if test="batchId != null">and a.batch_id = #{batchId} </if>
+       	<if test="type != null">and a.type = #{type}  </if>
+       </where>
+</select>
+<!-- 监察结束后，删除执行成功的日志记录 -->
+<delete id="deleteSuccess">
+	delete from ta_jc_sp_status a where a.type in ('2','3','12','13') and a.status = 'Y'
+</delete>
+
+<!-- 监察结束后，删除执行成功的日志记录 -->
+<delete id="deleteConsultSuccess">
+	delete from ta_jc_sp_status a where a.type in ('15','16') and a.status = 'Y'
+</delete>
+
+</mapper>

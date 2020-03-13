@@ -1,0 +1,694 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"><mapper namespace="com.chinacreator.dzjc_ruleEngine.ApproveInfoMapper">	
+
+<!-- ElementID:column_sql,Generated=true -->
+<sql id="column_sql">
+		  TA_SP_APPROVE_INFO.rights_code ,
+		  TA_SP_APPROVE_INFO.rights_id ,
+		  TA_SP_APPROVE_INFO.approve_id ,
+		  TA_SP_APPROVE_INFO.approve_code ,
+		  TA_SP_APPROVE_INFO.parent_code ,
+		  TA_SP_APPROVE_INFO.parent_name ,
+		  TA_SP_APPROVE_INFO.approve_name ,
+		  TA_SP_APPROVE_INFO.area_code ,
+		  TA_SP_APPROVE_INFO.org_id ,
+		  TA_SP_APPROVE_INFO.org_name ,
+		  TA_SP_APPROVE_INFO.type_code ,
+		  TA_SP_APPROVE_INFO.trans_type ,
+		  TA_SP_APPROVE_INFO.approve_source ,
+		  TA_SP_APPROVE_INFO.approve_properties ,
+		  TA_SP_APPROVE_INFO.transact_level ,
+		  TA_SP_APPROVE_INFO.min_seq ,
+		  TA_SP_APPROVE_INFO.min_explain ,
+		  TA_SP_APPROVE_INFO.serve_object ,
+		  TA_SP_APPROVE_INFO.theme_type ,
+		  TA_SP_APPROVE_INFO.life_concern ,
+		  TA_SP_APPROVE_INFO.is_self_system ,
+		  TA_SP_APPROVE_INFO.is_batch ,
+		  TA_SP_APPROVE_INFO.is_specific ,
+		  TA_SP_APPROVE_INFO.is_faq ,
+		  TA_SP_APPROVE_INFO.is_self_certificate ,
+		  TA_SP_APPROVE_INFO.is_web_consult ,
+		  TA_SP_APPROVE_INFO.is_synergy ,
+		  TA_SP_APPROVE_INFO.is_government_project ,
+		  TA_SP_APPROVE_INFO.approve_state ,
+		  TA_SP_APPROVE_INFO.is_unify_accept ,
+		  TA_SP_APPROVE_INFO.is_city_open_do ,
+		  TA_SP_APPROVE_INFO.is_elsewhere_do ,
+		  TA_SP_APPROVE_INFO.lastupdate_time ,
+		  TA_SP_APPROVE_INFO.version_num ,
+		  TA_SP_APPROVE_INFO.remark ,
+		  TA_SP_APPROVE_INFO.is_charge ,
+		  TA_SP_APPROVE_INFO.is_send ,
+		  TA_SP_APPROVE_INFO.is_intermediary_services ,
+		  TA_SP_APPROVE_INFO.intermediary_services ,
+		  TA_SP_APPROVE_INFO.services_id ,
+		  TA_SP_APPROVE_INFO.is_valid ,
+		  TA_SP_APPROVE_INFO.is_inwindow ,
+		  TA_SP_APPROVE_INFO.naturalperson_type ,
+		  TA_SP_APPROVE_INFO.certification_type ,
+		  TA_SP_APPROVE_INFO.scene_type ,
+		  TA_SP_APPROVE_INFO.onlinebid_address ,
+		  TA_SP_APPROVE_INFO.is_most_runonce 
+</sql>
+
+<!-- ElementID:whereClause_sql,Generated=true -->
+<sql id="whereClause_sql">
+	    <if test="rightsCode != null">and TA_SP_APPROVE_INFO.rights_code = #{rightsCode}</if>
+	    <if test="rightsId != null">and TA_SP_APPROVE_INFO.rights_id = #{rightsId}</if>
+	    <if test="approveId != null">and TA_SP_APPROVE_INFO.approve_id = #{approveId}</if>
+	    <if test="approveCode != null">and TA_SP_APPROVE_INFO.approve_code = #{approveCode}</if>
+	    <if test="parentCode != null">and TA_SP_APPROVE_INFO.parent_code = #{parentCode}</if>
+	    <if test="parentName != null">and TA_SP_APPROVE_INFO.parent_name = #{parentName}</if>
+	    <if test="approveName != null">and TA_SP_APPROVE_INFO.approve_name = #{approveName}</if>
+	    <if test="areaCode != null">and TA_SP_APPROVE_INFO.area_code = #{areaCode}</if>
+	    <if test="orgId != null">and TA_SP_APPROVE_INFO.org_id = #{orgId}</if>
+	    <if test="orgName != null">and TA_SP_APPROVE_INFO.org_name = #{orgName}</if>
+	    <if test="typeCode != null">and TA_SP_APPROVE_INFO.type_code = #{typeCode}</if>
+	    <if test="transType != null">and TA_SP_APPROVE_INFO.trans_type = #{transType}</if>
+	    <if test="approveSource != null">and TA_SP_APPROVE_INFO.approve_source = #{approveSource}</if>
+	    <if test="approveProperties != null">and TA_SP_APPROVE_INFO.approve_properties = #{approveProperties}</if>
+	    <if test="transactLevel != null">and TA_SP_APPROVE_INFO.transact_level = #{transactLevel}</if>
+	    <if test="minSeq != null">and TA_SP_APPROVE_INFO.min_seq = #{minSeq}</if>
+	    <if test="minExplain != null">and TA_SP_APPROVE_INFO.min_explain = #{minExplain}</if>
+	    <if test="serveObject != null">and TA_SP_APPROVE_INFO.serve_object = #{serveObject}</if>
+	    <if test="themeType != null">and TA_SP_APPROVE_INFO.theme_type = #{themeType}</if>
+	    <if test="lifeConcern != null">and TA_SP_APPROVE_INFO.life_concern = #{lifeConcern}</if>
+	    <if test="isSelfSystem != null">and TA_SP_APPROVE_INFO.is_self_system = #{isSelfSystem}</if>
+	    <if test="isBatch != null">and TA_SP_APPROVE_INFO.is_batch = #{isBatch}</if>
+	    <if test="isSpecific != null">and TA_SP_APPROVE_INFO.is_specific = #{isSpecific}</if>
+	    <if test="isFaq != null">and TA_SP_APPROVE_INFO.is_faq = #{isFaq}</if>
+	    <if test="isSelfCertificate != null">and TA_SP_APPROVE_INFO.is_self_certificate = #{isSelfCertificate}</if>
+	    <if test="isWebConsult != null">and TA_SP_APPROVE_INFO.is_web_consult = #{isWebConsult}</if>
+	    <if test="isSynergy != null">and TA_SP_APPROVE_INFO.is_synergy = #{isSynergy}</if>
+	    <if test="isGovernmentProject != null">and TA_SP_APPROVE_INFO.is_government_project = #{isGovernmentProject}</if>
+	    <if test="approveState != null">and TA_SP_APPROVE_INFO.approve_state = #{approveState}</if>
+	    <if test="isUnifyAccept != null">and TA_SP_APPROVE_INFO.is_unify_accept = #{isUnifyAccept}</if>
+	    <if test="isCityOpenDo != null">and TA_SP_APPROVE_INFO.is_city_open_do = #{isCityOpenDo}</if>
+	    <if test="isElsewhereDo != null">and TA_SP_APPROVE_INFO.is_elsewhere_do = #{isElsewhereDo}</if>
+	    <if test="lastupdateTime != null">and TA_SP_APPROVE_INFO.lastupdate_time = #{lastupdateTime}</if>
+	    <if test="versionNum != null">and TA_SP_APPROVE_INFO.version_num = #{versionNum}</if>
+	    <if test="remark != null">and TA_SP_APPROVE_INFO.remark = #{remark}</if>
+	    <if test="isCharge != null">and TA_SP_APPROVE_INFO.is_charge = #{isCharge}</if>
+	    <if test="isSend != null">and TA_SP_APPROVE_INFO.is_send = #{isSend}</if>
+	    <if test="isIntermediaryServices != null">and TA_SP_APPROVE_INFO.is_intermediary_services = #{isIntermediaryServices}</if>
+	    <if test="intermediaryServices != null">and TA_SP_APPROVE_INFO.intermediary_services = #{intermediaryServices}</if>
+	    <if test="servicesId != null">and TA_SP_APPROVE_INFO.services_id = #{servicesId}</if>
+	    <if test="isValid != null">and TA_SP_APPROVE_INFO.is_valid = #{isValid}</if>
+	    <if test="isInwindow != null">and TA_SP_APPROVE_INFO.is_inwindow = #{isInwindow}</if>
+	    <if test="naturalpersonType != null">and TA_SP_APPROVE_INFO.naturalperson_type = #{naturalpersonType}</if>
+	    <if test="certificationType != null">and TA_SP_APPROVE_INFO.certification_type = #{certificationType}</if>
+	    <if test="sceneType != null">and TA_SP_APPROVE_INFO.scene_type = #{sceneType}</if>
+	    <if test="onlinebidAddress != null">and TA_SP_APPROVE_INFO.onlinebid_address = #{onlinebidAddress}</if>
+	    <if test="isMostRunonce != null">and TA_SP_APPROVE_INFO.is_most_runonce = #{isMostRunonce}</if>
+</sql>
+
+
+<!-- ElementID:ApproveInfoResult,Generated=true -->
+<resultMap id="ApproveInfoResult" type="com.chinacreator.dzjc_ruleEngine.ApproveInfo">
+	<id property="approveId" column="approve_id"/>
+	<result property="rightsCode" column="rights_code"/>
+	<result property="rightsId" column="rights_id"/>
+	<result property="approveCode" column="approve_code"/>
+	<result property="parentCode" column="parent_code"/>
+	<result property="parentName" column="parent_name"/>
+	<result property="approveName" column="approve_name"/>
+	<result property="areaCode" column="area_code"/>
+	<result property="orgId" column="org_id"/>
+	<result property="orgName" column="org_name"/>
+	<result property="typeCode" column="type_code"/>
+	<result property="transType" column="trans_type"/>
+	<result property="approveSource" column="approve_source"/>
+	<result property="approveProperties" column="approve_properties"/>
+	<result property="transactLevel" column="transact_level"/>
+	<result property="minSeq" column="min_seq"/>
+	<result property="minExplain" column="min_explain"/>
+	<result property="serveObject" column="serve_object"/>
+	<result property="themeType" column="theme_type"/>
+	<result property="lifeConcern" column="life_concern"/>
+	<result property="isSelfSystem" column="is_self_system"/>
+	<result property="isBatch" column="is_batch"/>
+	<result property="isSpecific" column="is_specific"/>
+	<result property="isFaq" column="is_faq"/>
+	<result property="isSelfCertificate" column="is_self_certificate"/>
+	<result property="isWebConsult" column="is_web_consult"/>
+	<result property="isSynergy" column="is_synergy"/>
+	<result property="isGovernmentProject" column="is_government_project"/>
+	<result property="approveState" column="approve_state"/>
+	<result property="isUnifyAccept" column="is_unify_accept"/>
+	<result property="isCityOpenDo" column="is_city_open_do"/>
+	<result property="isElsewhereDo" column="is_elsewhere_do"/>
+	<result property="lastupdateTime" column="lastupdate_time"/>
+	<result property="versionNum" column="version_num"/>
+	<result property="remark" column="remark"/>
+	<result property="isCharge" column="is_charge"/>
+	<result property="isSend" column="is_send"/>
+	<result property="isIntermediaryServices" column="is_intermediary_services"/>
+	<result property="intermediaryServices" column="intermediary_services"/>
+	<result property="servicesId" column="services_id"/>
+	<result property="isValid" column="is_valid"/>
+	<result property="isInwindow" column="is_inwindow"/>
+	<result property="naturalpersonType" column="naturalperson_type"/>
+	<result property="certificationType" column="certification_type"/>
+	<result property="sceneType" column="scene_type"/>
+	<result property="onlinebidAddress" column="onlinebid_address"/>
+	<result property="isMostRunonce" column="is_most_runonce"/>
+</resultMap>
+
+
+<!-- ElementID:insert,Generated=true -->
+<insert id="insert" parameterType="com.chinacreator.dzjc_ruleEngine.ApproveInfo">
+	insert into TA_SP_APPROVE_INFO(
+	         <if test="rightsCode != null">rights_code</if>
+	         <if test="rightsId != null">,rights_id</if>
+	         <if test="approveId != null">,approve_id</if>
+	         <if test="approveCode != null">,approve_code</if>
+	         <if test="parentCode != null">,parent_code</if>
+	         <if test="parentName != null">,parent_name</if>
+	         <if test="approveName != null">,approve_name</if>
+	         <if test="areaCode != null">,area_code</if>
+	         <if test="orgId != null">,org_id</if>
+	         <if test="orgName != null">,org_name</if>
+	         <if test="typeCode != null">,type_code</if>
+	         <if test="transType != null">,trans_type</if>
+	         <if test="approveSource != null">,approve_source</if>
+	         <if test="approveProperties != null">,approve_properties</if>
+	         <if test="transactLevel != null">,transact_level</if>
+	         <if test="minSeq != null">,min_seq</if>
+	         <if test="minExplain != null">,min_explain</if>
+	         <if test="serveObject != null">,serve_object</if>
+	         <if test="themeType != null">,theme_type</if>
+	         <if test="lifeConcern != null">,life_concern</if>
+	         <if test="isSelfSystem != null">,is_self_system</if>
+	         <if test="isBatch != null">,is_batch</if>
+	         <if test="isSpecific != null">,is_specific</if>
+	         <if test="isFaq != null">,is_faq</if>
+	         <if test="isSelfCertificate != null">,is_self_certificate</if>
+	         <if test="isWebConsult != null">,is_web_consult</if>
+	         <if test="isSynergy != null">,is_synergy</if>
+	         <if test="isGovernmentProject != null">,is_government_project</if>
+	         <if test="approveState != null">,approve_state</if>
+	         <if test="isUnifyAccept != null">,is_unify_accept</if>
+	         <if test="isCityOpenDo != null">,is_city_open_do</if>
+	         <if test="isElsewhereDo != null">,is_elsewhere_do</if>
+	         <if test="lastupdateTime != null">,lastupdate_time</if>
+	         <if test="versionNum != null">,version_num</if>
+	         <if test="remark != null">,remark</if>
+	         <if test="isCharge != null">,is_charge</if>
+	         <if test="isSend != null">,is_send</if>
+	         <if test="isIntermediaryServices != null">,is_intermediary_services</if>
+	         <if test="intermediaryServices != null">,intermediary_services</if>
+	         <if test="servicesId != null">,services_id</if>
+	         <if test="isValid != null">,is_valid</if>
+	         <if test="isInwindow != null">,is_inwindow</if>
+	         <if test="naturalpersonType != null">,naturalperson_type</if>
+	         <if test="certificationType != null">,certification_type</if>
+	         <if test="sceneType != null">,scene_type</if>
+	         <if test="onlinebidAddress != null">,onlinebid_address</if>
+	         <if test="isMostRunonce != null">,is_most_runonce</if>
+	 	 	 )
+	 values (
+	         <if test="rightsCode != null">#{rightsCode,jdbcType=VARCHAR}</if>
+	         <if test="rightsId != null">,#{rightsId,jdbcType=VARCHAR}</if>
+	         <if test="approveId != null">,#{approveId,jdbcType=VARCHAR}</if>
+	         <if test="approveCode != null">,#{approveCode,jdbcType=VARCHAR}</if>
+	         <if test="parentCode != null">,#{parentCode,jdbcType=VARCHAR}</if>
+	         <if test="parentName != null">,#{parentName,jdbcType=VARCHAR}</if>
+	         <if test="approveName != null">,#{approveName,jdbcType=VARCHAR}</if>
+	         <if test="areaCode != null">,#{areaCode,jdbcType=VARCHAR}</if>
+	         <if test="orgId != null">,#{orgId,jdbcType=VARCHAR}</if>
+	         <if test="orgName != null">,#{orgName,jdbcType=VARCHAR}</if>
+	         <if test="typeCode != null">,#{typeCode,jdbcType=VARCHAR}</if>
+	         <if test="transType != null">,#{transType,jdbcType=VARCHAR}</if>
+	         <if test="approveSource != null">,#{approveSource,jdbcType=VARCHAR}</if>
+	         <if test="approveProperties != null">,#{approveProperties,jdbcType=VARCHAR}</if>
+	         <if test="transactLevel != null">,#{transactLevel,jdbcType=VARCHAR}</if>
+	         <if test="minSeq != null">,#{minSeq,jdbcType=NUMERIC}</if>
+	         <if test="minExplain != null">,#{minExplain,jdbcType=VARCHAR}</if>
+	         <if test="serveObject != null">,#{serveObject,jdbcType=VARCHAR}</if>
+	         <if test="themeType != null">,#{themeType,jdbcType=VARCHAR}</if>
+	         <if test="lifeConcern != null">,#{lifeConcern,jdbcType=VARCHAR}</if>
+	         <if test="isSelfSystem != null">,#{isSelfSystem,jdbcType=VARCHAR}</if>
+	         <if test="isBatch != null">,#{isBatch,jdbcType=VARCHAR}</if>
+	         <if test="isSpecific != null">,#{isSpecific,jdbcType=VARCHAR}</if>
+	         <if test="isFaq != null">,#{isFaq,jdbcType=VARCHAR}</if>
+	         <if test="isSelfCertificate != null">,#{isSelfCertificate,jdbcType=VARCHAR}</if>
+	         <if test="isWebConsult != null">,#{isWebConsult,jdbcType=VARCHAR}</if>
+	         <if test="isSynergy != null">,#{isSynergy,jdbcType=VARCHAR}</if>
+	         <if test="isGovernmentProject != null">,#{isGovernmentProject,jdbcType=VARCHAR}</if>
+	         <if test="approveState != null">,#{approveState,jdbcType=VARCHAR}</if>
+	         <if test="isUnifyAccept != null">,#{isUnifyAccept,jdbcType=VARCHAR}</if>
+	         <if test="isCityOpenDo != null">,#{isCityOpenDo,jdbcType=VARCHAR}</if>
+	         <if test="isElsewhereDo != null">,#{isElsewhereDo,jdbcType=VARCHAR}</if>
+	         <if test="lastupdateTime != null">,#{lastupdateTime,jdbcType=DATE}</if>
+	         <if test="versionNum != null">,#{versionNum,jdbcType=NUMERIC}</if>
+	         <if test="remark != null">,#{remark,jdbcType=VARCHAR}</if>
+	         <if test="isCharge != null">,#{isCharge,jdbcType=VARCHAR}</if>
+	         <if test="isSend != null">,#{isSend,jdbcType=VARCHAR}</if>
+	         <if test="isIntermediaryServices != null">,#{isIntermediaryServices,jdbcType=VARCHAR}</if>
+	         <if test="intermediaryServices != null">,#{intermediaryServices,jdbcType=VARCHAR}</if>
+	         <if test="servicesId != null">,#{servicesId,jdbcType=VARCHAR}</if>
+	         <if test="isValid != null">,#{isValid,jdbcType=VARCHAR}</if>
+	         <if test="isInwindow != null">,#{isInwindow,jdbcType=VARCHAR}</if>
+	         <if test="naturalpersonType != null">,#{naturalpersonType,jdbcType=VARCHAR}</if>
+	         <if test="certificationType != null">,#{certificationType,jdbcType=VARCHAR}</if>
+	         <if test="sceneType != null">,#{sceneType,jdbcType=VARCHAR}</if>
+	         <if test="onlinebidAddress != null">,#{onlinebidAddress,jdbcType=VARCHAR}</if>
+	         <if test="isMostRunonce != null">,#{isMostRunonce,jdbcType=VARCHAR}</if>
+	 	 	 )
+</insert>
+
+<!-- ElementID:count,Generated=true -->
+<select id="count" parameterType="com.chinacreator.dzjc_ruleEngine.ApproveInfo" resultType="int">
+	select count(*) from TA_SP_APPROVE_INFO 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<!-- ElementID:update,Generated=true -->
+<update id="update" parameterType="com.chinacreator.dzjc_ruleEngine.ApproveInfo">
+	update TA_SP_APPROVE_INFO
+<set>
+	<if test="rightsCode != null">rights_code=#{rightsCode,jdbcType=VARCHAR},</if>
+	<if test="rightsId != null">rights_id=#{rightsId,jdbcType=VARCHAR},</if>
+	<if test="approveCode != null">approve_code=#{approveCode,jdbcType=VARCHAR},</if>
+	<if test="parentCode != null">parent_code=#{parentCode,jdbcType=VARCHAR},</if>
+	<if test="parentName != null">parent_name=#{parentName,jdbcType=VARCHAR},</if>
+	<if test="approveName != null">approve_name=#{approveName,jdbcType=VARCHAR},</if>
+	<if test="areaCode != null">area_code=#{areaCode,jdbcType=VARCHAR},</if>
+	<if test="orgId != null">org_id=#{orgId,jdbcType=VARCHAR},</if>
+	<if test="orgName != null">org_name=#{orgName,jdbcType=VARCHAR},</if>
+	<if test="typeCode != null">type_code=#{typeCode,jdbcType=VARCHAR},</if>
+	<if test="transType != null">trans_type=#{transType,jdbcType=VARCHAR},</if>
+	<if test="approveSource != null">approve_source=#{approveSource,jdbcType=VARCHAR},</if>
+	<if test="approveProperties != null">approve_properties=#{approveProperties,jdbcType=VARCHAR},</if>
+	<if test="transactLevel != null">transact_level=#{transactLevel,jdbcType=VARCHAR},</if>
+	<if test="minSeq != null">min_seq=#{minSeq,jdbcType=NUMERIC},</if>
+	<if test="minExplain != null">min_explain=#{minExplain,jdbcType=VARCHAR},</if>
+	<if test="serveObject != null">serve_object=#{serveObject,jdbcType=VARCHAR},</if>
+	<if test="themeType != null">theme_type=#{themeType,jdbcType=VARCHAR},</if>
+	<if test="lifeConcern != null">life_concern=#{lifeConcern,jdbcType=VARCHAR},</if>
+	<if test="isSelfSystem != null">is_self_system=#{isSelfSystem,jdbcType=VARCHAR},</if>
+	<if test="isBatch != null">is_batch=#{isBatch,jdbcType=VARCHAR},</if>
+	<if test="isSpecific != null">is_specific=#{isSpecific,jdbcType=VARCHAR},</if>
+	<if test="isFaq != null">is_faq=#{isFaq,jdbcType=VARCHAR},</if>
+	<if test="isSelfCertificate != null">is_self_certificate=#{isSelfCertificate,jdbcType=VARCHAR},</if>
+	<if test="isWebConsult != null">is_web_consult=#{isWebConsult,jdbcType=VARCHAR},</if>
+	<if test="isSynergy != null">is_synergy=#{isSynergy,jdbcType=VARCHAR},</if>
+	<if test="isGovernmentProject != null">is_government_project=#{isGovernmentProject,jdbcType=VARCHAR},</if>
+	<if test="approveState != null">approve_state=#{approveState,jdbcType=VARCHAR},</if>
+	<if test="isUnifyAccept != null">is_unify_accept=#{isUnifyAccept,jdbcType=VARCHAR},</if>
+	<if test="isCityOpenDo != null">is_city_open_do=#{isCityOpenDo,jdbcType=VARCHAR},</if>
+	<if test="isElsewhereDo != null">is_elsewhere_do=#{isElsewhereDo,jdbcType=VARCHAR},</if>
+	<if test="lastupdateTime != null">lastupdate_time=#{lastupdateTime,jdbcType=DATE},</if>
+	<if test="versionNum != null">version_num=#{versionNum,jdbcType=NUMERIC},</if>
+	<if test="remark != null">remark=#{remark,jdbcType=VARCHAR},</if>
+	<if test="isCharge != null">is_charge=#{isCharge,jdbcType=VARCHAR},</if>
+	<if test="isSend != null">is_send=#{isSend,jdbcType=VARCHAR},</if>
+	<if test="isIntermediaryServices != null">is_intermediary_services=#{isIntermediaryServices,jdbcType=VARCHAR},</if>
+	<if test="intermediaryServices != null">intermediary_services=#{intermediaryServices,jdbcType=VARCHAR},</if>
+	<if test="servicesId != null">services_id=#{servicesId,jdbcType=VARCHAR},</if>
+	<if test="isValid != null">is_valid=#{isValid,jdbcType=VARCHAR},</if>
+	<if test="isInwindow != null">is_inwindow=#{isInwindow,jdbcType=VARCHAR},</if>
+	<if test="naturalpersonType != null">naturalperson_type=#{naturalpersonType,jdbcType=VARCHAR},</if>
+	<if test="certificationType != null">certification_type=#{certificationType,jdbcType=VARCHAR},</if>
+	<if test="sceneType != null">scene_type=#{sceneType,jdbcType=VARCHAR},</if>
+	<if test="onlinebidAddress != null">onlinebid_address=#{onlinebidAddress,jdbcType=VARCHAR},</if>
+	<if test="isMostRunonce != null">is_most_runonce=#{isMostRunonce,jdbcType=VARCHAR}</if>
+</set>
+<where>
+	<choose>
+        <when test="approveId != null">and approve_id = #{approveId}</when>
+        <otherwise>and approve_id = </otherwise>
+    </choose>
+</where>
+</update>
+
+<!-- ElementID:updateNull,Generated=true -->
+<update id="updateNull" parameterType="map">
+	update TA_SP_APPROVE_INFO
+	<set>
+		<trim suffixOverrides=",">
+		    <if test="rightsCode==null">rights_code = null,</if>
+		    <if test="rightsId==null">rights_id = null,</if>
+		    <if test="approveCode==null">approve_code = null,</if>
+		    <if test="parentCode==null">parent_code = null,</if>
+		    <if test="parentName==null">parent_name = null,</if>
+		    <if test="approveName==null">approve_name = null,</if>
+		    <if test="areaCode==null">area_code = null,</if>
+		    <if test="orgId==null">org_id = null,</if>
+		    <if test="orgName==null">org_name = null,</if>
+		    <if test="typeCode==null">type_code = null,</if>
+		    <if test="transType==null">trans_type = null,</if>
+		    <if test="approveSource==null">approve_source = null,</if>
+		    <if test="approveProperties==null">approve_properties = null,</if>
+		    <if test="transactLevel==null">transact_level = null,</if>
+		    <if test="minSeq==null">min_seq = null,</if>
+		    <if test="minExplain==null">min_explain = null,</if>
+		    <if test="serveObject==null">serve_object = null,</if>
+		    <if test="themeType==null">theme_type = null,</if>
+		    <if test="lifeConcern==null">life_concern = null,</if>
+		    <if test="isSelfSystem==null">is_self_system = null,</if>
+		    <if test="isBatch==null">is_batch = null,</if>
+		    <if test="isSpecific==null">is_specific = null,</if>
+		    <if test="isFaq==null">is_faq = null,</if>
+		    <if test="isSelfCertificate==null">is_self_certificate = null,</if>
+		    <if test="isWebConsult==null">is_web_consult = null,</if>
+		    <if test="isSynergy==null">is_synergy = null,</if>
+		    <if test="isGovernmentProject==null">is_government_project = null,</if>
+		    <if test="approveState==null">approve_state = null,</if>
+		    <if test="isUnifyAccept==null">is_unify_accept = null,</if>
+		    <if test="isCityOpenDo==null">is_city_open_do = null,</if>
+		    <if test="isElsewhereDo==null">is_elsewhere_do = null,</if>
+		    <if test="lastupdateTime==null">lastupdate_time = null,</if>
+		    <if test="versionNum==null">version_num = null,</if>
+		    <if test="remark==null">remark = null,</if>
+		    <if test="isCharge==null">is_charge = null,</if>
+		    <if test="isSend==null">is_send = null,</if>
+		    <if test="isIntermediaryServices==null">is_intermediary_services = null,</if>
+		    <if test="intermediaryServices==null">intermediary_services = null,</if>
+		    <if test="servicesId==null">services_id = null,</if>
+		    <if test="isValid==null">is_valid = null,</if>
+		    <if test="isInwindow==null">is_inwindow = null,</if>
+		    <if test="naturalpersonType==null">naturalperson_type = null,</if>
+		    <if test="certificationType==null">certification_type = null,</if>
+		    <if test="sceneType==null">scene_type = null,</if>
+		    <if test="onlinebidAddress==null">onlinebid_address = null,</if>
+		    <if test="isMostRunonce==null">is_most_runonce = null,</if>
+		</trim>
+	</set>
+	<where>
+		<choose>
+			<when test="approveId != null">and approve_id = #{approveId}</when>
+			<otherwise>and approve_id = </otherwise>
+		</choose>
+	</where>
+</update>
+
+<!-- ElementID:delete,Generated=true -->
+<delete id="delete" parameterType="com.chinacreator.dzjc_ruleEngine.ApproveInfo">
+    delete from TA_SP_APPROVE_INFO where 1=1 and approve_id = #{approveId}
+</delete>
+
+<!-- ElementID:select,Generated=true -->
+<select id="select" parameterType="com.chinacreator.dzjc_ruleEngine.ApproveInfo" resultMap="ApproveInfoResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_SP_APPROVE_INFO 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+
+<!-- ElementID:insertBatch,Generated=true -->
+<insert id="insertBatch" parameterType="list">
+	insert into TA_SP_APPROVE_INFO (rights_code,rights_id,approve_id,approve_code,parent_code,parent_name,approve_name,area_code,org_id,org_name,type_code,trans_type,approve_source,approve_properties,transact_level,min_seq,min_explain,serve_object,theme_type,life_concern,is_self_system,is_batch,is_specific,is_faq,is_self_certificate,is_web_consult,is_synergy,is_government_project,approve_state,is_unify_accept,is_city_open_do,is_elsewhere_do,lastupdate_time,version_num,remark,is_charge,is_send,is_intermediary_services,intermediary_services,services_id,is_valid,is_inwindow,naturalperson_type,certification_type,scene_type,onlinebid_address,is_most_runonce) 
+<foreach collection="list" item="entity" index="index" separator="union all">
+		select 
+		#{entity.rightsCode,jdbcType = VARCHAR},
+				#{entity.rightsId,jdbcType = VARCHAR},
+				#{entity.approveId,jdbcType = VARCHAR},
+				#{entity.approveCode,jdbcType = VARCHAR},
+				#{entity.parentCode,jdbcType = VARCHAR},
+				#{entity.parentName,jdbcType = VARCHAR},
+				#{entity.approveName,jdbcType = VARCHAR},
+				#{entity.areaCode,jdbcType = VARCHAR},
+				#{entity.orgId,jdbcType = VARCHAR},
+				#{entity.orgName,jdbcType = VARCHAR},
+				#{entity.typeCode,jdbcType = VARCHAR},
+				#{entity.transType,jdbcType = VARCHAR},
+				#{entity.approveSource,jdbcType = VARCHAR},
+				#{entity.approveProperties,jdbcType = VARCHAR},
+				#{entity.transactLevel,jdbcType = VARCHAR},
+				#{entity.minSeq,jdbcType = NUMERIC},
+				#{entity.minExplain,jdbcType = VARCHAR},
+				#{entity.serveObject,jdbcType = VARCHAR},
+				#{entity.themeType,jdbcType = VARCHAR},
+				#{entity.lifeConcern,jdbcType = VARCHAR},
+				#{entity.isSelfSystem,jdbcType = VARCHAR},
+				#{entity.isBatch,jdbcType = VARCHAR},
+				#{entity.isSpecific,jdbcType = VARCHAR},
+				#{entity.isFaq,jdbcType = VARCHAR},
+				#{entity.isSelfCertificate,jdbcType = VARCHAR},
+				#{entity.isWebConsult,jdbcType = VARCHAR},
+				#{entity.isSynergy,jdbcType = VARCHAR},
+				#{entity.isGovernmentProject,jdbcType = VARCHAR},
+				#{entity.approveState,jdbcType = VARCHAR},
+				#{entity.isUnifyAccept,jdbcType = VARCHAR},
+				#{entity.isCityOpenDo,jdbcType = VARCHAR},
+				#{entity.isElsewhereDo,jdbcType = VARCHAR},
+				#{entity.lastupdateTime,jdbcType = DATE},
+				#{entity.versionNum,jdbcType = NUMERIC},
+				#{entity.remark,jdbcType = VARCHAR},
+				#{entity.isCharge,jdbcType = VARCHAR},
+				#{entity.isSend,jdbcType = VARCHAR},
+				#{entity.isIntermediaryServices,jdbcType = VARCHAR},
+				#{entity.intermediaryServices,jdbcType = VARCHAR},
+				#{entity.servicesId,jdbcType = VARCHAR},
+				#{entity.isValid,jdbcType = VARCHAR},
+				#{entity.isInwindow,jdbcType = VARCHAR},
+				#{entity.naturalpersonType,jdbcType = VARCHAR},
+				#{entity.certificationType,jdbcType = VARCHAR},
+				#{entity.sceneType,jdbcType = VARCHAR},
+				#{entity.onlinebidAddress,jdbcType = VARCHAR},
+				#{entity.isMostRunonce,jdbcType = VARCHAR}
+		from dual
+</foreach>
+</insert>
+
+<!-- ElementID:deleteBatch,Generated=true -->
+<delete id="deleteBatch" parameterType="List">
+	delete from TA_SP_APPROVE_INFO where approve_id in
+<trim prefix="(" suffix=")" suffixOverrides=",">
+<foreach collection="list" item="entity" separator=",">
+	<choose>
+		<when test="@com.chinacreator.c2.dao.util.EntityBeanUtil@isEntityObj(entity)">#{entity.approveId}</when>
+		<otherwise>#{entity}</otherwise>
+	</choose>
+</foreach>
+</trim>
+</delete>
+
+<!-- ElementID:updateBatch,Generated=true -->
+<update id="updateBatch" parameterType="list">
+	<foreach collection="list" item="entity" open="begin" close=";end;" separator=";">
+			update TA_SP_APPROVE_INFO
+	<set>
+	<if test="entity.rightsCode != null">rights_code= #{entity.rightsCode,jdbcType=VARCHAR},</if>
+	<if test="entity.rightsId != null">rights_id= #{entity.rightsId,jdbcType=VARCHAR},</if>
+	<if test="entity.approveCode != null">approve_code= #{entity.approveCode,jdbcType=VARCHAR},</if>
+	<if test="entity.parentCode != null">parent_code= #{entity.parentCode,jdbcType=VARCHAR},</if>
+	<if test="entity.parentName != null">parent_name= #{entity.parentName,jdbcType=VARCHAR},</if>
+	<if test="entity.approveName != null">approve_name= #{entity.approveName,jdbcType=VARCHAR},</if>
+	<if test="entity.areaCode != null">area_code= #{entity.areaCode,jdbcType=VARCHAR},</if>
+	<if test="entity.orgId != null">org_id= #{entity.orgId,jdbcType=VARCHAR},</if>
+	<if test="entity.orgName != null">org_name= #{entity.orgName,jdbcType=VARCHAR},</if>
+	<if test="entity.typeCode != null">type_code= #{entity.typeCode,jdbcType=VARCHAR},</if>
+	<if test="entity.transType != null">trans_type= #{entity.transType,jdbcType=VARCHAR},</if>
+	<if test="entity.approveSource != null">approve_source= #{entity.approveSource,jdbcType=VARCHAR},</if>
+	<if test="entity.approveProperties != null">approve_properties= #{entity.approveProperties,jdbcType=VARCHAR},</if>
+	<if test="entity.transactLevel != null">transact_level= #{entity.transactLevel,jdbcType=VARCHAR},</if>
+	<if test="entity.minSeq != null">min_seq= #{entity.minSeq,jdbcType=NUMERIC},</if>
+	<if test="entity.minExplain != null">min_explain= #{entity.minExplain,jdbcType=VARCHAR},</if>
+	<if test="entity.serveObject != null">serve_object= #{entity.serveObject,jdbcType=VARCHAR},</if>
+	<if test="entity.themeType != null">theme_type= #{entity.themeType,jdbcType=VARCHAR},</if>
+	<if test="entity.lifeConcern != null">life_concern= #{entity.lifeConcern,jdbcType=VARCHAR},</if>
+	<if test="entity.isSelfSystem != null">is_self_system= #{entity.isSelfSystem,jdbcType=VARCHAR},</if>
+	<if test="entity.isBatch != null">is_batch= #{entity.isBatch,jdbcType=VARCHAR},</if>
+	<if test="entity.isSpecific != null">is_specific= #{entity.isSpecific,jdbcType=VARCHAR},</if>
+	<if test="entity.isFaq != null">is_faq= #{entity.isFaq,jdbcType=VARCHAR},</if>
+	<if test="entity.isSelfCertificate != null">is_self_certificate= #{entity.isSelfCertificate,jdbcType=VARCHAR},</if>
+	<if test="entity.isWebConsult != null">is_web_consult= #{entity.isWebConsult,jdbcType=VARCHAR},</if>
+	<if test="entity.isSynergy != null">is_synergy= #{entity.isSynergy,jdbcType=VARCHAR},</if>
+	<if test="entity.isGovernmentProject != null">is_government_project= #{entity.isGovernmentProject,jdbcType=VARCHAR},</if>
+	<if test="entity.approveState != null">approve_state= #{entity.approveState,jdbcType=VARCHAR},</if>
+	<if test="entity.isUnifyAccept != null">is_unify_accept= #{entity.isUnifyAccept,jdbcType=VARCHAR},</if>
+	<if test="entity.isCityOpenDo != null">is_city_open_do= #{entity.isCityOpenDo,jdbcType=VARCHAR},</if>
+	<if test="entity.isElsewhereDo != null">is_elsewhere_do= #{entity.isElsewhereDo,jdbcType=VARCHAR},</if>
+	<if test="entity.lastupdateTime != null">lastupdate_time= #{entity.lastupdateTime,jdbcType=DATE},</if>
+	<if test="entity.versionNum != null">version_num= #{entity.versionNum,jdbcType=NUMERIC},</if>
+	<if test="entity.remark != null">remark= #{entity.remark,jdbcType=VARCHAR},</if>
+	<if test="entity.isCharge != null">is_charge= #{entity.isCharge,jdbcType=VARCHAR},</if>
+	<if test="entity.isSend != null">is_send= #{entity.isSend,jdbcType=VARCHAR},</if>
+	<if test="entity.isIntermediaryServices != null">is_intermediary_services= #{entity.isIntermediaryServices,jdbcType=VARCHAR},</if>
+	<if test="entity.intermediaryServices != null">intermediary_services= #{entity.intermediaryServices,jdbcType=VARCHAR},</if>
+	<if test="entity.servicesId != null">services_id= #{entity.servicesId,jdbcType=VARCHAR},</if>
+	<if test="entity.isValid != null">is_valid= #{entity.isValid,jdbcType=VARCHAR},</if>
+	<if test="entity.isInwindow != null">is_inwindow= #{entity.isInwindow,jdbcType=VARCHAR},</if>
+	<if test="entity.naturalpersonType != null">naturalperson_type= #{entity.naturalpersonType,jdbcType=VARCHAR},</if>
+	<if test="entity.certificationType != null">certification_type= #{entity.certificationType,jdbcType=VARCHAR},</if>
+	<if test="entity.sceneType != null">scene_type= #{entity.sceneType,jdbcType=VARCHAR},</if>
+	<if test="entity.onlinebidAddress != null">onlinebid_address= #{entity.onlinebidAddress,jdbcType=VARCHAR},</if>
+	<if test="entity.isMostRunonce != null">is_most_runonce= #{entity.isMostRunonce,jdbcType=VARCHAR}</if>
+	</set>
+		<where>
+			<choose>
+				<when test="entity.approveId != null">and approve_id = #{entity.approveId}</when>
+				<otherwise>and approve_id = </otherwise>
+			</choose>
+		</where>
+	</foreach>
+</update>
+
+<!-- ElementID:selectAll,Generated=true -->
+<select id="selectAll" resultMap="ApproveInfoResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_SP_APPROVE_INFO 
+</select>
+
+<!-- ElementID:selectMany,Generated=true -->
+<select id="selectMany" parameterType="list" resultMap="ApproveInfoResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_SP_APPROVE_INFO 
+	where TA_SP_APPROVE_INFO.approve_id in (
+<foreach collection="list" item="entity" separator="intersect">
+		select 
+		TA_SP_APPROVE_INFO.approve_id
+	    from TA_SP_APPROVE_INFO 
+		 <where>
+	        <if test="entity.rightsCode != null">and TA_SP_APPROVE_INFO.rights_code = #{entity.rightsCode}</if>
+	        <if test="entity.rightsId != null">and TA_SP_APPROVE_INFO.rights_id = #{entity.rightsId}</if>
+	        <if test="entity.approveId != null">and TA_SP_APPROVE_INFO.approve_id = #{entity.approveId}</if>
+	        <if test="entity.approveCode != null">and TA_SP_APPROVE_INFO.approve_code = #{entity.approveCode}</if>
+	        <if test="entity.parentCode != null">and TA_SP_APPROVE_INFO.parent_code = #{entity.parentCode}</if>
+	        <if test="entity.parentName != null">and TA_SP_APPROVE_INFO.parent_name = #{entity.parentName}</if>
+	        <if test="entity.approveName != null">and TA_SP_APPROVE_INFO.approve_name = #{entity.approveName}</if>
+	        <if test="entity.areaCode != null">and TA_SP_APPROVE_INFO.area_code = #{entity.areaCode}</if>
+	        <if test="entity.orgId != null">and TA_SP_APPROVE_INFO.org_id = #{entity.orgId}</if>
+	        <if test="entity.orgName != null">and TA_SP_APPROVE_INFO.org_name = #{entity.orgName}</if>
+	        <if test="entity.typeCode != null">and TA_SP_APPROVE_INFO.type_code = #{entity.typeCode}</if>
+	        <if test="entity.transType != null">and TA_SP_APPROVE_INFO.trans_type = #{entity.transType}</if>
+	        <if test="entity.approveSource != null">and TA_SP_APPROVE_INFO.approve_source = #{entity.approveSource}</if>
+	        <if test="entity.approveProperties != null">and TA_SP_APPROVE_INFO.approve_properties = #{entity.approveProperties}</if>
+	        <if test="entity.transactLevel != null">and TA_SP_APPROVE_INFO.transact_level = #{entity.transactLevel}</if>
+	        <if test="entity.minSeq != null">and TA_SP_APPROVE_INFO.min_seq = #{entity.minSeq}</if>
+	        <if test="entity.minExplain != null">and TA_SP_APPROVE_INFO.min_explain = #{entity.minExplain}</if>
+	        <if test="entity.serveObject != null">and TA_SP_APPROVE_INFO.serve_object = #{entity.serveObject}</if>
+	        <if test="entity.themeType != null">and TA_SP_APPROVE_INFO.theme_type = #{entity.themeType}</if>
+	        <if test="entity.lifeConcern != null">and TA_SP_APPROVE_INFO.life_concern = #{entity.lifeConcern}</if>
+	        <if test="entity.isSelfSystem != null">and TA_SP_APPROVE_INFO.is_self_system = #{entity.isSelfSystem}</if>
+	        <if test="entity.isBatch != null">and TA_SP_APPROVE_INFO.is_batch = #{entity.isBatch}</if>
+	        <if test="entity.isSpecific != null">and TA_SP_APPROVE_INFO.is_specific = #{entity.isSpecific}</if>
+	        <if test="entity.isFaq != null">and TA_SP_APPROVE_INFO.is_faq = #{entity.isFaq}</if>
+	        <if test="entity.isSelfCertificate != null">and TA_SP_APPROVE_INFO.is_self_certificate = #{entity.isSelfCertificate}</if>
+	        <if test="entity.isWebConsult != null">and TA_SP_APPROVE_INFO.is_web_consult = #{entity.isWebConsult}</if>
+	        <if test="entity.isSynergy != null">and TA_SP_APPROVE_INFO.is_synergy = #{entity.isSynergy}</if>
+	        <if test="entity.isGovernmentProject != null">and TA_SP_APPROVE_INFO.is_government_project = #{entity.isGovernmentProject}</if>
+	        <if test="entity.approveState != null">and TA_SP_APPROVE_INFO.approve_state = #{entity.approveState}</if>
+	        <if test="entity.isUnifyAccept != null">and TA_SP_APPROVE_INFO.is_unify_accept = #{entity.isUnifyAccept}</if>
+	        <if test="entity.isCityOpenDo != null">and TA_SP_APPROVE_INFO.is_city_open_do = #{entity.isCityOpenDo}</if>
+	        <if test="entity.isElsewhereDo != null">and TA_SP_APPROVE_INFO.is_elsewhere_do = #{entity.isElsewhereDo}</if>
+	        <if test="entity.lastupdateTime != null">and TA_SP_APPROVE_INFO.lastupdate_time = #{entity.lastupdateTime}</if>
+	        <if test="entity.versionNum != null">and TA_SP_APPROVE_INFO.version_num = #{entity.versionNum}</if>
+	        <if test="entity.remark != null">and TA_SP_APPROVE_INFO.remark = #{entity.remark}</if>
+	        <if test="entity.isCharge != null">and TA_SP_APPROVE_INFO.is_charge = #{entity.isCharge}</if>
+	        <if test="entity.isSend != null">and TA_SP_APPROVE_INFO.is_send = #{entity.isSend}</if>
+	        <if test="entity.isIntermediaryServices != null">and TA_SP_APPROVE_INFO.is_intermediary_services = #{entity.isIntermediaryServices}</if>
+	        <if test="entity.intermediaryServices != null">and TA_SP_APPROVE_INFO.intermediary_services = #{entity.intermediaryServices}</if>
+	        <if test="entity.servicesId != null">and TA_SP_APPROVE_INFO.services_id = #{entity.servicesId}</if>
+	        <if test="entity.isValid != null">and TA_SP_APPROVE_INFO.is_valid = #{entity.isValid}</if>
+	        <if test="entity.isInwindow != null">and TA_SP_APPROVE_INFO.is_inwindow = #{entity.isInwindow}</if>
+	        <if test="entity.naturalpersonType != null">and TA_SP_APPROVE_INFO.naturalperson_type = #{entity.naturalpersonType}</if>
+	        <if test="entity.certificationType != null">and TA_SP_APPROVE_INFO.certification_type = #{entity.certificationType}</if>
+	        <if test="entity.sceneType != null">and TA_SP_APPROVE_INFO.scene_type = #{entity.sceneType}</if>
+	        <if test="entity.onlinebidAddress != null">and TA_SP_APPROVE_INFO.onlinebid_address = #{entity.onlinebidAddress}</if>
+	        <if test="entity.isMostRunonce != null">and TA_SP_APPROVE_INFO.is_most_runonce = #{entity.isMostRunonce}</if>
+		</where>
+</foreach>
+)
+</select>
+
+<!-- ElementID:selectUnion,Generated=true -->
+<select id="selectUnion" parameterType="list" resultMap="ApproveInfoResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_SP_APPROVE_INFO 
+	 INNER JOIN
+<foreach collection="list" item="entity" separator="UNION" open="(" close=")">
+		SELECT 
+			 approve_id
+		FROM TA_SP_APPROVE_INFO 
+			<where>
+	        <if test="entity.rightsCode != null">and TA_SP_APPROVE_INFO.rights_code = #{entity.rightsCode}</if>
+	        <if test="entity.rightsId != null">and TA_SP_APPROVE_INFO.rights_id = #{entity.rightsId}</if>
+	        <if test="entity.approveId != null">and TA_SP_APPROVE_INFO.approve_id = #{entity.approveId}</if>
+	        <if test="entity.approveCode != null">and TA_SP_APPROVE_INFO.approve_code = #{entity.approveCode}</if>
+	        <if test="entity.parentCode != null">and TA_SP_APPROVE_INFO.parent_code = #{entity.parentCode}</if>
+	        <if test="entity.parentName != null">and TA_SP_APPROVE_INFO.parent_name = #{entity.parentName}</if>
+	        <if test="entity.approveName != null">and TA_SP_APPROVE_INFO.approve_name = #{entity.approveName}</if>
+	        <if test="entity.areaCode != null">and TA_SP_APPROVE_INFO.area_code = #{entity.areaCode}</if>
+	        <if test="entity.orgId != null">and TA_SP_APPROVE_INFO.org_id = #{entity.orgId}</if>
+	        <if test="entity.orgName != null">and TA_SP_APPROVE_INFO.org_name = #{entity.orgName}</if>
+	        <if test="entity.typeCode != null">and TA_SP_APPROVE_INFO.type_code = #{entity.typeCode}</if>
+	        <if test="entity.transType != null">and TA_SP_APPROVE_INFO.trans_type = #{entity.transType}</if>
+	        <if test="entity.approveSource != null">and TA_SP_APPROVE_INFO.approve_source = #{entity.approveSource}</if>
+	        <if test="entity.approveProperties != null">and TA_SP_APPROVE_INFO.approve_properties = #{entity.approveProperties}</if>
+	        <if test="entity.transactLevel != null">and TA_SP_APPROVE_INFO.transact_level = #{entity.transactLevel}</if>
+	        <if test="entity.minSeq != null">and TA_SP_APPROVE_INFO.min_seq = #{entity.minSeq}</if>
+	        <if test="entity.minExplain != null">and TA_SP_APPROVE_INFO.min_explain = #{entity.minExplain}</if>
+	        <if test="entity.serveObject != null">and TA_SP_APPROVE_INFO.serve_object = #{entity.serveObject}</if>
+	        <if test="entity.themeType != null">and TA_SP_APPROVE_INFO.theme_type = #{entity.themeType}</if>
+	        <if test="entity.lifeConcern != null">and TA_SP_APPROVE_INFO.life_concern = #{entity.lifeConcern}</if>
+	        <if test="entity.isSelfSystem != null">and TA_SP_APPROVE_INFO.is_self_system = #{entity.isSelfSystem}</if>
+	        <if test="entity.isBatch != null">and TA_SP_APPROVE_INFO.is_batch = #{entity.isBatch}</if>
+	        <if test="entity.isSpecific != null">and TA_SP_APPROVE_INFO.is_specific = #{entity.isSpecific}</if>
+	        <if test="entity.isFaq != null">and TA_SP_APPROVE_INFO.is_faq = #{entity.isFaq}</if>
+	        <if test="entity.isSelfCertificate != null">and TA_SP_APPROVE_INFO.is_self_certificate = #{entity.isSelfCertificate}</if>
+	        <if test="entity.isWebConsult != null">and TA_SP_APPROVE_INFO.is_web_consult = #{entity.isWebConsult}</if>
+	        <if test="entity.isSynergy != null">and TA_SP_APPROVE_INFO.is_synergy = #{entity.isSynergy}</if>
+	        <if test="entity.isGovernmentProject != null">and TA_SP_APPROVE_INFO.is_government_project = #{entity.isGovernmentProject}</if>
+	        <if test="entity.approveState != null">and TA_SP_APPROVE_INFO.approve_state = #{entity.approveState}</if>
+	        <if test="entity.isUnifyAccept != null">and TA_SP_APPROVE_INFO.is_unify_accept = #{entity.isUnifyAccept}</if>
+	        <if test="entity.isCityOpenDo != null">and TA_SP_APPROVE_INFO.is_city_open_do = #{entity.isCityOpenDo}</if>
+	        <if test="entity.isElsewhereDo != null">and TA_SP_APPROVE_INFO.is_elsewhere_do = #{entity.isElsewhereDo}</if>
+	        <if test="entity.lastupdateTime != null">and TA_SP_APPROVE_INFO.lastupdate_time = #{entity.lastupdateTime}</if>
+	        <if test="entity.versionNum != null">and TA_SP_APPROVE_INFO.version_num = #{entity.versionNum}</if>
+	        <if test="entity.remark != null">and TA_SP_APPROVE_INFO.remark = #{entity.remark}</if>
+	        <if test="entity.isCharge != null">and TA_SP_APPROVE_INFO.is_charge = #{entity.isCharge}</if>
+	        <if test="entity.isSend != null">and TA_SP_APPROVE_INFO.is_send = #{entity.isSend}</if>
+	        <if test="entity.isIntermediaryServices != null">and TA_SP_APPROVE_INFO.is_intermediary_services = #{entity.isIntermediaryServices}</if>
+	        <if test="entity.intermediaryServices != null">and TA_SP_APPROVE_INFO.intermediary_services = #{entity.intermediaryServices}</if>
+	        <if test="entity.servicesId != null">and TA_SP_APPROVE_INFO.services_id = #{entity.servicesId}</if>
+	        <if test="entity.isValid != null">and TA_SP_APPROVE_INFO.is_valid = #{entity.isValid}</if>
+	        <if test="entity.isInwindow != null">and TA_SP_APPROVE_INFO.is_inwindow = #{entity.isInwindow}</if>
+	        <if test="entity.naturalpersonType != null">and TA_SP_APPROVE_INFO.naturalperson_type = #{entity.naturalpersonType}</if>
+	        <if test="entity.certificationType != null">and TA_SP_APPROVE_INFO.certification_type = #{entity.certificationType}</if>
+	        <if test="entity.sceneType != null">and TA_SP_APPROVE_INFO.scene_type = #{entity.sceneType}</if>
+	        <if test="entity.onlinebidAddress != null">and TA_SP_APPROVE_INFO.onlinebid_address = #{entity.onlinebidAddress}</if>
+	        <if test="entity.isMostRunonce != null">and TA_SP_APPROVE_INFO.is_most_runonce = #{entity.isMostRunonce}</if>
+			</where>
+</foreach>
+	c2_temp_table ON TA_SP_APPROVE_INFO.approve_id = c2_temp_table.approve_id
+</select>
+
+<!-- ElementID:selectByID,Generated=true -->
+<select id="selectByID" parameterType="java.lang.String" resultMap="ApproveInfoResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_SP_APPROVE_INFO 
+		 where TA_SP_APPROVE_INFO.approve_id = #{approveId,jdbcType=VARCHAR}
+</select>
+
+<!-- ElementID:selectByPage,Generated=true -->
+<select id="selectByPage" parameterType="com.chinacreator.dzjc_ruleEngine.ApproveInfo" resultMap="ApproveInfoResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_SP_APPROVE_INFO 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<select id="selectApproveByOrg" parameterType="java.lang.String" resultMap="ApproveInfoResult">
+    select 
+     a.approve_id,a.approve_code,a.approve_name 
+      from  TA_SP_APPROVE_INFO a 
+      where a.ORG_ID = #{orgId,jdbcType=VARCHAR}
+</select>
+
+
+</mapper>

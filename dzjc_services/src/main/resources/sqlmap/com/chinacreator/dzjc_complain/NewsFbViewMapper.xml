@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"><mapper namespace="com.chinacreator.dzjc_complain.NewsFbViewMapper">	
+
+<!-- ElementID:column_sql,Generated=true -->
+<sql id="column_sql">
+		  V_NEWS_FB.laws_id ,
+		  V_NEWS_FB.laws_content ,
+		  V_NEWS_FB.create_time ,
+		  V_NEWS_FB.create_user ,
+		  V_NEWS_FB.laws_title ,
+		  V_NEWS_FB.org_id ,
+		  V_NEWS_FB.org_name ,
+		  V_NEWS_FB.column_category_name 
+</sql>
+
+<!-- ElementID:whereClause_sql,Generated=true -->
+<sql id="whereClause_sql">
+	    <if test="lawsId != null">and V_NEWS_FB.laws_id = #{lawsId}</if>
+	    <if test="createTime != null">and V_NEWS_FB.create_time = #{createTime}</if>
+	    <if test="createUser != null">and V_NEWS_FB.create_user = #{createUser}</if>
+	    <if test="lawsTitle != null">and V_NEWS_FB.laws_title = #{lawsTitle}</if>
+	    <if test="orgId != null">and V_NEWS_FB.org_id = #{orgId}</if>
+	    <if test="orgName != null">and V_NEWS_FB.org_name = #{orgName}</if>
+	    <if test="columnCategoryName != null">and V_NEWS_FB.column_category_name = #{columnCategoryName}</if>
+</sql>
+
+
+<!-- ElementID:NewsFbViewResult,Generated=true -->
+<resultMap id="NewsFbViewResult" type="com.chinacreator.dzjc_complain.NewsFbView">
+	<id property="lawsId" column="laws_id"/>
+	<result property="lawsContent" column="laws_content"/>
+	<result property="createTime" column="create_time"/>
+	<result property="createUser" column="create_user"/>
+	<result property="lawsTitle" column="laws_title"/>
+	<result property="orgId" column="org_id"/>
+	<result property="orgName" column="org_name"/>
+	<result property="columnCategoryName" column="column_category_name"/>
+</resultMap>
+
+
+
+
+
+
+<!-- ElementID:insert,Generated=true -->
+<insert id="insert" parameterType="com.chinacreator.dzjc_complain.NewsFbView">
+	insert into V_NEWS_FB(
+	         <if test="lawsId != null">laws_id</if>
+	         <if test="lawsContent != null">,laws_content</if>
+	         <if test="createTime != null">,create_time</if>
+	         <if test="createUser != null">,create_user</if>
+	         <if test="lawsTitle != null">,laws_title</if>
+	         <if test="orgId != null">,org_id</if>
+	         <if test="orgName != null">,org_name</if>
+	         <if test="columnCategoryName != null">,column_category_name</if>
+	 	 	 )
+	 values (
+	         <if test="lawsId != null">#{lawsId,jdbcType=VARCHAR}</if>
+	         <if test="lawsContent != null">,#{lawsContent,jdbcType=CLOB}</if>
+	         <if test="createTime != null">,#{createTime,jdbcType=DATE}</if>
+	         <if test="createUser != null">,#{createUser,jdbcType=VARCHAR}</if>
+	         <if test="lawsTitle != null">,#{lawsTitle,jdbcType=VARCHAR}</if>
+	         <if test="orgId != null">,#{orgId,jdbcType=VARCHAR}</if>
+	         <if test="orgName != null">,#{orgName,jdbcType=VARCHAR}</if>
+	         <if test="columnCategoryName != null">,#{columnCategoryName,jdbcType=VARCHAR}</if>
+	 	 	 )
+</insert>
+
+<!-- ElementID:count,Generated=true -->
+<select id="count" parameterType="com.chinacreator.dzjc_complain.NewsFbView" resultType="int">
+	select count(*) from V_NEWS_FB 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<!-- ElementID:update,Generated=true -->
+<update id="update" parameterType="com.chinacreator.dzjc_complain.NewsFbView">
+	update V_NEWS_FB
+<set>
+	<if test="lawsContent != null">laws_content=#{lawsContent,jdbcType=CLOB},</if>
+	<if test="createTime != null">create_time=#{createTime,jdbcType=DATE},</if>
+	<if test="createUser != null">create_user=#{createUser,jdbcType=VARCHAR},</if>
+	<if test="lawsTitle != null">laws_title=#{lawsTitle,jdbcType=VARCHAR},</if>
+	<if test="orgId != null">org_id=#{orgId,jdbcType=VARCHAR},</if>
+	<if test="orgName != null">org_name=#{orgName,jdbcType=VARCHAR},</if>
+	<if test="columnCategoryName != null">column_category_name=#{columnCategoryName,jdbcType=VARCHAR}</if>
+</set>
+<where>
+	<choose>
+        <when test="lawsId != null">and laws_id = #{lawsId}</when>
+        <otherwise>and laws_id = </otherwise>
+    </choose>
+</where>
+</update>
+
+<!-- ElementID:updateNull,Generated=true -->
+<update id="updateNull" parameterType="map">
+	update V_NEWS_FB
+	<set>
+		<trim suffixOverrides=",">
+		    <if test="lawsContent==null">laws_content = null,</if>
+		    <if test="createTime==null">create_time = null,</if>
+		    <if test="createUser==null">create_user = null,</if>
+		    <if test="lawsTitle==null">laws_title = null,</if>
+		    <if test="orgId==null">org_id = null,</if>
+		    <if test="orgName==null">org_name = null,</if>
+		    <if test="columnCategoryName==null">column_category_name = null,</if>
+		</trim>
+	</set>
+	<where>
+		<choose>
+			<when test="lawsId != null">and laws_id = #{lawsId}</when>
+			<otherwise>and laws_id = </otherwise>
+		</choose>
+	</where>
+</update>
+
+<!-- ElementID:delete,Generated=false -->
+<delete id="delete" parameterType="com.chinacreator.dzjc_complain.NewsFbView">
+    delete from V_NEWS_FB where 1=1 and laws_id = #{lawsId}
+</delete>
+
+<!-- ElementID:select,Generated=false -->
+<select id="select" parameterType="com.chinacreator.dzjc_complain.NewsFbView" resultMap="NewsFbViewResult">
+	select 
+		<include refid="column_sql"/>
+	    from V_NEWS_FB 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+	order by 
+			create_time desc
+</select>
+
+
+<!-- ElementID:insertBatch,Generated=true -->
+<insert id="insertBatch" parameterType="list">
+	insert into V_NEWS_FB (laws_id,laws_content,create_time,create_user,laws_title,org_id,org_name,column_category_name) 
+<foreach collection="list" item="entity" index="index" separator="union all">
+		select 
+		#{entity.lawsId,jdbcType = VARCHAR},
+				#{entity.lawsContent,jdbcType = CLOB},
+				#{entity.createTime,jdbcType = DATE},
+				#{entity.createUser,jdbcType = VARCHAR},
+				#{entity.lawsTitle,jdbcType = VARCHAR},
+				#{entity.orgId,jdbcType = VARCHAR},
+				#{entity.orgName,jdbcType = VARCHAR},
+				#{entity.columnCategoryName,jdbcType = VARCHAR}
+		from dual
+</foreach>
+</insert>
+
+<!-- ElementID:deleteBatch,Generated=true -->
+<delete id="deleteBatch" parameterType="List">
+	delete from V_NEWS_FB where laws_id in
+<trim prefix="(" suffix=")" suffixOverrides=",">
+<foreach collection="list" item="entity" separator=",">
+	<choose>
+		<when test="@com.chinacreator.c2.dao.util.EntityBeanUtil@isEntityObj(entity)">#{entity.lawsId}</when>
+		<otherwise>#{entity}</otherwise>
+	</choose>
+</foreach>
+</trim>
+</delete>
+
+<!-- ElementID:updateBatch,Generated=true -->
+<update id="updateBatch" parameterType="list">
+	<foreach collection="list" item="entity" open="begin" close=";end;" separator=";">
+			update V_NEWS_FB
+	<set>
+	<if test="entity.lawsContent != null">laws_content= #{entity.lawsContent,jdbcType=CLOB},</if>
+	<if test="entity.createTime != null">create_time= #{entity.createTime,jdbcType=DATE},</if>
+	<if test="entity.createUser != null">create_user= #{entity.createUser,jdbcType=VARCHAR},</if>
+	<if test="entity.lawsTitle != null">laws_title= #{entity.lawsTitle,jdbcType=VARCHAR},</if>
+	<if test="entity.orgId != null">org_id= #{entity.orgId,jdbcType=VARCHAR},</if>
+	<if test="entity.orgName != null">org_name= #{entity.orgName,jdbcType=VARCHAR},</if>
+	<if test="entity.columnCategoryName != null">column_category_name= #{entity.columnCategoryName,jdbcType=VARCHAR}</if>
+	</set>
+		<where>
+			<choose>
+				<when test="entity.lawsId != null">and laws_id = #{entity.lawsId}</when>
+				<otherwise>and laws_id = </otherwise>
+			</choose>
+		</where>
+	</foreach>
+</update>
+
+<!-- ElementID:selectAll,Generated=true -->
+<select id="selectAll" resultMap="NewsFbViewResult">
+	select 
+		<include refid="column_sql"/>
+	    from V_NEWS_FB 
+</select>
+
+<!-- ElementID:selectMany,Generated=true -->
+<select id="selectMany" parameterType="list" resultMap="NewsFbViewResult">
+select 
+	<include refid="column_sql"/> 
+	from V_NEWS_FB 
+	where V_NEWS_FB.laws_id in (
+<foreach collection="list" item="entity" separator="intersect">
+		select 
+		V_NEWS_FB.laws_id
+	    from V_NEWS_FB 
+		 <where>
+	        <if test="entity.lawsId != null">and V_NEWS_FB.laws_id = #{entity.lawsId}</if>
+	        <if test="entity.createTime != null">and V_NEWS_FB.create_time = #{entity.createTime}</if>
+	        <if test="entity.createUser != null">and V_NEWS_FB.create_user = #{entity.createUser}</if>
+	        <if test="entity.lawsTitle != null">and V_NEWS_FB.laws_title = #{entity.lawsTitle}</if>
+	        <if test="entity.orgId != null">and V_NEWS_FB.org_id = #{entity.orgId}</if>
+	        <if test="entity.orgName != null">and V_NEWS_FB.org_name = #{entity.orgName}</if>
+	        <if test="entity.columnCategoryName != null">and V_NEWS_FB.column_category_name = #{entity.columnCategoryName}</if>
+		</where>
+</foreach>
+)
+</select>
+
+<!-- ElementID:selectUnion,Generated=true -->
+<select id="selectUnion" parameterType="list" resultMap="NewsFbViewResult">
+select 
+	<include refid="column_sql"/> 
+	from V_NEWS_FB 
+	 INNER JOIN
+<foreach collection="list" item="entity" separator="UNION" open="(" close=")">
+		SELECT 
+			 laws_id
+		FROM V_NEWS_FB 
+			<where>
+	        <if test="entity.lawsId != null">and V_NEWS_FB.laws_id = #{entity.lawsId}</if>
+	        <if test="entity.createTime != null">and V_NEWS_FB.create_time = #{entity.createTime}</if>
+	        <if test="entity.createUser != null">and V_NEWS_FB.create_user = #{entity.createUser}</if>
+	        <if test="entity.lawsTitle != null">and V_NEWS_FB.laws_title = #{entity.lawsTitle}</if>
+	        <if test="entity.orgId != null">and V_NEWS_FB.org_id = #{entity.orgId}</if>
+	        <if test="entity.orgName != null">and V_NEWS_FB.org_name = #{entity.orgName}</if>
+	        <if test="entity.columnCategoryName != null">and V_NEWS_FB.column_category_name = #{entity.columnCategoryName}</if>
+			</where>
+</foreach>
+	c2_temp_table ON V_NEWS_FB.laws_id = c2_temp_table.laws_id
+</select>
+
+<!-- ElementID:selectByID,Generated=true -->
+<select id="selectByID" parameterType="java.lang.String" resultMap="NewsFbViewResult">
+	select 
+		<include refid="column_sql"/>
+	    from V_NEWS_FB 
+		 where V_NEWS_FB.laws_id = #{lawsId,jdbcType=VARCHAR}
+</select>
+
+<!-- ElementID:selectByPage,Generated=false -->
+<select id="selectByPage" parameterType="com.chinacreator.dzjc_complain.NewsFbView" resultMap="NewsFbViewResult">
+	select 
+		<include refid="column_sql"/>
+	    from V_NEWS_FB 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+	order by 
+			create_time desc
+</select>
+
+</mapper>

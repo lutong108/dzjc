@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"><mapper namespace="com.chinacreator.dzjc_ruleEngine.ResumeMapper">	
+
+<!-- ElementID:column_sql,Generated=true -->
+<sql id="column_sql">
+		  TA_SP_RESUME.resume_id ,
+		  TA_SP_RESUME.suspend_id ,
+		  TA_SP_RESUME.instance_id ,
+		  TA_SP_RESUME.special_result ,
+		  TA_SP_RESUME.end_date ,
+		  TA_SP_RESUME.resume_userid ,
+		  TA_SP_RESUME.resume_username ,
+		  TA_SP_RESUME.remarka ,
+		  TA_SP_RESUME.proc_inst_id ,
+		  TA_SP_RESUME.lastmodifiedtime ,
+		  TA_SP_RESUME.is_exchange ,
+		  TA_SP_RESUME.mod_flag 
+</sql>
+
+<!-- ElementID:whereClause_sql,Generated=true -->
+<sql id="whereClause_sql">
+	    <if test="resumeId != null">and TA_SP_RESUME.resume_id = #{resumeId}</if>
+	    <if test="suspendId != null">and TA_SP_RESUME.suspend_id = #{suspendId}</if>
+	    <if test="instanceId != null">and TA_SP_RESUME.instance_id = #{instanceId}</if>
+	    <if test="specialResult != null">and TA_SP_RESUME.special_result = #{specialResult}</if>
+	    <if test="endDate != null">and TA_SP_RESUME.end_date = #{endDate}</if>
+	    <if test="resumeUserid != null">and TA_SP_RESUME.resume_userid = #{resumeUserid}</if>
+	    <if test="resumeUsername != null">and TA_SP_RESUME.resume_username = #{resumeUsername}</if>
+	    <if test="remarka != null">and TA_SP_RESUME.remarka = #{remarka}</if>
+	    <if test="procInstId != null">and TA_SP_RESUME.proc_inst_id = #{procInstId}</if>
+	    <if test="lastmodifiedtime != null">and TA_SP_RESUME.lastmodifiedtime = #{lastmodifiedtime}</if>
+	    <if test="isExchange != null">and TA_SP_RESUME.is_exchange = #{isExchange}</if>
+	    <if test="modFlag != null">and TA_SP_RESUME.mod_flag = #{modFlag}</if>
+</sql>
+
+
+<!-- ElementID:ResumeResult,Generated=true -->
+<resultMap id="ResumeResult" type="com.chinacreator.dzjc_ruleEngine.Resume">
+	<id property="resumeId" column="resume_id"/>
+	<result property="suspendId" column="suspend_id"/>
+	<result property="instanceId" column="instance_id"/>
+	<result property="specialResult" column="special_result"/>
+	<result property="endDate" column="end_date"/>
+	<result property="resumeUserid" column="resume_userid"/>
+	<result property="resumeUsername" column="resume_username"/>
+	<result property="remarka" column="remarka"/>
+	<result property="procInstId" column="proc_inst_id"/>
+	<result property="lastmodifiedtime" column="lastmodifiedtime"/>
+	<result property="isExchange" column="is_exchange"/>
+	<result property="modFlag" column="mod_flag"/>
+</resultMap>
+
+
+<!-- ElementID:insert,Generated=true -->
+<insert id="insert" parameterType="com.chinacreator.dzjc_ruleEngine.Resume">
+	insert into TA_SP_RESUME(
+	         <if test="resumeId != null">resume_id</if>
+	         <if test="suspendId != null">,suspend_id</if>
+	         <if test="instanceId != null">,instance_id</if>
+	         <if test="specialResult != null">,special_result</if>
+	         <if test="endDate != null">,end_date</if>
+	         <if test="resumeUserid != null">,resume_userid</if>
+	         <if test="resumeUsername != null">,resume_username</if>
+	         <if test="remarka != null">,remarka</if>
+	         <if test="procInstId != null">,proc_inst_id</if>
+	         <if test="lastmodifiedtime != null">,lastmodifiedtime</if>
+	         <if test="isExchange != null">,is_exchange</if>
+	         <if test="modFlag != null">,mod_flag</if>
+	 	 	 )
+	 values (
+	         <if test="resumeId != null">#{resumeId,jdbcType=VARCHAR}</if>
+	         <if test="suspendId != null">,#{suspendId,jdbcType=VARCHAR}</if>
+	         <if test="instanceId != null">,#{instanceId,jdbcType=VARCHAR}</if>
+	         <if test="specialResult != null">,#{specialResult,jdbcType=VARCHAR}</if>
+	         <if test="endDate != null">,#{endDate,jdbcType=DATE}</if>
+	         <if test="resumeUserid != null">,#{resumeUserid,jdbcType=VARCHAR}</if>
+	         <if test="resumeUsername != null">,#{resumeUsername,jdbcType=VARCHAR}</if>
+	         <if test="remarka != null">,#{remarka,jdbcType=VARCHAR}</if>
+	         <if test="procInstId != null">,#{procInstId,jdbcType=VARCHAR}</if>
+	         <if test="lastmodifiedtime != null">,#{lastmodifiedtime,jdbcType=DATE}</if>
+	         <if test="isExchange != null">,#{isExchange,jdbcType=VARCHAR}</if>
+	         <if test="modFlag != null">,#{modFlag,jdbcType=VARCHAR}</if>
+	 	 	 )
+</insert>
+
+<!-- ElementID:count,Generated=true -->
+<select id="count" parameterType="com.chinacreator.dzjc_ruleEngine.Resume" resultType="int">
+	select count(*) from TA_SP_RESUME 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<!-- ElementID:update,Generated=true -->
+<update id="update" parameterType="com.chinacreator.dzjc_ruleEngine.Resume">
+	update TA_SP_RESUME
+<set>
+	<if test="suspendId != null">suspend_id=#{suspendId,jdbcType=VARCHAR},</if>
+	<if test="instanceId != null">instance_id=#{instanceId,jdbcType=VARCHAR},</if>
+	<if test="specialResult != null">special_result=#{specialResult,jdbcType=VARCHAR},</if>
+	<if test="endDate != null">end_date=#{endDate,jdbcType=DATE},</if>
+	<if test="resumeUserid != null">resume_userid=#{resumeUserid,jdbcType=VARCHAR},</if>
+	<if test="resumeUsername != null">resume_username=#{resumeUsername,jdbcType=VARCHAR},</if>
+	<if test="remarka != null">remarka=#{remarka,jdbcType=VARCHAR},</if>
+	<if test="procInstId != null">proc_inst_id=#{procInstId,jdbcType=VARCHAR},</if>
+	<if test="lastmodifiedtime != null">lastmodifiedtime=#{lastmodifiedtime,jdbcType=DATE},</if>
+	<if test="isExchange != null">is_exchange=#{isExchange,jdbcType=VARCHAR},</if>
+	<if test="modFlag != null">mod_flag=#{modFlag,jdbcType=VARCHAR}</if>
+</set>
+<where>
+	<choose>
+        <when test="resumeId != null">and resume_id = #{resumeId}</when>
+        <otherwise>and resume_id = </otherwise>
+    </choose>
+</where>
+</update>
+
+<!-- ElementID:updateNull,Generated=true -->
+<update id="updateNull" parameterType="map">
+	update TA_SP_RESUME
+	<set>
+		<trim suffixOverrides=",">
+		    <if test="suspendId==null">suspend_id = null,</if>
+		    <if test="instanceId==null">instance_id = null,</if>
+		    <if test="specialResult==null">special_result = null,</if>
+		    <if test="endDate==null">end_date = null,</if>
+		    <if test="resumeUserid==null">resume_userid = null,</if>
+		    <if test="resumeUsername==null">resume_username = null,</if>
+		    <if test="remarka==null">remarka = null,</if>
+		    <if test="procInstId==null">proc_inst_id = null,</if>
+		    <if test="lastmodifiedtime==null">lastmodifiedtime = null,</if>
+		    <if test="isExchange==null">is_exchange = null,</if>
+		    <if test="modFlag==null">mod_flag = null,</if>
+		</trim>
+	</set>
+	<where>
+		<choose>
+			<when test="resumeId != null">and resume_id = #{resumeId}</when>
+			<otherwise>and resume_id = </otherwise>
+		</choose>
+	</where>
+</update>
+
+<!-- ElementID:delete,Generated=true -->
+<delete id="delete" parameterType="com.chinacreator.dzjc_ruleEngine.Resume">
+    delete from TA_SP_RESUME where 1=1 and resume_id = #{resumeId}
+</delete>
+
+<!-- ElementID:select,Generated=true -->
+<select id="select" parameterType="com.chinacreator.dzjc_ruleEngine.Resume" resultMap="ResumeResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_SP_RESUME 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+
+<!-- ElementID:insertBatch,Generated=true -->
+<insert id="insertBatch" parameterType="list">
+	insert into TA_SP_RESUME (resume_id,suspend_id,instance_id,special_result,end_date,resume_userid,resume_username,remarka,proc_inst_id,lastmodifiedtime,is_exchange,mod_flag) 
+<foreach collection="list" item="entity" index="index" separator="union all">
+		select 
+		#{entity.resumeId,jdbcType = VARCHAR},
+				#{entity.suspendId,jdbcType = VARCHAR},
+				#{entity.instanceId,jdbcType = VARCHAR},
+				#{entity.specialResult,jdbcType = VARCHAR},
+				#{entity.endDate,jdbcType = DATE},
+				#{entity.resumeUserid,jdbcType = VARCHAR},
+				#{entity.resumeUsername,jdbcType = VARCHAR},
+				#{entity.remarka,jdbcType = VARCHAR},
+				#{entity.procInstId,jdbcType = VARCHAR},
+				#{entity.lastmodifiedtime,jdbcType = DATE},
+				#{entity.isExchange,jdbcType = VARCHAR},
+				#{entity.modFlag,jdbcType = VARCHAR}
+		from dual
+</foreach>
+</insert>
+
+<!-- ElementID:deleteBatch,Generated=true -->
+<delete id="deleteBatch" parameterType="List">
+	delete from TA_SP_RESUME where resume_id in
+<trim prefix="(" suffix=")" suffixOverrides=",">
+<foreach collection="list" item="entity" separator=",">
+	<choose>
+		<when test="@com.chinacreator.c2.dao.util.EntityBeanUtil@isEntityObj(entity)">#{entity.resumeId}</when>
+		<otherwise>#{entity}</otherwise>
+	</choose>
+</foreach>
+</trim>
+</delete>
+
+<!-- ElementID:updateBatch,Generated=true -->
+<update id="updateBatch" parameterType="list">
+	<foreach collection="list" item="entity" open="begin" close=";end;" separator=";">
+			update TA_SP_RESUME
+	<set>
+	<if test="entity.suspendId != null">suspend_id= #{entity.suspendId,jdbcType=VARCHAR},</if>
+	<if test="entity.instanceId != null">instance_id= #{entity.instanceId,jdbcType=VARCHAR},</if>
+	<if test="entity.specialResult != null">special_result= #{entity.specialResult,jdbcType=VARCHAR},</if>
+	<if test="entity.endDate != null">end_date= #{entity.endDate,jdbcType=DATE},</if>
+	<if test="entity.resumeUserid != null">resume_userid= #{entity.resumeUserid,jdbcType=VARCHAR},</if>
+	<if test="entity.resumeUsername != null">resume_username= #{entity.resumeUsername,jdbcType=VARCHAR},</if>
+	<if test="entity.remarka != null">remarka= #{entity.remarka,jdbcType=VARCHAR},</if>
+	<if test="entity.procInstId != null">proc_inst_id= #{entity.procInstId,jdbcType=VARCHAR},</if>
+	<if test="entity.lastmodifiedtime != null">lastmodifiedtime= #{entity.lastmodifiedtime,jdbcType=DATE},</if>
+	<if test="entity.isExchange != null">is_exchange= #{entity.isExchange,jdbcType=VARCHAR},</if>
+	<if test="entity.modFlag != null">mod_flag= #{entity.modFlag,jdbcType=VARCHAR}</if>
+	</set>
+		<where>
+			<choose>
+				<when test="entity.resumeId != null">and resume_id = #{entity.resumeId}</when>
+				<otherwise>and resume_id = </otherwise>
+			</choose>
+		</where>
+	</foreach>
+</update>
+
+<!-- ElementID:selectAll,Generated=true -->
+<select id="selectAll" resultMap="ResumeResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_SP_RESUME 
+</select>
+
+<!-- ElementID:selectMany,Generated=true -->
+<select id="selectMany" parameterType="list" resultMap="ResumeResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_SP_RESUME 
+	where TA_SP_RESUME.resume_id in (
+<foreach collection="list" item="entity" separator="intersect">
+		select 
+		TA_SP_RESUME.resume_id
+	    from TA_SP_RESUME 
+		 <where>
+	        <if test="entity.resumeId != null">and TA_SP_RESUME.resume_id = #{entity.resumeId}</if>
+	        <if test="entity.suspendId != null">and TA_SP_RESUME.suspend_id = #{entity.suspendId}</if>
+	        <if test="entity.instanceId != null">and TA_SP_RESUME.instance_id = #{entity.instanceId}</if>
+	        <if test="entity.specialResult != null">and TA_SP_RESUME.special_result = #{entity.specialResult}</if>
+	        <if test="entity.endDate != null">and TA_SP_RESUME.end_date = #{entity.endDate}</if>
+	        <if test="entity.resumeUserid != null">and TA_SP_RESUME.resume_userid = #{entity.resumeUserid}</if>
+	        <if test="entity.resumeUsername != null">and TA_SP_RESUME.resume_username = #{entity.resumeUsername}</if>
+	        <if test="entity.remarka != null">and TA_SP_RESUME.remarka = #{entity.remarka}</if>
+	        <if test="entity.procInstId != null">and TA_SP_RESUME.proc_inst_id = #{entity.procInstId}</if>
+	        <if test="entity.lastmodifiedtime != null">and TA_SP_RESUME.lastmodifiedtime = #{entity.lastmodifiedtime}</if>
+	        <if test="entity.isExchange != null">and TA_SP_RESUME.is_exchange = #{entity.isExchange}</if>
+	        <if test="entity.modFlag != null">and TA_SP_RESUME.mod_flag = #{entity.modFlag}</if>
+		</where>
+</foreach>
+)
+</select>
+
+<!-- ElementID:selectUnion,Generated=true -->
+<select id="selectUnion" parameterType="list" resultMap="ResumeResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_SP_RESUME 
+	 INNER JOIN
+<foreach collection="list" item="entity" separator="UNION" open="(" close=")">
+		SELECT 
+			 resume_id
+		FROM TA_SP_RESUME 
+			<where>
+	        <if test="entity.resumeId != null">and TA_SP_RESUME.resume_id = #{entity.resumeId}</if>
+	        <if test="entity.suspendId != null">and TA_SP_RESUME.suspend_id = #{entity.suspendId}</if>
+	        <if test="entity.instanceId != null">and TA_SP_RESUME.instance_id = #{entity.instanceId}</if>
+	        <if test="entity.specialResult != null">and TA_SP_RESUME.special_result = #{entity.specialResult}</if>
+	        <if test="entity.endDate != null">and TA_SP_RESUME.end_date = #{entity.endDate}</if>
+	        <if test="entity.resumeUserid != null">and TA_SP_RESUME.resume_userid = #{entity.resumeUserid}</if>
+	        <if test="entity.resumeUsername != null">and TA_SP_RESUME.resume_username = #{entity.resumeUsername}</if>
+	        <if test="entity.remarka != null">and TA_SP_RESUME.remarka = #{entity.remarka}</if>
+	        <if test="entity.procInstId != null">and TA_SP_RESUME.proc_inst_id = #{entity.procInstId}</if>
+	        <if test="entity.lastmodifiedtime != null">and TA_SP_RESUME.lastmodifiedtime = #{entity.lastmodifiedtime}</if>
+	        <if test="entity.isExchange != null">and TA_SP_RESUME.is_exchange = #{entity.isExchange}</if>
+	        <if test="entity.modFlag != null">and TA_SP_RESUME.mod_flag = #{entity.modFlag}</if>
+			</where>
+</foreach>
+	c2_temp_table ON TA_SP_RESUME.resume_id = c2_temp_table.resume_id
+</select>
+
+<!-- ElementID:selectByID,Generated=true -->
+<select id="selectByID" parameterType="java.lang.String" resultMap="ResumeResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_SP_RESUME 
+		 where TA_SP_RESUME.resume_id = #{resumeId,jdbcType=VARCHAR}
+</select>
+
+<!-- ElementID:selectByPage,Generated=true -->
+<select id="selectByPage" parameterType="com.chinacreator.dzjc_ruleEngine.Resume" resultMap="ResumeResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_SP_RESUME 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+</mapper>

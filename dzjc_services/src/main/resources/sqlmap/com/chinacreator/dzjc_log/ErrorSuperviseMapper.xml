@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"><mapper namespace="com.chinacreator.dzjc_log.ErrorSuperviseMapper">	
+
+<!-- ElementID:column_sql,Generated=true -->
+<sql id="column_sql">
+		  V_TA_JC_SUPERVISE_ERROR.id ,
+		  V_TA_JC_SUPERVISE_ERROR.supervise_result_no ,
+		  V_TA_JC_SUPERVISE_ERROR.supervise_type_no ,
+		  V_TA_JC_SUPERVISE_ERROR.supervise_type_name ,
+		  V_TA_JC_SUPERVISE_ERROR.supervise_time ,
+		  V_TA_JC_SUPERVISE_ERROR.start_time ,
+		  V_TA_JC_SUPERVISE_ERROR.end_time ,
+		  V_TA_JC_SUPERVISE_ERROR.status ,
+		  V_TA_JC_SUPERVISE_ERROR.promise_limit ,
+		  V_TA_JC_SUPERVISE_ERROR.process_limit ,
+		  V_TA_JC_SUPERVISE_ERROR.check_time ,
+		  V_TA_JC_SUPERVISE_ERROR.check_status ,
+		  V_TA_JC_SUPERVISE_ERROR.check_end_time ,
+		  V_TA_JC_SUPERVISE_ERROR.bussiness_id ,
+		  V_TA_JC_SUPERVISE_ERROR.query_code ,
+		  V_TA_JC_SUPERVISE_ERROR.bussiness_code ,
+		  V_TA_JC_SUPERVISE_ERROR.org_id ,
+		  V_TA_JC_SUPERVISE_ERROR.org_name ,
+		  V_TA_JC_SUPERVISE_ERROR.bussiness_name ,
+		  V_TA_JC_SUPERVISE_ERROR.accept_time ,
+		  V_TA_JC_SUPERVISE_ERROR.check_status_temp 
+</sql>
+
+<!-- ElementID:whereClause_sql,Generated=true -->
+<sql id="whereClause_sql">
+	    <if test="id != null">and V_TA_JC_SUPERVISE_ERROR.id = #{id}</if>
+	    <if test="superviseResultNo != null">and V_TA_JC_SUPERVISE_ERROR.supervise_result_no = #{superviseResultNo}</if>
+	    <if test="superviseTypeNo != null">and V_TA_JC_SUPERVISE_ERROR.supervise_type_no = #{superviseTypeNo}</if>
+	    <if test="superviseTypeName != null">and V_TA_JC_SUPERVISE_ERROR.supervise_type_name = #{superviseTypeName}</if>
+	    <if test="superviseTime != null">and V_TA_JC_SUPERVISE_ERROR.supervise_time = #{superviseTime}</if>
+	    <if test="startTime != null">and V_TA_JC_SUPERVISE_ERROR.start_time = #{startTime}</if>
+	    <if test="endTime != null">and V_TA_JC_SUPERVISE_ERROR.end_time = #{endTime}</if>
+	    <if test="status != null">and V_TA_JC_SUPERVISE_ERROR.status = #{status}</if>
+	    <if test="promiseLimit != null">and V_TA_JC_SUPERVISE_ERROR.promise_limit = #{promiseLimit}</if>
+	    <if test="processLimit != null">and V_TA_JC_SUPERVISE_ERROR.process_limit = #{processLimit}</if>
+	    <if test="checkTime != null">and V_TA_JC_SUPERVISE_ERROR.check_time = #{checkTime}</if>
+	    <if test="checkStatus != null">and V_TA_JC_SUPERVISE_ERROR.check_status = #{checkStatus}</if>
+	    <if test="checkEndTime != null">and V_TA_JC_SUPERVISE_ERROR.check_end_time = #{checkEndTime}</if>
+	    <if test="bussinessId != null">and V_TA_JC_SUPERVISE_ERROR.bussiness_id = #{bussinessId}</if>
+	    <if test="queryCode != null">and V_TA_JC_SUPERVISE_ERROR.query_code = #{queryCode}</if>
+	    <if test="bussinessCode != null">and V_TA_JC_SUPERVISE_ERROR.bussiness_code = #{bussinessCode}</if>
+	    <if test="orgId != null">and V_TA_JC_SUPERVISE_ERROR.org_id = #{orgId}</if>
+	    <if test="orgName != null">and V_TA_JC_SUPERVISE_ERROR.org_name = #{orgName}</if>
+	    <if test="bussinessName != null">and V_TA_JC_SUPERVISE_ERROR.bussiness_name = #{bussinessName}</if>
+	    <if test="acceptTime != null">and V_TA_JC_SUPERVISE_ERROR.accept_time = #{acceptTime}</if>
+	    <if test="checkStatusTemp != null">and V_TA_JC_SUPERVISE_ERROR.check_status_temp = #{checkStatusTemp}</if>
+</sql>
+
+
+<!-- ElementID:ErrorSuperviseResult,Generated=true -->
+<resultMap id="ErrorSuperviseResult" type="com.chinacreator.dzjc_log.ErrorSupervise">
+	<id property="id" column="id"/>
+	<result property="superviseResultNo" column="supervise_result_no"/>
+	<result property="superviseTypeNo" column="supervise_type_no"/>
+	<result property="superviseTypeName" column="supervise_type_name"/>
+	<result property="superviseTime" column="supervise_time"/>
+	<result property="startTime" column="start_time"/>
+	<result property="endTime" column="end_time"/>
+	<result property="status" column="status"/>
+	<result property="promiseLimit" column="promise_limit"/>
+	<result property="processLimit" column="process_limit"/>
+	<result property="checkTime" column="check_time"/>
+	<result property="checkStatus" column="check_status"/>
+	<result property="checkEndTime" column="check_end_time"/>
+	<result property="bussinessId" column="bussiness_id"/>
+	<result property="queryCode" column="query_code"/>
+	<result property="bussinessCode" column="bussiness_code"/>
+	<result property="orgId" column="org_id"/>
+	<result property="orgName" column="org_name"/>
+	<result property="bussinessName" column="bussiness_name"/>
+	<result property="acceptTime" column="accept_time"/>
+	<result property="checkStatusTemp" column="check_status_temp"/>
+</resultMap>
+
+
+<!-- ElementID:insert,Generated=true -->
+<insert id="insert" parameterType="com.chinacreator.dzjc_log.ErrorSupervise">
+	insert into V_TA_JC_SUPERVISE_ERROR(
+	         <if test="id != null">id</if>
+	         <if test="superviseResultNo != null">,supervise_result_no</if>
+	         <if test="superviseTypeNo != null">,supervise_type_no</if>
+	         <if test="superviseTypeName != null">,supervise_type_name</if>
+	         <if test="superviseTime != null">,supervise_time</if>
+	         <if test="startTime != null">,start_time</if>
+	         <if test="endTime != null">,end_time</if>
+	         <if test="status != null">,status</if>
+	         <if test="promiseLimit != null">,promise_limit</if>
+	         <if test="processLimit != null">,process_limit</if>
+	         <if test="checkTime != null">,check_time</if>
+	         <if test="checkStatus != null">,check_status</if>
+	         <if test="checkEndTime != null">,check_end_time</if>
+	         <if test="bussinessId != null">,bussiness_id</if>
+	         <if test="queryCode != null">,query_code</if>
+	         <if test="bussinessCode != null">,bussiness_code</if>
+	         <if test="orgId != null">,org_id</if>
+	         <if test="orgName != null">,org_name</if>
+	         <if test="bussinessName != null">,bussiness_name</if>
+	         <if test="acceptTime != null">,accept_time</if>
+	         <if test="checkStatusTemp != null">,check_status_temp</if>
+	 	 	 )
+	 values (
+	         <if test="id != null">#{id,jdbcType=VARCHAR}</if>
+	         <if test="superviseResultNo != null">,#{superviseResultNo,jdbcType=VARCHAR}</if>
+	         <if test="superviseTypeNo != null">,#{superviseTypeNo,jdbcType=VARCHAR}</if>
+	         <if test="superviseTypeName != null">,#{superviseTypeName,jdbcType=VARCHAR}</if>
+	         <if test="superviseTime != null">,#{superviseTime,jdbcType=DATE}</if>
+	         <if test="startTime != null">,#{startTime,jdbcType=DATE}</if>
+	         <if test="endTime != null">,#{endTime,jdbcType=DATE}</if>
+	         <if test="status != null">,#{status,jdbcType=VARCHAR}</if>
+	         <if test="promiseLimit != null">,#{promiseLimit,jdbcType=NUMERIC}</if>
+	         <if test="processLimit != null">,#{processLimit,jdbcType=NUMERIC}</if>
+	         <if test="checkTime != null">,#{checkTime,jdbcType=DATE}</if>
+	         <if test="checkStatus != null">,#{checkStatus,jdbcType=VARCHAR}</if>
+	         <if test="checkEndTime != null">,#{checkEndTime,jdbcType=DATE}</if>
+	         <if test="bussinessId != null">,#{bussinessId,jdbcType=VARCHAR}</if>
+	         <if test="queryCode != null">,#{queryCode,jdbcType=VARCHAR}</if>
+	         <if test="bussinessCode != null">,#{bussinessCode,jdbcType=VARCHAR}</if>
+	         <if test="orgId != null">,#{orgId,jdbcType=VARCHAR}</if>
+	         <if test="orgName != null">,#{orgName,jdbcType=VARCHAR}</if>
+	         <if test="bussinessName != null">,#{bussinessName,jdbcType=VARCHAR}</if>
+	         <if test="acceptTime != null">,#{acceptTime,jdbcType=DATE}</if>
+	         <if test="checkStatusTemp != null">,#{checkStatusTemp,jdbcType=VARCHAR}</if>
+	 	 	 )
+</insert>
+
+<!-- ElementID:count,Generated=true -->
+<select id="count" parameterType="com.chinacreator.dzjc_log.ErrorSupervise" resultType="int">
+	select count(*) from V_TA_JC_SUPERVISE_ERROR 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<!-- ElementID:update,Generated=true -->
+<update id="update" parameterType="com.chinacreator.dzjc_log.ErrorSupervise">
+	update V_TA_JC_SUPERVISE_ERROR
+<set>
+	<if test="superviseResultNo != null">supervise_result_no=#{superviseResultNo,jdbcType=VARCHAR},</if>
+	<if test="superviseTypeNo != null">supervise_type_no=#{superviseTypeNo,jdbcType=VARCHAR},</if>
+	<if test="superviseTypeName != null">supervise_type_name=#{superviseTypeName,jdbcType=VARCHAR},</if>
+	<if test="superviseTime != null">supervise_time=#{superviseTime,jdbcType=DATE},</if>
+	<if test="startTime != null">start_time=#{startTime,jdbcType=DATE},</if>
+	<if test="endTime != null">end_time=#{endTime,jdbcType=DATE},</if>
+	<if test="status != null">status=#{status,jdbcType=VARCHAR},</if>
+	<if test="promiseLimit != null">promise_limit=#{promiseLimit,jdbcType=NUMERIC},</if>
+	<if test="processLimit != null">process_limit=#{processLimit,jdbcType=NUMERIC},</if>
+	<if test="checkTime != null">check_time=#{checkTime,jdbcType=DATE},</if>
+	<if test="checkStatus != null">check_status=#{checkStatus,jdbcType=VARCHAR},</if>
+	<if test="checkEndTime != null">check_end_time=#{checkEndTime,jdbcType=DATE},</if>
+	<if test="bussinessId != null">bussiness_id=#{bussinessId,jdbcType=VARCHAR},</if>
+	<if test="queryCode != null">query_code=#{queryCode,jdbcType=VARCHAR},</if>
+	<if test="bussinessCode != null">bussiness_code=#{bussinessCode,jdbcType=VARCHAR},</if>
+	<if test="orgId != null">org_id=#{orgId,jdbcType=VARCHAR},</if>
+	<if test="orgName != null">org_name=#{orgName,jdbcType=VARCHAR},</if>
+	<if test="bussinessName != null">bussiness_name=#{bussinessName,jdbcType=VARCHAR},</if>
+	<if test="acceptTime != null">accept_time=#{acceptTime,jdbcType=DATE},</if>
+	<if test="checkStatusTemp != null">check_status_temp=#{checkStatusTemp,jdbcType=VARCHAR}</if>
+</set>
+<where>
+	<choose>
+        <when test="id != null">and id = #{id}</when>
+        <otherwise>and id = </otherwise>
+    </choose>
+</where>
+</update>
+
+<!-- ElementID:updateNull,Generated=true -->
+<update id="updateNull" parameterType="map">
+	update V_TA_JC_SUPERVISE_ERROR
+	<set>
+		<trim suffixOverrides=",">
+		    <if test="superviseResultNo==null">supervise_result_no = null,</if>
+		    <if test="superviseTypeNo==null">supervise_type_no = null,</if>
+		    <if test="superviseTypeName==null">supervise_type_name = null,</if>
+		    <if test="superviseTime==null">supervise_time = null,</if>
+		    <if test="startTime==null">start_time = null,</if>
+		    <if test="endTime==null">end_time = null,</if>
+		    <if test="status==null">status = null,</if>
+		    <if test="promiseLimit==null">promise_limit = null,</if>
+		    <if test="processLimit==null">process_limit = null,</if>
+		    <if test="checkTime==null">check_time = null,</if>
+		    <if test="checkStatus==null">check_status = null,</if>
+		    <if test="checkEndTime==null">check_end_time = null,</if>
+		    <if test="bussinessId==null">bussiness_id = null,</if>
+		    <if test="queryCode==null">query_code = null,</if>
+		    <if test="bussinessCode==null">bussiness_code = null,</if>
+		    <if test="orgId==null">org_id = null,</if>
+		    <if test="orgName==null">org_name = null,</if>
+		    <if test="bussinessName==null">bussiness_name = null,</if>
+		    <if test="acceptTime==null">accept_time = null,</if>
+		    <if test="checkStatusTemp==null">check_status_temp = null,</if>
+		</trim>
+	</set>
+	<where>
+		<choose>
+			<when test="id != null">and id = #{id}</when>
+			<otherwise>and id = </otherwise>
+		</choose>
+	</where>
+</update>
+
+<!-- ElementID:delete,Generated=true -->
+<delete id="delete" parameterType="com.chinacreator.dzjc_log.ErrorSupervise">
+    delete from V_TA_JC_SUPERVISE_ERROR where 1=1 and id = #{id}
+</delete>
+
+<!-- ElementID:select,Generated=true -->
+<select id="select" parameterType="com.chinacreator.dzjc_log.ErrorSupervise" resultMap="ErrorSuperviseResult">
+	select 
+		<include refid="column_sql"/>
+	    from V_TA_JC_SUPERVISE_ERROR 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+
+<!-- ElementID:insertBatch,Generated=true -->
+<insert id="insertBatch" parameterType="list">
+	insert into V_TA_JC_SUPERVISE_ERROR (id,supervise_result_no,supervise_type_no,supervise_type_name,supervise_time,start_time,end_time,status,promise_limit,process_limit,check_time,check_status,check_end_time,bussiness_id,query_code,bussiness_code,org_id,org_name,bussiness_name,accept_time,check_status_temp) 
+<foreach collection="list" item="entity" index="index" separator="union all">
+		select 
+		#{entity.id,jdbcType = VARCHAR},
+				#{entity.superviseResultNo,jdbcType = VARCHAR},
+				#{entity.superviseTypeNo,jdbcType = VARCHAR},
+				#{entity.superviseTypeName,jdbcType = VARCHAR},
+				#{entity.superviseTime,jdbcType = DATE},
+				#{entity.startTime,jdbcType = DATE},
+				#{entity.endTime,jdbcType = DATE},
+				#{entity.status,jdbcType = VARCHAR},
+				#{entity.promiseLimit,jdbcType = NUMERIC},
+				#{entity.processLimit,jdbcType = NUMERIC},
+				#{entity.checkTime,jdbcType = DATE},
+				#{entity.checkStatus,jdbcType = VARCHAR},
+				#{entity.checkEndTime,jdbcType = DATE},
+				#{entity.bussinessId,jdbcType = VARCHAR},
+				#{entity.queryCode,jdbcType = VARCHAR},
+				#{entity.bussinessCode,jdbcType = VARCHAR},
+				#{entity.orgId,jdbcType = VARCHAR},
+				#{entity.orgName,jdbcType = VARCHAR},
+				#{entity.bussinessName,jdbcType = VARCHAR},
+				#{entity.acceptTime,jdbcType = DATE},
+				#{entity.checkStatusTemp,jdbcType = VARCHAR}
+		from dual
+</foreach>
+</insert>
+
+<!-- ElementID:deleteBatch,Generated=true -->
+<delete id="deleteBatch" parameterType="List">
+	delete from V_TA_JC_SUPERVISE_ERROR where id in
+<trim prefix="(" suffix=")" suffixOverrides=",">
+<foreach collection="list" item="entity" separator=",">
+	<choose>
+		<when test="@com.chinacreator.c2.dao.util.EntityBeanUtil@isEntityObj(entity)">#{entity.id}</when>
+		<otherwise>#{entity}</otherwise>
+	</choose>
+</foreach>
+</trim>
+</delete>
+
+<!-- ElementID:updateBatch,Generated=true -->
+<update id="updateBatch" parameterType="list">
+	<foreach collection="list" item="entity" open="begin" close=";end;" separator=";">
+			update V_TA_JC_SUPERVISE_ERROR
+	<set>
+	<if test="entity.superviseResultNo != null">supervise_result_no= #{entity.superviseResultNo,jdbcType=VARCHAR},</if>
+	<if test="entity.superviseTypeNo != null">supervise_type_no= #{entity.superviseTypeNo,jdbcType=VARCHAR},</if>
+	<if test="entity.superviseTypeName != null">supervise_type_name= #{entity.superviseTypeName,jdbcType=VARCHAR},</if>
+	<if test="entity.superviseTime != null">supervise_time= #{entity.superviseTime,jdbcType=DATE},</if>
+	<if test="entity.startTime != null">start_time= #{entity.startTime,jdbcType=DATE},</if>
+	<if test="entity.endTime != null">end_time= #{entity.endTime,jdbcType=DATE},</if>
+	<if test="entity.status != null">status= #{entity.status,jdbcType=VARCHAR},</if>
+	<if test="entity.promiseLimit != null">promise_limit= #{entity.promiseLimit,jdbcType=NUMERIC},</if>
+	<if test="entity.processLimit != null">process_limit= #{entity.processLimit,jdbcType=NUMERIC},</if>
+	<if test="entity.checkTime != null">check_time= #{entity.checkTime,jdbcType=DATE},</if>
+	<if test="entity.checkStatus != null">check_status= #{entity.checkStatus,jdbcType=VARCHAR},</if>
+	<if test="entity.checkEndTime != null">check_end_time= #{entity.checkEndTime,jdbcType=DATE},</if>
+	<if test="entity.bussinessId != null">bussiness_id= #{entity.bussinessId,jdbcType=VARCHAR},</if>
+	<if test="entity.queryCode != null">query_code= #{entity.queryCode,jdbcType=VARCHAR},</if>
+	<if test="entity.bussinessCode != null">bussiness_code= #{entity.bussinessCode,jdbcType=VARCHAR},</if>
+	<if test="entity.orgId != null">org_id= #{entity.orgId,jdbcType=VARCHAR},</if>
+	<if test="entity.orgName != null">org_name= #{entity.orgName,jdbcType=VARCHAR},</if>
+	<if test="entity.bussinessName != null">bussiness_name= #{entity.bussinessName,jdbcType=VARCHAR},</if>
+	<if test="entity.acceptTime != null">accept_time= #{entity.acceptTime,jdbcType=DATE},</if>
+	<if test="entity.checkStatusTemp != null">check_status_temp= #{entity.checkStatusTemp,jdbcType=VARCHAR}</if>
+	</set>
+		<where>
+			<choose>
+				<when test="entity.id != null">and id = #{entity.id}</when>
+				<otherwise>and id = </otherwise>
+			</choose>
+		</where>
+	</foreach>
+</update>
+
+<!-- ElementID:selectAll,Generated=true -->
+<select id="selectAll" resultMap="ErrorSuperviseResult">
+	select 
+		<include refid="column_sql"/>
+	    from V_TA_JC_SUPERVISE_ERROR 
+</select>
+
+<!-- ElementID:selectMany,Generated=true -->
+<select id="selectMany" parameterType="list" resultMap="ErrorSuperviseResult">
+select 
+	<include refid="column_sql"/> 
+	from V_TA_JC_SUPERVISE_ERROR 
+	where V_TA_JC_SUPERVISE_ERROR.id in (
+<foreach collection="list" item="entity" separator="intersect">
+		select 
+		V_TA_JC_SUPERVISE_ERROR.id
+	    from V_TA_JC_SUPERVISE_ERROR 
+		 <where>
+	        <if test="entity.id != null">and V_TA_JC_SUPERVISE_ERROR.id = #{entity.id}</if>
+	        <if test="entity.superviseResultNo != null">and V_TA_JC_SUPERVISE_ERROR.supervise_result_no = #{entity.superviseResultNo}</if>
+	        <if test="entity.superviseTypeNo != null">and V_TA_JC_SUPERVISE_ERROR.supervise_type_no = #{entity.superviseTypeNo}</if>
+	        <if test="entity.superviseTypeName != null">and V_TA_JC_SUPERVISE_ERROR.supervise_type_name = #{entity.superviseTypeName}</if>
+	        <if test="entity.superviseTime != null">and V_TA_JC_SUPERVISE_ERROR.supervise_time = #{entity.superviseTime}</if>
+	        <if test="entity.startTime != null">and V_TA_JC_SUPERVISE_ERROR.start_time = #{entity.startTime}</if>
+	        <if test="entity.endTime != null">and V_TA_JC_SUPERVISE_ERROR.end_time = #{entity.endTime}</if>
+	        <if test="entity.status != null">and V_TA_JC_SUPERVISE_ERROR.status = #{entity.status}</if>
+	        <if test="entity.promiseLimit != null">and V_TA_JC_SUPERVISE_ERROR.promise_limit = #{entity.promiseLimit}</if>
+	        <if test="entity.processLimit != null">and V_TA_JC_SUPERVISE_ERROR.process_limit = #{entity.processLimit}</if>
+	        <if test="entity.checkTime != null">and V_TA_JC_SUPERVISE_ERROR.check_time = #{entity.checkTime}</if>
+	        <if test="entity.checkStatus != null">and V_TA_JC_SUPERVISE_ERROR.check_status = #{entity.checkStatus}</if>
+	        <if test="entity.checkEndTime != null">and V_TA_JC_SUPERVISE_ERROR.check_end_time = #{entity.checkEndTime}</if>
+	        <if test="entity.bussinessId != null">and V_TA_JC_SUPERVISE_ERROR.bussiness_id = #{entity.bussinessId}</if>
+	        <if test="entity.queryCode != null">and V_TA_JC_SUPERVISE_ERROR.query_code = #{entity.queryCode}</if>
+	        <if test="entity.bussinessCode != null">and V_TA_JC_SUPERVISE_ERROR.bussiness_code = #{entity.bussinessCode}</if>
+	        <if test="entity.orgId != null">and V_TA_JC_SUPERVISE_ERROR.org_id = #{entity.orgId}</if>
+	        <if test="entity.orgName != null">and V_TA_JC_SUPERVISE_ERROR.org_name = #{entity.orgName}</if>
+	        <if test="entity.bussinessName != null">and V_TA_JC_SUPERVISE_ERROR.bussiness_name = #{entity.bussinessName}</if>
+	        <if test="entity.acceptTime != null">and V_TA_JC_SUPERVISE_ERROR.accept_time = #{entity.acceptTime}</if>
+	        <if test="entity.checkStatusTemp != null">and V_TA_JC_SUPERVISE_ERROR.check_status_temp = #{entity.checkStatusTemp}</if>
+		</where>
+</foreach>
+)
+</select>
+
+<!-- ElementID:selectUnion,Generated=true -->
+<select id="selectUnion" parameterType="list" resultMap="ErrorSuperviseResult">
+select 
+	<include refid="column_sql"/> 
+	from V_TA_JC_SUPERVISE_ERROR 
+	 INNER JOIN
+<foreach collection="list" item="entity" separator="UNION" open="(" close=")">
+		SELECT 
+			 id
+		FROM V_TA_JC_SUPERVISE_ERROR 
+			<where>
+	        <if test="entity.id != null">and V_TA_JC_SUPERVISE_ERROR.id = #{entity.id}</if>
+	        <if test="entity.superviseResultNo != null">and V_TA_JC_SUPERVISE_ERROR.supervise_result_no = #{entity.superviseResultNo}</if>
+	        <if test="entity.superviseTypeNo != null">and V_TA_JC_SUPERVISE_ERROR.supervise_type_no = #{entity.superviseTypeNo}</if>
+	        <if test="entity.superviseTypeName != null">and V_TA_JC_SUPERVISE_ERROR.supervise_type_name = #{entity.superviseTypeName}</if>
+	        <if test="entity.superviseTime != null">and V_TA_JC_SUPERVISE_ERROR.supervise_time = #{entity.superviseTime}</if>
+	        <if test="entity.startTime != null">and V_TA_JC_SUPERVISE_ERROR.start_time = #{entity.startTime}</if>
+	        <if test="entity.endTime != null">and V_TA_JC_SUPERVISE_ERROR.end_time = #{entity.endTime}</if>
+	        <if test="entity.status != null">and V_TA_JC_SUPERVISE_ERROR.status = #{entity.status}</if>
+	        <if test="entity.promiseLimit != null">and V_TA_JC_SUPERVISE_ERROR.promise_limit = #{entity.promiseLimit}</if>
+	        <if test="entity.processLimit != null">and V_TA_JC_SUPERVISE_ERROR.process_limit = #{entity.processLimit}</if>
+	        <if test="entity.checkTime != null">and V_TA_JC_SUPERVISE_ERROR.check_time = #{entity.checkTime}</if>
+	        <if test="entity.checkStatus != null">and V_TA_JC_SUPERVISE_ERROR.check_status = #{entity.checkStatus}</if>
+	        <if test="entity.checkEndTime != null">and V_TA_JC_SUPERVISE_ERROR.check_end_time = #{entity.checkEndTime}</if>
+	        <if test="entity.bussinessId != null">and V_TA_JC_SUPERVISE_ERROR.bussiness_id = #{entity.bussinessId}</if>
+	        <if test="entity.queryCode != null">and V_TA_JC_SUPERVISE_ERROR.query_code = #{entity.queryCode}</if>
+	        <if test="entity.bussinessCode != null">and V_TA_JC_SUPERVISE_ERROR.bussiness_code = #{entity.bussinessCode}</if>
+	        <if test="entity.orgId != null">and V_TA_JC_SUPERVISE_ERROR.org_id = #{entity.orgId}</if>
+	        <if test="entity.orgName != null">and V_TA_JC_SUPERVISE_ERROR.org_name = #{entity.orgName}</if>
+	        <if test="entity.bussinessName != null">and V_TA_JC_SUPERVISE_ERROR.bussiness_name = #{entity.bussinessName}</if>
+	        <if test="entity.acceptTime != null">and V_TA_JC_SUPERVISE_ERROR.accept_time = #{entity.acceptTime}</if>
+	        <if test="entity.checkStatusTemp != null">and V_TA_JC_SUPERVISE_ERROR.check_status_temp = #{entity.checkStatusTemp}</if>
+			</where>
+</foreach>
+	c2_temp_table ON V_TA_JC_SUPERVISE_ERROR.id = c2_temp_table.id
+</select>
+
+<!-- ElementID:selectByID,Generated=true -->
+<select id="selectByID" parameterType="java.lang.String" resultMap="ErrorSuperviseResult">
+	select 
+		<include refid="column_sql"/>
+	    from V_TA_JC_SUPERVISE_ERROR 
+		 where V_TA_JC_SUPERVISE_ERROR.id = #{id,jdbcType=VARCHAR}
+</select>
+
+<!-- ElementID:selectByPage,Generated=true -->
+<select id="selectByPage" parameterType="com.chinacreator.dzjc_log.ErrorSupervise" resultMap="ErrorSuperviseResult">
+	select 
+		<include refid="column_sql"/>
+	    from V_TA_JC_SUPERVISE_ERROR 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+</mapper>

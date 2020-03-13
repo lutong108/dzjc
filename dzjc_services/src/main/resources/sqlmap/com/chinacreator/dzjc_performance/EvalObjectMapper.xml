@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"><mapper namespace="com.chinacreator.dzjc_performance.EvalObjectMapper">	
+
+<!-- ElementID:column_sql,Generated=true -->
+<sql id="column_sql">
+		  TA_JC_EVAL_OBJECT.id ,
+		  TA_JC_EVAL_OBJECT.object_id ,
+		  TA_JC_EVAL_OBJECT.object_name ,
+		  TA_JC_EVAL_OBJECT.object_type ,
+		  TA_JC_EVAL_OBJECT.eval_instance_id ,
+		  TA_JC_EVAL_OBJECT.state ,
+		  TA_JC_EVAL_OBJECT.bonuspoints ,
+		  TA_JC_EVAL_OBJECT.reasonsforbonus 
+</sql>
+
+<!-- ElementID:whereClause_sql,Generated=true -->
+<sql id="whereClause_sql">
+	    <if test="id != null">and TA_JC_EVAL_OBJECT.id = #{id}</if>
+	    <if test="objectId != null">and TA_JC_EVAL_OBJECT.object_id = #{objectId}</if>
+	    <if test="objectName != null">and TA_JC_EVAL_OBJECT.object_name = #{objectName}</if>
+	    <if test="objectType != null">and TA_JC_EVAL_OBJECT.object_type = #{objectType}</if>
+	    <if test="evalInstanceId != null">and TA_JC_EVAL_OBJECT.eval_instance_id = #{evalInstanceId}</if>
+	    <if test="state != null">and TA_JC_EVAL_OBJECT.state = #{state}</if>
+	    <if test="bonuspoints != null">and TA_JC_EVAL_OBJECT.bonuspoints = #{bonuspoints}</if>
+	    <if test="reasonsforbonus != null">and TA_JC_EVAL_OBJECT.reasonsforbonus = #{reasonsforbonus}</if>
+</sql>
+
+<!-- ElementID:EvalObjectResult,Generated=true -->
+<resultMap id="EvalObjectResult" type="com.chinacreator.dzjc_performance.EvalObject">
+	<id property="id" column="id"/>
+	<result property="objectId" column="object_id"/>
+	<result property="objectName" column="object_name"/>
+	<result property="objectType" column="object_type"/>
+	<result property="evalInstanceId" column="eval_instance_id"/>
+	<result property="state" column="state"/>
+	<result property="bonuspoints" column="bonuspoints"/>
+	<result property="reasonsforbonus" column="reasonsforbonus"/>
+</resultMap>
+
+<!-- ElementID:EvalObjectResultExp,Generated=false -->
+<!-- <resultMap id="EvalObjectResultExp" type="com.chinacreator.dzjc_performance.EvalObjectExp">
+	<id property="id" column="id"/>
+	<result property="objectId" column="object_id"/>
+	<result property="objectName" column="object_name"/>
+	<result property="objectType" column="object_type"/>
+	<result property="evalInstanceId" column="eval_instance_id"/>
+	
+	<result property="tableId" column="table_id"/>
+	<result property="tableName" column="table_id"/>
+	<result property="orgId" column="org_id"/>
+	<result property="orgName" column="org_name"/>
+	<result property="evalStartTime" column="eval_start_time"/>
+	<result property="evalEndTime" column="eval_end_time"/>
+	<result property="pointId" column="point_id"/>
+	<result property="pointName" column="point_name"/>
+	<result property="pointScore" column="point_score"/>
+	<result property="isGrade" column="is_grade"/>
+	<result property="deductReasons" column="deduct_reasons"/>
+	<result property="remark" column="remark"/>
+	<result property="isAuto" column="is_auto"/>
+</resultMap> -->
+
+
+<!-- ElementID:insert,Generated=true -->
+<insert id="insert" parameterType="com.chinacreator.dzjc_performance.EvalObject">
+	insert into TA_JC_EVAL_OBJECT(
+	         <if test="id != null">id</if>
+	         <if test="objectId != null">,object_id</if>
+	         <if test="objectName != null">,object_name</if>
+	         <if test="objectType != null">,object_type</if>
+	         <if test="evalInstanceId != null">,eval_instance_id</if>
+	         <if test="state != null">,state</if>
+	         <if test="bonuspoints != null">,bonuspoints</if>
+	         <if test="reasonsforbonus != null">,reasonsforbonus</if>
+	 	 	 )
+	 values (
+	         <if test="id != null">#{id,jdbcType=VARCHAR}</if>
+	         <if test="objectId != null">,#{objectId,jdbcType=VARCHAR}</if>
+	         <if test="objectName != null">,#{objectName,jdbcType=VARCHAR}</if>
+	         <if test="objectType != null">,#{objectType,jdbcType=VARCHAR}</if>
+	         <if test="evalInstanceId != null">,#{evalInstanceId,jdbcType=VARCHAR}</if>
+	         <if test="state != null">,#{state,jdbcType=VARCHAR}</if>
+	         <if test="bonuspoints != null">,#{bonuspoints,jdbcType=NUMERIC}</if>
+	         <if test="reasonsforbonus != null">,#{reasonsforbonus,jdbcType=VARCHAR}</if>
+	 	 	 )
+</insert>
+
+<!-- ElementID:count,Generated=true -->
+<select id="count" parameterType="com.chinacreator.dzjc_performance.EvalObject" resultType="int">
+	select count(*) from TA_JC_EVAL_OBJECT 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<!-- ElementID:update,Generated=true -->
+<update id="update" parameterType="com.chinacreator.dzjc_performance.EvalObject">
+	update TA_JC_EVAL_OBJECT
+<set>
+	<if test="objectId != null">object_id=#{objectId,jdbcType=VARCHAR},</if>
+	<if test="objectName != null">object_name=#{objectName,jdbcType=VARCHAR},</if>
+	<if test="objectType != null">object_type=#{objectType,jdbcType=VARCHAR},</if>
+	<if test="evalInstanceId != null">eval_instance_id=#{evalInstanceId,jdbcType=VARCHAR},</if>
+	<if test="state != null">state=#{state,jdbcType=VARCHAR},</if>
+	<if test="bonuspoints != null">bonuspoints=#{bonuspoints,jdbcType=NUMERIC},</if>
+	<if test="reasonsforbonus != null">reasonsforbonus=#{reasonsforbonus,jdbcType=VARCHAR}</if>
+</set>
+<where>
+	<choose>
+        <when test="id != null">and id = #{id}</when>
+        <otherwise>and id = </otherwise>
+    </choose>
+</where>
+</update>
+
+<!-- ElementID:updateNull,Generated=true -->
+<update id="updateNull" parameterType="map">
+	update TA_JC_EVAL_OBJECT
+	<set>
+		<trim suffixOverrides=",">
+		    <if test="objectId==null">object_id = null,</if>
+		    <if test="objectName==null">object_name = null,</if>
+		    <if test="objectType==null">object_type = null,</if>
+		    <if test="evalInstanceId==null">eval_instance_id = null,</if>
+		    <if test="state==null">state = null,</if>
+		    <if test="bonuspoints==null">bonuspoints = null,</if>
+		    <if test="reasonsforbonus==null">reasonsforbonus = null,</if>
+		</trim>
+	</set>
+	<where>
+		<choose>
+			<when test="id != null">and id = #{id}</when>
+			<otherwise>and id = </otherwise>
+		</choose>
+	</where>
+</update>
+
+<!-- ElementID:delete,Generated=true -->
+<delete id="delete" parameterType="com.chinacreator.dzjc_performance.EvalObject">
+    delete from TA_JC_EVAL_OBJECT where 1=1 and id = #{id}
+</delete>
+
+<!-- ElementID:select,Generated=true -->
+<select id="select" parameterType="com.chinacreator.dzjc_performance.EvalObject" resultMap="EvalObjectResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_EVAL_OBJECT 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+
+<!-- ElementID:insertBatch,Generated=true -->
+<insert id="insertBatch" parameterType="list">
+	insert into TA_JC_EVAL_OBJECT (id,object_id,object_name,object_type,eval_instance_id,state,bonuspoints,reasonsforbonus) 
+<foreach collection="list" item="entity" index="index" separator="union all">
+		select 
+		#{entity.id,jdbcType = VARCHAR},
+				#{entity.objectId,jdbcType = VARCHAR},
+				#{entity.objectName,jdbcType = VARCHAR},
+				#{entity.objectType,jdbcType = VARCHAR},
+				#{entity.evalInstanceId,jdbcType = VARCHAR},
+				#{entity.state,jdbcType = VARCHAR},
+				#{entity.bonuspoints,jdbcType = NUMERIC},
+				#{entity.reasonsforbonus,jdbcType = VARCHAR}
+		from dual
+</foreach>
+</insert>
+
+<!-- ElementID:deleteBatch,Generated=true -->
+<delete id="deleteBatch" parameterType="List">
+	delete from TA_JC_EVAL_OBJECT where id in
+<trim prefix="(" suffix=")" suffixOverrides=",">
+<foreach collection="list" item="entity" separator=",">
+	<choose>
+		<when test="@com.chinacreator.c2.dao.util.EntityBeanUtil@isEntityObj(entity)">#{entity.id}</when>
+		<otherwise>#{entity}</otherwise>
+	</choose>
+</foreach>
+</trim>
+</delete>
+
+<!-- ElementID:updateBatch,Generated=true -->
+<update id="updateBatch" parameterType="list">
+	<foreach collection="list" item="entity" open="begin" close=";end;" separator=";">
+			update TA_JC_EVAL_OBJECT
+	<set>
+	<if test="entity.objectId != null">object_id= #{entity.objectId,jdbcType=VARCHAR},</if>
+	<if test="entity.objectName != null">object_name= #{entity.objectName,jdbcType=VARCHAR},</if>
+	<if test="entity.objectType != null">object_type= #{entity.objectType,jdbcType=VARCHAR},</if>
+	<if test="entity.evalInstanceId != null">eval_instance_id= #{entity.evalInstanceId,jdbcType=VARCHAR},</if>
+	<if test="entity.state != null">state= #{entity.state,jdbcType=VARCHAR},</if>
+	<if test="entity.bonuspoints != null">bonuspoints= #{entity.bonuspoints,jdbcType=NUMERIC},</if>
+	<if test="entity.reasonsforbonus != null">reasonsforbonus= #{entity.reasonsforbonus,jdbcType=VARCHAR}</if>
+	</set>
+		<where>
+			<choose>
+				<when test="entity.id != null">and id = #{entity.id}</when>
+				<otherwise>and id = </otherwise>
+			</choose>
+		</where>
+	</foreach>
+</update>
+
+<!-- ElementID:selectAll,Generated=true -->
+<select id="selectAll" resultMap="EvalObjectResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_EVAL_OBJECT 
+</select>
+
+<!-- ElementID:selectMany,Generated=true -->
+<select id="selectMany" parameterType="list" resultMap="EvalObjectResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_JC_EVAL_OBJECT 
+	where TA_JC_EVAL_OBJECT.id in (
+<foreach collection="list" item="entity" separator="intersect">
+		select 
+		TA_JC_EVAL_OBJECT.id
+	    from TA_JC_EVAL_OBJECT 
+		 <where>
+	        <if test="entity.id != null">and TA_JC_EVAL_OBJECT.id = #{entity.id}</if>
+	        <if test="entity.objectId != null">and TA_JC_EVAL_OBJECT.object_id = #{entity.objectId}</if>
+	        <if test="entity.objectName != null">and TA_JC_EVAL_OBJECT.object_name = #{entity.objectName}</if>
+	        <if test="entity.objectType != null">and TA_JC_EVAL_OBJECT.object_type = #{entity.objectType}</if>
+	        <if test="entity.evalInstanceId != null">and TA_JC_EVAL_OBJECT.eval_instance_id = #{entity.evalInstanceId}</if>
+	        <if test="entity.state != null">and TA_JC_EVAL_OBJECT.state = #{entity.state}</if>
+	        <if test="entity.bonuspoints != null">and TA_JC_EVAL_OBJECT.bonuspoints = #{entity.bonuspoints}</if>
+	        <if test="entity.reasonsforbonus != null">and TA_JC_EVAL_OBJECT.reasonsforbonus = #{entity.reasonsforbonus}</if>
+		</where>
+</foreach>
+)
+</select>
+
+<!-- ElementID:selectUnion,Generated=true -->
+<select id="selectUnion" parameterType="list" resultMap="EvalObjectResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_JC_EVAL_OBJECT 
+	 INNER JOIN
+<foreach collection="list" item="entity" separator="UNION" open="(" close=")">
+		SELECT 
+			 id
+		FROM TA_JC_EVAL_OBJECT 
+			<where>
+	        <if test="entity.id != null">and TA_JC_EVAL_OBJECT.id = #{entity.id}</if>
+	        <if test="entity.objectId != null">and TA_JC_EVAL_OBJECT.object_id = #{entity.objectId}</if>
+	        <if test="entity.objectName != null">and TA_JC_EVAL_OBJECT.object_name = #{entity.objectName}</if>
+	        <if test="entity.objectType != null">and TA_JC_EVAL_OBJECT.object_type = #{entity.objectType}</if>
+	        <if test="entity.evalInstanceId != null">and TA_JC_EVAL_OBJECT.eval_instance_id = #{entity.evalInstanceId}</if>
+	        <if test="entity.state != null">and TA_JC_EVAL_OBJECT.state = #{entity.state}</if>
+	        <if test="entity.bonuspoints != null">and TA_JC_EVAL_OBJECT.bonuspoints = #{entity.bonuspoints}</if>
+	        <if test="entity.reasonsforbonus != null">and TA_JC_EVAL_OBJECT.reasonsforbonus = #{entity.reasonsforbonus}</if>
+			</where>
+</foreach>
+	c2_temp_table ON TA_JC_EVAL_OBJECT.id = c2_temp_table.id
+</select>
+
+<!-- ElementID:selectByID,Generated=true -->
+<select id="selectByID" parameterType="java.lang.String" resultMap="EvalObjectResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_EVAL_OBJECT 
+		 where TA_JC_EVAL_OBJECT.id = #{id,jdbcType=VARCHAR}
+</select>
+
+<select id="selectByIDInstance" parameterType="java.lang.String" resultMap="EvalObjectResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_EVAL_OBJECT 
+		 where TA_JC_EVAL_OBJECT.EVAL_INSTANCE_ID = #{evalInstanceId,jdbcType=VARCHAR}
+</select>
+
+<!-- ElementID:getListByInstanceId,Generated=false
+	根据绩效实例id查询考核对象的方法
+ -->
+<select id="getListByInstanceId" parameterType="java.lang.String" resultMap="EvalObjectResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_EVAL_OBJECT 
+		 where TA_JC_EVAL_OBJECT.eval_instance_id = #{id,jdbcType=VARCHAR}
+</select>
+
+<!-- ElementID:deleteByInstanceId,Generated=false
+	根据绩效实例id删除考核对象的方法
+ -->
+<select id="deleteByInstanceId" parameterType="java.lang.String">
+	delete from TA_JC_EVAL_OBJECT where 1=1 and eval_instance_id = #{evalInstanceId}
+</select>
+
+<!-- ElementID:selectByPage,Generated=false -->
+<select id="selectByPage" parameterType="com.chinacreator.dzjc_performance.EvalObject" resultMap="EvalObjectResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_EVAL_OBJECT 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+		<!-- select distinct
+			   o.id,
+		       o.object_id,
+		       o.object_name,
+		       o.object_type,
+		       o.eval_instance_id,
+		       i.table_id,
+		       i.table_name,
+		       i.org_id,
+		       i.org_name,
+		       i.eval_start_time,
+		       i.eval_end_time,
+		       v.point_id,
+		       v.point_name,
+		       v.point_score,
+		       v.is_grade,
+		       v.deduct_reasons,
+		       v.remark,
+		       v.is_auto
+		 from  ta_jc_eval_object o
+		inner join ta_jc_eval_instance i on o.eval_instance_id = i.id
+		inner join ta_jc_instance_point t  on i.id=t.instance_id 
+		inner join ta_jc_dic_evalpoint e on t.point_id=e.point_id
+		inner join ta_jc_eval_point_value v on e.point_id=v.point_id
+		where v.is_auto = 'N'
+		<where>
+			v.is_auto = 'N'
+			<if test=" o.object_type = '1' ">
+				and o.object_type = '1'
+			</if>
+			<if test=" o.object_type = '2' ">
+				and o.object_type = '2'
+			</if>
+			<if test=" o.object_type = '3' ">
+				and o.object_type = '3'
+			</if>
+		</where> -->
+</select>
+
+</mapper>

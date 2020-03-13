@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"><mapper namespace="com.chinacreator.dzjc_performance.EvalEnclosureMapper">	
+
+<!-- ElementID:column_sql,Generated=true -->
+<sql id="column_sql">
+		  TA_JC_EVAL_ENCLOSURE.enclosure_id ,
+		  TA_JC_EVAL_ENCLOSURE.path_url ,
+		  TA_JC_EVAL_ENCLOSURE.evalobject_name ,
+		  TA_JC_EVAL_ENCLOSURE.upload_time ,
+		  TA_JC_EVAL_ENCLOSURE.id ,
+		  TA_JC_EVAL_ENCLOSURE.is_show 
+</sql>
+
+<!-- ElementID:whereClause_sql,Generated=true -->
+<sql id="whereClause_sql">
+	    <if test="enclosureId != null">and TA_JC_EVAL_ENCLOSURE.enclosure_id = #{enclosureId}</if>
+	    <if test="pathUrl != null">and TA_JC_EVAL_ENCLOSURE.path_url = #{pathUrl}</if>
+	    <if test="evalobjectName != null">and TA_JC_EVAL_ENCLOSURE.evalobject_name = #{evalobjectName}</if>
+	    <if test="uploadTime != null">and TA_JC_EVAL_ENCLOSURE.upload_time = #{uploadTime}</if>
+	    <if test="id != null">and TA_JC_EVAL_ENCLOSURE.id = #{id}</if>
+	    <if test="isShow != null">and TA_JC_EVAL_ENCLOSURE.is_show = #{isShow}</if>
+</sql>
+
+
+<!-- ElementID:EvalEnclosureResult,Generated=true -->
+<resultMap id="EvalEnclosureResult" type="com.chinacreator.dzjc_performance.EvalEnclosure">
+	<id property="enclosureId" column="enclosure_id"/>
+	<result property="pathUrl" column="path_url"/>
+	<result property="evalobjectName" column="evalobject_name"/>
+	<result property="uploadTime" column="upload_time"/>
+	<result property="id" column="id"/>
+	<result property="isShow" column="is_show"/>
+</resultMap>
+
+
+<!-- ElementID:insert,Generated=true -->
+<insert id="insert" parameterType="com.chinacreator.dzjc_performance.EvalEnclosure">
+	insert into TA_JC_EVAL_ENCLOSURE(
+	         <if test="enclosureId != null">enclosure_id</if>
+	         <if test="pathUrl != null">,path_url</if>
+	         <if test="evalobjectName != null">,evalobject_name</if>
+	         <if test="uploadTime != null">,upload_time</if>
+	         <if test="id != null">,id</if>
+	         <if test="isShow != null">,is_show</if>
+	 	 	 )
+	 values (
+	         <if test="enclosureId != null">#{enclosureId,jdbcType=VARCHAR}</if>
+	         <if test="pathUrl != null">,#{pathUrl,jdbcType=VARCHAR}</if>
+	         <if test="evalobjectName != null">,#{evalobjectName,jdbcType=VARCHAR}</if>
+	         <if test="uploadTime != null">,#{uploadTime,jdbcType=DATE}</if>
+	         <if test="id != null">,#{id,jdbcType=VARCHAR}</if>
+	         <if test="isShow != null">,#{isShow,jdbcType=VARCHAR}</if>
+	 	 	 )
+</insert>
+
+<!-- ElementID:count,Generated=true -->
+<select id="count" parameterType="com.chinacreator.dzjc_performance.EvalEnclosure" resultType="int">
+	select count(*) from TA_JC_EVAL_ENCLOSURE 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<!-- ElementID:update,Generated=true -->
+<update id="update" parameterType="com.chinacreator.dzjc_performance.EvalEnclosure">
+	update TA_JC_EVAL_ENCLOSURE
+<set>
+	<if test="pathUrl != null">path_url=#{pathUrl,jdbcType=VARCHAR},</if>
+	<if test="evalobjectName != null">evalobject_name=#{evalobjectName,jdbcType=VARCHAR},</if>
+	<if test="uploadTime != null">upload_time=#{uploadTime,jdbcType=DATE},</if>
+	<if test="id != null">id=#{id,jdbcType=VARCHAR},</if>
+	<if test="isShow != null">is_show=#{isShow,jdbcType=VARCHAR}</if>
+</set>
+<where>
+	<choose>
+        <when test="enclosureId != null">and enclosure_id = #{enclosureId}</when>
+        <otherwise>and enclosure_id = </otherwise>
+    </choose>
+</where>
+</update>
+
+<update id="updateByid" parameterType="com.chinacreator.dzjc_performance.EvalEnclosure">
+	update TA_JC_EVAL_ENCLOSURE
+<set>
+	<!-- <if test="pathUrl != null">path_url=#{pathUrl,jdbcType=VARCHAR},</if>
+	<if test="evalobjectName != null">evalobject_name=#{evalobjectName,jdbcType=VARCHAR},</if>
+	<if test="uploadTime != null">upload_time=#{uploadTime,jdbcType=DATE},</if>
+	<if test="id != null">id=#{id,jdbcType=VARCHAR},</if> -->
+	<if test="isShow != null">is_show=#{isShow,jdbcType=VARCHAR}</if>
+</set>
+<where>
+	<choose>
+        <when test="id != null">and id = #{id}</when>
+      
+    </choose>
+</where>
+</update>
+
+<!-- ElementID:updateNull,Generated=true -->
+<update id="updateNull" parameterType="map">
+	update TA_JC_EVAL_ENCLOSURE
+	<set>
+		<trim suffixOverrides=",">
+		    <if test="pathUrl==null">path_url = null,</if>
+		    <if test="evalobjectName==null">evalobject_name = null,</if>
+		    <if test="uploadTime==null">upload_time = null,</if>
+		    <if test="id==null">id = null,</if>
+		    <if test="isShow==null">is_show = null,</if>
+		</trim>
+	</set>
+	<where>
+		<choose>
+			<when test="enclosureId != null">and enclosure_id = #{enclosureId}</when>
+			<otherwise>and enclosure_id = </otherwise>
+		</choose>
+	</where>
+</update>
+
+<!-- ElementID:delete,Generated=true -->
+<delete id="delete" parameterType="com.chinacreator.dzjc_performance.EvalEnclosure">
+    delete from TA_JC_EVAL_ENCLOSURE where 1=1 and enclosure_id = #{enclosureId}
+</delete>
+
+<!-- ElementID:select,Generated=true -->
+<select id="select" parameterType="com.chinacreator.dzjc_performance.EvalEnclosure" resultMap="EvalEnclosureResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_EVAL_ENCLOSURE 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<select id="selectByList" parameterType="com.chinacreator.dzjc_performance.EvalEnclosure" resultMap="EvalEnclosureResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_EVAL_ENCLOSURE 
+		 <where>
+			<if test="id!=null"> and TA_JC_EVAL_ENCLOSURE.ID=#{id}</if>
+		</where>
+</select>
+
+
+<!-- ElementID:insertBatch,Generated=true -->
+<insert id="insertBatch" parameterType="list">
+	insert into TA_JC_EVAL_ENCLOSURE (enclosure_id,path_url,evalobject_name,upload_time,id,is_show) 
+<foreach collection="list" item="entity" index="index" separator="union all">
+		select 
+		#{entity.enclosureId,jdbcType = VARCHAR},
+				#{entity.pathUrl,jdbcType = VARCHAR},
+				#{entity.evalobjectName,jdbcType = VARCHAR},
+				#{entity.uploadTime,jdbcType = DATE},
+				#{entity.id,jdbcType = VARCHAR},
+				#{entity.isShow,jdbcType = VARCHAR}
+		from dual
+</foreach>
+</insert>
+
+<!-- ElementID:deleteBatch,Generated=true -->
+<delete id="deleteBatch" parameterType="List">
+	delete from TA_JC_EVAL_ENCLOSURE where enclosure_id in
+<trim prefix="(" suffix=")" suffixOverrides=",">
+<foreach collection="list" item="entity" separator=",">
+	<choose>
+		<when test="@com.chinacreator.c2.dao.util.EntityBeanUtil@isEntityObj(entity)">#{entity.enclosureId}</when>
+		<otherwise>#{entity}</otherwise>
+	</choose>
+</foreach>
+</trim>
+</delete>
+
+<!-- ElementID:updateBatch,Generated=true -->
+<update id="updateBatch" parameterType="list">
+	<foreach collection="list" item="entity" open="begin" close=";end;" separator=";">
+			update TA_JC_EVAL_ENCLOSURE
+	<set>
+	<if test="entity.pathUrl != null">path_url= #{entity.pathUrl,jdbcType=VARCHAR},</if>
+	<if test="entity.evalobjectName != null">evalobject_name= #{entity.evalobjectName,jdbcType=VARCHAR},</if>
+	<if test="entity.uploadTime != null">upload_time= #{entity.uploadTime,jdbcType=DATE},</if>
+	<if test="entity.id != null">id= #{entity.id,jdbcType=VARCHAR},</if>
+	<if test="entity.isShow != null">is_show= #{entity.isShow,jdbcType=VARCHAR}</if>
+	</set>
+		<where>
+			<choose>
+				<when test="entity.enclosureId != null">and enclosure_id = #{entity.enclosureId}</when>
+				<otherwise>and enclosure_id = </otherwise>
+			</choose>
+		</where>
+	</foreach>
+</update>
+
+<!-- ElementID:selectAll,Generated=true -->
+<select id="selectAll" resultMap="EvalEnclosureResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_EVAL_ENCLOSURE 
+</select>
+
+<!-- ElementID:selectMany,Generated=true -->
+<select id="selectMany" parameterType="list" resultMap="EvalEnclosureResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_JC_EVAL_ENCLOSURE 
+	where TA_JC_EVAL_ENCLOSURE.enclosure_id in (
+<foreach collection="list" item="entity" separator="intersect">
+		select 
+		TA_JC_EVAL_ENCLOSURE.enclosure_id
+	    from TA_JC_EVAL_ENCLOSURE 
+		 <where>
+	        <if test="entity.enclosureId != null">and TA_JC_EVAL_ENCLOSURE.enclosure_id = #{entity.enclosureId}</if>
+	        <if test="entity.pathUrl != null">and TA_JC_EVAL_ENCLOSURE.path_url = #{entity.pathUrl}</if>
+	        <if test="entity.evalobjectName != null">and TA_JC_EVAL_ENCLOSURE.evalobject_name = #{entity.evalobjectName}</if>
+	        <if test="entity.uploadTime != null">and TA_JC_EVAL_ENCLOSURE.upload_time = #{entity.uploadTime}</if>
+	        <if test="entity.id != null">and TA_JC_EVAL_ENCLOSURE.id = #{entity.id}</if>
+	        <if test="entity.isShow != null">and TA_JC_EVAL_ENCLOSURE.is_show = #{entity.isShow}</if>
+		</where>
+</foreach>
+)
+</select>
+
+<!-- ElementID:selectUnion,Generated=true -->
+<select id="selectUnion" parameterType="list" resultMap="EvalEnclosureResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_JC_EVAL_ENCLOSURE 
+	 INNER JOIN
+<foreach collection="list" item="entity" separator="UNION" open="(" close=")">
+		SELECT 
+			 enclosure_id
+		FROM TA_JC_EVAL_ENCLOSURE 
+			<where>
+	        <if test="entity.enclosureId != null">and TA_JC_EVAL_ENCLOSURE.enclosure_id = #{entity.enclosureId}</if>
+	        <if test="entity.pathUrl != null">and TA_JC_EVAL_ENCLOSURE.path_url = #{entity.pathUrl}</if>
+	        <if test="entity.evalobjectName != null">and TA_JC_EVAL_ENCLOSURE.evalobject_name = #{entity.evalobjectName}</if>
+	        <if test="entity.uploadTime != null">and TA_JC_EVAL_ENCLOSURE.upload_time = #{entity.uploadTime}</if>
+	        <if test="entity.id != null">and TA_JC_EVAL_ENCLOSURE.id = #{entity.id}</if>
+	        <if test="entity.isShow != null">and TA_JC_EVAL_ENCLOSURE.is_show = #{entity.isShow}</if>
+			</where>
+</foreach>
+	c2_temp_table ON TA_JC_EVAL_ENCLOSURE.enclosure_id = c2_temp_table.enclosure_id
+</select>
+
+<!-- ElementID:selectByID,Generated=true -->
+<select id="selectByID" parameterType="java.lang.String" resultMap="EvalEnclosureResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_EVAL_ENCLOSURE 
+		 where TA_JC_EVAL_ENCLOSURE.enclosure_id = #{enclosureId,jdbcType=VARCHAR}
+</select>
+
+<!-- ElementID:selectByPage,Generated=true -->
+<select id="selectByPage" parameterType="com.chinacreator.dzjc_performance.EvalEnclosure" resultMap="EvalEnclosureResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_EVAL_ENCLOSURE 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+</mapper>

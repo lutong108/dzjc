@@ -1,0 +1,490 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"><mapper namespace="com.chinacreator.dzjc_performance.EvalItemMapper">	
+
+<!-- ElementID:column_sql,Generated=true -->
+<sql id="column_sql">
+		  TA_JC_EVAL_ITEM.item_id ,
+		  TA_JC_EVAL_ITEM.item_name ,
+		  TA_JC_EVAL_ITEM.min_value ,
+		  TA_JC_EVAL_ITEM.max_value ,
+		  TA_JC_EVAL_ITEM.maxval_depend ,
+		  TA_JC_EVAL_ITEM.minval_depend ,
+		  TA_JC_EVAL_ITEM.item_formula ,
+		  TA_JC_EVAL_ITEM.remark ,
+		  TA_JC_EVAL_ITEM.area_code ,
+		  TA_JC_EVAL_ITEM.order_no ,
+		  TA_JC_EVAL_ITEM.is_used ,
+		  TA_JC_EVAL_ITEM.cc_form_instanceid ,
+		  TA_JC_EVAL_ITEM.is_totalvalue ,
+		  TA_JC_EVAL_ITEM.is_public ,
+		  TA_JC_EVAL_ITEM.version ,
+		  TA_JC_EVAL_ITEM.point_type_id ,
+		  TA_JC_EVAL_ITEM.parent_item_id ,
+		  TA_JC_EVAL_ITEM.is_parent ,
+		  TA_JC_EVAL_ITEM.value ,
+		  TA_JC_EVAL_ITEM.proportion 
+</sql>
+
+<!-- ElementID:whereClause_sql,Generated=true -->
+<sql id="whereClause_sql">
+	    <if test="itemId != null">and TA_JC_EVAL_ITEM.item_id = #{itemId}</if>
+	    <if test="itemName != null">and TA_JC_EVAL_ITEM.item_name = #{itemName}</if>
+	    <if test="minValue != null">and TA_JC_EVAL_ITEM.min_value = #{minValue}</if>
+	    <if test="maxValue != null">and TA_JC_EVAL_ITEM.max_value = #{maxValue}</if>
+	    <if test="maxvalDepend != null">and TA_JC_EVAL_ITEM.maxval_depend = #{maxvalDepend}</if>
+	    <if test="minvalDepend != null">and TA_JC_EVAL_ITEM.minval_depend = #{minvalDepend}</if>
+	    <if test="itemFormula != null">and TA_JC_EVAL_ITEM.item_formula = #{itemFormula}</if>
+	    <if test="remark != null">and TA_JC_EVAL_ITEM.remark = #{remark}</if>
+	    <if test="areaCode != null">and TA_JC_EVAL_ITEM.area_code = #{areaCode}</if>
+	    <if test="orderNo != null">and TA_JC_EVAL_ITEM.order_no = #{orderNo}</if>
+	    <if test="isUsed != null">and TA_JC_EVAL_ITEM.is_used = #{isUsed}</if>
+	    <if test="ccFormInstanceid != null">and TA_JC_EVAL_ITEM.cc_form_instanceid = #{ccFormInstanceid}</if>
+	    <if test="isTotalvalue != null">and TA_JC_EVAL_ITEM.is_totalvalue = #{isTotalvalue}</if>
+	    <if test="isPublic != null">and TA_JC_EVAL_ITEM.is_public = #{isPublic}</if>
+	    <if test="version != null">and TA_JC_EVAL_ITEM.version = #{version}</if>
+	    <if test="pointTypeId != null">and TA_JC_EVAL_ITEM.point_type_id = #{pointTypeId}</if>
+	    <if test="parentItemId != null">and TA_JC_EVAL_ITEM.parent_item_id = #{parentItemId}</if>
+	    <if test="isParent != null">and TA_JC_EVAL_ITEM.is_parent = #{isParent}</if>
+	    <if test="value != null">and TA_JC_EVAL_ITEM.value = #{value}</if>
+	    <if test="proportion != null">and TA_JC_EVAL_ITEM.proportion = #{proportion}</if>
+</sql>
+
+
+<!-- ElementID:EvalItemResult,Generated=true -->
+<resultMap id="EvalItemResult" type="com.chinacreator.dzjc_performance.EvalItem">
+	<id property="itemId" column="item_id"/>
+	<result property="itemName" column="item_name"/>
+	<result property="minValue" column="min_value"/>
+	<result property="maxValue" column="max_value"/>
+	<result property="maxvalDepend" column="maxval_depend"/>
+	<result property="minvalDepend" column="minval_depend"/>
+	<result property="itemFormula" column="item_formula"/>
+	<result property="remark" column="remark"/>
+	<result property="areaCode" column="area_code"/>
+	<result property="orderNo" column="order_no"/>
+	<result property="isUsed" column="is_used"/>
+	<result property="ccFormInstanceid" column="cc_form_instanceid"/>
+	<result property="isTotalvalue" column="is_totalvalue"/>
+	<result property="isPublic" column="is_public"/>
+	<result property="version" column="version"/>
+	<result property="pointTypeId" column="point_type_id"/>
+	<result property="parentItemId" column="parent_item_id"/>
+	<result property="isParent" column="is_parent"/>
+	<result property="value" column="value"/>
+	<result property="proportion" column="proportion"/>
+</resultMap>
+
+<!-- Generated=false -->
+<resultMap id="EvalItemResult2" type="com.chinacreator.dzjc_performance.EvalItemExp">
+    <id property="itemId" column="item_id"/>
+    <result property="itemName" column="item_name"/>
+    <result property="minValue" column="min_value"/>
+    <result property="maxValue" column="max_value"/>
+    <result property="maxvalDepend" column="maxval_depend"/>
+    <result property="minvalDepend" column="minval_depend"/>
+    <result property="itemFormula" column="item_formula"/>
+    <result property="remark" column="remark"/>
+    <result property="areaCode" column="area_code"/>
+    <result property="orderNo" column="order_no"/>
+    <result property="isUsed" column="is_used"/>
+    <result property="ccFormInstanceid" column="cc_form_instanceid"/>
+    <result property="isTotalvalue" column="is_totalvalue"/>
+    <result property="isPublic" column="is_public"/>
+    <result property="version" column="version"/>
+    <result property="areaName" column="area_name"/>
+    <result property="pointTypeId" column="point_type_id"/>
+    <result property="value" column="value"/>
+    <result property="proportion" column="proportion"/>
+    <result property="parentItemId" column="parent_item_id"/>
+</resultMap>
+
+<!-- ElementID:insert,Generated=true -->
+<insert id="insert" parameterType="com.chinacreator.dzjc_performance.EvalItem">
+	insert into TA_JC_EVAL_ITEM(
+	         <if test="itemId != null">item_id</if>
+	         <if test="itemName != null">,item_name</if>
+	         <if test="minValue != null">,min_value</if>
+	         <if test="maxValue != null">,max_value</if>
+	         <if test="maxvalDepend != null">,maxval_depend</if>
+	         <if test="minvalDepend != null">,minval_depend</if>
+	         <if test="itemFormula != null">,item_formula</if>
+	         <if test="remark != null">,remark</if>
+	         <if test="areaCode != null">,area_code</if>
+	         <if test="orderNo != null">,order_no</if>
+	         <if test="isUsed != null">,is_used</if>
+	         <if test="ccFormInstanceid != null">,cc_form_instanceid</if>
+	         <if test="isTotalvalue != null">,is_totalvalue</if>
+	         <if test="isPublic != null">,is_public</if>
+	         <if test="version != null">,version</if>
+	         <if test="pointTypeId != null">,point_type_id</if>
+	         <if test="parentItemId != null">,parent_item_id</if>
+	         <if test="isParent != null">,is_parent</if>
+	         <if test="value != null">,value</if>
+	         <if test="proportion != null">,proportion</if>
+	 	 	 )
+	 values (
+	         <if test="itemId != null">#{itemId,jdbcType=VARCHAR}</if>
+	         <if test="itemName != null">,#{itemName,jdbcType=VARCHAR}</if>
+	         <if test="minValue != null">,#{minValue,jdbcType=NUMERIC}</if>
+	         <if test="maxValue != null">,#{maxValue,jdbcType=NUMERIC}</if>
+	         <if test="maxvalDepend != null">,#{maxvalDepend,jdbcType=VARCHAR}</if>
+	         <if test="minvalDepend != null">,#{minvalDepend,jdbcType=VARCHAR}</if>
+	         <if test="itemFormula != null">,#{itemFormula,jdbcType=VARCHAR}</if>
+	         <if test="remark != null">,#{remark,jdbcType=VARCHAR}</if>
+	         <if test="areaCode != null">,#{areaCode,jdbcType=VARCHAR}</if>
+	         <if test="orderNo != null">,#{orderNo,jdbcType=NUMERIC}</if>
+	         <if test="isUsed != null">,#{isUsed,jdbcType=CHAR}</if>
+	         <if test="ccFormInstanceid != null">,#{ccFormInstanceid,jdbcType=VARCHAR}</if>
+	         <if test="isTotalvalue != null">,#{isTotalvalue,jdbcType=CHAR}</if>
+	         <if test="isPublic != null">,#{isPublic,jdbcType=CHAR}</if>
+	         <if test="version != null">,#{version,jdbcType=VARCHAR}</if>
+	         <if test="pointTypeId != null">,#{pointTypeId,jdbcType=VARCHAR}</if>
+	         <if test="parentItemId != null">,#{parentItemId,jdbcType=VARCHAR}</if>
+	         <if test="isParent != null">,#{isParent,jdbcType=CHAR}</if>
+	         <if test="value != null">,#{value,jdbcType=NUMERIC}</if>
+	         <if test="proportion != null">,#{proportion,jdbcType=VARCHAR}</if>
+	 	 	 )
+</insert>
+
+<!-- ElementID:count,Generated=true -->
+<select id="count" parameterType="com.chinacreator.dzjc_performance.EvalItem" resultType="int">
+	select count(*) from TA_JC_EVAL_ITEM 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<!-- ElementID:update,Generated=true -->
+<update id="update" parameterType="com.chinacreator.dzjc_performance.EvalItem">
+	update TA_JC_EVAL_ITEM
+<set>
+	<if test="itemName != null">item_name=#{itemName,jdbcType=VARCHAR},</if>
+	<if test="minValue != null">min_value=#{minValue,jdbcType=NUMERIC},</if>
+	<if test="maxValue != null">max_value=#{maxValue,jdbcType=NUMERIC},</if>
+	<if test="maxvalDepend != null">maxval_depend=#{maxvalDepend,jdbcType=VARCHAR},</if>
+	<if test="minvalDepend != null">minval_depend=#{minvalDepend,jdbcType=VARCHAR},</if>
+	<if test="itemFormula != null">item_formula=#{itemFormula,jdbcType=VARCHAR},</if>
+	<if test="remark != null">remark=#{remark,jdbcType=VARCHAR},</if>
+	<if test="areaCode != null">area_code=#{areaCode,jdbcType=VARCHAR},</if>
+	<if test="orderNo != null">order_no=#{orderNo,jdbcType=NUMERIC},</if>
+	<if test="isUsed != null">is_used=#{isUsed,jdbcType=CHAR},</if>
+	<if test="ccFormInstanceid != null">cc_form_instanceid=#{ccFormInstanceid,jdbcType=VARCHAR},</if>
+	<if test="isTotalvalue != null">is_totalvalue=#{isTotalvalue,jdbcType=CHAR},</if>
+	<if test="isPublic != null">is_public=#{isPublic,jdbcType=CHAR},</if>
+	<if test="version != null">version=#{version,jdbcType=VARCHAR},</if>
+	<if test="pointTypeId != null">point_type_id=#{pointTypeId,jdbcType=VARCHAR},</if>
+	<if test="parentItemId != null">parent_item_id=#{parentItemId,jdbcType=VARCHAR},</if>
+	<if test="isParent != null">is_parent=#{isParent,jdbcType=CHAR},</if>
+	<if test="value != null">value=#{value,jdbcType=NUMERIC},</if>
+	<if test="proportion != null">proportion=#{proportion,jdbcType=VARCHAR}</if>
+</set>
+<where>
+	<choose>
+        <when test="itemId != null">and item_id = #{itemId}</when>
+        <otherwise>and item_id = </otherwise>
+    </choose>
+</where>
+</update>
+
+<!-- ElementID:updateNull,Generated=true -->
+<update id="updateNull" parameterType="map">
+	update TA_JC_EVAL_ITEM
+	<set>
+		<trim suffixOverrides=",">
+		    <if test="itemName==null">item_name = null,</if>
+		    <if test="minValue==null">min_value = null,</if>
+		    <if test="maxValue==null">max_value = null,</if>
+		    <if test="maxvalDepend==null">maxval_depend = null,</if>
+		    <if test="minvalDepend==null">minval_depend = null,</if>
+		    <if test="itemFormula==null">item_formula = null,</if>
+		    <if test="remark==null">remark = null,</if>
+		    <if test="areaCode==null">area_code = null,</if>
+		    <if test="orderNo==null">order_no = null,</if>
+		    <if test="isUsed==null">is_used = null,</if>
+		    <if test="ccFormInstanceid==null">cc_form_instanceid = null,</if>
+		    <if test="isTotalvalue==null">is_totalvalue = null,</if>
+		    <if test="isPublic==null">is_public = null,</if>
+		    <if test="version==null">version = null,</if>
+		    <if test="pointTypeId==null">point_type_id = null,</if>
+		    <if test="parentItemId==null">parent_item_id = null,</if>
+		    <if test="isParent==null">is_parent = null,</if>
+		    <if test="value==null">value = null,</if>
+		    <if test="proportion==null">proportion = null,</if>
+		</trim>
+	</set>
+	<where>
+		<choose>
+			<when test="itemId != null">and item_id = #{itemId}</when>
+			<otherwise>and item_id = </otherwise>
+		</choose>
+	</where>
+</update>
+
+<!-- ElementID:delete,Generated=true -->
+<delete id="delete" parameterType="com.chinacreator.dzjc_performance.EvalItem">
+    delete from TA_JC_EVAL_ITEM where 1=1 and item_id = #{itemId}
+</delete>
+
+<!-- ElementID:select,Generated=true -->
+<select id="select" parameterType="com.chinacreator.dzjc_performance.EvalItem" resultMap="EvalItemResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_EVAL_ITEM 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+
+<!-- ElementID:insertBatch,Generated=true -->
+<insert id="insertBatch" parameterType="list">
+	insert into TA_JC_EVAL_ITEM (item_id,item_name,min_value,max_value,maxval_depend,minval_depend,item_formula,remark,area_code,order_no,is_used,cc_form_instanceid,is_totalvalue,is_public,version,point_type_id,parent_item_id,is_parent,value,proportion) 
+<foreach collection="list" item="entity" index="index" separator="union all">
+		select 
+		#{entity.itemId,jdbcType = VARCHAR},
+				#{entity.itemName,jdbcType = VARCHAR},
+				#{entity.minValue,jdbcType = NUMERIC},
+				#{entity.maxValue,jdbcType = NUMERIC},
+				#{entity.maxvalDepend,jdbcType = VARCHAR},
+				#{entity.minvalDepend,jdbcType = VARCHAR},
+				#{entity.itemFormula,jdbcType = VARCHAR},
+				#{entity.remark,jdbcType = VARCHAR},
+				#{entity.areaCode,jdbcType = VARCHAR},
+				#{entity.orderNo,jdbcType = NUMERIC},
+				#{entity.isUsed,jdbcType = CHAR},
+				#{entity.ccFormInstanceid,jdbcType = VARCHAR},
+				#{entity.isTotalvalue,jdbcType = CHAR},
+				#{entity.isPublic,jdbcType = CHAR},
+				#{entity.version,jdbcType = VARCHAR},
+				#{entity.pointTypeId,jdbcType = VARCHAR},
+				#{entity.parentItemId,jdbcType = VARCHAR},
+				#{entity.isParent,jdbcType = CHAR},
+				#{entity.value,jdbcType = NUMERIC},
+				#{entity.proportion,jdbcType = VARCHAR}
+		from dual
+</foreach>
+</insert>
+
+<!-- ElementID:deleteBatch,Generated=true -->
+<delete id="deleteBatch" parameterType="List">
+	delete from TA_JC_EVAL_ITEM where item_id in
+<trim prefix="(" suffix=")" suffixOverrides=",">
+<foreach collection="list" item="entity" separator=",">
+	<choose>
+		<when test="@com.chinacreator.c2.dao.util.EntityBeanUtil@isEntityObj(entity)">#{entity.itemId}</when>
+		<otherwise>#{entity}</otherwise>
+	</choose>
+</foreach>
+</trim>
+</delete>
+
+<!-- ElementID:updateBatch,Generated=true -->
+<update id="updateBatch" parameterType="list">
+	<foreach collection="list" item="entity" open="begin" close=";end;" separator=";">
+			update TA_JC_EVAL_ITEM
+	<set>
+	<if test="entity.itemName != null">item_name= #{entity.itemName,jdbcType=VARCHAR},</if>
+	<if test="entity.minValue != null">min_value= #{entity.minValue,jdbcType=NUMERIC},</if>
+	<if test="entity.maxValue != null">max_value= #{entity.maxValue,jdbcType=NUMERIC},</if>
+	<if test="entity.maxvalDepend != null">maxval_depend= #{entity.maxvalDepend,jdbcType=VARCHAR},</if>
+	<if test="entity.minvalDepend != null">minval_depend= #{entity.minvalDepend,jdbcType=VARCHAR},</if>
+	<if test="entity.itemFormula != null">item_formula= #{entity.itemFormula,jdbcType=VARCHAR},</if>
+	<if test="entity.remark != null">remark= #{entity.remark,jdbcType=VARCHAR},</if>
+	<if test="entity.areaCode != null">area_code= #{entity.areaCode,jdbcType=VARCHAR},</if>
+	<if test="entity.orderNo != null">order_no= #{entity.orderNo,jdbcType=NUMERIC},</if>
+	<if test="entity.isUsed != null">is_used= #{entity.isUsed,jdbcType=CHAR},</if>
+	<if test="entity.ccFormInstanceid != null">cc_form_instanceid= #{entity.ccFormInstanceid,jdbcType=VARCHAR},</if>
+	<if test="entity.isTotalvalue != null">is_totalvalue= #{entity.isTotalvalue,jdbcType=CHAR},</if>
+	<if test="entity.isPublic != null">is_public= #{entity.isPublic,jdbcType=CHAR},</if>
+	<if test="entity.version != null">version= #{entity.version,jdbcType=VARCHAR},</if>
+	<if test="entity.pointTypeId != null">point_type_id= #{entity.pointTypeId,jdbcType=VARCHAR},</if>
+	<if test="entity.parentItemId != null">parent_item_id= #{entity.parentItemId,jdbcType=VARCHAR},</if>
+	<if test="entity.isParent != null">is_parent= #{entity.isParent,jdbcType=CHAR},</if>
+	<if test="entity.value != null">value= #{entity.value,jdbcType=NUMERIC},</if>
+	<if test="entity.proportion != null">proportion= #{entity.proportion,jdbcType=VARCHAR}</if>
+	</set>
+		<where>
+			<choose>
+				<when test="entity.itemId != null">and item_id = #{entity.itemId}</when>
+				<otherwise>and item_id = </otherwise>
+			</choose>
+		</where>
+	</foreach>
+</update>
+
+<!-- ElementID:selectAll,Generated=true -->
+<select id="selectAll" resultMap="EvalItemResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_EVAL_ITEM 
+</select>
+
+<!-- ElementID:selectMany,Generated=true -->
+<select id="selectMany" parameterType="list" resultMap="EvalItemResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_JC_EVAL_ITEM 
+	where TA_JC_EVAL_ITEM.item_id in (
+<foreach collection="list" item="entity" separator="intersect">
+		select 
+		TA_JC_EVAL_ITEM.item_id
+	    from TA_JC_EVAL_ITEM 
+		 <where>
+	        <if test="entity.itemId != null">and TA_JC_EVAL_ITEM.item_id = #{entity.itemId}</if>
+	        <if test="entity.itemName != null">and TA_JC_EVAL_ITEM.item_name = #{entity.itemName}</if>
+	        <if test="entity.minValue != null">and TA_JC_EVAL_ITEM.min_value = #{entity.minValue}</if>
+	        <if test="entity.maxValue != null">and TA_JC_EVAL_ITEM.max_value = #{entity.maxValue}</if>
+	        <if test="entity.maxvalDepend != null">and TA_JC_EVAL_ITEM.maxval_depend = #{entity.maxvalDepend}</if>
+	        <if test="entity.minvalDepend != null">and TA_JC_EVAL_ITEM.minval_depend = #{entity.minvalDepend}</if>
+	        <if test="entity.itemFormula != null">and TA_JC_EVAL_ITEM.item_formula = #{entity.itemFormula}</if>
+	        <if test="entity.remark != null">and TA_JC_EVAL_ITEM.remark = #{entity.remark}</if>
+	        <if test="entity.areaCode != null">and TA_JC_EVAL_ITEM.area_code = #{entity.areaCode}</if>
+	        <if test="entity.orderNo != null">and TA_JC_EVAL_ITEM.order_no = #{entity.orderNo}</if>
+	        <if test="entity.isUsed != null">and TA_JC_EVAL_ITEM.is_used = #{entity.isUsed}</if>
+	        <if test="entity.ccFormInstanceid != null">and TA_JC_EVAL_ITEM.cc_form_instanceid = #{entity.ccFormInstanceid}</if>
+	        <if test="entity.isTotalvalue != null">and TA_JC_EVAL_ITEM.is_totalvalue = #{entity.isTotalvalue}</if>
+	        <if test="entity.isPublic != null">and TA_JC_EVAL_ITEM.is_public = #{entity.isPublic}</if>
+	        <if test="entity.version != null">and TA_JC_EVAL_ITEM.version = #{entity.version}</if>
+	        <if test="entity.pointTypeId != null">and TA_JC_EVAL_ITEM.point_type_id = #{entity.pointTypeId}</if>
+	        <if test="entity.parentItemId != null">and TA_JC_EVAL_ITEM.parent_item_id = #{entity.parentItemId}</if>
+	        <if test="entity.isParent != null">and TA_JC_EVAL_ITEM.is_parent = #{entity.isParent}</if>
+	        <if test="entity.value != null">and TA_JC_EVAL_ITEM.value = #{entity.value}</if>
+	        <if test="entity.proportion != null">and TA_JC_EVAL_ITEM.proportion = #{entity.proportion}</if>
+		</where>
+</foreach>
+)
+</select>
+
+<!-- ElementID:selectUnion,Generated=true -->
+<select id="selectUnion" parameterType="list" resultMap="EvalItemResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_JC_EVAL_ITEM 
+	 INNER JOIN
+<foreach collection="list" item="entity" separator="UNION" open="(" close=")">
+		SELECT 
+			 item_id
+		FROM TA_JC_EVAL_ITEM 
+			<where>
+	        <if test="entity.itemId != null">and TA_JC_EVAL_ITEM.item_id = #{entity.itemId}</if>
+	        <if test="entity.itemName != null">and TA_JC_EVAL_ITEM.item_name = #{entity.itemName}</if>
+	        <if test="entity.minValue != null">and TA_JC_EVAL_ITEM.min_value = #{entity.minValue}</if>
+	        <if test="entity.maxValue != null">and TA_JC_EVAL_ITEM.max_value = #{entity.maxValue}</if>
+	        <if test="entity.maxvalDepend != null">and TA_JC_EVAL_ITEM.maxval_depend = #{entity.maxvalDepend}</if>
+	        <if test="entity.minvalDepend != null">and TA_JC_EVAL_ITEM.minval_depend = #{entity.minvalDepend}</if>
+	        <if test="entity.itemFormula != null">and TA_JC_EVAL_ITEM.item_formula = #{entity.itemFormula}</if>
+	        <if test="entity.remark != null">and TA_JC_EVAL_ITEM.remark = #{entity.remark}</if>
+	        <if test="entity.areaCode != null">and TA_JC_EVAL_ITEM.area_code = #{entity.areaCode}</if>
+	        <if test="entity.orderNo != null">and TA_JC_EVAL_ITEM.order_no = #{entity.orderNo}</if>
+	        <if test="entity.isUsed != null">and TA_JC_EVAL_ITEM.is_used = #{entity.isUsed}</if>
+	        <if test="entity.ccFormInstanceid != null">and TA_JC_EVAL_ITEM.cc_form_instanceid = #{entity.ccFormInstanceid}</if>
+	        <if test="entity.isTotalvalue != null">and TA_JC_EVAL_ITEM.is_totalvalue = #{entity.isTotalvalue}</if>
+	        <if test="entity.isPublic != null">and TA_JC_EVAL_ITEM.is_public = #{entity.isPublic}</if>
+	        <if test="entity.version != null">and TA_JC_EVAL_ITEM.version = #{entity.version}</if>
+	        <if test="entity.pointTypeId != null">and TA_JC_EVAL_ITEM.point_type_id = #{entity.pointTypeId}</if>
+	        <if test="entity.parentItemId != null">and TA_JC_EVAL_ITEM.parent_item_id = #{entity.parentItemId}</if>
+	        <if test="entity.isParent != null">and TA_JC_EVAL_ITEM.is_parent = #{entity.isParent}</if>
+	        <if test="entity.value != null">and TA_JC_EVAL_ITEM.value = #{entity.value}</if>
+	        <if test="entity.proportion != null">and TA_JC_EVAL_ITEM.proportion = #{entity.proportion}</if>
+			</where>
+</foreach>
+	c2_temp_table ON TA_JC_EVAL_ITEM.item_id = c2_temp_table.item_id
+</select>
+
+<!-- ElementID:selectByID,Generated=true -->
+<select id="selectByID" parameterType="java.lang.String" resultMap="EvalItemResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_EVAL_ITEM 
+		 where TA_JC_EVAL_ITEM.item_id = #{itemId,jdbcType=VARCHAR}
+</select>
+
+<select id="selectByIDcustom" parameterType="java.lang.String" resultMap="EvalItemResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_EVAL_ITEM 
+		 where TA_JC_EVAL_ITEM.item_name = #{itemName,jdbcType=VARCHAR}
+</select>
+
+
+<!-- ElementID:selectByPage,Generated=true -->
+<select id="selectByPage" parameterType="com.chinacreator.dzjc_performance.EvalItem" resultMap="EvalItemResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_EVAL_ITEM 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+
+<!-- Generated=false -->
+<select id="selectByPage2" parameterType="com.chinacreator.dzjc_performance.EvalItem" resultMap="EvalItemResult2">
+  select ITEM_ID,
+         ITEM_NAME,
+         a.ORDER_NO,
+         decode(A.IS_USED, 'Y', '是', '否') as IS_USED,
+         decode(A.is_public, 'Y', '默认', 'N', '自定义', '默认') as is_public,
+         t.area_code,
+         t.area_name,
+         a.version
+    from TA_JC_EVAL_ITEM A
+      left join ta_jc_dic_area t
+        on t.area_code = A.area_code
+        order by a.ORDER_NO
+</select>
+
+<!-- Generated=false-->
+<select id="selectByName" parameterType="java.lang.String" resultMap="EvalItemResult">
+    select 
+        <include refid="column_sql"/>
+        from TA_JC_EVAL_ITEM 
+             where TA_JC_EVAL_ITEM.item_name = #{itemName,jdbcType=VARCHAR}
+</select>
+
+<!-- Generated=false-->
+<select id="selectByPointTypeId" parameterType="java.lang.String" resultMap="EvalItemResult">
+    select 
+        <include refid="column_sql"/>
+        from TA_JC_EVAL_ITEM 
+             TA_JC_EVAL_ITEM.point_type_id = #{pointTypeId,jdbcType=VARCHAR}
+</select>
+
+<!-- Generated=false -->
+<select id="selectByAreaCode" parameterType="java.lang.String" resultMap="EvalItemResult">
+  select 
+        <include refid="column_sql"/>
+        from TA_JC_EVAL_ITEM 
+        <where>
+                area_code LIKE CONCAT(#{code},'%')
+        </where>
+</select>
+<!-- Generated=false -->
+<select id="selectParents" parameterType="java.lang.String" resultMap="EvalItemResult">
+  select 
+        <include refid="column_sql"/>
+        from TA_JC_EVAL_ITEM 
+        <where>
+             area_code LIKE CONCAT(#{code},'%')
+             and is_parent = 'Y'
+        </where>
+</select>
+<!-- Generated= -->
+<select id="selectSubItems" parameterType="java.lang.String" resultMap="EvalItemResult">
+  select 
+        <include refid="column_sql"/>
+        from TA_JC_EVAL_ITEM 
+        <where>
+                area_code LIKE CONCAT(#{code},'%')
+                and is_parent = 'N'
+        </where>
+</select>
+<!-- Generated=false,根据id查询的最底层子项-->
+<select id="selectByItemId" parameterType="java.lang.String" resultMap="EvalItemResult">
+    select t.*,level from ta_jc_eval_item t 
+    where  level=
+    (select max(level) from ta_jc_eval_item t 
+    			start with t.item_id=#{itemId,jdbcType=VARCHAR} connect by prior t.item_id = t.parent_item_id)
+     start with t.item_id=#{itemId,jdbcType=VARCHAR} connect by prior t.item_id = t.parent_item_id
+</select>
+</mapper>

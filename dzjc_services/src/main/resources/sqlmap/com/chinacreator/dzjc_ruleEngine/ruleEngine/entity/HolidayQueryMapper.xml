@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"><mapper namespace="com.chinacreator.dzjc_ruleEngine.ruleEngine.entity.HolidayQueryMapper">	
+
+<!-- ElementID:column_sql,Generated=false -->
+<sql id="column_sql">
+		  WF_HOLIDAY.holiday ,
+		  WF_HOLIDAY.yholiday ,
+		  WF_HOLIDAY.mholiday ,
+		  WF_HOLIDAY.tenant_id 
+</sql>
+
+<!-- ElementID:whereClause_sql,Generated=false -->
+<sql id="whereClause_sql">
+	    <if test="holiday != null">and WF_HOLIDAY.holiday = #{holiday}</if>
+	    <if test="yholiday != null">and WF_HOLIDAY.yholiday = #{yholiday}</if>
+	    <if test="mholiday != null">and WF_HOLIDAY.mholiday = #{mholiday}</if>
+	    <if test="tenantId != null">and WF_HOLIDAY.tenant_id = #{tenantId}</if>
+	    <if test="startDate != null">and WF_HOLIDAY.holiday between #{startDate} and #{endDate} </if>
+</sql>
+
+
+<!-- ElementID:HolidayQueryResult,Generated=false -->
+<resultMap id="HolidayQueryResult" type="com.chinacreator.dzjc_ruleEngine.ruleEngine.entity.HolidayQuery">
+	<id property="tenantId" column="tenant_id"/>
+	<result property="holiday" column="holiday"/>
+	<result property="yholiday" column="yholiday"/>
+	<result property="mholiday" column="mholiday"/>
+</resultMap>
+
+
+
+
+
+
+<!-- ElementID:insert,Generated=true -->
+<insert id="insert" parameterType="com.chinacreator.dzjc_ruleEngine.ruleEngine.entity.HolidayQuery">
+	insert into WF_HOLIDAY(
+	         <if test="holiday != null">holiday</if>
+	         <if test="yholiday != null">,yholiday</if>
+	         <if test="mholiday != null">,mholiday</if>
+	         <if test="tenantId != null">,tenant_id</if>
+	         <if test="startDate != null">,startDate</if>
+	         <if test="endDate != null">,endDate</if>
+	 	 	 )
+	 values (
+	         <if test="holiday != null">#{holiday,jdbcType=VARCHAR}</if>
+	         <if test="yholiday != null">,#{yholiday,jdbcType=VARCHAR}</if>
+	         <if test="mholiday != null">,#{mholiday,jdbcType=VARCHAR}</if>
+	         <if test="tenantId != null">,#{tenantId,jdbcType=VARCHAR}</if>
+	         <if test="startDate != null">,#{startDate,jdbcType=VARCHAR}</if>
+	         <if test="endDate != null">,#{endDate,jdbcType=VARCHAR}</if>
+	 	 	 )
+</insert>
+
+<!-- ElementID:count,Generated=true -->
+<select id="count" parameterType="com.chinacreator.dzjc_ruleEngine.ruleEngine.entity.HolidayQuery" resultType="int">
+	select count(*) from WF_HOLIDAY 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<!-- ElementID:update,Generated=true -->
+<update id="update" parameterType="com.chinacreator.dzjc_ruleEngine.ruleEngine.entity.HolidayQuery">
+	update WF_HOLIDAY
+<set>
+	<if test="holiday != null">holiday=#{holiday,jdbcType=VARCHAR},</if>
+	<if test="yholiday != null">yholiday=#{yholiday,jdbcType=VARCHAR},</if>
+	<if test="mholiday != null">mholiday=#{mholiday,jdbcType=VARCHAR},</if>
+	<if test="startDate != null">startDate=#{startDate,jdbcType=VARCHAR},</if>
+	<if test="endDate != null">endDate=#{endDate,jdbcType=VARCHAR}</if>
+</set>
+<where>
+	<choose>
+        <when test="tenantId != null">and tenant_id = #{tenantId}</when>
+        <otherwise>and tenant_id = </otherwise>
+    </choose>
+</where>
+</update>
+
+<!-- ElementID:updateNull,Generated=true -->
+<update id="updateNull" parameterType="map">
+	update WF_HOLIDAY
+	<set>
+		<trim suffixOverrides=",">
+		    <if test="holiday==null">holiday = null,</if>
+		    <if test="yholiday==null">yholiday = null,</if>
+		    <if test="mholiday==null">mholiday = null,</if>
+		    <if test="startDate==null">startDate = null,</if>
+		    <if test="endDate==null">endDate = null,</if>
+		</trim>
+	</set>
+	<where>
+		<choose>
+			<when test="tenantId != null">and tenant_id = #{tenantId}</when>
+			<otherwise>and tenant_id = </otherwise>
+		</choose>
+	</where>
+</update>
+
+<!-- ElementID:delete,Generated=true -->
+<delete id="delete" parameterType="com.chinacreator.dzjc_ruleEngine.ruleEngine.entity.HolidayQuery">
+    delete from WF_HOLIDAY where 1=1 and tenant_id = #{tenantId}
+</delete>
+
+<!-- ElementID:select,Generated=true -->
+<select id="select" parameterType="com.chinacreator.dzjc_ruleEngine.ruleEngine.entity.HolidayQuery" resultMap="HolidayQueryResult">
+	select 
+		<include refid="column_sql"/>
+	    from WF_HOLIDAY 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+
+<!-- ElementID:insertBatch,Generated=true -->
+<insert id="insertBatch" parameterType="list">
+	insert into WF_HOLIDAY (holiday,yholiday,mholiday,tenant_id,startDate,endDate) 
+<foreach collection="list" item="entity" index="index" separator="union all">
+		select 
+		#{entity.holiday,jdbcType = VARCHAR},
+				#{entity.yholiday,jdbcType = VARCHAR},
+				#{entity.mholiday,jdbcType = VARCHAR},
+				#{entity.tenantId,jdbcType = VARCHAR},
+				#{entity.startDate,jdbcType = VARCHAR},
+				#{entity.endDate,jdbcType = VARCHAR}
+		from dual
+</foreach>
+</insert>
+
+<!-- ElementID:deleteBatch,Generated=true -->
+<delete id="deleteBatch" parameterType="List">
+	delete from WF_HOLIDAY where tenant_id in
+<trim prefix="(" suffix=")" suffixOverrides=",">
+<foreach collection="list" item="entity" separator=",">
+	<choose>
+		<when test="@com.chinacreator.c2.dao.util.EntityBeanUtil@isEntityObj(entity)">#{entity.tenantId}</when>
+		<otherwise>#{entity}</otherwise>
+	</choose>
+</foreach>
+</trim>
+</delete>
+
+<!-- ElementID:updateBatch,Generated=true -->
+<update id="updateBatch" parameterType="list">
+	<foreach collection="list" item="entity" open="begin" close=";end;" separator=";">
+			update WF_HOLIDAY
+	<set>
+	<if test="entity.holiday != null">holiday= #{entity.holiday,jdbcType=VARCHAR},</if>
+	<if test="entity.yholiday != null">yholiday= #{entity.yholiday,jdbcType=VARCHAR},</if>
+	<if test="entity.mholiday != null">mholiday= #{entity.mholiday,jdbcType=VARCHAR},</if>
+	<if test="entity.startDate != null">startDate= #{entity.startDate,jdbcType=VARCHAR},</if>
+	<if test="entity.endDate != null">endDate= #{entity.endDate,jdbcType=VARCHAR}</if>
+	</set>
+		<where>
+			<choose>
+				<when test="entity.tenantId != null">and tenant_id = #{entity.tenantId}</when>
+				<otherwise>and tenant_id = </otherwise>
+			</choose>
+		</where>
+	</foreach>
+</update>
+
+<!-- ElementID:selectAll,Generated=true -->
+<select id="selectAll" resultMap="HolidayQueryResult">
+	select 
+		<include refid="column_sql"/>
+	    from WF_HOLIDAY 
+</select>
+
+<!-- ElementID:selectMany,Generated=true -->
+<select id="selectMany" parameterType="list" resultMap="HolidayQueryResult">
+select 
+	<include refid="column_sql"/> 
+	from WF_HOLIDAY 
+	where WF_HOLIDAY.tenant_id in (
+<foreach collection="list" item="entity" separator="intersect">
+		select 
+		WF_HOLIDAY.tenant_id
+	    from WF_HOLIDAY 
+		 <where>
+	        <if test="entity.holiday != null">and WF_HOLIDAY.holiday = #{entity.holiday}</if>
+	        <if test="entity.yholiday != null">and WF_HOLIDAY.yholiday = #{entity.yholiday}</if>
+	        <if test="entity.mholiday != null">and WF_HOLIDAY.mholiday = #{entity.mholiday}</if>
+	        <if test="entity.tenantId != null">and WF_HOLIDAY.tenant_id = #{entity.tenantId}</if>
+	        <if test="entity.startDate != null">and WF_HOLIDAY.startDate = #{entity.startDate}</if>
+	        <if test="entity.endDate != null">and WF_HOLIDAY.endDate = #{entity.endDate}</if>
+		</where>
+</foreach>
+)
+</select>
+
+<!-- ElementID:selectUnion,Generated=true -->
+<select id="selectUnion" parameterType="list" resultMap="HolidayQueryResult">
+select 
+	<include refid="column_sql"/> 
+	from WF_HOLIDAY 
+	 INNER JOIN
+<foreach collection="list" item="entity" separator="UNION" open="(" close=")">
+		SELECT 
+			 tenant_id
+		FROM WF_HOLIDAY 
+			<where>
+	        <if test="entity.holiday != null">and WF_HOLIDAY.holiday = #{entity.holiday}</if>
+	        <if test="entity.yholiday != null">and WF_HOLIDAY.yholiday = #{entity.yholiday}</if>
+	        <if test="entity.mholiday != null">and WF_HOLIDAY.mholiday = #{entity.mholiday}</if>
+	        <if test="entity.tenantId != null">and WF_HOLIDAY.tenant_id = #{entity.tenantId}</if>
+	        <if test="entity.startDate != null">and WF_HOLIDAY.startDate = #{entity.startDate}</if>
+	        <if test="entity.endDate != null">and WF_HOLIDAY.endDate = #{entity.endDate}</if>
+			</where>
+</foreach>
+	c2_temp_table ON WF_HOLIDAY.tenant_id = c2_temp_table.tenant_id
+</select>
+
+<!-- ElementID:selectByID,Generated=true -->
+<select id="selectByID" parameterType="java.lang.String" resultMap="HolidayQueryResult">
+	select 
+		<include refid="column_sql"/>
+	    from WF_HOLIDAY 
+		 where WF_HOLIDAY.tenant_id = #{tenantId,jdbcType=VARCHAR}
+</select>
+
+<!-- ElementID:selectByPage,Generated=true -->
+<select id="selectByPage" parameterType="com.chinacreator.dzjc_ruleEngine.ruleEngine.entity.HolidayQuery" resultMap="HolidayQueryResult">
+	select 
+		<include refid="column_sql"/>
+	    from WF_HOLIDAY 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+</mapper>

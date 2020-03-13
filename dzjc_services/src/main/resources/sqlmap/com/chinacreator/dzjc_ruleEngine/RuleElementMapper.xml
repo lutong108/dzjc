@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"><mapper namespace="com.chinacreator.dzjc_ruleEngine.RuleElementMapper">
+
+	<resultMap id="RuleElementResult" type="com.chinacreator.dzjc_ruleEngine.RuleElement">
+		<id property="elemId" column="elem_id"/>
+		<result property="elemName" column="elem_name"/>
+		<result property="businessTypeCode" column="business_type_code"/>
+		<result property="elemCaculator" column="elem_caculator"/>
+		<result property="isValid" column="is_valid"/>
+		<result property="resultType" column="result_type"/>
+		<result property="remark" column="remark"/>
+		<result property="areaCode" column="area_code"/>
+		<result property="isPublic" column="is_public"/>
+	</resultMap>
+	<sql id="sql_all_by_page">
+		TA_JC_RULE_ELEMENT.elem_id,
+		TA_JC_RULE_ELEMENT.elem_name,
+		decode(TA_JC_RULE_ELEMENT.is_valid,'Y','有效','N','无效') as is_valid,
+		TA_JC_RULE_ELEMENT.business_type_code,
+		TA_JC_DIC_BUSINESS_TYPE.business_type_name ,
+		decode(TA_JC_RULE_ELEMENT.is_public,'Y','默认','N','自定义') as is_public
+	</sql>
+	<sql id="sql_byID">
+		TA_JC_RULE_ELEMENT.elem_id,
+		TA_JC_RULE_ELEMENT.elem_name,
+		TA_JC_RULE_ELEMENT.area_Code ,
+		TA_JC_RULE_ELEMENT.elem_Caculator,
+		TA_JC_RULE_ELEMENT.result_Type,
+		TA_JC_RULE_ELEMENT.is_valid,
+		TA_JC_RULE_ELEMENT.business_type_code ,
+		TA_JC_RULE_ELEMENT.is_public
+	</sql>
+	
+	<sql id="select_byID">
+		TA_JC_RULE_ELEMENT.elem_id,
+		TA_JC_RULE_ELEMENT.elem_name
+	</sql>
+
+
+
+	<!-- 根据ID查询某一个 修改时查询 -->
+	<select id="selectByID" parameterType="com.chinacreator.dzjc_ruleEngine.RuleElement" resultMap="RuleElementResult">
+		select
+		<include refid="sql_byID"/>
+		from TA_JC_RULE_ELEMENT
+		where TA_JC_RULE_ELEMENT.elem_id = #{elemId,jdbcType=VARCHAR}
+	</select>
+
+	<sql id="bypage_sql">
+		<if test="elemName != null">and TA_JC_RULE_ELEMENT.elem_name = #{elemName}</if>
+		<if test="businessTypeCode != null">and TA_JC_RULE_ELEMENT.business_type_code =
+			#{businessTypeCode}</if>
+		<if test="isValid != null">and TA_JC_RULE_ELEMENT.is_valid = #{isValid}</if>
+		<if test="isPublic != null">and TA_JC_RULE_ELEMENT.is_public = #{isPublic}</if>
+	</sql>
+	<!-- 进入初始化查询开始 -->
+	<!-- 分页查询 -->
+	<select id="selectByPage" parameterType="com.chinacreator.dzjc_ruleEngine.RuleElement" resultMap="RuleElementResult">
+		select
+		<include refid="sql_all_by_page"/>
+		from TA_JC_RULE_ELEMENT left join TA_JC_DIC_BUSINESS_TYPE on
+		TA_JC_RULE_ELEMENT.business_type_code =
+		TA_JC_DIC_BUSINESS_TYPE.business_type_code
+		<where>
+			<include refid="whereClause_sql"/>
+		</where>
+	</select>
+	<!-- 查询所有 -->
+	<select id="select" parameterType="com.chinacreator.dzjc_ruleEngine.RuleElement" resultMap="RuleElementResult">
+		select
+		<include refid="sql_all_by_page"/>
+		from TA_JC_RULE_ELEMENT left join TA_JC_DIC_BUSINESS_TYPE on
+		TA_JC_RULE_ELEMENT.business_type_code =
+		TA_JC_DIC_BUSINESS_TYPE.business_type_code
+		<where>
+			<include refid="whereClause_sql"/>
+		</where>
+	</select>
+	<!-- 初始化查询结束 -->
+
+
+	<sql id="whereClause_sql">
+		<if test="elemId != null">and TA_JC_RULE_ELEMENT.elem_id = #{elemId}</if>
+		<if test="elemName != null">and TA_JC_RULE_ELEMENT.elem_name = #{elemName}</if>
+		<if test="businessTypeCode != null">and TA_JC_RULE_ELEMENT.business_type_code =
+			#{businessTypeCode}
+		</if>
+		<if test="elemCaculator != null">and TA_JC_RULE_ELEMENT.elem_caculator = #{elemCaculator}
+		</if>
+		<if test="isValid != null">and TA_JC_RULE_ELEMENT.is_valid = #{isValid}</if>
+		<if test="resultType != null">and TA_JC_RULE_ELEMENT.result_type = #{resultType}</if>
+		<if test="remark != null">and TA_JC_RULE_ELEMENT.remark = #{remark}</if>
+		<if test="areaCode != null">and TA_JC_RULE_ELEMENT.area_code = #{areaCode}</if>
+		<if test="isPublic != null">and TA_JC_RULE_ELEMENT.is_public = #{isPublic}</if>
+	</sql>
+
+
+
+	<!-- 自定义新增 -->
+	<insert id="customInsert" parameterType="com.chinacreator.dzjc_ruleEngine.RuleElement">
+		insert into
+		TA_JC_RULE_ELEMENT(
+		elem_id
+		,elem_name
+		,business_type_code
+		,elem_caculator
+		,is_valid
+		,result_type
+		,area_code
+		,is_public
+
+		)
+		values (
+		SEQ_JC_RULE_ELEMENT.Nextval
+		,#{elemName,jdbcType=VARCHAR}
+		,#{businessTypeCode,jdbcType=CHAR}
+		,#{elemCaculator,jdbcType=VARCHAR}
+		,#{isValid,jdbcType=CHAR}
+		,#{resultType,jdbcType=CHAR}
+		,#{areaCode,jdbcType=VARCHAR}
+		,#{isPublic,jdbcType=CHAR}
+
+		)
+	</insert>
+
+
+	<!-- ElementID:count,Generated=true -->
+	<select id="count" parameterType="com.chinacreator.dzjc_ruleEngine.RuleElement" resultType="int">
+	select count(*) from TA_JC_RULE_ELEMENT 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+	<!-- 修改更新操作 -->
+	<update id="update" parameterType="com.chinacreator.dzjc_ruleEngine.RuleElement">
+		update TA_JC_RULE_ELEMENT
+		<set>
+			elem_name=#{elemName,jdbcType=VARCHAR},
+			business_type_code=#{businessTypeCode,jdbcType=CHAR},
+			elem_caculator=#{elemCaculator,jdbcType=VARCHAR},
+			is_valid=#{isValid,jdbcType=CHAR},
+			result_type=#{resultType,jdbcType=CHAR},
+			area_code=#{areaCode,jdbcType=VARCHAR},
+			is_public=#{isPublic,jdbcType=CHAR},
+		</set>
+		<where>
+			elem_id = #{elemId}
+		</where>
+	</update>
+
+	<!-- ElementID:updateNull,Generated=true -->
+	<update id="updateNull" parameterType="map">
+	update TA_JC_RULE_ELEMENT
+	<set>
+		<trim suffixOverrides=",">
+		    <if test="elemName==null">elem_name = null,</if>
+		    <if test="businessTypeCode==null">business_type_code = null,</if>
+		    <if test="elemCaculator==null">elem_caculator = null,</if>
+		    <if test="isValid==null">is_valid = null,</if>
+		    <if test="resultType==null">result_type = null,</if>
+		    <if test="remark==null">remark = null,</if>
+		    <if test="areaCode==null">area_code = null,</if>
+		    <if test="isPublic==null">is_public = null,</if>
+		    <if test="businessTypeName==null">businessTypeName = null,</if>
+		</trim>
+	</set>
+	<where>
+		<choose>
+			<when test="elemId != null">and elem_id = #{elemId}</when>
+			<otherwise>and elem_id = </otherwise>
+		</choose>
+	</where>
+</update>
+
+	<!-- 单个删除 -->
+	<delete id="delete" parameterType="com.chinacreator.dzjc_ruleEngine.RuleElement">
+		delete from TA_JC_RULE_ELEMENT
+		where 1=1 and elem_id = #{elemId}
+	</delete>
+
+
+
+
+	<!-- ElementID:insertBatch,Generated=true -->
+	<insert id="insertBatch" parameterType="list">
+	insert into TA_JC_RULE_ELEMENT (elem_id,elem_name,business_type_code,elem_caculator,is_valid,result_type,remark,area_code,is_public,businessTypeName) 
+<foreach collection="list" item="entity" index="index" separator="union all">
+		select 
+		#{entity.elemId,jdbcType = VARCHAR},
+				#{entity.elemName,jdbcType = VARCHAR},
+				#{entity.businessTypeCode,jdbcType = VARCHAR},
+				#{entity.elemCaculator,jdbcType = VARCHAR},
+				#{entity.isValid,jdbcType = VARCHAR},
+				#{entity.resultType,jdbcType = VARCHAR},
+				#{entity.remark,jdbcType = VARCHAR},
+				#{entity.areaCode,jdbcType = VARCHAR},
+				#{entity.isPublic,jdbcType = VARCHAR},
+				#{entity.businessTypeName,jdbcType = VARCHAR}
+		from dual
+</foreach>
+</insert>
+
+	<!-- 批量删除 -->
+	<delete id="deleteBatch" parameterType="List">
+		delete from TA_JC_RULE_ELEMENT where elem_id in
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<foreach collection="list" item="entity" separator=",">
+				<choose>
+					<when test="@com.chinacreator.c2.dao.util.EntityBeanUtil@isEntityObj(entity)">#{entity.elemId}</when>
+					<otherwise>#{entity}</otherwise>
+				</choose>
+			</foreach>
+		</trim>
+	</delete>
+
+	<!-- ElementID:updateBatch,Generated=true -->
+	<update id="updateBatch" parameterType="list">
+	<foreach collection="list" item="entity" open="begin" close=";end;" separator=";">
+			update TA_JC_RULE_ELEMENT
+	<set>
+	<if test="entity.elemName != null">elem_name= #{entity.elemName,jdbcType=VARCHAR},</if>
+	<if test="entity.businessTypeCode != null">business_type_code= #{entity.businessTypeCode,jdbcType=VARCHAR},</if>
+	<if test="entity.elemCaculator != null">elem_caculator= #{entity.elemCaculator,jdbcType=VARCHAR},</if>
+	<if test="entity.isValid != null">is_valid= #{entity.isValid,jdbcType=VARCHAR},</if>
+	<if test="entity.resultType != null">result_type= #{entity.resultType,jdbcType=VARCHAR},</if>
+	<if test="entity.remark != null">remark= #{entity.remark,jdbcType=VARCHAR},</if>
+	<if test="entity.areaCode != null">area_code= #{entity.areaCode,jdbcType=VARCHAR},</if>
+	<if test="entity.isPublic != null">is_public= #{entity.isPublic,jdbcType=VARCHAR},</if>
+	<if test="entity.businessTypeName != null">businessTypeName= #{entity.businessTypeName,jdbcType=VARCHAR}</if>
+	</set>
+		<where>
+			<choose>
+				<when test="entity.elemId != null">and elem_id = #{entity.elemId}</when>
+				<otherwise>and elem_id = </otherwise>
+			</choose>
+		</where>
+	</foreach>
+</update>
+
+
+	<!-- ElementID:selectMany,Generated=true -->
+	<select id="selectMany" parameterType="list" resultMap="RuleElementResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_JC_RULE_ELEMENT 
+	where TA_JC_RULE_ELEMENT.elem_id in (
+<foreach collection="list" item="entity" separator="intersect">
+		select 
+		TA_JC_RULE_ELEMENT.elem_id
+	    from TA_JC_RULE_ELEMENT 
+		 <where>
+	        <if test="entity.elemId != null">and TA_JC_RULE_ELEMENT.elem_id = #{entity.elemId}</if>
+	        <if test="entity.elemName != null">and TA_JC_RULE_ELEMENT.elem_name = #{entity.elemName}</if>
+	        <if test="entity.businessTypeCode != null">and TA_JC_RULE_ELEMENT.business_type_code = #{entity.businessTypeCode}</if>
+	        <if test="entity.elemCaculator != null">and TA_JC_RULE_ELEMENT.elem_caculator = #{entity.elemCaculator}</if>
+	        <if test="entity.isValid != null">and TA_JC_RULE_ELEMENT.is_valid = #{entity.isValid}</if>
+	        <if test="entity.resultType != null">and TA_JC_RULE_ELEMENT.result_type = #{entity.resultType}</if>
+	        <if test="entity.remark != null">and TA_JC_RULE_ELEMENT.remark = #{entity.remark}</if>
+	        <if test="entity.areaCode != null">and TA_JC_RULE_ELEMENT.area_code = #{entity.areaCode}</if>
+	        <if test="entity.isPublic != null">and TA_JC_RULE_ELEMENT.is_public = #{entity.isPublic}</if>
+	        <if test="entity.businessTypeName != null">and TA_JC_RULE_ELEMENT.businessTypeName = #{entity.businessTypeName}</if>
+		</where>
+</foreach>
+)
+</select>
+
+	<!-- ElementID:selectUnion,Generated=true -->
+	<select id="selectUnion" parameterType="list" resultMap="RuleElementResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_JC_RULE_ELEMENT 
+	 INNER JOIN
+<foreach collection="list" item="entity" separator="UNION" open="(" close=")">
+		SELECT 
+			 elem_id
+		FROM TA_JC_RULE_ELEMENT 
+			<where>
+	        <if test="entity.elemId != null">and TA_JC_RULE_ELEMENT.elem_id = #{entity.elemId}</if>
+	        <if test="entity.elemName != null">and TA_JC_RULE_ELEMENT.elem_name = #{entity.elemName}</if>
+	        <if test="entity.businessTypeCode != null">and TA_JC_RULE_ELEMENT.business_type_code = #{entity.businessTypeCode}</if>
+	        <if test="entity.elemCaculator != null">and TA_JC_RULE_ELEMENT.elem_caculator = #{entity.elemCaculator}</if>
+	        <if test="entity.isValid != null">and TA_JC_RULE_ELEMENT.is_valid = #{entity.isValid}</if>
+	        <if test="entity.resultType != null">and TA_JC_RULE_ELEMENT.result_type = #{entity.resultType}</if>
+	        <if test="entity.remark != null">and TA_JC_RULE_ELEMENT.remark = #{entity.remark}</if>
+	        <if test="entity.areaCode != null">and TA_JC_RULE_ELEMENT.area_code = #{entity.areaCode}</if>
+	        <if test="entity.isPublic != null">and TA_JC_RULE_ELEMENT.is_public = #{entity.isPublic}</if>
+	        <if test="entity.businessTypeName != null">and TA_JC_RULE_ELEMENT.businessTypeName = #{entity.businessTypeName}</if>
+			</where>
+</foreach>
+	c2_temp_table ON TA_JC_RULE_ELEMENT.elem_id = c2_temp_table.elem_id
+</select>
+
+
+
+
+
+	<!-- ElementID:column_sql,Generated=false -->
+	<sql id="column_sql">
+		TA_JC_RULE_ELEMENT.elem_id ,
+		TA_JC_RULE_ELEMENT.elem_name ,
+		TA_JC_RULE_ELEMENT.business_type_code ,
+		TA_JC_RULE_ELEMENT.elem_caculator ,
+		TA_JC_RULE_ELEMENT.is_valid ,
+		TA_JC_RULE_ELEMENT.result_type ,
+		TA_JC_RULE_ELEMENT.remark ,
+		TA_JC_RULE_ELEMENT.area_code ,
+		TA_JC_RULE_ELEMENT.is_public 
+		
+	</sql>
+	
+	<!-- ElementID:selectAll,Generated=false -->
+	<select id="selectAll" resultMap="RuleElementResult">
+		select 
+			<include refid="column_sql"/>
+		    from TA_JC_RULE_ELEMENT 
+		    where TA_JC_RULE_ELEMENT.business_type = '1'
+	</select>
+	
+	<select id="selectHuanJie" resultMap="RuleElementResult">
+		select 
+			<include refid="column_sql"/>
+		    from TA_JC_RULE_ELEMENT 
+		    where TA_JC_RULE_ELEMENT.business_type = '2'
+	</select>
+	
+	<select id="selectConsult" resultMap="RuleElementResult">
+		select 
+			<include refid="column_sql"/>
+		    from TA_JC_RULE_ELEMENT 
+		    where TA_JC_RULE_ELEMENT.business_type = '3'
+	</select>
+	
+	<!-- ElementID:insert,Generated=true -->
+	<insert id="insert" parameterType="com.chinacreator.dzjc_ruleEngine.RuleElement">
+	insert into TA_JC_RULE_ELEMENT(
+	         <if test="elemId != null">elem_id</if>
+	         <if test="elemName != null">,elem_name</if>
+	         <if test="businessTypeCode != null">,business_type_code</if>
+	         <if test="elemCaculator != null">,elem_caculator</if>
+	         <if test="isValid != null">,is_valid</if>
+	         <if test="resultType != null">,result_type</if>
+	         <if test="remark != null">,remark</if>
+	         <if test="areaCode != null">,area_code</if>
+	         <if test="isPublic != null">,is_public</if>
+	         <if test="businessTypeName != null">,businessTypeName</if>
+	 	 	 )
+	 values (
+	         <if test="elemId != null">#{elemId,jdbcType=VARCHAR}</if>
+	         <if test="elemName != null">,#{elemName,jdbcType=VARCHAR}</if>
+	         <if test="businessTypeCode != null">,#{businessTypeCode,jdbcType=VARCHAR}</if>
+	         <if test="elemCaculator != null">,#{elemCaculator,jdbcType=VARCHAR}</if>
+	         <if test="isValid != null">,#{isValid,jdbcType=VARCHAR}</if>
+	         <if test="resultType != null">,#{resultType,jdbcType=VARCHAR}</if>
+	         <if test="remark != null">,#{remark,jdbcType=VARCHAR}</if>
+	         <if test="areaCode != null">,#{areaCode,jdbcType=VARCHAR}</if>
+	         <if test="isPublic != null">,#{isPublic,jdbcType=VARCHAR}</if>
+	         <if test="businessTypeName != null">,#{businessTypeName,jdbcType=VARCHAR}</if>
+	 	 	 )
+</insert>
+	
+	
+	<!-- 根据区域编码获取监察要素-->
+	<select id="selectByIDOption" parameterType="java.lang.String" resultMap="RuleElementResult">
+		select
+		<include refid="select_byID"/>
+		from TA_JC_RULE_ELEMENT
+		where TA_JC_RULE_ELEMENT.IS_VALID ='Y' 
+		and TA_JC_RULE_ELEMENT.area_code = #{areaCode}
+	</select>
+	
+	<!-- 根据区域编码获取监察要素-->
+	<select id="selectByIDOptionAll" resultMap="RuleElementResult">
+		select
+		<include refid="select_byID"/>
+		from TA_JC_RULE_ELEMENT
+		where TA_JC_RULE_ELEMENT.IS_VALID ='Y' 
+	</select>
+	
+	
+</mapper>

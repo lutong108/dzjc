@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"><mapper namespace="com.chinacreator.dzjc_ruleEngine.MsgTemplateMapper">	
+
+<!-- ElementID:MsgTemplateResult,Generated=false-->
+<resultMap id="MsgTemplateResult" type="com.chinacreator.dzjc_ruleEngine.MsgTemplate">
+	<id property="templateId" column="template_id"/>
+	<result property="templateType" column="template_type"/>
+	<result property="templateName" column="template_name"/>
+	<result property="templateContent" column="template_content"/>
+	<result property="templateDesc" column="template_desc"/>
+	<result property="isValid" column="is_valid"/>
+	<result property="ccFormInstanceid" column="cc_form_instanceid"/>
+	<result property="isPublic" column="is_public"/>
+	<result property="areaCode" column="area_code"/>
+	
+</resultMap>
+
+
+<sql id="sql_all_by_page">
+		  TA_JC_MSG_TEMPLATE.template_id ,
+		  TA_JC_MSG_TEMPLATE.template_type ,
+		  TA_JC_MSG_TEMPLATE.template_name ,
+		  TA_JC_MSG_TEMPLATE.template_content ,
+		  TA_JC_MSG_TEMPLATE.template_desc ,
+		  TA_JC_DIC_BUSINESS_TYPE.business_type_name ,
+		  decode(TA_JC_MSG_TEMPLATE.is_valid,'Y','有效','N','无效') as is_valid,
+		  TA_JC_MSG_TEMPLATE.cc_form_instanceid ,
+		  decode(TA_JC_MSG_TEMPLATE.is_public,'Y','默认','N','自定义') as is_public,
+		  TA_JC_MSG_TEMPLATE.area_code 
+</sql>
+
+<sql id="sql_byID">
+		  TA_JC_MSG_TEMPLATE.template_id ,
+		  TA_JC_MSG_TEMPLATE.template_type ,
+		  TA_JC_MSG_TEMPLATE.template_name ,
+		  TA_JC_MSG_TEMPLATE.template_content ,
+		  TA_JC_MSG_TEMPLATE.template_desc ,
+		  TA_JC_MSG_TEMPLATE.is_valid ,
+		  TA_JC_MSG_TEMPLATE.cc_form_instanceid ,
+		  TA_JC_MSG_TEMPLATE.is_public ,
+		  TA_JC_MSG_TEMPLATE.area_code 
+	</sql>
+<sql id="sql_Option">
+		  TA_JC_MSG_TEMPLATE.template_id ,
+		  TA_JC_MSG_TEMPLATE.template_name ,
+		  TA_JC_MSG_TEMPLATE.area_code 
+	</sql>
+	
+
+<!-- ElementID:column_sql ,Generated=false-->
+<sql id="column_sql">
+		  TA_JC_MSG_TEMPLATE.template_id ,
+		  TA_JC_MSG_TEMPLATE.template_type ,
+		  TA_JC_MSG_TEMPLATE.template_name ,
+		  TA_JC_MSG_TEMPLATE.template_content ,
+		  TA_JC_MSG_TEMPLATE.template_desc ,
+		  TA_JC_MSG_TEMPLATE.is_valid ,
+		  TA_JC_MSG_TEMPLATE.cc_form_instanceid ,
+		  TA_JC_MSG_TEMPLATE.is_public ,
+		  TA_JC_MSG_TEMPLATE.area_code 
+</sql>
+
+<!-- ElementID:whereClause_sql,Generated=false -->
+<sql id="whereClause_sql">
+	    <if test="templateId != null">and TA_JC_MSG_TEMPLATE.template_id = #{templateId}</if>
+	    <if test="templateType != null">and TA_JC_MSG_TEMPLATE.template_type = #{templateType}</if>
+	    <if test="templateName != null">and TA_JC_MSG_TEMPLATE.template_name = #{templateName}</if>
+	    <if test="templateContent != null">and TA_JC_MSG_TEMPLATE.template_content = #{templateContent}</if>
+	    <if test="templateDesc != null">and TA_JC_MSG_TEMPLATE.template_desc = #{templateDesc}</if>
+	    <if test="isValid != null">and TA_JC_MSG_TEMPLATE.is_valid = #{isValid}</if>
+	    <if test="ccFormInstanceid != null">and TA_JC_MSG_TEMPLATE.cc_form_instanceid = #{ccFormInstanceid}</if>
+	    <if test="isPublic != null">and TA_JC_MSG_TEMPLATE.is_public = #{isPublic}</if>
+	    <if test="areaCode != null">and TA_JC_MSG_TEMPLATE.area_code = #{areaCode}</if>
+</sql>
+
+
+
+
+
+
+<!-- ElementName:cache,Generated=true -->
+<cache type="C2_Default_Dao_Cache"/>
+
+<!-- ElementID:insert,Generated=false -->
+<insert id="insert" parameterType="com.chinacreator.dzjc_ruleEngine.MsgTemplate">
+	insert into TA_JC_MSG_TEMPLATE(
+	         <if test="templateId != null">template_id</if>
+	         <if test="templateType != null">,template_type</if>
+	         <if test="templateName != null">,template_name</if>
+	         <if test="templateContent != null">,template_content</if>
+	         <if test="templateDesc != null">,template_desc</if>
+	         <if test="isValid != null">,is_valid</if>
+	         <if test="ccFormInstanceid != null">,cc_form_instanceid</if>
+	         <if test="isPublic != null">,is_public</if>
+	         <if test="areaCode != null">,area_code</if>
+	 	 	 )
+	 values (
+	         <if test="templateId != null">SEQ_TA_JC_MSG_TEMPLATE.Nextval</if>
+	         <if test="templateType != null">,#{templateType,jdbcType=CHAR}</if>
+	         <if test="templateName != null">,#{templateName,jdbcType=VARCHAR}</if>
+	         <if test="templateContent != null">,#{templateContent,jdbcType=VARCHAR}</if>
+	         <if test="templateDesc != null">,#{templateDesc,jdbcType=VARCHAR}</if>
+	         <if test="isValid != null">,#{isValid,jdbcType=VARCHAR}</if>
+	         <if test="ccFormInstanceid != null">,#{ccFormInstanceid,jdbcType=VARCHAR}</if>
+	         <if test="isPublic != null">,#{isPublic,jdbcType=VARCHAR}</if>
+	         <if test="areaCode != null">,#{areaCode,jdbcType=VARCHAR}</if>
+	 	 	 )
+</insert>
+
+<!-- ElementID:count,Generated=true -->
+<select id="count" parameterType="com.chinacreator.dzjc_ruleEngine.MsgTemplate" resultType="int">
+	select count(*) from TA_JC_MSG_TEMPLATE 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<!-- ElementID:update,Generated=false -->
+<update id="update" parameterType="com.chinacreator.dzjc_ruleEngine.MsgTemplate">
+	update TA_JC_MSG_TEMPLATE
+<set>
+	<if test="templateType != null">template_type=#{templateType,jdbcType=CHAR},</if>
+	<if test="templateName != null">template_name=#{templateName,jdbcType=VARCHAR},</if>
+	<if test="templateContent != null">template_content=#{templateContent,jdbcType=VARCHAR},</if>
+	<if test="templateDesc != null">template_desc=#{templateDesc,jdbcType=VARCHAR},</if>
+	<if test="isValid != null">is_valid=#{isValid,jdbcType=VARCHAR},</if>
+	<if test="ccFormInstanceid != null">cc_form_instanceid=#{ccFormInstanceid,jdbcType=VARCHAR},</if>
+	<if test="isPublic != null">is_public=#{isPublic,jdbcType=VARCHAR},</if>
+	<if test="areaCode != null">area_code=#{areaCode,jdbcType=VARCHAR},</if>
+</set>
+<where>
+	<choose>
+        <when test="templateId != null">and template_id = #{templateId}</when>
+        <otherwise>and template_id = </otherwise>
+    </choose>
+</where>
+</update>
+
+<!-- ElementID:updateNull,Generated=false -->
+<update id="updateNull" parameterType="map">
+	update TA_JC_MSG_TEMPLATE
+	<set>
+		<trim suffixOverrides=",">
+		    <if test="templateType==null">template_type = null,</if>
+		    <if test="templateName==null">template_name = null,</if>
+		    <if test="templateContent==null">template_content = null,</if>
+		    <if test="templateDesc==null">template_desc = null,</if>
+		    <if test="isValid==null">is_valid = null,</if>
+		    <if test="ccFormInstanceid==null">cc_form_instanceid = null,</if>
+		    <if test="isPublic==null">is_public = null,</if>
+		    <if test="areaCode==null">area_code = null,</if>
+		</trim>
+	</set>
+	<where>
+		<choose>
+			<when test="templateId != null">and template_id = #{templateId}</when>
+			<otherwise>and template_id = </otherwise>
+		</choose>
+	</where>
+</update>
+
+<!-- ElementID:delete,Generated=true -->
+<delete id="delete" parameterType="com.chinacreator.dzjc_ruleEngine.MsgTemplate">
+    delete from TA_JC_MSG_TEMPLATE where 1=1 and template_id = #{templateId}
+</delete>
+
+<!-- 查询所有 -->
+<!-- ElementID:select -->
+<select id="select" parameterType="com.chinacreator.dzjc_ruleEngine.MsgTemplate" resultMap="MsgTemplateResult">
+	select 
+		<include refid="sql_all_by_page"/>
+	    from TA_JC_MSG_TEMPLATE left join TA_JC_DIC_BUSINESS_TYPE on
+		TA_JC_MSG_TEMPLATE.template_type =
+		TA_JC_DIC_BUSINESS_TYPE.business_type_code 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+
+<!-- ElementID:insertBatch,Generated=false -->
+<insert id="insertBatch" parameterType="list">
+	insert into TA_JC_MSG_TEMPLATE (template_id,template_type,template_name,template_content,template_desc,is_valid,cc_form_instanceid,is_public,area_code) 
+<foreach collection="list" item="entity" index="index" separator="union all">
+		select 
+		#{entity.templateId,jdbcType = VARCHAR},
+				#{entity.templateType,jdbcType = CHAR},
+				#{entity.templateName,jdbcType = VARCHAR},
+				#{entity.templateContent,jdbcType = VARCHAR},
+				#{entity.templateDesc,jdbcType = VARCHAR},
+				#{entity.isValid,jdbcType = VARCHAR},
+				#{entity.ccFormInstanceid,jdbcType = VARCHAR},
+				#{entity.isPublic,jdbcType = VARCHAR},
+				#{entity.areaCode,jdbcType = VARCHAR}
+		from dual
+</foreach>
+</insert>
+
+<!-- ElementID:deleteBatch,Generated=true -->
+<delete id="deleteBatch" parameterType="List">
+	delete from TA_JC_MSG_TEMPLATE where template_id in
+<trim prefix="(" suffix=")" suffixOverrides=",">
+<foreach collection="list" item="entity" separator=",">
+	<choose>
+		<when test="@com.chinacreator.c2.dao.util.EntityBeanUtil@isEntityObj(entity)">#{entity.templateId}</when>
+		<otherwise>#{entity}</otherwise>
+	</choose>
+</foreach>
+</trim>
+</delete>
+
+<!-- ElementID:updateBatch,Generated=false -->
+<update id="updateBatch" parameterType="list">
+	<foreach collection="list" item="entity" open="begin" close=";end;" separator=";">
+			update TA_JC_MSG_TEMPLATE
+	<set>
+	<if test="entity.templateType != null">template_type= #{entity.templateType,jdbcType=CHAR},</if>
+	<if test="entity.templateName != null">template_name= #{entity.templateName,jdbcType=VARCHAR},</if>
+	<if test="entity.templateContent != null">template_content= #{entity.templateContent,jdbcType=VARCHAR},</if>
+	<if test="entity.templateDesc != null">template_desc= #{entity.templateDesc,jdbcType=VARCHAR},</if>
+	<if test="entity.isValid != null">is_valid= #{entity.isValid,jdbcType=VARCHAR},</if>
+	<if test="entity.ccFormInstanceid != null">cc_form_instanceid= #{entity.ccFormInstanceid,jdbcType=VARCHAR},</if>
+	<if test="entity.isPublic != null">is_public= #{entity.isPublic,jdbcType=VARCHAR},</if>
+	<if test="entity.areaCode != null">area_code= #{entity.areaCode,jdbcType=VARCHAR},</if>
+	</set>
+		<where>
+			<choose>
+				<when test="entity.templateId != null">and template_id = #{entity.templateId}</when>
+				<otherwise>and template_id = </otherwise>
+			</choose>
+		</where>
+	</foreach>
+</update>
+
+<!-- ElementID:selectAll,Generated=true -->
+<select id="selectAll" resultMap="MsgTemplateResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_MSG_TEMPLATE 
+</select>
+
+<!-- ElementID:selectMany,Generated=false -->
+<select id="selectMany" parameterType="list" resultMap="MsgTemplateResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_JC_MSG_TEMPLATE 
+	where TA_JC_MSG_TEMPLATE.template_id in (
+<foreach collection="list" item="entity" separator="intersect">
+		select 
+		TA_JC_MSG_TEMPLATE.template_id
+	    from TA_JC_MSG_TEMPLATE 
+		 <where>
+	        <if test="entity.templateId != null">and TA_JC_MSG_TEMPLATE.template_id = #{entity.templateId}</if>
+	        <if test="entity.templateType != null">and TA_JC_MSG_TEMPLATE.template_type = #{entity.templateType}</if>
+	        <if test="entity.templateName != null">and TA_JC_MSG_TEMPLATE.template_name = #{entity.templateName}</if>
+	        <if test="entity.templateContent != null">and TA_JC_MSG_TEMPLATE.template_content = #{entity.templateContent}</if>
+	        <if test="entity.templateDesc != null">and TA_JC_MSG_TEMPLATE.template_desc = #{entity.templateDesc}</if>
+	        <if test="entity.isValid != null">and TA_JC_MSG_TEMPLATE.is_valid = #{entity.isValid}</if>
+	        <if test="entity.ccFormInstanceid != null">and TA_JC_MSG_TEMPLATE.cc_form_instanceid = #{entity.ccFormInstanceid}</if>
+	        <if test="entity.isPublic != null">and TA_JC_MSG_TEMPLATE.is_public = #{entity.isPublic}</if>
+	        <if test="entity.areaCode != null">and TA_JC_MSG_TEMPLATE.area_code = #{entity.areaCode}</if>
+		</where>
+</foreach>
+)
+</select>
+
+<!-- ElementID:selectUnion,Generated=false -->
+<select id="selectUnion" parameterType="list" resultMap="MsgTemplateResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_JC_MSG_TEMPLATE 
+	 INNER JOIN
+<foreach collection="list" item="entity" separator="UNION" open="(" close=")">
+		SELECT 
+			 template_id
+		FROM TA_JC_MSG_TEMPLATE 
+			<where>
+	        <if test="entity.templateId != null">and TA_JC_MSG_TEMPLATE.template_id = #{entity.templateId}</if>
+	        <if test="entity.templateType != null">and TA_JC_MSG_TEMPLATE.template_type = #{entity.templateType}</if>
+	        <if test="entity.templateName != null">and TA_JC_MSG_TEMPLATE.template_name = #{entity.templateName}</if>
+	        <if test="entity.templateContent != null">and TA_JC_MSG_TEMPLATE.template_content = #{entity.templateContent}</if>
+	        <if test="entity.templateDesc != null">and TA_JC_MSG_TEMPLATE.template_desc = #{entity.templateDesc}</if>
+	        <if test="entity.isValid != null">and TA_JC_MSG_TEMPLATE.is_valid = #{entity.isValid}</if>
+	        <if test="entity.ccFormInstanceid != null">and TA_JC_MSG_TEMPLATE.cc_form_instanceid = #{entity.ccFormInstanceid}</if>
+	        <if test="entity.isPublic != null">and TA_JC_MSG_TEMPLATE.is_public = #{entity.isPublic}</if>
+	        <if test="entity.areaCode != null">and TA_JC_MSG_TEMPLATE.area_code = #{entity.areaCode}</if>
+			</where>
+</foreach>
+	c2_temp_table ON TA_JC_MSG_TEMPLATE.template_id = c2_temp_table.template_id
+</select>
+
+<!-- ElementID:selectByID,Generated=false -->
+<select id="selectByID" parameterType="java.lang.String" resultMap="MsgTemplateResult">
+	select 
+		<include refid="sql_byID"/>
+	    from TA_JC_MSG_TEMPLATE 
+      where  TA_JC_MSG_TEMPLATE.template_id = #{templateId,jdbcType=VARCHAR}
+</select>
+
+<!-- 进入初始化查询开始 -->
+<!-- 分页查询 -->
+<!-- ElementID:selectByPage -->
+<select id="selectByPage" parameterType="com.chinacreator.dzjc_ruleEngine.MsgTemplate" resultMap="MsgTemplateResult">
+	select 
+		<include refid="sql_all_by_page"/>
+	    from TA_JC_MSG_TEMPLATE left join TA_JC_DIC_BUSINESS_TYPE on
+		TA_JC_MSG_TEMPLATE.template_type =
+		TA_JC_DIC_BUSINESS_TYPE.business_type_code
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+		order by TA_JC_MSG_TEMPLATE.template_id
+</select>
+
+
+<select id="selectOption" parameterType="java.lang.String" resultMap="MsgTemplateResult">
+	select 
+		<include refid="sql_Option"/>
+	    from TA_JC_MSG_TEMPLATE 
+	    where TA_JC_MSG_TEMPLATE.is_valid = 'Y'
+	    and TA_JC_MSG_TEMPLATE.area_code = #{areaCode}
+</select>
+
+<select id="selectOptionAll"  resultMap="MsgTemplateResult">
+	select 
+		<include refid="sql_Option"/>
+	    from TA_JC_MSG_TEMPLATE 
+	    where TA_JC_MSG_TEMPLATE.is_valid = 'Y'
+</select>
+
+</mapper>

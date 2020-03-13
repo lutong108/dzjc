@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"><mapper namespace="com.chinacreator.dzjc_tongji.InstanceMapper">	
+
+<!-- ElementID:column_sql,Generated=true -->
+<sql id="column_sql">
+		  TA_SP_INSTANCE.instance_id ,
+		  TA_SP_INSTANCE.instance_name ,
+		  TA_SP_INSTANCE.accept_name ,
+		  TA_SP_INSTANCE.accept_time ,
+		  TA_SP_INSTANCE.end_time ,
+		  TA_SP_INSTANCE.org_id ,
+		  TA_SP_INSTANCE.project_state ,
+		  TA_SP_INSTANCE.approve_id ,
+		  TA_SP_INSTANCE.approve_name ,
+		  TA_SP_INSTANCE.org_name ,
+		  TA_SP_INSTANCE.is_need_supervise ,
+		  TA_SP_INSTANCE.last_supervise
+</sql>
+
+<!-- ElementID:my_whereClause_sql,Generated=false -->
+<sql id="my_whereClause_sql">
+	    <if test="instanceId != null">and TA_SP_INSTANCE.instance_id = #{instanceId}</if>
+	    <if test="instanceName != null">and TA_SP_INSTANCE.instance_name = #{instanceName}</if>
+	    <if test="acceptName != null">and TA_SP_INSTANCE.accept_name = #{acceptName}</if>
+	    <if test="orgId != null">
+	    	and TA_SP_INSTANCE.org_id in (select n.ID  from v_jc_org n connect by prior  n.ID = n.PID start with n.ID = #{orgId})
+	    </if>
+	    <if test="projectState != null">
+	    	<choose>
+	    		<when test="projectState == &quot;22&quot; ">and TA_SP_INSTANCE.project_state in ('1','2','4','5','6','7','8') and TA_SP_INSTANCE.accept_time IS NOT NULL</when>
+	    		<when test="projectState == &quot;23&quot; ">and TA_SP_INSTANCE.project_state in ('2','4','5','6','7','8') and TA_SP_INSTANCE.end_time IS NOT NULL</when>
+	    		<otherwise>and TA_SP_INSTANCE.project_state = #{projectState}</otherwise>
+	    	</choose>
+	    </if>
+	    <if test="approveId != null">and TA_SP_INSTANCE.approve_id = #{approveId}</if>
+	    <if test="approveName != null">and TA_SP_INSTANCE.approve_name LIKE '%'||#{approveName}||'%'</if>
+	    <if test="orgName != null">and TA_SP_INSTANCE.org_name = #{orgName}</if>
+	    <if test="isNeedSupervise != null">and TA_SP_INSTANCE.is_need_supervise = #{isNeedSupervise}</if>
+	    <if test="lastSupervise != null">and TA_SP_INSTANCE.last_supervise = #{lastSupervise}</if>
+	    <if test="acceptBeginTime != null">and TA_SP_INSTANCE.accept_time &gt;= #{acceptBeginTime}</if>
+	    <if test="acceptEndTime != null">and TA_SP_INSTANCE.accept_time &lt;= #{acceptEndTime}</if>
+	    <if test="finishBeginTime != null">and TA_SP_INSTANCE.end_time &gt;= #{finishBeginTime}</if>
+	    <if test="finishEndTime != null">and TA_SP_INSTANCE.end_time &lt;= #{finishEndTime}</if>
+</sql>
+
+
+<!-- ElementID:InstanceResult,Generated=true -->
+<resultMap id="InstanceResult" type="com.chinacreator.dzjc_tongji.Instance">
+	<id property="instanceId" column="instance_id"/>
+	<result property="instanceName" column="instance_name"/>
+	<result property="acceptName" column="accept_name"/>
+	<result property="acceptTime" column="accept_time"/>
+	<result property="endTime" column="end_time"/>
+	<result property="orgId" column="org_id"/>
+	<result property="projectState" column="project_state"/>
+	<result property="approveId" column="approve_id"/>
+	<result property="approveName" column="approve_name"/>
+	<result property="orgName" column="org_name"/>
+	<result property="isNeedSupervise" column="is_need_supervise"/>
+	<result property="lastSupervise" column="last_supervise"/>
+</resultMap>
+
+<!-- ElementID:selectByPage,Generated=true -->
+<select id="selectByPage" parameterType="com.chinacreator.dzjc_tongji.Instance" resultMap="InstanceResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_SP_INSTANCE 
+		 <where>
+			<include refid="my_whereClause_sql"/>
+		</where>
+</select>
+
+</mapper>

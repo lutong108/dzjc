@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form:Form xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dync="http://www.chinacreator.com/platform/mvc/ui/dync" xmlns:form="http://www.chinacreator.com/platform/mvc/form" name="全省应用情况统计信息" sn="dzjc_ruleEngine/QuanShengYingYongQingKuangStatistics" type="form">
+  <form:control type="page/normal">
+    <form:attributes source="page/normal">
+      <dync:attribute default="" group="HTML" id="showHead" name="显示标题" value="">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="" group="HTML" id="title" name="标题" value="">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="" group="HTML" id="desc" name="描述" value="">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="false" group="HTML" id="fixedHeight" name="自动高度" value="false">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="false" group="HTML" id="compact" name="紧凑页面" value="false">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="false" group="HTML" id="dirtyCheck" name="脏检查" value="false">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="" group="注入配置" id="angularJsServices" name="注入服务" value="">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="" group="事件" id="beforeDataSourceLoad" name="数据源加载前" value="page_beforeDataSourceLoad($params)">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="" group="事件" id="afterDataSourceLoad" name="数据源加载后" value="page_afterDataSourceLoad()">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="" group="事件" id="onload" name="页面加载完成" value="">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+    </form:attributes>
+  </form:control>
+  <form:child xsi:type="form:Group" id="div" name="简单容器(DIV)">
+    <form:control type="container/div">
+      <form:attributes source="container/div">
+        <dync:attribute default="" group="高级自定义" id="style" name="自定义style" value="height:10px;">
+          <dync:render colSpan="2" height="0" multi="false" name="text"/>
+          <dync:children/>
+        </dync:attribute>
+      </form:attributes>
+    </form:control>
+  </form:child>
+  <form:child xsi:type="form:Group" id="div1" name="简单容器(DIV)">
+    <form:control type="container/div">
+      <form:attributes source="container/div">
+        <dync:attribute default="" group="高级自定义" id="style" name="自定义style" value="margin-top:5px">
+          <dync:render colSpan="2" height="0" multi="false" name="text"/>
+          <dync:children/>
+        </dync:attribute>
+      </form:attributes>
+    </form:control>
+    <form:child xsi:type="form:Field" id="dateTimeRangePicker" name="日期范围" customize="true">
+      <form:control type="widget/date_time_range_picker">
+        <form:attributes source="widget/date_time_range_picker">
+          <dync:attribute default="" group="时间设置" id="startBind" name="开始时间数据绑定" value="$params.beginDate">
+            <dync:render colSpan="1" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="" group="时间设置" id="endBind" name="结束时间数据绑定" value="$params.endDate">
+            <dync:render colSpan="1" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+      <form:validation/>
+    </form:child>
+    <form:child xsi:type="form:Group" id="div3" name="简单容器(DIV)">
+      <form:control type="container/div">
+        <form:attributes source="container/div">
+          <dync:attribute default="12" group="HTML配置" id="span" name="占位数" value="4">
+            <dync:render colSpan="1" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+      <form:child xsi:type="form:Field" id="button" name="统计" customize="true">
+        <form:control type="widget/button">
+          <form:attributes source="widget/button">
+            <dync:attribute default="" group="事件设置" id="click" name="点击事件" value="button_click($event)">
+              <dync:render colSpan="1" height="0" multi="false" name="event">
+                <dync:item name="params" value="$event"/>
+              </dync:render>
+              <dync:children/>
+            </dync:attribute>
+          </form:attributes>
+        </form:control>
+        <form:validation/>
+      </form:child>
+      <form:child xsi:type="form:Field" id="button1" name="重置" customize="true">
+        <form:control type="widget/button">
+          <form:attributes source="widget/button">
+            <dync:attribute default="" group="事件设置" id="click" name="点击事件" value="button1_click($event)">
+              <dync:render colSpan="1" height="0" multi="false" name="event">
+                <dync:item name="params" value="$event"/>
+              </dync:render>
+              <dync:children/>
+            </dync:attribute>
+          </form:attributes>
+        </form:control>
+        <form:validation/>
+      </form:child>
+      <form:child xsi:type="form:Field" id="button2" name="Word导出" customize="true">
+        <form:control type="widget/button">
+          <form:attributes source="widget/button">
+            <dync:attribute default="" group="事件设置" id="click" name="点击事件" value="button2_click($event)">
+              <dync:render colSpan="1" height="0" multi="false" name="event">
+                <dync:item name="params" value="$event"/>
+              </dync:render>
+              <dync:children/>
+            </dync:attribute>
+          </form:attributes>
+        </form:control>
+        <form:validation/>
+      </form:child>
+    </form:child>
+  </form:child>
+  <form:child xsi:type="form:Group" id="div2" name="简单容器(DIV)">
+    <form:control type="container/div">
+      <form:attributes source="container/div">
+        <dync:attribute default="" group="高级自定义" id="html" name="自定义HTML" value="div_html">
+          <dync:render colSpan="2" height="0" multi="false" name="html"/>
+          <dync:children/>
+        </dync:attribute>
+        <dync:attribute default="" group="高级自定义" id="style" name="自定义style" value="margin-top : 0px;">
+          <dync:render colSpan="2" height="0" multi="false" name="text"/>
+          <dync:children/>
+        </dync:attribute>
+      </form:attributes>
+    </form:control>
+  </form:child>
+  <form:datasources/>
+  <form:scripts>//页面数据加载前&#xD;
+page_beforeDataSourceLoad:function($params){&#xD;
+&#xD;
+	   //1,设置默认统计时间  &#xD;
+ 	   var odate = new Date(); &#xD;
+ 	   odate.setMonth(0);&#xD;
+ 	   odate.setDate(1);&#xD;
+ 	   $params.beginDate=odate.getTime();&#xD;
+ 	     &#xD;
+ 	   var oNowDate = new Date();&#xD;
+	   $params.endDate= oNowDate.getTime();  &#xD;
+ 	   //2,开始时间(年/月/日)&#xD;
+ 	   $params.beginYear = odate.getFullYear();&#xD;
+ 	   $params.beginMonth = odate.getMonth() + 1;&#xD;
+ 	   $params.beginDay = odate.getDate();&#xD;
+ 	   //3,结束时间(年/月/日)&#xD;
+ 	   $params.endYear = oNowDate.getFullYear();&#xD;
+ 	   $params.endMonth = oNowDate.getMonth() + 1;&#xD;
+ 	   $params.endDay = oNowDate.getDate();&#xD;
+},&#xD;
+//页面数据加载后&#xD;
+page_afterDataSourceLoad:function(){&#xD;
+	//1,权限校验&#xD;
+	$http.post(c2.base(&quot;service&quot;)+&quot;dzjc_ruleEngine/v1/QuanShengYingYongQingKuangStatistics/getOrgCode&quot;).success(function(result){&#xD;
+&#xD;
+			if(result.success){&#xD;
+				//2,查询数据&#xD;
+				$http.get(c2.base(&quot;service&quot;)+&quot;dzjc_ruleEngine/v1/getQuanShengYingYongQingKuangStatisticsInfo?beginDate=&quot;+$params.beginDate+&quot;&amp;endDate=&quot;+$params.endDate).success(function(data){&#xD;
+					if(data!=null &amp;&amp; data!=''){&#xD;
+						$params.data = data;&#xD;
+						//发牌数据&#xD;
+						$params.paiData = data[&quot;paiData&quot;];&#xD;
+						//全省机构数&#xD;
+						$params.orgNumber = data[&quot;orgNumber&quot;];&#xD;
+						&#xD;
+						//省本级&#xD;
+						$params.sbjData = data[&quot;sbjData&quot;];&#xD;
+						$params.sbjDataByTime = data[&quot;sbjDataByTime&quot;];&#xD;
+						//省本级应用事项&#xD;
+						$params.sbjAICSXS = data[&quot;sbjAICSXS&quot;];&#xD;
+						$params.sbjAICSJSByTime = data[&quot;sbjAICSJSByTime&quot;];&#xD;
+						$params.sbjAICBJSByTime = data[&quot;sbjAICBJSByTime&quot;];&#xD;
+						&#xD;
+						//市州本级&#xD;
+						$params.shizhouData = data[&quot;shizhouData&quot;];&#xD;
+						$params.shizhouDataByTime = data[&quot;shizhouDataByTime&quot;];&#xD;
+						//市州本级应用事项&#xD;
+						$params.shizhouAICSXS = data[&quot;shizhouAICSXS&quot;];&#xD;
+						$params.shizhouAICSJSByTime = data[&quot;shizhouAICSJSByTime&quot;];&#xD;
+						$params.shizhouAICBJSByTime = data[&quot;shizhouAICBJSByTime&quot;];&#xD;
+						&#xD;
+						//县市区&#xD;
+						$params.xianshiqvData = data[&quot;xianshiqvData&quot;];&#xD;
+						$params.xianshiqvDataByTime = data[&quot;xianshiqvDataByTime&quot;];&#xD;
+						//县市区应用事项&#xD;
+						$params.xianshiqvAICSXS = data[&quot;xianshiqvAICSXS&quot;];&#xD;
+						$params.xianshiqvAICSJSByTime = data[&quot;xianshiqvAICSJSByTime&quot;];&#xD;
+						$params.xianshiqvAICBJSByTime = data[&quot;xianshiqvAICBJSByTime&quot;];&#xD;
+					&#xD;
+						//省本级“合计”数据&#xD;
+						$params.allDataTotal = data[&quot;allDataTotal&quot;];&#xD;
+						$params.allDataByTimeTotal = data[&quot;allDataByTimeTotal&quot;];&#xD;
+						&#xD;
+						//全省按时间查询，收件数产生应用事项个数&#xD;
+						$params.sjsAICCountTotal = data[&quot;sjsAICCountTotal&quot;];&#xD;
+					}&#xD;
+				});&#xD;
+				&#xD;
+			}else{&#xD;
+				Messenger.error(result.message);&#xD;
+			}&#xD;
+ 	});&#xD;
+},&#xD;
+&#xD;
+//点击统计按钮&#xD;
+button_click:function($event){&#xD;
+&#xD;
+	if($params.beginDate== '' || $params.beginDate== null){&#xD;
+		Messenger.error(&quot;开始时间不能为空&quot;);&#xD;
+		return;&#xD;
+	}&#xD;
+	if($params.endDate== '' || $params.endDate== null){&#xD;
+		Messenger.error(&quot;结束时间不能为空&quot;);&#xD;
+		return;&#xD;
+	}&#xD;
+	if($params.endDate!= '' &amp;&amp; $params.endDate!= null){&#xD;
+	&#xD;
+		if($params.beginDate > $params.endDate){&#xD;
+			Messenger.error(&quot;开始时间不能大于结束时间！&quot;);&#xD;
+			return;&#xD;
+		}		&#xD;
+	}&#xD;
+&#xD;
+	 var beginDate = new Date($params.beginDate);&#xD;
+	 //开始时间(年/月/日)&#xD;
+ 	 $params.beginYear = beginDate.getFullYear();&#xD;
+ 	 $params.beginMonth = beginDate.getMonth() + 1;&#xD;
+ 	 $params.beginDay = beginDate.getDate();&#xD;
+ 	 &#xD;
+ 	 var endDate = new Date($params.endDate);&#xD;
+ 	 //结束时间(年/月/日)&#xD;
+ 	 $params.endYear = endDate.getFullYear();&#xD;
+ 	 $params.endMonth = endDate.getMonth() + 1;&#xD;
+ 	 $params.endDay = endDate.getDate();&#xD;
+	&#xD;
+	$http.get(c2.base(&quot;service&quot;)+&quot;dzjc_ruleEngine/v1/getQuanShengYingYongQingKuangStatisticsInfo?beginDate=&quot;+$params.beginDate+&quot;&amp;endDate=&quot;+$params.endDate).success(function(data){&#xD;
+		&#xD;
+		if(data!=null &amp;&amp; data!=''){&#xD;
+&#xD;
+			//发牌数据&#xD;
+			$params.paiData = data[&quot;paiData&quot;];&#xD;
+			//全省机构数&#xD;
+			$params.orgNumber = data[&quot;orgNumber&quot;];&#xD;
+			&#xD;
+			//省本级&#xD;
+			$params.sbjData = data[&quot;sbjData&quot;];&#xD;
+			$params.sbjDataByTime = data[&quot;sbjDataByTime&quot;];&#xD;
+			//省本级应用事项&#xD;
+			$params.sbjAICSXS = data[&quot;sbjAICSXS&quot;];&#xD;
+			$params.sbjAICSJSByTime = data[&quot;sbjAICSJSByTime&quot;];&#xD;
+			$params.sbjAICBJSByTime = data[&quot;sbjAICBJSByTime&quot;];&#xD;
+			&#xD;
+			//市州本级&#xD;
+			$params.shizhouData = data[&quot;shizhouData&quot;];&#xD;
+			$params.shizhouDataByTime = data[&quot;shizhouDataByTime&quot;];&#xD;
+			//市州本级应用事项&#xD;
+			$params.shizhouAICSXS = data[&quot;shizhouAICSXS&quot;];&#xD;
+			$params.shizhouAICSJSByTime = data[&quot;shizhouAICSJSByTime&quot;];&#xD;
+			$params.shizhouAICBJSByTime = data[&quot;shizhouAICBJSByTime&quot;];&#xD;
+			&#xD;
+			//县市区&#xD;
+			$params.xianshiqvData = data[&quot;xianshiqvData&quot;];&#xD;
+			$params.xianshiqvDataByTime = data[&quot;xianshiqvDataByTime&quot;];&#xD;
+			//县市区应用事项&#xD;
+			$params.xianshiqvAICSXS = data[&quot;xianshiqvAICSXS&quot;];&#xD;
+			$params.xianshiqvAICSJSByTime = data[&quot;xianshiqvAICSJSByTime&quot;];&#xD;
+			$params.xianshiqvAICBJSByTime = data[&quot;xianshiqvAICBJSByTime&quot;];&#xD;
+		&#xD;
+			//省本级“合计”数据&#xD;
+			$params.allDataTotal = data[&quot;allDataTotal&quot;];&#xD;
+			$params.allDataByTimeTotal = data[&quot;allDataByTimeTotal&quot;];&#xD;
+			&#xD;
+			//全省按时间查询，收件数产生应用事项个数&#xD;
+			$params.sjsAICCountTotal = data[&quot;sjsAICCountTotal&quot;];&#xD;
+		}&#xD;
+	});&#xD;
+},&#xD;
+//重置功能&#xD;
+button1_click:function($event){&#xD;
+	//1,设置默认统计时间  &#xD;
+ 	var odate = new Date(); &#xD;
+ 	odate.setMonth(0);&#xD;
+ 	odate.setDate(1);&#xD;
+ 	$params.beginDate=odate.getTime();&#xD;
+ 	     &#xD;
+ 	var oNowDate = new Date();&#xD;
+	$params.endDate= oNowDate.getTime(); &#xD;
+ 	//2,开始时间(年/月/日)&#xD;
+ 	$params.beginYear = odate.getFullYear();&#xD;
+ 	$params.beginMonth = odate.getMonth() + 1;&#xD;
+ 	$params.beginDay = odate.getDate();&#xD;
+ 	//3,结束时间(年/月/日)&#xD;
+ 	$params.endYear = oNowDate.getFullYear();&#xD;
+ 	$params.endMonth = oNowDate.getMonth() + 1;&#xD;
+ 	$params.endDay = oNowDate.getDate();&#xD;
+ 	//4,查询数据&#xD;
+	$http.get(c2.base(&quot;service&quot;)+&quot;dzjc_ruleEngine/v1/getQuanShengYingYongQingKuangStatisticsInfo?beginDate=&quot;+$params.beginDate+&quot;&amp;endDate=&quot;+$params.endDate).success(function(data){&#xD;
+		&#xD;
+		if(data!=null &amp;&amp; data!=''){&#xD;
+			//发牌数据&#xD;
+			$params.paiData = data[&quot;paiData&quot;];&#xD;
+			//全省机构数&#xD;
+			$params.orgNumber = data[&quot;orgNumber&quot;];&#xD;
+			&#xD;
+			//省本级&#xD;
+			$params.sbjData = data[&quot;sbjData&quot;];&#xD;
+			$params.sbjDataByTime = data[&quot;sbjDataByTime&quot;];&#xD;
+			//省本级应用事项&#xD;
+			$params.sbjAICSXS = data[&quot;sbjAICSXS&quot;];&#xD;
+			$params.sbjAICSJSByTime = data[&quot;sbjAICSJSByTime&quot;];&#xD;
+			$params.sbjAICBJSByTime = data[&quot;sbjAICBJSByTime&quot;];&#xD;
+			&#xD;
+			//市州本级&#xD;
+			$params.shizhouData = data[&quot;shizhouData&quot;];&#xD;
+			$params.shizhouDataByTime = data[&quot;shizhouDataByTime&quot;];&#xD;
+			//市州本级应用事项&#xD;
+			$params.shizhouAICSXS = data[&quot;shizhouAICSXS&quot;];&#xD;
+			$params.shizhouAICSJSByTime = data[&quot;shizhouAICSJSByTime&quot;];&#xD;
+			$params.shizhouAICBJSByTime = data[&quot;shizhouAICBJSByTime&quot;];&#xD;
+			&#xD;
+			//县市区&#xD;
+			$params.xianshiqvData = data[&quot;xianshiqvData&quot;];&#xD;
+			$params.xianshiqvDataByTime = data[&quot;xianshiqvDataByTime&quot;];&#xD;
+			//县市区应用事项&#xD;
+			$params.xianshiqvAICSXS = data[&quot;xianshiqvAICSXS&quot;];&#xD;
+			$params.xianshiqvAICSJSByTime = data[&quot;xianshiqvAICSJSByTime&quot;];&#xD;
+			$params.xianshiqvAICBJSByTime = data[&quot;xianshiqvAICBJSByTime&quot;];&#xD;
+		&#xD;
+			//省本级“合计”数据&#xD;
+			$params.allDataTotal = data[&quot;allDataTotal&quot;];&#xD;
+			$params.allDataByTimeTotal = data[&quot;allDataByTimeTotal&quot;];&#xD;
+			&#xD;
+			//全省按时间查询，收件数产生应用事项个数&#xD;
+			$params.sjsAICCountTotal = data[&quot;sjsAICCountTotal&quot;];&#xD;
+		}&#xD;
+	});&#xD;
+},&#xD;
+//word导出&#xD;
+button2_click:function($event){&#xD;
+	if($params.data == null){&#xD;
+		Messenger.error(&quot;表格数据为空，无法导出!&quot;);&#xD;
+	}else{&#xD;
+		Modal.openConfirm({message:&quot;是否导出所有数据！&quot;},function(){&#xD;
+			var url = c2.base(&quot;service&quot;)+&quot;QuanShengYingYongQingKuangStatisticsInfoServlet?type=1&amp;beginDate=&quot;+$params.beginDate+&quot;&amp;endDate=&quot;+$params.endDate;&#xD;
+			window.location.href =url;&#xD;
+		});	&#xD;
+	}&#xD;
+}</form:scripts>
+  <form:htmls>&#xD;
+&lt;script type=&quot;text/ng-template&quot; id=&quot;div_html&quot;>&#xD;
+&lt;h4>&#xD;
+&lt;div style=&quot;margin-top:5pt;background-color: #ffffff;layout-grid: 15pt;line-height:150% &quot; id=&quot;wordtable&quot; >&#xD;
+&#xD;
+	&lt;p style=&quot;margin-bottom:0pt; margin-top:0pt;text-align: center;font-family:仿宋;&quot;>&#xD;
+	　　　&lt;span style=&quot;font: bolder;font-size: 10&quot;>湖南省网上政务服务和电子监管系统全省应用情况&lt;/span>&lt;/p>&#xD;
+	&lt;p style=&quot;margin:0pt; margin-bottom:0pt; margin-top:0pt;text-align:justify;&quot;>&lt;span style=&quot;font-size: 20;font-family:仿宋;&quot;>&#xD;
+　　湖南省网上政务服务和电子监管系统全省接入的部门共{{$params.orgNumber}}个，共涉及{{$params.allDataTotal.sxscount}}个事项在系统中流转和办理；44家省本级单位共接入{{$params.sbjData.sxscount}}项，其中行政许可{{$params.sbjData.xzxksxs}}项、行政奖励{{$params.sbjData.xzjlsxs}}项、行政裁决{{$params.sbjData.xzcjsxs}}项、行政检查{{$params.sbjData.xzjcsxs}}项、行政给付{{$params.sbjData.xzgfsxs}}项、行政强制{{$params.sbjData.xzqzsxs}}项、行政确认{{$params.sbjData.xzqrsxs}}项、行政处罚{{$params.sbjData.xzcfsxs}}项、行政征收{{$params.sbjData.xzzssxs}}项、其他行政权利{{$params.sbjData.qtxzqlsxs}}项、公共服务{{$params.sbjData.ggfwsxs}}项，产生应用的为{{$params.sbjAICSXS}}项；14个市州本级共接入{{$params.shizhouData.sxscount}}项，其中行政许可{{$params.shizhouData.xzxksxs}}项、行政奖励{{$params.shizhouData.xzjlsxs}}项、行政裁决{{$params.shizhouData.xzcjsxs}}项、行政检查{{$params.shizhouData.xzjcsxs}}项、行政给付{{$params.shizhouData.xzgfsxs}}项、行政强制{{$params.shizhouData.xzqzsxs}}项、行政确认{{$params.shizhouData.xzqrsxs}}项、行政处罚{{$params.shizhouData.xzcfsxs}}项、行政征收{{$params.shizhouData.xzzssxs}}项、其他行政权利{{$params.shizhouData.qtxzqlsxs}}项、公共服务{{$params.shizhouData.ggfwsxs}}项，产生应用的为{{$params.shizhouAICSXS}}项；123个县市区共接入{{$params.xianshiqvData.sxscount}}项，其中行政许可{{$params.xianshiqvData.xzxksxs}}项、行政奖励{{$params.xianshiqvData.xzjlsxs}}项、行政裁决{{$params.xianshiqvData.xzcjsxs}}项、行政检查{{$params.xianshiqvData.xzjcsxs}}项、行政给付{{$params.xianshiqvData.xzgfsxs}}项、行政强制{{$params.xianshiqvData.xzqzsxs}}项、行政确认{{$params.xianshiqvData.xzqrsxs}}项、行政处罚{{$params.xianshiqvData.xzcfsxs}}项、行政征收{{$params.xianshiqvData.xzzssxs}}项、其他行政权利{{$params.xianshiqvData.qtxzqlsxs}}项、公共服务{{$params.xianshiqvData.ggfwsxs}}项，产生应用的为{{$params.xianshiqvAICSXS}}项。数据交换单位，省级单位8家，市州政务服务中心5家，市级单位7家，县市区政务服务中心38家，县级单位3家。&#xD;
+　　　&lt;/span>&lt;/p>&#xD;
+	&lt;p style=&quot;margin:0pt; margin-bottom:0pt; margin-top:0pt;text-align:justify;&quot;>&lt;span style=&quot;font-size: 20;font-family:仿宋;&quot;>&#xD;
+　　{{$params.beginYear}}年{{$params.beginMonth}}月{{$params.beginDay}}日至{{$params.endYear}}年{{$params.endMonth}}月{{$params.endDay}}日全省办件产生应用的事项{{$params.sjsAICCountTotal}}项，办件数{{$params.allDataByTimeTotal.sjscount}}件，办结数{{$params.allDataByTimeTotal.bjscount}}件；44家省本级单位办件产生应用的事项{{$params.sbjAICSJSByTime}}项，办件数{{$params.sbjDataByTime.sjscount}}件，办结数{{$params.sbjDataByTime.bjscount}}件；14个市州本级办件产生应用的事项{{$params.shizhouAICSJSByTime}}项，办件数{{$params.shizhouDataByTime.sjscount}}件，办结数{{$params.shizhouDataByTime.bjscount}}件；123个县市区办件产生应用的事项{{$params.xianshiqvAICSJSByTime}}项，办件数{{$params.xianshiqvDataByTime.sjscount}}件，办结数{{$params.xianshiqvDataByTime.bjscount}}件。&#xD;
+　　　&lt;/span>&lt;/p>&#xD;
+	&lt;p style=&quot;margin:0pt; margin-bottom:0pt; margin-top:0pt;text-align:justify;&quot;>&lt;span style=&quot;font-size: 20;font-family:仿宋;&quot;>&#xD;
+　　{{$params.beginYear}}年{{$params.beginMonth}}月{{$params.beginDay}}日至{{$params.endYear}}年{{$params.endMonth}}月{{$params.endDay}}日全省共产生红黄牌{{$params.paiData.paitotal}}张，其中红牌{{$params.paiData.red_sum}}张，黄牌{{$params.paiData.yellow_sum}}张；已撤销红牌{{$params.paiData.red_cx}}张，黄牌{{$params.paiData.yellow_cx}}张；未撤消红牌{{$params.paiData.red_yx}}张，黄牌{{$params.paiData.yellow_yx}}张。&#xD;
+	&lt;/span>&lt;/p>&#xD;
+&lt;/div>&#xD;
+&lt;/h4>&#xD;
+&lt;/script></form:htmls>
+</form:Form>

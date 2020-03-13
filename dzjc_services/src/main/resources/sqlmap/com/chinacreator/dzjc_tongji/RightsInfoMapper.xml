@@ -1,0 +1,453 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"><mapper namespace="com.chinacreator.dzjc_tongji.RightsInfoMapper">	
+
+<!-- ElementID:column_sql,Generated=false -->
+<sql id="column_sql">
+		  V_SP_RIGHTS_INFO.rights_id ,
+		  V_SP_RIGHTS_INFO.rights_code ,
+		  V_SP_RIGHTS_INFO.rights_name ,
+		  V_SP_RIGHTS_INFO.approve_type ,
+		  V_SP_RIGHTS_INFO.exercise_hierarchy ,
+		  V_SP_RIGHTS_INFO.sjs_num ,
+		  V_SP_RIGHTS_INFO.bjs_num ,
+		  V_SP_RIGHTS_INFO.red_num ,
+		  V_SP_RIGHTS_INFO.yellow_num ,
+		  V_SP_RIGHTS_INFO.green_num <!-- ,
+		  V_SP_RIGHTS_INFO.beginDate ,
+		  V_SP_RIGHTS_INFO.endDate ,
+		  V_SP_RIGHTS_INFO.jcBeginDate ,
+		  V_SP_RIGHTS_INFO.jcEndDate  -->
+</sql>
+
+<!-- ElementID:whereClause_sql,Generated=true -->
+<sql id="whereClause_sql">
+	    <if test="rightsId != null">and V_SP_RIGHTS_INFO.rights_id = #{rightsId}</if>
+	    <if test="rightsCode != null">and V_SP_RIGHTS_INFO.rights_code = #{rightsCode}</if>
+	    <if test="rightsName != null">and V_SP_RIGHTS_INFO.rights_name = #{rightsName}</if>
+	    <if test="approveType != null">and V_SP_RIGHTS_INFO.approve_type = #{approveType}</if>
+	    <if test="exerciseHierarchy != null">and V_SP_RIGHTS_INFO.exercise_hierarchy = #{exerciseHierarchy}</if>
+	    <if test="sjsNum != null">and V_SP_RIGHTS_INFO.sjs_num = #{sjsNum}</if>
+	    <if test="bjsNum != null">and V_SP_RIGHTS_INFO.bjs_num = #{bjsNum}</if>
+	    <if test="redNum != null">and V_SP_RIGHTS_INFO.red_num = #{redNum}</if>
+	    <if test="yellowNum != null">and V_SP_RIGHTS_INFO.yellow_num = #{yellowNum}</if>
+	    <if test="greenNum != null">and V_SP_RIGHTS_INFO.green_num = #{greenNum}</if>
+	    <if test="beginDate != null">and V_SP_RIGHTS_INFO.beginDate = #{beginDate}</if>
+	    <if test="endDate != null">and V_SP_RIGHTS_INFO.endDate = #{endDate}</if>
+	    <if test="jcBeginDate != null">and V_SP_RIGHTS_INFO.jcBeginDate = #{jcBeginDate}</if>
+	    <if test="jcEndDate != null">and V_SP_RIGHTS_INFO.jcEndDate = #{jcEndDate}</if>
+</sql>
+
+
+<!-- ElementID:RightsInfoResult,Generated=false -->
+<resultMap id="RightsInfoResult" type="com.chinacreator.dzjc_tongji.RightsInfo">
+	<id property="rightsId" column="rights_id"/>
+	<result property="rightsCode" column="rights_code"/>
+	<result property="rightsName" column="rights_name"/>
+	<result property="approveType" column="approve_type"/>
+	<result property="exerciseHierarchy" column="exercise_hierarchy"/>
+	<result property="sjsNum" column="sjs_num"/>
+	<result property="bjsNum" column="bjs_num"/>
+	<result property="redNum" column="red_num"/>
+	<result property="yellowNum" column="yellow_num"/>
+	<result property="greenNum" column="green_num"/>
+	<!-- <result property="beginDate" column="beginDate"/>
+	<result property="endDate" column="endDate"/>
+	<result property="jcBeginDate" column="jcBeginDate"/>
+	<result property="jcEndDate" column="jcEndDate"/> -->
+</resultMap>
+
+
+<!-- ElementID:insert,Generated=true -->
+<insert id="insert" parameterType="com.chinacreator.dzjc_tongji.RightsInfo">
+	insert into V_SP_RIGHTS_INFO(
+	         <if test="rightsId != null">rights_id</if>
+	         <if test="rightsCode != null">,rights_code</if>
+	         <if test="rightsName != null">,rights_name</if>
+	         <if test="approveType != null">,approve_type</if>
+	         <if test="exerciseHierarchy != null">,exercise_hierarchy</if>
+	         <if test="sjsNum != null">,sjs_num</if>
+	         <if test="bjsNum != null">,bjs_num</if>
+	         <if test="redNum != null">,red_num</if>
+	         <if test="yellowNum != null">,yellow_num</if>
+	         <if test="greenNum != null">,green_num</if>
+	         <if test="beginDate != null">,beginDate</if>
+	         <if test="endDate != null">,endDate</if>
+	         <if test="jcBeginDate != null">,jcBeginDate</if>
+	         <if test="jcEndDate != null">,jcEndDate</if>
+	 	 	 )
+	 values (
+	         <if test="rightsId != null">#{rightsId,jdbcType=VARCHAR}</if>
+	         <if test="rightsCode != null">,#{rightsCode,jdbcType=VARCHAR}</if>
+	         <if test="rightsName != null">,#{rightsName,jdbcType=VARCHAR}</if>
+	         <if test="approveType != null">,#{approveType,jdbcType=CHAR}</if>
+	         <if test="exerciseHierarchy != null">,#{exerciseHierarchy,jdbcType=CHAR}</if>
+	         <if test="sjsNum != null">,#{sjsNum,jdbcType=NUMERIC}</if>
+	         <if test="bjsNum != null">,#{bjsNum,jdbcType=NUMERIC}</if>
+	         <if test="redNum != null">,#{redNum,jdbcType=NUMERIC}</if>
+	         <if test="yellowNum != null">,#{yellowNum,jdbcType=NUMERIC}</if>
+	         <if test="greenNum != null">,#{greenNum,jdbcType=NUMERIC}</if>
+	         <if test="beginDate != null">,#{beginDate,jdbcType=DATE}</if>
+	         <if test="endDate != null">,#{endDate,jdbcType=DATE}</if>
+	         <if test="jcBeginDate != null">,#{jcBeginDate,jdbcType=DATE}</if>
+	         <if test="jcEndDate != null">,#{jcEndDate,jdbcType=DATE}</if>
+	 	 	 )
+</insert>
+
+<!-- ElementID:count,Generated=true -->
+<select id="count" parameterType="com.chinacreator.dzjc_tongji.RightsInfo" resultType="int">
+	select count(*) from V_SP_RIGHTS_INFO 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<!-- ElementID:update,Generated=true -->
+<update id="update" parameterType="com.chinacreator.dzjc_tongji.RightsInfo">
+	update V_SP_RIGHTS_INFO
+<set>
+	<if test="rightsCode != null">rights_code=#{rightsCode,jdbcType=VARCHAR},</if>
+	<if test="rightsName != null">rights_name=#{rightsName,jdbcType=VARCHAR},</if>
+	<if test="approveType != null">approve_type=#{approveType,jdbcType=CHAR},</if>
+	<if test="exerciseHierarchy != null">exercise_hierarchy=#{exerciseHierarchy,jdbcType=CHAR},</if>
+	<if test="sjsNum != null">sjs_num=#{sjsNum,jdbcType=NUMERIC},</if>
+	<if test="bjsNum != null">bjs_num=#{bjsNum,jdbcType=NUMERIC},</if>
+	<if test="redNum != null">red_num=#{redNum,jdbcType=NUMERIC},</if>
+	<if test="yellowNum != null">yellow_num=#{yellowNum,jdbcType=NUMERIC},</if>
+	<if test="greenNum != null">green_num=#{greenNum,jdbcType=NUMERIC},</if>
+	<if test="beginDate != null">beginDate=#{beginDate,jdbcType=DATE},</if>
+	<if test="endDate != null">endDate=#{endDate,jdbcType=DATE},</if>
+	<if test="jcBeginDate != null">jcBeginDate=#{jcBeginDate,jdbcType=DATE},</if>
+	<if test="jcEndDate != null">jcEndDate=#{jcEndDate,jdbcType=DATE}</if>
+</set>
+<where>
+	<choose>
+        <when test="rightsId != null">and rights_id = #{rightsId}</when>
+        <otherwise>and rights_id = </otherwise>
+    </choose>
+</where>
+</update>
+
+<!-- ElementID:updateNull,Generated=true -->
+<update id="updateNull" parameterType="map">
+	update V_SP_RIGHTS_INFO
+	<set>
+		<trim suffixOverrides=",">
+		    <if test="rightsCode==null">rights_code = null,</if>
+		    <if test="rightsName==null">rights_name = null,</if>
+		    <if test="approveType==null">approve_type = null,</if>
+		    <if test="exerciseHierarchy==null">exercise_hierarchy = null,</if>
+		    <if test="sjsNum==null">sjs_num = null,</if>
+		    <if test="bjsNum==null">bjs_num = null,</if>
+		    <if test="redNum==null">red_num = null,</if>
+		    <if test="yellowNum==null">yellow_num = null,</if>
+		    <if test="greenNum==null">green_num = null,</if>
+		    <if test="beginDate==null">beginDate = null,</if>
+		    <if test="endDate==null">endDate = null,</if>
+		    <if test="jcBeginDate==null">jcBeginDate = null,</if>
+		    <if test="jcEndDate==null">jcEndDate = null,</if>
+		</trim>
+	</set>
+	<where>
+		<choose>
+			<when test="rightsId != null">and rights_id = #{rightsId}</when>
+			<otherwise>and rights_id = </otherwise>
+		</choose>
+	</where>
+</update>
+
+<!-- ElementID:delete,Generated=true -->
+<delete id="delete" parameterType="com.chinacreator.dzjc_tongji.RightsInfo">
+    delete from V_SP_RIGHTS_INFO where 1=1 and rights_id = #{rightsId}
+</delete>
+
+<!-- ElementID:select,Generated=true -->
+<select id="select" parameterType="com.chinacreator.dzjc_tongji.RightsInfo" resultMap="RightsInfoResult">
+	select 
+		<include refid="column_sql"/>
+	    from V_SP_RIGHTS_INFO 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+
+<!-- ElementID:insertBatch,Generated=true -->
+<insert id="insertBatch" parameterType="list">
+	insert into V_SP_RIGHTS_INFO (rights_id,rights_code,rights_name,approve_type,exercise_hierarchy,sjs_num,bjs_num,red_num,yellow_num,green_num,beginDate,endDate,jcBeginDate,jcEndDate) 
+<foreach collection="list" item="entity" index="index" separator="union all">
+		select 
+		#{entity.rightsId,jdbcType = VARCHAR},
+				#{entity.rightsCode,jdbcType = VARCHAR},
+				#{entity.rightsName,jdbcType = VARCHAR},
+				#{entity.approveType,jdbcType = CHAR},
+				#{entity.exerciseHierarchy,jdbcType = CHAR},
+				#{entity.sjsNum,jdbcType = NUMERIC},
+				#{entity.bjsNum,jdbcType = NUMERIC},
+				#{entity.redNum,jdbcType = NUMERIC},
+				#{entity.yellowNum,jdbcType = NUMERIC},
+				#{entity.greenNum,jdbcType = NUMERIC},
+				#{entity.beginDate,jdbcType = DATE},
+				#{entity.endDate,jdbcType = DATE},
+				#{entity.jcBeginDate,jdbcType = DATE},
+				#{entity.jcEndDate,jdbcType = DATE}
+		from dual
+</foreach>
+</insert>
+
+<!-- ElementID:deleteBatch,Generated=true -->
+<delete id="deleteBatch" parameterType="List">
+	delete from V_SP_RIGHTS_INFO where rights_id in
+<trim prefix="(" suffix=")" suffixOverrides=",">
+<foreach collection="list" item="entity" separator=",">
+	<choose>
+		<when test="@com.chinacreator.c2.dao.util.EntityBeanUtil@isEntityObj(entity)">#{entity.rightsId}</when>
+		<otherwise>#{entity}</otherwise>
+	</choose>
+</foreach>
+</trim>
+</delete>
+
+<!-- ElementID:updateBatch,Generated=true -->
+<update id="updateBatch" parameterType="list">
+	<foreach collection="list" item="entity" open="begin" close=";end;" separator=";">
+			update V_SP_RIGHTS_INFO
+	<set>
+	<if test="entity.rightsCode != null">rights_code= #{entity.rightsCode,jdbcType=VARCHAR},</if>
+	<if test="entity.rightsName != null">rights_name= #{entity.rightsName,jdbcType=VARCHAR},</if>
+	<if test="entity.approveType != null">approve_type= #{entity.approveType,jdbcType=CHAR},</if>
+	<if test="entity.exerciseHierarchy != null">exercise_hierarchy= #{entity.exerciseHierarchy,jdbcType=CHAR},</if>
+	<if test="entity.sjsNum != null">sjs_num= #{entity.sjsNum,jdbcType=NUMERIC},</if>
+	<if test="entity.bjsNum != null">bjs_num= #{entity.bjsNum,jdbcType=NUMERIC},</if>
+	<if test="entity.redNum != null">red_num= #{entity.redNum,jdbcType=NUMERIC},</if>
+	<if test="entity.yellowNum != null">yellow_num= #{entity.yellowNum,jdbcType=NUMERIC},</if>
+	<if test="entity.greenNum != null">green_num= #{entity.greenNum,jdbcType=NUMERIC},</if>
+	<if test="entity.beginDate != null">beginDate= #{entity.beginDate,jdbcType=DATE},</if>
+	<if test="entity.endDate != null">endDate= #{entity.endDate,jdbcType=DATE},</if>
+	<if test="entity.jcBeginDate != null">jcBeginDate= #{entity.jcBeginDate,jdbcType=DATE},</if>
+	<if test="entity.jcEndDate != null">jcEndDate= #{entity.jcEndDate,jdbcType=DATE}</if>
+	</set>
+		<where>
+			<choose>
+				<when test="entity.rightsId != null">and rights_id = #{entity.rightsId}</when>
+				<otherwise>and rights_id = </otherwise>
+			</choose>
+		</where>
+	</foreach>
+</update>
+
+<!-- ElementID:selectAll,Generated=true -->
+<select id="selectAll" resultMap="RightsInfoResult">
+	select 
+		<include refid="column_sql"/>
+	    from V_SP_RIGHTS_INFO 
+</select>
+
+<!-- ElementID:selectMany,Generated=true -->
+<select id="selectMany" parameterType="list" resultMap="RightsInfoResult">
+select 
+	<include refid="column_sql"/> 
+	from V_SP_RIGHTS_INFO 
+	where V_SP_RIGHTS_INFO.rights_id in (
+<foreach collection="list" item="entity" separator="intersect">
+		select 
+		V_SP_RIGHTS_INFO.rights_id
+	    from V_SP_RIGHTS_INFO 
+		 <where>
+	        <if test="entity.rightsId != null">and V_SP_RIGHTS_INFO.rights_id = #{entity.rightsId}</if>
+	        <if test="entity.rightsCode != null">and V_SP_RIGHTS_INFO.rights_code = #{entity.rightsCode}</if>
+	        <if test="entity.rightsName != null">and V_SP_RIGHTS_INFO.rights_name = #{entity.rightsName}</if>
+	        <if test="entity.approveType != null">and V_SP_RIGHTS_INFO.approve_type = #{entity.approveType}</if>
+	        <if test="entity.exerciseHierarchy != null">and V_SP_RIGHTS_INFO.exercise_hierarchy = #{entity.exerciseHierarchy}</if>
+	        <if test="entity.sjsNum != null">and V_SP_RIGHTS_INFO.sjs_num = #{entity.sjsNum}</if>
+	        <if test="entity.bjsNum != null">and V_SP_RIGHTS_INFO.bjs_num = #{entity.bjsNum}</if>
+	        <if test="entity.redNum != null">and V_SP_RIGHTS_INFO.red_num = #{entity.redNum}</if>
+	        <if test="entity.yellowNum != null">and V_SP_RIGHTS_INFO.yellow_num = #{entity.yellowNum}</if>
+	        <if test="entity.greenNum != null">and V_SP_RIGHTS_INFO.green_num = #{entity.greenNum}</if>
+	        <if test="entity.beginDate != null">and V_SP_RIGHTS_INFO.beginDate = #{entity.beginDate}</if>
+	        <if test="entity.endDate != null">and V_SP_RIGHTS_INFO.endDate = #{entity.endDate}</if>
+	        <if test="entity.jcBeginDate != null">and V_SP_RIGHTS_INFO.jcBeginDate = #{entity.jcBeginDate}</if>
+	        <if test="entity.jcEndDate != null">and V_SP_RIGHTS_INFO.jcEndDate = #{entity.jcEndDate}</if>
+		</where>
+</foreach>
+)
+</select>
+
+<!-- ElementID:selectUnion,Generated=true -->
+<select id="selectUnion" parameterType="list" resultMap="RightsInfoResult">
+select 
+	<include refid="column_sql"/> 
+	from V_SP_RIGHTS_INFO 
+	 INNER JOIN
+<foreach collection="list" item="entity" separator="UNION" open="(" close=")">
+		SELECT 
+			 rights_id
+		FROM V_SP_RIGHTS_INFO 
+			<where>
+	        <if test="entity.rightsId != null">and V_SP_RIGHTS_INFO.rights_id = #{entity.rightsId}</if>
+	        <if test="entity.rightsCode != null">and V_SP_RIGHTS_INFO.rights_code = #{entity.rightsCode}</if>
+	        <if test="entity.rightsName != null">and V_SP_RIGHTS_INFO.rights_name = #{entity.rightsName}</if>
+	        <if test="entity.approveType != null">and V_SP_RIGHTS_INFO.approve_type = #{entity.approveType}</if>
+	        <if test="entity.exerciseHierarchy != null">and V_SP_RIGHTS_INFO.exercise_hierarchy = #{entity.exerciseHierarchy}</if>
+	        <if test="entity.sjsNum != null">and V_SP_RIGHTS_INFO.sjs_num = #{entity.sjsNum}</if>
+	        <if test="entity.bjsNum != null">and V_SP_RIGHTS_INFO.bjs_num = #{entity.bjsNum}</if>
+	        <if test="entity.redNum != null">and V_SP_RIGHTS_INFO.red_num = #{entity.redNum}</if>
+	        <if test="entity.yellowNum != null">and V_SP_RIGHTS_INFO.yellow_num = #{entity.yellowNum}</if>
+	        <if test="entity.greenNum != null">and V_SP_RIGHTS_INFO.green_num = #{entity.greenNum}</if>
+	        <if test="entity.beginDate != null">and V_SP_RIGHTS_INFO.beginDate = #{entity.beginDate}</if>
+	        <if test="entity.endDate != null">and V_SP_RIGHTS_INFO.endDate = #{entity.endDate}</if>
+	        <if test="entity.jcBeginDate != null">and V_SP_RIGHTS_INFO.jcBeginDate = #{entity.jcBeginDate}</if>
+	        <if test="entity.jcEndDate != null">and V_SP_RIGHTS_INFO.jcEndDate = #{entity.jcEndDate}</if>
+			</where>
+</foreach>
+	c2_temp_table ON V_SP_RIGHTS_INFO.rights_id = c2_temp_table.rights_id
+</select>
+
+<!-- ElementID:selectByID,Generated=true -->
+<select id="selectByID" parameterType="java.lang.String" resultMap="RightsInfoResult">
+	select 
+		<include refid="column_sql"/>
+	    from V_SP_RIGHTS_INFO 
+		 where V_SP_RIGHTS_INFO.rights_id = #{rightsId,jdbcType=VARCHAR}
+</select>
+
+<!-- ElementID:selectByPage,Generated=true -->
+<select id="selectByPage" parameterType="com.chinacreator.dzjc_tongji.RightsInfo" resultMap="RightsInfoResult">
+	select 
+		<include refid="column_sql"/>
+	    from V_SP_RIGHTS_INFO 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<select id="selectData" parameterType="com.chinacreator.dzjc_tongji.RightsInfo" resultMap="RightsInfoResult">
+
+select 
+  t1.rights_id,
+  t1.rights_code,
+  t1.rights_name,
+  t1.TYPE_CODE as approve_type,
+  t1.SCHEME_LEVELS as exercise_hierarchy,
+  nvl(t2.sjs_num,0) sjs_num,
+  nvl(t2.bjs_num,0) bjs_num,
+  nvl(t3.green_num,0) green_num,
+  nvl(t3.yellow_num,0) yellow_num,
+  nvl(t3.red_num,0) red_num
+from V_JC_RIGHTS_INFO t1 left join (
+      select 
+          t.rights_id,
+          sum(t.ACCEPT_NUM) as sjs_num,
+          sum(t.FINISH_NUM) as bjs_num
+      from TA_JC_SUM_APPROVE_INFO_DAY t
+	   <where>
+	       <if test="beginDate != null">
+	          and t.NOW_DATE &gt;= #{beginDate,jdbcType=VARCHAR}
+	       </if>
+	       <if test="endDate != null">
+	          and t.NOW_DATE &lt;= #{endDate,jdbcType=VARCHAR}
+	       </if>
+       </where>
+       group by t.rights_id
+) t2 on t1.rights_id = t2.rights_id
+left join (
+      select 
+          t1.rights_id,
+          sum(t1.SUPERVISE_GREEN_NUM) as green_num,
+          sum(t1.SUPERVISE_YELLO_NUM) as yellow_num,
+          sum(t1.SUPERVISE_RED_NUM) as red_num
+      from TA_JC_SUM_APPROVE_INFO_DAY t1 
+      <where>
+	       <if test="jcBeginDate != null">
+	          and t1.NOW_DATE &gt;= #{jcBeginDate,jdbcType=VARCHAR}
+	       </if>
+	       <if test="jcEndDate != null">
+	          and t1.NOW_DATE &lt;= #{jcEndDate,jdbcType=VARCHAR}
+	       </if>
+      </where>
+      group by t1.rights_id
+)t3 on t1.rights_id = t3.rights_id
+<where>
+      <if test="rightsCode != null">
+        and  rights_code = #{rightsCode,jdbcType=VARCHAR}
+      </if>
+      <if test="rightsName != null">
+        and  rights_name like #{rightsName,jdbcType=VARCHAR}
+      </if>
+      <if test="approveType != null">
+        and  TYPE_CODE = #{approveType,jdbcType=VARCHAR}
+      </if>
+      <if test="exerciseHierarchy != null">
+        and  SCHEME_LEVELS = #{exerciseHierarchy,jdbcType=VARCHAR}
+      </if>
+</where>
+order by bjs_num desc 
+
+<!-- select 
+  t1.rights_id,
+  t1.rights_code,
+  t1.rights_name,
+  t1.TYPE_CODE as approve_type,
+  t1.SCHEME_LEVELS as exercise_hierarchy,
+  nvl(t2.sjs_num,0) sjs_num,
+  nvl(t2.bjs_num,0) bjs_num,
+  nvl(t3.green_num,0) green_num,
+  nvl(t3.yellow_num,0) yellow_num,
+  nvl(t3.red_num,0) red_num
+from V_JC_RIGHTS_INFO t1 left join (
+      select 
+          t1.rights_id,
+          sum(1)as sjs_num,
+          sum(case when t.project_state in ( '2', '4', '5', '6', '7', '8') and t.end_time is not null then 1 else 0 end) as bjs_num
+       from ta_sp_instance t
+       inner join hncs_approve.ta_sp_approve_info t1
+       on t.approve_id = t1.approve_id
+       where t.accept_time is not null
+       and t.project_state in ('1', '2', '4', '5', '6', '7', '8')
+       <if test="beginDate != null">
+          and to_char(accept_time,'yyyy-MM-dd') &gt;= #{beginDate,jdbcType=VARCHAR}
+       </if>
+       <if test="endDate != null">
+         and  to_char(accept_time,'yyyy-MM-dd') &lt;= #{endDate,jdbcType=VARCHAR}
+       </if>
+       group by t1.rights_id
+) t2 on t1.rights_id = t2.rights_id
+left join (
+    select 
+          t3.rights_id,
+          sum(case when t1.supervise_result_no=1 then 1 else 0 end) green_num,
+          sum(case when t1.supervise_result_no=2 then 1 else 0 end) yellow_num,
+          sum(case when t1.supervise_result_no=3 then 1 else 0 end) red_num
+      from v_ta_jc_dev_supervise t1 
+      inner join ta_sp_instance t2 
+      on t1.business_id = t2.instance_id
+      inner join hncs_approve.ta_sp_approve_info t3
+       on t2.approve_id = t3.approve_id
+      where t1.business_type = '1'
+      and t1.isMaxSupervise = 'Y'
+      <if test="jcBeginDate != null">
+          and to_char(t1.supervise_time,'yyyy-MM-dd') &gt;= #{jcBeginDate,jdbcType=VARCHAR}
+       </if>
+       <if test="jcEndDate != null">
+         and  to_char(t1.supervise_time,'yyyy-MM-dd') &lt;= #{jcEndDate,jdbcType=VARCHAR}
+       </if>
+      group by t3.rights_id
+)t3 on t1.rights_id = t3.rights_id
+<where>
+      <if test="rightsCode != null">
+        and  rights_code = #{rightsCode,jdbcType=VARCHAR}
+      </if>
+      <if test="rightsName != null">
+        and  rights_name like #{rightsName,jdbcType=VARCHAR}
+      </if>
+      <if test="approveType != null">
+        and  TYPE_CODE = #{approveType,jdbcType=VARCHAR}
+      </if>
+      <if test="exerciseHierarchy != null">
+        and  SCHEME_LEVELS = #{exerciseHierarchy,jdbcType=VARCHAR}
+      </if>
+</where>
+order by bjs_num desc -->
+
+</select>
+
+</mapper>

@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"><mapper namespace="com.chinacreator.dzjc_ruleEngine.TacheViewMapper">	
+
+<!-- ElementID:column_sql,Generated=true -->
+<sql id="column_sql">
+		  V_TA_JC_TACHE.opinion_id ,
+		  V_TA_JC_TACHE.instance_id ,
+		  V_TA_JC_TACHE.tache_name ,
+		  V_TA_JC_TACHE.opinion_time ,
+		  V_TA_JC_TACHE.user_name ,
+		  V_TA_JC_TACHE.opinion_content ,
+		  V_TA_JC_TACHE.type ,
+		  V_TA_JC_TACHE.id ,
+		  V_TA_JC_TACHE.linkflag ,
+		  V_TA_JC_TACHE.hjtype 
+</sql>
+
+<!-- ElementID:whereClause_sql,Generated=true -->
+<sql id="whereClause_sql">
+	    <if test="opinionId != null">and V_TA_JC_TACHE.opinion_id = #{opinionId}</if>
+	    <if test="instanceId != null">and V_TA_JC_TACHE.instance_id = #{instanceId}</if>
+	    <if test="tacheName != null">and V_TA_JC_TACHE.tache_name = #{tacheName}</if>
+	    <if test="opinionTime != null">and V_TA_JC_TACHE.opinion_time = #{opinionTime}</if>
+	    <if test="userName != null">and V_TA_JC_TACHE.user_name = #{userName}</if>
+	    <if test="opinionContent != null">and V_TA_JC_TACHE.opinion_content = #{opinionContent}</if>
+	    <if test="type != null">and V_TA_JC_TACHE.type = #{type}</if>
+	    <if test="id != null">and V_TA_JC_TACHE.id = #{id}</if>
+	    <if test="linkflag != null">and V_TA_JC_TACHE.linkflag = #{linkflag}</if>
+	    <if test="hjtype != null">and V_TA_JC_TACHE.hjtype = #{hjtype}</if>
+</sql>
+
+
+<!-- ElementID:TacheViewResult,Generated=true -->
+<resultMap id="TacheViewResult" type="com.chinacreator.dzjc_ruleEngine.TacheView">
+	<id property="id" column="id"/>
+	<result property="opinionId" column="opinion_id"/>
+	<result property="instanceId" column="instance_id"/>
+	<result property="tacheName" column="tache_name"/>
+	<result property="opinionTime" column="opinion_time"/>
+	<result property="userName" column="user_name"/>
+	<result property="opinionContent" column="opinion_content"/>
+	<result property="type" column="type"/>
+	<result property="linkflag" column="linkflag"/>
+	<result property="hjtype" column="hjtype"/>
+</resultMap>
+
+
+<!-- ElementID:insert,Generated=true -->
+<insert id="insert" parameterType="com.chinacreator.dzjc_ruleEngine.TacheView">
+	insert into V_TA_JC_TACHE(
+	         <if test="opinionId != null">opinion_id</if>
+	         <if test="instanceId != null">,instance_id</if>
+	         <if test="tacheName != null">,tache_name</if>
+	         <if test="opinionTime != null">,opinion_time</if>
+	         <if test="userName != null">,user_name</if>
+	         <if test="opinionContent != null">,opinion_content</if>
+	         <if test="type != null">,type</if>
+	         <if test="id != null">,id</if>
+	         <if test="linkflag != null">,linkflag</if>
+	         <if test="hjtype != null">,hjtype</if>
+	 	 	 )
+	 values (
+	         <if test="opinionId != null">#{opinionId,jdbcType=VARCHAR}</if>
+	         <if test="instanceId != null">,#{instanceId,jdbcType=VARCHAR}</if>
+	         <if test="tacheName != null">,#{tacheName,jdbcType=VARCHAR}</if>
+	         <if test="opinionTime != null">,#{opinionTime,jdbcType=DATE}</if>
+	         <if test="userName != null">,#{userName,jdbcType=VARCHAR}</if>
+	         <if test="opinionContent != null">,#{opinionContent,jdbcType=VARCHAR}</if>
+	         <if test="type != null">,#{type,jdbcType=VARCHAR}</if>
+	         <if test="id != null">,#{id,jdbcType=VARCHAR}</if>
+	         <if test="linkflag != null">,#{linkflag,jdbcType=VARCHAR}</if>
+	         <if test="hjtype != null">,#{hjtype,jdbcType=VARCHAR}</if>
+	 	 	 )
+</insert>
+
+<!-- ElementID:count,Generated=true -->
+<select id="count" parameterType="com.chinacreator.dzjc_ruleEngine.TacheView" resultType="int">
+	select count(*) from V_TA_JC_TACHE 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<!-- ElementID:update,Generated=true -->
+<update id="update" parameterType="com.chinacreator.dzjc_ruleEngine.TacheView">
+	update V_TA_JC_TACHE
+<set>
+	<if test="opinionId != null">opinion_id=#{opinionId,jdbcType=VARCHAR},</if>
+	<if test="instanceId != null">instance_id=#{instanceId,jdbcType=VARCHAR},</if>
+	<if test="tacheName != null">tache_name=#{tacheName,jdbcType=VARCHAR},</if>
+	<if test="opinionTime != null">opinion_time=#{opinionTime,jdbcType=DATE},</if>
+	<if test="userName != null">user_name=#{userName,jdbcType=VARCHAR},</if>
+	<if test="opinionContent != null">opinion_content=#{opinionContent,jdbcType=VARCHAR},</if>
+	<if test="type != null">type=#{type,jdbcType=VARCHAR},</if>
+	<if test="linkflag != null">linkflag=#{linkflag,jdbcType=VARCHAR},</if>
+	<if test="hjtype != null">hjtype=#{hjtype,jdbcType=VARCHAR}</if>
+</set>
+<where>
+	<choose>
+        <when test="id != null">and id = #{id}</when>
+        <otherwise>and id = </otherwise>
+    </choose>
+</where>
+</update>
+
+<!-- ElementID:updateNull,Generated=true -->
+<update id="updateNull" parameterType="map">
+	update V_TA_JC_TACHE
+	<set>
+		<trim suffixOverrides=",">
+		    <if test="opinionId==null">opinion_id = null,</if>
+		    <if test="instanceId==null">instance_id = null,</if>
+		    <if test="tacheName==null">tache_name = null,</if>
+		    <if test="opinionTime==null">opinion_time = null,</if>
+		    <if test="userName==null">user_name = null,</if>
+		    <if test="opinionContent==null">opinion_content = null,</if>
+		    <if test="type==null">type = null,</if>
+		    <if test="linkflag==null">linkflag = null,</if>
+		    <if test="hjtype==null">hjtype = null,</if>
+		</trim>
+	</set>
+	<where>
+		<choose>
+			<when test="id != null">and id = #{id}</when>
+			<otherwise>and id = </otherwise>
+		</choose>
+	</where>
+</update>
+
+<!-- ElementID:delete,Generated=true -->
+<delete id="delete" parameterType="com.chinacreator.dzjc_ruleEngine.TacheView">
+    delete from V_TA_JC_TACHE where 1=1 and id = #{id}
+</delete>
+
+<!-- ElementID:select,Generated=true -->
+<select id="select" parameterType="com.chinacreator.dzjc_ruleEngine.TacheView" resultMap="TacheViewResult">
+	select 
+		<include refid="column_sql"/>
+	    from V_TA_JC_TACHE 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+
+<!-- ElementID:insertBatch,Generated=true -->
+<insert id="insertBatch" parameterType="list">
+	insert into V_TA_JC_TACHE (opinion_id,instance_id,tache_name,opinion_time,user_name,opinion_content,type,id,linkflag,hjtype) 
+<foreach collection="list" item="entity" index="index" separator="union all">
+		select 
+		#{entity.opinionId,jdbcType = VARCHAR},
+				#{entity.instanceId,jdbcType = VARCHAR},
+				#{entity.tacheName,jdbcType = VARCHAR},
+				#{entity.opinionTime,jdbcType = DATE},
+				#{entity.userName,jdbcType = VARCHAR},
+				#{entity.opinionContent,jdbcType = VARCHAR},
+				#{entity.type,jdbcType = VARCHAR},
+				#{entity.id,jdbcType = VARCHAR},
+				#{entity.linkflag,jdbcType = VARCHAR},
+				#{entity.hjtype,jdbcType = VARCHAR}
+		from dual
+</foreach>
+</insert>
+
+<!-- ElementID:deleteBatch,Generated=true -->
+<delete id="deleteBatch" parameterType="List">
+	delete from V_TA_JC_TACHE where id in
+<trim prefix="(" suffix=")" suffixOverrides=",">
+<foreach collection="list" item="entity" separator=",">
+	<choose>
+		<when test="@com.chinacreator.c2.dao.util.EntityBeanUtil@isEntityObj(entity)">#{entity.id}</when>
+		<otherwise>#{entity}</otherwise>
+	</choose>
+</foreach>
+</trim>
+</delete>
+
+<!-- ElementID:updateBatch,Generated=true -->
+<update id="updateBatch" parameterType="list">
+	<foreach collection="list" item="entity" open="begin" close=";end;" separator=";">
+			update V_TA_JC_TACHE
+	<set>
+	<if test="entity.opinionId != null">opinion_id= #{entity.opinionId,jdbcType=VARCHAR},</if>
+	<if test="entity.instanceId != null">instance_id= #{entity.instanceId,jdbcType=VARCHAR},</if>
+	<if test="entity.tacheName != null">tache_name= #{entity.tacheName,jdbcType=VARCHAR},</if>
+	<if test="entity.opinionTime != null">opinion_time= #{entity.opinionTime,jdbcType=DATE},</if>
+	<if test="entity.userName != null">user_name= #{entity.userName,jdbcType=VARCHAR},</if>
+	<if test="entity.opinionContent != null">opinion_content= #{entity.opinionContent,jdbcType=VARCHAR},</if>
+	<if test="entity.type != null">type= #{entity.type,jdbcType=VARCHAR},</if>
+	<if test="entity.linkflag != null">linkflag= #{entity.linkflag,jdbcType=VARCHAR},</if>
+	<if test="entity.hjtype != null">hjtype= #{entity.hjtype,jdbcType=VARCHAR}</if>
+	</set>
+		<where>
+			<choose>
+				<when test="entity.id != null">and id = #{entity.id}</when>
+				<otherwise>and id = </otherwise>
+			</choose>
+		</where>
+	</foreach>
+</update>
+
+<!-- ElementID:selectAll,Generated=true -->
+<select id="selectAll" resultMap="TacheViewResult">
+	select 
+		<include refid="column_sql"/>
+	    from V_TA_JC_TACHE 
+</select>
+
+<!-- ElementID:selectMany,Generated=true -->
+<select id="selectMany" parameterType="list" resultMap="TacheViewResult">
+select 
+	<include refid="column_sql"/> 
+	from V_TA_JC_TACHE 
+	where V_TA_JC_TACHE.id in (
+<foreach collection="list" item="entity" separator="intersect">
+		select 
+		V_TA_JC_TACHE.id
+	    from V_TA_JC_TACHE 
+		 <where>
+	        <if test="entity.opinionId != null">and V_TA_JC_TACHE.opinion_id = #{entity.opinionId}</if>
+	        <if test="entity.instanceId != null">and V_TA_JC_TACHE.instance_id = #{entity.instanceId}</if>
+	        <if test="entity.tacheName != null">and V_TA_JC_TACHE.tache_name = #{entity.tacheName}</if>
+	        <if test="entity.opinionTime != null">and V_TA_JC_TACHE.opinion_time = #{entity.opinionTime}</if>
+	        <if test="entity.userName != null">and V_TA_JC_TACHE.user_name = #{entity.userName}</if>
+	        <if test="entity.opinionContent != null">and V_TA_JC_TACHE.opinion_content = #{entity.opinionContent}</if>
+	        <if test="entity.type != null">and V_TA_JC_TACHE.type = #{entity.type}</if>
+	        <if test="entity.id != null">and V_TA_JC_TACHE.id = #{entity.id}</if>
+	        <if test="entity.linkflag != null">and V_TA_JC_TACHE.linkflag = #{entity.linkflag}</if>
+	        <if test="entity.hjtype != null">and V_TA_JC_TACHE.hjtype = #{entity.hjtype}</if>
+		</where>
+</foreach>
+)
+</select>
+
+<!-- ElementID:selectUnion,Generated=true -->
+<select id="selectUnion" parameterType="list" resultMap="TacheViewResult">
+select 
+	<include refid="column_sql"/> 
+	from V_TA_JC_TACHE 
+	 INNER JOIN
+<foreach collection="list" item="entity" separator="UNION" open="(" close=")">
+		SELECT 
+			 id
+		FROM V_TA_JC_TACHE 
+			<where>
+	        <if test="entity.opinionId != null">and V_TA_JC_TACHE.opinion_id = #{entity.opinionId}</if>
+	        <if test="entity.instanceId != null">and V_TA_JC_TACHE.instance_id = #{entity.instanceId}</if>
+	        <if test="entity.tacheName != null">and V_TA_JC_TACHE.tache_name = #{entity.tacheName}</if>
+	        <if test="entity.opinionTime != null">and V_TA_JC_TACHE.opinion_time = #{entity.opinionTime}</if>
+	        <if test="entity.userName != null">and V_TA_JC_TACHE.user_name = #{entity.userName}</if>
+	        <if test="entity.opinionContent != null">and V_TA_JC_TACHE.opinion_content = #{entity.opinionContent}</if>
+	        <if test="entity.type != null">and V_TA_JC_TACHE.type = #{entity.type}</if>
+	        <if test="entity.id != null">and V_TA_JC_TACHE.id = #{entity.id}</if>
+	        <if test="entity.linkflag != null">and V_TA_JC_TACHE.linkflag = #{entity.linkflag}</if>
+	        <if test="entity.hjtype != null">and V_TA_JC_TACHE.hjtype = #{entity.hjtype}</if>
+			</where>
+</foreach>
+	c2_temp_table ON V_TA_JC_TACHE.id = c2_temp_table.id
+</select>
+
+<!-- ElementID:selectByID,Generated=true -->
+<select id="selectByID" parameterType="java.lang.String" resultMap="TacheViewResult">
+	select 
+		<include refid="column_sql"/>
+	    from V_TA_JC_TACHE 
+		 where V_TA_JC_TACHE.id = #{id,jdbcType=VARCHAR}
+</select>
+
+<!-- ElementID:selectByPage,Generated=false -->
+<select id="selectByPage" parameterType="com.chinacreator.dzjc_ruleEngine.TacheView" resultMap="TacheViewResult">
+	select 
+		<include refid="column_sql"/>
+	    from V_TA_JC_TACHE 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+		order by opinion_time asc,hjtype asc
+</select>
+
+</mapper>

@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"><mapper namespace="com.chinacreator.dzjc_ruleEngine.ruleEngine.entity.JcAllbussinesSumMapper">	
+<!-- ElementID:column_sql,Generated=false -->
+<sql id="column_sql">
+	va_ta_jc_allbussiness_infoSum.bussiness_type,
+    va_ta_jc_allbussiness_infoSum.bussiness_id,
+    va_ta_jc_allbussiness_infoSum.bussiness_name,
+    va_ta_jc_allbussiness_infoSum.bussiness_time,
+    va_ta_jc_allbussiness_infoSum.org_id,
+    va_ta_jc_allbussiness_infoSum.org_name
+</sql>
+
+
+
+<!-- ElementID:whereClause_sql,Generated=false -->
+<sql id="whereClause_sql">
+	    <if test="bussinessType != null">and va_ta_jc_allbussiness_infoSum.bussiness_type = #{bussinessType}</if>
+	    <if test="bussinessName != null">and va_ta_jc_allbussiness_infoSum.bussiness_name = #{bussinessName}</if>
+	    <if test="orgId != null">and va_ta_jc_allbussiness_infoSum.org_id = #{orgId}</if>
+	    <if test="bussinessTime != null">and va_ta_jc_allbussiness_infoSum.bussiness_time = #{bussinessTime}</if>
+	    <if test="beginDate != null">and va_ta_jc_allbussiness_infoSum.bussiness_time &gt;= #{beginDate}</if>
+	    <if test="endDate != null">and va_ta_jc_allbussiness_infoSum.bussiness_time &lt;= #{endDate}</if> 
+</sql>
+
+
+
+
+<!-- ElementID:SuperviseInfoInstanceResult,Generated=true -->
+<resultMap id="JCAllBussinessSumInfoResult" type="com.chinacreator.dzjc_ruleEngine.ruleEngine.entity.JcAllbussinesSum">
+	<id property="bussinessId" column="bussiness_id"/>
+	<result property="bussinessType" column="bussiness_type"/>
+	<result property="bussinessName" column="bussiness_name"/>
+	<result property="bussinessTime" column="bussiness_time"/>
+	<result property="orgId" column="org_id"/>
+	<result property="orgName" column="org_name"/>
+</resultMap>
+
+<!-- ElementID:selectByID,Generated=false -->
+<select id="selectByID" parameterType="java.lang.String" resultMap="JCAllBussinessSumInfoResult">
+	select 
+		<include refid="column_sql"/>
+	    from va_ta_jc_allbussiness_infoSum 
+		where va_ta_jc_allbussiness_infoSum.bussiness_id = #{bussinessId,jdbcType=VARCHAR}
+</select>
+
+
+<!-- ElementID:selectByPage,Generated=false -->
+<select id="selectByPage" parameterType="com.chinacreator.dzjc_ruleEngine.ruleEngine.entity.JcAllbussinesSum" resultMap="JCAllBussinessSumInfoResult">
+
+		select 
+		<include refid="column_sql"/>
+	    from va_ta_jc_allbussiness_infoSum 
+	    <where>
+	    	<include refid="whereClause_sql"/>
+	    </where>
+	
+</select>
+
+<!-- ElementID:selectAll,Generated=false -->
+<select id="selectAll" parameterType="java.util.HashMap" resultMap="JCAllBussinessSumInfoResult">
+      SELECT bussiness_type, bussiness_id, bussiness_name, bussiness_time,org_id, org_name FROM(
+　　    		SELECT ROWNUM rn,
+             t1.bussiness_type, t1.bussiness_id, t1.bussiness_name, t1.bussiness_time,
+                      t1.org_id, t1.org_name FROM(
+　　           		select t.bussiness_type, t.bussiness_id, t.bussiness_name, t.bussiness_time,
+                      t.org_id, t.org_name 
+　　                  	from va_ta_jc_allbussiness_infoSum t 
+
+　　                  order by t.bussiness_id asc 
+　　                  )t1 WHERE ROWNUM &lt;= #{endIndex}
+　　  ) WHERE rn &gt; #{startIndex}
+</select>
+
+<!-- ElementID:selectAll,Generated=false -->
+<select id="selectConsult" parameterType="java.util.HashMap" resultMap="JCAllBussinessSumInfoResult">
+      SELECT bussiness_type, bussiness_id, bussiness_name, bussiness_time,org_id, org_name FROM(
+　　    		SELECT ROWNUM rn,
+             t1.bussiness_type, t1.bussiness_id, t1.bussiness_name, t1.bussiness_time,
+                      t1.org_id, t1.org_name FROM(
+　　           		select t.bussiness_type, t.bussiness_id, t.bussiness_name, t.bussiness_time,
+                      t.org_id, t.org_name 
+　　                  	from va_ta_jc_consult_supervise t 
+　　                  order by t.bussiness_id asc 
+　　                  )t1 WHERE ROWNUM &lt;= #{endIndex}
+　　  ) WHERE rn &gt; #{startIndex}
+</select>
+
+<select id="selectCount" resultType="int">
+	select count(*) from va_ta_jc_allbussiness_infoSum 
+</select>
+
+<select id="selectConsultCount" resultType="int">
+	select count(*) from va_ta_jc_consult_supervise 
+</select>
+
+<!-- ElementID:JcAllbussinesSumResult,Generated=true -->
+<resultMap id="JcAllbussinesSumResult" type="com.chinacreator.dzjc_ruleEngine.ruleEngine.entity.JcAllbussinesSum">
+	<id property="bussinessId" column="bussiness_id"/>
+	<result property="bussinessName" column="bussiness_name"/>
+	<result property="bussinessTime" column="bussiness_time"/>
+	<result property="orgId" column="org_id"/>
+	<result property="orgName" column="org_name"/>
+</resultMap>
+<!-- ElementID:cache,Generated=true -->
+<!-- <cache type="C2_Default_Dao_Cache" /> -->
+<!-- ElementID:insert,Generated=true -->
+<insert id="insert" parameterType="com.chinacreator.dzjc_ruleEngine.ruleEngine.entity.JcAllbussinesSum">
+	insert into VA_TA_JC_ALLBUSSINESS_INFOSUM(
+	         <if test="bussinessType != null">bussiness_type</if>
+	         <if test="bussinessId != null">,bussiness_id</if>
+	         <if test="bussinessName != null">,bussiness_name</if>
+	         <if test="bussinessTime != null">,bussiness_time</if>
+	         <if test="orgId != null">,org_id</if>
+	         <if test="orgName != null">,org_name</if>
+	 	 	 )
+	 values (
+	         <if test="bussinessType != null">#{bussinessType,jdbcType=VARCHAR}</if>
+	         <if test="bussinessId != null">,#{bussinessId,jdbcType=VARCHAR}</if>
+	         <if test="bussinessName != null">,#{bussinessName,jdbcType=VARCHAR}</if>
+	         <if test="bussinessTime != null">,#{bussinessTime,jdbcType=DATE}</if>
+	         <if test="orgId != null">,#{orgId,jdbcType=VARCHAR}</if>
+	         <if test="orgName != null">,#{orgName,jdbcType=VARCHAR}</if>
+	 	 	 )
+</insert>
+<!-- ElementID:count,Generated=true -->
+<select id="count" parameterType="com.chinacreator.dzjc_ruleEngine.ruleEngine.entity.JcAllbussinesSum" resultType="int">
+	select count(*) from VA_TA_JC_ALLBUSSINESS_INFOSUM 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+<!-- ElementID:update,Generated=true -->
+<update id="update" parameterType="com.chinacreator.dzjc_ruleEngine.ruleEngine.entity.JcAllbussinesSum">
+	update VA_TA_JC_ALLBUSSINESS_INFOSUM
+<set>
+	<if test="bussinessName != null">bussiness_name=#{bussinessName,jdbcType=VARCHAR},</if>
+	<if test="bussinessTime != null">bussiness_time=#{bussinessTime,jdbcType=DATE},</if>
+	<if test="orgId != null">org_id=#{orgId,jdbcType=VARCHAR},</if>
+	<if test="orgName != null">org_name=#{orgName,jdbcType=VARCHAR}</if>
+</set>
+<where>
+	<choose>
+        <when test="bussinessId != null">and bussiness_id = #{bussinessId}</when>
+        <otherwise>and bussiness_id = </otherwise>
+    </choose>
+</where>
+</update>
+<!-- ElementID:updateNull,Generated=true -->
+<update id="updateNull" parameterType="map">
+	update VA_TA_JC_ALLBUSSINESS_INFOSUM
+	<set>
+		<trim suffixOverrides=",">
+		    <if test="bussinessName==null">bussiness_name = null,</if>
+		    <if test="bussinessTime==null">bussiness_time = null,</if>
+		    <if test="orgId==null">org_id = null,</if>
+		    <if test="orgName==null">org_name = null,</if>
+		</trim>
+	</set>
+	<where>
+		<choose>
+			<when test="bussinessId != null">and bussiness_id = #{bussinessId}</when>
+			<otherwise>and bussiness_id = </otherwise>
+		</choose>
+	</where>
+</update>
+<!-- ElementID:delete,Generated=true -->
+<delete id="delete" parameterType="com.chinacreator.dzjc_ruleEngine.ruleEngine.entity.JcAllbussinesSum">
+    delete from VA_TA_JC_ALLBUSSINESS_INFOSUM where 1=1 and bussiness_id = #{bussinessId}
+</delete>
+<!-- ElementID:select,Generated=true -->
+<select id="select" parameterType="com.chinacreator.dzjc_ruleEngine.ruleEngine.entity.JcAllbussinesSum" resultMap="JcAllbussinesSumResult">
+	select 
+		<include refid="column_sql"/>
+	    from VA_TA_JC_ALLBUSSINESS_INFOSUM 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+<!-- ElementID:insertBatch,Generated=true -->
+<insert id="insertBatch" parameterType="list">
+	insert into VA_TA_JC_ALLBUSSINESS_INFOSUM (bussiness_type,bussiness_id,bussiness_name,bussiness_time,org_id,org_name) 
+<foreach collection="list" item="entity" index="index" separator="union all">
+		select 
+		#{entity.bussinessType,jdbcType = VARCHAR},
+				#{entity.bussinessId,jdbcType = VARCHAR},
+				#{entity.bussinessName,jdbcType = VARCHAR},
+				#{entity.bussinessTime,jdbcType = DATE},
+				#{entity.orgId,jdbcType = VARCHAR},
+				#{entity.orgName,jdbcType = VARCHAR}
+		from dual
+</foreach>
+</insert>
+<!-- ElementID:deleteBatch,Generated=true -->
+<delete id="deleteBatch" parameterType="List">
+	delete from VA_TA_JC_ALLBUSSINESS_INFOSUM where bussiness_id in
+<trim prefix="(" suffix=")" suffixOverrides=",">
+<foreach collection="list" item="entity" separator=",">
+	<choose>
+		<when test="@com.chinacreator.c2.dao.util.EntityBeanUtil@isEntityObj(entity)">#{entity.bussinessId}</when>
+		<otherwise>#{entity}</otherwise>
+	</choose>
+</foreach>
+</trim>
+</delete>
+<!-- ElementID:updateBatch,Generated=true -->
+<update id="updateBatch" parameterType="list">
+	<foreach collection="list" item="entity" open="begin" close=";end;" separator=";">
+			update VA_TA_JC_ALLBUSSINESS_INFOSUM
+	<set>
+	<if test="entity.bussinessName != null">bussiness_name= #{entity.bussinessName,jdbcType=VARCHAR},</if>
+	<if test="entity.bussinessTime != null">bussiness_time= #{entity.bussinessTime,jdbcType=DATE},</if>
+	<if test="entity.orgId != null">org_id= #{entity.orgId,jdbcType=VARCHAR},</if>
+	<if test="entity.orgName != null">org_name= #{entity.orgName,jdbcType=VARCHAR}</if>
+	</set>
+		<where>
+			<choose>
+				<when test="entity.bussinessId != null">and bussiness_id = #{entity.bussinessId}</when>
+				<otherwise>and bussiness_id = </otherwise>
+			</choose>
+		</where>
+	</foreach>
+</update>
+<!-- ElementID:selectMany,Generated=true -->
+<select id="selectMany" parameterType="list" resultMap="JcAllbussinesSumResult">
+select 
+	<include refid="column_sql"/> 
+	from VA_TA_JC_ALLBUSSINESS_INFOSUM 
+	where VA_TA_JC_ALLBUSSINESS_INFOSUM.bussiness_id in (
+<foreach collection="list" item="entity" separator="intersect">
+		select 
+		VA_TA_JC_ALLBUSSINESS_INFOSUM.bussiness_id
+	    from VA_TA_JC_ALLBUSSINESS_INFOSUM 
+		 <where>
+	        <if test="entity.bussinessType != null">and VA_TA_JC_ALLBUSSINESS_INFOSUM.bussiness_type = #{entity.bussinessType}</if>
+	        <if test="entity.bussinessId != null">and VA_TA_JC_ALLBUSSINESS_INFOSUM.bussiness_id = #{entity.bussinessId}</if>
+	        <if test="entity.bussinessName != null">and VA_TA_JC_ALLBUSSINESS_INFOSUM.bussiness_name = #{entity.bussinessName}</if>
+	        <if test="entity.bussinessTime != null">and VA_TA_JC_ALLBUSSINESS_INFOSUM.bussiness_time = #{entity.bussinessTime}</if>
+	        <if test="entity.orgId != null">and VA_TA_JC_ALLBUSSINESS_INFOSUM.org_id = #{entity.orgId}</if>
+	        <if test="entity.orgName != null">and VA_TA_JC_ALLBUSSINESS_INFOSUM.org_name = #{entity.orgName}</if>
+		</where>
+</foreach>
+)
+</select>
+<!-- ElementID:selectUnion,Generated=true -->
+<select id="selectUnion" parameterType="list" resultMap="JcAllbussinesSumResult">
+select 
+	<include refid="column_sql"/> 
+	from VA_TA_JC_ALLBUSSINESS_INFOSUM 
+	 INNER JOIN
+<foreach collection="list" item="entity" separator="UNION" open="(" close=")">
+		SELECT 
+			 bussiness_id
+		FROM VA_TA_JC_ALLBUSSINESS_INFOSUM 
+			<where>
+	        <if test="entity.bussinessType != null">and VA_TA_JC_ALLBUSSINESS_INFOSUM.bussiness_type = #{entity.bussinessType}</if>
+	        <if test="entity.bussinessId != null">and VA_TA_JC_ALLBUSSINESS_INFOSUM.bussiness_id = #{entity.bussinessId}</if>
+	        <if test="entity.bussinessName != null">and VA_TA_JC_ALLBUSSINESS_INFOSUM.bussiness_name = #{entity.bussinessName}</if>
+	        <if test="entity.bussinessTime != null">and VA_TA_JC_ALLBUSSINESS_INFOSUM.bussiness_time = #{entity.bussinessTime}</if>
+	        <if test="entity.orgId != null">and VA_TA_JC_ALLBUSSINESS_INFOSUM.org_id = #{entity.orgId}</if>
+	        <if test="entity.orgName != null">and VA_TA_JC_ALLBUSSINESS_INFOSUM.org_name = #{entity.orgName}</if>
+			</where>
+</foreach>
+	c2_temp_table ON VA_TA_JC_ALLBUSSINESS_INFOSUM.bussiness_id = c2_temp_table.bussiness_id
+</select>
+</mapper>

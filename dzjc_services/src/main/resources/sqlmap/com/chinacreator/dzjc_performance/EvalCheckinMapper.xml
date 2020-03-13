@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"><mapper namespace="com.chinacreator.dzjc_performance.EvalCheckinMapper">	
+
+<!-- ElementID:column_sql,Generated=true -->
+<sql id="column_sql">
+		  TA_JC_EVAL_CHECKIN.record_id ,
+		  TA_JC_EVAL_CHECKIN.org_code ,
+		  TA_JC_EVAL_CHECKIN.evaluate_point_no ,
+		  TA_JC_EVAL_CHECKIN.evaluate_explain ,
+		  TA_JC_EVAL_CHECKIN.evaluate_time ,
+		  TA_JC_EVAL_CHECKIN.evaluate_man ,
+		  TA_JC_EVAL_CHECKIN.cc_form_instanceid ,
+		  TA_JC_EVAL_CHECKIN.area_code ,
+		  TA_JC_EVAL_CHECKIN.org_id 
+</sql>
+
+<!-- ElementID:whereClause_sql,Generated=true -->
+<sql id="whereClause_sql">
+	    <if test="recordId != null">and TA_JC_EVAL_CHECKIN.record_id = #{recordId}</if>
+	    <if test="orgCode != null">and TA_JC_EVAL_CHECKIN.org_code = #{orgCode}</if>
+	    <if test="evaluatePointNo != null">and TA_JC_EVAL_CHECKIN.evaluate_point_no = #{evaluatePointNo}</if>
+	    <if test="evaluateExplain != null">and TA_JC_EVAL_CHECKIN.evaluate_explain = #{evaluateExplain}</if>
+	    <if test="evaluateTime != null">and TA_JC_EVAL_CHECKIN.evaluate_time = #{evaluateTime}</if>
+	    <if test="evaluateMan != null">and TA_JC_EVAL_CHECKIN.evaluate_man = #{evaluateMan}</if>
+	    <if test="ccFormInstanceid != null">and TA_JC_EVAL_CHECKIN.cc_form_instanceid = #{ccFormInstanceid}</if>
+	    <if test="areaCode != null">and TA_JC_EVAL_CHECKIN.area_code = #{areaCode}</if>
+	    <if test="orgId != null">and TA_JC_EVAL_CHECKIN.org_id = #{orgId}</if>
+</sql>
+
+
+<!-- ElementID:EvalCheckinResult,Generated=true -->
+<resultMap id="EvalCheckinResult" type="com.chinacreator.dzjc_performance.EvalCheckin">
+	<id property="recordId" column="record_id"/>
+	<result property="orgCode" column="org_code"/>
+	<result property="evaluatePointNo" column="evaluate_point_no"/>
+	<result property="evaluateExplain" column="evaluate_explain"/>
+	<result property="evaluateTime" column="evaluate_time"/>
+	<result property="evaluateMan" column="evaluate_man"/>
+	<result property="ccFormInstanceid" column="cc_form_instanceid"/>
+	<result property="areaCode" column="area_code"/>
+	<result property="orgId" column="org_id"/>
+</resultMap>
+
+<!-- Generated=false -->                 
+<resultMap id="EvalCheckinResult2" type="com.chinacreator.dzjc_performance.EvalCheckinExp">
+    <id property="recordId" column="record_id"/>
+    <result property="orgCode" column="org_code"/>
+    <result property="evaluatePointNo" column="evaluate_point_no"/>
+    <result property="evaluateExplain" column="evaluate_explain"/>
+    <result property="evaluateTime" column="evaluate_time"/>
+    <result property="evaluateMan" column="evaluate_man"/>
+    <result property="ccFormInstanceid" column="cc_form_instanceid"/>
+    <result property="areaCode" column="area_code"/>
+    <result property="orgId" column="org_id"/>
+    <result property="orgName" column="org_name"/>
+    <result property="version" column="version"/>
+    <result property="pointName" column="point_name"/>
+</resultMap>
+
+<!-- ElementID:insert,Generated=true -->
+<insert id="insert" parameterType="com.chinacreator.dzjc_performance.EvalCheckin">
+	insert into TA_JC_EVAL_CHECKIN(
+	         <if test="recordId != null">record_id</if>
+	         <if test="orgCode != null">,org_code</if>
+	         <if test="evaluatePointNo != null">,evaluate_point_no</if>
+	         <if test="evaluateExplain != null">,evaluate_explain</if>
+	         <if test="evaluateTime != null">,evaluate_time</if>
+	         <if test="evaluateMan != null">,evaluate_man</if>
+	         <if test="ccFormInstanceid != null">,cc_form_instanceid</if>
+	         <if test="areaCode != null">,area_code</if>
+	         <if test="orgId != null">,org_id</if>
+	 	 	 )
+	 values (
+	         <if test="recordId != null">#{recordId,jdbcType=VARCHAR}</if>
+	         <if test="orgCode != null">,#{orgCode,jdbcType=VARCHAR}</if>
+	         <if test="evaluatePointNo != null">,#{evaluatePointNo,jdbcType=VARCHAR}</if>
+	         <if test="evaluateExplain != null">,#{evaluateExplain,jdbcType=VARCHAR}</if>
+	         <if test="evaluateTime != null">,#{evaluateTime,jdbcType=DATE}</if>
+	         <if test="evaluateMan != null">,#{evaluateMan,jdbcType=VARCHAR}</if>
+	         <if test="ccFormInstanceid != null">,#{ccFormInstanceid,jdbcType=VARCHAR}</if>
+	         <if test="areaCode != null">,#{areaCode,jdbcType=VARCHAR}</if>
+	         <if test="orgId != null">,#{orgId,jdbcType=VARCHAR}</if>
+	 	 	 )
+</insert>
+
+<!-- ElementID:count,Generated=true -->
+<select id="count" parameterType="com.chinacreator.dzjc_performance.EvalCheckin" resultType="int">
+	select count(*) from TA_JC_EVAL_CHECKIN 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<!-- ElementID:update,Generated=true -->
+<update id="update" parameterType="com.chinacreator.dzjc_performance.EvalCheckin">
+	update TA_JC_EVAL_CHECKIN
+<set>
+	<if test="orgCode != null">org_code=#{orgCode,jdbcType=VARCHAR},</if>
+	<if test="evaluatePointNo != null">evaluate_point_no=#{evaluatePointNo,jdbcType=VARCHAR},</if>
+	<if test="evaluateExplain != null">evaluate_explain=#{evaluateExplain,jdbcType=VARCHAR},</if>
+	<if test="evaluateTime != null">evaluate_time=#{evaluateTime,jdbcType=DATE},</if>
+	<if test="evaluateMan != null">evaluate_man=#{evaluateMan,jdbcType=VARCHAR},</if>
+	<if test="ccFormInstanceid != null">cc_form_instanceid=#{ccFormInstanceid,jdbcType=VARCHAR},</if>
+	<if test="areaCode != null">area_code=#{areaCode,jdbcType=VARCHAR},</if>
+	<if test="orgId != null">org_id=#{orgId,jdbcType=VARCHAR}</if>
+</set>
+<where>
+	<choose>
+        <when test="recordId != null">and record_id = #{recordId}</when>
+        <otherwise>and record_id = </otherwise>
+    </choose>
+</where>
+</update>
+
+<!-- ElementID:updateNull,Generated=true -->
+<update id="updateNull" parameterType="map">
+	update TA_JC_EVAL_CHECKIN
+	<set>
+		<trim suffixOverrides=",">
+		    <if test="orgCode==null">org_code = null,</if>
+		    <if test="evaluatePointNo==null">evaluate_point_no = null,</if>
+		    <if test="evaluateExplain==null">evaluate_explain = null,</if>
+		    <if test="evaluateTime==null">evaluate_time = null,</if>
+		    <if test="evaluateMan==null">evaluate_man = null,</if>
+		    <if test="ccFormInstanceid==null">cc_form_instanceid = null,</if>
+		    <if test="areaCode==null">area_code = null,</if>
+		    <if test="orgId==null">org_id = null,</if>
+		</trim>
+	</set>
+	<where>
+		<choose>
+			<when test="recordId != null">and record_id = #{recordId}</when>
+			<otherwise>and record_id = </otherwise>
+		</choose>
+	</where>
+</update>
+
+<!-- ElementID:delete,Generated=true -->
+<delete id="delete" parameterType="com.chinacreator.dzjc_performance.EvalCheckin">
+    delete from TA_JC_EVAL_CHECKIN where 1=1 and record_id = #{recordId}
+</delete>
+
+<!-- ElementID:select,Generated=true -->
+<select id="select" parameterType="com.chinacreator.dzjc_performance.EvalCheckin" resultMap="EvalCheckinResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_EVAL_CHECKIN 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+
+<!-- ElementID:insertBatch,Generated=true -->
+<insert id="insertBatch" parameterType="list">
+	insert into TA_JC_EVAL_CHECKIN (record_id,org_code,evaluate_point_no,evaluate_explain,evaluate_time,evaluate_man,cc_form_instanceid,area_code,org_id) 
+<foreach collection="list" item="entity" index="index" separator="union all">
+		select 
+		#{entity.recordId,jdbcType = VARCHAR},
+				#{entity.orgCode,jdbcType = VARCHAR},
+				#{entity.evaluatePointNo,jdbcType = VARCHAR},
+				#{entity.evaluateExplain,jdbcType = VARCHAR},
+				#{entity.evaluateTime,jdbcType = DATE},
+				#{entity.evaluateMan,jdbcType = VARCHAR},
+				#{entity.ccFormInstanceid,jdbcType = VARCHAR},
+				#{entity.areaCode,jdbcType = VARCHAR},
+				#{entity.orgId,jdbcType = VARCHAR}
+		from dual
+</foreach>
+</insert>
+
+<!-- ElementID:deleteBatch,Generated=true -->
+<delete id="deleteBatch" parameterType="List">
+	delete from TA_JC_EVAL_CHECKIN where record_id in
+<trim prefix="(" suffix=")" suffixOverrides=",">
+<foreach collection="list" item="entity" separator=",">
+	<choose>
+		<when test="@com.chinacreator.c2.dao.util.EntityBeanUtil@isEntityObj(entity)">#{entity.recordId}</when>
+		<otherwise>#{entity}</otherwise>
+	</choose>
+</foreach>
+</trim>
+</delete>
+
+<!-- ElementID:updateBatch,Generated=true -->
+<update id="updateBatch" parameterType="list">
+	<foreach collection="list" item="entity" open="begin" close=";end;" separator=";">
+			update TA_JC_EVAL_CHECKIN
+	<set>
+	<if test="entity.orgCode != null">org_code= #{entity.orgCode,jdbcType=VARCHAR},</if>
+	<if test="entity.evaluatePointNo != null">evaluate_point_no= #{entity.evaluatePointNo,jdbcType=VARCHAR},</if>
+	<if test="entity.evaluateExplain != null">evaluate_explain= #{entity.evaluateExplain,jdbcType=VARCHAR},</if>
+	<if test="entity.evaluateTime != null">evaluate_time= #{entity.evaluateTime,jdbcType=DATE},</if>
+	<if test="entity.evaluateMan != null">evaluate_man= #{entity.evaluateMan,jdbcType=VARCHAR},</if>
+	<if test="entity.ccFormInstanceid != null">cc_form_instanceid= #{entity.ccFormInstanceid,jdbcType=VARCHAR},</if>
+	<if test="entity.areaCode != null">area_code= #{entity.areaCode,jdbcType=VARCHAR},</if>
+	<if test="entity.orgId != null">org_id= #{entity.orgId,jdbcType=VARCHAR}</if>
+	</set>
+		<where>
+			<choose>
+				<when test="entity.recordId != null">and record_id = #{entity.recordId}</when>
+				<otherwise>and record_id = </otherwise>
+			</choose>
+		</where>
+	</foreach>
+</update>
+
+<!-- ElementID:selectAll,Generated=true -->
+<select id="selectAll" resultMap="EvalCheckinResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_EVAL_CHECKIN 
+</select>
+
+<!-- ElementID:selectMany,Generated=true -->
+<select id="selectMany" parameterType="list" resultMap="EvalCheckinResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_JC_EVAL_CHECKIN 
+	where TA_JC_EVAL_CHECKIN.record_id in (
+<foreach collection="list" item="entity" separator="intersect">
+		select 
+		TA_JC_EVAL_CHECKIN.record_id
+	    from TA_JC_EVAL_CHECKIN 
+		 <where>
+	        <if test="entity.recordId != null">and TA_JC_EVAL_CHECKIN.record_id = #{entity.recordId}</if>
+	        <if test="entity.orgCode != null">and TA_JC_EVAL_CHECKIN.org_code = #{entity.orgCode}</if>
+	        <if test="entity.evaluatePointNo != null">and TA_JC_EVAL_CHECKIN.evaluate_point_no = #{entity.evaluatePointNo}</if>
+	        <if test="entity.evaluateExplain != null">and TA_JC_EVAL_CHECKIN.evaluate_explain = #{entity.evaluateExplain}</if>
+	        <if test="entity.evaluateTime != null">and TA_JC_EVAL_CHECKIN.evaluate_time = #{entity.evaluateTime}</if>
+	        <if test="entity.evaluateMan != null">and TA_JC_EVAL_CHECKIN.evaluate_man = #{entity.evaluateMan}</if>
+	        <if test="entity.ccFormInstanceid != null">and TA_JC_EVAL_CHECKIN.cc_form_instanceid = #{entity.ccFormInstanceid}</if>
+	        <if test="entity.areaCode != null">and TA_JC_EVAL_CHECKIN.area_code = #{entity.areaCode}</if>
+	        <if test="entity.orgId != null">and TA_JC_EVAL_CHECKIN.org_id = #{entity.orgId}</if>
+		</where>
+</foreach>
+)
+</select>
+
+<!-- ElementID:selectUnion,Generated=true -->
+<select id="selectUnion" parameterType="list" resultMap="EvalCheckinResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_JC_EVAL_CHECKIN 
+	 INNER JOIN
+<foreach collection="list" item="entity" separator="UNION" open="(" close=")">
+		SELECT 
+			 record_id
+		FROM TA_JC_EVAL_CHECKIN 
+			<where>
+	        <if test="entity.recordId != null">and TA_JC_EVAL_CHECKIN.record_id = #{entity.recordId}</if>
+	        <if test="entity.orgCode != null">and TA_JC_EVAL_CHECKIN.org_code = #{entity.orgCode}</if>
+	        <if test="entity.evaluatePointNo != null">and TA_JC_EVAL_CHECKIN.evaluate_point_no = #{entity.evaluatePointNo}</if>
+	        <if test="entity.evaluateExplain != null">and TA_JC_EVAL_CHECKIN.evaluate_explain = #{entity.evaluateExplain}</if>
+	        <if test="entity.evaluateTime != null">and TA_JC_EVAL_CHECKIN.evaluate_time = #{entity.evaluateTime}</if>
+	        <if test="entity.evaluateMan != null">and TA_JC_EVAL_CHECKIN.evaluate_man = #{entity.evaluateMan}</if>
+	        <if test="entity.ccFormInstanceid != null">and TA_JC_EVAL_CHECKIN.cc_form_instanceid = #{entity.ccFormInstanceid}</if>
+	        <if test="entity.areaCode != null">and TA_JC_EVAL_CHECKIN.area_code = #{entity.areaCode}</if>
+	        <if test="entity.orgId != null">and TA_JC_EVAL_CHECKIN.org_id = #{entity.orgId}</if>
+			</where>
+</foreach>
+	c2_temp_table ON TA_JC_EVAL_CHECKIN.record_id = c2_temp_table.record_id
+</select>
+
+<!-- ElementID:selectByID,Generated=true -->
+<select id="selectByID" parameterType="java.lang.String" resultMap="EvalCheckinResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_EVAL_CHECKIN 
+		 where TA_JC_EVAL_CHECKIN.record_id = #{recordId,jdbcType=VARCHAR}
+</select>
+
+<!-- ElementID:selectByPage,Generated=true -->
+<select id="selectByPage" parameterType="com.chinacreator.dzjc_performance.EvalCheckin" resultMap="EvalCheckinResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_EVAL_CHECKIN 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<!--Generated=false -->
+<select id="selectByPage2" parameterType="com.chinacreator.dzjc_performance.EvalCheckinExp" resultMap="EvalCheckinResult2">
+  select org.name org_name,
+       d.POINT_NAME,
+       d.VERSION,
+        <include refid="column_sql"/>
+  from TA_JC_EVAL_CHECKIN 
+  left join V_ORG org
+       on TA_JC_EVAL_CHECKIN.org_id = org.id
+  left join TA_JC_DIC_EVALPOINT d
+       on TA_JC_EVAL_CHECKIN.EVALUATE_POINT_NO = d.POINT_ID
+       order by TA_JC_EVAL_CHECKIN.EVALUATE_TIME
+</select>
+
+</mapper>

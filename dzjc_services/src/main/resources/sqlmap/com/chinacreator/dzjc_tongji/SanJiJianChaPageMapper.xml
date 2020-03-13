@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chinacreator.dzjc_tongji.SanJiJianChaPageMapper">	
+<!-- 查询缓存表中的数据 -->
+<select id="selectCache" parameterType="map" resultType="com.chinacreator.dzjc_tongji.SanJiJianChaPage">
+	select t.orgid,
+	       t.nowdate,
+	       t.acceptnumall,
+	       t.finishnumall,
+	       t.banjielvfloatall,
+	       t.comnumall,
+	       t.legalaccelerationrateall,
+	       t.promiseaccelerationrateall,
+	       t.instanceyellownumall,
+	       t.instancerednumall,
+	       t.consultyellownumall,
+	       t.consultrednumall
+	from ta_jc_tongji_shouye t  
+	where 1 = 1 
+	and t.orgid = #{orgId,jdbcType=VARCHAR}  
+	and t.nowdate = #{nowDate,jdbcType=VARCHAR} 
+</select>
+
+
+<!-- 首页不带时间的常用数据存入此表 -->
+<insert id="insertCache" parameterType="map">
+   insert into ta_jc_tongji_shouye t values 
+   (
+	    #{orgId,jdbcType=VARCHAR},#{nowDate,jdbcType=VARCHAR},#{acceptNumAll,jdbcType=VARCHAR},
+	    #{finishNumAll,jdbcType=VARCHAR},#{banJieLvFloatAll,jdbcType=VARCHAR},#{comNumAll,jdbcType=VARCHAR},
+	    #{legalAccelerationRateAll,jdbcType=VARCHAR},#{promiseAccelerationRateAll,jdbcType=VARCHAR},#{instanceYellowNumAll,jdbcType=VARCHAR},
+	    #{instanceRedNumAll,jdbcType=VARCHAR}, #{consultYellowNumAll,jdbcType=VARCHAR}, #{consultRedNumAll,jdbcType=VARCHAR}
+    )              
+</insert>
+
+<!-- 页不带时间的常用数据批量存入此表 -->
+<insert id="batchInsertResults" parameterType="java.util.List">
+	insert into ta_jc_tongji_shouye 
+	(
+		orgId,nowDate,acceptNumAll,finishNumAll,banJieLvFloatAll,comNumAll,legalAccelerationRateAll,
+		promiseAccelerationRateAll,instanceYellowNumAll,instanceRedNumAll,consultYellowNumAll,
+		consultRedNumAll
+	)select t.* from 
+	(
+		<foreach collection ="list" item="paramsMap" index="index" separator ="UNION">
+		SELECT 
+			#{paramsMap.orgId,jdbcType=VARCHAR} orgId,#{paramsMap.nowDate,jdbcType=VARCHAR} nowDate,#{paramsMap.acceptNumAll,jdbcType=VARCHAR} acceptNumAll,
+		    #{paramsMap.finishNumAll,jdbcType=VARCHAR} finishNumAll,#{paramsMap.banJieLvFloatAll,jdbcType=VARCHAR} banJieLvFloatAll,#{paramsMap.comNumAll,jdbcType=VARCHAR} comNumAll,
+		    #{paramsMap.legalAccelerationRateAll,jdbcType=VARCHAR} legalAccelerationRateAll,#{paramsMap.promiseAccelerationRateAll,jdbcType=VARCHAR} promiseAccelerationRateAll,#{paramsMap.instanceYellowNumAll,jdbcType=VARCHAR} instanceYellowNumAll,
+		    #{paramsMap.instanceRedNumAll,jdbcType=VARCHAR} instanceRedNumAll, #{paramsMap.consultYellowNumAll,jdbcType=VARCHAR} consultYellowNumAll, #{paramsMap.consultRedNumAll,jdbcType=VARCHAR} consultRedNumAll 
+		FROM dual
+	</foreach >
+	)t
+</insert>
+
+
+<!-- 清空表中数据 -->
+<delete id="deleteCache" parameterType="map">
+    delete from ta_jc_tongji_shouye 
+    where 1=1 
+    <if test="orgId != null">and  orgId = #{orgId,jdbcType=VARCHAR} </if>
+    <if test="nowDate != null">and  nowDate = #{nowDate,jdbcType=VARCHAR} </if>
+</delete>
+
+<!-- 查询缓存配置表中数据 -->
+<select id="selectCacheConfig" parameterType="map" resultType="map">
+	select t1.org_id,
+		   t2.ORG_LEVEL
+  	from ta_jc_tongji_orgcache_config t1
+    left join V_JC_TONGJI_ORG t2
+    on t1.org_id = t2.ORG_ID
+</select>
+
+
+</mapper>

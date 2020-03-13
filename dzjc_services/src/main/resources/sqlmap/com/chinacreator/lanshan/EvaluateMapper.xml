@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"><mapper namespace="com.chinacreator.lanshan.EvaluateMapper">	
+
+<!-- ElementID:column_sql,Generated=true -->
+<sql id="column_sql">
+		  V_TJ_EVALUATE.evaluation_id ,
+		  V_TJ_EVALUATE.community ,
+		  V_TJ_EVALUATE.username ,
+		  V_TJ_EVALUATE.phone ,
+		  V_TJ_EVALUATE.systemtype ,
+		  V_TJ_EVALUATE.result_str ,
+		  V_TJ_EVALUATE.evaluation_result ,
+		  V_TJ_EVALUATE.evaluation_content ,
+		  V_TJ_EVALUATE.evaluation_time ,
+		  V_TJ_EVALUATE.begin_date ,
+		  V_TJ_EVALUATE.end_date 
+</sql>
+
+<!-- ElementID:whereClause_sql,Generated=true -->
+<sql id="whereClause_sql">
+	    <if test="evaluationId != null">and V_TJ_EVALUATE.evaluation_id = #{evaluationId}</if>
+	    <if test="community != null">and V_TJ_EVALUATE.community = #{community}</if>
+	    <if test="username != null">and V_TJ_EVALUATE.username = #{username}</if>
+	    <if test="phone != null">and V_TJ_EVALUATE.phone = #{phone}</if>
+	    <if test="systemtype != null">and V_TJ_EVALUATE.systemtype = #{systemtype}</if>
+	    <if test="resultStr != null">and V_TJ_EVALUATE.result_str = #{resultStr}</if>
+	    <if test="evaluationResult != null">and V_TJ_EVALUATE.evaluation_result = #{evaluationResult}</if>
+	    <if test="evaluationContent != null">and V_TJ_EVALUATE.evaluation_content = #{evaluationContent}</if>
+	    <if test="evaluationTime != null">and V_TJ_EVALUATE.evaluation_time = #{evaluationTime}</if>
+	    <if test="beginDate != null">and V_TJ_EVALUATE.begin_date = #{beginDate}</if>
+	    <if test="endDate != null">and V_TJ_EVALUATE.end_date = #{endDate}</if>
+</sql>
+
+
+<!-- ElementID:EvaluateResult,Generated=true -->
+<resultMap id="EvaluateResult" type="com.chinacreator.lanshan.Evaluate">
+	<id property="evaluationId" column="evaluation_id"/>
+	<result property="community" column="community"/>
+	<result property="username" column="username"/>
+	<result property="phone" column="phone"/>
+	<result property="systemtype" column="systemtype"/>
+	<result property="resultStr" column="result_str"/>
+	<result property="evaluationResult" column="evaluation_result"/>
+	<result property="evaluationContent" column="evaluation_content"/>
+	<result property="evaluationTime" column="evaluation_time"/>
+	<result property="beginDate" column="begin_date"/>
+	<result property="endDate" column="end_date"/>
+</resultMap>
+
+
+<!-- ElementID:insert,Generated=true -->
+<insert id="insert" parameterType="com.chinacreator.lanshan.Evaluate">
+	insert into V_TJ_EVALUATE(
+	         <if test="evaluationId != null">evaluation_id</if>
+	         <if test="community != null">,community</if>
+	         <if test="username != null">,username</if>
+	         <if test="phone != null">,phone</if>
+	         <if test="systemtype != null">,systemtype</if>
+	         <if test="resultStr != null">,result_str</if>
+	         <if test="evaluationResult != null">,evaluation_result</if>
+	         <if test="evaluationContent != null">,evaluation_content</if>
+	         <if test="evaluationTime != null">,evaluation_time</if>
+	         <if test="beginDate != null">,begin_date</if>
+	         <if test="endDate != null">,end_date</if>
+	 	 	 )
+	 values (
+	         <if test="evaluationId != null">#{evaluationId,jdbcType=VARCHAR}</if>
+	         <if test="community != null">,#{community,jdbcType=VARCHAR}</if>
+	         <if test="username != null">,#{username,jdbcType=VARCHAR}</if>
+	         <if test="phone != null">,#{phone,jdbcType=VARCHAR}</if>
+	         <if test="systemtype != null">,#{systemtype,jdbcType=VARCHAR}</if>
+	         <if test="resultStr != null">,#{resultStr,jdbcType=VARCHAR}</if>
+	         <if test="evaluationResult != null">,#{evaluationResult,jdbcType=CHAR}</if>
+	         <if test="evaluationContent != null">,#{evaluationContent,jdbcType=VARCHAR}</if>
+	         <if test="evaluationTime != null">,#{evaluationTime,jdbcType=DATE}</if>
+	         <if test="beginDate != null">,#{beginDate,jdbcType=DATE}</if>
+	         <if test="endDate != null">,#{endDate,jdbcType=DATE}</if>
+	 	 	 )
+</insert>
+
+<!-- ElementID:count,Generated=true -->
+<select id="count" parameterType="com.chinacreator.lanshan.Evaluate" resultType="int">
+	select count(*) from V_TJ_EVALUATE 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<!-- ElementID:update,Generated=true -->
+<update id="update" parameterType="com.chinacreator.lanshan.Evaluate">
+	update V_TJ_EVALUATE
+<set>
+	<if test="community != null">community=#{community,jdbcType=VARCHAR},</if>
+	<if test="username != null">username=#{username,jdbcType=VARCHAR},</if>
+	<if test="phone != null">phone=#{phone,jdbcType=VARCHAR},</if>
+	<if test="systemtype != null">systemtype=#{systemtype,jdbcType=VARCHAR},</if>
+	<if test="resultStr != null">result_str=#{resultStr,jdbcType=VARCHAR},</if>
+	<if test="evaluationResult != null">evaluation_result=#{evaluationResult,jdbcType=CHAR},</if>
+	<if test="evaluationContent != null">evaluation_content=#{evaluationContent,jdbcType=VARCHAR},</if>
+	<if test="evaluationTime != null">evaluation_time=#{evaluationTime,jdbcType=DATE},</if>
+	<if test="beginDate != null">begin_date=#{beginDate,jdbcType=DATE},</if>
+	<if test="endDate != null">end_date=#{endDate,jdbcType=DATE}</if>
+</set>
+<where>
+	<choose>
+        <when test="evaluationId != null">and evaluation_id = #{evaluationId}</when>
+        <otherwise>and evaluation_id = </otherwise>
+    </choose>
+</where>
+</update>
+
+<!-- ElementID:updateNull,Generated=true -->
+<update id="updateNull" parameterType="map">
+	update V_TJ_EVALUATE
+	<set>
+		<trim suffixOverrides=",">
+		    <if test="community==null">community = null,</if>
+		    <if test="username==null">username = null,</if>
+		    <if test="phone==null">phone = null,</if>
+		    <if test="systemtype==null">systemtype = null,</if>
+		    <if test="resultStr==null">result_str = null,</if>
+		    <if test="evaluationResult==null">evaluation_result = null,</if>
+		    <if test="evaluationContent==null">evaluation_content = null,</if>
+		    <if test="evaluationTime==null">evaluation_time = null,</if>
+		    <if test="beginDate==null">begin_date = null,</if>
+		    <if test="endDate==null">end_date = null,</if>
+		</trim>
+	</set>
+	<where>
+		<choose>
+			<when test="evaluationId != null">and evaluation_id = #{evaluationId}</when>
+			<otherwise>and evaluation_id = </otherwise>
+		</choose>
+	</where>
+</update>
+
+<!-- ElementID:delete,Generated=true -->
+<delete id="delete" parameterType="com.chinacreator.lanshan.Evaluate">
+    delete from V_TJ_EVALUATE where 1=1 and evaluation_id = #{evaluationId}
+</delete>
+
+<!-- ElementID:select,Generated=true -->
+<select id="select" parameterType="com.chinacreator.lanshan.Evaluate" resultMap="EvaluateResult">
+	select 
+		<include refid="column_sql"/>
+	    from V_TJ_EVALUATE 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+
+<!-- ElementID:insertBatch,Generated=true -->
+<insert id="insertBatch" parameterType="list">
+	insert into V_TJ_EVALUATE (evaluation_id,community,username,phone,systemtype,result_str,evaluation_result,evaluation_content,evaluation_time,begin_date,end_date) 
+<foreach collection="list" item="entity" index="index" separator="union all">
+		select 
+		#{entity.evaluationId,jdbcType = VARCHAR},
+				#{entity.community,jdbcType = VARCHAR},
+				#{entity.username,jdbcType = VARCHAR},
+				#{entity.phone,jdbcType = VARCHAR},
+				#{entity.systemtype,jdbcType = VARCHAR},
+				#{entity.resultStr,jdbcType = VARCHAR},
+				#{entity.evaluationResult,jdbcType = CHAR},
+				#{entity.evaluationContent,jdbcType = VARCHAR},
+				#{entity.evaluationTime,jdbcType = DATE},
+				#{entity.beginDate,jdbcType = DATE},
+				#{entity.endDate,jdbcType = DATE}
+		from dual
+</foreach>
+</insert>
+
+<!-- ElementID:deleteBatch,Generated=true -->
+<delete id="deleteBatch" parameterType="List">
+	delete from V_TJ_EVALUATE where evaluation_id in
+<trim prefix="(" suffix=")" suffixOverrides=",">
+<foreach collection="list" item="entity" separator=",">
+	<choose>
+		<when test="@com.chinacreator.c2.dao.util.EntityBeanUtil@isEntityObj(entity)">#{entity.evaluationId}</when>
+		<otherwise>#{entity}</otherwise>
+	</choose>
+</foreach>
+</trim>
+</delete>
+
+<!-- ElementID:updateBatch,Generated=true -->
+<update id="updateBatch" parameterType="list">
+	<foreach collection="list" item="entity" open="begin" close=";end;" separator=";">
+			update V_TJ_EVALUATE
+	<set>
+	<if test="entity.community != null">community= #{entity.community,jdbcType=VARCHAR},</if>
+	<if test="entity.username != null">username= #{entity.username,jdbcType=VARCHAR},</if>
+	<if test="entity.phone != null">phone= #{entity.phone,jdbcType=VARCHAR},</if>
+	<if test="entity.systemtype != null">systemtype= #{entity.systemtype,jdbcType=VARCHAR},</if>
+	<if test="entity.resultStr != null">result_str= #{entity.resultStr,jdbcType=VARCHAR},</if>
+	<if test="entity.evaluationResult != null">evaluation_result= #{entity.evaluationResult,jdbcType=CHAR},</if>
+	<if test="entity.evaluationContent != null">evaluation_content= #{entity.evaluationContent,jdbcType=VARCHAR},</if>
+	<if test="entity.evaluationTime != null">evaluation_time= #{entity.evaluationTime,jdbcType=DATE},</if>
+	<if test="entity.beginDate != null">begin_date= #{entity.beginDate,jdbcType=DATE},</if>
+	<if test="entity.endDate != null">end_date= #{entity.endDate,jdbcType=DATE}</if>
+	</set>
+		<where>
+			<choose>
+				<when test="entity.evaluationId != null">and evaluation_id = #{entity.evaluationId}</when>
+				<otherwise>and evaluation_id = </otherwise>
+			</choose>
+		</where>
+	</foreach>
+</update>
+
+<!-- ElementID:selectAll,Generated=true -->
+<select id="selectAll" resultMap="EvaluateResult">
+	select 
+		<include refid="column_sql"/>
+	    from V_TJ_EVALUATE 
+</select>
+
+<!-- ElementID:selectMany,Generated=true -->
+<select id="selectMany" parameterType="list" resultMap="EvaluateResult">
+select 
+	<include refid="column_sql"/> 
+	from V_TJ_EVALUATE 
+	where V_TJ_EVALUATE.evaluation_id in (
+<foreach collection="list" item="entity" separator="intersect">
+		select 
+		V_TJ_EVALUATE.evaluation_id
+	    from V_TJ_EVALUATE 
+		 <where>
+	        <if test="entity.evaluationId != null">and V_TJ_EVALUATE.evaluation_id = #{entity.evaluationId}</if>
+	        <if test="entity.community != null">and V_TJ_EVALUATE.community = #{entity.community}</if>
+	        <if test="entity.username != null">and V_TJ_EVALUATE.username = #{entity.username}</if>
+	        <if test="entity.phone != null">and V_TJ_EVALUATE.phone = #{entity.phone}</if>
+	        <if test="entity.systemtype != null">and V_TJ_EVALUATE.systemtype = #{entity.systemtype}</if>
+	        <if test="entity.resultStr != null">and V_TJ_EVALUATE.result_str = #{entity.resultStr}</if>
+	        <if test="entity.evaluationResult != null">and V_TJ_EVALUATE.evaluation_result = #{entity.evaluationResult}</if>
+	        <if test="entity.evaluationContent != null">and V_TJ_EVALUATE.evaluation_content = #{entity.evaluationContent}</if>
+	        <if test="entity.evaluationTime != null">and V_TJ_EVALUATE.evaluation_time = #{entity.evaluationTime}</if>
+	        <if test="entity.beginDate != null">and V_TJ_EVALUATE.begin_date = #{entity.beginDate}</if>
+	        <if test="entity.endDate != null">and V_TJ_EVALUATE.end_date = #{entity.endDate}</if>
+		</where>
+</foreach>
+)
+</select>
+
+<!-- ElementID:selectUnion,Generated=true -->
+<select id="selectUnion" parameterType="list" resultMap="EvaluateResult">
+select 
+	<include refid="column_sql"/> 
+	from V_TJ_EVALUATE 
+	 INNER JOIN
+<foreach collection="list" item="entity" separator="UNION" open="(" close=")">
+		SELECT 
+			 evaluation_id
+		FROM V_TJ_EVALUATE 
+			<where>
+	        <if test="entity.evaluationId != null">and V_TJ_EVALUATE.evaluation_id = #{entity.evaluationId}</if>
+	        <if test="entity.community != null">and V_TJ_EVALUATE.community = #{entity.community}</if>
+	        <if test="entity.username != null">and V_TJ_EVALUATE.username = #{entity.username}</if>
+	        <if test="entity.phone != null">and V_TJ_EVALUATE.phone = #{entity.phone}</if>
+	        <if test="entity.systemtype != null">and V_TJ_EVALUATE.systemtype = #{entity.systemtype}</if>
+	        <if test="entity.resultStr != null">and V_TJ_EVALUATE.result_str = #{entity.resultStr}</if>
+	        <if test="entity.evaluationResult != null">and V_TJ_EVALUATE.evaluation_result = #{entity.evaluationResult}</if>
+	        <if test="entity.evaluationContent != null">and V_TJ_EVALUATE.evaluation_content = #{entity.evaluationContent}</if>
+	        <if test="entity.evaluationTime != null">and V_TJ_EVALUATE.evaluation_time = #{entity.evaluationTime}</if>
+	        <if test="entity.beginDate != null">and V_TJ_EVALUATE.begin_date = #{entity.beginDate}</if>
+	        <if test="entity.endDate != null">and V_TJ_EVALUATE.end_date = #{entity.endDate}</if>
+			</where>
+</foreach>
+	c2_temp_table ON V_TJ_EVALUATE.evaluation_id = c2_temp_table.evaluation_id
+</select>
+
+<!-- ElementID:selectByID,Generated=true -->
+<select id="selectByID" parameterType="java.lang.String" resultMap="EvaluateResult">
+	select 
+		<include refid="column_sql"/>
+	    from V_TJ_EVALUATE 
+		 where V_TJ_EVALUATE.evaluation_id = #{evaluationId,jdbcType=VARCHAR}
+</select>
+
+<!-- ElementID:selectByPage,Generated=false -->
+<select id="selectByPage" parameterType="java.util.Map" resultMap="EvaluateResult">
+SELECT EVALUATION_ID,
+       CASE
+         WHEN POSITION = 0 THEN
+          '党员或其他'
+         ELSE
+          SUBSTR(USERNAME, 0, POSITION + 1)
+       END AS COMMUNITY,
+       USERNAME,
+       PHONE,
+       SYSTEMTYPE,
+       RESULT_STR,
+       EVALUATION_RESULT,
+       EVALUATION_CONTENT,
+       EVALUATION_TIME
+  FROM (SELECT T.EVALUATION_ID,
+               CASE
+                 WHEN (SELECT COUNT(1)
+                         FROM V_TA_SP_LSX_ADDORDER AD
+                        WHERE A.USERNAME LIKE '%社区%'
+                          AND AD.ORDER_ID = A.ORDER_ID) = 1 THEN
+                  INSTR(A.USERNAME, '社区', 1)
+                 ELSE
+                  0
+               END AS POSITION,
+               A.USERNAME,
+               A.PHONE,
+               DECODE(A.SYSTEMTYPE, '0', '网格系统', '党建系统') SYSTEMTYPE,
+               DECODE(T.EVALUATION_RESULT,
+                      '5',
+                      '很满意',
+                      '4',
+                      '满意',
+                      '3',
+                      '基本满意',
+                      '2',
+                      '不满意',
+                      '很不满意') RESULT_STR,
+               T.EVALUATION_RESULT,
+               T.EVALUATION_CONTENT,
+               T.EVALUATION_TIME
+          FROM (SELECT T.INSTANCE_ID, MAX(T.EVALUATION_ID) AS EVALUATION_ID
+                  FROM V_TA_SP_LSX_EVALUATION T
+                 GROUP BY T.INSTANCE_ID) V
+          LEFT JOIN V_TA_SP_LSX_EVALUATION T
+            ON V.EVALUATION_ID = T.EVALUATION_ID
+          JOIN V_TA_SP_LSX_ADDORDER A
+            ON T.INSTANCE_ID = A.APPLYERSERIALID
+            <where>
+            	1 = 1
+            	AND	T.EVALUATION_TIME &gt;
+                	TO_DATE('2019-04-01', 'yyyy-MM-dd hh24:mi:ss')
+		        <if test="beginDate != null">AND trunc(T.EVALUATION_TIME,'dd')  &gt;= TO_DATE(#{beginDate},'yyyy-MM-dd hh24:mi:ss') </if>
+			    <if test="endDate != null">AND trunc(T.EVALUATION_TIME,'dd') &lt;= TO_DATE(#{endDate},'yyyy-MM-dd hh24:mi:ss')</if>
+	    	</where>
+	    )
+</select>
+
+</mapper>

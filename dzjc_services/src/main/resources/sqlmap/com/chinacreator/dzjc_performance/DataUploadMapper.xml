@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chinacreator.dzjc_performance.DataUploadMapper">   
+
+<resultMap id="DataUploadResult" type="com.chinacreator.dzjc_performance.DataUpload">
+    <id property="tableId" column="table_id"/>
+    <result property="itemId" column="item_id"/>
+    <result property="pointId" column="point_id"/>
+    <result property="proportion" column="proportion"/>
+    <result property="value" column="value"/>
+    <result property="itemName" column="item_name"/>
+    <result property="deductReasons" column="deduct_reasons"/>
+    <result property="pointScore" column="point_score"/>
+    <result property="pointName" column="point_name"/>
+    <result property="isAuto" column="is_auto"/>
+    <result property="evalObjectName" column="eval_object_name"/>
+    <result property="tableName" column="table_name"/>
+    <result property="evalTime" column="eval_time"/>
+    <result property="evalObjectType" column="eval_object_type"/>
+    <result property="totalValue" column="total_value"/>
+    <result property="objectId" column="object_id"/>
+    <result property="instaceId" column="eval_instance_id"/>
+    <result property="bonuspoints" column="bonuspoints"/>
+    <result property="reasonsforbonus" column="reasonsforbonus"/>
+    <result property="state" column="state" />
+    
+ </resultMap>
+
+<resultMap id="ShowEvalItemResult" type="com.chinacreator.dzjc_performance.ShowEvalItem">
+    <id property="id" column="item_id"/>
+    <result property="name" column="item_name"/>
+    <result property="parentId" column="parent_item_id"/>
+    <result property="proportion" column="proportion"/>
+    <result property="value" column="value"/>
+    <result property="level" column="level"/>
+</resultMap>
+<resultMap id="DetailResult" type="com.chinacreator.dzjc_performance.DataUpload">
+    <id property="tableId" column="table_id"/>
+    <result property="itemId" column="item_id"/>
+    <result property="pointId" column="point_id"/>
+    <result property="proportion1" column="proportion"/>
+    <result property="value1" column="value"/>
+    <result property="name1" column="item_name"/>
+    <result property="deductReasons" column="deduct_reasons"/>
+    <result property="pointScore" column="point_score"/>
+    <result property="pointName" column="point_name"/>
+    <result property="isAuto" column="is_auto"/>
+    <result property="evalObjectName" column="eval_object_name"/>
+    <result property="tableName" column="table_name"/>
+    <result property="evalTime" column="eval_time"/>
+    <result property="evalObjectType" column="eval_object_type"/>
+    <result property="totalValue" column="total_value"/>
+    <result property="instaceId" column="eval_instance_id"/>
+    <result property="name2" column="name2"/>
+    <result property="value2" column="value2"/>
+    <result property="proportion2" column="proportion3"/>
+    <result property="name3" column="name3"/>
+    <result property="value3" column="value3"/>
+    <result property="proportion3" column="proportion3"/>
+    <result property="name4" column="name4"/>
+    <result property="value4" column="value4"/>
+    <result property="proportion4" column="proportion4"/>
+</resultMap>
+
+<select id="FindPreservationList" parameterType="com.chinacreator.dzjc_performance.DataUpload" resultMap="DataUploadResult">
+  SELECT t.bonuspoints,t.reasonsforbonus FROM ta_jc_eval_object t
+ 	<where>
+ 		<if  test="id != null">and t.id = #{id}</if>
+ 		<if  test="instanceId != null">and t.EVAL_INSTANCE_ID = #{instanceId}</if>
+ 		<if  test="objectId != null">and t.OBJECT_ID = #{objectId}</if>
+ 	</where>
+</select>
+
+<!-- 分页查询 -->
+<select id="selectByPage" parameterType="com.chinacreator.dzjc_performance.DataUpload" resultMap="DataUploadResult">
+  select  t1.table_id,
+	  t3.table_name,
+	  decode(t3.eval_object_type, '1', '部门', '2','窗口','3','个人') eval_object_type,
+	  t2.total_value,
+	  t1.eval_time,
+	  t4.OBJECT_ID,
+	  t4.object_name eval_object_name,
+	  t1.id instance_id,
+	  t4.state,
+	  t4.id ,
+	  t4.bonuspoints
+    from  ta_jc_eval_instance t1
+       left join 
+       (select table_id, sum(FINAL_ITEM_VALUE) total_value
+          from TA_JC_EVAL_ITEM_VALUE
+         group by TABLE_ID) t2
+       on t1.table_id = t2.table_id
+       inner join ta_jc_eval_table t3 on t1.table_id = t3.table_id
+       inner join ta_jc_eval_object t4 on t1.id = t4.eval_instance_id
+       <where>
+        <if test="state!=null">  t4.state=#{state} </if>
+       <if test="code != null"> and t1.area_code like concat(#{code,jdbcType = VARCHAR},'%')</if>
+       <if test="code != null">  or t1.org_id = #{code}</if>
+      
+       </where>
+       order by t1.eval_time desc
+</select>
+
+ <!-- 查询数据上报详细信息     -->
+<select id="selectDetail" parameterType="com.chinacreator.dzjc_performance.DataUpload" resultMap="DetailResult">
+select t6.item_name name4,t6.value value4,t6.proportion proportion4,t5.item_name name3,t5.value value3,t5.proportion proportion3,t4.item_name name2,t4.value value2,t4.proportion proportion2,t2.item_id, t2.item_name, t2.proportion,t2.value,t2.parent_item_id
+      ,t1.point_id,
+      t1.id,
+      t3.point_name,
+      t1.POINT_SCORE,
+      t1.DEDUCT_REASONS,
+      decode(t3.is_auto, 'Y', '自动', '人工') is_auto,
+      t1.EVAL_OBJECT_NAME,
+      t2.parent_item_id,
+      t1.EVAL_OBJECT_TYPE evalObjectType,
+      t1.org_name as orgName,
+      T1.IS_GRADE isGrade
+from  ta_jc_eval_point_value t1
+inner join ta_jc_eval_item t2 on t1.item_id = t2.item_id
+inner join ta_jc_dic_evalpoint t3 on t1.point_id = t3.point_id
+left join ta_jc_eval_item t4 on t4.item_id = t2.parent_item_id
+left join ta_jc_eval_item t5 on t5.item_id = t4.parent_item_id
+left join ta_jc_eval_item t6 on t6.item_id = t5.parent_item_id
+     where
+        t1.eval_instance_id = #{instanceId}
+        and t1.eval_object_id = #{objectId}
+        order by t2.item_id asc 
+</select> 
+
+<!-- 查询考核子项 -->
+<select id="selectSubItem" parameterType="com.chinacreator.dzjc_performance.DataUpload" resultMap="ShowEvalItemResult">
+	select distinct t2.item_id，t1.item_name,t1.proportion,t1.value,t1.parent_item_id
+	from ta_jc_eval_item t1
+	   inner join ta_jc_eval_point_value t2 on t1.item_id = t2.item_id
+	where t2.eval_instance_id = #{instanceId}
+	and t2.eval_object_id = #{objectId}
+         
+</select>
+
+<!-- 查询考核指标 -->
+<select id="selectPointByItem" parameterType="com.chinacreator.dzjc_performance.DataUpload" resultMap="DataUploadResult">
+	select distinct t1.point_id,
+	       t2.point_name,
+	       t1.POINT_SCORE,
+	       t1.DEDUCT_REASONS,
+	       decode(t2.is_auto, 'Y', '自动', '人工') is_auto,
+	       t1.EVAL_OBJECT_NAME,
+	       t1.item_id
+	from ta_jc_eval_point_value t1,
+	     ta_jc_dic_evalpoint t2
+	     where t1.point_id = t2.point_id
+	     and t1.item_id = #{itemId}
+	     and t1.eval_instance_id = #{instanceId}
+	     and t1.eval_object_id = #{objectId}
+
+</select>
+
+
+<!-- 查询所有的考核项层级数 -->
+<select id="selectLevel" parameterType="com.chinacreator.dzjc_performance.DataUpload" resultType="java.lang.Integer">
+     SELECT MAX(LEVEL) FROM TA_JC_EVAL_ITEM T3
+     START WITH T3.ITEM_ID IN (
+       SELECT DISTINCT T1.ITEM_ID FROM TA_JC_EVAL_POINT_VALUE T1
+       INNER JOIN TA_JC_EVAL_ITEM T2 ON T1.ITEM_ID = T2.ITEM_ID
+       WHERE T1.eval_instance_id = #{instanceId}
+       and t1.eval_object_id = #{objectId}
+       AND T2.IS_PARENT = 'N'
+     )
+     CONNECT BY  T3.ITEM_ID = PRIOR   T3.PARENT_ITEM_ID
+</select>
+
+
+
+<select id="selectByID" parameterType="com.chinacreator.dzjc_performance.DataUpload" resultMap="DataUploadResult">
+	select 
+		TA_JC_EVAL_OBJECT.BONUSPOINTS  bonuspoints
+	    from TA_JC_EVAL_OBJECT 
+		 where TA_JC_EVAL_OBJECT.id = #{id,jdbcType=VARCHAR}
+</select>
+
+
+<!-- 查询指定级数的考核项 -->
+<select id="selectByLevel" parameterType="com.chinacreator.dzjc_performance.ShowEvalItem" resultMap="ShowEvalItemResult">
+SELECT DISTINCT T3.ITEM_ID,LEVEL,T3.ITEM_NAME,T3.PARENT_ITEM_ID,proportion,value,parent_item_id  FROM TA_JC_EVAL_ITEM T3
+     WHERE LEVEL = #{level}
+     START WITH T3.ITEM_ID IN (
+     
+       SELECT DISTINCT T1.ITEM_ID FROM TA_JC_EVAL_POINT_VALUE T1
+       INNER JOIN TA_JC_EVAL_ITEM T2 ON T1.ITEM_ID = T2.ITEM_ID
+       WHERE T1.eval_instance_id = #{instanceId}
+       and t1.eval_object_id = #{objectId}
+       AND T2.IS_PARENT = 'N'
+     )
+     CONNECT BY  T3.ITEM_ID = PRIOR   T3.PARENT_ITEM_ID
+</select>
+
+<update id="update" parameterType="com.chinacreator.dzjc_performance.DataUpload">
+	update ta_jc_eval_object
+<set>
+	
+	<if test="state != null">state=#{state,jdbcType=VARCHAR},</if>
+	<if test="bonuspoints != null">bonuspoints=#{bonuspoints,jdbcType=VARCHAR},</if>
+	<if test="reasonsforbonus != null">reasonsforbonus=#{reasonsforbonus,jdbcType=VARCHAR}</if>
+	
+</set>
+<where>
+	<choose>
+        <when test="objectId != null">and object_Id = #{objectId}</when>
+        <when test="id != null">and id = #{id}</when>
+    </choose>
+</where>
+</update>
+</mapper>

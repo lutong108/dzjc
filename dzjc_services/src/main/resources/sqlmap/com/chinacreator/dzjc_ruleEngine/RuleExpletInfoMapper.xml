@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"><mapper namespace="com.chinacreator.dzjc_ruleEngine.RuleExpletInfoMapper">	
+
+<!-- ElementID:column_sql,Generated=true -->
+<sql id="column_sql">
+		  TA_JC_RULE_EXPLETINFO.explet_id ,
+		  TA_JC_RULE_EXPLETINFO.exp_id ,
+		  TA_JC_RULE_EXPLETINFO.left_paren ,
+		  TA_JC_RULE_EXPLETINFO.elem_id ,
+		  TA_JC_RULE_EXPLETINFO.compa_id ,
+		  TA_JC_RULE_EXPLETINFO.cfg_value ,
+		  TA_JC_RULE_EXPLETINFO.right_paren ,
+		  TA_JC_RULE_EXPLETINFO.logic_id ,
+		  TA_JC_RULE_EXPLETINFO.area_code ,
+		  TA_JC_RULE_EXPLETINFO.cc_form_instanceid 
+</sql>
+
+<!-- ElementID:whereClause_sql,Generated=true -->
+<sql id="whereClause_sql">
+	    <if test="expletId != null">and TA_JC_RULE_EXPLETINFO.explet_id = #{expletId}</if>
+	    <if test="expId != null">and TA_JC_RULE_EXPLETINFO.exp_id = #{expId}</if>
+	    <if test="leftParen != null">and TA_JC_RULE_EXPLETINFO.left_paren = #{leftParen}</if>
+	    <if test="elemId != null">and TA_JC_RULE_EXPLETINFO.elem_id = #{elemId}</if>
+	    <if test="compaId != null">and TA_JC_RULE_EXPLETINFO.compa_id = #{compaId}</if>
+	    <if test="cfgValue != null">and TA_JC_RULE_EXPLETINFO.cfg_value = #{cfgValue}</if>
+	    <if test="rightParen != null">and TA_JC_RULE_EXPLETINFO.right_paren = #{rightParen}</if>
+	    <if test="logicId != null">and TA_JC_RULE_EXPLETINFO.logic_id = #{logicId}</if>
+	    <if test="areaCode != null">and TA_JC_RULE_EXPLETINFO.area_code = #{areaCode}</if>
+	    <if test="ccFormInstanceid != null">and TA_JC_RULE_EXPLETINFO.cc_form_instanceid = #{ccFormInstanceid}</if>
+</sql>
+
+
+<!-- ElementID:RuleExpletInfoResult,Generated=true -->
+<resultMap id="RuleExpletInfoResult" type="com.chinacreator.dzjc_ruleEngine.RuleExpletInfo">
+	<id property="expletId" column="explet_id"/>
+	<result property="expId" column="exp_id"/>
+	<result property="leftParen" column="left_paren"/>
+	<result property="elemId" column="elem_id"/>
+	<result property="compaId" column="compa_id"/>
+	<result property="cfgValue" column="cfg_value"/>
+	<result property="rightParen" column="right_paren"/>
+	<result property="logicId" column="logic_id"/>
+	<result property="areaCode" column="area_code"/>
+	<result property="ccFormInstanceid" column="cc_form_instanceid"/>
+</resultMap>
+
+
+
+<!-- ElementName:cache,Generated=true -->
+<cache type="C2_Default_Dao_Cache"/>
+
+<!-- ElementID:insert,Generated=false -->
+<insert id="insert" parameterType="com.chinacreator.dzjc_ruleEngine.RuleExpletInfo">
+	insert into TA_JC_RULE_EXPLETINFO(
+	         <if test="expletId != null">explet_id</if>
+	         <if test="expId != null">,exp_id</if>
+	         <if test="leftParen != null">,left_paren</if>
+	         <if test="elemId != null">,elem_id</if>
+	         <if test="compaId != null">,compa_id</if>
+	         <if test="cfgValue != null">,cfg_value</if>
+	         <if test="rightParen != null">,right_paren</if>
+	         <if test="logicId != null">,logic_id</if>
+	         <if test="areaCode != null">,area_code</if>
+	         <if test="ccFormInstanceid != null">,cc_form_instanceid</if>
+	 	 	 )
+	 values (
+	         SEQ_JC_RULE_EXPLETINFO.nextval
+	         <if test="expId != null">,#{expId,jdbcType=VARCHAR}</if>
+	         <if test="leftParen != null">,#{leftParen,jdbcType=VARCHAR}</if>
+	         <if test="elemId != null">,#{elemId,jdbcType=VARCHAR}</if>
+	         <if test="compaId != null">,#{compaId,jdbcType=VARCHAR}</if>
+	         <if test="cfgValue != null">,#{cfgValue,jdbcType=VARCHAR}</if>
+	         <if test="rightParen != null">,#{rightParen,jdbcType=VARCHAR}</if>
+	         <if test="logicId != null">,#{logicId,jdbcType=VARCHAR}</if>
+	         <if test="areaCode != null">,#{areaCode,jdbcType=VARCHAR}</if>
+	         <if test="ccFormInstanceid != null">,#{ccFormInstanceid,jdbcType=VARCHAR}</if>
+	 	 	 )
+</insert>
+
+<!-- ElementID:count,Generated=true -->
+<select id="count" parameterType="com.chinacreator.dzjc_ruleEngine.RuleExpletInfo" resultType="int">
+	select count(*) from TA_JC_RULE_EXPLETINFO 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<!-- ElementID:update,Generated=true -->
+<update id="update" parameterType="com.chinacreator.dzjc_ruleEngine.RuleExpletInfo">
+	update TA_JC_RULE_EXPLETINFO
+<set>
+	<if test="expId != null">exp_id=#{expId,jdbcType=VARCHAR},</if>
+	<if test="leftParen != null">left_paren=#{leftParen,jdbcType=VARCHAR},</if>
+	<if test="elemId != null">elem_id=#{elemId,jdbcType=VARCHAR},</if>
+	<if test="compaId != null">compa_id=#{compaId,jdbcType=VARCHAR},</if>
+	<if test="cfgValue != null">cfg_value=#{cfgValue,jdbcType=VARCHAR},</if>
+	<if test="rightParen != null">right_paren=#{rightParen,jdbcType=VARCHAR},</if>
+	<if test="logicId != null">logic_id=#{logicId,jdbcType=VARCHAR},</if>
+	<if test="areaCode != null">area_code=#{areaCode,jdbcType=VARCHAR},</if>
+	<if test="ccFormInstanceid != null">cc_form_instanceid=#{ccFormInstanceid,jdbcType=VARCHAR}</if>
+</set>
+<where>
+	<choose>
+        <when test="expletId != null">and explet_id = #{expletId}</when>
+        <otherwise>and explet_id = </otherwise>
+    </choose>
+</where>
+</update>
+
+<!-- ElementID:updateNull,Generated=true -->
+<update id="updateNull" parameterType="map">
+	update TA_JC_RULE_EXPLETINFO
+	<set>
+		<trim suffixOverrides=",">
+		    <if test="expId==null">exp_id = null,</if>
+		    <if test="leftParen==null">left_paren = null,</if>
+		    <if test="elemId==null">elem_id = null,</if>
+		    <if test="compaId==null">compa_id = null,</if>
+		    <if test="cfgValue==null">cfg_value = null,</if>
+		    <if test="rightParen==null">right_paren = null,</if>
+		    <if test="logicId==null">logic_id = null,</if>
+		    <if test="areaCode==null">area_code = null,</if>
+		    <if test="ccFormInstanceid==null">cc_form_instanceid = null,</if>
+		</trim>
+	</set>
+	<where>
+		<choose>
+			<when test="expletId != null">and explet_id = #{expletId}</when>
+			<otherwise>and explet_id = </otherwise>
+		</choose>
+	</where>
+</update>
+
+<!-- ElementID:delete,Generated=true -->
+<delete id="delete" parameterType="com.chinacreator.dzjc_ruleEngine.RuleExpletInfo">
+    delete from TA_JC_RULE_EXPLETINFO where 1=1 and explet_id = #{expletId}
+</delete>
+
+<!-- ElementID:select,Generated=true -->
+<select id="select" parameterType="com.chinacreator.dzjc_ruleEngine.RuleExpletInfo" resultMap="RuleExpletInfoResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_RULE_EXPLETINFO 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+
+<!-- ElementID:insertBatch,Generated=true -->
+<insert id="insertBatch" parameterType="list">
+	insert into TA_JC_RULE_EXPLETINFO (explet_id,exp_id,left_paren,elem_id,compa_id,cfg_value,right_paren,logic_id,area_code,cc_form_instanceid) 
+<foreach collection="list" item="entity" index="index" separator="union all">
+		select 
+		#{entity.expletId,jdbcType = VARCHAR},
+				#{entity.expId,jdbcType = VARCHAR},
+				#{entity.leftParen,jdbcType = VARCHAR},
+				#{entity.elemId,jdbcType = VARCHAR},
+				#{entity.compaId,jdbcType = VARCHAR},
+				#{entity.cfgValue,jdbcType = VARCHAR},
+				#{entity.rightParen,jdbcType = VARCHAR},
+				#{entity.logicId,jdbcType = VARCHAR},
+				#{entity.areaCode,jdbcType = VARCHAR},
+				#{entity.ccFormInstanceid,jdbcType = VARCHAR}
+		from dual
+</foreach>
+</insert>
+
+<!-- ElementID:deleteBatch,Generated=true -->
+<delete id="deleteBatch" parameterType="List">
+	delete from TA_JC_RULE_EXPLETINFO where explet_id in
+<trim prefix="(" suffix=")" suffixOverrides=",">
+<foreach collection="list" item="entity" separator=",">
+	<choose>
+		<when test="@com.chinacreator.c2.dao.util.EntityBeanUtil@isEntityObj(entity)">#{entity.expletId}</when>
+		<otherwise>#{entity}</otherwise>
+	</choose>
+</foreach>
+</trim>
+</delete>
+
+<!-- ElementID:updateBatch,Generated=true -->
+<update id="updateBatch" parameterType="list">
+	<foreach collection="list" item="entity" open="begin" close=";end;" separator=";">
+			update TA_JC_RULE_EXPLETINFO
+	<set>
+	<if test="entity.expId != null">exp_id= #{entity.expId,jdbcType=VARCHAR},</if>
+	<if test="entity.leftParen != null">left_paren= #{entity.leftParen,jdbcType=VARCHAR},</if>
+	<if test="entity.elemId != null">elem_id= #{entity.elemId,jdbcType=VARCHAR},</if>
+	<if test="entity.compaId != null">compa_id= #{entity.compaId,jdbcType=VARCHAR},</if>
+	<if test="entity.cfgValue != null">cfg_value= #{entity.cfgValue,jdbcType=VARCHAR},</if>
+	<if test="entity.rightParen != null">right_paren= #{entity.rightParen,jdbcType=VARCHAR},</if>
+	<if test="entity.logicId != null">logic_id= #{entity.logicId,jdbcType=VARCHAR},</if>
+	<if test="entity.areaCode != null">area_code= #{entity.areaCode,jdbcType=VARCHAR},</if>
+	<if test="entity.ccFormInstanceid != null">cc_form_instanceid= #{entity.ccFormInstanceid,jdbcType=VARCHAR}</if>
+	</set>
+		<where>
+			<choose>
+				<when test="entity.expletId != null">and explet_id = #{entity.expletId}</when>
+				<otherwise>and explet_id = </otherwise>
+			</choose>
+		</where>
+	</foreach>
+</update>
+
+<!-- ElementID:selectAll,Generated=true -->
+<select id="selectAll" resultMap="RuleExpletInfoResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_RULE_EXPLETINFO 
+</select>
+
+<!-- ElementID:selectMany,Generated=true -->
+<select id="selectMany" parameterType="list" resultMap="RuleExpletInfoResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_JC_RULE_EXPLETINFO 
+	where TA_JC_RULE_EXPLETINFO.explet_id in (
+<foreach collection="list" item="entity" separator="intersect">
+		select 
+		TA_JC_RULE_EXPLETINFO.explet_id
+	    from TA_JC_RULE_EXPLETINFO 
+		 <where>
+	        <if test="entity.expletId != null">and TA_JC_RULE_EXPLETINFO.explet_id = #{entity.expletId}</if>
+	        <if test="entity.expId != null">and TA_JC_RULE_EXPLETINFO.exp_id = #{entity.expId}</if>
+	        <if test="entity.leftParen != null">and TA_JC_RULE_EXPLETINFO.left_paren = #{entity.leftParen}</if>
+	        <if test="entity.elemId != null">and TA_JC_RULE_EXPLETINFO.elem_id = #{entity.elemId}</if>
+	        <if test="entity.compaId != null">and TA_JC_RULE_EXPLETINFO.compa_id = #{entity.compaId}</if>
+	        <if test="entity.cfgValue != null">and TA_JC_RULE_EXPLETINFO.cfg_value = #{entity.cfgValue}</if>
+	        <if test="entity.rightParen != null">and TA_JC_RULE_EXPLETINFO.right_paren = #{entity.rightParen}</if>
+	        <if test="entity.logicId != null">and TA_JC_RULE_EXPLETINFO.logic_id = #{entity.logicId}</if>
+	        <if test="entity.areaCode != null">and TA_JC_RULE_EXPLETINFO.area_code = #{entity.areaCode}</if>
+	        <if test="entity.ccFormInstanceid != null">and TA_JC_RULE_EXPLETINFO.cc_form_instanceid = #{entity.ccFormInstanceid}</if>
+		</where>
+</foreach>
+)
+</select>
+
+<!-- ElementID:selectUnion,Generated=true -->
+<select id="selectUnion" parameterType="list" resultMap="RuleExpletInfoResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_JC_RULE_EXPLETINFO 
+	 INNER JOIN
+<foreach collection="list" item="entity" separator="UNION" open="(" close=")">
+		SELECT 
+			 explet_id
+		FROM TA_JC_RULE_EXPLETINFO 
+			<where>
+	        <if test="entity.expletId != null">and TA_JC_RULE_EXPLETINFO.explet_id = #{entity.expletId}</if>
+	        <if test="entity.expId != null">and TA_JC_RULE_EXPLETINFO.exp_id = #{entity.expId}</if>
+	        <if test="entity.leftParen != null">and TA_JC_RULE_EXPLETINFO.left_paren = #{entity.leftParen}</if>
+	        <if test="entity.elemId != null">and TA_JC_RULE_EXPLETINFO.elem_id = #{entity.elemId}</if>
+	        <if test="entity.compaId != null">and TA_JC_RULE_EXPLETINFO.compa_id = #{entity.compaId}</if>
+	        <if test="entity.cfgValue != null">and TA_JC_RULE_EXPLETINFO.cfg_value = #{entity.cfgValue}</if>
+	        <if test="entity.rightParen != null">and TA_JC_RULE_EXPLETINFO.right_paren = #{entity.rightParen}</if>
+	        <if test="entity.logicId != null">and TA_JC_RULE_EXPLETINFO.logic_id = #{entity.logicId}</if>
+	        <if test="entity.areaCode != null">and TA_JC_RULE_EXPLETINFO.area_code = #{entity.areaCode}</if>
+	        <if test="entity.ccFormInstanceid != null">and TA_JC_RULE_EXPLETINFO.cc_form_instanceid = #{entity.ccFormInstanceid}</if>
+			</where>
+</foreach>
+	c2_temp_table ON TA_JC_RULE_EXPLETINFO.explet_id = c2_temp_table.explet_id
+</select>
+
+<!-- ElementID:selectByID,Generated=true -->
+<select id="selectByID" parameterType="java.lang.String" resultMap="RuleExpletInfoResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_RULE_EXPLETINFO 
+		 where TA_JC_RULE_EXPLETINFO.explet_id = #{expletId,jdbcType=VARCHAR}
+</select>
+
+<!-- ElementID:selectByPage,Generated=true -->
+<select id="selectByPage" parameterType="com.chinacreator.dzjc_ruleEngine.RuleExpletInfo" resultMap="RuleExpletInfoResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_RULE_EXPLETINFO 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+
+
+<delete id="deleteByRuleId" parameterType="java.lang.String">
+    delete from ta_jc_rule_expletinfo where EXP_ID in 
+	(
+	  select exp_id from TA_JC_RULE_EXPINFO a 
+	  where a.rule_id = #{ruleId,jdbcType=VARCHAR} 
+	  and a.rule_version = 
+	  (
+	  select max(RULE_VERSION) from TA_JC_RULE_EXPINFO b 
+	  where b.rule_id= #{ruleId,jdbcType=VARCHAR}
+	  )
+	)
+</delete>
+
+
+<select id="selectByRuleId" parameterType="com.chinacreator.dzjc_ruleEngine.RuleExpInfo" resultMap="RuleExpletInfoResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_RULE_EXPLETINFO 
+		 where TA_JC_RULE_EXPLETINFO.exp_id in 
+		(
+			select TA_JC_RULE_EXPINFO.exp_id from TA_JC_RULE_EXPINFO 
+			where 1=1
+			<if test="ruleId != null">and TA_JC_RULE_EXPINFO.rule_id = #{ruleId}</if>
+	    	<if test="ruleVersion != null">and TA_JC_RULE_EXPINFO.rule_version = #{ruleVersion}</if>
+	    	<if test="expSeq != null">and TA_JC_RULE_EXPINFO.exp_seq = #{expSeq}</if>
+		)
+</select>
+
+
+</mapper>

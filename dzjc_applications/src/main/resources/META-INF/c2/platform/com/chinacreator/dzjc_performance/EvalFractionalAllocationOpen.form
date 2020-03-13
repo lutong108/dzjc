@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form:Form xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dync="http://www.chinacreator.com/platform/mvc/ui/dync" xmlns:form="http://www.chinacreator.com/platform/mvc/form" name="EvalFractionalAllocation列表" sn="dzjc_performance/EvalFractionalAllocationOpen" type="form">
+  <form:control type="page/modal">
+    <form:attributes source="page/modal">
+      <dync:attribute default="" group="HTML" id="width" name="页面宽度" value="800px;">
+        <dync:render colSpan="2" height="0" multi="false" name="text"/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="" group="HTML" id="title" name="标题" value="扣分与加分原因模板引用">
+        <dync:render colSpan="2" height="0" multi="false" name="text"/>
+        <dync:children/>
+      </dync:attribute>
+    </form:attributes>
+  </form:control>
+  <form:child xsi:type="form:Group" binding="$model.list" id="list" name="grouplist">
+    <form:control type="container/table_jqgrid">
+      <form:attributes source="container/table_jqgrid">
+        <dync:attribute group="表格设置" id="tableKey" name="主键属性" value="id">
+          <dync:render/>
+          <dync:children/>
+        </dync:attribute>
+        <dync:attribute default="" group="加载后事件" id="ondblClickRow" name="双击行" value="list_ondblClickRow(rowid,iRow,iCol,e)">
+          <dync:render colSpan="1" height="0" multi="false" name="event">
+            <dync:item name="param" value="rowid,iRow,iCol,e"/>
+          </dync:render>
+          <dync:children/>
+        </dync:attribute>
+        <dync:attribute default="" group="表格设置" id="paramData" name="初始化参数" value="{&quot;allocationType&quot;:$params.allocationType,&quot;allocationExamination&quot;:$params.allocationExamination}">
+          <dync:render colSpan="1" height="0" multi="false" name="text"/>
+          <dync:children/>
+        </dync:attribute>
+        <dync:attribute default="" group="加载事件" id="loadComplete" name="请求完成后" value="list_loadComplete(data)">
+          <dync:render colSpan="1" height="0" multi="false" name="event">
+            <dync:item name="param" value="data"/>
+          </dync:render>
+          <dync:children/>
+        </dync:attribute>
+      </form:attributes>
+    </form:control>
+    <form:child xsi:type="form:Group" id="toolbar_table" name="toolbar_table">
+      <form:control type="container/toolbar_table">
+        <form:attributes source="container/toolbar_table"/>
+      </form:control>
+    </form:child>
+    <form:child xsi:type="form:Field" binding="id" id="id" name="ID号">
+      <form:control type="widget/col_jqgrid">
+        <form:attributes source="widget/col_jqgrid">
+          <dync:attribute id="key" value="true">
+            <dync:render/>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute id="hidden" value="true">
+            <dync:render/>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+    </form:child>
+    <form:child xsi:type="form:Field" binding="allocationType" id="allocationType" name="类型 1扣分 2加分">
+      <form:control type="widget/col_jqgrid">
+        <form:attributes source="widget/col_jqgrid">
+          <dync:attribute id="editable" value="true">
+            <dync:render/>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="false" group="表格设置" id="hidden" name="隐藏列" value="true">
+            <dync:render colSpan="1" height="0" multi="false" name="checkbox"/>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+    </form:child>
+    <form:child xsi:type="form:Field" binding="allocationExamination" id="allocationExamination" name="考核指标">
+      <form:control type="widget/col_jqgrid">
+        <form:attributes source="widget/col_jqgrid">
+          <dync:attribute id="editable" value="true">
+            <dync:render/>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+    </form:child>
+    <form:child xsi:type="form:Field" binding="allocationReason" id="allocationReason" name="扣分与加分原因">
+      <form:control type="widget/col_jqgrid">
+        <form:attributes source="widget/col_jqgrid">
+          <dync:attribute id="editable" value="true">
+            <dync:render/>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="false" group="基本设置" id="title" name="鼠标悬浮显示" value="true">
+            <dync:render colSpan="1" height="0" multi="false" name="checkbox"/>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+    </form:child>
+  </form:child>
+  <form:child xsi:type="form:Group" id="div" name="简单容器(DIV)">
+    <form:control type="container/div">
+      <form:attributes source="container/div">
+        <dync:attribute default="" group="高级自定义" id="style" name="自定义style" value="text-align: center;">
+          <dync:render colSpan="2" height="0" multi="false" name="text"/>
+          <dync:children/>
+        </dync:attribute>
+      </form:attributes>
+    </form:control>
+    <form:child xsi:type="form:Field" id="button" name="确定" customize="true">
+      <form:control type="widget/button">
+        <form:attributes source="widget/button">
+          <dync:attribute default="" group="事件设置" id="click" name="点击事件" value="button_click($event)">
+            <dync:render colSpan="1" height="0" multi="false" name="event">
+              <dync:item name="params" value="$event"/>
+            </dync:render>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+      <form:validation/>
+    </form:child>
+    <form:child xsi:type="form:Field" id="button1" name="取消" customize="true">
+      <form:control type="widget/button">
+        <form:attributes source="widget/button">
+          <dync:attribute default="" group="事件设置" id="click" name="点击事件" value="button1_click($event)">
+            <dync:render colSpan="1" height="0" multi="false" name="event">
+              <dync:item name="params" value="$event"/>
+            </dync:render>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+      <form:validation/>
+    </form:child>
+  </form:child>
+  <form:datasources>
+    <form:datasource xsi:type="form:PagingDataSource" id="list" name="列表数据源" base="service" sn="dzjc_performance/v1/EvalFractionalAllocation" elementType="entity:com.chinacreator.dzjc_performance.EvalFractionalAllocation">
+      <form:entityObj pk="id" restResource="true"/>
+    </form:datasource>
+  </form:datasources>
+  <form:scripts>buttonAdd_click:function(rowId,rowData,tableData){&#xD;
+	Modal.open(&quot;f/dzjc_performance/createEvalFractionalAllocation&quot;,{},function(data){&#xD;
+		$view.list.refresh();&#xD;
+	});&#xD;
+},&#xD;
+buttonEdit_click:function(rowId,rowData,tableData){&#xD;
+	if(rowId){&#xD;
+		Modal.open(&quot;f/dzjc_performance/updateEvalFractionalAllocation&quot;,{id:rowId},function(data){&#xD;
+			$view.list.refresh();&#xD;
+		});&#xD;
+	}else{&#xD;
+		Messenger.error(&quot;请选中表格项!&quot;);&#xD;
+	}&#xD;
+},&#xD;
+buttonDelete_click:function(rowId,rowData,tableData){&#xD;
+	var ids = $view.list.getSelectRowIds() ;&#xD;
+	if(ids.length==0){&#xD;
+		Messenger.error(&quot;请选中表格项!&quot;);&#xD;
+	}else{&#xD;
+		Modal.openDelConfirm({message:&quot;确定是否删除！&quot;},&#xD;
+			function(data){&#xD;
+				if(ids.length==1){&#xD;
+					$http.delete(c2.base(&quot;service&quot;)+&quot;dzjc_performance/v1/EvalFractionalAllocation/&quot;+ids[0]).success(function(){&#xD;
+						$view.list.refresh();&#xD;
+					});&#xD;
+				}else{&#xD;
+					 var queryStr=&quot;&quot;;&#xD;
+					 for (var i =0; i&lt; ids.length;i++){&#xD;
+						if(i==0){&#xD;
+						   queryStr+=&quot;id=&quot;+ids[i] ;&#xD;
+						}else{&#xD;
+						   queryStr+=&quot;&amp;id=&quot;+ids[i];&#xD;
+						}&#xD;
+					  }&#xD;
+					$http.delete(c2.base(&quot;service&quot;)+&quot;dzjc_performance/v1/EvalFractionalAllocation?&quot;+queryStr).success(function(){&#xD;
+						$view.list.refresh();&#xD;
+					});&#xD;
+				 }&#xD;
+		});&#xD;
+	}&#xD;
+},
+
+list_ondblClickRow:function(rowid,iRow,iCol,e){&#xD;
+	var selectedRow = $view.list.getRowData(rowid);&#xD;
+	console.log(selectedRow.allocationReason);
+	Modal.instance.close(selectedRow);
+},
+
+button_click:function($event){&#xD;
+	var selectedRow='';&#xD;
+	var bigselectRow='';
+	var ids = $view.list.getSelectRowIds();&#xD;
+	if(ids.length&lt;=0){&#xD;
+		Messenger.error('未选中扣分原因表格项!');&#xD;
+		return;&#xD;
+	}&#xD;
+	if(ids.length>1){&#xD;
+			var  Row = $view.list.getSelectDatas();&#xD;
+			Modal.instance.close(Row);&#xD;
+			&#xD;
+	}else{&#xD;
+			 selectedRow = $view.list.getRowData(ids);&#xD;
+			Modal.instance.close(selectedRow);&#xD;
+	}&#xD;
+},
+
+button1_click:function($event){
+	Modal.instance.close();
+},
+
+list_loadComplete:function(data){
+		for(var i=0; i&lt;data.contents.length; i++){&#xD;
+		var  height = $('.model').eq(i).height();&#xD;
+		console.log(height);&#xD;
+		$('.model').eq(i).css({&quot;color&quot;:&quot;black&quot;,&quot;line-height&quot;:height+&quot;px&quot;});&#xD;
+		$('.model1').eq(i).css({&quot;color&quot;:&quot;black&quot;,&quot;line-height&quot;:height+&quot;px&quot;});&#xD;
+		$('.model2').eq(i).css({&quot;color&quot;:&quot;black&quot;,&quot;line-height&quot;:height+&quot;px&quot;});&#xD;
+		$('.model3').eq(i).css({&quot;color&quot;:&quot;black&quot;,&quot;line-height&quot;:height+&quot;px&quot;});&#xD;
+		$('.model4').eq(i).css({&quot;color&quot;:&quot;black&quot;,&quot;line-height&quot;:height+&quot;px&quot;});&#xD;
+	}
+}</form:scripts>
+</form:Form>

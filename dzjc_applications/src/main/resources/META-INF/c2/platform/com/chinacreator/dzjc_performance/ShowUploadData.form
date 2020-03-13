@@ -1,0 +1,473 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form:Form xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dync="http://www.chinacreator.com/platform/mvc/ui/dync" xmlns:form="http://www.chinacreator.com/platform/mvc/form" name="数据上报详细信息" sn="dzjc_performance/showUploadData" type="form">
+  <form:control type="page/modal">
+    <form:attributes source="page/modal">
+      <dync:attribute default="" group="HTML" id="width" name="页面宽度" value="1200px;">
+        <dync:render colSpan="2" height="0" multi="false" name="text"/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="" group="HTML" id="title" name="标题" value="考核项详细信息">
+        <dync:render colSpan="2" height="0" multi="false" name="text"/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="" group="事件" id="onload" name="页面加载完成" value="page_onload()">
+        <dync:render colSpan="2" height="0" multi="false" name="event">
+          <dync:item name="param" value=""/>
+        </dync:render>
+        <dync:children/>
+      </dync:attribute>
+    </form:attributes>
+  </form:control>
+  <form:child xsi:type="form:Group" id="div" name="简单容器(DIV)">
+    <form:control type="container/div">
+      <form:attributes source="container/div">
+        <dync:attribute default="false" group="HTML配置" id="pure" name="简单div" value="true">
+          <dync:render colSpan="2" height="0" multi="false" name="checkbox"/>
+          <dync:children/>
+        </dync:attribute>
+        <dync:attribute default="" group="高级自定义" id="html" name="自定义HTML" value="div_html">
+          <dync:render colSpan="2" height="0" multi="false" name="html"/>
+          <dync:children/>
+        </dync:attribute>
+        <dync:attribute default="" group="高级自定义" id="style" name="自定义style" value="width:98%;height:auto;">
+          <dync:render colSpan="2" height="0" multi="false" name="text"/>
+          <dync:children/>
+        </dync:attribute>
+      </form:attributes>
+    </form:control>
+  </form:child>
+  <form:child xsi:type="form:Group" id="div1" name="简单容器(DIV)">
+    <form:control type="container/div">
+      <form:attributes source="container/div"/>
+    </form:control>
+    <form:child xsi:type="form:Field" binding="$params.num" id="text" name="总得分" customize="true">
+      <form:control type="widget/text">
+        <form:attributes source="widget/text">
+          <dync:attribute default="false" group="文本框设置" id="disabled" name="禁用" value="true">
+            <dync:render colSpan="1" height="0" multi="false" name="checkboxAndExpr"/>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+      <form:validation/>
+    </form:child>
+    <form:child xsi:type="form:Field" binding="$params.bonuspoints" id="text1" name="加分数" customize="true">
+      <form:control type="widget/text">
+        <form:attributes source="widget/text">
+          <dync:attribute default="text" group="文本框设置" id="inputType" name="数据类型" value="number">
+            <dync:render colSpan="2" height="0" multi="false" name="select">
+              <dync:item name="文本" value="text"/>
+              <dync:item name="数字" value="number"/>
+              <dync:item name="密码" value="password"/>
+            </dync:render>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+      <form:validation/>
+    </form:child>
+    <form:child xsi:type="form:Field" binding="$params.isShow" id="radioGroup1" name="加分原因类型" customize="true">
+      <form:control type="widget/radio_group">
+        <form:attributes source="widget/radio_group">
+          <dync:attribute default="" group="单选按钮组设置" id="radioOptions" name="选项" value="{&quot;Y&quot;:&quot;自动获取&quot;,&quot;N&quot;:&quot;人工输入&quot;}">
+            <dync:render colSpan="1" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="false" group="单选按钮组设置" id="firstSelected" name="选中第一个" value="true">
+            <dync:render colSpan="1" height="0" multi="false" name="checkbox"/>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="75" group="基本设置" id="lableWidth" name="lable宽度" value="150">
+            <dync:render colSpan="1" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="" group="事件设置" id="clickEvent" name="选中事件" value="radioGroup_clickEvent(value)">
+            <dync:render colSpan="1" height="0" multi="false" name="event">
+              <dync:item name="params" value="value"/>
+            </dync:render>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+      <form:validation/>
+    </form:child>
+    <form:child xsi:type="form:Field" binding="$params.reasonsforbonus" id="textarea" name="加分原因" customize="true">
+      <form:control type="widget/textarea">
+        <form:attributes source="widget/textarea">
+          <dync:attribute default="" group="事件设置" id="click" name="单击事件" value="textarea_click($event)">
+            <dync:render colSpan="2" height="0" multi="false" name="event">
+              <dync:item name="params" value="$event"/>
+            </dync:render>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="3" group="HTML设置" id="rows" name="行高" value="6">
+            <dync:render colSpan="1" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+      <form:validation/>
+    </form:child>
+  </form:child>
+  <form:child xsi:type="form:Group" id="toolbar" name="普通工具条">
+    <form:control type="container/toolbar">
+      <form:attributes source="container/toolbar">
+        <dync:attribute default="center" group="基本设置" id="position" name="按钮位置" value="pull-right">
+          <dync:render colSpan="2" height="0" multi="false" name="select">
+            <dync:item name="居中" value="center"/>
+            <dync:item name="左侧" value="pull-left"/>
+            <dync:item name="右侧" value="pull-right"/>
+          </dync:render>
+          <dync:children/>
+        </dync:attribute>
+      </form:attributes>
+    </form:control>
+    <form:child xsi:type="form:Field" id="button2" name="保存" customize="true">
+      <form:control type="widget/button">
+        <form:attributes source="widget/button">
+          <dync:attribute default="" group="事件设置" id="click" name="点击事件" value="button2_click($event)">
+            <dync:render colSpan="1" height="0" multi="false" name="event">
+              <dync:item name="params" value="$event"/>
+            </dync:render>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="" group="HTML设置" id="icon" name="图标" value="fa-check">
+            <dync:render colSpan="1" height="0" multi="false" name="selectIcon"/>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+      <form:validation/>
+    </form:child>
+    <form:child xsi:type="form:Field" id="button" name="上报" customize="true">
+      <form:control type="widget/button">
+        <form:attributes source="widget/button">
+          <dync:attribute default="" group="事件设置" id="click" name="点击事件" value="button_click($event)">
+            <dync:render colSpan="1" height="0" multi="false" name="event">
+              <dync:item name="params" value="$event"/>
+            </dync:render>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="" group="HTML设置" id="icon" name="图标" value="fa-arrow-up">
+            <dync:render colSpan="1" height="0" multi="false" name="selectIcon"/>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+      <form:validation/>
+    </form:child>
+    <form:child xsi:type="form:Field" id="button1" name="关闭" customize="true">
+      <form:control type="widget/button">
+        <form:attributes source="widget/button">
+          <dync:attribute default="" group="事件设置" id="click" name="点击事件" value="button1_click($event)">
+            <dync:render colSpan="1" height="0" multi="false" name="event">
+              <dync:item name="params" value="$event"/>
+            </dync:render>
+            <dync:children/>
+          </dync:attribute>
+          <dync:attribute default="" group="HTML设置" id="icon" name="图标" value="fa-times">
+            <dync:render colSpan="1" height="0" multi="false" name="selectIcon"/>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+      <form:validation/>
+    </form:child>
+  </form:child>
+  <form:datasources/>
+  <form:scripts>//页面加载完成事件
+page_onload:function(){
+		if($params.state=='Y'){
+			$(&quot;#textarea&quot;).attr(&quot;disabled&quot;, true);
+			$(&quot;#text1&quot;).attr(&quot;disabled&quot;, true);
+			$(&quot;#button&quot;).hide();
+			$(&quot;#button2&quot;).hide();	
+			$(&quot;#button1&quot;).text(&quot;关闭&quot;);
+			
+			$.ajax({
+	         url:c2.base(&quot;service&quot;)+&quot;dzjc_performance/v1/FindPreservationList/&quot;+$params.id,
+	         type:&quot;GET&quot;,
+	         async: false,
+	         dataType:&quot;JSON&quot;,
+	         success:function(data){
+	        	 if(data!=null &amp;&amp; data!=&quot;&quot;){
+	        	  $params.bonuspoints=data[0].bonuspoints;
+	        	  $params.reasonsforbonus=data[0].reasonsforbonus;
+	        	 }
+	         }
+			});
+		}
+		$.ajax({
+	         url:c2.base(&quot;service&quot;)+&quot;dzjc_performance/v1/FindPreservationList/&quot;+$params.id,
+	         type:&quot;GET&quot;,
+	         async: false,
+	         dataType:&quot;JSON&quot;,
+	         success:function(data){
+	        	 if(data!=null &amp;&amp; data!=&quot;&quot;){
+	        	  $params.bonuspoints=data[0].bonuspoints;
+	        	  $params.reasonsforbonus=data[0].reasonsforbonus;
+	        	 }
+		        
+	         }
+			});
+		
+	var level ;
+	$.ajax({
+         url:c2.base(&quot;service&quot;)+&quot;dzjc_performance/v1/selectDetail/&quot;+$params.instanceId+&quot;/&quot;+$params.objectId,
+         type:&quot;GET&quot;,
+         async: false,
+         dataType:&quot;JSON&quot;,
+         success:function(data,status){
+        	 if(data){
+				var detailList = data[&quot;detail&quot;][0].list;
+				$scope.detailList = detailList;
+				var num=0;
+				for(var i=0; i&lt;detailList.length; i++){
+					
+					num=num+detailList[i].pointScore;
+				}
+				
+				if($params.bonuspoints!=undefined){
+					$params.num=num+$params.bonuspoints;
+				}else{
+					$params.num=num;
+				}
+				
+				//获取层级数,有一项数据不算层级，故-1开始
+				level = -1;
+				for(var item in data){
+					level++;
+				}
+				$scope.level = level;
+				$scope.tableName = $params.tableName;
+				$scope.parentItems = data[level];//顶层父考核项
+				//获取动态表头
+				var titleArr = [];
+				for(var i=1;i&lt;=level;i++){
+					titleArr.push('考核项');
+					//titleArr.push('分数');
+					//titleArr.push('');
+				}
+				$scope.titleArr = titleArr;
+				//console.log(&quot;动态表头：&quot;+$scope.titleArr);
+				//重复单元格内容清空
+				var length = detailList.length;
+				/*for(var i=0;i&lt;length;i++){
+					for(var j=i+1;j&lt;length;j++){//遍历每一行
+						for(var k =level;k>=1;k--){//遍历各级考核项
+							//console.log(detailList[i][&quot;name&quot;+k]+&quot;---&quot;+detailList[j][&quot;name&quot;+k]);
+							//如果和下一行重复，则清除下一行数据
+							if(detailList[i][&quot;name&quot;+k] &amp;&amp; detailList[i][&quot;name&quot;+k] == detailList[j][&quot;name&quot;+k]){
+								detailList[j][&quot;name&quot;+k] =&quot;&quot;;
+								detailList[j][&quot;value&quot;+k] =&quot;&quot;;
+								detailList[j][&quot;proportion&quot;+k] =&quot;&quot;;
+							}	
+							//如果当前行为空，则说明与上一行数据相同，直接比较上一行和下一行
+							if(!detailList[i][&quot;name&quot;+k] &amp;&amp; detailList[i-1][&quot;name&quot;+k] == detailList[j][&quot;name&quot;+k]){
+								detailList[j][&quot;name&quot;+k] =&quot;&quot;;
+								detailList[j][&quot;value&quot;+k] =&quot;&quot;;
+								detailList[j][&quot;proportion&quot;+k] =&quot;&quot;;
+							}						
+						}
+						++i;
+					}
+				}	*/							
+           }
+       }
+   });
+},
+//关闭事件
+button1_click:function($event){
+	Modal.instance.dismiss();
+},
+//上报事件
+button_click:function($event){
+
+	 var falog ='';
+	 var result = true;
+	 if(result){
+			 $('#cnm tbody tr').each(function () {
+			 falog= $(this).children('td').eq(4).html();
+			 if(falog=='N'){
+				 result = false;
+	             return false;
+			 }
+		 });
+	 }
+	 if(!result){
+		 Modal.openConfirm({message:&quot;您有未评分的指标,是否继续上报?&quot;},function(data){
+		  //校验数据
+		  functions.check();
+		  //上传操作
+		  functions.upload();
+		 });
+	 }else{
+		 //校验数据
+		 functions.check();
+		 //上传操作
+		 functions.upload();
+	 }
+	 
+
+},
+//上传操作
+upload:function(){
+		$http.post(c2.base(&quot;service&quot;)+&quot;dzjc_performance/v1/report/&quot;+$params.objectId+&quot;/&quot;+$params.instanceId+&quot;/&quot;+$params.evalObjectType+&quot;/&quot;+$params.id).success(function(data){
+			if(data.status == '200'){
+				Modal.instance.close();
+				Messenger.success(data.msg);
+			}
+			if(data.status == '500'){
+				Messenger.error(data.msg);
+			}
+		}).error(function(){
+			Messenger.error('上报失败');
+		});
+
+},
+//查看详情
+click:function(id,evalObjectType){
+	Modal.open(&quot;f/dzjc_performance/HistoryScoringRecord&quot;,{id:id,evalObjectType:evalObjectType},function(data){
+		$view.list.refresh();
+	});
+},
+//保存事件
+button2_click:function($event){
+		if($params.bonuspoints==undefined){
+			Messenger.success('请填写加分数!');
+			return false;
+		}
+		
+		if($params.bonuspoints==0){
+			Messenger.success('加分数必须大于0');
+			return false;
+		}
+		
+		var re = /^[0-9]+.?[0-9]*$/; //判断字符串是否为数字 //判断正整数 /^[1-9]+[0-9]*]*$/ 
+	　　    var nubmer = $params.bonuspoints;
+	　　  if(!re.test(nubmer)) {
+	　　 		Messenger.error('本次加分不能为负数!');
+	　　　　return false;
+	　　  }
+		if($params.reasonsforbonus==undefined || $params.reasonsforbonus==null || $params.reasonsforbonus==&quot;&quot;){
+			Messenger.success('请填写加分原因!');
+			return false;
+		}
+		$http.post(c2.base(&quot;service&quot;)+&quot;dzjc_performance/v1/Preservation/&quot;+$params.bonuspoints+&quot;/&quot;+$params.reasonsforbonus+&quot;/&quot;+$params.id).success(function(data){
+				var	sum=parseFloat($params.num)+parseFloat(data);
+				$params.num=sum;
+				Messenger.success('保存成功');
+		
+		}).error(function(){
+			Messenger.error('保存失败');
+		});
+},
+//上报判断
+check:function(){
+		var result =true;
+		if($params.bonuspoints==undefined || $params.bonuspoints==&quot;&quot;){
+			result=false;
+		}
+		if($params.bonuspoints==0){
+			result=false;
+		}
+		var re = /^[0-9]+.?[0-9]*$/; //判断字符串是否为数字 //判断正整数 /^[1-9]+[0-9]*]*$/ 
+	　　   var nubmer = $params.bonuspoints;
+	　　	if(!re.test(nubmer)) {
+	　　 		result=false;
+	　　   }
+		if($params.reasonsforbonus==undefined || $params.reasonsforbonus==null || $params.reasonsforbonus==&quot;&quot;){
+			result=false;
+		}
+		
+		if(result){
+			functions.button2_click();
+		}
+
+},
+//加分原因单击事件
+textarea_click:function($event){
+	debugger;
+	if($params.isShow=='Y'){
+			Modal.open(&quot;f/dzjc_performance/EvalFractionalAllocationOpen&quot;,{allocationType:2},function(data){
+			if(data.length>1){
+			var appendString='';
+				for(var i=0; i&lt;data.length; i++){
+					appendString+=data[i].allocationReason;
+					
+				}
+				$params.reasonsforbonus=appendString;
+			}else{
+				$params.reasonsforbonus=data.allocationReason;
+			}
+			});
+	}
+},
+//选中事件
+radioGroup_clickEvent:function(value){
+	$params.reasonsforbonus='';
+}</form:scripts>
+  <form:htmls>&lt;style>
+    td{
+        font-weight:normal;
+        text-align: center;
+        height:30px;
+    }
+    th{
+        font-weight:bold;
+        text-align: center;
+        height:40px;
+    }
+    table{
+        padding:0px;
+        margin:10px;
+    }
+&lt;/style>
+&lt;script type=&quot;text/ng-template&quot; id=&quot;div_html&quot;>
+    
+&lt;table border=&quot;1&quot; style=&quot;width:100%; table-layout:fixed;&quot; id=&quot;cnm&quot;>
+&lt;thead> &lt;tr ng-if=&quot;$params.evalObjectType=='个人'&quot;>
+			&lt;th  colspan={{level*3+4}}>{{tableName}}&lt;/th>
+		
+	    &lt;/tr>
+		 &lt;tr ng-if=&quot;$params.evalObjectType=='部门'&quot;>
+			&lt;th  colspan={{level*3+3}}>{{tableName}}&lt;/th>
+		
+	    &lt;/tr>
+&lt;/thead>
+       &lt;tr>
+        &lt;th style=&quot;width:200px;&quot;  ng-repeat=&quot;title in titleArr track by $index&quot;>{{title}}&lt;/th>
+        &lt;th style=&quot;width:200px;&quot;>指标&lt;/th>
+        &lt;th>指标得分&lt;/th>
+        &lt;th>扣分原因&lt;/th>
+        &lt;th>考核对象&lt;/th>
+		&lt;th ng-if=&quot;$params.evalObjectType=='个人'&quot; >所属单位&lt;/th>
+ 		&lt;th>操作&lt;/th> 
+    &lt;tr>
+
+    &lt;tr ng-repeat=&quot;item in detailList &quot;>
+        &lt;td name=&quot;16&quot; ng-if=&quot;item.name4 !=null&quot;>{{item.name4}}&lt;/td>
+        &lt;td name=&quot;15&quot; ng-if=&quot;item.name4 !=null&quot;>{{item.value4}}&lt;/td>
+        &lt;td name=&quot;14&quot; ng-if=&quot;item.name4 !=null&quot;>{{item.proportion4}}&lt;/td>
+        &lt;td name=&quot;13&quot; ng-if=&quot;item.name3 !=null&quot;>{{item.name3}}&lt;/td>
+        &lt;td name=&quot;12&quot; ng-if=&quot;item.name3 !=null&quot;>{{item.value3}}&lt;/td>
+        &lt;td name=&quot;11&quot; ng-if=&quot;item.name3 !=null&quot;>{{item.proportion3}}&lt;/td>
+        &lt;td name=&quot;10&quot; ng-if=&quot;item.name2 !=null&quot;>{{item.name2}}&lt;/td>
+        &lt;td name=&quot;9&quot; ng-if=&quot;item.name2 !=null&quot;>{{item.value2}}&lt;/td>
+        &lt;td name=&quot;8&quot;  ng-if=&quot;item.name2 !=null&quot;>{{item.proportion2}}&lt;/td>
+        &lt;td  name=&quot;7&quot;>{{item.name1}}&lt;/td>
+         &lt;!-- &lt;td name=&quot;7&quot;>{{item.value1}}&lt;/td>-->
+      &lt;!--  &lt;td name=&quot;6&quot;>{{item.proportion1}}&lt;/td>-->
+        &lt;td name=&quot;6&quot;>{{item.pointName}}&lt;/td>
+        &lt;td name=&quot;5&quot;>{{item.pointScore}}&lt;/td>
+        &lt;td name=&quot;4&quot; style=&quot;word-wrap:break-word;&quot;>{{item.deductReasons}}&lt;/td>
+       &lt;td name=&quot;2&quot; style=&quot;display:none&quot;>{{item.isGrade}}&lt;/td>
+        &lt;td name=&quot;2&quot;>{{item.evalObjectName}}&lt;/td>
+		&lt;td name=&quot;2&quot; ng-if=&quot;item.evalObjectType==3&quot;>{{item.orgName}}&lt;/td>
+		&lt;td  name=&quot;1&quot; > &lt;input class=&quot;butt&quot; title=&quot;查看详情&quot; ng-click=&quot;functions.click(item.id,item.evalObjectType);&quot; type=&quot;button&quot;  value=&quot;查看详情&quot;/>&lt;/td>
+    &lt;/tr>
+	
+&lt;/table>
+	
+&lt;/script></form:htmls>
+</form:Form>

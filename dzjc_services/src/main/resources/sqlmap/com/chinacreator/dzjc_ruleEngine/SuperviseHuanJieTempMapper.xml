@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chinacreator.dzjc_ruleEngine.SuperviseHuanJieTempMapper">	
+
+<resultMap id="SuperviseHuanJieTempResult" type="com.chinacreator.dzjc_ruleEngine.SuperviseHuanJieTemp">
+	<result property="businessId" column="business_id"/>
+	<result property="businessType" column="business_type"/>
+	<result property="isNeedSupervise" column="is_need_supervise"/>
+	<result property="lastSupervise" column="last_supervise"/>
+</resultMap>
+
+<select id="count" resultType="int">
+	select count(*) from TA_JC_SUPERVISE_HUANJIE_TEMP 
+</select>
+
+<delete id="deleteAll" parameterType="com.chinacreator.dzjc_ruleEngine.SuperviseHuanJieTemp">
+    delete from TA_JC_SUPERVISE_HUANJIE_TEMP where 1=1 
+</delete>
+
+<insert id="insertBatch" parameterType="list">
+	insert into TA_JC_SUPERVISE_HUANJIE_TEMP 
+	(business_id,business_type,is_need_supervise,last_supervise) 
+<foreach collection="list" item="entity" index="index" separator="union all">
+		select 
+				#{entity.businessId,jdbcType = VARCHAR},
+				#{entity.businessType,jdbcType = VARCHAR},
+				#{entity.isNeedSupervise,jdbcType = VARCHAR},
+				#{entity.lastSupervise,jdbcType = VARCHAR}
+		from dual
+</foreach>
+</insert>
+
+<delete id="deleteBatch" parameterType="list">
+	delete from TA_JC_SUPERVISE_HUANJIE_TEMP 
+	where business_id in 
+	<foreach collection="list" item="business_id" index="index" open="(" separator="," close=")">
+		#{business_id,jdbcType=VARCHAR}
+	</foreach>
+</delete>
+
+<select id="selectAll" parameterType="java.util.Map" resultMap="SuperviseHuanJieTempResult">
+	SELECT business_id,business_type,is_need_supervise,last_supervise 
+		FROM(
+　　    			SELECT ROWNUM rn,t1.business_id, t1.business_type, t1.is_need_supervise, t1.last_supervise 
+            	FROM(
+　　           				select business_id, business_type,
+             min(is_need_supervise) as is_need_supervise,max(last_supervise) as last_supervise
+             from TA_JC_SUPERVISE_HUANJIE_TEMP group by business_id,business_type 
+             order by business_id asc 
+　　                  )t1 WHERE ROWNUM &lt;= #{endIndex}
+　　  ) WHERE rn &gt; #{startIndex}
+</select>
+
+</mapper>

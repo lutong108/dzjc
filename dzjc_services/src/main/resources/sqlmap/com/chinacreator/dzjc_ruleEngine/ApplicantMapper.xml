@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"><mapper namespace="com.chinacreator.dzjc_ruleEngine.ApplicantMapper">	
+
+<!-- ElementID:column_sql,Generated=true -->
+<sql id="column_sql">
+		  TA_SP_APPLICANT.applicant_id ,
+		  TA_SP_APPLICANT.certificate_type ,
+		  TA_SP_APPLICANT.name ,
+		  TA_SP_APPLICANT.sex ,
+		  TA_SP_APPLICANT.certificate_num ,
+		  TA_SP_APPLICANT.phone ,
+		  TA_SP_APPLICANT.email ,
+		  TA_SP_APPLICANT.addr ,
+		  TA_SP_APPLICANT.residence ,
+		  TA_SP_APPLICANT.remark ,
+		  TA_SP_APPLICANT.is_valid ,
+		  TA_SP_APPLICANT.is_exchange ,
+		  TA_SP_APPLICANT.mod_flag 
+</sql>
+
+<!-- ElementID:whereClause_sql,Generated=true -->
+<sql id="whereClause_sql">
+	    <if test="applicantId != null">and TA_SP_APPLICANT.applicant_id = #{applicantId}</if>
+	    <if test="certificateType != null">and TA_SP_APPLICANT.certificate_type = #{certificateType}</if>
+	    <if test="name != null">and TA_SP_APPLICANT.name = #{name}</if>
+	    <if test="sex != null">and TA_SP_APPLICANT.sex = #{sex}</if>
+	    <if test="certificateNum != null">and TA_SP_APPLICANT.certificate_num = #{certificateNum}</if>
+	    <if test="phone != null">and TA_SP_APPLICANT.phone = #{phone}</if>
+	    <if test="email != null">and TA_SP_APPLICANT.email = #{email}</if>
+	    <if test="addr != null">and TA_SP_APPLICANT.addr = #{addr}</if>
+	    <if test="residence != null">and TA_SP_APPLICANT.residence = #{residence}</if>
+	    <if test="remark != null">and TA_SP_APPLICANT.remark = #{remark}</if>
+	    <if test="isValid != null">and TA_SP_APPLICANT.is_valid = #{isValid}</if>
+	    <if test="isExchange != null">and TA_SP_APPLICANT.is_exchange = #{isExchange}</if>
+	    <if test="modFlag != null">and TA_SP_APPLICANT.mod_flag = #{modFlag}</if>
+</sql>
+
+
+<!-- ElementID:ApplicantResult,Generated=true -->
+<resultMap id="ApplicantResult" type="com.chinacreator.dzjc_ruleEngine.Applicant">
+	<id property="applicantId" column="applicant_id"/>
+	<result property="certificateType" column="certificate_type"/>
+	<result property="name" column="name"/>
+	<result property="sex" column="sex"/>
+	<result property="certificateNum" column="certificate_num"/>
+	<result property="phone" column="phone"/>
+	<result property="email" column="email"/>
+	<result property="addr" column="addr"/>
+	<result property="residence" column="residence"/>
+	<result property="remark" column="remark"/>
+	<result property="isValid" column="is_valid"/>
+	<result property="isExchange" column="is_exchange"/>
+	<result property="modFlag" column="mod_flag"/>
+</resultMap>
+
+
+<!-- ElementID:insert,Generated=true -->
+<insert id="insert" parameterType="com.chinacreator.dzjc_ruleEngine.Applicant">
+	insert into TA_SP_APPLICANT(
+	         <if test="applicantId != null">applicant_id</if>
+	         <if test="certificateType != null">,certificate_type</if>
+	         <if test="name != null">,name</if>
+	         <if test="sex != null">,sex</if>
+	         <if test="certificateNum != null">,certificate_num</if>
+	         <if test="phone != null">,phone</if>
+	         <if test="email != null">,email</if>
+	         <if test="addr != null">,addr</if>
+	         <if test="residence != null">,residence</if>
+	         <if test="remark != null">,remark</if>
+	         <if test="isValid != null">,is_valid</if>
+	         <if test="isExchange != null">,is_exchange</if>
+	         <if test="modFlag != null">,mod_flag</if>
+	 	 	 )
+	 values (
+	         <if test="applicantId != null">#{applicantId,jdbcType=VARCHAR}</if>
+	         <if test="certificateType != null">,#{certificateType,jdbcType=VARCHAR}</if>
+	         <if test="name != null">,#{name,jdbcType=VARCHAR}</if>
+	         <if test="sex != null">,#{sex,jdbcType=VARCHAR}</if>
+	         <if test="certificateNum != null">,#{certificateNum,jdbcType=VARCHAR}</if>
+	         <if test="phone != null">,#{phone,jdbcType=VARCHAR}</if>
+	         <if test="email != null">,#{email,jdbcType=VARCHAR}</if>
+	         <if test="addr != null">,#{addr,jdbcType=VARCHAR}</if>
+	         <if test="residence != null">,#{residence,jdbcType=VARCHAR}</if>
+	         <if test="remark != null">,#{remark,jdbcType=VARCHAR}</if>
+	         <if test="isValid != null">,#{isValid,jdbcType=VARCHAR}</if>
+	         <if test="isExchange != null">,#{isExchange,jdbcType=VARCHAR}</if>
+	         <if test="modFlag != null">,#{modFlag,jdbcType=VARCHAR}</if>
+	 	 	 )
+</insert>
+
+<!-- ElementID:count,Generated=true -->
+<select id="count" parameterType="com.chinacreator.dzjc_ruleEngine.Applicant" resultType="int">
+	select count(*) from TA_SP_APPLICANT 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<!-- ElementID:update,Generated=true -->
+<update id="update" parameterType="com.chinacreator.dzjc_ruleEngine.Applicant">
+	update TA_SP_APPLICANT
+<set>
+	<if test="certificateType != null">certificate_type=#{certificateType,jdbcType=VARCHAR},</if>
+	<if test="name != null">name=#{name,jdbcType=VARCHAR},</if>
+	<if test="sex != null">sex=#{sex,jdbcType=VARCHAR},</if>
+	<if test="certificateNum != null">certificate_num=#{certificateNum,jdbcType=VARCHAR},</if>
+	<if test="phone != null">phone=#{phone,jdbcType=VARCHAR},</if>
+	<if test="email != null">email=#{email,jdbcType=VARCHAR},</if>
+	<if test="addr != null">addr=#{addr,jdbcType=VARCHAR},</if>
+	<if test="residence != null">residence=#{residence,jdbcType=VARCHAR},</if>
+	<if test="remark != null">remark=#{remark,jdbcType=VARCHAR},</if>
+	<if test="isValid != null">is_valid=#{isValid,jdbcType=VARCHAR},</if>
+	<if test="isExchange != null">is_exchange=#{isExchange,jdbcType=VARCHAR},</if>
+	<if test="modFlag != null">mod_flag=#{modFlag,jdbcType=VARCHAR}</if>
+</set>
+<where>
+	<choose>
+        <when test="applicantId != null">and applicant_id = #{applicantId}</when>
+        <otherwise>and applicant_id = </otherwise>
+    </choose>
+</where>
+</update>
+
+<!-- ElementID:updateNull,Generated=true -->
+<update id="updateNull" parameterType="map">
+	update TA_SP_APPLICANT
+	<set>
+		<trim suffixOverrides=",">
+		    <if test="certificateType==null">certificate_type = null,</if>
+		    <if test="name==null">name = null,</if>
+		    <if test="sex==null">sex = null,</if>
+		    <if test="certificateNum==null">certificate_num = null,</if>
+		    <if test="phone==null">phone = null,</if>
+		    <if test="email==null">email = null,</if>
+		    <if test="addr==null">addr = null,</if>
+		    <if test="residence==null">residence = null,</if>
+		    <if test="remark==null">remark = null,</if>
+		    <if test="isValid==null">is_valid = null,</if>
+		    <if test="isExchange==null">is_exchange = null,</if>
+		    <if test="modFlag==null">mod_flag = null,</if>
+		</trim>
+	</set>
+	<where>
+		<choose>
+			<when test="applicantId != null">and applicant_id = #{applicantId}</when>
+			<otherwise>and applicant_id = </otherwise>
+		</choose>
+	</where>
+</update>
+
+<!-- ElementID:delete,Generated=true -->
+<delete id="delete" parameterType="com.chinacreator.dzjc_ruleEngine.Applicant">
+    delete from TA_SP_APPLICANT where 1=1 and applicant_id = #{applicantId}
+</delete>
+
+<!-- ElementID:select,Generated=true -->
+<select id="select" parameterType="com.chinacreator.dzjc_ruleEngine.Applicant" resultMap="ApplicantResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_SP_APPLICANT 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+
+<!-- ElementID:insertBatch,Generated=true -->
+<insert id="insertBatch" parameterType="list">
+	insert into TA_SP_APPLICANT (applicant_id,certificate_type,name,sex,certificate_num,phone,email,addr,residence,remark,is_valid,is_exchange,mod_flag) 
+<foreach collection="list" item="entity" index="index" separator="union all">
+		select 
+		#{entity.applicantId,jdbcType = VARCHAR},
+				#{entity.certificateType,jdbcType = VARCHAR},
+				#{entity.name,jdbcType = VARCHAR},
+				#{entity.sex,jdbcType = VARCHAR},
+				#{entity.certificateNum,jdbcType = VARCHAR},
+				#{entity.phone,jdbcType = VARCHAR},
+				#{entity.email,jdbcType = VARCHAR},
+				#{entity.addr,jdbcType = VARCHAR},
+				#{entity.residence,jdbcType = VARCHAR},
+				#{entity.remark,jdbcType = VARCHAR},
+				#{entity.isValid,jdbcType = VARCHAR},
+				#{entity.isExchange,jdbcType = VARCHAR},
+				#{entity.modFlag,jdbcType = VARCHAR}
+		from dual
+</foreach>
+</insert>
+
+<!-- ElementID:deleteBatch,Generated=true -->
+<delete id="deleteBatch" parameterType="List">
+	delete from TA_SP_APPLICANT where applicant_id in
+<trim prefix="(" suffix=")" suffixOverrides=",">
+<foreach collection="list" item="entity" separator=",">
+	<choose>
+		<when test="@com.chinacreator.c2.dao.util.EntityBeanUtil@isEntityObj(entity)">#{entity.applicantId}</when>
+		<otherwise>#{entity}</otherwise>
+	</choose>
+</foreach>
+</trim>
+</delete>
+
+<!-- ElementID:updateBatch,Generated=true -->
+<update id="updateBatch" parameterType="list">
+	<foreach collection="list" item="entity" open="begin" close=";end;" separator=";">
+			update TA_SP_APPLICANT
+	<set>
+	<if test="entity.certificateType != null">certificate_type= #{entity.certificateType,jdbcType=VARCHAR},</if>
+	<if test="entity.name != null">name= #{entity.name,jdbcType=VARCHAR},</if>
+	<if test="entity.sex != null">sex= #{entity.sex,jdbcType=VARCHAR},</if>
+	<if test="entity.certificateNum != null">certificate_num= #{entity.certificateNum,jdbcType=VARCHAR},</if>
+	<if test="entity.phone != null">phone= #{entity.phone,jdbcType=VARCHAR},</if>
+	<if test="entity.email != null">email= #{entity.email,jdbcType=VARCHAR},</if>
+	<if test="entity.addr != null">addr= #{entity.addr,jdbcType=VARCHAR},</if>
+	<if test="entity.residence != null">residence= #{entity.residence,jdbcType=VARCHAR},</if>
+	<if test="entity.remark != null">remark= #{entity.remark,jdbcType=VARCHAR},</if>
+	<if test="entity.isValid != null">is_valid= #{entity.isValid,jdbcType=VARCHAR},</if>
+	<if test="entity.isExchange != null">is_exchange= #{entity.isExchange,jdbcType=VARCHAR},</if>
+	<if test="entity.modFlag != null">mod_flag= #{entity.modFlag,jdbcType=VARCHAR}</if>
+	</set>
+		<where>
+			<choose>
+				<when test="entity.applicantId != null">and applicant_id = #{entity.applicantId}</when>
+				<otherwise>and applicant_id = </otherwise>
+			</choose>
+		</where>
+	</foreach>
+</update>
+
+<!-- ElementID:selectAll,Generated=true -->
+<select id="selectAll" resultMap="ApplicantResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_SP_APPLICANT 
+</select>
+
+<!-- ElementID:selectMany,Generated=true -->
+<select id="selectMany" parameterType="list" resultMap="ApplicantResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_SP_APPLICANT 
+	where TA_SP_APPLICANT.applicant_id in (
+<foreach collection="list" item="entity" separator="intersect">
+		select 
+		TA_SP_APPLICANT.applicant_id
+	    from TA_SP_APPLICANT 
+		 <where>
+	        <if test="entity.applicantId != null">and TA_SP_APPLICANT.applicant_id = #{entity.applicantId}</if>
+	        <if test="entity.certificateType != null">and TA_SP_APPLICANT.certificate_type = #{entity.certificateType}</if>
+	        <if test="entity.name != null">and TA_SP_APPLICANT.name = #{entity.name}</if>
+	        <if test="entity.sex != null">and TA_SP_APPLICANT.sex = #{entity.sex}</if>
+	        <if test="entity.certificateNum != null">and TA_SP_APPLICANT.certificate_num = #{entity.certificateNum}</if>
+	        <if test="entity.phone != null">and TA_SP_APPLICANT.phone = #{entity.phone}</if>
+	        <if test="entity.email != null">and TA_SP_APPLICANT.email = #{entity.email}</if>
+	        <if test="entity.addr != null">and TA_SP_APPLICANT.addr = #{entity.addr}</if>
+	        <if test="entity.residence != null">and TA_SP_APPLICANT.residence = #{entity.residence}</if>
+	        <if test="entity.remark != null">and TA_SP_APPLICANT.remark = #{entity.remark}</if>
+	        <if test="entity.isValid != null">and TA_SP_APPLICANT.is_valid = #{entity.isValid}</if>
+	        <if test="entity.isExchange != null">and TA_SP_APPLICANT.is_exchange = #{entity.isExchange}</if>
+	        <if test="entity.modFlag != null">and TA_SP_APPLICANT.mod_flag = #{entity.modFlag}</if>
+		</where>
+</foreach>
+)
+</select>
+
+<!-- ElementID:selectUnion,Generated=true -->
+<select id="selectUnion" parameterType="list" resultMap="ApplicantResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_SP_APPLICANT 
+	 INNER JOIN
+<foreach collection="list" item="entity" separator="UNION" open="(" close=")">
+		SELECT 
+			 applicant_id
+		FROM TA_SP_APPLICANT 
+			<where>
+	        <if test="entity.applicantId != null">and TA_SP_APPLICANT.applicant_id = #{entity.applicantId}</if>
+	        <if test="entity.certificateType != null">and TA_SP_APPLICANT.certificate_type = #{entity.certificateType}</if>
+	        <if test="entity.name != null">and TA_SP_APPLICANT.name = #{entity.name}</if>
+	        <if test="entity.sex != null">and TA_SP_APPLICANT.sex = #{entity.sex}</if>
+	        <if test="entity.certificateNum != null">and TA_SP_APPLICANT.certificate_num = #{entity.certificateNum}</if>
+	        <if test="entity.phone != null">and TA_SP_APPLICANT.phone = #{entity.phone}</if>
+	        <if test="entity.email != null">and TA_SP_APPLICANT.email = #{entity.email}</if>
+	        <if test="entity.addr != null">and TA_SP_APPLICANT.addr = #{entity.addr}</if>
+	        <if test="entity.residence != null">and TA_SP_APPLICANT.residence = #{entity.residence}</if>
+	        <if test="entity.remark != null">and TA_SP_APPLICANT.remark = #{entity.remark}</if>
+	        <if test="entity.isValid != null">and TA_SP_APPLICANT.is_valid = #{entity.isValid}</if>
+	        <if test="entity.isExchange != null">and TA_SP_APPLICANT.is_exchange = #{entity.isExchange}</if>
+	        <if test="entity.modFlag != null">and TA_SP_APPLICANT.mod_flag = #{entity.modFlag}</if>
+			</where>
+</foreach>
+	c2_temp_table ON TA_SP_APPLICANT.applicant_id = c2_temp_table.applicant_id
+</select>
+
+<!-- ElementID:selectByID,Generated=true -->
+<select id="selectByID" parameterType="java.lang.String" resultMap="ApplicantResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_SP_APPLICANT 
+		 where TA_SP_APPLICANT.applicant_id = #{applicantId,jdbcType=VARCHAR}
+</select>
+
+<!-- ElementID:selectByPage,Generated=true -->
+<select id="selectByPage" parameterType="com.chinacreator.dzjc_ruleEngine.Applicant" resultMap="ApplicantResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_SP_APPLICANT 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+</mapper>

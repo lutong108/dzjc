@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"><mapper namespace="com.chinacreator.dzjc_log.ConsoleLogMapper">	
+
+<!-- ElementID:column_sql,Generated=true -->
+<sql id="column_sql">
+		  TA_JC_CONSOLE_LOG.id ,
+		  TA_JC_CONSOLE_LOG.log_type ,
+		  TA_JC_CONSOLE_LOG.log_title ,
+		  TA_JC_CONSOLE_LOG.log_content ,
+		  TA_JC_CONSOLE_LOG.log_date 
+</sql>
+
+<!-- ElementID:whereClause_sql,Generated=true -->
+<sql id="whereClause_sql">
+	    <if test="id != null">and TA_JC_CONSOLE_LOG.id = #{id}</if>
+	    <if test="logType != null">and TA_JC_CONSOLE_LOG.log_type = #{logType}</if>
+	    <if test="logTitle != null">and TA_JC_CONSOLE_LOG.log_title = #{logTitle}</if>
+	    <if test="logContent != null">and TA_JC_CONSOLE_LOG.log_content = #{logContent}</if>
+	    <if test="logDate != null">and TA_JC_CONSOLE_LOG.log_date = #{logDate}</if>
+</sql>
+
+
+<!-- ElementID:ConsoleLogResult,Generated=true -->
+<resultMap id="ConsoleLogResult" type="com.chinacreator.dzjc_log.ConsoleLog">
+	<id property="id" column="id"/>
+	<result property="logType" column="log_type"/>
+	<result property="logTitle" column="log_title"/>
+	<result property="logContent" column="log_content"/>
+	<result property="logDate" column="log_date"/>
+</resultMap>
+
+
+<!-- ElementID:insert,Generated=false -->
+<insert id="insert" parameterType="com.chinacreator.dzjc_log.ConsoleLog">
+	insert into TA_JC_CONSOLE_LOG(
+	         id
+	         <if test="logType != null">,log_type</if>
+	         <if test="logTitle != null">,log_title</if>
+	         <if test="logContent != null">,log_content</if>
+	         ,log_date
+	 	 	 )
+	 values (
+	         sys_guid()
+	         <if test="logType != null">,#{logType,jdbcType=VARCHAR}</if>
+	         <if test="logTitle != null">,#{logTitle,jdbcType=VARCHAR}</if>
+	         <if test="logContent != null">,#{logContent,jdbcType=VARCHAR}</if>
+	         ,sysdate
+	 	 	 )
+</insert>
+
+<!-- ElementID:count,Generated=true -->
+<select id="count" parameterType="com.chinacreator.dzjc_log.ConsoleLog" resultType="int">
+	select count(*) from TA_JC_CONSOLE_LOG 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<!-- ElementID:update,Generated=true -->
+<update id="update" parameterType="com.chinacreator.dzjc_log.ConsoleLog">
+	update TA_JC_CONSOLE_LOG
+<set>
+	<if test="logType != null">log_type=#{logType,jdbcType=VARCHAR},</if>
+	<if test="logTitle != null">log_title=#{logTitle,jdbcType=VARCHAR},</if>
+	<if test="logContent != null">log_content=#{logContent,jdbcType=VARCHAR},</if>
+	<if test="logDate != null">log_date=#{logDate,jdbcType=TIMESTAMP}</if>
+</set>
+<where>
+	<choose>
+        <when test="id != null">and id = #{id}</when>
+        <otherwise>and id = </otherwise>
+    </choose>
+</where>
+</update>
+
+<!-- ElementID:updateNull,Generated=true -->
+<update id="updateNull" parameterType="map">
+	update TA_JC_CONSOLE_LOG
+	<set>
+		<trim suffixOverrides=",">
+		    <if test="logType==null">log_type = null,</if>
+		    <if test="logTitle==null">log_title = null,</if>
+		    <if test="logContent==null">log_content = null,</if>
+		    <if test="logDate==null">log_date = null,</if>
+		</trim>
+	</set>
+	<where>
+		<choose>
+			<when test="id != null">and id = #{id}</when>
+			<otherwise>and id = </otherwise>
+		</choose>
+	</where>
+</update>
+
+<!-- ElementID:delete,Generated=true -->
+<delete id="delete" parameterType="com.chinacreator.dzjc_log.ConsoleLog">
+    delete from TA_JC_CONSOLE_LOG where 1=1 and id = #{id}
+</delete>
+
+<!-- ElementID:select,Generated=true -->
+<select id="select" parameterType="com.chinacreator.dzjc_log.ConsoleLog" resultMap="ConsoleLogResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_CONSOLE_LOG 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+
+<!-- ElementID:insertBatch,Generated=true -->
+<insert id="insertBatch" parameterType="list">
+	insert into TA_JC_CONSOLE_LOG (id,log_type,log_title,log_content,log_date) 
+<foreach collection="list" item="entity" index="index" separator="union all">
+		select 
+		#{entity.id,jdbcType = VARCHAR},
+				#{entity.logType,jdbcType = VARCHAR},
+				#{entity.logTitle,jdbcType = VARCHAR},
+				#{entity.logContent,jdbcType = VARCHAR},
+				#{entity.logDate,jdbcType = TIMESTAMP}
+		from dual
+</foreach>
+</insert>
+
+<!-- ElementID:deleteBatch,Generated=true -->
+<delete id="deleteBatch" parameterType="List">
+	delete from TA_JC_CONSOLE_LOG where id in
+<trim prefix="(" suffix=")" suffixOverrides=",">
+<foreach collection="list" item="entity" separator=",">
+	<choose>
+		<when test="@com.chinacreator.c2.dao.util.EntityBeanUtil@isEntityObj(entity)">#{entity.id}</when>
+		<otherwise>#{entity}</otherwise>
+	</choose>
+</foreach>
+</trim>
+</delete>
+
+<!-- ElementID:updateBatch,Generated=true -->
+<update id="updateBatch" parameterType="list">
+	<foreach collection="list" item="entity" open="begin" close=";end;" separator=";">
+			update TA_JC_CONSOLE_LOG
+	<set>
+	<if test="entity.logType != null">log_type= #{entity.logType,jdbcType=VARCHAR},</if>
+	<if test="entity.logTitle != null">log_title= #{entity.logTitle,jdbcType=VARCHAR},</if>
+	<if test="entity.logContent != null">log_content= #{entity.logContent,jdbcType=VARCHAR},</if>
+	<if test="entity.logDate != null">log_date= #{entity.logDate,jdbcType=TIMESTAMP}</if>
+	</set>
+		<where>
+			<choose>
+				<when test="entity.id != null">and id = #{entity.id}</when>
+				<otherwise>and id = </otherwise>
+			</choose>
+		</where>
+	</foreach>
+</update>
+
+<!-- ElementID:selectAll,Generated=true -->
+<select id="selectAll" resultMap="ConsoleLogResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_CONSOLE_LOG 
+</select>
+
+<!-- ElementID:selectMany,Generated=true -->
+<select id="selectMany" parameterType="list" resultMap="ConsoleLogResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_JC_CONSOLE_LOG 
+	where TA_JC_CONSOLE_LOG.id in (
+<foreach collection="list" item="entity" separator="intersect">
+		select 
+		TA_JC_CONSOLE_LOG.id
+	    from TA_JC_CONSOLE_LOG 
+		 <where>
+	        <if test="entity.id != null">and TA_JC_CONSOLE_LOG.id = #{entity.id}</if>
+	        <if test="entity.logType != null">and TA_JC_CONSOLE_LOG.log_type = #{entity.logType}</if>
+	        <if test="entity.logTitle != null">and TA_JC_CONSOLE_LOG.log_title = #{entity.logTitle}</if>
+	        <if test="entity.logContent != null">and TA_JC_CONSOLE_LOG.log_content = #{entity.logContent}</if>
+	        <if test="entity.logDate != null">and TA_JC_CONSOLE_LOG.log_date = #{entity.logDate}</if>
+		</where>
+</foreach>
+)
+</select>
+
+<!-- ElementID:selectUnion,Generated=true -->
+<select id="selectUnion" parameterType="list" resultMap="ConsoleLogResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_JC_CONSOLE_LOG 
+	 INNER JOIN
+<foreach collection="list" item="entity" separator="UNION" open="(" close=")">
+		SELECT 
+			 id
+		FROM TA_JC_CONSOLE_LOG 
+			<where>
+	        <if test="entity.id != null">and TA_JC_CONSOLE_LOG.id = #{entity.id}</if>
+	        <if test="entity.logType != null">and TA_JC_CONSOLE_LOG.log_type = #{entity.logType}</if>
+	        <if test="entity.logTitle != null">and TA_JC_CONSOLE_LOG.log_title = #{entity.logTitle}</if>
+	        <if test="entity.logContent != null">and TA_JC_CONSOLE_LOG.log_content = #{entity.logContent}</if>
+	        <if test="entity.logDate != null">and TA_JC_CONSOLE_LOG.log_date = #{entity.logDate}</if>
+			</where>
+</foreach>
+	c2_temp_table ON TA_JC_CONSOLE_LOG.id = c2_temp_table.id
+</select>
+
+<!-- ElementID:selectByID,Generated=true -->
+<select id="selectByID" parameterType="java.lang.String" resultMap="ConsoleLogResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_CONSOLE_LOG 
+		 where TA_JC_CONSOLE_LOG.id = #{id,jdbcType=VARCHAR}
+</select>
+
+<!-- ElementID:selectByPage,Generated=true -->
+<select id="selectByPage" parameterType="com.chinacreator.dzjc_log.ConsoleLog" resultMap="ConsoleLogResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_CONSOLE_LOG 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+</mapper>

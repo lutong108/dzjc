@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chinacreator.dzjc_complain.FriendlyTipMapper">	
+
+<resultMap id="FriendlyTipMapper" type="com.chinacreator.dzjc_complain.FriendlyTip">
+	<id property="orgId" column="org_id"/>
+	<result property="greenNum" column="green_num"/>
+	<result property="yelloNum" column="yello_num"/>
+	<result property="redNum" column="red_num"/>
+</resultMap>
+
+<!-- 查询“发牌情况友情提示”数据 -->
+<select id="getFriendlyTip"  parameterType="com.chinacreator.dzjc_complain.FriendlyTip" resultMap="FriendlyTipMapper">
+	with  temp1 as(
+	        SELECT id
+	          FROM V_ORG
+	         <![CDATA[WHERE id <> '1']]>
+	          AND (trim(CODE) LIKE CONCAT(#{orgId,jdbcType=VARCHAR}, '%') OR ID = #{orgId,jdbcType=VARCHAR})
+	         START WITH pID = '1'  CONNECT BY PID = PRIOR ID
+	),temp2 as(
+	 select 
+	        0 execute_type,
+	        nvl(sum(SUPERVISE_GREEN_NUM),0) as green_num,
+            nvl(sum(SUPERVISE_YELLO_NUM),0) as yello_num,
+            nvl(sum(SUPERVISE_RED_NUM),0) as red_num
+	    from ta_jc_sum_supervise_info
+	   where org_id in (select id from temp1)
+	   and is_investment_supervision = '0'
+	),temp3 as (
+	SELECT 
+	              1 execute_type,
+	              nvl(SUM(human_SUPERVISE_GREEN_NUM),0) as green_num,
+                  nvl(SUM(human_SUPERVISE_YELLO_NUM),0) as yello_num,
+                  nvl(SUM(human_SUPERVISE_RED_NUM),0) as red_num
+	              from (
+	                    SELECT
+	                    T.ORG_ID ORG_ID,
+	                    to_char(t.supervise_time,'YYYY-MM-DD') supervise_time,
+	                    (CASE WHEN (T.SUPERVISE_RESULT_no = '1')THEN 1 ELSE  0 END ) AS human_SUPERVISE_GREEN_NUM,
+	                    (CASE WHEN (T.SUPERVISE_RESULT_no = '2')THEN 1 ELSE  0 END ) AS human_SUPERVISE_YELLO_NUM,
+	                    (CASE WHEN (T.SUPERVISE_RESULT_no = '3')THEN 1 ELSE  0 END ) AS human_SUPERVISE_RED_NUM
+	                    FROM TA_JC_SUPERVISE_HUMAN t where t.state = 'Y' and t.ORG_ID in (select id from temp1)
+	              ) t   
+	)
+	select execute_type,green_num,yello_num,red_num from temp2
+	union
+	select execute_type,green_num,yello_num,red_num from temp3
+	
+	<!-- 
+	select org_id,
+	       0 execute_type,
+	       sum(green_num) green_num,
+	       sum(yello_num) yello_num,
+	       sum(red_num) red_num
+	  from ta_jc_sum_supervise_info
+	 where org_id = #{orgId,jdbcType=VARCHAR}
+	 group by org_id
+	 
+	union all
+	
+	select org_id,
+		   1 execute_type,
+	       sum(green_num) green_num,
+	       sum(yello_num) yello_num,
+	       sum(red_num) red_num
+	  from (SELECT org_id, count(*) green_num, 0 yello_num, 0 red_num
+	          FROM TA_JC_SUPERVISE_HUMAN t1
+	          left join ta_jc_dic_supervise_result t2
+	            on t1.supervise_result_no = t2.supervise_result_id
+	         where t2.state = 'Y'
+	           and supervise_result_no = '1'
+	         group by org_id
+	         
+	        union all
+	        
+	        SELECT org_id, 0 green_num, count(*) yello_num, 0 red_num
+	          FROM TA_JC_SUPERVISE_HUMAN t1
+	          left join ta_jc_dic_supervise_result t2
+	            on t1.supervise_result_no = t2.supervise_result_id
+	         where t2.state = 'Y'
+	           and supervise_result_no = '2'
+	         group by org_id
+	         
+	        union all
+	        
+	        SELECT org_id, 0 green_num, 0 yello_num, count(*) red_num
+	          FROM TA_JC_SUPERVISE_HUMAN t1
+	          left join ta_jc_dic_supervise_result t2
+	            on t1.supervise_result_no = t2.supervise_result_id
+	         where t2.state = 'Y'
+	           and supervise_result_no = '3'
+	         group by org_id) a
+	 where a.org_id = #{orgId,jdbcType=VARCHAR}
+	 group by a.org_id
+	 -->
+</select>
+
+</mapper>

@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"><mapper namespace="com.chinacreator.dzjc_ruleEngine.ZwfwInstanceInfoDetailMapper">	
+
+<!-- ElementID:column_sql,Generated=true -->
+<sql id="column_sql">
+		  VA_TA_JC_ZWFW_INSTANCE_DETAIL.instance_id ,
+		  VA_TA_JC_ZWFW_INSTANCE_DETAIL.org_name ,
+		  VA_TA_JC_ZWFW_INSTANCE_DETAIL.instance_name ,
+		  VA_TA_JC_ZWFW_INSTANCE_DETAIL.instance_code ,
+		  VA_TA_JC_ZWFW_INSTANCE_DETAIL.apply_name ,
+		  VA_TA_JC_ZWFW_INSTANCE_DETAIL.approve_name ,
+		  VA_TA_JC_ZWFW_INSTANCE_DETAIL.query_code ,
+		  VA_TA_JC_ZWFW_INSTANCE_DETAIL.project_state ,
+		  VA_TA_JC_ZWFW_INSTANCE_DETAIL.accept_time ,
+		  VA_TA_JC_ZWFW_INSTANCE_DETAIL.end_time ,
+		  VA_TA_JC_ZWFW_INSTANCE_DETAIL.fdqx ,
+		  VA_TA_JC_ZWFW_INSTANCE_DETAIL.cnqx ,
+		  VA_TA_JC_ZWFW_INSTANCE_DETAIL.time_use ,
+		  VA_TA_JC_ZWFW_INSTANCE_DETAIL.supervise_result_no ,
+		  VA_TA_JC_ZWFW_INSTANCE_DETAIL.supervise_result_name 
+</sql>
+
+<!-- ElementID:whereClause_sql,Generated=true -->
+<sql id="whereClause_sql">
+	    <if test="instanceId != null">and VA_TA_JC_ZWFW_INSTANCE_DETAIL.instance_id = #{instanceId}</if>
+	    <if test="orgName != null">and VA_TA_JC_ZWFW_INSTANCE_DETAIL.org_name = #{orgName}</if>
+	    <if test="instanceName != null">and VA_TA_JC_ZWFW_INSTANCE_DETAIL.instance_name = #{instanceName}</if>
+	    <if test="instanceCode != null">and VA_TA_JC_ZWFW_INSTANCE_DETAIL.instance_code = #{instanceCode}</if>
+	    <if test="applyName != null">and VA_TA_JC_ZWFW_INSTANCE_DETAIL.apply_name = #{applyName}</if>
+	    <if test="approveName != null">and VA_TA_JC_ZWFW_INSTANCE_DETAIL.approve_name = #{approveName}</if>
+	    <if test="queryCode != null">and VA_TA_JC_ZWFW_INSTANCE_DETAIL.query_code = #{queryCode}</if>
+	    <if test="projectState != null">and VA_TA_JC_ZWFW_INSTANCE_DETAIL.project_state = #{projectState}</if>
+	    <if test="acceptTime != null">and VA_TA_JC_ZWFW_INSTANCE_DETAIL.accept_time = #{acceptTime}</if>
+	    <if test="endTime != null">and VA_TA_JC_ZWFW_INSTANCE_DETAIL.end_time = #{endTime}</if>
+	    <if test="fdqx != null">and VA_TA_JC_ZWFW_INSTANCE_DETAIL.fdqx = #{fdqx}</if>
+	    <if test="cnqx != null">and VA_TA_JC_ZWFW_INSTANCE_DETAIL.cnqx = #{cnqx}</if>
+	    <if test="timeUse != null">and VA_TA_JC_ZWFW_INSTANCE_DETAIL.time_use = #{timeUse}</if>
+	    <if test="superviseResultNo != null">and VA_TA_JC_ZWFW_INSTANCE_DETAIL.supervise_result_no = #{superviseResultNo}</if>
+	    <if test="superviseResultName != null">and VA_TA_JC_ZWFW_INSTANCE_DETAIL.supervise_result_name = #{superviseResultName}</if>
+</sql>
+
+
+<!-- ElementID:ZwfwInstanceInfoDetailResult,Generated=true -->
+<resultMap id="ZwfwInstanceInfoDetailResult" type="com.chinacreator.dzjc_ruleEngine.ZwfwInstanceInfoDetail">
+	<id property="instanceId" column="instance_id"/>
+	<result property="orgName" column="org_name"/>
+	<result property="instanceName" column="instance_name"/>
+	<result property="instanceCode" column="instance_code"/>
+	<result property="applyName" column="apply_name"/>
+	<result property="approveName" column="approve_name"/>
+	<result property="queryCode" column="query_code"/>
+	<result property="projectState" column="project_state"/>
+	<result property="acceptTime" column="accept_time"/>
+	<result property="endTime" column="end_time"/>
+	<result property="fdqx" column="fdqx"/>
+	<result property="cnqx" column="cnqx"/>
+	<result property="timeUse" column="time_use"/>
+	<result property="superviseResultNo" column="supervise_result_no"/>
+	<result property="superviseResultName" column="supervise_result_name"/>
+</resultMap>
+
+
+<!-- ElementID:insert,Generated=true -->
+<insert id="insert" parameterType="com.chinacreator.dzjc_ruleEngine.ZwfwInstanceInfoDetail">
+	insert into VA_TA_JC_ZWFW_INSTANCE_DETAIL(
+	         <if test="instanceId != null">instance_id</if>
+	         <if test="orgName != null">,org_name</if>
+	         <if test="instanceName != null">,instance_name</if>
+	         <if test="instanceCode != null">,instance_code</if>
+	         <if test="applyName != null">,apply_name</if>
+	         <if test="approveName != null">,approve_name</if>
+	         <if test="queryCode != null">,query_code</if>
+	         <if test="projectState != null">,project_state</if>
+	         <if test="acceptTime != null">,accept_time</if>
+	         <if test="endTime != null">,end_time</if>
+	         <if test="fdqx != null">,fdqx</if>
+	         <if test="cnqx != null">,cnqx</if>
+	         <if test="timeUse != null">,time_use</if>
+	         <if test="superviseResultNo != null">,supervise_result_no</if>
+	         <if test="superviseResultName != null">,supervise_result_name</if>
+	 	 	 )
+	 values (
+	         <if test="instanceId != null">#{instanceId,jdbcType=VARCHAR}</if>
+	         <if test="orgName != null">,#{orgName,jdbcType=VARCHAR}</if>
+	         <if test="instanceName != null">,#{instanceName,jdbcType=VARCHAR}</if>
+	         <if test="instanceCode != null">,#{instanceCode,jdbcType=VARCHAR}</if>
+	         <if test="applyName != null">,#{applyName,jdbcType=VARCHAR}</if>
+	         <if test="approveName != null">,#{approveName,jdbcType=VARCHAR}</if>
+	         <if test="queryCode != null">,#{queryCode,jdbcType=VARCHAR}</if>
+	         <if test="projectState != null">,#{projectState,jdbcType=VARCHAR}</if>
+	         <if test="acceptTime != null">,#{acceptTime,jdbcType=DATE}</if>
+	         <if test="endTime != null">,#{endTime,jdbcType=DATE}</if>
+	         <if test="fdqx != null">,#{fdqx,jdbcType=NUMERIC}</if>
+	         <if test="cnqx != null">,#{cnqx,jdbcType=NUMERIC}</if>
+	         <if test="timeUse != null">,#{timeUse,jdbcType=NUMERIC}</if>
+	         <if test="superviseResultNo != null">,#{superviseResultNo,jdbcType=VARCHAR}</if>
+	         <if test="superviseResultName != null">,#{superviseResultName,jdbcType=VARCHAR}</if>
+	 	 	 )
+</insert>
+
+<!-- ElementID:count,Generated=true -->
+<select id="count" parameterType="com.chinacreator.dzjc_ruleEngine.ZwfwInstanceInfoDetail" resultType="int">
+	select count(*) from VA_TA_JC_ZWFW_INSTANCE_DETAIL 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<!-- ElementID:update,Generated=true -->
+<update id="update" parameterType="com.chinacreator.dzjc_ruleEngine.ZwfwInstanceInfoDetail">
+	update VA_TA_JC_ZWFW_INSTANCE_DETAIL
+<set>
+	<if test="orgName != null">org_name=#{orgName,jdbcType=VARCHAR},</if>
+	<if test="instanceName != null">instance_name=#{instanceName,jdbcType=VARCHAR},</if>
+	<if test="instanceCode != null">instance_code=#{instanceCode,jdbcType=VARCHAR},</if>
+	<if test="applyName != null">apply_name=#{applyName,jdbcType=VARCHAR},</if>
+	<if test="approveName != null">approve_name=#{approveName,jdbcType=VARCHAR},</if>
+	<if test="queryCode != null">query_code=#{queryCode,jdbcType=VARCHAR},</if>
+	<if test="projectState != null">project_state=#{projectState,jdbcType=VARCHAR},</if>
+	<if test="acceptTime != null">accept_time=#{acceptTime,jdbcType=DATE},</if>
+	<if test="endTime != null">end_time=#{endTime,jdbcType=DATE},</if>
+	<if test="fdqx != null">fdqx=#{fdqx,jdbcType=NUMERIC},</if>
+	<if test="cnqx != null">cnqx=#{cnqx,jdbcType=NUMERIC},</if>
+	<if test="timeUse != null">time_use=#{timeUse,jdbcType=NUMERIC},</if>
+	<if test="superviseResultNo != null">supervise_result_no=#{superviseResultNo,jdbcType=VARCHAR},</if>
+	<if test="superviseResultName != null">supervise_result_name=#{superviseResultName,jdbcType=VARCHAR}</if>
+</set>
+<where>
+	<choose>
+        <when test="instanceId != null">and instance_id = #{instanceId}</when>
+        <otherwise>and instance_id = </otherwise>
+    </choose>
+</where>
+</update>
+
+<!-- ElementID:updateNull,Generated=true -->
+<update id="updateNull" parameterType="map">
+	update VA_TA_JC_ZWFW_INSTANCE_DETAIL
+	<set>
+		<trim suffixOverrides=",">
+		    <if test="orgName==null">org_name = null,</if>
+		    <if test="instanceName==null">instance_name = null,</if>
+		    <if test="instanceCode==null">instance_code = null,</if>
+		    <if test="applyName==null">apply_name = null,</if>
+		    <if test="approveName==null">approve_name = null,</if>
+		    <if test="queryCode==null">query_code = null,</if>
+		    <if test="projectState==null">project_state = null,</if>
+		    <if test="acceptTime==null">accept_time = null,</if>
+		    <if test="endTime==null">end_time = null,</if>
+		    <if test="fdqx==null">fdqx = null,</if>
+		    <if test="cnqx==null">cnqx = null,</if>
+		    <if test="timeUse==null">time_use = null,</if>
+		    <if test="superviseResultNo==null">supervise_result_no = null,</if>
+		    <if test="superviseResultName==null">supervise_result_name = null,</if>
+		</trim>
+	</set>
+	<where>
+		<choose>
+			<when test="instanceId != null">and instance_id = #{instanceId}</when>
+			<otherwise>and instance_id = </otherwise>
+		</choose>
+	</where>
+</update>
+
+<!-- ElementID:delete,Generated=true -->
+<delete id="delete" parameterType="com.chinacreator.dzjc_ruleEngine.ZwfwInstanceInfoDetail">
+    delete from VA_TA_JC_ZWFW_INSTANCE_DETAIL where 1=1 and instance_id = #{instanceId}
+</delete>
+
+<!-- ElementID:select,Generated=true -->
+<select id="select" parameterType="com.chinacreator.dzjc_ruleEngine.ZwfwInstanceInfoDetail" resultMap="ZwfwInstanceInfoDetailResult">
+	select 
+		<include refid="column_sql"/>
+	    from VA_TA_JC_ZWFW_INSTANCE_DETAIL 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+
+<!-- ElementID:insertBatch,Generated=true -->
+<insert id="insertBatch" parameterType="list">
+	insert into VA_TA_JC_ZWFW_INSTANCE_DETAIL (instance_id,org_name,instance_name,instance_code,apply_name,approve_name,query_code,project_state,accept_time,end_time,fdqx,cnqx,time_use,supervise_result_no,supervise_result_name) 
+<foreach collection="list" item="entity" index="index" separator="union all">
+		select 
+		#{entity.instanceId,jdbcType = VARCHAR},
+				#{entity.orgName,jdbcType = VARCHAR},
+				#{entity.instanceName,jdbcType = VARCHAR},
+				#{entity.instanceCode,jdbcType = VARCHAR},
+				#{entity.applyName,jdbcType = VARCHAR},
+				#{entity.approveName,jdbcType = VARCHAR},
+				#{entity.queryCode,jdbcType = VARCHAR},
+				#{entity.projectState,jdbcType = VARCHAR},
+				#{entity.acceptTime,jdbcType = DATE},
+				#{entity.endTime,jdbcType = DATE},
+				#{entity.fdqx,jdbcType = NUMERIC},
+				#{entity.cnqx,jdbcType = NUMERIC},
+				#{entity.timeUse,jdbcType = NUMERIC},
+				#{entity.superviseResultNo,jdbcType = VARCHAR},
+				#{entity.superviseResultName,jdbcType = VARCHAR}
+		from dual
+</foreach>
+</insert>
+
+<!-- ElementID:deleteBatch,Generated=true -->
+<delete id="deleteBatch" parameterType="List">
+	delete from VA_TA_JC_ZWFW_INSTANCE_DETAIL where instance_id in
+<trim prefix="(" suffix=")" suffixOverrides=",">
+<foreach collection="list" item="entity" separator=",">
+	<choose>
+		<when test="@com.chinacreator.c2.dao.util.EntityBeanUtil@isEntityObj(entity)">#{entity.instanceId}</when>
+		<otherwise>#{entity}</otherwise>
+	</choose>
+</foreach>
+</trim>
+</delete>
+
+<!-- ElementID:updateBatch,Generated=true -->
+<update id="updateBatch" parameterType="list">
+	<foreach collection="list" item="entity" open="begin" close=";end;" separator=";">
+			update VA_TA_JC_ZWFW_INSTANCE_DETAIL
+	<set>
+	<if test="entity.orgName != null">org_name= #{entity.orgName,jdbcType=VARCHAR},</if>
+	<if test="entity.instanceName != null">instance_name= #{entity.instanceName,jdbcType=VARCHAR},</if>
+	<if test="entity.instanceCode != null">instance_code= #{entity.instanceCode,jdbcType=VARCHAR},</if>
+	<if test="entity.applyName != null">apply_name= #{entity.applyName,jdbcType=VARCHAR},</if>
+	<if test="entity.approveName != null">approve_name= #{entity.approveName,jdbcType=VARCHAR},</if>
+	<if test="entity.queryCode != null">query_code= #{entity.queryCode,jdbcType=VARCHAR},</if>
+	<if test="entity.projectState != null">project_state= #{entity.projectState,jdbcType=VARCHAR},</if>
+	<if test="entity.acceptTime != null">accept_time= #{entity.acceptTime,jdbcType=DATE},</if>
+	<if test="entity.endTime != null">end_time= #{entity.endTime,jdbcType=DATE},</if>
+	<if test="entity.fdqx != null">fdqx= #{entity.fdqx,jdbcType=NUMERIC},</if>
+	<if test="entity.cnqx != null">cnqx= #{entity.cnqx,jdbcType=NUMERIC},</if>
+	<if test="entity.timeUse != null">time_use= #{entity.timeUse,jdbcType=NUMERIC},</if>
+	<if test="entity.superviseResultNo != null">supervise_result_no= #{entity.superviseResultNo,jdbcType=VARCHAR},</if>
+	<if test="entity.superviseResultName != null">supervise_result_name= #{entity.superviseResultName,jdbcType=VARCHAR}</if>
+	</set>
+		<where>
+			<choose>
+				<when test="entity.instanceId != null">and instance_id = #{entity.instanceId}</when>
+				<otherwise>and instance_id = </otherwise>
+			</choose>
+		</where>
+	</foreach>
+</update>
+
+<!-- ElementID:selectAll,Generated=true -->
+<select id="selectAll" resultMap="ZwfwInstanceInfoDetailResult">
+	select 
+		<include refid="column_sql"/>
+	    from VA_TA_JC_ZWFW_INSTANCE_DETAIL 
+</select>
+
+<!-- ElementID:selectMany,Generated=true -->
+<select id="selectMany" parameterType="list" resultMap="ZwfwInstanceInfoDetailResult">
+select 
+	<include refid="column_sql"/> 
+	from VA_TA_JC_ZWFW_INSTANCE_DETAIL 
+	where VA_TA_JC_ZWFW_INSTANCE_DETAIL.instance_id in (
+<foreach collection="list" item="entity" separator="intersect">
+		select 
+		VA_TA_JC_ZWFW_INSTANCE_DETAIL.instance_id
+	    from VA_TA_JC_ZWFW_INSTANCE_DETAIL 
+		 <where>
+	        <if test="entity.instanceId != null">and VA_TA_JC_ZWFW_INSTANCE_DETAIL.instance_id = #{entity.instanceId}</if>
+	        <if test="entity.orgName != null">and VA_TA_JC_ZWFW_INSTANCE_DETAIL.org_name = #{entity.orgName}</if>
+	        <if test="entity.instanceName != null">and VA_TA_JC_ZWFW_INSTANCE_DETAIL.instance_name = #{entity.instanceName}</if>
+	        <if test="entity.instanceCode != null">and VA_TA_JC_ZWFW_INSTANCE_DETAIL.instance_code = #{entity.instanceCode}</if>
+	        <if test="entity.applyName != null">and VA_TA_JC_ZWFW_INSTANCE_DETAIL.apply_name = #{entity.applyName}</if>
+	        <if test="entity.approveName != null">and VA_TA_JC_ZWFW_INSTANCE_DETAIL.approve_name = #{entity.approveName}</if>
+	        <if test="entity.queryCode != null">and VA_TA_JC_ZWFW_INSTANCE_DETAIL.query_code = #{entity.queryCode}</if>
+	        <if test="entity.projectState != null">and VA_TA_JC_ZWFW_INSTANCE_DETAIL.project_state = #{entity.projectState}</if>
+	        <if test="entity.acceptTime != null">and VA_TA_JC_ZWFW_INSTANCE_DETAIL.accept_time = #{entity.acceptTime}</if>
+	        <if test="entity.endTime != null">and VA_TA_JC_ZWFW_INSTANCE_DETAIL.end_time = #{entity.endTime}</if>
+	        <if test="entity.fdqx != null">and VA_TA_JC_ZWFW_INSTANCE_DETAIL.fdqx = #{entity.fdqx}</if>
+	        <if test="entity.cnqx != null">and VA_TA_JC_ZWFW_INSTANCE_DETAIL.cnqx = #{entity.cnqx}</if>
+	        <if test="entity.timeUse != null">and VA_TA_JC_ZWFW_INSTANCE_DETAIL.time_use = #{entity.timeUse}</if>
+	        <if test="entity.superviseResultNo != null">and VA_TA_JC_ZWFW_INSTANCE_DETAIL.supervise_result_no = #{entity.superviseResultNo}</if>
+	        <if test="entity.superviseResultName != null">and VA_TA_JC_ZWFW_INSTANCE_DETAIL.supervise_result_name = #{entity.superviseResultName}</if>
+		</where>
+</foreach>
+)
+</select>
+
+<!-- ElementID:selectUnion,Generated=true -->
+<select id="selectUnion" parameterType="list" resultMap="ZwfwInstanceInfoDetailResult">
+select 
+	<include refid="column_sql"/> 
+	from VA_TA_JC_ZWFW_INSTANCE_DETAIL 
+	 INNER JOIN
+<foreach collection="list" item="entity" separator="UNION" open="(" close=")">
+		SELECT 
+			 instance_id
+		FROM VA_TA_JC_ZWFW_INSTANCE_DETAIL 
+			<where>
+	        <if test="entity.instanceId != null">and VA_TA_JC_ZWFW_INSTANCE_DETAIL.instance_id = #{entity.instanceId}</if>
+	        <if test="entity.orgName != null">and VA_TA_JC_ZWFW_INSTANCE_DETAIL.org_name = #{entity.orgName}</if>
+	        <if test="entity.instanceName != null">and VA_TA_JC_ZWFW_INSTANCE_DETAIL.instance_name = #{entity.instanceName}</if>
+	        <if test="entity.instanceCode != null">and VA_TA_JC_ZWFW_INSTANCE_DETAIL.instance_code = #{entity.instanceCode}</if>
+	        <if test="entity.applyName != null">and VA_TA_JC_ZWFW_INSTANCE_DETAIL.apply_name = #{entity.applyName}</if>
+	        <if test="entity.approveName != null">and VA_TA_JC_ZWFW_INSTANCE_DETAIL.approve_name = #{entity.approveName}</if>
+	        <if test="entity.queryCode != null">and VA_TA_JC_ZWFW_INSTANCE_DETAIL.query_code = #{entity.queryCode}</if>
+	        <if test="entity.projectState != null">and VA_TA_JC_ZWFW_INSTANCE_DETAIL.project_state = #{entity.projectState}</if>
+	        <if test="entity.acceptTime != null">and VA_TA_JC_ZWFW_INSTANCE_DETAIL.accept_time = #{entity.acceptTime}</if>
+	        <if test="entity.endTime != null">and VA_TA_JC_ZWFW_INSTANCE_DETAIL.end_time = #{entity.endTime}</if>
+	        <if test="entity.fdqx != null">and VA_TA_JC_ZWFW_INSTANCE_DETAIL.fdqx = #{entity.fdqx}</if>
+	        <if test="entity.cnqx != null">and VA_TA_JC_ZWFW_INSTANCE_DETAIL.cnqx = #{entity.cnqx}</if>
+	        <if test="entity.timeUse != null">and VA_TA_JC_ZWFW_INSTANCE_DETAIL.time_use = #{entity.timeUse}</if>
+	        <if test="entity.superviseResultNo != null">and VA_TA_JC_ZWFW_INSTANCE_DETAIL.supervise_result_no = #{entity.superviseResultNo}</if>
+	        <if test="entity.superviseResultName != null">and VA_TA_JC_ZWFW_INSTANCE_DETAIL.supervise_result_name = #{entity.superviseResultName}</if>
+			</where>
+</foreach>
+	c2_temp_table ON VA_TA_JC_ZWFW_INSTANCE_DETAIL.instance_id = c2_temp_table.instance_id
+</select>
+
+<!-- ElementID:selectByID,Generated=true -->
+<select id="selectByID" parameterType="java.lang.String" resultMap="ZwfwInstanceInfoDetailResult">
+	select 
+		<include refid="column_sql"/>
+	    from VA_TA_JC_ZWFW_INSTANCE_DETAIL 
+		 where VA_TA_JC_ZWFW_INSTANCE_DETAIL.instance_id = #{instanceId,jdbcType=VARCHAR}
+</select>
+
+<!-- ElementID:selectByPage,Generated=true -->
+<select id="selectByPage" parameterType="com.chinacreator.dzjc_ruleEngine.ZwfwInstanceInfoDetail" resultMap="ZwfwInstanceInfoDetailResult">
+	select 
+		<include refid="column_sql"/>
+	    from VA_TA_JC_ZWFW_INSTANCE_DETAIL 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+</mapper>

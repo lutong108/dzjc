@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chinacreator.dzjc_performance.VOrganizationMapper">	
+
+<!-- ElementID:column_sql,Generated=true -->
+<sql id="column_sql">
+		  V_ORG.id ,
+		  V_ORG.name ,
+		  V_ORG.code ,
+		  V_ORG.pid ,
+		  V_ORG.sn 
+</sql>
+
+<!-- ElementID:whereClause_sql,Generated=true -->
+<sql id="whereClause_sql">
+	    <if test="id != null">and V_ORG.id = #{id}</if>
+	    <if test="name != null">and V_ORG.name = #{name}</if>
+	    <if test="code != null">and V_ORG.code = #{code}</if>
+	    <if test="pid != null">and V_ORG.pid = #{pid}</if>
+	    <if test="sn != null">and V_ORG.sn = #{sn}</if>
+</sql>
+
+
+<!-- ElementID:VOrganizationResult,Generated=true -->
+<resultMap id="VOrganizationResult" type="com.chinacreator.dzjc_performance.VOrganization">
+	<id property="id" column="id"/>
+	<result property="name" column="name"/>
+	<result property="code" column="code"/>
+	<result property="pid" column="pid"/>
+	<result property="sn" column="sn"/>
+</resultMap>
+
+
+<!-- ElementID:insert,Generated=true -->
+<insert id="insert" parameterType="com.chinacreator.dzjc_performance.VOrganization">
+	insert into V_ORG(
+	         <if test="id != null">id</if>
+	         <if test="name != null">,name</if>
+	         <if test="code != null">,code</if>
+	         <if test="pid != null">,pid</if>
+	         <if test="sn != null">,sn</if>
+	 	 	 )
+	 values (
+	         <if test="id != null">#{id,jdbcType=VARCHAR}</if>
+	         <if test="name != null">,#{name,jdbcType=VARCHAR}</if>
+	         <if test="code != null">,#{code,jdbcType=VARCHAR}</if>
+	         <if test="pid != null">,#{pid,jdbcType=VARCHAR}</if>
+	         <if test="sn != null">,#{sn,jdbcType=NUMERIC}</if>
+	 	 	 )
+</insert>
+
+<!-- ElementID:count,Generated=true -->
+<select id="count" parameterType="com.chinacreator.dzjc_performance.VOrganization" resultType="int">
+	select count(*) from V_ORG 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<!-- ElementID:update,Generated=true -->
+<update id="update" parameterType="com.chinacreator.dzjc_performance.VOrganization">
+	update V_ORG
+<set>
+	<if test="name != null">name=#{name,jdbcType=VARCHAR},</if>
+	<if test="code != null">code=#{code,jdbcType=VARCHAR},</if>
+	<if test="pid != null">pid=#{pid,jdbcType=VARCHAR},</if>
+	<if test="sn != null">sn=#{sn,jdbcType=NUMERIC}</if>
+</set>
+<where>
+	<choose>
+        <when test="id != null">and id = #{id}</when>
+        <otherwise>and id = </otherwise>
+    </choose>
+</where>
+</update>
+
+<!-- ElementID:updateNull,Generated=true -->
+<update id="updateNull" parameterType="map">
+	update V_ORG
+	<set>
+		<trim suffixOverrides=",">
+		    <if test="name==null">name = null,</if>
+		    <if test="code==null">code = null,</if>
+		    <if test="pid==null">pid = null,</if>
+		    <if test="sn==null">sn = null,</if>
+		</trim>
+	</set>
+	<where>
+		<choose>
+			<when test="id != null">and id = #{id}</when>
+			<otherwise>and id = </otherwise>
+		</choose>
+	</where>
+</update>
+
+<!-- ElementID:delete,Generated=true -->
+<delete id="delete" parameterType="com.chinacreator.dzjc_performance.VOrganization">
+    delete from V_ORG where 1=1 and id = #{id}
+</delete>
+
+<!-- ElementID:select,Generated=true -->
+<select id="select" parameterType="com.chinacreator.dzjc_performance.VOrganization" resultMap="VOrganizationResult">
+	select 
+		<include refid="column_sql"/>
+	    from V_ORG 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+
+<!-- ElementID:insertBatch,Generated=true -->
+<insert id="insertBatch" parameterType="list">
+	insert into V_ORG (id,name,code,pid,sn) 
+<foreach collection="list" item="entity" index="index" separator="union all">
+		select 
+		#{entity.id,jdbcType = VARCHAR},
+				#{entity.name,jdbcType = VARCHAR},
+				#{entity.code,jdbcType = VARCHAR},
+				#{entity.pid,jdbcType = VARCHAR},
+				#{entity.sn,jdbcType = NUMERIC}
+		from dual
+</foreach>
+</insert>
+
+<!-- ElementID:deleteBatch,Generated=true -->
+<delete id="deleteBatch" parameterType="List">
+	delete from V_ORG where id in
+<trim prefix="(" suffix=")" suffixOverrides=",">
+<foreach collection="list" item="entity" separator=",">
+	<choose>
+		<when test="@com.chinacreator.c2.dao.util.EntityBeanUtil@isEntityObj(entity)">#{entity.id}</when>
+		<otherwise>#{entity}</otherwise>
+	</choose>
+</foreach>
+</trim>
+</delete>
+
+<!-- ElementID:updateBatch,Generated=true -->
+<update id="updateBatch" parameterType="list">
+	<foreach collection="list" item="entity" open="begin" close=";end;" separator=";">
+			update V_ORG
+	<set>
+	<if test="entity.name != null">name= #{entity.name,jdbcType=VARCHAR},</if>
+	<if test="entity.code != null">code= #{entity.code,jdbcType=VARCHAR},</if>
+	<if test="entity.pid != null">pid= #{entity.pid,jdbcType=VARCHAR},</if>
+	<if test="entity.sn != null">sn= #{entity.sn,jdbcType=NUMERIC}</if>
+	</set>
+		<where>
+			<choose>
+				<when test="entity.id != null">and id = #{entity.id}</when>
+				<otherwise>and id = </otherwise>
+			</choose>
+		</where>
+	</foreach>
+</update>
+
+<!-- ElementID:selectAll,Generated=true -->
+<select id="selectAll" resultMap="VOrganizationResult">
+	select 
+		<include refid="column_sql"/>
+	    from V_ORG 
+</select>
+
+<!-- ElementID:selectMany,Generated=true -->
+<select id="selectMany" parameterType="list" resultMap="VOrganizationResult">
+select 
+	<include refid="column_sql"/> 
+	from V_ORG 
+	where V_ORG.id in (
+<foreach collection="list" item="entity" separator="intersect">
+		select 
+		V_ORG.id
+	    from V_ORG 
+		 <where>
+	        <if test="entity.id != null">and V_ORG.id = #{entity.id}</if>
+	        <if test="entity.name != null">and V_ORG.name = #{entity.name}</if>
+	        <if test="entity.code != null">and V_ORG.code = #{entity.code}</if>
+	        <if test="entity.pid != null">and V_ORG.pid = #{entity.pid}</if>
+	        <if test="entity.sn != null">and V_ORG.sn = #{entity.sn}</if>
+		</where>
+</foreach>
+)
+</select>
+
+<!-- ElementID:selectUnion,Generated=true -->
+<select id="selectUnion" parameterType="list" resultMap="VOrganizationResult">
+select 
+	<include refid="column_sql"/> 
+	from V_ORG 
+	 INNER JOIN
+<foreach collection="list" item="entity" separator="UNION" open="(" close=")">
+		SELECT 
+			 id
+		FROM V_ORG 
+			<where>
+	        <if test="entity.id != null">and V_ORG.id = #{entity.id}</if>
+	        <if test="entity.name != null">and V_ORG.name = #{entity.name}</if>
+	        <if test="entity.code != null">and V_ORG.code = #{entity.code}</if>
+	        <if test="entity.pid != null">and V_ORG.pid = #{entity.pid}</if>
+	        <if test="entity.sn != null">and V_ORG.sn = #{entity.sn}</if>
+			</where>
+</foreach>
+	c2_temp_table ON V_ORG.id = c2_temp_table.id
+</select>
+
+<!-- ElementID:selectByID,Generated=true -->
+<select id="selectByID" parameterType="java.lang.String" resultMap="VOrganizationResult">
+	select 
+		<include refid="column_sql"/>
+	    from V_ORG 
+		 where V_ORG.id = #{id,jdbcType=VARCHAR}
+</select>
+
+<!-- ElementID:selectByPage,Generated=true -->
+<select id="selectByPage" parameterType="com.chinacreator.dzjc_performance.VOrganization" resultMap="VOrganizationResult">
+	select 
+		<include refid="column_sql"/>
+	    from V_ORG 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<select id="selectorginfobycode" parameterType="java.lang.String" resultMap="VOrganizationResult">
+	select * from v_org r where r.code like concat(#{code,jdbcType=VARCHAR},'%')
+</select>
+
+</mapper>

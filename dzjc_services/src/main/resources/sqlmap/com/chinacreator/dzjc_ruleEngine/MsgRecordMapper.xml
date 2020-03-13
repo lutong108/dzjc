@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"><mapper namespace="com.chinacreator.dzjc_ruleEngine.MsgRecordMapper">	
+
+<!-- ElementID:column_sql,Generated=true -->
+<sql id="column_sql">
+		  TA_JC_MSG_RECORD.msg_id ,
+		  TA_JC_MSG_RECORD.business_id ,
+		  TA_JC_MSG_RECORD.supervise_id ,
+		  TA_JC_MSG_RECORD.org_id ,
+		  TA_JC_MSG_RECORD.supervise_type_no ,
+		  TA_JC_MSG_RECORD.supervise_result_no ,
+		  TA_JC_MSG_RECORD.supervise_time ,
+		  TA_JC_MSG_RECORD.send_mobile ,
+		  TA_JC_MSG_RECORD.send_name ,
+		  TA_JC_MSG_RECORD.send_content ,
+		  TA_JC_MSG_RECORD.send_flag ,
+		  TA_JC_MSG_RECORD.send_time ,
+		  TA_JC_MSG_RECORD.send_msg_id ,
+		  TA_JC_MSG_RECORD.result_des 
+</sql>
+
+<!-- ElementID:whereClause_sql,Generated=true -->
+<sql id="whereClause_sql">
+	    <if test="msgId != null">and TA_JC_MSG_RECORD.msg_id = #{msgId}</if>
+	    <if test="businessId != null">and TA_JC_MSG_RECORD.business_id = #{businessId}</if>
+	    <if test="superviseId != null">and TA_JC_MSG_RECORD.supervise_id = #{superviseId}</if>
+	    <if test="orgId != null">and TA_JC_MSG_RECORD.org_id = #{orgId}</if>
+	    <if test="superviseTypeNo != null">and TA_JC_MSG_RECORD.supervise_type_no = #{superviseTypeNo}</if>
+	    <if test="superviseResultNo != null">and TA_JC_MSG_RECORD.supervise_result_no = #{superviseResultNo}</if>
+	    <if test="superviseTime != null">and TA_JC_MSG_RECORD.supervise_time = #{superviseTime}</if>
+	    <if test="sendMobile != null">and TA_JC_MSG_RECORD.send_mobile = #{sendMobile}</if>
+	    <if test="sendName != null">and TA_JC_MSG_RECORD.send_name = #{sendName}</if>
+	    <if test="sendContent != null">and TA_JC_MSG_RECORD.send_content = #{sendContent}</if>
+	    <if test="sendFlag != null">and TA_JC_MSG_RECORD.send_flag = #{sendFlag}</if>
+	    <if test="sendTime != null">and TA_JC_MSG_RECORD.send_time = #{sendTime}</if>
+	    <if test="sendMsgId != null">and TA_JC_MSG_RECORD.send_msg_id = #{sendMsgId}</if>
+	    <if test="resultDes != null">and TA_JC_MSG_RECORD.result_des = #{resultDes}</if>
+</sql>
+
+
+<!-- ElementID:MsgRecordResult,Generated=true -->
+<resultMap id="MsgRecordResult" type="com.chinacreator.dzjc_ruleEngine.MsgRecord">
+	<id property="msgId" column="msg_id"/>
+	<result property="businessId" column="business_id"/>
+	<result property="superviseId" column="supervise_id"/>
+	<result property="orgId" column="org_id"/>
+	<result property="superviseTypeNo" column="supervise_type_no"/>
+	<result property="superviseResultNo" column="supervise_result_no"/>
+	<result property="superviseTime" column="supervise_time"/>
+	<result property="sendMobile" column="send_mobile"/>
+	<result property="sendName" column="send_name"/>
+	<result property="sendContent" column="send_content"/>
+	<result property="sendFlag" column="send_flag"/>
+	<result property="sendTime" column="send_time"/>
+	<result property="sendMsgId" column="send_msg_id"/>
+	<result property="resultDes" column="result_des"/>
+</resultMap>
+
+
+<!-- ElementID:insert,Generated=true -->
+<insert id="insert" parameterType="com.chinacreator.dzjc_ruleEngine.MsgRecord">
+	insert into TA_JC_MSG_RECORD(
+	         <if test="msgId != null">msg_id</if>
+	         <if test="businessId != null">,business_id</if>
+	         <if test="superviseId != null">,supervise_id</if>
+	         <if test="orgId != null">,org_id</if>
+	         <if test="superviseTypeNo != null">,supervise_type_no</if>
+	         <if test="superviseResultNo != null">,supervise_result_no</if>
+	         <if test="superviseTime != null">,supervise_time</if>
+	         <if test="sendMobile != null">,send_mobile</if>
+	         <if test="sendName != null">,send_name</if>
+	         <if test="sendContent != null">,send_content</if>
+	         <if test="sendFlag != null">,send_flag</if>
+	         <if test="sendTime != null">,send_time</if>
+	         <if test="sendMsgId != null">,send_msg_id</if>
+	         <if test="resultDes != null">,result_des</if>
+	 	 	 )
+	 values (
+	         <if test="msgId != null">#{msgId,jdbcType=VARCHAR}</if>
+	         <if test="businessId != null">,#{businessId,jdbcType=VARCHAR}</if>
+	         <if test="superviseId != null">,#{superviseId,jdbcType=VARCHAR}</if>
+	         <if test="orgId != null">,#{orgId,jdbcType=VARCHAR}</if>
+	         <if test="superviseTypeNo != null">,#{superviseTypeNo,jdbcType=VARCHAR}</if>
+	         <if test="superviseResultNo != null">,#{superviseResultNo,jdbcType=VARCHAR}</if>
+	         <if test="superviseTime != null">,#{superviseTime,jdbcType=DATE}</if>
+	         <if test="sendMobile != null">,#{sendMobile,jdbcType=VARCHAR}</if>
+	         <if test="sendName != null">,#{sendName,jdbcType=VARCHAR}</if>
+	         <if test="sendContent != null">,#{sendContent,jdbcType=VARCHAR}</if>
+	         <if test="sendFlag != null">,#{sendFlag,jdbcType=VARCHAR}</if>
+	         <if test="sendTime != null">,#{sendTime,jdbcType=DATE}</if>
+	         <if test="sendMsgId != null">,#{sendMsgId,jdbcType=VARCHAR}</if>
+	         <if test="resultDes != null">,#{resultDes,jdbcType=VARCHAR}</if>
+	 	 	 )
+</insert>
+
+<!-- ElementID:count,Generated=true -->
+<select id="count" parameterType="com.chinacreator.dzjc_ruleEngine.MsgRecord" resultType="int">
+	select count(*) from TA_JC_MSG_RECORD 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<!-- ElementID:update,Generated=true -->
+<update id="update" parameterType="com.chinacreator.dzjc_ruleEngine.MsgRecord">
+	update TA_JC_MSG_RECORD
+<set>
+	<if test="businessId != null">business_id=#{businessId,jdbcType=VARCHAR},</if>
+	<if test="superviseId != null">supervise_id=#{superviseId,jdbcType=VARCHAR},</if>
+	<if test="orgId != null">org_id=#{orgId,jdbcType=VARCHAR},</if>
+	<if test="superviseTypeNo != null">supervise_type_no=#{superviseTypeNo,jdbcType=VARCHAR},</if>
+	<if test="superviseResultNo != null">supervise_result_no=#{superviseResultNo,jdbcType=VARCHAR},</if>
+	<if test="superviseTime != null">supervise_time=#{superviseTime,jdbcType=DATE},</if>
+	<if test="sendMobile != null">send_mobile=#{sendMobile,jdbcType=VARCHAR},</if>
+	<if test="sendName != null">send_name=#{sendName,jdbcType=VARCHAR},</if>
+	<if test="sendContent != null">send_content=#{sendContent,jdbcType=VARCHAR},</if>
+	<if test="sendFlag != null">send_flag=#{sendFlag,jdbcType=VARCHAR},</if>
+	<if test="sendTime != null">send_time=#{sendTime,jdbcType=DATE},</if>
+	<if test="sendMsgId != null">send_msg_id=#{sendMsgId,jdbcType=VARCHAR},</if>
+	<if test="resultDes != null">result_des=#{resultDes,jdbcType=VARCHAR}</if>
+</set>
+<where>
+	<choose>
+        <when test="msgId != null">and msg_id = #{msgId}</when>
+        <otherwise>and msg_id = </otherwise>
+    </choose>
+</where>
+</update>
+
+<!-- ElementID:updateNull,Generated=true -->
+<update id="updateNull" parameterType="map">
+	update TA_JC_MSG_RECORD
+	<set>
+		<trim suffixOverrides=",">
+		    <if test="businessId==null">business_id = null,</if>
+		    <if test="superviseId==null">supervise_id = null,</if>
+		    <if test="orgId==null">org_id = null,</if>
+		    <if test="superviseTypeNo==null">supervise_type_no = null,</if>
+		    <if test="superviseResultNo==null">supervise_result_no = null,</if>
+		    <if test="superviseTime==null">supervise_time = null,</if>
+		    <if test="sendMobile==null">send_mobile = null,</if>
+		    <if test="sendName==null">send_name = null,</if>
+		    <if test="sendContent==null">send_content = null,</if>
+		    <if test="sendFlag==null">send_flag = null,</if>
+		    <if test="sendTime==null">send_time = null,</if>
+		    <if test="sendMsgId==null">send_msg_id = null,</if>
+		    <if test="resultDes==null">result_des = null,</if>
+		</trim>
+	</set>
+	<where>
+		<choose>
+			<when test="msgId != null">and msg_id = #{msgId}</when>
+			<otherwise>and msg_id = </otherwise>
+		</choose>
+	</where>
+</update>
+
+<!-- ElementID:delete,Generated=true -->
+<delete id="delete" parameterType="com.chinacreator.dzjc_ruleEngine.MsgRecord">
+    delete from TA_JC_MSG_RECORD where 1=1 and msg_id = #{msgId}
+</delete>
+
+<!-- ElementID:select,Generated=true -->
+<select id="select" parameterType="com.chinacreator.dzjc_ruleEngine.MsgRecord" resultMap="MsgRecordResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_MSG_RECORD 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+
+<!-- ElementID:insertBatch,Generated=true -->
+<insert id="insertBatch" parameterType="list">
+	insert into TA_JC_MSG_RECORD (msg_id,business_id,supervise_id,org_id,supervise_type_no,supervise_result_no,supervise_time,send_mobile,send_name,send_content,send_flag,send_time,send_msg_id,result_des) 
+<foreach collection="list" item="entity" index="index" separator="union all">
+		select 
+		#{entity.msgId,jdbcType = VARCHAR},
+				#{entity.businessId,jdbcType = VARCHAR},
+				#{entity.superviseId,jdbcType = VARCHAR},
+				#{entity.orgId,jdbcType = VARCHAR},
+				#{entity.superviseTypeNo,jdbcType = VARCHAR},
+				#{entity.superviseResultNo,jdbcType = VARCHAR},
+				#{entity.superviseTime,jdbcType = DATE},
+				#{entity.sendMobile,jdbcType = VARCHAR},
+				#{entity.sendName,jdbcType = VARCHAR},
+				#{entity.sendContent,jdbcType = VARCHAR},
+				#{entity.sendFlag,jdbcType = VARCHAR},
+				#{entity.sendTime,jdbcType = DATE},
+				#{entity.sendMsgId,jdbcType = VARCHAR},
+				#{entity.resultDes,jdbcType = VARCHAR}
+		from dual
+</foreach>
+</insert>
+
+<!-- ElementID:deleteBatch,Generated=true -->
+<delete id="deleteBatch" parameterType="List">
+	delete from TA_JC_MSG_RECORD where msg_id in
+<trim prefix="(" suffix=")" suffixOverrides=",">
+<foreach collection="list" item="entity" separator=",">
+	<choose>
+		<when test="@com.chinacreator.c2.dao.util.EntityBeanUtil@isEntityObj(entity)">#{entity.msgId}</when>
+		<otherwise>#{entity}</otherwise>
+	</choose>
+</foreach>
+</trim>
+</delete>
+
+<!-- ElementID:updateBatch,Generated=true -->
+<update id="updateBatch" parameterType="list">
+	<foreach collection="list" item="entity" open="begin" close=";end;" separator=";">
+			update TA_JC_MSG_RECORD
+	<set>
+	<if test="entity.businessId != null">business_id= #{entity.businessId,jdbcType=VARCHAR},</if>
+	<if test="entity.superviseId != null">supervise_id= #{entity.superviseId,jdbcType=VARCHAR},</if>
+	<if test="entity.orgId != null">org_id= #{entity.orgId,jdbcType=VARCHAR},</if>
+	<if test="entity.superviseTypeNo != null">supervise_type_no= #{entity.superviseTypeNo,jdbcType=VARCHAR},</if>
+	<if test="entity.superviseResultNo != null">supervise_result_no= #{entity.superviseResultNo,jdbcType=VARCHAR},</if>
+	<if test="entity.superviseTime != null">supervise_time= #{entity.superviseTime,jdbcType=DATE},</if>
+	<if test="entity.sendMobile != null">send_mobile= #{entity.sendMobile,jdbcType=VARCHAR},</if>
+	<if test="entity.sendName != null">send_name= #{entity.sendName,jdbcType=VARCHAR},</if>
+	<if test="entity.sendContent != null">send_content= #{entity.sendContent,jdbcType=VARCHAR},</if>
+	<if test="entity.sendFlag != null">send_flag= #{entity.sendFlag,jdbcType=VARCHAR},</if>
+	<if test="entity.sendTime != null">send_time= #{entity.sendTime,jdbcType=DATE},</if>
+	<if test="entity.sendMsgId != null">send_msg_id= #{entity.sendMsgId,jdbcType=VARCHAR},</if>
+	<if test="entity.resultDes != null">result_des= #{entity.resultDes,jdbcType=VARCHAR}</if>
+	</set>
+		<where>
+			<choose>
+				<when test="entity.msgId != null">and msg_id = #{entity.msgId}</when>
+				<otherwise>and msg_id = </otherwise>
+			</choose>
+		</where>
+	</foreach>
+</update>
+
+<!-- ElementID:selectAll,Generated=true -->
+<select id="selectAll" resultMap="MsgRecordResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_MSG_RECORD 
+</select>
+
+<!-- ElementID:selectMany,Generated=true -->
+<select id="selectMany" parameterType="list" resultMap="MsgRecordResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_JC_MSG_RECORD 
+	where TA_JC_MSG_RECORD.msg_id in (
+<foreach collection="list" item="entity" separator="intersect">
+		select 
+		TA_JC_MSG_RECORD.msg_id
+	    from TA_JC_MSG_RECORD 
+		 <where>
+	        <if test="entity.msgId != null">and TA_JC_MSG_RECORD.msg_id = #{entity.msgId}</if>
+	        <if test="entity.businessId != null">and TA_JC_MSG_RECORD.business_id = #{entity.businessId}</if>
+	        <if test="entity.superviseId != null">and TA_JC_MSG_RECORD.supervise_id = #{entity.superviseId}</if>
+	        <if test="entity.orgId != null">and TA_JC_MSG_RECORD.org_id = #{entity.orgId}</if>
+	        <if test="entity.superviseTypeNo != null">and TA_JC_MSG_RECORD.supervise_type_no = #{entity.superviseTypeNo}</if>
+	        <if test="entity.superviseResultNo != null">and TA_JC_MSG_RECORD.supervise_result_no = #{entity.superviseResultNo}</if>
+	        <if test="entity.superviseTime != null">and TA_JC_MSG_RECORD.supervise_time = #{entity.superviseTime}</if>
+	        <if test="entity.sendMobile != null">and TA_JC_MSG_RECORD.send_mobile = #{entity.sendMobile}</if>
+	        <if test="entity.sendName != null">and TA_JC_MSG_RECORD.send_name = #{entity.sendName}</if>
+	        <if test="entity.sendContent != null">and TA_JC_MSG_RECORD.send_content = #{entity.sendContent}</if>
+	        <if test="entity.sendFlag != null">and TA_JC_MSG_RECORD.send_flag = #{entity.sendFlag}</if>
+	        <if test="entity.sendTime != null">and TA_JC_MSG_RECORD.send_time = #{entity.sendTime}</if>
+	        <if test="entity.sendMsgId != null">and TA_JC_MSG_RECORD.send_msg_id = #{entity.sendMsgId}</if>
+	        <if test="entity.resultDes != null">and TA_JC_MSG_RECORD.result_des = #{entity.resultDes}</if>
+		</where>
+</foreach>
+)
+</select>
+
+<!-- ElementID:selectUnion,Generated=true -->
+<select id="selectUnion" parameterType="list" resultMap="MsgRecordResult">
+select 
+	<include refid="column_sql"/> 
+	from TA_JC_MSG_RECORD 
+	 INNER JOIN
+<foreach collection="list" item="entity" separator="UNION" open="(" close=")">
+		SELECT 
+			 msg_id
+		FROM TA_JC_MSG_RECORD 
+			<where>
+	        <if test="entity.msgId != null">and TA_JC_MSG_RECORD.msg_id = #{entity.msgId}</if>
+	        <if test="entity.businessId != null">and TA_JC_MSG_RECORD.business_id = #{entity.businessId}</if>
+	        <if test="entity.superviseId != null">and TA_JC_MSG_RECORD.supervise_id = #{entity.superviseId}</if>
+	        <if test="entity.orgId != null">and TA_JC_MSG_RECORD.org_id = #{entity.orgId}</if>
+	        <if test="entity.superviseTypeNo != null">and TA_JC_MSG_RECORD.supervise_type_no = #{entity.superviseTypeNo}</if>
+	        <if test="entity.superviseResultNo != null">and TA_JC_MSG_RECORD.supervise_result_no = #{entity.superviseResultNo}</if>
+	        <if test="entity.superviseTime != null">and TA_JC_MSG_RECORD.supervise_time = #{entity.superviseTime}</if>
+	        <if test="entity.sendMobile != null">and TA_JC_MSG_RECORD.send_mobile = #{entity.sendMobile}</if>
+	        <if test="entity.sendName != null">and TA_JC_MSG_RECORD.send_name = #{entity.sendName}</if>
+	        <if test="entity.sendContent != null">and TA_JC_MSG_RECORD.send_content = #{entity.sendContent}</if>
+	        <if test="entity.sendFlag != null">and TA_JC_MSG_RECORD.send_flag = #{entity.sendFlag}</if>
+	        <if test="entity.sendTime != null">and TA_JC_MSG_RECORD.send_time = #{entity.sendTime}</if>
+	        <if test="entity.sendMsgId != null">and TA_JC_MSG_RECORD.send_msg_id = #{entity.sendMsgId}</if>
+	        <if test="entity.resultDes != null">and TA_JC_MSG_RECORD.result_des = #{entity.resultDes}</if>
+			</where>
+</foreach>
+	c2_temp_table ON TA_JC_MSG_RECORD.msg_id = c2_temp_table.msg_id
+</select>
+
+<!-- ElementID:selectByID,Generated=true -->
+<select id="selectByID" parameterType="java.lang.String" resultMap="MsgRecordResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_MSG_RECORD 
+		 where TA_JC_MSG_RECORD.msg_id = #{msgId,jdbcType=VARCHAR}
+</select>
+
+<!-- ElementID:selectByPage,Generated=true -->
+<select id="selectByPage" parameterType="com.chinacreator.dzjc_ruleEngine.MsgRecord" resultMap="MsgRecordResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_MSG_RECORD 
+		 <where>
+			<include refid="whereClause_sql"/>
+		</where>
+</select>
+
+<select id="selectAllNotSend" parameterType="com.chinacreator.dzjc_ruleEngine.MsgRecord" resultMap="MsgRecordResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_JC_MSG_RECORD  
+		where TA_JC_MSG_RECORD.send_flag = 'N' 
+		and TA_JC_MSG_RECORD.send_mobile is not null 
+		and TA_JC_MSG_RECORD.send_content is not null 
+	order by TA_JC_MSG_RECORD.business_id asc 
+</select>
+</mapper>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"><mapper namespace="com.chinacreator.dzjc_ruleEngine.HotApproveMapper">	
+
+<!-- ElementID:column_sql,Generated=true -->
+<sql id="column_sql">
+		  V_HOT_APPROVE.approve_id ,
+		  V_HOT_APPROVE.approve_name ,
+		  V_HOT_APPROVE.org_name ,
+		  V_HOT_APPROVE.cn ,
+		  V_HOT_APPROVE.promises_limit ,
+		  V_HOT_APPROVE.beginDate ,
+		  V_HOT_APPROVE.endDate ,
+		  V_HOT_APPROVE.orgId ,
+		  V_HOT_APPROVE.areaCode ,
+		  V_HOT_APPROVE.acceptNum ,
+		  V_HOT_APPROVE.timeLimit 
+</sql>
+
+<!-- ElementID:whereClause_sql,Generated=true -->
+<sql id="whereClause_sql">
+	    <if test="approveId != null">and V_HOT_APPROVE.approve_id = #{approveId}</if>
+	    <if test="approveName != null">and V_HOT_APPROVE.approve_name = #{approveName}</if>
+	    <if test="orgName != null">and V_HOT_APPROVE.org_name = #{orgName}</if>
+	    <if test="cn != null">and V_HOT_APPROVE.cn = #{cn}</if>
+	    <if test="promisesLimit != null">and V_HOT_APPROVE.promises_limit = #{promisesLimit}</if>
+	    <if test="beginDate != null">and V_HOT_APPROVE.beginDate = #{beginDate}</if>
+	    <if test="endDate != null">and V_HOT_APPROVE.endDate = #{endDate}</if>
+	    <if test="orgId != null">and V_HOT_APPROVE.orgId = #{orgId}</if>
+	    <if test="areaCode != null">and V_HOT_APPROVE.areaCode = #{areaCode}</if>
+	    <if test="acceptNum != null">and V_HOT_APPROVE.acceptNum = #{acceptNum}</if>
+	    <if test="timeLimit != null">and V_HOT_APPROVE.timeLimit = #{timeLimit}</if>
+</sql>
+
+
+<!-- ElementID:HotApproveResult,Generated=true -->
+<resultMap id="HotApproveResult" type="com.chinacreator.dzjc_ruleEngine.HotApprove">
+	<id property="approveId" column="approve_id"/>
+	<result property="approveName" column="approve_name"/>
+	<result property="orgName" column="org_name"/>
+	<result property="cn" column="cn"/>
+	<result property="promisesLimit" column="promises_limit"/>
+	<result property="beginDate" column="beginDate"/>
+	<result property="endDate" column="endDate"/>
+	<result property="orgId" column="orgId"/>
+	<result property="areaCode" column="areaCode"/>
+	<result property="acceptNum" column="accept_num"/>
+	<result property="timeLimit" column="TIME_LIMIT"/>
+</resultMap>
+
+<!-- ElementID:selectByPage, Generated = false -->
+<select id="selectByPage" parameterType="com.chinacreator.dzjc_ruleEngine.HotApprove" resultMap="HotApproveResult">
+		
+		select  t1.approve_id,t1.approve_name as approve_name,temp.name as org_name, nvl(t2.bjs,0) as cn,
+			    nvl(t3.accept_num, 0) as accept_num, t1.PROMISES_LIMIT,t1.TIME_LIMIT,t1.approve_state
+		from ta_spxm t1
+		left join
+		  (
+		    select approve_id, count(approve_id) as bjs from ta_sp_instance 
+		    where end_time is not null and project_state in ('2','4','5','6','7','8')
+		    <if test="beginDate != null">and END_TIME &gt;= #{beginDate}</if>
+		    <if test="endDate != null">and END_TIME &lt;= #{endDate}</if>
+		    group by approve_id
+		    ) t2
+		on t1.approve_id = t2.approve_id
+		left join
+		  (
+		    select approve_id, count(approve_id) as accept_num from ta_sp_instance 
+		    where accept_time is not null and project_state IN ('1','2','4','5','6','7','8')
+		    <if test="beginDate != null">and ACCEPT_TIME &gt;= #{beginDate}</if>
+		    <if test="endDate != null">and ACCEPT_TIME &lt;= #{endDate}</if>
+		    group by approve_id
+		    ) t3
+		on t1.approve_id = t3.approve_id
+		inner join 
+		( 
+			SELECT * FROM v_jc_org V
+			<where> 1=1 
+				<if test="areaCode != null">and (V.CODE LIKE CONCAT(#{areaCode},'%') OR V.ID = #{areaCode,jdbcType=VARCHAR}) </if>
+				<if test="orgId != null">start with v.id = #{orgId,jdbcType=VARCHAR} connect by prior v.id = v.pid</if>
+			</where>
+		) Temp
+  		on t1.org_id = Temp.ID
+		<where> 1=1 and t1.approve_state != '3'
+			<if test="approveName != null">and t1.approve_name = #{approveName} </if>
+			<if test="orgName != null">and t1.org_name = #{orgName} </if>
+		</where>
+		order by cn desc
+		
+</select>
+
+</mapper>

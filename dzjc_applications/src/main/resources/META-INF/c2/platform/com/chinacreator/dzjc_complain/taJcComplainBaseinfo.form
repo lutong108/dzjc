@@ -1,0 +1,972 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form:Form xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dync="http://www.chinacreator.com/platform/mvc/ui/dync" xmlns:form="http://www.chinacreator.com/platform/mvc/form" name="投诉举报录入" res="" sn="dzjc_complain/taJcComplainBaseinfo" type="form">
+  <form:control type="page/normal">
+    <form:attributes source="page/normal">
+      <dync:attribute default="" group="HTML" id="showHead" name="显示标题" value="">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="" group="HTML" id="title" name="标题" value="">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="" group="HTML" id="desc" name="描述" value="">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="false" group="HTML" id="fixedHeight" name="自动高度" value="false">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="false" group="HTML" id="compact" name="紧凑页面" value="false">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="false" group="HTML" id="dirtyCheck" name="脏检查" value="false">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="" group="注入配置" id="angularJsServices" name="注入服务" value="">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="" group="事件" id="beforeDataSourceLoad" name="数据源加载前" value="page_beforeDataSourceLoad($params)">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="" group="事件" id="afterDataSourceLoad" name="数据源加载后" value="">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+      <dync:attribute default="" group="事件" id="onload" name="页面加载完成" value="page_onload()">
+        <dync:render/>
+        <dync:children/>
+      </dync:attribute>
+    </form:attributes>
+  </form:control>
+  <form:child xsi:type="form:Group" id="widgetbox" name="">
+    <form:control type="container/div">
+      <form:attributes source="container/div"/>
+    </form:control>
+    <form:child xsi:type="form:Group" id="widgexbox_toolbar" name="widgexbox_toolbar">
+      <form:control type="container/toolbar_widget">
+        <form:attributes source="container/toolbar_widget"/>
+      </form:control>
+    </form:child>
+    <form:child xsi:type="form:Group" id="div3" name="简单容器(DIV)">
+      <form:control type="container/div">
+        <form:attributes source="container/div">
+          <dync:attribute default="" group="高级自定义" id="style" name="自定义style" value="height:10px;">
+            <dync:render colSpan="2" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+    </form:child>
+    <form:child xsi:type="form:Group" id="widgetbox1" name="举报查询码（注意：用于举报查询，请牢记此查询码！)">
+      <form:control type="container/widgetbox">
+        <form:attributes source="container/widgetbox"/>
+      </form:control>
+      <form:child xsi:type="form:Group" id="widgexbox_toolbar" name="widgexbox_toolbar">
+        <form:control type="container/toolbar_widget">
+          <form:attributes source="container/toolbar_widget"/>
+        </form:control>
+      </form:child>
+      <form:child xsi:type="form:Field" binding="$model.entity.queryCode" id="queryCode" name="查询码*">
+        <form:control type="widget/text">
+          <form:attributes source="widget/text">
+            <dync:attribute default="false" group="数据校验" id="required" name="必填项" value="true">
+              <dync:render colSpan="1" height="0" multi="false" name="checkboxAndExpr"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="false" group="文本框设置" id="disabled" name="禁用" value="true">
+              <dync:render colSpan="1" height="0" multi="false" name="checkboxAndExpr"/>
+              <dync:children/>
+            </dync:attribute>
+          </form:attributes>
+        </form:control>
+      </form:child>
+      <form:child xsi:type="form:Group" id="div1" name="简单容器(DIV)">
+        <form:control type="container/div">
+          <form:attributes source="container/div"/>
+        </form:control>
+      </form:child>
+      <form:child xsi:type="form:Field" binding="$model.entity.acceptOrgId" id="acceptOrgId" name="接收单位 *">
+        <form:control type="widget/select_tree">
+          <form:attributes source="widget/select_tree">
+            <dync:attribute default="" group="树数据设置" id="treeBinding" name="树数据源" value="$model.orgTree">
+              <dync:render colSpan="1" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="auto" group="树显示设置" id="height" name="高度" value="350px">
+              <dync:render colSpan="1" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="" group="树事件设置" id="nodeClick" name="单击" value="acceptOrgId_nodeClick(event,treeId,treeNode,clickFlag)">
+              <dync:render colSpan="1" height="0" multi="false" name="event">
+                <dync:item name="params" value="event,treeId,treeNode,clickFlag"/>
+              </dync:render>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="false" group="控件外观" id="required" name="必填项" value="true">
+              <dync:render colSpan="1" height="0" multi="false" name="checkboxAndExpr"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="" group="树显示设置" id="expendLevel" name="默认展开级数" value="2">
+              <dync:render colSpan="1" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+          </form:attributes>
+        </form:control>
+      </form:child>
+      <form:child xsi:type="form:Field" binding="$model.entity.islocalsector" id="islocalsector" name="向部门投诉">
+        <form:control type="widget/radio_group">
+          <form:attributes source="widget/radio_group">
+            <dync:attribute default="" group="单选按钮组设置" id="radioOptions" name="选项" value="[{&quot;id&quot;:&quot;Y&quot;,&quot;name&quot;:&quot;是&quot;},{&quot;id&quot;:&quot;N&quot;,&quot;name&quot;:&quot;否&quot;}]">
+              <dync:render colSpan="1" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="" group="单选按钮组设置" id="optionId" name="值属性名" value="id">
+              <dync:render colSpan="1" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="" group="单选按钮组设置" id="optionName" name="显示属性名" value="name">
+              <dync:render colSpan="1" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="true" group="基本设置" id="show" name="可见" value="false">
+              <dync:render colSpan="1" height="0" multi="false" name="checkboxAndExpr"/>
+              <dync:children/>
+            </dync:attribute>
+          </form:attributes>
+        </form:control>
+      </form:child>
+      <form:child xsi:type="form:Field" binding="$model.entity.acceptOrgTemp" id="acceptOrgTemp" name="接收单位临时值" customize="true">
+        <form:control type="widget/text">
+          <form:attributes source="widget/text">
+            <dync:attribute default="true" group="文本框设置" id="show" name="可见" value="false">
+              <dync:render colSpan="1" height="0" multi="false" name="checkboxAndExpr"/>
+              <dync:children/>
+            </dync:attribute>
+          </form:attributes>
+        </form:control>
+        <form:validation/>
+      </form:child>
+    </form:child>
+    <form:child xsi:type="form:Group" id="widgetbox2" name="投诉举报人信息">
+      <form:control type="container/widgetbox">
+        <form:attributes source="container/widgetbox"/>
+      </form:control>
+      <form:child xsi:type="form:Group" id="widgexbox_toolbar" name="widgexbox_toolbar">
+        <form:control type="container/toolbar_widget">
+          <form:attributes source="container/toolbar_widget"/>
+        </form:control>
+      </form:child>
+      <form:child xsi:type="form:Field" binding="$model.entity.complainUserName" id="complainUserName" name="真实姓名 *">
+        <form:control type="widget/text">
+          <form:attributes source="widget/text">
+            <dync:attribute default="false" group="数据校验" id="required" name="必填项" value="true">
+              <dync:render colSpan="1" height="0" multi="false" name="checkboxAndExpr"/>
+              <dync:children/>
+            </dync:attribute>
+          </form:attributes>
+        </form:control>
+      </form:child>
+      <form:child xsi:type="form:Field" binding="$model.entity.complainUserOrg" id="complainUserOrg" name="单位 *">
+        <form:control type="widget/text">
+          <form:attributes source="widget/text">
+            <dync:attribute default="false" group="数据校验" id="required" name="必填项" value="true">
+              <dync:render colSpan="1" height="0" multi="false" name="checkboxAndExpr"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="75" group="基本设置" id="lableWidth" name="左外边距" value="90">
+              <dync:render colSpan="1" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+          </form:attributes>
+        </form:control>
+      </form:child>
+      <form:child xsi:type="form:Field" binding="$model.entity.complainUserCard" id="complainUserCard" name="身份证号码*">
+        <form:control type="widget/text">
+          <form:attributes source="widget/text">
+            <dync:attribute default="false" group="数据校验" id="required" name="必填项" value="true">
+              <dync:render colSpan="1" height="0" multi="false" name="checkboxAndExpr"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="75" group="基本设置" id="lableWidth" name="左外边距" value="77">
+              <dync:render colSpan="1" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+          </form:attributes>
+        </form:control>
+      </form:child>
+      <form:child xsi:type="form:Field" binding="$model.entity.complainUserMobile" id="complainUserMobile" name="联系人手机*">
+        <form:control type="widget/text">
+          <form:attributes source="widget/text">
+            <dync:attribute default="false" group="数据校验" id="required" name="必填项" value="true">
+              <dync:render colSpan="1" height="0" multi="false" name="checkboxAndExpr"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="" group="数据校验" id="maxlength" name="最大长度" value="11">
+              <dync:render colSpan="2" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="75" group="基本设置" id="lableWidth" name="左外边距" value="90">
+              <dync:render colSpan="1" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+          </form:attributes>
+        </form:control>
+      </form:child>
+      <form:child xsi:type="form:Field" binding="$model.entity.complainUserPhone" id="complainUserPhone" name="办公电话">
+        <form:control type="widget/text">
+          <form:attributes source="widget/text"/>
+        </form:control>
+      </form:child>
+      <form:child xsi:type="form:Field" binding="$model.entity.complainUserAddress" id="complainUserAddress" name="地址">
+        <form:control type="widget/text">
+          <form:attributes source="widget/text">
+            <dync:attribute default="75" group="基本设置" id="lableWidth" name="左外边距" value="90">
+              <dync:render colSpan="1" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+          </form:attributes>
+        </form:control>
+      </form:child>
+    </form:child>
+    <form:child xsi:type="form:Group" id="widgetbox3" name="被投诉举报人信息">
+      <form:control type="container/widgetbox">
+        <form:attributes source="container/widgetbox"/>
+      </form:control>
+      <form:child xsi:type="form:Group" id="widgexbox_toolbar" name="widgexbox_toolbar">
+        <form:control type="container/toolbar_widget">
+          <form:attributes source="container/toolbar_widget"/>
+        </form:control>
+      </form:child>
+      <form:child xsi:type="form:Field" binding="$model.entity.bycomplainedOrg" id="bycomplainedOrg" name="单位名称 *">
+        <form:control type="widget/text">
+          <form:attributes source="widget/text">
+            <dync:attribute default="false" group="数据校验" id="required" name="必填项" value="true">
+              <dync:render colSpan="1" height="0" multi="false" name="checkboxAndExpr"/>
+              <dync:children/>
+            </dync:attribute>
+          </form:attributes>
+        </form:control>
+      </form:child>
+      <form:child xsi:type="form:Field" binding="$model.entity.bycomplainedUserAddress" id="bycomplainedUserAddress" name="所在地 *">
+        <form:control type="widget/select_tree">
+          <form:attributes source="widget/select_tree">
+            <dync:attribute default="" group="树数据设置" id="treeBinding" name="树数据源" value="$model.orgTree">
+              <dync:render colSpan="1" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="auto" group="树显示设置" id="height" name="高度" value="350px">
+              <dync:render colSpan="1" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="false" group="控件外观" id="required" name="必填项" value="true">
+              <dync:render colSpan="1" height="0" multi="false" name="checkboxAndExpr"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="" group="树显示设置" id="expendLevel" name="默认展开级数" value="2">
+              <dync:render colSpan="1" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="75" group="控件外观" id="lableWidth" name="lable宽度" value="90">
+              <dync:render colSpan="1" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="" group="事件设置" id="change" name="值改变" value="bycomplainedUserAddress_change(newValue,oldValue)">
+              <dync:render colSpan="2" height="0" multi="false" name="event">
+                <dync:item name="params" value="newValue,oldValue"/>
+              </dync:render>
+              <dync:children/>
+            </dync:attribute>
+          </form:attributes>
+        </form:control>
+      </form:child>
+      <form:child xsi:type="form:Field" binding="$model.entity.bycomplainedUserOrg" id="bycomplainedUserOrg" name="姓名">
+        <form:control type="widget/text">
+          <form:attributes source="widget/text"/>
+        </form:control>
+      </form:child>
+      <form:child xsi:type="form:Field" binding="$model.entity.bycomplainedUserPhone" id="bycomplainedUserPhone" name="电话">
+        <form:control type="widget/text">
+          <form:attributes source="widget/text">
+            <dync:attribute default="75" group="基本设置" id="lableWidth" name="左外边距" value="90">
+              <dync:render colSpan="1" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+          </form:attributes>
+        </form:control>
+      </form:child>
+    </form:child>
+    <form:child xsi:type="form:Group" id="widgetbox4" name="举报信正文">
+      <form:control type="container/widgetbox">
+        <form:attributes source="container/widgetbox"/>
+      </form:control>
+      <form:child xsi:type="form:Group" id="widgexbox_toolbar" name="widgexbox_toolbar">
+        <form:control type="container/toolbar_widget">
+          <form:attributes source="container/toolbar_widget"/>
+        </form:control>
+      </form:child>
+      <form:child xsi:type="form:Field" binding="$model.entity.complainTitle" id="complainTitle" name="标题 *">
+        <form:control type="widget/text">
+          <form:attributes source="widget/text">
+            <dync:attribute default="6" group="基本设置" id="span" name="占位数" value="12">
+              <dync:render colSpan="1" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="false" group="数据校验" id="required" name="必填项" value="true">
+              <dync:render colSpan="1" height="0" multi="false" name="checkboxAndExpr"/>
+              <dync:children/>
+            </dync:attribute>
+          </form:attributes>
+        </form:control>
+      </form:child>
+      <form:child xsi:type="form:Field" binding="$model.entity.problemMode" id="problemMode" name="投诉方式">
+        <form:control type="widget/select_simple">
+          <form:attributes source="widget/select_simple">
+            <dync:attribute default="" group="下拉框设置" id="selectOptions" name="选项" value="[&#xD;&#xA;{&quot;id&quot;:&quot;1&quot;,&quot;name&quot;:&quot;网络&quot;},&#xD;&#xA;{&quot;id&quot;:&quot;2&quot;,&quot;name&quot;:&quot;电话&quot;},&#xD;&#xA;{&quot;id&quot;:&quot;3&quot;,&quot;name&quot;:&quot;来访&quot;},&#xD;&#xA;{&quot;id&quot;:&quot;4&quot;,&quot;name&quot;:&quot;函件&quot;},&#xD;&#xA;{&quot;id&quot;:&quot;5&quot;,&quot;name&quot;:&quot;批办&quot;}&#xD;&#xA;]">
+              <dync:render colSpan="1" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="false" group="下拉框设置" id="firstSelected" name="选中第一个" value="true">
+              <dync:render colSpan="1" height="0" multi="false" name="checkbox"/>
+              <dync:children/>
+            </dync:attribute>
+          </form:attributes>
+        </form:control>
+      </form:child>
+      <form:child xsi:type="form:Field" binding="$model.entity.isPublic" id="isPublic" name="是否公开">
+        <form:control type="widget/radio_group">
+          <form:attributes source="widget/radio_group">
+            <dync:attribute default="" group="单选按钮组设置" id="radioOptions" name="选项" value="[{&quot;id&quot;:&quot;Y&quot;,&quot;name&quot;:&quot;公开&quot;},{&quot;id&quot;:&quot;N&quot;,&quot;name&quot;:&quot;私密&quot;}]">
+              <dync:render colSpan="1" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="false" group="单选按钮组设置" id="firstSelected" name="选中第一个" value="true">
+              <dync:render colSpan="1" height="0" multi="false" name="checkbox"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="" group="单选按钮组设置" id="optionId" name="值属性名" value="id">
+              <dync:render colSpan="1" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="" group="单选按钮组设置" id="optionName" name="显示属性名" value="name">
+              <dync:render colSpan="1" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="75" group="基本设置" id="lableWidth" name="lable宽度" value="90">
+              <dync:render colSpan="1" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+          </form:attributes>
+        </form:control>
+      </form:child>
+      <form:child xsi:type="form:Field" binding="$model.entity.problemType" id="problemType" name="问题类型 *">
+        <form:control type="widget/select_simple">
+          <form:attributes source="widget/select_simple">
+            <dync:attribute default="6" group="基本设置" id="span" name="占位数" value="12">
+              <dync:render colSpan="1" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="" group="下拉框设置" id="selectOptions" name="选项" value="$model.problemType.result[&quot;problemTypeList&quot;]">
+              <dync:render colSpan="1" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="id" group="下拉框设置" id="optionId" name="值属性名" value="problemTypeId">
+              <dync:render colSpan="1" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="name" group="下拉框设置" id="optionName" name="显示属性名" value="problemTypeName">
+              <dync:render colSpan="1" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="" group="下拉框设置" id="nullValue" name="空值选项名" value="---请选择---">
+              <dync:render colSpan="1" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="false" group="基本设置" id="selectRequired" name="必填项" value="true">
+              <dync:render colSpan="1" height="0" multi="false" name="checkboxAndExpr"/>
+              <dync:children/>
+            </dync:attribute>
+          </form:attributes>
+        </form:control>
+      </form:child>
+      <form:child xsi:type="form:Field" binding="$model.entity.complainContent" id="complainContent" name="主要问题 *">
+        <form:control type="widget/textarea">
+          <form:attributes source="widget/textarea">
+            <dync:attribute default="false" group="数据校验" id="required" name="必填项" value="true">
+              <dync:render colSpan="1" height="0" multi="false" name="checkboxAndExpr"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="3" group="HTML设置" id="rows" name="行高" value="5">
+              <dync:render colSpan="1" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+          </form:attributes>
+        </form:control>
+      </form:child>
+      <form:child xsi:type="form:Field" binding="$model.entity.mainappeal" id="mainappeal" name="主要诉求 *">
+        <form:control type="widget/textarea">
+          <form:attributes source="widget/textarea">
+            <dync:attribute default="false" group="数据校验" id="required" name="必填项" value="true">
+              <dync:render colSpan="1" height="0" multi="false" name="checkboxAndExpr"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="3" group="HTML设置" id="rows" name="行高" value="5">
+              <dync:render colSpan="1" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+          </form:attributes>
+        </form:control>
+      </form:child>
+    </form:child>
+    <form:child xsi:type="form:Group" id="widgetbox5" name="佐证材料（只允许上传图片(支持jpg,jpeg,png,gif)、pdf、word、excel、压缩包文件格式的文件)">
+      <form:control type="container/widgetbox">
+        <form:attributes source="container/widgetbox"/>
+      </form:control>
+      <form:child xsi:type="form:Group" id="widgexbox_toolbar" name="widgexbox_toolbar">
+        <form:control type="container/toolbar_widget">
+          <form:attributes source="container/toolbar_widget"/>
+        </form:control>
+      </form:child>
+      <form:child xsi:type="form:Field" id="multipleFileInputIframe" name="选择文件" customize="true">
+        <form:control type="widget/file_input_iframe">
+          <form:attributes source="widget/file_input_iframe">
+            <dync:attribute default="" group="事件" id="onSuccess" name="上传成功" value="multipleFileInputIframe_onSuccess(data)">
+              <dync:render colSpan="2" height="0" multi="false" name="event">
+                <dync:item name="params" value="data"/>
+              </dync:render>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="" group="事件" id="onError" name="上传失败" value="multipleFileInputIframe_onError(data)">
+              <dync:render colSpan="2" height="0" multi="false" name="event">
+                <dync:item name="params" value="data"/>
+              </dync:render>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="true" group="HTML属性" id="autoSubmit" name="自动提交" value="false">
+              <dync:render colSpan="2" height="0" multi="false" name="checkbox"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="" group="数据校验" id="allow" name="允许类型" value="[&quot;jpeg&quot;,&quot;png&quot;,&quot;gif&quot;,&quot;jpg&quot;,&quot;pdf&quot;,&quot;doc&quot;,&quot;docx&quot;,&quot;xls&quot;,&quot;xlsx&quot;,&quot;tar&quot;,&quot;rar&quot;,&quot;zip&quot;]">
+              <dync:render colSpan="2" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="dbdir" group="HTML属性" id="process" name="上传处理器" value="todbdir">
+              <dync:render colSpan="1" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+          </form:attributes>
+        </form:control>
+        <form:validation/>
+      </form:child>
+      <form:child xsi:type="form:Group" id="div2" name="简单容器(DIV)">
+        <form:control type="container/div">
+          <form:attributes source="container/div">
+            <dync:attribute default="" group="高级自定义" id="style" name="自定义style" value="height:50px;padding-top:1px">
+              <dync:render colSpan="2" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="12" group="HTML配置" id="span" name="占位数" value="2">
+              <dync:render colSpan="1" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+          </form:attributes>
+        </form:control>
+        <form:child xsi:type="form:Field" id="attachinfo_button" name="上传" customize="true">
+          <form:control type="widget/button">
+            <form:attributes source="widget/button">
+              <dync:attribute default="" group="事件设置" id="click" name="点击事件" value="attachinfo_button_click($event)">
+                <dync:render colSpan="1" height="0" multi="false" name="event">
+                  <dync:item name="params" value="$event"/>
+                </dync:render>
+                <dync:children/>
+              </dync:attribute>
+            </form:attributes>
+          </form:control>
+          <form:validation/>
+        </form:child>
+      </form:child>
+      <form:child xsi:type="form:Group" binding="$model.taJcComplainAttachinfolist" id="taJcComplainAttachinfolist" name="投诉材料信息">
+        <form:control type="container/table_jqgrid">
+          <form:attributes source="container/table_jqgrid">
+            <dync:attribute default="true" group="表格设置" id="multiselect" name="多选" value="false">
+              <dync:render colSpan="1" height="0" multi="false" name="checkbox"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="false" group="表格设置" id="rownumbers" name="序号" value="true">
+              <dync:render colSpan="1" height="0" multi="false" name="checkbox"/>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="" group="表格设置" id="paramData" name="初始化参数" value="{&quot;complainId&quot;:$params.attach}">
+              <dync:render colSpan="1" height="0" multi="false" name="text"/>
+              <dync:children/>
+            </dync:attribute>
+          </form:attributes>
+        </form:control>
+        <form:child xsi:type="form:Group" id="toolbar_table" name="toolbar_table">
+          <form:control type="container/toolbar_table">
+            <form:attributes source="container/toolbar_table"/>
+          </form:control>
+        </form:child>
+        <form:child xsi:type="form:Field" binding="attachId" id="attachId" name="附件ID">
+          <form:control type="widget/col_jqgrid">
+            <form:attributes source="widget/col_jqgrid">
+              <dync:attribute id="key" value="true">
+                <dync:render/>
+                <dync:children/>
+              </dync:attribute>
+              <dync:attribute default="false" group="表格设置" id="hidden" name="隐藏列" value="true">
+                <dync:render colSpan="1" height="0" multi="false" name="checkbox"/>
+                <dync:children/>
+              </dync:attribute>
+            </form:attributes>
+          </form:control>
+        </form:child>
+        <form:child xsi:type="form:Field" binding="complainId" id="complainId" name="投诉信息ID">
+          <form:control type="widget/col_jqgrid">
+            <form:attributes source="widget/col_jqgrid">
+              <dync:attribute default="false" group="表格设置" id="hidden" name="隐藏列" value="true">
+                <dync:render colSpan="1" height="0" multi="false" name="checkbox"/>
+                <dync:children/>
+              </dync:attribute>
+            </form:attributes>
+          </form:control>
+        </form:child>
+        <form:child xsi:type="form:Field" binding="attachContent" id="attachContent" name="附件ID">
+          <form:control type="widget/col_jqgrid">
+            <form:attributes source="widget/col_jqgrid">
+              <dync:attribute default="false" group="表格设置" id="hidden" name="隐藏列" value="true">
+                <dync:render colSpan="1" height="0" multi="false" name="checkbox"/>
+                <dync:children/>
+              </dync:attribute>
+            </form:attributes>
+          </form:control>
+        </form:child>
+        <form:child xsi:type="form:Field" binding="attachName" id="attachName" name="附件名称">
+          <form:control type="widget/col_jqgrid">
+            <form:attributes source="widget/col_jqgrid">
+              <dync:attribute default="150" group="基本设置" id="width" name="宽度" value="250">
+                <dync:render colSpan="1" height="0" multi="false" name="text"/>
+                <dync:children/>
+              </dync:attribute>
+              <dync:attribute default="left" group="基本设置" id="align" name="位置" value="center">
+                <dync:render colSpan="1" height="0" multi="false" name="select">
+                  <dync:item name="左" value="left"/>
+                  <dync:item name="中" value="center"/>
+                  <dync:item name="右" value="right"/>
+                </dync:render>
+                <dync:children/>
+              </dync:attribute>
+              <dync:attribute default="false" group="基本设置" id="title" name="鼠标悬浮显示" value="true">
+                <dync:render colSpan="1" height="0" multi="false" name="checkbox"/>
+                <dync:children/>
+              </dync:attribute>
+              <dync:attribute default="" group="格式设置" id="customFormatter" name="自定义格式" value="attachName_customFormatter(cellvalue,options,rowObject,dictValueExpression)">
+                <dync:render colSpan="2" height="0" multi="false" name="event">
+                  <dync:item name="param" value="cellvalue,options,rowObject,dictValueExpression"/>
+                </dync:render>
+                <dync:children/>
+              </dync:attribute>
+            </form:attributes>
+          </form:control>
+        </form:child>
+        <form:child xsi:type="form:Field" binding="createTime" id="createTime" name="上传时间">
+          <form:control type="widget/col_jqgrid">
+            <form:attributes source="widget/col_jqgrid">
+              <dync:attribute default="left" group="基本设置" id="align" name="位置" value="center">
+                <dync:render colSpan="1" height="0" multi="false" name="select">
+                  <dync:item name="左" value="left"/>
+                  <dync:item name="中" value="center"/>
+                  <dync:item name="右" value="right"/>
+                </dync:render>
+                <dync:children/>
+              </dync:attribute>
+              <dync:attribute default="" group="格式设置" id="customFormatter" name="自定义格式" value="createTime_customFormatter(cellvalue,options,rowObject,dictValueExpression)">
+                <dync:render colSpan="2" height="0" multi="false" name="event">
+                  <dync:item name="param" value="cellvalue,options,rowObject,dictValueExpression"/>
+                </dync:render>
+                <dync:children/>
+              </dync:attribute>
+            </form:attributes>
+          </form:control>
+        </form:child>
+        <form:child xsi:type="form:Field" binding="datasource" id="datasource" name="数据来源">
+          <form:control type="widget/col_jqgrid">
+            <form:attributes source="widget/col_jqgrid">
+              <dync:attribute default="" group="格式设置" id="customFormatter" name="自定义格式" value="datasource_customFormatter(cellvalue,options,rowObject,dictValueExpression)">
+                <dync:render colSpan="2" height="0" multi="false" name="event">
+                  <dync:item name="param" value="cellvalue,options,rowObject,dictValueExpression"/>
+                </dync:render>
+                <dync:children/>
+              </dync:attribute>
+              <dync:attribute default="left" group="基本设置" id="align" name="位置" value="center">
+                <dync:render colSpan="1" height="0" multi="false" name="select">
+                  <dync:item name="左" value="left"/>
+                  <dync:item name="中" value="center"/>
+                  <dync:item name="右" value="right"/>
+                </dync:render>
+                <dync:children/>
+              </dync:attribute>
+            </form:attributes>
+          </form:control>
+        </form:child>
+        <form:child xsi:type="form:Field" binding="createrUserId" id="createrUserId" name="内网附件上传人">
+          <form:control type="widget/col_jqgrid">
+            <form:attributes source="widget/col_jqgrid">
+              <dync:attribute default="false" group="表格设置" id="hidden" name="隐藏列" value="true">
+                <dync:render colSpan="1" height="0" multi="false" name="checkbox"/>
+                <dync:children/>
+              </dync:attribute>
+            </form:attributes>
+          </form:control>
+        </form:child>
+        <form:child xsi:type="form:Field" id="colJqgrid" name="操作" customize="true">
+          <form:control type="widget/col_jqgrid">
+            <form:attributes source="widget/col_jqgrid">
+              <dync:attribute default="150" group="基本设置" id="width" name="宽度" value="100">
+                <dync:render colSpan="1" height="0" multi="false" name="text"/>
+                <dync:children/>
+              </dync:attribute>
+              <dync:attribute default="left" group="基本设置" id="align" name="位置" value="center">
+                <dync:render colSpan="1" height="0" multi="false" name="select">
+                  <dync:item name="左" value="left"/>
+                  <dync:item name="中" value="center"/>
+                  <dync:item name="右" value="right"/>
+                </dync:render>
+                <dync:children/>
+              </dync:attribute>
+              <dync:attribute default="" group="格式设置" id="customFormatter" name="自定义格式" value="colJqgrid_customFormatter(cellvalue,options,rowObject,dictValueExpression)">
+                <dync:render colSpan="2" height="0" multi="false" name="event">
+                  <dync:item name="param" value="cellvalue,options,rowObject,dictValueExpression"/>
+                </dync:render>
+                <dync:children/>
+              </dync:attribute>
+            </form:attributes>
+          </form:control>
+          <form:validation/>
+        </form:child>
+      </form:child>
+    </form:child>
+    <form:child xsi:type="form:Group" id="div" name="简单容器(DIV)">
+      <form:control type="container/div">
+        <form:attributes source="container/div">
+          <dync:attribute default="" group="高级自定义" id="style" name="自定义style" value="text-align:center;">
+            <dync:render colSpan="2" height="0" multi="false" name="text"/>
+            <dync:children/>
+          </dync:attribute>
+        </form:attributes>
+      </form:control>
+      <form:child xsi:type="form:Field" id="save_button" name="保存" customize="true">
+        <form:control type="widget/button">
+          <form:attributes source="widget/button">
+            <dync:attribute default="btn-primary" group="HTML设置" id="style" name="样式" value="btn-success">
+              <dync:render colSpan="1" height="0" multi="false" name="select">
+                <dync:item name="默认" value="btn-default"/>
+                <dync:item name="主要" value="btn-primary"/>
+                <dync:item name="成功" value="btn-success"/>
+                <dync:item name="信息" value="btn-info"/>
+                <dync:item name="警告" value="btn-warning"/>
+                <dync:item name="危险" value="btn-danger"/>
+                <dync:item name="链接" value="btn-link"/>
+                <dync:item name="通用" value="btn-white no-border"/>
+              </dync:render>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="btn-sm" group="HTML设置" id="size" name="尺寸" value="btn-nl">
+              <dync:render colSpan="1" height="0" multi="false" name="select">
+                <dync:item name="很小" value="btn-xs"/>
+                <dync:item name="小" value="btn-sm"/>
+                <dync:item name="正常" value="btn-nl"/>
+                <dync:item name="大" value="btn-lg"/>
+              </dync:render>
+              <dync:children/>
+            </dync:attribute>
+            <dync:attribute default="" group="事件设置" id="click" name="点击事件" value="save_button_click($event)">
+              <dync:render colSpan="1" height="0" multi="false" name="event">
+                <dync:item name="params" value="$event"/>
+              </dync:render>
+              <dync:children/>
+            </dync:attribute>
+          </form:attributes>
+        </form:control>
+        <form:validation/>
+      </form:child>
+    </form:child>
+  </form:child>
+  <form:datasources>
+    <form:datasource xsi:type="form:EntityDataSource" id="entity" name="单实体数据源" base="service" sn="dzjc_complain/v1/taJcComplainBaseinfo" data="" entity="entity:com.chinacreator.dzjc_complain.taJcComplainBaseinfo">
+      <form:entityObj pk="complain_id" restResource="true"/>
+    </form:datasource>
+    <form:datasource xsi:type="form:TreeDataSource" id="orgTree" name="机构树形信息" base="service" type="url" url="areaTree/v1/getTsAreaTree"/>
+    <form:datasource xsi:type="form:LogicDataSource" id="problemType" name="服务数据源" base="" type="url" url="dzjc_complain/v1/problemType/getProblemType"/>
+    <form:datasource xsi:type="form:PagingDataSource" id="taJcComplainAttachinfolist" name="投诉材料信息" base="service" sn="dzjc_complain/v1/taJcComplainAttachinfo" elementType="entity:com.chinacreator.dzjc_complain.taJcComplainAttachinfo" pageSize="10">
+      <form:entityObj pk="attach_id" restResource="true"/>
+    </form:datasource>
+  </form:datasources>
+  <form:scripts>//数据源加载前
+page_beforeDataSourceLoad:function($params){
+	$params.attach=0;
+	$model.entity.complainIdTemp=uuid();
+},
+
+//页面加载完成
+page_onload:function(){
+
+	//获取唯一查询码
+	$http.get(c2.base(&quot;service&quot;)+&quot;dzjc_complain/v1/taJcComplainBaseinfo/seq/getSeqJcComplainBaseinfo&quot;).success(function(data) {
+		var myDate = new Date();//获取系统当前时间
+		var year = myDate.getFullYear(); //获取完整的年份
+		$model.entity.queryCode=year+data;
+	});
+	
+},
+
+//检查数据是否符合要求
+check_data:function(){
+	
+	if(!$model.entity.queryCode){
+		Messenger.post({type:'error',message:'查询码不能为空'});
+		$(&quot;#queryCode&quot;).focus();
+		return false;
+	}
+
+	if(IsSpace($model.entity.acceptOrgId)){
+		Messenger.post({type:'error',message:'受理单位不能为空'});
+		$(&quot;#acceptOrgId&quot;).focus();
+		return false;
+	}else{
+		var orgId=$model.entity.acceptOrgId;
+		var flag = true;
+		$.ajax({
+			&quot;url&quot; : c2.base(&quot;service&quot;)+&quot;orgTree/v1/findYhbOrgIdByAreaCode/&quot;+orgId,
+			&quot;type&quot; : &quot;get&quot;,
+			&quot;dataType&quot;: &quot;text&quot;,
+			&quot;async&quot; : false,
+			&quot;success&quot; : function(data){
+				if(IsSpace(data)){
+					Messenger.post({type:'error',message:'该区域下未找到优化办机构,若要录入,请重新选择'});
+					$(&quot;#acceptOrgId&quot;).focus();
+				}else{
+					$model.entity.acceptOrgTemp = data;
+					flag=false;
+				}
+			},
+			&quot;error&quot;:function(data){
+				Messenger.post({type:'error',message:'获取优化办失败'});
+				$(&quot;#acceptOrgId&quot;).focus();
+			}
+		});
+		if(flag){return false;}
+	}
+
+	if(!$model.entity.complainUserName){
+		Messenger.post({type:'error',message:'真实姓名不能为空'});
+		$(&quot;#complainUserName&quot;).focus();
+		return false;
+	}
+
+	if(!$model.entity.complainUserOrg){
+		Messenger.post({type:'error',message:'单位不能为空'});
+		$(&quot;#complainUserOrg&quot;).focus();
+		return false;
+	}
+
+	if(!$model.entity.complainUserCard){
+		Messenger.post({type:'error',message:'身份证号码不能为空'});
+		$(&quot;#complainUserCard&quot;).focus();
+		return false;
+	}else if(!/^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/.test($model.entity.complainUserCard)){
+		Messenger.post({type:'error',message:'身份证号码格式错误'});
+		$(&quot;#complainUserCard&quot;).focus();
+		return false;
+	}
+
+	if(!$model.entity.complainUserMobile){
+		Messenger.post({type:'error',message:'联系人手机不能为空'});
+		$(&quot;#complainUserMobile&quot;).focus();
+		return false;
+	}else if(!/^1[3-8][0-9]\d{8}$/.test($model.entity.complainUserMobile)){
+		Messenger.post({type:'error',message:'手机号码格式错误'});
+		$(&quot;#complainUserMobile&quot;).focus();
+		return false;
+	}
+
+	if(!$model.entity.bycomplainedOrg){
+		Messenger.post({type:'error',message:'单位名称不能为空'});
+		$(&quot;#bycomplainedOrg&quot;).focus();
+		return false;
+	}
+
+	if(!$model.entity.bycomplainedUserAddress){
+		Messenger.post({type:'error',message:'所在地不能为空'});
+		$(&quot;#bycomplainedUserAddress&quot;).focus();
+		return false;
+	}
+
+	if(!$model.entity.complainTitle){
+		Messenger.post({type:'error',message:'标题不能为空'});
+		$(&quot;#complainTitle&quot;).focus();
+		return false;
+	}
+
+	if(!$model.entity.problemType){
+		Messenger.post({type:'error',message:'问题类型不能为空'});
+		$(&quot;#problemType&quot;).focus();
+		return false;
+	}
+
+	if(!$model.entity.complainContent){
+		Messenger.post({type:'error',message:'主要问题不能为空'});
+		$(&quot;#complainContent&quot;).focus();
+		return false;
+	}
+
+	if(!$model.entity.mainappeal){
+		Messenger.post({type:'error',message:'主要诉求不能为空'});
+		$(&quot;#mainappeal&quot;).focus();
+		return false;
+	}
+	
+	if($model.entity.complainContent.length > 2000){
+		Messenger.post({type:'error',message:'主要问题不能超过2000字符'});
+		$(&quot;#complainContent&quot;).focus();
+		return false;
+	}
+	
+	if($model.entity.mainappeal.length > 2000){
+		Messenger.post({type:'error',message:'主要诉求不能超过2000字符'});
+		$(&quot;#mainappeal&quot;).focus();
+		return false;
+	}
+	if($('#multipleFileInputIframe .ace-file-name').attr(&quot;data-title&quot;) != '未选中文件 ...'){
+		Messenger.post({type:'error',message:'有附件未上传'});
+		return false;
+	}
+	return true;
+},
+
+//保存录入信息
+save_button_click:function($event){
+	$view.save_button.setDisabled(true);
+	if(functions.check_data()){//判断数据是否符合需求 
+		Modal.openConfirm({message:&quot;确定提交投诉信息！请牢记此查询码&quot;+$model.entity.queryCode},function(data){
+			$model.entity.$save(function(){
+				Messenger.post({type:'success',message:'录入成功'});
+				$scope.breadcrumbArray[1]='投诉举报受理';
+				var url =&quot;#/f/dzjc_complain/taJcComplainAccept&quot;;
+				window.location.href =url;
+			});
+		},function(){
+			$view.save_button.setDisabled(false);
+		});
+	}
+	$view.save_button.setDisabled(false);
+},
+
+
+//上传
+attachinfo_button_click:function($event){
+	$view.multipleFileInputIframe.submit({complainId:$model.entity.complainIdTemp,businessType:&quot;1&quot;});
+},
+
+//上传成功
+multipleFileInputIframe_onSuccess:function(data){
+	$view.multipleFileInputIframe.reset();
+	Messenger.post({type:'success',message:'上传成功'});
+	
+	$view.taJcComplainAttachinfolist.refresh({&quot;complainId&quot;:$model.entity.complainIdTemp});
+},
+
+//上传失败
+multipleFileInputIframe_onError:function(data){
+
+	//console.log(&quot;data--->&quot;,data);
+
+	if(data != null &amp;&amp; data != &quot;&quot;){
+		Messenger.post({type:'error',message:data.errorMsg});
+	}else{
+		Messenger.post({type:'error',message:'上传失败'});
+	}
+	
+	$view.taJcComplainAttachinfolist.refresh({&quot;complainId&quot;:$model.entity.complainIdTemp});
+},
+
+//数据来源样式
+datasource_customFormatter:function(cellvalue,options,rowObject,dictValueExpression){
+	if(cellvalue=='1'){
+		return &quot;外网&quot;;
+	}else{
+		return &quot;内网&quot;;
+	}
+},
+
+//上传时间样式
+createTime_customFormatter:function(cellvalue,options,rowObject,dictValueExpression){
+	var date = new Date(cellvalue);
+	var commonTime = date.toLocaleString('chinese',{hour12:false});
+	return commonTime;
+},
+
+//材料名称样式
+attachName_customFormatter:function(cellvalue,options,rowObject,dictValueExpression){
+	return cellvalue.substring(cellvalue.lastIndexOf(&quot;$$&quot;)+2);
+},
+
+//操作样式
+colJqgrid_customFormatter:function(cellvalue,options,rowObject,dictValueExpression){
+
+	var htmls = &quot;&lt;a style='cursor: pointer;' ng-click='functions.attach_download(rowObject);'>下载&lt;/a> &amp;nbsp;&amp;nbsp;&quot;
+			  + &quot;&lt;a style='cursor: pointer;' ng-click='functions.attach_delete(rowObject);'>删除&lt;/a>&quot;;
+			  
+	return htmls;
+},
+
+//删除材料信息
+attach_delete:function(rowObject){
+
+	Modal.openDelConfirm({message:&quot;确定是否删除！&quot;},function(data){
+		$http.delete(c2.base(&quot;service&quot;)+&quot;dzjc_complain/v1/taJcComplainAttachinfo/&quot;+rowObject.attachId).success(function(){
+			$view.taJcComplainAttachinfolist.refresh({&quot;complainId&quot;:$model.entity.complainIdTemp});
+		});
+	});
+},
+
+//下载材料信息
+attach_download:function(rowObject){
+	var url =&quot;/dzjc/ComplainAttachinfoServlet?attachId=&quot;+rowObject.attachId+&quot;&amp;fileName=&quot;+encodeURIComponent(encodeURIComponent(rowObject.attachName));
+	window.location.href =url;
+},
+
+acceptOrgId_nodeClick:function(event,treeId,treeNode,clickFlag){
+},
+
+
+
+bycomplainedUserAddress_change:function(newValue,oldValue){
+	var treeObj = $view.bycomplainedUserAddress.getTree();
+	var sNodes = treeObj.getSelectedNodes();
+	if (sNodes.length > 0) {
+		var nodeNames = functions.getParentNodeName(sNodes[0].name,sNodes[0]);
+		$model.entity.bycomplainedUserAddress = nodeNames;
+	}
+}, 
+getParentNodeName:function(parentNodeNames,node){
+	var parentNode = node.getParentNode();
+	if(parentNode != null){
+		parentNodeNames = parentNode.name + parentNodeNames;
+		if(parentNode.getParentNode() != null){
+			return functions.getParentNodeName(parentNodeNames,parentNode);
+		}
+		else {
+			return parentNodeNames;
+		}
+	}
+	else {
+		return parentNodeNames;
+	}
+}</form:scripts>
+</form:Form>

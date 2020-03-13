@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"><mapper namespace="com.chinacreator.dzjc_ruleEngine.ResultOpinionMapper">	
+
+<!-- ElementID:column_sql,Generated=false -->
+<sql id="column_sql">
+		  TA_SP_RESULT_OPINION.opinion_id ,
+		  TA_SP_RESULT_OPINION.instance_id ,
+		  TA_SP_RESULT_OPINION.opinion_content ,
+		  TA_SP_RESULT_OPINION.user_name ,
+		  TA_SP_RESULT_OPINION.opinion_time ,
+		  TA_SP_RESULT_OPINION.tache_name ,
+		  TA_SP_RESULT_OPINION.user_id ,
+		  TA_SP_RESULT_OPINION.handle_result ,
+		  TA_SP_RESULT_OPINION.is_exchange ,
+		  TA_SP_RESULT_OPINION.mod_flag ,
+		  TA_SP_RESULT_OPINION.business_key ,
+		  TA_SP_RESULT_OPINION.type ,
+		  TA_SP_RESULT_OPINION.org_id ,
+		  TA_SP_RESULT_OPINION.begin_time ,
+		  TA_SP_RESULT_OPINION.link_time ,
+		  TA_SP_RESULT_OPINION.link_flag ,
+		  TA_SP_RESULT_OPINION.mark_id ,
+		  TA_SP_RESULT_OPINION.is_need_supervise ,
+		  TA_SP_RESULT_OPINION.last_supervise ,
+		  TA_SP_RESULT_OPINION.time_use ,
+		  TA_SP_RESULT_OPINION.supervise_time ,
+		<!--   TA_SP_RESULT_OPINION.work_time , -->
+		<!--   TA_SP_RESULT_OPINION.holiday_count , -->
+		  TA_SP_RESULT_OPINION.supervise_flag 
+</sql>
+
+<!-- ElementID:whereClause_sql,Generated=false -->
+<sql id="whereClause_sql">
+	    <if test="opinionId != null">and TA_SP_RESULT_OPINION.instance_id = substr(#{opinionId,jdbcType=VARCHAR},INSTR(#{opinionId},'_')+1)</if>
+	    <if test="instanceId != null">and TA_SP_RESULT_OPINION.instance_id = #{instanceId}</if>
+	    <if test="opinionContent != null">and TA_SP_RESULT_OPINION.opinion_content = #{opinionContent}</if>
+	    <if test="userName != null">and TA_SP_RESULT_OPINION.user_name = #{userName}</if>
+	    <if test="opinionTime != null">and TA_SP_RESULT_OPINION.opinion_time = #{opinionTime}</if>
+	    <if test="tacheName != null">and TA_SP_RESULT_OPINION.tache_name = #{tacheName}</if>
+	    <if test="userId != null">and TA_SP_RESULT_OPINION.user_id = #{userId}</if>
+	    <if test="handleResult != null">and TA_SP_RESULT_OPINION.handle_result = #{handleResult}</if>
+	    <if test="isExchange != null">and TA_SP_RESULT_OPINION.is_exchange = #{isExchange}</if>
+</sql>
+
+<!-- ElementID:ResultOpinionResult,Generated=true -->
+<resultMap id="ResultOpinionResult" type="com.chinacreator.dzjc_ruleEngine.ResultOpinion">
+	<id property="opinionId" column="opinion_id"/>
+	<result property="instanceId" column="instance_id"/>
+	<result property="opinionContent" column="opinion_content"/>
+	<result property="userName" column="user_name"/>
+	<result property="opinionTime" column="opinion_time"/>
+	<result property="tacheName" column="tache_name"/>
+	<result property="userId" column="user_id"/>
+	<result property="handleResult" column="handle_result"/>
+	<result property="isExchange" column="is_exchange"/>
+	<result property="modFlag" column="mod_flag"/>
+	<result property="businessKey" column="business_key"/>
+	<result property="type" column="type"/>
+	<result property="orgId" column="org_id"/>
+	<result property="beginTime" column="begin_time"/>
+	<result property="linkTime" column="link_time"/>
+	<result property="linkFlag" column="link_flag"/>
+	<result property="markId" column="mark_id"/>
+	<result property="isNeedSupervise" column="is_need_supervise"/>
+	<result property="lastSupervise" column="last_supervise"/>
+	<result property="timeUse" column="time_use"/>
+	<result property="superviseTime" column="supervise_time"/>
+	<result property="workTime" column="work_time"/>
+	<result property="holidayCount" column="holiday_count"/>
+	<result property="superviseFlag" column="supervise_flag"/>
+</resultMap>
+
+<!-- ElementID:count,Generated=false -->
+<select id="count" parameterType="com.chinacreator.dzjc_ruleEngine.ResultOpinion" resultType="int">
+	select count(*) 
+	from 
+      (
+      select r.opinion_id,r.instance_id,r.tache_name,r.opinion_time,r.user_name,r.opinion_content
+      from TA_SP_RESULT_OPINION r  
+      where r.instance_id=#{instanceId}
+      union
+      select SUSPEND_ID as opinion_id,INSTANCE_ID as instance_id, '特别程序申请信息' as tache_name, START_DATE as  opinion_time,
+      SUSPEND_USERNAME as user_name,'' as opinion_content
+      from TA_SP_SUSPEND where INSTANCE_ID=#{instanceId}
+      union 
+      select RESUME_ID as opinion_id,INSTANCE_ID as instance_id,'特别程序结果信息' as tache_name,END_DATE as opinion_time,
+      RESUME_USERNAME as user_name ,REMARKA AS opinion_content
+      from TA_SP_RESUME where INSTANCE_ID=#{instanceId}
+      )
+      table1
+</select>
+
+
+<!-- ElementID:select,Generated=false -->
+
+<!-- ElementID:selectAll,Generated=false -->
+
+<!-- ElementID:selectMany,Generated=false -->
+
+<!-- ElementID:selectUnion,Generated=false -->
+
+<!-- ElementID:selectByID,Generated=false -->
+<select id="selectByID" parameterType="java.lang.String" resultMap="ResultOpinionResult">
+	select 
+		<include refid="column_sql"/>
+	    from TA_SP_RESULT_OPINION 
+		 where TA_SP_RESULT_OPINION.opinion_id = #{entity.opinionId}
+</select>
+
+<!-- ElementID:selectByPage,Generated=false -->
+<select id="selectByPage" parameterType="com.chinacreator.dzjc_ruleEngine.ResultOpinion" resultMap="ResultOpinionResult">
+	select 
+		*
+	    from 
+	    (
+	    select r.opinion_id,r.instance_id,r.tache_name,r.opinion_time,r.user_name,r.opinion_content
+	    from TA_SP_RESULT_OPINION r  where r.instance_id=#{instanceId}
+	    union
+	    select SUSPEND_ID as opinion_id,INSTANCE_ID as instance_id, '特别程序申请信息' as tache_name, START_DATE as  opinion_time,
+	    SUSPEND_USERNAME as user_name,'' as opinion_content
+	    from TA_SP_SUSPEND where INSTANCE_ID=#{instanceId}
+	    union 
+	    select RESUME_ID as opinion_id,INSTANCE_ID as instance_id,'特别程序结果信息' as tache_name,END_DATE as opinion_time,
+	    RESUME_USERNAME as user_name ,REMARKA AS opinion_content
+	    from TA_SP_RESUME where INSTANCE_ID=#{instanceId}
+	    )
+	    table1 
+</select>
+
+<!-- ElementID:update,Generated=false -->
+
+<!-- ElementID:updateNull,Generated=false -->
+
+<!-- ElementID:delete,Generated=false -->
+
+<!-- ElementID:insertBatch,Generated=false -->
+
+<!-- ElementID:deleteBatch,Generated=false -->
+
+<!-- ElementID:updateBatch,Generated=false -->
+
+<!-- 批量将环节开始时间或环节时限为空的数据，修改成不需要监察，并修改监察日期为当天 -->
+<update id="batchUpdateCannotSupervise">
+	update ta_sp_result_opinion a set a.supervise_flag = 'N',a.supervise_time = sysdate 
+	where a.begin_time is null or a.link_time is null
+</update>
+
+<!-- 获取需要监察的总数 -->
+<select id="selectSuperviseTotal" resultType="int">
+	select count(1) from va_jc_huanjie_supervise 
+</select>
+
+<!-- 分批获取需要监察的数据 -->
+<select id="selectSuperviseData" parameterType="java.util.HashMap" resultMap="ResultOpinionResult">
+	SELECT opinion_id, instance_id, begin_time, opinion_time,link_time, work_time, holiday_count FROM(
+　　    		SELECT ROWNUM rn,
+             t1.opinion_id, t1.instance_id, t1.begin_time, t1.opinion_time,
+                      t1.link_time, t1.work_time, t1.holiday_count FROM(
+　　           		select a.opinion_id,a.instance_id,a.begin_time,a.opinion_time,
+                       a.link_time,a.work_time,a.holiday_count 
+                       from va_jc_huanjie_supervise a 
+　　                  order by a.instance_id asc 
+　　                  )t1 WHERE ROWNUM &lt;= #{endIndex}
+　　  ) WHERE rn &gt; #{startIndex}
+</select>
+
+<update id="batchUpdateTimeUse" parameterType="java.util.List">
+	<foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+		UPDATE ta_sp_result_opinion SET 
+		time_use = #{item.timeUse},
+		supervise_time = #{item.superviseTime}
+		WHERE opinion_id = #{item.opinionId}
+	</foreach>
+</update>
+
+<select id="selectFinishByBusinessId" parameterType="java.util.List" resultMap="ResultOpinionResult">
+	select
+	t.opinion_id,t.instance_id ,t.link_flag ,t.last_supervise
+	from ta_sp_result_opinion t 
+	where t.opinion_id in
+	<foreach collection="list" item="item" index="index" open="(" separator="," close=")">
+		#{item.opinionId,jdbcType=VARCHAR}
+	</foreach>
+</select>
+
+<update id="batchUpdateSupervise" parameterType="java.util.List">
+	<foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+		UPDATE ta_sp_result_opinion
+		<set>
+			<if test="item.isNeedSupervise != null">is_need_supervise=#{item.isNeedSupervise,jdbcType=VARCHAR},
+			</if>
+			<if test="item.lastSupervise != null">last_supervise=#{item.lastSupervise,jdbcType=VARCHAR}
+			</if>
+		</set>
+		<where>
+			<choose>
+				<when test="item.opinionId != null">and opinion_id = #{item.opinionId}</when>
+				<otherwise>and opinion_id = </otherwise>
+			</choose>
+		</where>
+	</foreach>
+</update>
+
+<!-- ElementID:insert,Generated=false -->
+
+</mapper>

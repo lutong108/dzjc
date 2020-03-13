@@ -1,0 +1,14 @@
+/*统计表格中 办件类单元格样式设置*/
+.banjianyewu_table_td_css {
+	background: #ecfdfd;
+}
+
+/*统计表格中 咨询类单元格样式设置*/
+.zixunyewu_table_td_css {
+	background: #FFFFFF;
+}
+
+/*统计表格中 投诉类单元格样式设置*/
+.tousuyewu_table_td_css {
+	background: #AAAAAA;
+}

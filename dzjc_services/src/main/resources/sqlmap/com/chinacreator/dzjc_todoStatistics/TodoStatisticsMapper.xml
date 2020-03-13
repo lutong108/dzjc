@@ -1,0 +1,499 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chinacreator.dzjc_todoStatistics.TodoStatisticsMapper">
+
+<!-- 湖南省 -->
+<select id="getTodoStatisticsList" parameterType="java.util.Map" resultType="com.chinacreator.dzjc_todoStatistics.EgovernmentListBean">
+select ar.AREA_CODE as area_code,
+         ar.AREA_NAME as areaName,
+         nvl(sum(b.sj), 0) as sj,
+         nvl(sum(b.bj), 0) as bj,
+         nvl(sum(b.tsbj), 0) as tsbj,
+         nvl(sum(b.bjyellow), 0) as bjyellow,
+         nvl(sum(b.bjred), 0) as bjred,
+         nvl(sum(b.cnyellow), 0) as cnyellow,
+         nvl(sum(b.cnred), 0) as cnred,
+         nvl(sum(b.csyellow), 0) as csyellow,
+         nvl(sum(b.csred), 0) as csred,
+         nvl(sum(b.ts), 0) as ts,
+         nvl(sum(b.cn), 0) as cn,
+         nvl(sum(b.crn), 0) as crn,
+         nvl(sum(b.csn), 0) as csn,
+         nvl(sum(b.csrn), 0) as csrn
+    from v_ta_dic_area ar
+    left join (select si.CITY_CODE as area_code,
+                     sum(si.ACCEPT_NUM) as sj,
+                     sum(si.FINISH_NUM) as bj,
+                     sum(si.BEFORE_FINISH_NUM) as tsbj,
+                     sum(si.INSTANCE_SUPERVISE_YELLO_NUM) as bjyellow,
+                     sum(si.INSTANCE_SUPERVISE_RED_NUM) as bjred,
+                     sum(si.COMPLAIN_SUPERVISE_YELLO_NUM) as cnyellow,
+                     sum(si.COMPLAIN_SUPERVISE_RED_NUM) as cnred,
+                     sum(si.CONSULT_SUPERVISE_YELLO_NUM) as csyellow,
+                     sum(si.CONSULT_SUPERVISE_RED_NUM) as csred,
+                     sum(si.COMPLAIN_NUM) as ts,
+                     sum(si.com_num) as cn,
+                     sum(si.complain_reply_num) as crn,
+                     sum(si.consult_num) as csn,
+                     sum(si.consult_replay_num) as csrn
+                from TA_JC_SUM_SUPERVISE_INFO si
+               where 1 = 1
+                 and si.NOW_DATE between #{startDate,jdbcType=VARCHAR} and #{endDate,jdbcType=VARCHAR}
+               group by CITY_CODE) b
+      on ar.AREA_CODE = b.area_code
+   where ar.parent_code = #{parentCode,jdbcType=VARCHAR}
+      group by ar.AREA_CODE,ar.AREA_NAME, ar.order_num
+<choose>
+      <when test="sortCol != null">
+        order by ${sortCol} desc
+      </when>
+      <when test='sortCell != null and sortCount == "1"'>
+        order by ${sortCell} desc
+      </when>
+      <when test='sortCell != null and sortCount == "2"'>
+        order by ${sortCell} asc
+      </when>
+      <otherwise>
+        order by ar.ORDER_NUM 
+      </otherwise>
+</choose>
+    	 
+</select>
+	
+<!-- 湖南省累计 -->
+<select id="getTodoStatisticsListAll" parameterType="java.util.Map" resultType="com.chinacreator.dzjc_todoStatistics.EgovernmentListBean">
+select ar.AREA_CODE as area_code,
+       ar.AREA_NAME as areaName,
+       nvl(sum(b.sj), 0) as sj,
+       nvl(sum(b.bj), 0) as bj,
+       nvl(sum(b.tsbj), 0) as tsbj,
+       nvl(sum(b.yellow), 0) as yellow,
+       nvl(sum(b.red), 0) as red,
+       nvl(sum(b.ts), 0) as ts,
+       nvl(sum(b.cn), 0) as cn,
+       nvl(sum(b.crn), 0) as crn,
+       nvl(sum(b.csn), 0) as csn,
+       nvl(sum(b.csrn), 0) as csrn
+  from v_ta_dic_area ar
+  left join (select si.CITY_CODE as area_code,
+                    sum(si.ACCEPT_NUM) as sj,
+                    sum(si.FINISH_NUM) as bj,
+                    sum(si.BEFORE_FINISH_NUM) as tsbj,
+                    sum(si.supervise_yello_num) as yellow,
+                    sum(si.supervise_red_num) as red,
+                    sum(si.COMPLAIN_NUM) as ts,
+                    sum(si.com_num) as cn,
+                    sum(si.complain_reply_num) as crn,
+                    sum(si.consult_num) as csn,
+                    sum(si.consult_replay_num) as csrn
+               from TA_JC_SUM_SUPERVISE_INFO si
+               where 1=1 
+              group by CITY_CODE            
+              ) b
+    on ar.AREA_CODE = b.area_code
+ 	where ar.parent_code = #{parentCode,jdbcType=VARCHAR}
+ 	group by ar.AREA_CODE,ar.AREA_NAME, ar.order_num
+</select>
+	
+<!-- 省本级 -->
+<select id="getLevelStatisticsList" parameterType="java.util.Map" resultType="com.chinacreator.dzjc_todoStatistics.EgovernmentListBean">
+select v.ORG_ID as areaCode,
+       v.ORG_NAME as areaName,
+       v.ORDER_NUM,
+       nvl(sum(s.sj), 0) as sj,
+       nvl(sum(s.bj), 0) as bj,
+       nvl(sum(s.tsbj), 0) as tsbj,
+       nvl(sum(s.bjyellow), 0) as bjyellow,
+       nvl(sum(s.bjred), 0) as bjred,
+       nvl(sum(s.cnyellow), 0) as cnyellow,
+       nvl(sum(s.cnred), 0) as cnred,
+       nvl(sum(s.csyellow), 0) as csyellow,
+       nvl(sum(s.csred), 0) as csred,
+       nvl(sum(s.crn), 0) as crn,
+       nvl(sum(s.csn), 0) as csn,
+       nvl(sum(s.csrn), 0) as csrn
+  from V_TD_SM_ORGANIZATION1 v
+  left join (select a.ORG_ID as areaCode,
+                    a.AREA_ORG_NAME areaName,
+                    sum(a.ACCEPT_NUM) as sj,
+                    sum(a.FINISH_NUM) as bj,
+                    sum(a.BEFORE_FINISH_NUM) as tsbj,
+                    sum(a.INSTANCE_SUPERVISE_YELLO_NUM) as bjyellow,
+                    sum(a.INSTANCE_SUPERVISE_RED_NUM) as bjred,
+                    sum(a.COMPLAIN_SUPERVISE_YELLO_NUM) as cnyellow,
+                    sum(a.COMPLAIN_SUPERVISE_RED_NUM) as cnred,
+                    sum(a.CONSULT_SUPERVISE_YELLO_NUM) as csyellow,
+                    sum(a.CONSULT_SUPERVISE_RED_NUM) as csred,
+                    sum(a.COMPLAIN_NUM) as ts,
+                    sum(a.com_num) as cn,
+                    sum(a.complain_reply_num) as crn,
+                    sum(a.consult_num) as csn,
+                    sum(a.consult_replay_num) as csrn
+               from TA_JC_SUM_SUPERVISE_INFO a
+              where 1 = 1
+               and a.NOW_DATE between  #{startDate,jdbcType=VARCHAR} and #{endDate,jdbcType=VARCHAR}
+              	and  a.city_code=#{parentCode,jdbcType=VARCHAR}
+                and a.AREA_ORG_CODE != '439900000000000000000000'
+              group by a.AREA_ORG_NAME,a.ORG_ID) s
+    on v.ORG_ID = s.areaCode
+ where 1 = 1 
+   and v.ORG_CODE !=  '439900000000000000000000'
+   and  v.city_code=#{parentCode,jdbcType=VARCHAR}
+   and substr(v.ORG_CODE, -3) = '000'
+   group by v.ORG_ID,v.ORG_NAME,v.ORDER_NUM
+<choose>
+      <when test="sortCol != null">
+        order by ${sortCol} desc
+      </when>
+      <when test='sortCell != null and sortCount == "1"'>
+        order by ${sortCell} desc
+      </when>
+      <when test='sortCell != null and sortCount == "2"'>
+        order by ${sortCell} asc
+      </when>
+      <otherwise>
+        order by v.ORDER_NUM 
+      </otherwise>
+</choose>
+</select>
+	
+<!-- 省本级累计 -->
+<select id="getLevelStatisticsListAll" parameterType="java.util.Map" resultType="com.chinacreator.dzjc_todoStatistics.EgovernmentListBean">
+select v.ORG_ID as areaCode,
+       v.ORG_NAME as areaName,
+       v.ORDER_NUM,
+       nvl(sum(s.sj), 0) as sj,
+       nvl(sum(s.bj), 0) as bj,
+       nvl(sum(s.tsbj), 0) as tsbj,
+       nvl(sum(s.yellow), 0) as yellow,
+       nvl(sum(s.red), 0) as red,
+       nvl(sum(s.ts), 0) as ts,
+       nvl(sum(s.cn), 0) as cn,
+       nvl(sum(s.crn), 0) as crn,
+       nvl(sum(s.csn), 0) as csn,
+       nvl(sum(s.csrn), 0) as csrn
+  from V_TD_SM_ORGANIZATION1 v
+  left join (select a.ORG_ID as areaCode,
+                    a.AREA_ORG_NAME areaName,
+                    sum(a.ACCEPT_NUM) as sj,
+                    sum(a.FINISH_NUM) as bj,
+                    sum(a.BEFORE_FINISH_NUM) as tsbj,
+                    sum(a.supervise_yello_num) as yellow,
+                    sum(a.supervise_red_num) as red,
+                    sum(a.COMPLAIN_NUM) as ts,
+                    sum(a.com_num) as cn,
+                    sum(a.complain_reply_num) as crn,
+                    sum(a.consult_num) as csn,
+                    sum(a.consult_replay_num) as csrn
+               from TA_JC_SUM_SUPERVISE_INFO a
+              where 1 = 1
+              	and  a.city_code=#{parentCode,jdbcType=VARCHAR}
+                and a.AREA_ORG_CODE != '439900000000000000000000'
+              group by a.AREA_ORG_NAME,a.ORG_ID) s
+    on v.ORG_ID = s.areaCode
+ where 1 = 1 
+   and v.ORG_CODE !=  '439900000000000000000000'
+   and  v.city_code=#{parentCode,jdbcType=VARCHAR}
+   and substr(v.ORG_CODE, -3) = '000'
+   group by v.ORG_ID,v.ORG_NAME,v.ORDER_NUM
+</select>	
+
+<!-- 市级 -->
+<select id="getCityLevelStatisticsList" parameterType="java.util.Map" resultType="com.chinacreator.dzjc_todoStatistics.EgovernmentListBean">
+select a.area_code as areaCode,
+       a.area_name as areaName,
+       to_number(a.order_num) as areasn,
+       nvl(sum(si.receives), 0) as sj,
+       nvl(sum(si.notaries), 0) as bj,
+       nvl(sum(si.tsbj), 0) as tsbj,
+       nvl(sum(si.bjyellow), 0) as bjyellow,
+       nvl(sum(si.bjred), 0) as bjred,
+       nvl(sum(si.cnyellow), 0) as cnyellow,
+       nvl(sum(si.cnred), 0) as cnred,
+       nvl(sum(si.csyellow), 0) as csyellow,
+       nvl(sum(si.csred), 0) as csred,
+       nvl(sum(si.yxts), 0) as ts,
+       nvl(sum(si.cn), 0) as cn,
+       nvl(sum(si.crn), 0) as crn,
+       nvl(sum(si.csn), 0) as csn,
+       nvl(sum(si.csrn), 0) as csrn
+  from v_ta_dic_area a
+  left join (select s.COUNTY_CODE as areaCode,
+                    sum(s.ACCEPT_NUM) as receives,
+                    sum(s.FINISH_NUM) as notaries,
+                    sum(s.BEFORE_FINISH_NUM) as tsbj,
+                    sum(s.INSTANCE_SUPERVISE_YELLO_NUM) as bjyellow,
+                    sum(s.INSTANCE_SUPERVISE_RED_NUM) as bjred,
+                    sum(s.COMPLAIN_SUPERVISE_YELLO_NUM) as cnyellow,
+                    sum(s.COMPLAIN_SUPERVISE_RED_NUM) as cnred,
+                    sum(s.CONSULT_SUPERVISE_YELLO_NUM) as csyellow,
+                    sum(s.CONSULT_SUPERVISE_RED_NUM) as csred,
+                    sum(s.COMPLAIN_NUM) as yxts,
+                    sum(s.com_num) as cn,
+                    sum(s.complain_reply_num) as crn,
+                    sum(s.consult_num) as csn,
+                    sum(s.consult_replay_num) as csrn
+               from TA_JC_SUM_SUPERVISE_INFO s
+              where s.CITY_CODE = #{parentCode,jdbcType=VARCHAR}
+                and s.NOW_DATE between  #{startDate,jdbcType=VARCHAR} and #{endDate,jdbcType=VARCHAR}
+              group by s.COUNTY_CODE) si
+    on a.area_code = si.areaCode
+ where a.parent_code = #{parentCode,jdbcType=VARCHAR}
+ group by a.area_code, a.area_name, a.order_num
+<choose>
+      <when test="sortCol != null">
+        order by ${sortCol} desc
+      </when>
+      <when test='sortCell != null and sortCount == "1"'>
+        order by ${sortCell} desc
+      </when>
+      <when test='sortCell != null and sortCount == "2"'>
+        order by ${sortCell} asc
+      </when>
+      <otherwise>
+        order by a.ORDER_NUM 
+      </otherwise>
+</choose>
+</select>
+	
+<!-- 市级累计 -->
+<select id="getCityLevelStatisticsListAll" parameterType="java.util.Map" resultType="com.chinacreator.dzjc_todoStatistics.EgovernmentListBean">
+select a.area_code as areaCode,
+       a.area_name as areaName,
+       to_number(a.order_num) as areasn,
+       nvl(sum(si.receives), 0) as sj,
+       nvl(sum(si.notaries), 0) as bj,
+       nvl(sum(si.tsbj), 0) as tsbj,
+       nvl(sum(si.yxts), 0) as ts,
+       nvl(sum(si.cn), 0) as cn,
+       nvl(sum(si.crn), 0) as crn,
+       nvl(sum(si.csn), 0) as csn,
+       nvl(sum(si.csrn), 0) as csrn
+  from v_ta_dic_area a
+  left join (select s.COUNTY_CODE as areaCode,
+                    sum(s.ACCEPT_NUM) as receives,
+                    sum(s.FINISH_NUM) as notaries,
+                    sum(s.BEFORE_FINISH_NUM) as tsbj,
+                    sum(s.COMPLAIN_NUM) as yxts,
+                    sum(s.com_num) as cn,
+                    sum(s.complain_reply_num) as crn,
+                    sum(s.consult_num) as csn,
+                    sum(s.consult_replay_num) as csrn
+               from TA_JC_SUM_SUPERVISE_INFO s
+              where s.CITY_CODE = #{parentCode,jdbcType=VARCHAR}
+              group by s.COUNTY_CODE) si
+    on a.area_code = si.areaCode
+ where a.parent_code = #{parentCode,jdbcType=VARCHAR}
+ group by a.area_code, a.area_name, a.order_num
+</select>	
+	
+<!-- 区级 -->
+<select id="getCityAreaStatisticsList" parameterType="java.util.Map" resultType="com.chinacreator.dzjc_todoStatistics.EgovernmentListBean">
+select v.org_id,
+       v.ORG_CODE as areaCode,
+       v.ORG_NAME as areaName,
+       v.ORDER_NUM,
+       nvl(sum(s.sj), 0) as sj,
+       nvl(sum(s.bj), 0) as bj,
+       nvl(sum(s.tsbj), 0) as tsbj,
+       nvl(sum(s.bjyellow), 0) as bjyellow,
+       nvl(sum(s.bjred), 0) as bjred,
+       nvl(sum(s.cnyellow), 0) as cnyellow,
+       nvl(sum(s.cnred), 0) as cnred,
+       nvl(sum(s.csyellow), 0) as csyellow,
+       nvl(sum(s.csred), 0) as csred,
+       nvl(sum(s.ts), 0) as ts,
+       nvl(sum(s.cn), 0) as cn,
+       nvl(sum(s.crn), 0) as crn,
+       nvl(sum(s.csn), 0) as csn,
+       nvl(sum(s.csrn), 0) as csrn
+  from V_TD_SM_ORGANIZATION1 v
+  left join (select a.AREA_ORG_CODE as areaCode,
+                    a.AREA_ORG_NAME areaName,
+                    sum(a.ACCEPT_NUM) as sj,
+                    sum(a.FINISH_NUM) as bj,
+                    sum(a.BEFORE_FINISH_NUM) as tsbj,
+                    sum(a.INSTANCE_SUPERVISE_YELLO_NUM) as bjyellow,
+                    sum(a.INSTANCE_SUPERVISE_RED_NUM) as bjred,
+                    sum(a.COMPLAIN_SUPERVISE_YELLO_NUM) as cnyellow,
+                    sum(a.COMPLAIN_SUPERVISE_RED_NUM) as cnred,
+                    sum(a.CONSULT_SUPERVISE_YELLO_NUM) as csyellow,
+                    sum(a.CONSULT_SUPERVISE_RED_NUM) as csred,
+                    sum(a.COMPLAIN_NUM) as ts,
+                    sum(a.com_num) as cn,
+                    sum(a.complain_reply_num) as crn,
+                    sum(a.consult_num) as csn,
+                    sum(a.consult_replay_num) as csrn
+               from TA_JC_SUM_SUPERVISE_INFO a
+              where 1 = 1
+              and a.NOW_DATE between  #{startDate,jdbcType=VARCHAR} and #{endDate,jdbcType=VARCHAR}
+                and a.COUNTY_CODE = #{parentCode,jdbcType=VARCHAR}
+                and a.AREA_ORG_CODE !='430102000000000000000000'
+              group by a.AREA_ORG_NAME,a.AREA_ORG_CODE) s
+    on v.ORG_CODE = s.areaCode
+ where v.County_CODE = #{parentCode,jdbcType=VARCHAR}
+   and substr(v.ORG_CODE, 13) != '000000000000'
+   group by v.org_id,v.ORG_CODE,v.ORG_NAME,v.ORDER_NUM
+<choose>
+      <when test="sortCol != null">
+        order by ${sortCol} desc
+      </when>
+      <when test='sortCell != null and sortCount == "1"'>
+        order by ${sortCell} desc
+      </when>
+      <when test='sortCell != null and sortCount == "2"'>
+        order by ${sortCell} asc
+      </when>
+      <otherwise>
+        order by v.ORDER_NUM 
+      </otherwise>
+</choose>
+</select>
+	
+<!-- 区级累计 -->
+<select id="getCityAreaStatisticsListAll" parameterType="java.util.Map" resultType="com.chinacreator.dzjc_todoStatistics.EgovernmentListBean">
+select v.org_id,
+       v.ORG_CODE as areaCode,
+       v.ORG_NAME as areaName,
+       v.ORDER_NUM,
+       nvl(sum(s.sj), 0) as sj,
+       nvl(sum(s.bj), 0) as bj,
+       nvl(sum(s.tsbj), 0) as tsbj,
+       nvl(sum(s.yellow), 0) as yellow,
+       nvl(sum(s.red), 0) as red,
+       nvl(sum(s.ts), 0) as ts,
+       nvl(sum(s.cn), 0) as cn,
+       nvl(sum(s.crn), 0) as crn,
+       nvl(sum(s.csn), 0) as csn,
+       nvl(sum(s.csrn), 0) as csrn
+  from V_TD_SM_ORGANIZATION1 v
+  left join (select a.AREA_ORG_CODE as areaCode,
+                    a.AREA_ORG_NAME areaName,
+                    sum(a.ACCEPT_NUM) as sj,
+                    sum(a.FINISH_NUM) as bj,
+                    sum(a.BEFORE_FINISH_NUM) as tsbj,
+                    sum(a.supervise_yello_num) as yellow,
+                    sum(a.supervise_red_num) as red,
+                    sum(a.COMPLAIN_NUM) as ts,
+                    sum(a.com_num) as cn,
+                    sum(a.complain_reply_num) as crn,
+                    sum(a.consult_num) as csn,
+                    sum(a.consult_replay_num) as csrn
+               from TA_JC_SUM_SUPERVISE_INFO a
+              where 1 = 1
+                and a.COUNTY_CODE = #{parentCode,jdbcType=VARCHAR}
+                and a.AREA_ORG_CODE !='430102000000000000000000'
+              group by a.AREA_ORG_NAME,a.AREA_ORG_CODE) s
+    on v.ORG_CODE = s.areaCode
+ where v.County_CODE = #{parentCode,jdbcType=VARCHAR}
+   and substr(v.ORG_CODE, 13) != '000000000000'
+   group by v.org_id,v.ORG_CODE,v.ORG_NAME,v.ORDER_NUM
+</select>	
+	
+<!-- 单位机构 -->
+<select id="getCityOrgStatisticsList" parameterType="java.util.Map" resultType="com.chinacreator.dzjc_todoStatistics.EgovernmentListBean">
+select v.org_id,
+       v.ORG_CODE as areaCode,
+       v.ORG_NAME as areaName,
+       v.ORDER_NUM,
+       nvl(sum(s.sj), 0) as sj,
+       nvl(sum(s.bj), 0) as bj,
+       nvl(sum(s.tsbj), 0) as tsbj,
+       nvl(sum(s.bjyellow), 0) as bjyellow,
+       nvl(sum(s.bjred), 0) as bjred,
+       nvl(sum(s.cnyellow), 0) as cnyellow,
+       nvl(sum(s.cnred), 0) as cnred,
+       nvl(sum(s.csyellow), 0) as csyellow,
+       nvl(sum(s.csred), 0) as csred,
+       nvl(sum(s.ts), 0) as ts,
+       nvl(sum(s.cn), 0) as cn,
+       nvl(sum(s.crn), 0) as crn,
+       nvl(sum(s.csn), 0) as csn,
+       nvl(sum(s.csrn), 0) as csrn
+  from V_TD_SM_ORGANIZATION1 v
+  left join (select a.AREA_ORG_CODE as areaCode,
+                    a.AREA_ORG_NAME areaName,
+                    sum(a.ACCEPT_NUM) as sj,
+                    sum(a.FINISH_NUM) as bj,
+                    sum(a.BEFORE_FINISH_NUM) as tsbj,
+                    sum(a.INSTANCE_SUPERVISE_YELLO_NUM) as bjyellow,
+                    sum(a.INSTANCE_SUPERVISE_RED_NUM) as bjred,
+                    sum(a.COMPLAIN_SUPERVISE_YELLO_NUM) as cnyellow,
+                    sum(a.COMPLAIN_SUPERVISE_RED_NUM) as cnred,
+                    sum(a.CONSULT_SUPERVISE_YELLO_NUM) as csyellow,
+                    sum(a.CONSULT_SUPERVISE_RED_NUM) as csred,
+                    sum(a.COMPLAIN_NUM) as ts,
+                    sum(a.com_num) as cn,
+                    sum(a.complain_reply_num) as crn,
+                    sum(a.consult_num) as csn,
+                    sum(a.consult_replay_num) as csrn
+               from TA_JC_SUM_SUPERVISE_INFO a
+              where 1 = 1
+              and a.NOW_DATE between  #{startDate,jdbcType=VARCHAR} and #{endDate,jdbcType=VARCHAR}
+                and a.org_id = #{parentCode,jdbcType=VARCHAR}
+                and a.AREA_ORG_CODE !='430102000000000000000000'
+              group by a.AREA_ORG_NAME,a.AREA_ORG_CODE) s
+    on v.ORG_CODE = s.areaCode
+ where v.ORG_ID = #{parentCode,jdbcType=VARCHAR}
+   and substr(v.ORG_CODE, 13) != '000000000000'
+   group by v.org_id,v.ORG_CODE,v.ORG_NAME,v.ORDER_NUM
+<choose>
+      <when test="sortCol != null">
+        order by ${sortCol} desc
+      </when>
+      <when test='sortCell != null and sortCount == "1"'>
+        order by ${sortCell} desc
+      </when>
+      <when test='sortCell != null and sortCount == "2"'>
+        order by ${sortCell} asc
+      </when>
+      <otherwise>
+        order by v.ORDER_NUM 
+      </otherwise>
+</choose>
+</select>
+
+<!-- 单位机构累计 -->
+<select id="getCityOrgStatisticsListAll" parameterType="java.util.Map" resultType="com.chinacreator.dzjc_todoStatistics.EgovernmentListBean">
+select v.org_id,
+       v.ORG_CODE as areaCode,
+       v.ORG_NAME as areaName,
+       v.ORDER_NUM,
+       nvl(sum(s.sj), 0) as sj,
+       nvl(sum(s.bj), 0) as bj,
+       nvl(sum(s.tsbj), 0) as tsbj,
+       nvl(sum(s.yellow), 0) as yellow,
+       nvl(sum(s.red), 0) as red,
+       nvl(sum(s.ts), 0) as ts,
+       nvl(sum(s.cn), 0) as cn,
+       nvl(sum(s.crn), 0) as crn,
+       nvl(sum(s.csn), 0) as csn,
+       nvl(sum(s.csrn), 0) as csrn
+  from V_TD_SM_ORGANIZATION1 v
+  left join (select a.AREA_ORG_CODE as areaCode,
+                    a.AREA_ORG_NAME areaName,
+                    sum(a.ACCEPT_NUM) as sj,
+                    sum(a.FINISH_NUM) as bj,
+                    sum(a.BEFORE_FINISH_NUM) as tsbj,
+                    sum(a.supervise_yello_num) as yellow,
+                    sum(a.supervise_red_num) as red,
+                    sum(a.COMPLAIN_NUM) as ts,
+                    sum(a.com_num) as cn,
+                    sum(a.complain_reply_num) as crn,
+                    sum(a.consult_num) as csn,
+                    sum(a.consult_replay_num) as csrn
+               from TA_JC_SUM_SUPERVISE_INFO a
+              where 1 = 1
+                and a.org_id = #{parentCode,jdbcType=VARCHAR}
+                and a.AREA_ORG_CODE !='430102000000000000000000'
+              group by a.AREA_ORG_NAME,a.AREA_ORG_CODE) s
+    on v.ORG_CODE = s.areaCode
+ where v.ORG_ID = #{parentCode,jdbcType=VARCHAR}
+   and substr(v.ORG_CODE, 13) != '000000000000'
+   group by v.org_id,v.ORG_CODE,v.ORG_NAME,v.ORDER_NUM
+</select>
+
+<select id="getAreaName" parameterType="java.util.Map" resultType="String">
+	select t.area_name from v_ta_dic_area t where t.area_code=#{parentCode,jdbcType=VARCHAR}
+</select>
+</mapper>

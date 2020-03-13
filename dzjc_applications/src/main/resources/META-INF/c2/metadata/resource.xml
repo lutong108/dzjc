@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PRSet xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns="http://www.chinacreator.com/platform/mvc/perm">
+  <resources>
+    <resource id="" name="建议回复" path="f/accept/updateAdvise" type="form"/>
+    <resource id="" name="新增建议" path="f/accept/addAdvise" type="form"/>
+  </resources>
+</PRSet>
