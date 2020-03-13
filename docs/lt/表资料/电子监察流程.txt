@@ -1,0 +1,44 @@
+1、数据来源有几种形式？
+交换、触发。
+交换是地市向省里边汇聚数据（目前他们只有这个通道）。例如：岳阳本地的数据先进入本地数据库，然后流向岳阳前置机，之后通过转换到省库。
+触发是业务系统把数据转入到平级（省）的监察系统数据库的过程。
+2、办件发牌和特别程序发牌的关系？
+	两个业务是一起的，发牌是分开的
+疑问及解答：
+3、superviseDefBean这个默认规则是干什么用的？
+	是监察和规则的统一集合表
+4、feedbackDate反馈终止时间用在了哪里？
+	不用了
+5、反写是什么？与咨询临时表有什么关系？
+	反写就是将发牌信息等存放在临时表中的数据插入正式业务表中
+6、特别程序监察的业务作用（其businessId用特殊字符隔开$$/##/@@）？
+	办理时间延期
+7、为什么定时任务执行前要处理承诺件与即办件？
+	承诺件要监察，即办件不需监察，所以在监察前要分清楚现在办件的状态，因为办件可在上面两个状态切换。
+表：
+--规则表
+select * from TA_JC_RULE_BASEINFO t where t.rule_id in ('115', '118', '119');
+--表达式与规则对应表
+select * from TA_JC_RULE_EXPINFO t where t.rule_id in ('115', '118', '119');
+--表达式表
+select * from TA_JC_RULE_EXPLETINFO t where t.exp_id in ('3351');
+--监察与规则默认定义表
+select t2.* from ta_jc_rule_supervise_definition t2 
+inner join  TA_JC_RULE_EXPINFO t1 
+on t2.exp_id =  t1.exp_id
+where t1.rule_id in ('115');
+--监察要素
+select * from ta_jc_rule_element t where t.elem_id = '10';
+--监察类型 字典
+select * from TA_JC_DIC_SUPERVISE_TYPE  t where t.supervise_type_code='1013';
+--监察结果 字典
+select * from TA_JC_DIC_SUPERVISE_RESULT t where t.supervise_result_id='1';
+--消息模板
+select * from ta_jc_msg_template t where t.template_id='112';
+
+--咨询时间计算临时表
+TA_JC_CONSULT_ELEM_RESULT;
+--咨询过程临时表 ta_jc_supervise_consult_temp
+ta_jc_supervise_consult_temp;
+--最终临时表
+ta_jc_supervise_consult_back_temp;
